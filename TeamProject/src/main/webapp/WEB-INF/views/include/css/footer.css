@@ -1,0 +1,57 @@
+@media (max-width: 458px){
+    #layer{
+    border: none !important;
+    margin-left: -4rem !important;
+    }	
+}
+@media (max-width: 762px) {
+	.tail_body{
+	  justify-content: center;
+	}
+}
+@media (min-width: 1111px) {
+	#ToggleBottom{
+	  display: none;
+	}
+}
+
+@media (max-width: 1220px){
+	.tail_body{
+	  flex-wrap: wrap;
+	}
+}
+.tail_body {
+	justify-content:space-around;
+	align-item:flex-start;
+	margin-left:auto;
+	font-size:12px;
+	color:#4d4d4d;
+	display: flex;
+}
+#footer-body{
+	background: #eeeeee;
+}
+.tail_body a {color:#4d4d4d}
+.tail_body:after {display:block;clear:both;}
+.tail_body .title_tail{margin-top: 1rem;}
+.tail_body .tail_item {
+    margin: 0.5rem 0.3rem;
+    text-align: center;
+}
+.tail_body .tail_item ul{margin: 0; padding: 0;}
+.tail_body .tail_item li{list-style:none;}
+.tail_body .com_info {position: relative;}
+.tail_body .com_info a{color: black;}
+.tail_body .title_tail {color:#71c9ce; font-weight:bold; font-size:15px; margin-bottom:10px;}
+.tail_body .bank_info ul {margin: 0; padding: 0;}
+.tail_body .bank_info li {margin-bottom:5px; list-style:none;}
+.tail_body .bank_info li span {display: inline-block; width:60px; float:left;}
+.tail_body .bank_info li:last-child {margin-top:20px;}
+.tail_body .return_txt a {font-size:13px; color: black;}
+.tail_body .tel {font-size:19px;font-weight:bold;color:#000;margin-bottom:5px;}
+.tail_body .shop_info a{font-size: 15px; color: black;}
+.tail_body .shop_info span {font-weight:bold; display:inline-block;}
+.tail_body .shop_info li {line-height:23px;}
+.tail_body .bsns_wrap .sns {margin:10px 0;}
+.tail_body .bsns_wrap .sns li {display:inline-block; margin:0 6px 0 0}
+.tail_body .bsns_wrap .sns li img {height:36px}
