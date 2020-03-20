@@ -1,0 +1,94 @@
+﻿1. 설치
+https://www.oracle.com/database/technologies/xe-prior-releases.html
+
+중하단의 Oracle Database 11g Express Edition
+
+Oracle Database 11g Release 2 Express Edition for Windows 64 now available for download. =>
+Accept License Agreemen =>
+OracleXE112_Win64.zip파일 다운로드
+
+압축풀고 setup.exe 실행
+-----------------------------------
+기본설치 후 아래 비밀번호란이 나오면 1234로 
+Enter Password : 1234
+Confirm Password : 1234
+-----------------------------------
+cmd모드에서
+c:\Users\user>sqlplus
+
+Enter user-name : system
+Enter password : 1234
+
+SQL>
+위 프롬프트가 뜨면 잘 설치된것임
+
+2. 파일 확인
+서비스에서 아래 2개 서비스가 주요함.(만약 중지되었으면 다시 시작해야함)
+OracleServiceXE : 오라클 기본 서비스
+OracleXETNSListener : 외부에서 오라클을 호출해 사용할 수 있는 서비스
+
+C:\oraclexe\app\oracle\product\11.2.0\server\network\ADMIN
+에서 listener.ora와 tnsnames.ora를 에디터로 열어 (SERVICE_NAME = XE), (PORT = 1521) 등을 확인한다. 
+
+--sqlplus 아이디/비밀번호sqlplus system/1234
+--sys 계정으로 로그인sqlplus / as sysdba
+
+--테이블 스페이스(테이블의 저장 공간) 생성
+--create tablespace 테이블스페이스이름
+--datafile '데이터파일경로' size 초기사이즈
+--autoextend on
+--next 자동증가사이즈
+--maxsize 최대사이즈;
+
+SQL>create tablespace teamproject
+datafile 'd:\teamproject.dbf' size 50m
+autoextend on
+next 10m
+maxsize unlimited;
+
+
+-- java 테이블스페이스 삭제 
+DROP TABLESPACE java  INCLUDING CONTENTS;
+-- INCLUDING CONTENTS : TABLESPACE에 Data가 이미들어있을 경우 들어있는 내용을 포함해서 모두 삭제 합니다.
+-- CASECADE CONSTRAINTS : PRIMARY KEY가 설정되어 있는 경우에 child 의 FORIEGN KEY를 삭제하고 TABLESPACE를 삭제 합니다.
+
+
+
+--사용자 계정 만들기
+--create user 아이디 identified by 비번 default tablespace db이름;
+SQL>create user teamproject identified by 1234
+default tablespace teamproject;
+
+--사용자에게 권한 부여
+--grant 권한 to 아이디;
+-- connect : 로그인 권한
+-- resource : 자원을 사용할 수 있는 권한
+-- dba : db 관리자 권한
+SQL>grant connect, resource, dba to teamproject;
+
+----------(참고)-------------------
+$ sqlplus / as sysdba
+다음과 같은 에러가 나면
+ERROR: ORA-01031: insufficient privileges
+
+성공적으로 연결하기 위햇는 SYS 패스워드를 함께 입력해야 함
+$ sqlplus /nolog 
+SQL> connect sys/oracle as sysdba
+---------------------------------
+
+SQL> exit
+-- java 계정으로 로그인
+C:\Users\User>sqlplus
+Enter user-name: java
+Enter password: java1234
+
+
+==============================================================
+SQL Developer 다운로드
+http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html
+Windows 64-bit with JDK 8 included 를 다운로드
+
+SQL Developer에서 
+접속이름 system계정, 사용자 이름 system 비번 1234로
+접속이름 java계정, 사용자 이름 java 비번 java1234로
+접속정보를 각각 새로만든다.
