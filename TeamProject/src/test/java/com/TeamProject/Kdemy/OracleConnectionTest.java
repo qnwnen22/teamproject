@@ -13,7 +13,7 @@ private static final String DRIVER
 //연결문자열 jdbc:oracle:thin:@호스트:포트:sid
 private static final String URL
 ="jdbc:oracle:thin:@localhost:1521:xe";
-private static final String USER="spring"; //아이디
+private static final String USER="teamproject"; //아이디
 private static final String PW="1234"; //비번
 @Test
 public void test() throws Exception {
