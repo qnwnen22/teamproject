@@ -8,3 +8,4 @@
 <link rel="stylesheet" href="${path}/include/css/bootstrap.css">
 <link rel="stylesheet" href="${path}/include/css/topbar.css">
 <link rel="stylesheet" href="${path}/include/css/footer.css">
+<script src="/include/js/bootstrap.js"></script>
