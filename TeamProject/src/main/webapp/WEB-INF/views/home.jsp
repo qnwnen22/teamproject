@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="include/header.jsp"%>
-<%@ include file="include/topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 </head>
 <body>
+<%@ include file="include/topbar.jsp"%>
 	<div class="global-body">
 		<div class="master-body">
 			<div class="MasterBodyDestTop">
@@ -109,7 +109,7 @@
 								  <section class="ROOT_DIRECTORY" style="margin-top: 70px;"></section>
 								    <div class="RootDirectoryTheme">
 								      <div class="background">
-								        <div style="margin-right: auto; margin-left: auto; width: 1170px;">
+								        <div style="margin-right: auto; margin-left: auto;">
 								          <div class="items-container"> 
 								            <div class="RootDirectoryThemeItem">
 								              <a class="plain" href="#">
