@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <header class="nav" style="display: none;">
-	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed">
+	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed pb-3">
 		<div class="container-1170 position-relative">
 			<div class="flex-between-center height-80px col-xl-12">
 				<div class="flex-left-center col-xl-6">
