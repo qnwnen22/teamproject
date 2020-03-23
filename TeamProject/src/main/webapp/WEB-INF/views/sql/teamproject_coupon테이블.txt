@@ -1,7 +1,7 @@
---ÆÀÇÁ·ÎÁ§Æ® ÄíÆù Å×ÀÌºí
+--íŒ€í”„ë¡œì íŠ¸ ì¿ í° í…Œì´ë¸”
 drop table coupon;
 
--- ÄíÆù ¸ñ·Ï Å×ÀÌºí
+-- ì¿ í° ëª©ë¡ í…Œì´ë¸”
 create table coupon(
 coupon_idx varchar2(200) primary key,
 coupon_name varchar2(200) not null,
@@ -10,16 +10,16 @@ coupon_text varchar2(200)
 );
 
 insert into coupon (coupon_idx,coupon_name,point,coupon_text)
-values ('a','È¸¿ø°¡ÀÔ ÄíÆù',10000,'È¸¿ø°¡ÀÔ ½Ã Áö±ŞµÇ´Â ¹«·áÄíÆùÀÔ´Ï´Ù. (È¸¿ø°¡ÀÔ ½Ã Áö±Ş');
+values ('a','íšŒì›ê°€ì… ì¿ í°',10000,'íšŒì›ê°€ì… ì‹œ ì§€ê¸‰ë˜ëŠ” ë¬´ë£Œì¿ í°ì…ë‹ˆë‹¤. (íšŒì›ê°€ì… ì‹œ ì§€ê¸‰');
 insert into coupon (coupon_idx,coupon_name,point,coupon_text)
-values ('b','Ä£±¸ÃßÃµ ÀÌº¥Æ® ÄíÆù',5000,'Ä£±¸¿¡°Ô »çÀÌÆ®¸¦ ÃßÃµÇÏ°í ÄíÆùÀ» ¹ŞÀ¸¼¼¿ä. (ÃßÃµÇÑ Ä£±¸°¡ È¸¿ø°¡ÀÔ ½Ã Áö±Ş)');
+values ('b','ì¹œêµ¬ì¶”ì²œ ì´ë²¤íŠ¸ ì¿ í°',5000,'ì¹œêµ¬ì—ê²Œ ì‚¬ì´íŠ¸ë¥¼ ì¶”ì²œí•˜ê³  ì¿ í°ì„ ë°›ìœ¼ì„¸ìš”. (ì¶”ì²œí•œ ì¹œêµ¬ê°€ íšŒì›ê°€ì… ì‹œ ì§€ê¸‰)');
 insert into coupon (coupon_idx,coupon_name,point,coupon_text)
-values ('c','Á¦ÈŞ »çÀÌÆ® °¡ÀÔ ÄíÆù',1000,'@@È¨ÆäÀÌÁö¿¡¼­ È¸¿ø°¡ÀÔÀ» ÇÏ¸é ÄíÆùÀ» µå·Á¿ä. (@@È¨ÆäÀÌÁö È¸¿ø°¡ÀÔ ½Ã Áö±Ş');
+values ('c','ì œíœ´ ì‚¬ì´íŠ¸ ê°€ì… ì¿ í°',1000,'@@í™ˆí˜ì´ì§€ì—ì„œ íšŒì›ê°€ì…ì„ í•˜ë©´ ì¿ í°ì„ ë“œë ¤ìš”. (@@í™ˆí˜ì´ì§€ íšŒì›ê°€ì… ì‹œ ì§€ê¸‰');
 
 select * from coupon;
 
 drop table coupon_box;
--- ÄíÆùÇÔ Å×ÀÌºí
+-- ì¿ í°í•¨ í…Œì´ë¸”
 create table coupon_box(
 userid varchar2(200) not null,
 coupon_idx varchar2(200) not null
@@ -41,11 +41,11 @@ select * from coupon_box;
 
 desc coupon_box;
 
---userid¿¡ a ¶ó´Â ÄíÆùÀÌ ÀÖ½À´Ï±î?
+--useridì— a ë¼ëŠ” ì¿ í°ì´ ìˆìŠµë‹ˆê¹Œ?
 select coupon_idx from coupon_box
 where userid='qnwnen0228' and coupon_idx='a';
 
---userid¿¡ a ¶ó´Â ÄíÆùÀÌ ÀÖ½À´Ï±î?
+--useridì— a ë¼ëŠ” ì¿ í°ì´ ìˆìŠµë‹ˆê¹Œ?
 select coupon_idx from coupon_box
 where userid='qnwnen0228' and coupon_idx='b';
 
