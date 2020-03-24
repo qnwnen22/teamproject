@@ -18,7 +18,7 @@ public class TeacherController {
 	}
 	
 	//동영상 강의를 올리는 페이지
-	@RequestMapping("onlinePage.do")
+	@RequestMapping("vedioPage.do")
 	public String vedioPage() {
 		return "teacher/vedio";
 	}

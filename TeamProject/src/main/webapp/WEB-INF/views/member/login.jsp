@@ -9,6 +9,6 @@
 </head>
 <body>
 <h2>로그인 페이지</h2>
-<a href="${path}/member/teacher.do">강사 전용 페이지 이동</a>
+<a href="${path}/member/teacherPage.do">강사 전용 페이지 이동</a>
 </body>
 </html>

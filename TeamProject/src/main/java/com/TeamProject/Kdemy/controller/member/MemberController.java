@@ -34,9 +34,9 @@ public class MemberController {
 	public String loginPage() {
 		return "member/login";
 	}
-	@RequestMapping("teacher.do")
-	public String teacher() {
-		return "teacher/teacher";
+	@RequestMapping("teacherPage.do")
+	public String teacherPage() {
+		return "teacher/teacherPage";
 	} 
 
 }
