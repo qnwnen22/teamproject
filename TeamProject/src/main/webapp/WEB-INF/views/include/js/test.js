@@ -10,11 +10,11 @@ $(function(){
         //스크롤 상하에 따른 반응 정의
         if (st > lastScroll){
             if ($(window).scrollTop() >= 538) { //스크롤이 아래로 538px 이상 내려갔을때 실행되는 이벤트 정의
-                $('header').show();
+                $('header').attr('class','nav d-xl-block d-lg-block d-md-none d-sm-none');
             }
         }else {
         	if ($(window).scrollTop() < 538) { //스크롤이 아래로 538px 이상 올라갔을때 실행되는 이벤트 정의
-                $('header').hide();
+        		$('header').attr('class','nav d-md-none d-sm-none');
             }
         }
         //현재 스크롤 위치(st)를 마지막 위치로 업데이트
@@ -30,4 +30,8 @@ $(function(){
     		$('.container-fluid .tail_body').collapse('show');
     	};
     });
+    
+    $('.carousel').carousel({
+  	  interval: 3000
+  	});
 });

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<header class="nav">
+<header class="nav d-xl-block d-lg-block d-md-none d-sm-none">
 	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed pb-3">
 		<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
 			<div class="flex-between-center height-80px row">
