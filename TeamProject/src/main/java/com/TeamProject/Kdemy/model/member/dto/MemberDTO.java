@@ -1,17 +1,35 @@
 package com.TeamProject.Kdemy.model.member.dto;
 
+import java.util.Date;
+
 public class MemberDTO {
 
+	private int	usernum;
 	private String userid;
-	private String passwd;
-	private String name;
-	private String email;
-	private String hp;
-	private String birth;
-	private String addr1;
-	private String addr2;
-	private String addr3;
-	private int	point;
+	private String passwd; 
+	private String username;
+	private String birthday; 
+	private String useremail;
+	private String phone;
+	private String postcode;
+	private String address;
+	private String address2;
+	private Date join_date;
+	
+	private String phone1;
+	private String phone2;
+	private String phone3;
+	
+	private String birthday1;
+	private String birthday2;
+	private String birthday3;
+	
+	public int getUsernum() {
+		return usernum;
+	}
+	public void setUsernum(int usernum) {
+		this.usernum = usernum;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -24,58 +42,100 @@ public class MemberDTO {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getEmail() {
-		return email;
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
-	public String getHp() {
-		return hp;
+	public String getUseremail() {
+		return useremail;
 	}
-	public void setHp(String hp) {
-		this.hp = hp;
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
-	public String getBirth() {
-		return birth;
+	public String getPhone() {
+		return phone;
 	}
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public String getAddr1() {
-		return addr1;
+	public String getPostcode() {
+		return postcode;
 	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
-	public String getAddr2() {
-		return addr2;
+	public String getAddress() {
+		return address;
 	}
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getAddr3() {
-		return addr3;
+	public String getAddress2() {
+		return address2;
 	}
-	public void setAddr3(String addr3) {
-		this.addr3 = addr3;
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
-	public int getPoint() {
-		return point;
+	public Date getJoin_date() {
+		return join_date;
 	}
-	public void setPoint(int point) {
-		this.point = point;
+	public void setJoin_date(Date join_date) {
+		this.join_date = join_date;
 	}
+	public String getPhone1() {
+		return phone1;
+	}
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+	public String getPhone2() {
+		return phone2;
+	}
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+	public String getPhone3() {
+		return phone3;
+	}
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
+	}
+	public String getBirthday1() {
+		return birthday1;
+	}
+	public void setBirthday1(String birthday1) {
+		this.birthday1 = birthday1;
+	}
+	public String getBirthday2() {
+		return birthday2;
+	}
+	public void setBirthday2(String birthday2) {
+		this.birthday2 = birthday2;
+	}
+	public String getBirthday3() {
+		return birthday3;
+	}
+	public void setBirthday3(String birthday3) {
+		this.birthday3 = birthday3;
+	}
+	
 	@Override
 	public String toString() {
-		return "MemberDTO [userid=" + userid + ", passwd=" + passwd + ", name=" + name + ", email=" + email + ", hp="
-				+ hp + ", birth=" + birth + ", addr1=" + addr1 + ", addr2=" + addr2 + ", addr3=" + addr3 + ", point="
-				+ point + "]";
+		return "MemberDTO [usernum=" + usernum + ", userid=" + userid + ", passwd=" + passwd + ", username=" + username
+				+ ", birthday=" + birthday + ", useremail=" + useremail + ", phone=" + phone + ", postcode=" + postcode
+				+ ", address=" + address + ", address2=" + address2 + ", join_date=" + join_date + ", phone1=" + phone1
+				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1=" + birthday1 + ", birthday2=" + birthday2
+				+ ", birthday3=" + birthday3 + "]";
 	}
+	
+
+	
 }

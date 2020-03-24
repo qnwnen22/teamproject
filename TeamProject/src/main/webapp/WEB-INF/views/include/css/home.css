@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* 슬라이드   */
+
+#carouselExampleCaptions {
+	height: 300px;
+	
+}
 
 
 .global-body {
@@ -30,7 +36,6 @@
 }
 
 #kdemiMainHeader {
-    width: 1170px !important;
     padding: 0px !important;
     margin-right: auto;
     margin-left: auto;
@@ -290,6 +295,5 @@ img {
 .icon11 {
 	background: url(../images/main/번역-통역.png);
 }
-
 
 

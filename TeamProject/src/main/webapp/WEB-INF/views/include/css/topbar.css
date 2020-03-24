@@ -178,23 +178,9 @@ a, a:hover, a:focus {
 }
 
 #kdemiAboutNavBar .flex-center, #kdemiNavBar .flex-center {
-	display: flex;
 	align-items: center;
 }
 
-#kdemiAboutNavBar .header-right-info div.item, #kdemiNavBar .header-right-info div.item
-	{
-	padding: 20px 0 20px 25px;
-	display: inline-block;
-}
-
-#kdemiAboutNavBar .header-right-info div.item a.plain, #kdemiAboutNavBar .header-right-info div.item .selling-panels>.events-more-btn>a,
-	#kdemiNavBar .header-right-info div.item a.plain, #kmongNavBar .header-right-info div.item .selling-panels>.events-more-btn>a
-	{
-	display: block;
-	font-size: 14px;
-	color: #333;
-}
 
 .btn-normal-silver {
 	color: white;
@@ -351,4 +337,10 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 
 #kdemiNavBar .sub-category-wrapper {
 	padding: 8px 15px;
+}
+
+@media (max-width: 768px) { 
+	header { 
+	display: none;
+  } 
 }
