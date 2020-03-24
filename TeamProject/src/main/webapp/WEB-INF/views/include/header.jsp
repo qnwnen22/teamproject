@@ -8,3 +8,5 @@
 <link rel="stylesheet" href="${path}/include/css/bootstrap.css">
 <link rel="stylesheet" href="${path}/include/css/topbar.css">
 <link rel="stylesheet" href="${path}/include/css/footer.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<script src="${path}/include/js/test.js"></script>

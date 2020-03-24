@@ -13,6 +13,11 @@
 아령하세요~~허잇!
 
 이원혁 : 테스트 합니다.
+<<<<<<< HEAD
 문찬영 : 테스트 합니다;.
+=======
+
+하이..dad
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </body>
 </html>

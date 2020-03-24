@@ -8,13 +8,6 @@
 <%@ include file="include/header.jsp"%>
 <%@ include file="include/topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
-<script type="text/javascript">
-$(document).ready(function () {
-$('.carousel').carousel({
-	  interval: 1000
-	});
-});
-</script>
 </head>
 <body>
 	<div class="global-body">
