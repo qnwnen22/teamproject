@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+=======
 <script>
 $(function(){
     //마지막 스크롤 값을 저장할 lastScroll 변수
@@ -22,6 +24,7 @@ $(function(){
     });
 });
 </script>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 <header class="nav d-none">
 	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed pb-3">
@@ -456,20 +459,8 @@ $(function(){
 							</div>
 						</div>
 					</li>
-
-
 				</ul>
 			</div>
 		</div>
 	</nav>
 </header>
-
-
-
-
-
-
-
-
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
