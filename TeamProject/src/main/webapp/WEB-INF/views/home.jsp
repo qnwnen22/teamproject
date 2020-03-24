@@ -216,7 +216,7 @@
 															</div>
 															<div class="item col-xl-4 text-center"
 																style="display: initial !important;">
-																<a class="plain cursor" data-ga-category="header"><b>로그인</b></a>
+																<a href="${path}/member/loginPage.do" class="plain cursor" data-ga-category="header"><b>로그인</b></a>
 															</div>
 															<div id="" class="item position-relative col-xl-4"
 																style="display: initial !important;">
