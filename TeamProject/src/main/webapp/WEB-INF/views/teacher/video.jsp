@@ -31,8 +31,23 @@
 
 아이디 : <input name="userid" id="userid" value="아이디" readonly><br>
 영상 제목 : <input name="vedio" id="vedio"><br>
-영상 설명 : <textarea style="width: 100%;" rows="10" cols="40"></textarea><br>
+영상 메인 이미지<br>
+동영상 업로드<br>
+영상 설명 : <textarea style="width: 100%;" rows="10" cols="40">
+
+내용1
+내용1
+내용1
+내용1
+내용1
+
+
+
+약관
+</textarea><br>
+ 
 <input type="submit" value="영상 등록">  <input type="button" value="취소">
+
 
 
 
