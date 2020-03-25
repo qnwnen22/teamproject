@@ -8,6 +8,27 @@
 <%@ include file="include/header.jsp"%>
 <%@ include file="include/topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
+<script>
+$(function(){
+    //마지막 스크롤 값을 저장할 lastScroll 변수
+    var lastScroll = 0;
+    $(window).scroll(function(event){ //스크롤이 움직일때 마다 이벤트 실행
+        //현재 스크롤의 위치를 저장할 st 변수
+        var st = $(this).scrollTop();
+        //스크롤 상하에 따른 반응 정의
+        if (st > lastScroll){
+            if ($(window).scrollTop() >= 538) { //스크롤이 아래로 538px 이상 내려갔을때 실행되는 이벤트 정의
+                $('header').attr('class','nav d-xl-block d-lg-block d-md-none d-sm-none');
+            }
+        }else {
+        	if ($(window).scrollTop() < 538) { //스크롤이 아래로 538px 이상 올라갔을때 실행되는 이벤트 정의
+        		$('header').attr('class','nav d-md-none d-sm-none');
+            }
+        }
+        //현재 스크롤 위치(st)를 마지막 위치로 업데이트
+        lastScroll = st;
+    });
+    </script>
 </head>
 <body>
 	<div class="global-body">
@@ -209,6 +230,17 @@
 													<div class="flex-end-center col-auto p-0">
 														<div
 															class="header-right-info NavRight col-xl-12">
+															<c:if test="${sessionScope.userid == 'admin'}">
+															<div class="item dropdown col-xl-4 text-center dropdown-toggle" style="display: initial !important;">
+															    <a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
+															  <div class="dropdown-menu">
+															    <a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
+															    <a class="dropdown-item" href="#">회원관리</a>
+															    <a class="dropdown-item" href="#">강의관리</a>
+															    <a class="dropdown-item" href="#">패키지관리</a>
+															  </div>
+															</div>
+															</c:if>
 															<div class="item col-xl-4 text-center"
 																style="display: initial !important;">
 																<a class="plain cursor" data-ga-category="header"><b>전문가
