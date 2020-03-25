@@ -10,7 +10,7 @@ public class BoardDTO {
 	private String writer;
 	private Date regdate;
 	private int viewcnt;
-	private String name; //작성자 이름
+	private String username; //작성자 이름
 	private int cnt; //댓글 갯수
 	private String show; //화면 표시 여부
 	private String[] files; //첨부파일 이름 배열
@@ -51,11 +51,11 @@ public class BoardDTO {
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public int getCnt() {
 		return cnt;
@@ -78,7 +78,7 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		return "BoardDTO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", name=" + name + ", cnt=" + cnt + ", show=" + show
+				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", username=" + username + ", cnt=" + cnt + ", show=" + show
 				+ ", files=" + Arrays.toString(files) + "]";
 	}
 }
