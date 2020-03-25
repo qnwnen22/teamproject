@@ -67,6 +67,7 @@
 			<div class="title_tail">WITH US</div>
 			<ul class="shop_info">
 				<li><a href="#"><span>COMPANY</span> <small> 회사소개</small></a></li>
+				<li><a href="${path}/board/list.do"><span>NOTICE</span> <small> 공지사항</small></a></li>
 				<li><a href="#"><span>AGREEMENT</span> <small> 이용약관</small></a></li>
 				<li><a href="#"><span>PRIVACYPOLICY</span> <small>
 							개인정보처리방침</small></a></li>
