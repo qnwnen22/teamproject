@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
-<%@ include file="include/header.jsp"%>
-<%@ include file="include/topbar.jsp"%>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 </head>
 <body>
-	<div class="global-body">
+<div class="global-body">
 		<div class="master-body">
 			<div class="MasterBodyDestTop">
 				<div class="kdemimobile d-lg-none d-xl-none d-md-block d-sm-block">
@@ -402,191 +402,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- content -->
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-		<div class="row">
-			<div class="col-6 mr-auto pt-3">
-				<h5 class="text-left">
-					<b>카테고리</b>
-				</h5>
-				<br>
-			</div>
-			<div class="pt-4 col-auto">
-				<a class="btn btn-xs btn-light">&lt;</a> <a
-					class="btn btn-xs btn-light">&gt;</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-
-		</div>
-	</div>
-
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-		<div class="row">
-			<div class="col-6 mr-auto pt-3">
-				<h5 class="text-left">
-					<b>카테고리</b>
-				</h5>
-				<br>
-			</div>
-			<div class="pt-4 col-auto">
-				<a class="btn btn-xs btn-light">&lt;</a> <a
-					class="btn btn-xs btn-light">&gt;</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-
-		</div>
-	</div>
-
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-		<div class="row">
-			<div class="col-6 mr-auto pt-3">
-				<h5 class="text-left">
-					<b>카테고리</b>
-				</h5>
-				<br>
-			</div>
-			<div class="pt-4 col-auto">
-				<a class="btn btn-xs btn-light">&lt;</a> <a
-					class="btn btn-xs btn-light">&gt;</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-			<div class="card col-2 px-0 m-auto">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img-top" alt="...">
-			</div>
-
-		</div>
-	</div>
-	<div class="card">
-		<div class="card-header">Featured</div>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<h5 class="card-header">Featured</h5>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
-		</div>
-	</div>
-	<div class="card mb-3">
-		<img src="..." class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text
-				below as a natural lead-in to additional content. This content is a
-				little bit longer.</p>
-			<p class="card-text">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</p>
-		</div>
-	</div>
-	<div class="card mb-3" style="max-width: 540px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img" alt="...">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a wider card with supporting text
-						below as a natural lead-in to additional content. This content is
-						a little bit longer.</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	
+<h2>로그인 페이지</h2>
+<a href="${path}/member/teacherPage.do">강사 전용 페이지 이동</a>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="include/footer.jsp"%>
-

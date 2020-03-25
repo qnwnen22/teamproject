@@ -30,5 +30,13 @@ public class MemberController {
 		memberService.insertMember(dto);
 		return "home";
 	}
+	@RequestMapping("loginPage.do")
+	public String loginPage() {
+		return "member/login";
+	}
+	@RequestMapping("teacherPage.do")
+	public String teacherPage() {
+		return "teacher/teacherPage";
+	} 
 
 }
