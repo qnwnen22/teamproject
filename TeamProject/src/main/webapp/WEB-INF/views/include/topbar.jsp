@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
@@ -40,14 +40,25 @@
 
 				<div class="flex-end-center col-auto p-0">
 					<div class="header-right-info flex-center NavRight col-xl-12">
-						  <div class="item dropdown col-xl-4 text-center dropdown-toggle" style="display: initial !important;">
-						    <a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
-						  <div class="dropdown-menu">
-						    <a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
-						    <a class="dropdown-item" href="#">회원관리</a>
-						    <a class="dropdown-item" href="#">강의관리</a>
-						    <a class="dropdown-item" href="#">패키지관리</a>
-						  </div>
+						<div class="item dropdown col-xl-4 text-center dropdown-toggle"
+							style="display: initial !important;">
+							<a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
+								<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
+								<a class="dropdown-item" href="#">강의관리</a> <a
+									class="dropdown-item" href="#">패키지관리</a>
+							</div>
+						</div>
+						<div class="item dropdown col-xl-4 text-center dropdown-toggle"
+							style="display: initial !important;">
+							<a class="plain cursor" data-ga-category="header"><b>통계</b></a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">강의통계</a> <a
+									class="dropdown-item" href="#">회원관리</a> <a
+									class="dropdown-item" href="#">강의관리</a> <a
+									class="dropdown-item" href="#">패키지관리</a>
+							</div>
 						</div>
 						<div class="item col-xl-4 text-center"
 							style="display: initial !important;">
