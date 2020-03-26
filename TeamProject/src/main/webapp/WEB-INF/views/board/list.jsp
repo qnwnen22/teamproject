@@ -11,9 +11,7 @@
 <link rel="stylesheet" href="${path}/include/css/board.css">
 </head>
 <body>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	
-	<div class="board_table">
+	<div class="board_table" style="margin-top: 170px;">
 	<div>
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
@@ -67,7 +65,7 @@
 									<span style="color: blue;" class="badge badge-primary">${rows.cnt}</span>
 								</c:if>
 							</td>
-							<td class="col-2">${rows.name}</td>
+							<td class="col-2">${rows.writer}</td>
 							<td class="col-2"><fmt:formatDate value="${rows.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 							<td class="col-1">${rows.viewcnt}</td>
 						</tr>
