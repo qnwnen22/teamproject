@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="teacher">
+
+	<insert id="teacher_type1_insert">
+		insert into lecture
+		(lecture_idx, cell_type, main_category, sub_category,
+		userid, subject, main_img, videofile, content, price)
+		values ((select nvl(max(lecture_idx)+1,1) from lecture),
+		#{cell_type}, #{main_category}, #{sub_category},
+		#{userid}, #{subject}, #{main_img}, #{videofile}, #{content}, #{price})
+	</insert>
+	
+	<select id="typeAList" resultType="com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO">
+	 select *
+			from (
+			    select rownum as rn, A.*
+			    from (
+			        select lecture_idx,main_category,sub_category,userid,subject,main_img
+			        ,videofile ,content, price
+			        from lecture
+			        where cell_type=1
+			        order by lecture_idx desc 
+			    ) A    
+			) where rn between #{start} and #{end}
+	</select>
+	
+	<select id="countTypeAList" resultType="int">
+	  select count(*) from lecture where cell_type=1
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

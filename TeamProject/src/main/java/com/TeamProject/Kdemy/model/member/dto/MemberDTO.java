@@ -15,7 +15,10 @@ public class MemberDTO {
 	private String address;
 	private String address2;
 	private Date join_date;
+
+	private String teacher;
 	
+	private String bpasswd;
 	private String phone1;
 	private String phone2;
 	private String phone3;
@@ -23,7 +26,7 @@ public class MemberDTO {
 	private String birthday1;
 	private String birthday2;
 	private String birthday3;
-	
+	//
 	public int getUsernum() {
 		return usernum;
 	}
@@ -90,6 +93,18 @@ public class MemberDTO {
 	public void setJoin_date(Date join_date) {
 		this.join_date = join_date;
 	}
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
+	public String getBpasswd() {
+		return bpasswd;
+	}
+	public void setBpasswd(String bpasswd) {
+		this.bpasswd = bpasswd;
+	}
 	public String getPhone1() {
 		return phone1;
 	}
@@ -126,16 +141,12 @@ public class MemberDTO {
 	public void setBirthday3(String birthday3) {
 		this.birthday3 = birthday3;
 	}
-	
 	@Override
 	public String toString() {
 		return "MemberDTO [usernum=" + usernum + ", userid=" + userid + ", passwd=" + passwd + ", username=" + username
 				+ ", birthday=" + birthday + ", useremail=" + useremail + ", phone=" + phone + ", postcode=" + postcode
-				+ ", address=" + address + ", address2=" + address2 + ", join_date=" + join_date + ", phone1=" + phone1
-				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1=" + birthday1 + ", birthday2=" + birthday2
-				+ ", birthday3=" + birthday3 + "]";
+				+ ", address=" + address + ", address2=" + address2 + ", join_date=" + join_date + ", teacher="
+				+ teacher + ", bpasswd=" + bpasswd + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
+				+ ", birthday1=" + birthday1 + ", birthday2=" + birthday2 + ", birthday3=" + birthday3 + "]";
 	}
-	
-
-	
 }

@@ -20,12 +20,12 @@
 				action="${path}/member/insertMember.do"
 				class="form-horizontal">
 				<div class="form-group">
-					<label for="username">성명</label> <input type="text"
-						class="form-control" id="username" name="username"
+					<label for="username">성명</label>
+					 <input type="text"	class="form-control" id="username" name="username"
 						placeholder="이름을 입력해 주세요">
 				</div>
 				<div class="form-group">
-					<label for="userid">아이디</label><span id="result_id_msg"></span> <input
+					<label for="userid">아이디</label><input
 						class="form-control" id="userid" name="userid"
 						placeholder="아이디를 입력해주세요">
 				</div>
@@ -374,6 +374,6 @@ STORE 및 STORE 관련 제반 서비스(모바일 웹/앱 포함)의 회원관�
 			</form>
 		</div>
 	</div>
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

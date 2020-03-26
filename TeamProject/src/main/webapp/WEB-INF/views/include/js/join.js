@@ -1,10 +1,3 @@
-/**
- * 
- */
-/**
- * 
- */
-
 $(function(){
     // 회원 가입 처리
     $('#join-submit').click(function(e){
@@ -41,7 +34,7 @@ $(function(){
 			// ajax 실행
 			$.ajax({
 				type : 'POST',
-				url : '/JSYProject/store_servlet/id_check.do',
+				url : '/member/id_check.do',
 				data : {
 					"userid" : $("#userid").val()
 				},

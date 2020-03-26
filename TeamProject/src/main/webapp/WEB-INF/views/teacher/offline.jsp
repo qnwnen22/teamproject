@@ -8,10 +8,15 @@
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
+<script src="${path}/include/js/common.js"></script>
+
+
 </head>
 <body>
 <h2>현장 강의 페이지</h2>
 <p>현장 강의를 올리는 페이지 입니다.</p>
-<%@ include file="../include/footer.jsp"%>
+
+
+
 </body>
 </html>
