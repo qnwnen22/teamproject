@@ -45,8 +45,7 @@ $(function(){
 				data : {
 					"userid" : $("#userid").val()
 				},
-				success : function(result) {
-					$("#result_id_msg").html(result);
+				success : function() {
 				}
 			}); // end ajax
 		}
