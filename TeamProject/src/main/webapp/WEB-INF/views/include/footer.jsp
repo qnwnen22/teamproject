@@ -100,6 +100,5 @@
 	<!-- end tail_body -->
 </div>
 <!-- End of Footer -->
-<script src="${path}/include/js/test.js"></script>
 </body>
 </html>
