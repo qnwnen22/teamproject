@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.board.dto.BoardDTO;
 import com.TeamProject.Kdemy.service.board.BoardService;
-import com.TeamProject.Kdemy.service.board.Pager;
+import com.TeamProject.Kdemy.service.board.Board_Pager;
 
 @Controller
 @RequestMapping("board/*")
@@ -29,7 +29,7 @@ public class BoardController {
 	 throws Exception{
 		int count =boardService.countArticle(search_option, keyword);
 		//페이지 처리
-		Pager pager=new Pager(count, curPage);
+		Board_Pager pager=new Board_Pager(count, curPage);
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
 		

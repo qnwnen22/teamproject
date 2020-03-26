@@ -374,6 +374,6 @@ STORE 및 STORE 관련 제반 서비스(모바일 웹/앱 포함)의 회원관�
 			</form>
 		</div>
 	</div>
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

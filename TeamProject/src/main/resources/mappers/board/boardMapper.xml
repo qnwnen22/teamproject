@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="board">
 	<select id="listAll" resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
 		<include refid="paging_header" />
-		select bno,title,writer,username,regdate,viewcnt,show,
-		(select count(*) from reply where bno=b.bno) cnt
+		select bno, title, writer, username, regdate, viewcnt, show,
+		(select count(*) from board_reply where bno=b.bno) cnt
 		from kdemyboard b, kdemymember m
 		order by bno desc
 		<include refid="paging_footer" />

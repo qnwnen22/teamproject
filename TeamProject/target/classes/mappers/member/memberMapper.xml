@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     insert into kmedymember 
    (usernum, userid, passwd, username, 
    useremail, phone, birthday, postcode, address, address2)
-   values ((select nvl(max(usernum)+1,1) from kmedymember),
+   values ((select nvl(max(usernum)+1,1) from kdemymember),
     #{userid}, #{passwd}, #{username}, 
     #{useremail}, #{phone}, #{birthday}, #{postcode}, #{address}, #{address2}) 
   </insert>
