@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
 <header class="nav d-xl-block d-lg-block d-md-none d-sm-none">
-	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed pb-3">
+	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed d-block pb-3">
 		<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
 			<div class="flex-between-center height-80px row">
 				<div class="flex-left-center col-2">
@@ -37,6 +36,25 @@
 
 				<div class="flex-end-center col-auto p-0">
 					<div class="header-right-info flex-center NavRight col-xl-12">
+					<div class="item dropdown col-xl-4 text-center dropdown-toggle" style="display: initial !important;">
+						    <a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
+						  <div class="dropdown-menu">
+						    <a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
+						    <a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
+						    <a class="dropdown-item" href="#">강의관리</a>
+						    <a class="dropdown-item" href="#">패키지관리</a>
+						  </div>
+						</div>
+						<div class="item dropdown col-xl-4 text-center dropdown-toggle"
+							style="display: initial !important;">
+							<a class="plain cursor" data-ga-category="header"><b>통계</b></a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">강의통계</a> <a
+									class="dropdown-item" href="#">회원관리</a> <a
+									class="dropdown-item" href="#">강의관리</a> <a
+									class="dropdown-item" href="#">패키지관리</a>
+							</div>
+						</div>
 						<div class="item col-xl-4 text-center"
 							style="display: initial !important;">
 							<a class="plain cursor" data-ga-category="header"><b>전문가
@@ -434,8 +452,6 @@
 							</div>
 						</div>
 					</li>
-
-
 				</ul>
 			</div>
 		</div>
