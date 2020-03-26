@@ -16,5 +16,5 @@ public class MemberDAOImpl implements MemberDAO {
 	public void insertMember(MemberDTO dto) {
 		sqlSession.insert("member.insertMember",dto);
 	}
-
+	
 }

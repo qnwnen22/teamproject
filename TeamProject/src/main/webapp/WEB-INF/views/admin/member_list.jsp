@@ -5,13 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/fixed-topbar.jsp"%>
 </head>
 <body>
-<div>
-아이디  : <input type="text" id="userid" name="userid"><br>
-비밀번호 : <input type="password" id="passwd" name="passwd"><br>
-
-</div>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
