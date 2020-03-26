@@ -1,16 +1,16 @@
 
---!!!!!!!!°Ô½ÃÆÇ!!!!!!!!!!!--
+--!!!!!!!!ê²Œì‹œíŒ!!!!!!!!!!!--
 
 drop table board cascade constraints;
 
---°Ô½ÃÆÇ Å×ÀÌºí
+--ê²Œì‹œíŒ í…Œì´ë¸”
 create table kdemyboard (
-bno number not null, --°Ô½Ã¹°¹øÈ£
-title varchar2(200) not null, --Á¦¸ñ
-content clob, --º»¹®
-writer varchar2(50) not null, --ÀÛ¼ºÀÚ
-regdate date default sysdate, --ÀÛ¼ºÀÏÀÚ
-viewcnt number default 0, --Á¶È¸¼ö
+bno number not null, --ê²Œì‹œë¬¼ë²ˆí˜¸
+title varchar2(200) not null, --ì œëª©
+content clob, --ë³¸ë¬¸
+writer varchar2(50) not null, --ì‘ì„±ì
+regdate date default sysdate, --ì‘ì„±ì¼ì
+viewcnt number default 0, --ì¡°íšŒìˆ˜
 show char(1) default 'Y',
 primary key(bno)
 );
@@ -20,14 +20,14 @@ delete from kdemyboard;
 select * from attach;
 
 insert into kdemyboard (bno,title,content,writer) values
-(1,'Á¦¸ñ','³»¿ë','kim');
+(1,'ì œëª©','ë‚´ìš©','kim');
 
 select * from kdemyboard;
 
 COMMIT;
 
 
---´ñ±Û Å×ÀÌºí
+--ëŒ“ê¸€ í…Œì´ë¸”
 drop table reply cascade constraints;
 create table board_reply (
 rno number not null primary key,
@@ -37,7 +37,7 @@ replyer varchar2(50) not null,
 regdate date default sysdate,
 updatedate date default sysdate
 );
---foreign key Á¦¾àÁ¶°Ç Ãß°¡
+--foreign key ì œì•½ì¡°ê±´ ì¶”ê°€
 alter table board_reply add constraint fk_board
 foreign key(bno) references kdemyboard(bno);
 
@@ -46,22 +46,22 @@ start with 1
 increment by 1;
 
 
---½ÃÄö½º »ı¼º
+--ì‹œí€€ìŠ¤ ìƒì„±
 drop sequence board_reply_seq;
 create sequence board_reply_seq
 start with 1
 increment by 1;
 
---Ã·ºÎÆÄÀÏ Å×ÀÌºí
+--ì²¨ë¶€íŒŒì¼ í…Œì´ë¸”
 --drop table attach cascade constraints;
 create table board_attach (
-fullName varchar2(150) not null, --Ã·ºÎÆÄÀÏ ÀÌ¸§
-bno number not null, --board Å×ÀÌºíÀÇ ±Û¹øÈ£
-regdate date default sysdate, --¾÷·Îµå ³¯Â¥
-primary key(fullName) --uuidÀû¿ëÇÑ ÆÄÀÏÀÌ¸§
+fullName varchar2(150) not null, --ì²¨ë¶€íŒŒì¼ ì´ë¦„
+bno number not null, --board í…Œì´ë¸”ì˜ ê¸€ë²ˆí˜¸
+regdate date default sysdate, --ì—…ë¡œë“œ ë‚ ì§œ
+primary key(fullName) --uuidì ìš©í•œ íŒŒì¼ì´ë¦„
 );
 
---bno ÄÃ·³¿¡ foreign key ¼³Á¤
+--bno ì»¬ëŸ¼ì— foreign key ì„¤ì •
 alter table board_attach add constraint fk_board_attach
 foreign key(bno) references kdemyboard(bno);
 
@@ -77,23 +77,23 @@ delete from board_attach;
 commit;
 
 
---ÆäÀÌÁö ³ª´©±â Å×½ºÆ®¸¦ À§ÇØ ·¹ÄÚµå ÀÔ·Â
-declare --¼±¾ğºÎ
+--í˜ì´ì§€ ë‚˜ëˆ„ê¸° í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•´ ë ˆì½”ë“œ ì…ë ¥
+declare --ì„ ì–¸ë¶€
     i number := 1;
-begin --½ÇÇàºÎ
+begin --ì‹¤í–‰ë¶€
     while i<=991 loop
         insert into kdemyboard (bno,title,content,writer)
         values
         ( (select nvl(max(bno)+1,1) from kdemyboard)
-        ,'Á¦¸ñ'||i, '³»¿ë'||i, 'kim');
-        i := i+1; --Á¶°Ç º¯°æ
+        ,'ì œëª©'||i, 'ë‚´ìš©'||i, 'kim');
+        i := i+1; --ì¡°ê±´ ë³€ê²½
     end loop;
 end;
 /
 
 select * from kdemyboard order by bno;
 
---·¹ÄÚµå °¹¼ö È®ÀÎ
+--ë ˆì½”ë“œ ê°¯ìˆ˜ í™•ì¸
 select count(*) from kdemyboard;
 
 commit;
@@ -102,11 +102,11 @@ delete from kdemyboard ;
 
 
 
---±Û¾²±â¸¦ ÇÏ±â À§ÇØ
---½ÃÄö½º »èÁ¦
+--ê¸€ì“°ê¸°ë¥¼ í•˜ê¸° ìœ„í•´
+--ì‹œí€€ìŠ¤ ì‚­ì œ
 drop sequence seq_kdemyboard;
 
---1000¹øºÎÅÍ ½ÃÀÛÇÏ´Â ½ÃÄö½º »ı¼º
+--1000ë²ˆë¶€í„° ì‹œì‘í•˜ëŠ” ì‹œí€€ìŠ¤ ìƒì„±
 create sequence seq_kdemyboard
 start with 1000
 increment by 1;
