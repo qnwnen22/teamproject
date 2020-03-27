@@ -26,6 +26,7 @@ public class MemberController {
 	
 	@RequestMapping("insertMember.do")
 	public String insertMember(MemberDTO dto) {
+		
 		String birthday=dto.getBirthday1()+"년"+dto.getBirthday2()+"월"+dto.getBirthday3()+"일";
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
 		String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
