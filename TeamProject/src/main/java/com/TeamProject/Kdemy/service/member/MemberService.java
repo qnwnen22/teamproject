@@ -8,7 +8,7 @@ public interface MemberService {
 
 	public MemberDTO kdemyLogin(MemberDTO dto);
 
-	public int useridC(String userid);
+	public int idCheck(MemberDTO dto);
 
 	public String passwdCheck(MemberDTO dto);
 }

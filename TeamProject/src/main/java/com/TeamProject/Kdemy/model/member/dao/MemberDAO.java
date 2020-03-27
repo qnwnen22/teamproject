@@ -10,6 +10,6 @@ public interface MemberDAO {
 
 	public String passwdCheck(MemberDTO dto);
 
-	public int useridC(String userid);
+	public int idCheck(MemberDTO dto);
 	
 }

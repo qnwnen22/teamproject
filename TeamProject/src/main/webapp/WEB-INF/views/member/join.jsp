@@ -6,28 +6,44 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp" %>
-<script src="${path}/include/js/join.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#userid').keyup(function() {
-		if ($('#userid').val().length > 4) {
-			var userid=document.getElementById('userid').value;
-			$.ajax({
-				url : '${path}/member/useridC.do?userid='+userid,
-				type : 'get',
-				success : function(){
-					var message=result;
-						$("#check_id").html(message);
-					}
-			}); // end ajax
-		}
-	}); // end keyup
-});
+//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
+var idCheck = 0;
+//아이디 체크하여 가입버튼 비활성화, 중복확인.
+function checkId() {
+    var inputed = $('.userid').val();
+    console.log(inputed);
+    $.ajax({
+        data : {
+            userid : inputed
+        },
+        url : "${path}/member/checkId.do",
+        success : function(data) {
+            if (data == '0') {
+                idCheck = 1;
+                if(idCheck==1) {
+                    $(".userid").css("border", "2px solid #71c9ce");
+                    $("#useridM").html("<b style='color:#71c9ce'>사용할 수 있는 아이디 입니다.</b>");
+                    return false
+                } 
+            } else if (data == '1') {
+                $(".userid").css("border", "2px solid red");
+                $("#useridM").html("<b style='color:red'>중복된 아이디 입니다.</b>");
+                idCheck = 0;
+                return false
+            } else if(data == '2') {
+    			$("#useridM").html("");
+    			return false
+                }
+        }
+    });
+    
+}
 </script>
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp" %>
 	<div class="container-lg joinDiv" style="margin-top: 170px;">
 		<div class="page-header col-xl-8 offset-xl-2 text-center">
 			<h2>회원가입</h2>
@@ -37,31 +53,37 @@ $(function(){
 				action="${path}/member/insertMember.do"
 				class="form-horizontal">
 				<div class="form-group">
-					<label for="username">성명</label>
-					 <input type="text"	class="form-control" id="username" name="username"
+					<label for="username">성명</label> &nbsp;
+					<span id="usernameM"></span>
+					<input type="text"
+						class="form-control" id="username" name="username"
 						placeholder="이름을 입력해 주세요">
 				</div>
 				<div class="form-group">
-					<label for="userid">아이디</label><span id="check_id"></span><input
-						class="form-control" id="userid" name="userid"
-						placeholder="아이디를 입력해주세요">
+					<label for="userid">아이디</label>&nbsp;
+					<span id="CheckM"></span>
+					<span id="useridM"></span>
+					<input class="form-control" id="userid" name="userid" oninput="checkId()"
+							placeholder="아이디를 입력해주세요">
 				</div>
 				<div class="form-group">
-					<label for="passwd">비밀번호</label> <input type="password"
+					<label for="passwd">비밀번호</label>&nbsp; <span id="bpasswdM"></span>
+					 <input type="password"
 						class="form-control" id="bpasswd" name="bpasswd"
 						placeholder="비밀번호를 입력해주세요">
 				</div>
 				<div class="form-group">
-					<label for="passwdCheck">비밀번호 확인</label> <input type="password"
-						class="form-control" id="passwdCheck" name="passwdCheck"
-						placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요">
+					<label for="passwdCheck">비밀번호 확인</label>&nbsp; <span id="passwdCheckM"></span>
+					 <input type="password" class="form-control" id="passwdCheck" name="passwdCheck" placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요">
 				</div>
 				<div class="form-group">
-					<label for="email">이메일 주소</label> <input class="form-control"
+					<label for="email">이메일 주소</label> &nbsp; <span id="useremailM"></span>
+					<input class="form-control"
 						id="useremail" name="useremail" placeholder="이메일 주소를 입력해주세요">
 				</div>
 				<div class="labelname">
-					<label for="phonename">핸드폰</label><br> <input type="hidden"
+					<label for="phonename">핸드폰</label> &nbsp; <span id="phoneM"></span><br> 
+					<input type="hidden"
 						class="form-control" name="postname">
 				</div>
 				
@@ -86,7 +108,8 @@ $(function(){
 				 </div>
 				</div>
 				<div class="labelname">
-					<label for="phonename">생년월일</label><br> <input type="hidden"
+					<label for="phonename">생년월일</label> &nbsp; <span id="birthdayM"></span><br> 
+					<br> <input type="hidden"
 						class="form-control">
 				</div>
 				<div style="display: flex;">
@@ -117,7 +140,8 @@ $(function(){
 					</div>
 				</div>
 				<div class="labelname">
-					<label for="postname">우편번호</label><br> <input type="hidden"
+					<label for="postname">우편번호</label> &nbsp; <span id="postcodeM"></span><br>
+					<br> <input type="hidden"
 						class="form-control" name="postname">
 				</div>
 				<div style="display: flex;">
@@ -138,11 +162,13 @@ $(function(){
 						style="display: none; width: 100%;">
 				</div>
 				<div class="form-group">
-					<label for="address">주소</label> <input type="text" id="address"
+					<label for="address">주소</label> &nbsp; <span id="addressM"></span>
+					 <input type="text" id="address"
 						placeholder="주소" name="address" class="form-control">
 				</div>
 				<div class="form-group">
-					<label for="address2">상세주소</label> <input type="text" id="address2"
+					<label for="address2">상세주소</label>&nbsp; <span id="address2M"></span>
+					 <input type="text" id="address2"
 						placeholder="상세주소" name="address2" class="form-control">
 				</div>
 
@@ -391,6 +417,6 @@ STORE 및 STORE 관련 제반 서비스(모바일 웹/앱 포함)의 회원관�
 			</form>
 		</div>
 	</div>
-<%@ include file="../include/footer.jsp" %>
+
 </body>
 </html>
