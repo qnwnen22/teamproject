@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,6 +42,7 @@
 </script>
 </head>
 <body>
+	<div>${sessinScope.userid}</div>
 	<%@ include file="include/topbar.jsp"%>
 	<div class="global-body">
 		<div class="master-body">
@@ -205,6 +206,7 @@
 															<div class="item col-xl-4 text-center"
 																style="display: initial !important;">
 																<a class="plain cursor" data-ga-category="header"><b>로그인</b></a>
+																
 															</div>
 															<div id="" class="item position-relative col-xl-4"
 																style="display: initial !important;">
@@ -457,6 +459,17 @@
 															<div class="item col-xl-4 text-center"
 																style="display: initial !important;">
 																<a href="${path}/member/loginPage.do" class="plain cursor" data-ga-category="header"><b>로그인</b></a>
+																<c:choose>
+																	<c:when test="${sessionScope.userid == null}">
+																		| <a href="${path}/member/signInPage.do"><b>신규 로그인</b></a> |
+																	</c:when>
+																	<c:otherwise>
+																		<a>${sessionScope.username}님 환영합니다.</a>
+																		<a style="color: red;">${sessionScope.userid}</a>
+																		<a style="color: blue;">${sessionScope.teacher}</a>
+																		<a href="${path}/member/signOut.do"><b>로그아웃</b></a>
+																</c:otherwise>
+																</c:choose>
 															</div>
 															<div id="" class="item position-relative col-xl-4"
 																style="display: initial !important;">
@@ -464,6 +477,7 @@
 																	class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
 																	href="${path}/member/write.do"
 																	data-ga-category="header"> 무료회원가입 </a>
+																| <a href="${path}/member/signUpPage.do"><b>신규 회원가입</b> </a> |
 															</div>
 														</div>
 													</div>

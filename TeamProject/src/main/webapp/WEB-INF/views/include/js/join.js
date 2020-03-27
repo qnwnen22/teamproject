@@ -1,10 +1,3 @@
-/**
- * 
- */
-/**
- * 
- */
-
 $(function(){
     // 회원 가입 처리
     $('#join-submit').click(function(e){

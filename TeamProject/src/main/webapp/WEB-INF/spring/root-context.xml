@@ -59,5 +59,13 @@
 			</props>
 		</property>
 	</bean>
+	<!-- ajax 리턴 값 오류 -->
+	<!-- <bean class="org.springframework.http.converter.StringHttpMessageConverter" >
+       <property name="supportedMediaTypes">
+               <list>
+                   <value>text/html;charset=UTF-8</value>
+               </list>
+       </property>
+	 </bean> -->
 
 </beans>
