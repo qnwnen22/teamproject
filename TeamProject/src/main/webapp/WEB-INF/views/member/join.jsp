@@ -67,14 +67,9 @@ function checkId() {
 							placeholder="아이디를 입력해주세요">
 				</div>
 				<div class="form-group">
-<<<<<<< HEAD
 					<label for="passwd">비밀번호</label>&nbsp; <span id="bpasswdM"></span>
 					 <input type="password"
 						class="form-control" id="bpasswd" name="bpasswd"
-=======
-					<label for="passwd">비밀번호</label> <input type="password"
-						class="form-control" id="passwd" name="passwd"
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 						placeholder="비밀번호를 입력해주세요">
 				</div>
 				<div class="form-group">
