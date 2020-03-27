@@ -69,6 +69,12 @@ public class BoardController {
 		
 	}//end searchlist
 	
+	@RequestMapping("write.do")
+	public String write() {
+		//글쓰기 폼 페이지로 이동
+		return "board/write";
+	}// end write()
+	
 	
 	
 	

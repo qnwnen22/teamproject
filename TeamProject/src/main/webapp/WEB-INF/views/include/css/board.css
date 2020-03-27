@@ -26,52 +26,54 @@ ul.upper_shift li a:hover {
 	color: #01447e;
 }
 
- .search_option{
- 	width: 150px;
- 	height: 40px;
- 	font-size: 14px;
- 	border-radius: 4px;
- 	border: 1px solid #e4e5ed;
- 	padding-left: 14px;
+.search_option {
+	width: 150px;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 4px;
+	border: 1px solid #e4e5ed;
+	padding-left: 14px;
 	transition: 0.2s;
 	text-align: center;
 	float: left;
 	display: flex;
- }
-.board_table{
-	width: 80%;
-	margin: auto;
-	
 }
 
-.write_btn_align a{
+.board_table {
+	width: 80%;
+	margin: auto;
+}
+
+.write_btn_align a {
 	width: 10%;
 	float: right;
 	margin: auto;
 }
-.container{
+
+.container {
 	margin-right: 11% !important;
 }
 
-table th,tr{
-		font-size: 1rem;
-		height: 40px;
-	}
-	
-.form-control{
+
+table th, tr {
+	font-size: 1rem;
+	height: 40px;
+}
+
+.form-control {
 	width: 15% !important;
 	max-width: 20%;
 	display: flex !important;
-	}
-	
-	.board_page{
+}
+
+.board_page {
 	width: 40%;
 	margin: auto;
 	padding: 1rem;
 	border: 1px solid;
-	}
-	.board_page_nav{
-		margin: auto;
-		border: 1px solid;
-	}
-	
+}
+
+.board_page_nav {
+	margin: auto;
+	border: 1px solid;
+}

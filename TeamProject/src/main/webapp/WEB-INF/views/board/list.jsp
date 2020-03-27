@@ -11,12 +11,11 @@
 <link rel="stylesheet" href="${path}/include/css/board.css">
 <script type="text/javascript">
 	function list(page) {
-		location.href = "${path}/board/list.do?curPage=" + page;
+		location.href = "${path}/board/list.do?curPage=" + page";
 	}
 </script>
 </head>
 <body>
-<<<<<<< HEAD
 	<br><br><br><br><br><br><br><br>
 	<div class="board_table">
 		<div>
@@ -32,19 +31,6 @@
 	 	<select name="search_option" class=" search_option" style="visibility: hidden;">
 			<%--	<option value="username"
 					<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
-=======
-	<div class="board_table" style="margin-top: 170px;">
-	<div>
-		<ul class="upper_shift">
-			<li><a href="${path}">KDEMY</a></li>
-			<li>공지사항</li>
-		</ul>
-	</div>
-		<form action="${path}/board/list.do" name="form1" method="post">
-			<select name="search_option" class=" search_option">
-				<option value="username"
-				<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 				<option value="title"
 					<c:if test="${map.search_option=='title' }">selected</c:if>>제목</option>
 				<option value="content"
@@ -54,7 +40,6 @@
 			</select><!--분류 삭제  -->
 		
 			<div class="input-group mb-3">
-<<<<<<< HEAD
 				<input type="text" class="form-control" placeholder="검색"
 					aria-label="Recipient's username" aria-describedby="basic-addon2"
 					name="keyword" value="${map.keyword}">
@@ -63,49 +48,6 @@
 				</div>
 		</div>
 		</form>
-=======
-  <input type="text" class="form-control" 
-  placeholder="검색" aria-label="Recipient's username" aria-describedby="basic-addon2"
-  name="keyword" maxlength="20" value="${map.keyword}">
-  <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2">
-				<a href="#" class="search_btn_hover"><img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png" width="20px;"></a>
-    </span>
-  </div>
-</div>
-									
-					<c:choose>
-				<c:when test="${sessionScope.userid != null }"> <!-- 관리자로 로그인했을때 아이디 바꾸기-->
-							<div class="write_btn_align"><a class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-								href="${path}/board/write.do" data-ga-category="header" >
-								글쓰기 </a></div>
-				</c:when>
-				</c:choose>
-				</form>
-				
-				<table class="table table-hover " >
-						<tr class="row" align="center">
-							<th class="col-1">번호</th>
-							<th class="col-6">제목</th>
-							<th class="col-2">이름</th>
-							<th class="col-2">날짜</th>
-							<th class="col-1">조회수</th>
-						</tr>
-						<c:forEach var="rows" items="${map.list}">
-						<tr class="row" align="center">
-							<td class="col-1">${rows.bno}</td>
-							<td class="col-6"><a href="${path}/board/view.do?bno=${rows.bno}">${rows.title}</a>
-								<c:if test="${rows.cnt>0}">
-									<span style="color: blue;" class="badge badge-primary">${rows.cnt}</span>
-								</c:if>
-							</td>
-							<td class="col-2">${rows.writer}</td>
-							<td class="col-2"><fmt:formatDate value="${rows.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-							<td class="col-1">${rows.viewcnt}</td>
-						</tr>
-						</c:forEach>
-		</table>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 			<br>
 		<table class="table table-hover ">
@@ -113,7 +55,7 @@
 				<tr class="row" align="center">
 					<th class="col-1">번호</th>
 					<th class="col-6">제목</th>
-					<th class="col-2">이름</th>
+					<th class="col-2">작성자</th>
 					<th class="col-2">날짜</th>
 					<th class="col-1">조회수</th>
 				</tr>
@@ -127,7 +69,7 @@
 								test="${rows.cnt>0}">
 								<span style="color: blue;" class="badge badge-primary">${rows.cnt}</span>
 							</c:if></td>
-						<td class="col-2">${rows.username}</td>
+						<td class="col-2">${rows.writer}</td>
 						<td class="col-2"><fmt:formatDate value="${rows.regdate}"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td class="col-1">${rows.viewcnt}</td>

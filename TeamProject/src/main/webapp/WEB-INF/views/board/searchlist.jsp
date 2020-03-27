@@ -55,7 +55,7 @@
 				<tr class="row" align="center">
 					<th class="col-1">번호</th>
 					<th class="col-6">제목</th>
-					<th class="col-2">이름</th>
+					<th class="col-2">작성자</th>
 					<th class="col-2">날짜</th>
 					<th class="col-1">조회수</th>
 				</tr>
@@ -69,7 +69,7 @@
 								test="${rows.cnt>0}">
 								<span style="color: blue;" class="badge badge-primary">${rows.cnt}</span>
 							</c:if></td>
-						<td class="col-2">${rows.username}</td>
+						<td class="col-2">${rows.writer}</td>
 						<td class="col-2"><fmt:formatDate value="${rows.regdate}"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td class="col-1">${rows.viewcnt}</td>
