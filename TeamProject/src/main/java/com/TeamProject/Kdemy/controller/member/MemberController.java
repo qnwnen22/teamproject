@@ -5,8 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 //github.com/qnwnen22/teamproject.git
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +32,7 @@ public class MemberController {
 		dto.setPasswd(passwd);
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
+		System.out.println(dto);
 		memberService.insertMember(dto);
 		return "home";
 	}
@@ -74,17 +73,16 @@ public class MemberController {
 	
 	
 	@ResponseBody
-	@RequestMapping( value = "useridC.do", method = RequestMethod.GET,produces="text/plain;charset=utf-8")
-	public String useridC(@RequestParam("userid") String userid) {
-		int result=memberService.useridC(userid);
-		String message;
-		if(result==1) {
-			message="중복아이디입니다";
-			return message; 
+    @RequestMapping(value="/checkId.do")
+    public int idCheck(MemberDTO dto) throws Exception {
+		String exp1="^[A-Za-z0-9]{4,10}$";
+		if(dto.getUserid().matches(exp1)) {
+			int result = memberService.idCheck(dto);
+			return result;			
 		}else {
-			message="중복아이디가 아닙니다.";
-			return message;
+			return 2;
 		}
 	}
+
 
 }

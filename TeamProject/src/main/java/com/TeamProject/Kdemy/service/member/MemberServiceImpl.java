@@ -1,7 +1,6 @@
 package com.TeamProject.Kdemy.service.member;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -26,8 +25,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int useridC(String userid) {
-		return memberDao.useridC(userid);
+	public int idCheck(MemberDTO dto) {
+		return memberDao.idCheck(dto);
 	}
 
 	@Override

@@ -5,65 +5,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
+
 	<insert id="insertMember">
+		insert into kdemymember
+		(usernum, userid,
+		passwd, username,
+		birthday, useremail,
+		phone, postcode,
+		address, address2)
+		values
+		(
+		(select nvl(max(usernum)+1,1) from kmedymember),#{userid},
+		#{passwd},#{username},
+		#{birthday},#{useremail},
+		#{phone},#{postcode},
+		#{address},#{address2}
+		)
+	</insert>
 
-    insert into kdemymember 
-   (usernum, userid, passwd, username, 
-   useremail, phone, birthday, postcode, address, address2)
-   values ((select nvl(max(usernum)+1,1) from kdemymember),
-    #{userid}, #{passwd}, #{username}, 
-    #{useremail}, #{phone}, #{birthday}, #{postcode}, #{address}, #{address2}) 
-  insert into kmedymember
-	(usernum, userid,
-	 passwd, username,
-	 birthday, useremail,
-	 phone, postcode,
-	 address, address2)
-	values
-	(
-	(select nvl(max(usernum)+1,1) from kmedymember),#{userid},
-	#{passwd},#{username},
-	#{birthday},#{useremail},
-	#{phone},#{postcode},
-	#{address},#{address2}
-	)
 
-  </insert>
-  
-  <insert id="signUp">
-  	
-	insert into kmedymember
-	(usernum, userid,
-	 passwd, username,
-	 birthday, useremail,
-	 phone, postcode,
-	 address, address2)
-	values
-	(
-	(select nvl(max(usernum)+1,1) from kmedymember),#{userid},
-	#{passwd},#{username},
-	#{birthday},#{useremail},
-	#{phone},#{postcode},
-	#{address},#{address2}
-	)
-  </insert>
-  
-  <select id="passwdCheck" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
-  	select * from kmedymember
-  	where userid=#{userid}
-  </select>
-  
-  <select id="kdemyLogin" 
-  resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
-	select * from kmedymember
-	where userid=#{userid}  
-  </select>
-  
-  <select id="useridC" resultType="int">
-  	select count(*) from kmedymember
-  	where userid=#{userid}
-  </select>
-  
+	<select id="passwdCheck"
+		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from kdemymember
+		where userid=#{userid}
+	</select>
+
+	<select id="kdemyLogin"
+		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from kdemymember
+		where userid=#{userid}
+	</select>
+
+	<select id="idCheck" resultType="Int">
+		select COUNT(*) from kdemymember
+		WHERE userid=#{userid}
+	</select>
+
 </mapper>
 
 
