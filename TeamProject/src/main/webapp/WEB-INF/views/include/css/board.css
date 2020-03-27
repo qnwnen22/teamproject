@@ -44,25 +44,34 @@ ul.upper_shift li a:hover {
 	
 }
 
-.write_btn_align{
-	right: 0;
-	width: 5%;
-	border: 1px solid;
-	display: flex;
-	float: right;
-}
 .write_btn_align a{
-	margin-right: 0;
+	width: 10%;
+	float: right;
+	margin: auto;
 }
+.container{
+	margin-right: 11% !important;
+}
+
 table th,tr{
 		font-size: 1rem;
-		height: 15px;
+		height: 40px;
 	}
 	
 .form-control{
-	width: 40% !important;
-	max-width: 25%;
-	float: right;
+	width: 15% !important;
+	max-width: 20%;
 	display: flex !important;
+	}
+	
+	.board_page{
+	width: 40%;
+	margin: auto;
+	padding: 1rem;
+	border: 1px solid;
+	}
+	.board_page_nav{
+		margin: auto;
+		border: 1px solid;
 	}
 	

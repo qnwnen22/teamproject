@@ -25,8 +25,6 @@ public class MemberController {
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
-		System.out.println(birthday);
-		System.out.println(phone);
 		memberService.insertMember(dto);
 		return "home";
 	}
