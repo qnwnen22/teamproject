@@ -5,16 +5,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.RequestParam;
-=======
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+//github.com/qnwnen22/teamproject.git
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
+import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 
 @Controller
@@ -32,95 +30,61 @@ public class MemberController {
 	public String insertMember(MemberDTO dto) {
 		String birthday=dto.getBirthday1()+"년"+dto.getBirthday2()+"월"+dto.getBirthday3()+"일";
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
+		String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
+		dto.setPasswd(passwd);
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
-		System.out.println(birthday);
-		System.out.println(phone);
 		memberService.insertMember(dto);
 		return "home";
 	}
+
+	@RequestMapping("teacherPage.do")
+	public String teacherPage() {
+		return "teacher/teacherPage";
+	}
+	
 	@RequestMapping("loginPage.do")
 	public String loginPage() {
 		return "member/login";
 	}
-	@RequestMapping("teacherPage.do")
-	public String teacherPage() {
-		return "teacher/teacherPage";
-<<<<<<< HEAD
-	} 
 	
-=======
+	@RequestMapping("logOut.do")
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		return "member/login";
 	}
-	@RequestMapping("signUpPage.do")
-	public String signUpPage() {
-		return "member/signUp";
-	}
-	@RequestMapping("signInPage.do")
-	public String signInPage() {
-		return "member/signIn";
-	}
-	@RequestMapping("signIn.do")
-	public ModelAndView signIn(MemberDTO dto, HttpSession session) {
-		boolean result=memberService.signIn(dto,session);
-		System.out.println("result="+result);
+
+
+	@RequestMapping("login.do")
+	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
+		String result=memberService.passwdCheck(dto);
 		ModelAndView mav=new ModelAndView();
-		if(result) {
+		if(result.equals("로그인성공")) {
+			MemberDTO dto2=memberService.kdemyLogin(dto);
+			session.setAttribute("userid", dto2.getUserid());
+			session.setAttribute("username", dto2.getUsername());
+			session.setAttribute("teacher", dto2.getTeacher());
 			mav.setViewName("home");
 		}else {
 			mav.addObject("message","로그인실패");
-			mav.setViewName("member/signIn");
+			mav.setViewName("member/login");
 		}
-		System.out.println("컨트롤러");
-		System.out.println(session.getAttribute("userid"));
-		System.out.println(session.getAttribute("username"));
-		System.out.println(session.getAttribute("teacher"));
 		return mav;
 	}
 	
 	
-	@RequestMapping("signUp.do")
-	public String signUp(MemberDTO dto) {
-		String phone=dto.getPhone1()+dto.getPhone2()+dto.getPhone3();
-		dto.setPhone(phone);
-		String birthday=dto.getBirthday1()+"년"+dto.getBirthday2()+"월"+dto.getBirthday3()+"일";
-		dto.setBirthday(birthday);
-		
-		memberService.signUp(dto);
-		return "home";
-	}
-	@RequestMapping("signOut.do")
-	public String signOut(HttpSession session) {
-		session.invalidate();
-		return "home";
-	}
-	@RequestMapping("idCheck.do")
-	public String idCheck() {
-		return "";
-	}
-	
-	@RequestMapping(value = "idCheck.do", method = RequestMethod.GET)
 	@ResponseBody
-	public int idCheck(@RequestParam("userid") String userid) {
-
-		return memberService.idCheck(userid);
-	}
-	
-	
-	@RequestMapping( value = "useridC.do", method = RequestMethod.GET)
-	@ResponseBody
+	@RequestMapping( value = "useridC.do", method = RequestMethod.GET,produces="text/plain;charset=utf-8")
 	public String useridC(@RequestParam("userid") String userid) {
-		System.out.println("userid="+userid);
 		int result=memberService.useridC(userid);
-		System.out.println("컨트롤러 result="+result);
 		String message;
 		if(result==1) {
-			message="what the fuck";
+			message="중복아이디입니다";
 			return message; 
 		}else {
-			message="so sux jsp";
+			message="중복아이디가 아닙니다.";
 			return message;
 		}
 	}
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 }

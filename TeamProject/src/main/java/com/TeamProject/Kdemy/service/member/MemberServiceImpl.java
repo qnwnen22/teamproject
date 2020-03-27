@@ -20,38 +20,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void signUp(MemberDTO dto) {
-		memberDao.signUp(dto);
-	}
-
-	@Override
-	public boolean signIn(MemberDTO dto, HttpSession session) {
-		int result=memberDao.useridCheck(dto);
-		System.out.println("result="+result);
-		if(result==1) {
-			MemberDTO dto2=memberDao.signIn(dto, session);
-			session.setAttribute("userid", dto2.getUserid());
-			session.setAttribute("username", dto2.getUsername());
-			session.setAttribute("teacher", dto2.getTeacher());
-			System.out.println(session.getAttribute("userid"));
-			System.out.println(session.getAttribute("username"));
-			System.out.println(session.getAttribute("teacher"));
-			
-			return true;
-		}else {
-			
-			return false;
-		}
-	}
-
-	@Override
-	public int idCheck(String userid) {
-		return memberDao.idCheck(userid);
+	public MemberDTO kdemyLogin(MemberDTO dto) {
+		MemberDTO dto2=memberDao.kdemyLogin(dto);	
+		return dto2;
 	}
 
 	@Override
 	public int useridC(String userid) {
 		return memberDao.useridC(userid);
+	}
+
+	@Override
+	public String passwdCheck(MemberDTO dto) {
+		return memberDao.passwdCheck(dto);
 	}
 	
 	

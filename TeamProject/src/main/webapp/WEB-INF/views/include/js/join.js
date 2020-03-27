@@ -30,20 +30,18 @@ $(function(){
 	
 	$('#userid').keyup(function() {
 		if ($('#userid').val().length > 4) {
-			var userid = $(this).val();
-			// ajax 실행
+			var userid=document.getElementById('userid').value;
 			$.ajax({
-				type : 'POST',
-				url : '/member/id_check.do',
-				data : {
-					"userid" : $("#userid").val()
-				},
-				success : function() {
-				}
+				url : '${path}/member/useridC.do?userid='+userid,
+				type : 'get',
+				success : function(){
+					var message=result;
+						$("#check_id").html(message);
+					}
 			}); // end ajax
 		}
 	}); // end keyup
-	
+
 	//비밀번호 체크
 	var password =document.getElementById("passwd");
 	var passwordcheck=document.getElementById("passwdCheck");
