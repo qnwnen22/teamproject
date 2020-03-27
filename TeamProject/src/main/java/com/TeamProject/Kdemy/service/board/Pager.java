@@ -17,6 +17,7 @@ public class Pager {
 	private int blockBegin; //블록의 시작페이지 번호
 	private int blockEnd; //블록의 끝페이지 번호
 	
+	
 	//getter,setter(상수2개는 제외)우선만들고 수정함, 생성자
 	// Pager(레코드갯수, 출력할페이지번호)
 	public Pager(int count, int curPage) {

@@ -9,6 +9,23 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script src="${path}/include/js/join.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#userid').keyup(function() {
+		if ($('#userid').val().length > 4) {
+			var userid=document.getElementById('userid').value;
+			$.ajax({
+				url : '${path}/member/useridC.do?userid='+userid,
+				type : 'get',
+				success : function(){
+					var message=result;
+						$("#check_id").html(message);
+					}
+			}); // end ajax
+		}
+	}); // end keyup
+});
+</script>
 </head>
 <body>
 	<div class="container-lg joinDiv" style="margin-top: 170px;">
@@ -20,12 +37,12 @@
 				action="${path}/member/insertMember.do"
 				class="form-horizontal">
 				<div class="form-group">
-					<label for="username">성명</label> <input type="text"
-						class="form-control" id="username" name="username"
+					<label for="username">성명</label>
+					 <input type="text"	class="form-control" id="username" name="username"
 						placeholder="이름을 입력해 주세요">
 				</div>
 				<div class="form-group">
-					<label for="userid">아이디</label><input
+					<label for="userid">아이디</label><span id="check_id"></span><input
 						class="form-control" id="userid" name="userid"
 						placeholder="아이디를 입력해주세요">
 				</div>
