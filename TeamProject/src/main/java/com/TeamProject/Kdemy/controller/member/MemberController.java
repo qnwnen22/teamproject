@@ -32,6 +32,7 @@ public class MemberController {
 		dto.setPasswd(passwd);
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
+		System.out.println(dto);
 		memberService.insertMember(dto);
 		return "home";
 	}
@@ -77,7 +78,6 @@ public class MemberController {
 		String exp1="^[A-Za-z0-9]{4,10}$";
 		if(dto.getUserid().matches(exp1)) {
 			int result = memberService.idCheck(dto);
-			System.out.println("리절트다"+result);
 			return result;			
 		}else {
 			return 2;

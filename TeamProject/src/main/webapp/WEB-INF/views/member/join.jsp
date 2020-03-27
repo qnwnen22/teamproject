@@ -12,7 +12,7 @@
 var idCheck = 0;
 //아이디 체크하여 가입버튼 비활성화, 중복확인.
 function checkId() {
-    var inputed = $('.userid').val();
+    var inputed = $('#userid').val();
     console.log(inputed);
     $.ajax({
         data : {
