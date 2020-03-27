@@ -6,7 +6,8 @@
  */
 
 $(function(){
-	// 회원 가입 처리
+	// 회원 가입 처리	 
+
 
 	 $('#username').change(function(e){
 		//이름 체크
@@ -21,8 +22,9 @@ $(function(){
 			name.focus();
 			return false;
 		}else {
+			var input="<input id='usernameConfirm' type='hidden' value='y'>";
 			$("#username").css("border", "2px solid #71c9ce");
-			$("#usernameM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#usernameM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}	
 	 });
 	 $('#userid').change(function(e){
@@ -44,8 +46,9 @@ $(function(){
 			userid.focus();
 			return false;
 		} else {
+			var input="<input id='useridConfirm' type='hidden' value='y'>";
 			$("#userid").css("border", "2px solid #71c9ce");
-			$("#CheckM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#CheckM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 			//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
 			//아이디 체크하여 가입버튼 비활성화, 중복확인.
 		}			
@@ -61,8 +64,9 @@ $(function(){
 			password.focus();
 			return false;
 		}else {
+			var input="<input id='bpasswdConfirm' type='hidden' value='y'>";
 			$("#bpasswd").css("border", "2px solid #71c9ce");
-			$("#bpasswdM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#bpasswdM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}
 	 });
 	 
@@ -76,8 +80,9 @@ $(function(){
 				passwordcheck.focus();
 				return false;
 			}else {
+				var input="<input id='passwdCheckConfirm' type='hidden' value='y'>";
 				$("#passwdCheck").css("border", "2px solid #71c9ce");
-				$("#passwdCheckM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+				$("#passwdCheckM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 			}
 	 });
 	 
@@ -92,12 +97,15 @@ $(function(){
 			email.focus();
 			return false;
 		}else {
+			var input="<input id='useremailConfirm' type='hidden' value='y'>";
 			$("#useremail").css("border", "2px solid #71c9ce");
-			$("#useremailM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#useremailM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}
 		
 	 });
-	 
+	 $('#phone1').change(function(e){
+		 $("#phone1").css("border", "2px solid #71c9ce");
+	 });
 	
 	 $('#phone2').change(function(e){
 	     //전화번호 체크
@@ -122,8 +130,9 @@ $(function(){
 			phone3.focus();
 			return false;
 		}else {
+			var input="<input id='phone3Confirm' type='hidden' value='y'>";
 			$("#phone3").css("border", "2px solid #71c9ce");
-			$("#phoneM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#phoneM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}	
 	 });	
 	 
@@ -139,6 +148,11 @@ $(function(){
 			$("#birthday1").css("border", "2px solid #71c9ce");
 		}
 	 });
+	 
+	 $('#birthday2').change(function(e){
+		 $("#birthday2").css("border", "2px solid #71c9ce");
+	 });
+	 
 	 $('#birthday3').change(function(e){
 		var birthday3 = document.getElementById("birthday3");
 		var exp=/^[0-9]{2,}$/;
@@ -148,8 +162,9 @@ $(function(){
 			birthday3.focus();
 			return false;
 		}else {
+			var input="<input id='birthday3Confirm' type='hidden' value='y'>";
 			$("#birthday3").css("border", "2px solid #71c9ce");
-			$("#birthdayM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#birthdayM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}
 	 });
 	 $('#postcode').change(function(e){
@@ -160,8 +175,9 @@ $(function(){
 			postcode.focus();
 			return false;
 		} else {
+			var input="<input id='postcodeConfirm' type='hidden' value='y'>";
 			$("#postcode").css("border", "2px solid #71c9ce");
-			$("#postcodeM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#postcodeM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}
 	 });
 	 
@@ -173,8 +189,9 @@ $(function(){
 			address.focus();
 			return false;
 		}else {
+			var input="<input id='addressConfirm' type='hidden' value='y'>";
 			$("#address").css("border", "2px solid #71c9ce");
-			$("#addressM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			$("#addressM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}
 		
 	 });
@@ -182,8 +199,9 @@ $(function(){
 	 $('#address2').change(function(e){
 		var address2 =document.getElementById("address2");
 		if(address2.value=="") {
+			var input="<input id='address2Confirm' type='hidden' value='y'>";
 			$("#address2").css("border", "2px solid red");
-			$("#address2M").html("<b style='color:red'>상세주소는 필수 입력입니다.</b>");
+			$("#address2M").html("<b style='color:red'>상세주소는 필수 입력입니다.</b>"+input);
 			address2.focus();
 			return false;
 		}else {
@@ -191,7 +209,49 @@ $(function(){
 			$("#address2M").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
 		}
 	 });
+	 
 	$('#join-submit').click(function(e){
+		if($('#usernameConfirm').val()!="y") {
+			$('#username').focus();
+			return false;
+		}
+		if($('#useridConfirm').val()!="y") {
+			$('#userid').focus();
+			return false;
+		}
+		if($('#bpasswdConfirm').val()!="y") {
+			$('#bpasswd').focus();
+			return false;
+		}
+		if($('#passwdCheckConfirm').val()!="y") {
+			$('#passwdCheck').focus();
+			return false;
+		}
+		if($('#useremailConfirm').val()!="y") {
+			$('#useremail').focus();
+			return false;
+		}
+		if($('#phone3Confirm').val()!="y") {
+			$('#phone3').focus();
+			return false;
+		}
+		if($('#birthday3Confirm').val()!="y") {
+			$('birthday3').focus();
+			return false;
+		}
+		if($('#postcodeConfirm').val()!="y") {
+			$('postcode').focus();
+			return false;
+		}
+		if($('#addressConfirm').val()!="y") {
+			$('address').focus();
+			return false;
+		}
+		if($('#address2Confirm').val()!="y") {
+			$('address2').focus();
+			return false;
+		}
+		
 		if($('#provisionYn:checked').val()=="N"){
 			alert("회원가입약관에 동의하여 주시기 바랍니다."); 
 			return false;
@@ -334,15 +394,5 @@ function offDaumZipAddress() {
 
 }
 
-function enter(e){
-	   if (window.event) {
-	           key = window.event.keyCode;
-	      } else if (e) {
-	           key = e.which;
-	      }
-	    if(key == 13){
-	       return false
-	   }
-}
 
 

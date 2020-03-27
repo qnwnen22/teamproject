@@ -8,6 +8,12 @@
 <%@ include file="../include/header.jsp"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+    }
+}, true);
 //아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
 var idCheck = 0;
 //아이디 체크하여 가입버튼 비활성화, 중복확인.
