@@ -9,11 +9,6 @@
 <%@ include file="../include/fixed-topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/board.css">
-<script type="text/javascript">
-	function list(page) {
-		location.href = "${path}/board/list.do?curPage=" + page";
-	}
-</script>
 </head>
 <body>
 	<br><br><br><br><br><br><br><br>

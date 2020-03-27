@@ -1,0 +1,23 @@
+create table kdemymember(
+usernum  number  NOT NULL,--사용자 번호
+userid varchar2(200) NOT NULL,--사용자 아이디
+passwd  varchar2(200) NOT NULL,--사용자 비밀번호
+username  varchar2(200) NOT NULL,--사용자 이름
+birthday  varchar2(1000) NOT NULL,--생년월일
+useremail  varchar2(1000) NOT NULL,--이메일
+phone  varchar2(1000) NOT NULL,--전화번호
+postcode  varchar2(1000) NOT NULL,--우편번호
+address varchar2(1000) NOT NULL,--주소
+address2 varchar2(1000) NOT NULL,--상세주소
+join_date date default sysdate,--가입날짜
+teacher varchar2(2) default 'n'--선생님 권한
+);
+
+drop TABLE kdemymember;
+
+insert into kdemymember values(1,'ansdlans','1234','문찬영','khm932001@naver.com','010-5777-8339','930330','503999','경기도 안산시 상록고', '화랑로 534','',0 );
+select * from kdemymember;
+
+delete from kdemymember;
+
+commit;

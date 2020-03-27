@@ -7,9 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="board">
 	<select id="listAll" resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
 		<include refid="paging_header" />
-		select bno, title, writer, username, regdate, viewcnt, show,
+		select bno, title, writer, regdate, viewcnt, show,
 		(select count(*) from board_reply where bno=b.bno) cnt
-		from kdemyboard b, kdemymember m
+		from kdemyboard b
 		order by bno desc
 			
 		<include refid="paging_footer" />
@@ -17,9 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<select id="searchlistAll" resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
 		<include refid="paging_header" />
-		select bno, title, writer, username, regdate, viewcnt, show,
+		select bno, title, writer,  regdate, viewcnt, show,
 		(select count(*) from board_reply where bno=b.bno) cnt
-		from kdemyboard b, kdemymember m
+		from kdemyboard b
 			<choose>
 				<when test="search_option== 'all'">
 			where show='Y'
@@ -45,11 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 	
 	<select id="countArticle" resultType="int">
-		select count(*) from kdemyboard b, kdemymember m
+		select count(*) from kdemyboard b
 	</select>
 	
 	<select id="searchcountArticle" resultType="int">
-		select count(*) from kdemyboard b, kdemymember m
+		select count(*) from kdemyboard b
 			<choose>
 				<when test="search_option== 'all'">
 			where show='Y'
