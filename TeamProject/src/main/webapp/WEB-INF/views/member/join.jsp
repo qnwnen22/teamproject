@@ -114,7 +114,7 @@ function checkId() {
 				 </div>
 				</div>
 				<div class="labelname">
-					<label for="phonename">생년월일</label> &nbsp; <span id="birthdayM"></span><br> 
+					<label for="phonename">생년월일</label> &nbsp; <span id="birthdayM"></span>
 					<br> <input type="hidden"
 						class="form-control">
 				</div>
@@ -146,7 +146,7 @@ function checkId() {
 					</div>
 				</div>
 				<div class="labelname">
-					<label for="postname">우편번호</label> &nbsp; <span id="postcodeM"></span><br>
+					<label for="postname">우편번호</label> &nbsp; <span id="postcodeM"></span>
 					<br> <input type="hidden"
 						class="form-control" name="postname">
 				</div>
