@@ -11,6 +11,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select count(*) from board_reply where bno=b.bno) cnt
 		from kdemyboard b, kdemymember m
 		order by bno desc
+			
+		<include refid="paging_footer" />
+	</select>
+	
+		<select id="searchlistAll" resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
+		<include refid="paging_header" />
+		select bno, title, writer, username, regdate, viewcnt, show,
+		(select count(*) from board_reply where bno=b.bno) cnt
+		from kdemyboard b, kdemymember m
+			<choose>
+				<when test="search_option== 'all'">
+			where show='Y'
+				    and (title like #{keyword}
+				        or content like #{keyword} )			
+				</when>
+			</choose>
+		order by bno desc
+			
 		<include refid="paging_footer" />
 	</select>
 	
@@ -25,6 +43,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    ) A
 		) where rn between #{start} and #{end}	
 	</sql>
+	
+	<select id="countArticle" resultType="int">
+		select count(*) from kdemyboard b, kdemymember m
+	</select>
+	
+	<select id="searchcountArticle" resultType="int">
+		select count(*) from kdemyboard b, kdemymember m
+			<choose>
+				<when test="search_option== 'all'">
+			where show='Y'
+				    and (title like #{keyword}
+				        or content like #{keyword} )			
+				</when>
+			</choose>
+	</select>
 	
 </mapper>
 

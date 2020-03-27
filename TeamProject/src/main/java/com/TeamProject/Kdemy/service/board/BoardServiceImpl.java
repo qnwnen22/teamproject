@@ -47,8 +47,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end) throws Exception {
-		return boardDao.listAll(search_option, keyword, start, end);
+	public List<BoardDTO> listAll(int start, int end) throws Exception {
+		return boardDao.listAll(start, end);
+	}
+	
+	@Override
+	public List<BoardDTO> searchlistAll(String search_option, String keyword, int start, int end) throws Exception {
+		return boardDao.searchlistAll(search_option,keyword, start, end);
 	}
 
 	@Override
@@ -58,9 +63,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int countArticle(String search_option, String keyword) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countArticle() throws Exception {
+		return boardDao.countArticle();
+	}
+	
+	@Override
+	public int searchcountArticle(String search_option, String keyword) throws Exception {
+		return boardDao.searchcountArticle(search_option, keyword);
 	}
 
 	@Override

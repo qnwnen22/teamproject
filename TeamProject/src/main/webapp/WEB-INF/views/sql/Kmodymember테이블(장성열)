@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+create table kdemymember(
+=======
 create table kmedymember(
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 usernum number not null,
 userid varchar2(200) primary key, -- 아이디
 passwd varchar2(200) not null, -- 비밀번호

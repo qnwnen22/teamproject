@@ -60,13 +60,20 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end) throws Exception {
+	public List<BoardDTO> listAll(int start, int end) throws Exception {
+		Map<String, Object> map=new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("board.listAll", map);
+	}
+	@Override
+	public List<BoardDTO> searchlistAll(String search_option, String keyword, int start, int end) throws Exception {
 		Map<String, Object> map=new HashMap<>();
 		map.put("search_option", search_option);
 		map.put("keyword", "%"+keyword+"%");
 		map.put("start", start);
 		map.put("end", end);
-		return sqlSession.selectList("board.listAll", map);
+		return sqlSession.selectList("board.searchlistAll", map);
 	}
 
 	@Override
@@ -76,9 +83,16 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int countArticle(String search_option, String keyword) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countArticle() throws Exception {
+		return sqlSession.selectOne("board.countArticle");
+	}
+	
+	@Override
+	public int searchcountArticle(String search_option, String keyword) throws Exception {
+		Map<String, String> map=new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectOne("board.searchcountArticle",map);
 	}
 
 	@Override
