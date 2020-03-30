@@ -13,9 +13,9 @@
 
 </head>
 <body>
-<h2>현장 강의 페이지</h2>
-<p>현장 강의를 올리는 페이지 입니다.</p>
-
+<h2>비디오 강의 페이지</h2>
+<p>비이도 강의를 올리는 페이지 입니다.</p>
+<hr>
 <div class="row">
 <br>
  <c:forEach var="dto" items="${map.list}">
@@ -35,6 +35,28 @@
 
 
  </c:forEach>
+ <%-- <table>
+		<c:forEach var="dto" items="${list}">
+		<tr>
+			<th>썸네일</th>
+			<th>제목</th>
+			<th>제작자</th>
+			<th>가격</th>
+		</tr>
+		<tr>
+			<!-- 썸네일 -->
+			<td><a href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
+				<img width="300px" height="100px" src="../upload/${dto.main_img}"></a>
+			</td>
+			<!-- 제목 -->
+			<td>${dto.subject}</td>
+			<!-- 사용자 아이디 -->
+			<td>${dto.userid}</td>
+			<!-- 가격 -->
+			<td>${dto.price}</td>
+		</tr>
+		</c:forEach>
+	</table> --%>
 </div>
 
 
