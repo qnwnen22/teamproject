@@ -8,32 +8,27 @@
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/fixed-topbar.jsp"%>
 <script type="text/javascript">
-	function list(page) {
-		location.href = "${path}/member/list.do?curPage=" + page;
-	}
+function list(page){
+	location.href="${path}/member/list.do?curPage="+page;
+} 
 </script>
 </head>
 <body>
 	<div class="container" style="margin-top: 170px;">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active"
-				href="${path}/member/list.do">전체회원</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${path}/member/list.do?location=normal">일반회원</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${path}/member/list.do?location=teacher">강사회원</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${path}/member/list.do?location=request">강사신청</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/member/list.do">전체회원</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/member/list.do?location=normal">일반회원</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/member/list.do?location=teacher">강사회원</a></li>
+			<li class="nav-item"><a class="nav-link active" href="${path}/member/list.do?location=request">강사신청</a></li>
 			<li class="input-group col-3 ml-auto mr-0">
-				<form class="input-group" action="${path}/member/list.do">
-					<input type="text" class="form-control" placeholder="검색어 입력"
-						value="" id="keyword" name="keyword"> <input type="hidden"
-						id="location" name="location" value="">
+			<form class="input-group" action="${path}/member/list.do">
+					<input type="text" class="form-control" placeholder="검색어 입력" value="" id="keyword" name="keyword">
+					<input type="hidden" id="location" name="location" value="request">
 					<div class="input-group-append">
 						<button class="btn btn-outline-primary" type="submit">검색</button>
 					</div>
-				</form>
-			</li>
+					</form>
+				</li>
 		</ul>
 	</div>
 

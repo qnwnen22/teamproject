@@ -52,7 +52,7 @@
 				<li>예금주: KDEMY</li>
 			</ul>
 			<a href="https://pgweb.uplus.co.kr/" target="_blank"><img
-				src="../include/images/footer/lgup.png" alt=""></a>
+				src="${path}/include/images/footer/lgup.png" alt=""></a>
 		</div>
 
 		<div class="tail_item flex-shrink-3">
@@ -76,13 +76,13 @@
 			<div class="bsns_wrap">
 				<ul class="sns ">
 					<li><a href="https://www.youtube.com" target="_blank"><img
-							src="../include/images/footer/ico_yt.png" alt="youtube"></a></li>
+							src="${path}/include/images/footer/ico_yt.png" alt="youtube"></a></li>
 					<li><a href="https://www.facebook.com" target="_blank"><img
-							src="../include/images/footer/ico_fb.png" alt="facebook"></a></li>
+							src="${path}/include/images/footer/ico_fb.png" alt="facebook"></a></li>
 					<li><a href="https://www.instagram.com" target="_blank"><img
-							src="../include/images/footer/ico_ist.png" alt="insta"></a></li>
+							src="${path}/include/images/footer/ico_ist.png" alt="insta"></a></li>
 					<li><a href="https://twitter.com" target="_blank"><img
-							src="../include/images/footer/ico_tw.png" alt="twitter"></a></li>
+							src="${path}/include/images/footer/ico_tw.png" alt="twitter"></a></li>
 				</ul>
 			</div>
 		</div>

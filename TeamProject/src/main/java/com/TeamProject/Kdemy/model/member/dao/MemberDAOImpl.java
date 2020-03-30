@@ -1,5 +1,9 @@
 package com.TeamProject.Kdemy.model.member.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -50,5 +54,26 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("member.idCheck",dto);
 	}
 
+//	@Override
+//	public List<MemberDTO> list() {
+//		return sqlSession.selectList("member.memberList");
+//	}
 	
+	@Override
+	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception {
+		Map<String,Object> map=new HashMap<>();
+		map.put("location", location);
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);//맵에 자료저장
+		map.put("end", end);
+		return sqlSession.selectList("member.listAll",map);
+	}
+	
+	@Override
+	public int countMember(String keyword, String location) throws Exception {
+		Map<String,String> map=new HashMap<>();
+		map.put("keyword", "%"+keyword+"%");
+		map.put("location", location);
+		return sqlSession.selectOne("member.countMember", map);
+	}
 }

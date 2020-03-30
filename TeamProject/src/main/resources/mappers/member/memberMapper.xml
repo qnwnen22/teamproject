@@ -5,10 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
-	<insert id="insertMember">
-		insert into kdemymember
+	<insert id="insertMember"> insert into kdemymember
 		(usernum, userid,
-		passwd, username,
+		passwd,
+		username,
 		birthday, useremail,
 		phone, postcode,
 		address, address2)
@@ -39,4 +39,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select COUNT(*) from kdemymember
 		WHERE userid=#{userid}
 	</select>
+
+	<select id="listAll"
+		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		<include refid="paging_header" />
+		select * from kdemymember
+		<include refid="search" />
+		order by userid desc
+		<include refid="paging_footer" />
+	</select>
+	<sql id="paging_header">
+		select *
+		from (
+		select rownum as rn, A.*
+		from (
+	</sql>
+	<sql id="paging_footer">
+		) A
+		) where rn between #{start} and #{end}
+	</sql>
+
+	<!-- 레코드 갯수 계산 -->
+	<select id="countMember" resultType="int">
+		select count(*) from (select * from kdemymember
+		<include refid="search" />
+		)
+		<include refid="location" />
+	</select>
+
+	<sql id="location">
+		<choose>
+			<when test="location == 'normal'">
+				where teacher= 'n'
+			</when>
+			<when test="location == 'teacher'">
+				where teacher= 'y'
+			</when>
+			<when test="location == 'request'">
+				where teacher= 'w'
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</sql>
+	<!-- 검색기능, sql태그는 다른 태그에 끼워넣을 수 있는 기능을 가지고 있음 -->
+	<sql id="search">
+		<choose>
+			<when test="keyword != '%'+''+'%' ">
+				where userid like #{keyword} or username like
+				#{keyword}
+			</when>
+			<otherwise>
+				<include refid="location" />
+			</otherwise>
+		</choose>
+	</sql>
 </mapper>
