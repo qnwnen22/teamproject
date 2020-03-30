@@ -71,8 +71,7 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
-	
+		
 	@ResponseBody
     @RequestMapping(value="/checkId.do")
     public int idCheck(MemberDTO dto) throws Exception {
@@ -83,6 +82,11 @@ public class MemberController {
 		}else {
 			return 2;
 		}
+	}
+	
+	@RequestMapping("teacherIsert.do")
+	public String teacherIsert() {
+		return "member/teacherJoin";
 	}
 
 
