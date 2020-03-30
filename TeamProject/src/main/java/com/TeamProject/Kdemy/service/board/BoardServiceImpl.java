@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamProject.Kdemy.model.board.dao.BoardDAO;
 import com.TeamProject.Kdemy.model.board.dto.BoardDTO;
@@ -28,10 +29,15 @@ public class BoardServiceImpl implements BoardService {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public void create(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		boardDao.create(dto);
+		String[] files=dto.getFiles();
+		if(files==null) return;
+		for(String name : files) {
+			boardDao.addAttach(name);
+		}
 	}
 
 	@Override

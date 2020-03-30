@@ -31,8 +31,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void addAttach(String fullName) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("board.addAttach", fullName);
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void create(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.insert("board.insert", dto);
 		
 	}
 
@@ -84,6 +83,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int countArticle() throws Exception {
+		Map<String, String> map=new HashMap<>();
 		return sqlSession.selectOne("board.countArticle");
 	}
 	

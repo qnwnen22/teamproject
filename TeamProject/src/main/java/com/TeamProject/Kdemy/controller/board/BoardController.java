@@ -3,9 +3,12 @@ package com.TeamProject.Kdemy.controller.board;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +23,9 @@ public class BoardController {
 	
 	@Inject
 	BoardService boardService;
+	
+	@Resource(name="uploadPath")
+	String uploadPath;
 
 	@RequestMapping("list.do")
 	public ModelAndView list(
@@ -37,11 +43,13 @@ public class BoardController {
 		map.put("list", list);
 		map.put("count",  count);
 		map.put("pager", pager);
-		mav.setViewName("board/list");//포워딩
+		mav.setViewName("board/boardlist");//포워딩
 		mav.addObject("map", map);
 		return mav;
 		
 	}//end list
+	
+	
 	
 	@RequestMapping("searchlist.do")
 	public ModelAndView searchlist(
@@ -63,7 +71,7 @@ public class BoardController {
 		map.put("pager", pager);
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
-		mav.setViewName("board/searchlist");//포워딩
+		mav.setViewName("board/boardsearchlist");//포워딩
 		mav.addObject("map", map);
 		return mav;
 		
@@ -72,10 +80,16 @@ public class BoardController {
 	@RequestMapping("write.do")
 	public String write() {
 		//글쓰기 폼 페이지로 이동
-		return "board/write";
+		return "board/boardwrite";
 	}// end write()
 	
-	
+	@RequestMapping("insert.do")
+	public String insert(@ModelAttribute BoardDTO dto, HttpSession session) throws Exception{
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		boardService.create(dto);
+		return "redirect:/board/list.do";
+	}//end insert
 	
 	
 }
