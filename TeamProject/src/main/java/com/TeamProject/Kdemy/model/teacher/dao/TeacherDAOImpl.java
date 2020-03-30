@@ -16,11 +16,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 	@Inject
 	SqlSession sqlSession;
 
-	@Override
-	public void teacher_type1_insert(TeacherDTO dto) throws Exception{
-		sqlSession.insert("teacher.teacher_type1_insert",dto);
-	}
-
+	//각 페이지 리스트 처리
 	@Override
 	public List<TeacherDTO> typeAList(int start, int end) {
 		HashMap<String, Object> map=new HashMap<>();
@@ -28,10 +24,55 @@ public class TeacherDAOImpl implements TeacherDAO {
 		map.put("end",end);
 		return sqlSession.selectList("teacher.typeAList",map);
 	}
+	@Override
+	public List<TeacherDTO> offline_list(int start, int end) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("start", start);
+		map.put("end",end);
+		return sqlSession.selectList("teacher.offline_list",map);
+	}
+	@Override
+	public List<TeacherDTO> online_list(int start, int end) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("start", start);
+		map.put("end",end);
+		return sqlSession.selectList("teacher.online_list",map);
+	}
 
+	//각 페이지 페이징 처리
 	@Override
 	public int countTypeAList() {	
 		return sqlSession.selectOne("teacher.countTypeAList");
+	}
+	@Override
+	public int countTypeBList() {
+		return sqlSession.selectOne("teacher.countTypeBList");
+	}
+	@Override
+	public int countTypeCList(String keyword) {
+		return sqlSession.selectOne("teacher.countTypeCList",keyword);
+	}
+	//각 페이지 insert 처리	
+	@Override
+	public void teacher_type1_insert(TeacherDTO dto) throws Exception{
+		sqlSession.insert("teacher.teacher_type1_insert",dto);
+	}
+	
+	@Override
+	public void teacher_type2_insert(TeacherDTO dto) {
+		sqlSession.insert("teacher.teacher_type2_insert",dto);
+	}
+	
+	@Override
+	public void teacher_type3_insert(TeacherDTO dto){
+		sqlSession.insert("teacher.teacher_type3_insert",dto);
+	}
+
+	
+
+	@Override
+	public TeacherDTO lecture_list_view(int lecture_idx) {
+		return sqlSession.selectOne("teacher.lecture_list_view",lecture_idx);
 	}
 
 }

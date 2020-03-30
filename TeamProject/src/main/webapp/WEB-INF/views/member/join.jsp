@@ -6,8 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
+<script src="${path}/include/js/join.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+
 
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 13) {
@@ -50,7 +52,7 @@ function checkId() {
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp" %>
-	<div class="container-lg joinDiv" style="margin-top: 170px;">
+	<div class="container-lg joinDiv">
 		<div class="page-header col-xl-8 offset-xl-2 text-center">
 			<h2>회원가입</h2>
 		</div>
@@ -96,7 +98,8 @@ function checkId() {
 				<div class="form-group" style="display: flex;">
 					<div class="col-sm-4 col-xl-4 col-lg-4 col-md-4 p-0">
 						<select class="form-control p-0" id="phone1" name="phone1">
-							<option value="010" selected>010</option>
+							<option value="02" selected>-선택-</option>
+							<option value="010">010</option>
 							<option value="011">011</option>
 							<option value="016">016</option>
 							<option value="019">019</option>
@@ -125,7 +128,8 @@ function checkId() {
 					</div>
 					<div class="form-group col-sm-4 col-xl-4 col-lg-4 col-md-4 p-0">
 						<select class="form-control" id="birthday2" name="birthday2">
-							<option value="01" selected>01</option>
+							<option value="00" selected>-선택-</option>
+							<option value="01">01</option>
 							<option value="02">02</option>
 							<option value="03">03</option>
 							<option value="04">04</option>

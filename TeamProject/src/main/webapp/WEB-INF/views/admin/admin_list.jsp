@@ -7,6 +7,30 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/fixed-topbar.jsp"%>
+<script type="text/javascript">
+function adminView(mdadmin_id) {
+	var inputed = mdadmin_id;
+	console.log(inputed);
+	 $.ajax({
+	        data : {
+	            admin_id : inputed
+	        },
+	        url : "${path}/admin/view.do",
+	        type: "POST",
+	        success : function(data) {
+	            if (data != null) {
+	            	$("#updateModal").html(data);
+	            	$("#updateModal").show();
+	            } 
+	        }
+	    });
+	
+}
+
+function modalcancle() {
+	$("#updateModal").hide();
+}
+</script>
 </head>
 <body>
 <div class="container" style="margin-top: 170px;">
@@ -23,7 +47,11 @@
 	<tr>
 		<td>${row.admin_id}</td>
 		<td>
+<<<<<<< HEAD
 <a href="${path}/admin/view.do?admin_id=${row.admin_id}" data-toggle="modal" data-target="#updateModal">${row.admin_name}</a>
+=======
+<a href="#" onclick="adminView('${row.admin_id}')" >${row.admin_name}</a>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		</td>
 		<td>${row.admin_email}</td>
 		<td>${row.admin_hp}</td>
@@ -77,6 +105,7 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <div class="modal" id="updateModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -117,6 +146,11 @@
       </div>
     </div>
   </div>
+=======
+
+<div class="modal" id="updateModal">
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </div>
 </div>
 <%@ include file="../include/footer.jsp"%>

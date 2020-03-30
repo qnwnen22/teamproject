@@ -174,10 +174,6 @@ $(function(){
 			$("#postcodeM").html("<b style='color:red'>우편번호는 필수 입력입니다.</b>");
 			postcode.focus();
 			return false;
-		} else {
-			var input="<input id='postcodeConfirm' type='hidden' value='y'>";
-			$("#postcode").css("border", "2px solid #71c9ce");
-			$("#postcodeM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}
 	 });
 	 
@@ -188,63 +184,67 @@ $(function(){
 			$("#addressM").html("<b style='color:red'>주소는 필수 입력입니다.</b>");
 			address.focus();
 			return false;
-		}else {
-			var input="<input id='addressConfirm' type='hidden' value='y'>";
-			$("#address").css("border", "2px solid #71c9ce");
-			$("#addressM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
-		}
-		
+		}	
 	 });
 	 
 	 $('#address2').change(function(e){
 		var address2 =document.getElementById("address2");
 		if(address2.value=="") {
-			var input="<input id='address2Confirm' type='hidden' value='y'>";
 			$("#address2").css("border", "2px solid red");
-			$("#address2M").html("<b style='color:red'>상세주소는 필수 입력입니다.</b>"+input);
+			$("#address2M").html("<b style='color:red'>상세주소는 필수 입력입니다.</b>");
 			address2.focus();
 			return false;
 		}else {
-			$(".address2").css("border", "2px solid #71c9ce");
-			$("#address2M").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			var input="<input id='address2Confirm' type='hidden' value='y'>";
+			$("#address2").css("border", "2px solid #71c9ce");
+			$("#address2M").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}
 	 });
 	 
 	$('#join-submit').click(function(e){
 		if($('#usernameConfirm').val()!="y") {
 			$('#username').focus();
+			alert("1");
 			return false;
 		}
 		if($('#useridConfirm').val()!="y") {
 			$('#userid').focus();
+			alert("2");
 			return false;
 		}
 		if($('#bpasswdConfirm').val()!="y") {
 			$('#bpasswd').focus();
+			alert("3");
 			return false;
 		}
 		if($('#passwdCheckConfirm').val()!="y") {
 			$('#passwdCheck').focus();
+			alert("4");
 			return false;
 		}
 		if($('#useremailConfirm').val()!="y") {
 			$('#useremail').focus();
+			alert("5");
 			return false;
 		}
 		if($('#phone3Confirm').val()!="y") {
 			$('#phone3').focus();
+			alert("6");
 			return false;
 		}
 		if($('#birthday3Confirm').val()!="y") {
 			$('birthday3').focus();
+			alert("7");
 			return false;
 		}
 		if($('#postcodeConfirm').val()!="y") {
 			$('postcode').focus();
+			alert("8");
 			return false;
 		}
 		if($('#addressConfirm').val()!="y") {
 			$('address').focus();
+			alert("9");
 			return false;
 		}
 		if($('#address2Confirm').val()!="y") {
@@ -262,33 +262,7 @@ $(function(){
 			alert("개인정보취급방침에 동의하여 주시기 바랍니다.");
 			return false;
 		}
-
 		document.join_form.submit();
-		/*var param="userid="+$("#userid").val()
-		+"&username="+$("#username").val()
-		+"&passwd="+$("#passwd").val()
-		+"&useremail="+$("#useremail").val()
-		+"&phone1="+$("#phone1").val()
-		+"&phone2="+$("#phone2").val()
-		+"&phone3="+$("#phone3").val()
-		+"&birthday1="+$("#birthday1").val()
-		+"&birthday2="+$("#birthday2").val()
-		+"&birthday3="+$("#birthday3").val()
-		+"&postcode="+$("#postcode").val()
-		+"&address="+$("#address").val()
-		+"&address2="+$("#address2").val()
-
-        $.ajax({
-            type: "POST",
-            url: "/JSYProject/store_servlet/insertmember.do",
-            data: param,
-            success: function (){
-            	location.replace('login.jsp'); // 화면 갱신            	
-            }, error: function() {
-                alert('회원가입실패');
-            }
-        });
-		alert('회원가입을 축하합니다.');*/
 	});
 
 
@@ -328,10 +302,12 @@ function execDaumPostcode() {
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
 			document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
 			document.getElementById('address').value = fullAddr;
-			$(".postcode").css("border", "2px solid #71c9ce");
-			$("#postcodeM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
-			$(".address").css("border", "2px solid #71c9ce");
-			$("#addressM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>");
+			var input="<input id='postcodeConfirm' type='hidden' value='y'>";
+			var input2="<input id='addressConfirm' type='hidden' value='y'>";
+			$("#postcode").css("border", "2px solid #71c9ce");
+			$("#postcodeM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
+			$("#address").css("border", "2px solid #71c9ce");
+			$("#addressM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input2);
 
 			// 커서를 상세주소 필드로 이동한다.
 			document.getElementById('address2').focus();
