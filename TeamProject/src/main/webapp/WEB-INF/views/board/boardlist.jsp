@@ -16,7 +16,7 @@
 </script>
 </head>
 <body>
-	<br><br><br><br><br><br><br><br>
+	<br><br><br><br>
 	<div class="board_table">
 		<div>
 			<ul class="upper_shift">

@@ -74,9 +74,6 @@ function attachAddr(){
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
 <div class="container">
 <div class="justify-content-md-center">
 <form id="form1" name="form1" method="post" action="${path}/board/insert.do">
@@ -94,6 +91,8 @@ function attachAddr(){
 			class="form-control" id="title" name="title"
 			placeholder="제목을 입력하세요">
 	</div><br>
+	
+	
 
 		<div class="mb-3 was-validated">
 			<label for="validationTextarea">내용</label>
@@ -105,7 +104,7 @@ function attachAddr(){
  	
   <div class="form-group">
     <label for="exampleFormControlFile1">파일 첨부</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" >
 <div class="Plus_one"></div>
 <div> <input type="button" class="form-control-file" id="exampleFormControlFile1" onclick="attachAddr(); return false;" value="파일 추가"  style="width: 5.5em;">
 			</div>

@@ -44,19 +44,17 @@ a, a:hover, a:focus {
 	transition: all 0.3s;
 }
 
-
-#kdemiNavBar.is-fixed, #kmongNavBar.is-fixed {
+#kdemiNavBar.is-fixed, #kdemiNavBar.is-fixed {
 	position: fixed;
 	border-bottom: 1px solid #e4e5ed;
 	background-color: #fff;
 	top: 0;
-
 }
 
 #kdemiAboutNavBar, #kdemiNavBar {
 	color: #333;
 	background-color: transparent;
-	border-bottom: none;
+    border-bottom: 1px solid #e4e5ed;
 	left: 0;
 	right: 0;
 	margin-right: auto;
