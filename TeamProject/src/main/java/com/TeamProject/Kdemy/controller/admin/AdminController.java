@@ -4,26 +4,33 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Controller;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.service.admin.AdminService;
+@RestController 
 
-@Controller
 @RequestMapping("admin/*") //공통 url mapping
 public class AdminController {
+	private static final Logger logger 
+	= LoggerFactory.getLogger(AdminController.class);
+	
 	@Inject
 	AdminService adminService;
 	
 	@RequestMapping("list.do")
-	public String adminList(Model model) {
+	public ModelAndView adminList(ModelAndView mav) {
 		List<AdminDTO> list=adminService.list();
-		model.addAttribute("list", list);
-		return "admin/admin_list";
+		mav.setViewName("admin/admin_list");//뷰의 이름
+		mav.addObject("list", list);
+		return mav;
 	}
 	@RequestMapping("insertAdmin.do")
 	public String insertAdmin(AdminDTO dto) {
@@ -43,15 +50,14 @@ public class AdminController {
 		return "redirect:/admin/list.do";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/view.do")
-	public int view(AdminDTO dto, Model model) {
-		System.out.println(dto.getAdmin_id());
-		if(dto.getAdmin_id()!=null) {
-			model.addAttribute("dto", adminService.viewAdmin(dto.getAdmin_id()));
-			return 1;
+	@RequestMapping(value="/view.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
+	public Model view(String admin_id,Model model) {
+		if(admin_id!=null) {
+			AdminDTO dto=adminService.viewAdmin(admin_id);
+			model.addAttribute("dto",dto);
+			return model;
 		}
-		return 0;
+		return model;
 	}
 	
 	@RequestMapping("updateAdmin.do")
