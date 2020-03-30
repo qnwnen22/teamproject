@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.service.admin.AdminService;
@@ -42,10 +43,15 @@ public class AdminController {
 		return "redirect:/admin/list.do";
 	}
 	
-	@RequestMapping("view.do")
-	public String view(@RequestParam String admin_id, Model model) {
-		model.addAttribute("dto", adminService.viewAdmin(admin_id));
-		return "admin/view";
+	@ResponseBody
+	@RequestMapping(value="/view.do")
+	public int view(AdminDTO dto, Model model) {
+		System.out.println(dto.getAdmin_id());
+		if(dto.getAdmin_id()!=null) {
+			model.addAttribute("dto", adminService.viewAdmin(dto.getAdmin_id()));
+			return 1;
+		}
+		return 0;
 	}
 	
 	@RequestMapping("updateAdmin.do")

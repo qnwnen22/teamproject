@@ -9,7 +9,7 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 </head>
 <body>
-	<div class="container-lg joinDiv" style="margin-top: 170px;">
+	<div class="container-lg joinDiv">
 		<div class="page-header col-xl-8 offset-xl-2 text-center">
 			<h2>로그인 </h2>
 		</div>
@@ -27,10 +27,10 @@
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" id="join-submit" class="btn btn-primary">
-						로그인<i class="fa fa-check spaceLeft"></i>
+						로그인
 					</button>
 					<button type="button" class="btn btn-warning" onclick="history.back()">
-						취소<i class="fa fa-times spaceLeft"></i>
+						취소
 					</button>
 				</div>
 			</form>
