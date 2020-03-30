@@ -5,7 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 헤더 제거 -->
 <%@ include file="../include/header.jsp" %>
+<!-- 추가 -->
+<%-- <script src="${path}/include/jquery-3.4.1.min.js"></script> --%>
+
+<!--  -->
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script src="${path}/include/js/join.js"></script>
 <script src="${path}/include/js/common.js"></script>
@@ -13,9 +18,6 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 
-<!-- 이원혁 추가 -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
 <script>
 $('#content').summernote({
 	  height: 300,                 // 에디터 높이
@@ -37,14 +39,14 @@ $('#content').summernote({
 	
 	<!-- input 코드 -->
 	<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm" style="padding-left: 10px; padding-right: 10px;">
-		<form method="post" name="online"
-					enctype="multipart/form-data" class="form-horizontal"
-					action="${path}/teacher/teacher_type3_insert">
+		<form method="post"
+				enctype="multipart/form-data"
+				class="form-horizontal"
+				action="${path}/teacher/teacher_type2_insert.do">
 		<!-- 메인 카테고리 -->
 		<div class="form-group">
-			<label for="category">카테고리1</label> <select name="main_category" id="main_category"
-					class="form-control"
-					onChange="javascript:submenuchange(document.menu_add_form.main_category.options.selectedIndex)">
+			<label for="category">카테고리1</label>
+			 <select name="main_category" id="main_category" class="form-control">
 				<option selected value="">-메인메뉴-</option>
 				<option value="BEST">BEST</option>
 				<option value="SALE">SALE</option>
@@ -57,7 +59,7 @@ $('#content').summernote({
 		<div class="form-group">
 			<label for="category">카테고리2</label>
 				<select name="sub_category" id="sub_category" class="form-control">
-				<option selected value="">-서브메뉴-</option>
+				<option selected value="test">-서브메뉴-</option>
 			</select>
 		</div>
 		<!-- 아이디 -->
@@ -80,13 +82,19 @@ $('#content').summernote({
 			<label for="file1">사진파일 (맨위에 파일은 메인사진입니다. 사진추가가 필요시 추가버튼을 이용해주세요.)</label>
 			<input class="file1" type="file" name="file1" id="file1">
 		</div>
+		<!-- 동영상 업로드 -->
+		<div class="form-group" id="video_add">
+			<input type="hidden" name="count" value="0">
+			<label for="file2">동영상파일 (맨위에 파일은 메인사진입니다. 사진추가가 필요시 추가버튼을 이용해주세요.)</label>
+			<input class="file2" type="file" name="file2" id="file2">
+		</div>
 		
 		<!-- 내용 -->
 		<div class="form-group">
-					<label for="content_label">내용</label><br>
-					<textarea class="form-control text_cotent" name="content"
-						id="content" rows="10" cols="10"></textarea>
-				</div>
+			<label for="content_label">내용</label><br>
+			<textarea class="form-control text_cotent" name="content"
+			id="content" rows="10" cols="10"></textarea>
+			</div>
 		
 		
 		<!-- 강의 시작날짜 -->
@@ -103,27 +111,6 @@ $('#content').summernote({
 		<div class="form-group">
 			<label for="lecture_time">강의 시간</label>
 			<input type="text" class="form-control" name="lecture_time" id="lecture_time">
-		</div>
-		
-		<!-- 강의장 우편 번호 -->
-		<!-- 장소 검색 -->
-		
-		<hr>
-		<h3>강의장 주소</h3>
-		<%@ include file="kakaoMap.jsp" %>
-		<div class="form-group">
-			<label for="lecture_road_address">도로명 주소</label>
-			<input type="text" class="form-control" name="lecture_address" id="lecture_address">
-		</div>
-		<!-- 강의장 주소 -->
-		<!-- <div class="form-group">
-			<label for="lecture_address">지번 주소</label>
-			<input type="text" class="form-control" name="lecture_address" id="lecture_address">
-		</div> -->
-		<!-- 강의장 상세 주소 -->
-		<div class="form-group">
-			<label for="lecture_address2">상세 주소</label>
-			<input type="text" class="form-control" name="lecture_address2" id="lecture_address2">
 		</div>
 		
 		<!-- 등록 버튼 -->
