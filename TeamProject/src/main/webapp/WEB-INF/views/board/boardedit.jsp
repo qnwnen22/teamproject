@@ -61,33 +61,13 @@ $(document).ready(function() {
 	});
 });
 
-function attachAddr(){
-	  const str = `<input type="file" class="form-control-file" id="exampleFormControlFile1">`;
-	  $(".Plus_one").append(str); 
-	}
-
-
-function alertClick() {
-	var title = $("#title").val();
-	var content = $("#content").val();
-	if (title == "") { //빈값이면
-		alert("제목을 입력하세요");
-		$("#title").focus(); //입력포커스 이동
-		return; //함수 종료, 폼 데이터를 제출하지 않음
-	}
-	if (content == "") {
-		alert("내용을 입력하세요");
-		$("#content").focus();
-		return;
-	}
-}
-
 function GoList(){
 	var go_confirm=confirm("입력하신 내용은 저장이 되지 않습니다. 그래도 나가시겠습니까?");
 	if(go_confirm==true){
 	location.href="${path}/board/list.do";
 		}
 	}
+
 
 
 </script>
@@ -99,7 +79,7 @@ function GoList(){
 	<br>
 <div class="container">
 <div class="justify-content-md-center">
-<form id="form1" name="form1" method="post" action="${path}/board/insert.do">
+<form id="form1" name="form1" method="post" action="${path}/board/update.do">
 	<div >
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
@@ -111,8 +91,7 @@ function GoList(){
 
 	<div class="form-group">
 		<label for="formGroupExampleInput">제목</label> <input type="text"
-			class="form-control" id="title" name="title"
-			placeholder="제목을 입력하세요">
+			class="form-control" id="title" name="title" value="${dto.title}">
 	</div><br>
 	
 
@@ -121,23 +100,17 @@ function GoList(){
 		<div class="mb-3 was-validated">
 			<label for="validationTextarea">내용</label>
 			<textarea class="form-control is-invalid form-control-lg " id="content" name="content"
-				placeholder="내용을 입력하세요" required></textarea>
+			 required cols="400">${dto.content}</textarea>
 		</div>
 	<br>
+	
+	<input type="hidden" name="bno" value="${dto.bno}">
  
  	
-  <div class="form-group">
-    <label for="exampleFormControlFile1">파일 첨부</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" >
-<div class="Plus_one"></div>
-<div> <input type="button" class="form-control-file" id="exampleFormControlFile1" onclick="attachAddr(); return false;" value="파일 추가"  style="width: 5.5em;">
-			</div>
-  </div>
   
-
 <div class="btn-group float-right" role="group" aria-label="Basic example">
 							<button type="submit" class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
-								data-toggle="button" aria-pressed="false" onclick="alertClick()">
+								data-toggle="button" aria-pressed="false">
 								확인</button>
 						<button type="button" class="btn btn-sm btn-primary justify-content-end  font-color-fff btn-normal-silver" data-toggle="button"
 							aria-pressed="false" onclick="GoList()">취소</button>

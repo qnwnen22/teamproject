@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -87,9 +88,43 @@ public class BoardController {
 	public String insert(@ModelAttribute BoardDTO dto, HttpSession session) throws Exception{
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("dto");
 		boardService.create(dto);
 		return "redirect:/board/list.do";
 	}//end insert
+	
+	@RequestMapping("view.do")
+	public ModelAndView view(int bno, HttpSession session) throws Exception {
+		boardService.increateViewcnt(bno, session);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("board/boardview");
+		mav.addObject("dto", boardService.read(bno));
+		return mav;
+	}
+	
+	@RequestMapping("edit/{bno}")
+	public ModelAndView update(@PathVariable("bno") int bno, ModelAndView mav) {
+		mav.setViewName("board/boardedit");
+		mav.addObject("dto",boardService.detailBoard(bno));
+		return mav;
+	}
+	
+	
+	@RequestMapping("update.do")
+	public String update(BoardDTO dto) throws Exception {
+		if(dto != null) {
+			boardService.update(dto);
+		}
+		//수정 후 상세 화면으로 되돌아감
+		return "redirect:/board/view.do?bno="+dto.getBno();
+	}
+	
+	@RequestMapping("delete.do")
+	public String delete(int bno) throws Exception{
+		boardService.delete(bno);
+		return "redirect:/board/list.do";//목록으로 이동
+	}
 	
 	
 }

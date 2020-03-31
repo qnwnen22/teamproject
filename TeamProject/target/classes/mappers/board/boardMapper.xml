@@ -5,71 +5,109 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="board">
-	<select id="listAll" resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
+	<select id="listAll"
+		resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
 		<include refid="paging_header" />
 		select bno, title, writer, regdate, viewcnt, show,
-		(select count(*) from board_reply where bno=b.bno) cnt
+		(select count(*)
+		from board_reply where bno=b.bno) cnt
 		from kdemyboard b
-		order by bno desc
-			
+		order by bno
+		desc
+
 		<include refid="paging_footer" />
 	</select>
-	
-		<select id="searchlistAll" resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
+
+	<select id="searchlistAll"
+		resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
 		<include refid="paging_header" />
-		select bno, title, writer,  regdate, viewcnt, show,
-		(select count(*) from board_reply where bno=b.bno) cnt
+		select bno, title, writer, regdate, viewcnt, show,
+		(select count(*)
+		from board_reply where bno=b.bno) cnt
 		from kdemyboard b
-			<choose>
-				<when test="search_option== 'all'">
-			where show='Y'
-				    and (title like #{keyword}
-				        or content like #{keyword} )			
-				</when>
-			</choose>
+		<choose>
+			<when test="search_option== 'all'">
+				where show='Y'
+				and (title like #{keyword}
+				or content like #{keyword} )
+			</when>
+		</choose>
 		order by bno desc
-			
+
 		<include refid="paging_footer" />
 	</select>
-	
-		<sql id="paging_header">
+
+	<sql id="paging_header">
 		select *
 		from (
-		    select rownum as rn, A.*
-		    from (	
+		select rownum as rn, A.*
+		from (
 	</sql>
-	
+
 	<sql id="paging_footer">
-		    ) A
-		) where rn between #{start} and #{end}	
+		) A
+		) where rn between #{start} and #{end}
 	</sql>
-	
+
 	<select id="countArticle" resultType="int">
-		select count(*) from kdemyboard b
+		select count(*) from
+		kdemyboard b
 	</select>
-	
+
 	<select id="searchcountArticle" resultType="int">
 		select count(*) from kdemyboard b
-			<choose>
-				<when test="search_option== 'all'">
-			where show='Y'
-				    and (title like #{keyword}
-				        or content like #{keyword} )			
-				</when>
-			</choose>
+		<choose>
+			<when test="search_option== 'all'">
+				where show='Y'
+				and (title like #{keyword}
+				or content like #{keyword} )
+			</when>
+		</choose>
 	</select>
-	
-	  <insert id="insert">
-    insert into kdemyboard (bno,title,content,writer) values
-		( seq_kdemyboard.nextval, #{title}, #{content}, #{writer} )
-  </insert>
-  
-    <!-- 첨부파일 정보 저장 -->
-  <insert id="addAttach">
-    insert into board_attach (fullName, bno) values
-		( #{fullName}, seq_kdemyboard.currval ) 
-  </insert>
-	
+
+	<insert id="insert">
+		insert into kdemyboard (bno,title,content,writer) values
+		(
+		seq_kdemyboard.nextval, #{title}, #{content}, #{writer} )
+	</insert>
+
+	<!-- 첨부파일 정보 저장 -->
+	<insert id="addAttach">
+		insert into board_attach (fullName, bno) values
+		( #{fullName},
+		seq_kdemyboard.currval )
+	</insert>
+
+	<!-- 조회수 증가 처리 -->
+	<update id="increateViewcnt">
+		update kdemyboard set viewcnt=viewcnt+1
+		where bno=#{bno}
+	</update>
+
+	<select id="read"
+		resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
+		select bno,title,regdate,content,viewcnt,username,writer
+		from kdemyboard b, kdemymember m
+		where b.writer=m.userid and bno=#{bno}
+	</select>
+
+	<select id="detail_board"
+		resultType="com.TeamProject.Kdemy.model.board.dto.BoardDTO">
+		select * from kdemyboard
+		where bno=#{bno}
+	</select>
+
+	<!-- 게시물 내용 수정 -->
+	<update id="update">
+		update kdemyboard
+		set title=#{title}, content=#{content}
+		where bno=#{bno}
+	</update>
+
+	<delete id="delete">
+		update kdemyboard set show='N' where bno=#{bno}
+	</delete>
+
 </mapper>
 
 

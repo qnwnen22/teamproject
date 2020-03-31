@@ -5,12 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
-<<<<<<< HEAD
 
 	<insert id="insertMember">
-=======
-	<insert id="insertMember">
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		insert into kdemymember
 		(usernum, userid,
 		passwd, username,
@@ -44,12 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select COUNT(*) from kdemymember
 		WHERE userid=#{userid}
 	</select>
-<<<<<<< HEAD
 
-=======
-
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </mapper>
 
 

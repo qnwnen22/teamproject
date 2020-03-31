@@ -63,6 +63,7 @@ public class MemberController {
 			MemberDTO dto2=memberService.kdemyLogin(dto);
 			session.setAttribute("userid", dto2.getUserid());
 			session.setAttribute("username", dto2.getUsername());
+			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
 			mav.setViewName("home");
 		}else {

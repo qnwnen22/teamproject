@@ -18,6 +18,6 @@ public interface BoardService {
 	public int countArticle() throws Exception;//레코드 갯수 계산v
 	public int searchcountArticle(String search_option, String keyword) throws Exception;//레코드 갯수 계산v
 	public BoardDTO read(int bno) throws Exception;//레코드 조회v
-
+	public BoardDTO detailBoard(int bno);
 	
 }

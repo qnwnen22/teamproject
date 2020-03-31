@@ -18,6 +18,6 @@ public interface BoardDAO {
 	public int countArticle() throws Exception;//레코드 갯수 계산
 	public int searchcountArticle(String search_option, String keyword) throws Exception;//레코드 갯수 계산
 	public BoardDTO read(int bno) throws Exception;//레코드 조회
-
+	public BoardDTO  detailBoard(int bno);
 	
 }
