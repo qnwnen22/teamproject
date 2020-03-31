@@ -6,44 +6,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
-<%@ include file="../include/topbar.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/home.css">
-<script src="${path}/include/js/common.js"></script>
-
-
+<%@ include file="../include/fixed-topbar.jsp" %>
+<script type="text/javascript">
+function list(page) {
+	location.href = "${path}/teacher/offline_list.do?curPage="+page;
+}
+function search(){
+	var keyword=document.getElementById("keyword").value;
+	location.href = "${path}/teacher/offline_list_search.do?keyword="+keyword;
+}
+</script>
 </head>
 <body>
-<h2>비디오 강의 페이지</h2>
-<p>비이도 강의를 올리는 페이지 입니다.</p>
+<div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
+<h2>영상 강의 판매 리스트</h2>
 <hr>
-<div class="row">
-<br>
- <c:forEach var="dto" items="${map.list}">
-<h2 class="text-center">${dto.sub_category}</h2>
-
-
-    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 text-center">  
-    <a href="${path}/teacher/view.do?lecture_idx=${dto.subject}"></a>
-    <input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
-     <img src="../upload${dto.main_img}" class="img-rounded img-responsive"> 
-     <video controls="controls" width="100%" preload="metadata">
-        <source src="../upload${dto.videofile}" type="video/mp4">
-      </video>
-     <b>${dto.content}</b><br>
-     <b><fmt:formatNumber value="${dto.price}" pattern="###,###,###"/>원</b><br>
-    </div>
-
-
- </c:forEach>
- <%-- <table>
-		<c:forEach var="dto" items="${list}">
+	<form name="form_search">
+		<div style="float: right;">
+			<input name="keyword" id="keyword">
+			<input type="button" value="조회" onclick="search()">
+		</div>
+	</form>
+	<table style="width: 100%; border: 1px solid">
 		<tr>
+			<th>번호</th>
 			<th>썸네일</th>
 			<th>제목</th>
 			<th>제작자</th>
 			<th>가격</th>
 		</tr>
+		<c:forEach var="dto" items="${map.list}">
 		<tr>
+			<td>${dto.lecture_idx}</td>
 			<!-- 썸네일 -->
 			<td><a href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
 				<img width="300px" height="100px" src="../upload/${dto.main_img}"></a>
@@ -56,36 +50,40 @@
 			<td>${dto.price}</td>
 		</tr>
 		</c:forEach>
-	</table> --%>
+		<!-- 페이징 처리 -->
+		<tr>
+			<td colspan="5" align="center">
+			<c:if test="${map.pager.curBlock > 1}">
+				<a href="#" onclick="list('1')">[처음]</a>
+			</c:if>
+			
+			<c:if test="${map.pager.curBlock > 1}">
+				<a href="#" onclick="list('${map.pager.prevPage}')"> [이전]</a>
+			</c:if>
+			
+			<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
+				<c:choose>
+					<c:when test="${num == map.pager.curPage}">
+					<!-- 현재 페이지인 경우 하이퍼링크 제거 -->
+						<span style="color: red;">${num}</span>
+					</c:when>
+					<c:otherwise>
+						<a href="#" onclick="list('${num}')">${num}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			 <c:if test="${map.pager.curBlock < map.pager.totBlock}">
+				<a href="#" onclick="list('${map.pager.nextPage}')">[다음]</a>
+			</c:if>
+			
+			<c:if test="${map.pager.curPage < map.pager.totPage}">
+				<a href="#" onclick="list('${map.pager.totPage}')">[끝]</a>
+			</c:if></td>
+		</tr>
+	</table>
 </div>
 
-
-<div class="text-center">
-     <ul class="pagination">
-      <c:if test="${map.page.curBlock > 1 }">
-        <li><a href="#" onclick="list('1')">&lt;&lt;</a></li>
-      </c:if>
-      <c:if test="${map.page.curBlock > 1 }">
-        <li><a href="#" onclick="list('${map.page.prevPage}')">&lt;</a></li>
-      </c:if>
-      <c:forEach var="num" begin="${map.page.blockStart}" end="${map.page.blockEnd}">
-        <c:choose>
-          <c:when test="${num == map.page.curPage}">
-            <li><span style="color: red">${num}</span></li>
-          </c:when>
-          <c:otherwise>
-            <li><a href="#" onclick="list('${num}')">${num}</a></li>
-          </c:otherwise>
-        </c:choose>
-      </c:forEach>
-      <c:if test="${map.page.curBlock < map.page.totBlock}">
-        <li><a href="#" onclick="list('${page.nextPage}')">&gt;</a></li>
-      </c:if>
-      <c:if test="${map.page.curBlock < map.page.totBlock}">
-        <li><a href="#" onclick="list('${map.page.totPage}')">&gt;&gt;</a></li>
-      </c:if>
-  </ul>
-</div>
-
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

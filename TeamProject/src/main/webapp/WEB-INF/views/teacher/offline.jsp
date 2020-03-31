@@ -9,23 +9,29 @@
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
 <%-- <script src="${path}/include/js/join.js"></script> --%>
+<!-- 썸머 노트 -->
+<link
+   href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
+   rel="stylesheet">
 <script src="${path}/include/js/common.js"></script>
-
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 
 <!-- 이원혁 추가 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
 <script>
-$('#content').summernote({
-	  height: 300,                 // 에디터 높이
-	  minHeight: null,             // 최소 높이
-	  maxHeight: null,             // 최대 높이
-	  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-	  lang: "ko-KR",					// 한글 설정
-	  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
-  
+$(function(){
+	$('#content').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+	});
 });
 </script>
 
@@ -85,10 +91,8 @@ $('#content').summernote({
 		<!-- 내용 -->
 		<div class="form-group">
 			<label for="content_label">내용</label><br>
-			<textarea class="form-control text_cotent" name="content"
-			id="content" rows="10" cols="10"></textarea>
-			</div>
-		
+			<textarea class="form-control text_cotent" name="content" id="content" rows="10" cols="10"></textarea>
+		</div>
 		
 		<!-- 강의 시작날짜 -->
 		<div class="form-group">
@@ -133,5 +137,8 @@ $('#content').summernote({
 	</div>
 </div>
 <%@ include file="../include/footer.jsp"%>
+<!-- 부스 스트랩 4.4.1 -->
+<script
+   src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

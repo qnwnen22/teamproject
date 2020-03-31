@@ -27,6 +27,15 @@ public class TeacherDTO {
 	
 	private MultipartFile file1;
 	private MultipartFile file2;
+	
+	private String keyword;
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	public int getLecture_idx() {
 		return lecture_idx;
 	}
@@ -149,12 +158,13 @@ public class TeacherDTO {
 				+ upload_date + ", price=" + price + ", lecture_date=" + lecture_date + ", lecture_start="
 				+ lecture_start + ", lecture_time=" + lecture_time + ", lecture_postcode=" + lecture_postcode
 				+ ", lecture_address=" + lecture_address + ", lecture_address2=" + lecture_address2 + ", file1=" + file1
-				+ ", file2=" + file2 + "]";
+				+ ", file2=" + file2 + ", keyword=" + keyword + "]";
 	}
+	
 	public TeacherDTO(int lecture_idx, String cell_type, String main_category, String sub_category, String userid,
 			String subject, String main_img, String videofile, String content, Date upload_date, int price,
 			String lecture_date, String lecture_start, String lecture_time, String lecture_postcode,
-			String lecture_address, String lecture_address2, MultipartFile file1, MultipartFile file2) {
+			String lecture_address, String lecture_address2, MultipartFile file1, MultipartFile file2, String keyword) {
 		this.lecture_idx = lecture_idx;
 		this.cell_type = cell_type;
 		this.main_category = main_category;
@@ -174,8 +184,8 @@ public class TeacherDTO {
 		this.lecture_address2 = lecture_address2;
 		this.file1 = file1;
 		this.file2 = file2;
+		this.keyword = keyword;
 	}
-
 	public TeacherDTO() {
 	}	
 	

@@ -9,7 +9,11 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script type="text/javascript">
 function list(page) {
-	location.href = "${path}/teacher/offline_list.do?curPage=" + page;
+	location.href = "${path}/teacher/offline_list.do?curPage="+page;
+}
+function search(){
+	var keyword=document.getElementById("keyword").value;
+	location.href = "${path}/teacher/offline_list_search.do?keyword="+keyword;
 }
 </script>
 </head>
@@ -17,6 +21,12 @@ function list(page) {
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
 <h2>현장 강의 판매 리스트</h2>
 <hr>
+	<form name="form_search">
+		<div style="float: right;">
+			<input name="keyword" id="keyword">
+			<input type="button" value="조회" onclick="search()">
+		</div>
+	</form>
 	<table style="width: 100%; border: 1px solid">
 		<tr>
 			<th>번호</th>
@@ -40,10 +50,47 @@ function list(page) {
 			<td>${dto.price}</td>
 		</tr>
 		</c:forEach>
+		<!-- 페이징 처리 -->
+		<tr>
+			<td colspan="5" align="center">
+			<c:if test="${map.pager.curBlock > 1}">
+				<a href="#" onclick="list('1')">[처음]</a>
+			</c:if>
+			
+			<c:if test="${map.pager.curBlock > 1}">
+				<a href="#" onclick="list('${map.pager.prevPage}')"> [이전]</a>
+			</c:if>
+			
+			<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
+				<c:choose>
+					<c:when test="${num == map.pager.curPage}">
+					<!-- 현재 페이지인 경우 하이퍼링크 제거 -->
+						<span style="color: red;">${num}</span>
+					</c:when>
+					<c:otherwise>
+						<a href="#" onclick="list('${num}')">${num}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			 <c:if test="${map.pager.curBlock < map.pager.totBlock}">
+				<a href="#" onclick="list('${map.pager.nextPage}')">[다음]</a>
+			</c:if>
+			
+			<c:if test="${map.pager.curPage < map.pager.totPage}">
+				<a href="#" onclick="list('${map.pager.totPage}')">[끝]</a>
+			</c:if></td>
+		</tr>
 	</table>
+	
+	
+	
+	
+	
+	
 	<!-- 페이징 처리 -->
 	<div class="text-center">
-    	<ul class="pagination">
+    	<%-- <ul class="pagination">
       		<c:if test="${map.pager.curBlock > 1 }">
         		<li><a href="#" onclick="list('1')">[처음]</a></li>
       		</c:if>
@@ -71,7 +118,7 @@ function list(page) {
       		<c:if test="${map.pager.curPage < map.pager.totPage}">
         		<li><a href="#" onclick="list('${map.pager.totPage}')">[끝]</a></li>
       		</c:if>
-		</ul>
+		</ul> --%>
 	</div>
 </div>
 

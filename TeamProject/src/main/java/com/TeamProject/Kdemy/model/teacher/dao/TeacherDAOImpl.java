@@ -2,6 +2,7 @@ package com.TeamProject.Kdemy.model.teacher.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,40 +19,15 @@ public class TeacherDAOImpl implements TeacherDAO {
 
 	//각 페이지 리스트 처리
 	@Override
-	public List<TeacherDTO> typeAList(int start, int end) {
+	public List<TeacherDTO> lecture_list(String cell_type, int start, int end) {
 		HashMap<String, Object> map=new HashMap<>();
+		map.put("cell_type", cell_type);
+		map.put("cell_type", cell_type);
 		map.put("start", start);
 		map.put("end",end);
-		return sqlSession.selectList("teacher.typeAList",map);
-	}
-	@Override
-	public List<TeacherDTO> offline_list(int start, int end) {
-		HashMap<String, Object> map=new HashMap<>();
-		map.put("start", start);
-		map.put("end",end);
-		return sqlSession.selectList("teacher.offline_list",map);
-	}
-	@Override
-	public List<TeacherDTO> online_list(int start, int end) {
-		HashMap<String, Object> map=new HashMap<>();
-		map.put("start", start);
-		map.put("end",end);
-		return sqlSession.selectList("teacher.online_list",map);
+		return sqlSession.selectList("teacher.lecture_list",map);
 	}
 
-	//각 페이지 페이징 처리
-	@Override
-	public int countTypeAList() {	
-		return sqlSession.selectOne("teacher.countTypeAList");
-	}
-	@Override
-	public int countTypeBList() {
-		return sqlSession.selectOne("teacher.countTypeBList");
-	}
-	@Override
-	public int countTypeCList(String keyword) {
-		return sqlSession.selectOne("teacher.countTypeCList",keyword);
-	}
 	//각 페이지 insert 처리	
 	@Override
 	public void teacher_type1_insert(TeacherDTO dto) throws Exception{
@@ -74,5 +50,25 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public TeacherDTO lecture_list_view(int lecture_idx) {
 		return sqlSession.selectOne("teacher.lecture_list_view",lecture_idx);
 	}
-
+	@Override
+	public int searchCount(String cell_type, String keyword) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("cell_type", cell_type);
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectOne("teacher.searchCount",map);
+	}
+	@Override
+	public List<TeacherDTO> searchList(String cell_type, String keyword, int start, int end) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("cell_type", cell_type);
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("teacher.searchList",map);
+	}
+	@Override
+	public int countList(String cell_type) {
+		return sqlSession.selectOne("teacher.countList",cell_type);
+	}
+	
 }

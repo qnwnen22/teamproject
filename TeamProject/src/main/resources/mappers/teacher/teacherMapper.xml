@@ -14,7 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{cell_type}, #{main_category}, #{sub_category},
 		#{userid}, #{subject}, #{main_img}, #{videofile}, #{content}, #{price})
 	</insert>
-	
 	<insert id="teacher_type2_insert">
 		insert into lecture
 		(lecture_idx,
@@ -32,7 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 #{lecture_date}, #{lecture_start}, #{lecture_time}
 		 )
 	</insert>
-	
 	<insert id="teacher_type3_insert">
 		insert into lecture
 		(lecture_idx, cell_type, main_category,
@@ -50,59 +48,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 #{lecture_address2}
 		)
 	</insert>
-	
-	<!-- 강의 리스트 select + 페이징 처리 -->
-	<select id="typeAList" resultType="com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO">
-	 select *
-			from (
-			    select rownum as rn, A.*
-			    from (
-			        select lecture_idx,main_category,sub_category,userid,subject,main_img
-			        ,videofile ,content, price
-			        from lecture
-			        where cell_type=1
-			        order by lecture_idx desc 
-			    ) A    
-			) where rn between #{start} and #{end}
+
+	<select id="countList"
+	resultType="int">
+		select count(*) from lecture where cell_type=#{cell_type}
 	</select>
 	
-	<select id="online_list" 
+	<select id="lecture_list"
+	resultType="com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO">
+		select * from (	
+			select rownum as rn, A.* from 
+			(
+				select * from lecture
+				where cell_type=#{cell_type}
+			) A
+		) where rn between #{start} and #{end}
+	</select>
+
+	<select id="searchCount"
+	resultType="int">
+		select count(*) from lecture
+		where cell_type=#{cell_type} and
+		<include refid="search" />
+	</select>
+	
+	<select id="searchList"
 	resultType="com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO">
 		select * from (
 			select rownum as rn, A.* from 
 			(
 				select * from lecture
-				where cell_type=2
-				order by lecture_idx desc
+				where cell_type=#{cell_type} and
+				<include refid="search" />
 			) A
 		) where rn between #{start} and #{end}
 	</select>
 	
-	<select id="offline_list" 
-	resultType="com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO">
-		select * from (
-			select rownum as rn, A.* from 
-			(
-				select * from lecture
-				where cell_type=3
-				order by lecture_idx desc
-			) A
-		) where rn between #{start} and #{end}
-	</select>
-	<!-- 각 페이징 처리 -->
-	<select id="countTypeAList" resultType="int">
-	  select count(*) from lecture where cell_type=1
-	</select>
+	<sql id="search">
+		( userid like #{keyword} or 
+		main_category like #{keyword} or
+		sub_category like #{keyword} or
+		subject like #{keyword} or
+		content like #{keyword} )
+	</sql>
 	
-	<select id="countTypeBList" resultType="int">
-	  select count(*) from lecture where cell_type=2
-	</select>
-	
-	<select id="countTypeCList" resultType="int">
-	  select count(*) from lecture where cell_type=3
-	</select>
-
-
 	<!-- 강의 view 처리 -->	
 	<select id="lecture_list_view"
 	parameterType="int"
@@ -110,19 +99,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from lecture
 		where lecture_idx=#{lecture_idx}
 	</select>
-	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
