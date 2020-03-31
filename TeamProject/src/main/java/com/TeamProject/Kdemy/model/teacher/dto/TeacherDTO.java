@@ -7,22 +7,26 @@ import org.springframework.web.multipart.MultipartFile;
 public class TeacherDTO {
 	
 	private int lecture_idx; 
-	private String cell_type;
-	private String main_category;
-	private String sub_category;
-	private String userid; 
-	private String subject;
-	private String main_img;
-	private String videofile;
-	private String content;
-	private Date upload_date;
-	private int price;
-	private String lecture_start;
-	private String lecture_time;
+	private String cell_type; // 판매타입
+	
+	private String main_category; // 메인 카테고리
+	private String sub_category; // 서브 카테고리
+	private String userid; // 사용자 아이디
+	private String subject; // 제목
+	private String main_img; // 썸네일
+	private String videofile; //; 비디오 파일 이름
+	private String content; // 설명
+	private Date upload_date; // 업로드 날짜
+	private int price; // 가격
+	private String lecture_date; // 강의 시작날짜
+	private String lecture_start; // 강의 시작시간
+	private String lecture_time; // 강의 시간
+	private String lecture_postcode; // 강의 우편번호
+	private String lecture_address; // 강의장 도로명 주소
+	private String lecture_address2; // 상세 주소
 	
 	private MultipartFile file1;
 	private MultipartFile file2;
-	
 	public int getLecture_idx() {
 		return lecture_idx;
 	}
@@ -89,6 +93,12 @@ public class TeacherDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public String getLecture_date() {
+		return lecture_date;
+	}
+	public void setLecture_date(String lecture_date) {
+		this.lecture_date = lecture_date;
+	}
 	public String getLecture_start() {
 		return lecture_start;
 	}
@@ -100,6 +110,24 @@ public class TeacherDTO {
 	}
 	public void setLecture_time(String lecture_time) {
 		this.lecture_time = lecture_time;
+	}
+	public String getLecture_postcode() {
+		return lecture_postcode;
+	}
+	public void setLecture_postcode(String lecture_postcode) {
+		this.lecture_postcode = lecture_postcode;
+	}
+	public String getLecture_address() {
+		return lecture_address;
+	}
+	public void setLecture_address(String lecture_address) {
+		this.lecture_address = lecture_address;
+	}
+	public String getLecture_address2() {
+		return lecture_address2;
+	}
+	public void setLecture_address2(String lecture_address2) {
+		this.lecture_address2 = lecture_address2;
 	}
 	public MultipartFile getFile1() {
 		return file1;
@@ -113,19 +141,20 @@ public class TeacherDTO {
 	public void setFile2(MultipartFile file2) {
 		this.file2 = file2;
 	}
-	
 	@Override
 	public String toString() {
 		return "TeacherDTO [lecture_idx=" + lecture_idx + ", cell_type=" + cell_type + ", main_category="
 				+ main_category + ", sub_category=" + sub_category + ", userid=" + userid + ", subject=" + subject
 				+ ", main_img=" + main_img + ", videofile=" + videofile + ", content=" + content + ", upload_date="
-				+ upload_date + ", price=" + price + ", lecture_start=" + lecture_start + ", lecture_time="
-				+ lecture_time + ", file1=" + file1 + ", file2=" + file2 + "]";
+				+ upload_date + ", price=" + price + ", lecture_date=" + lecture_date + ", lecture_start="
+				+ lecture_start + ", lecture_time=" + lecture_time + ", lecture_postcode=" + lecture_postcode
+				+ ", lecture_address=" + lecture_address + ", lecture_address2=" + lecture_address2 + ", file1=" + file1
+				+ ", file2=" + file2 + "]";
 	}
 	public TeacherDTO(int lecture_idx, String cell_type, String main_category, String sub_category, String userid,
 			String subject, String main_img, String videofile, String content, Date upload_date, int price,
-			String lecture_start, String lecture_time, MultipartFile file1, MultipartFile file2) {
-		
+			String lecture_date, String lecture_start, String lecture_time, String lecture_postcode,
+			String lecture_address, String lecture_address2, MultipartFile file1, MultipartFile file2) {
 		this.lecture_idx = lecture_idx;
 		this.cell_type = cell_type;
 		this.main_category = main_category;
@@ -137,16 +166,17 @@ public class TeacherDTO {
 		this.content = content;
 		this.upload_date = upload_date;
 		this.price = price;
+		this.lecture_date = lecture_date;
 		this.lecture_start = lecture_start;
 		this.lecture_time = lecture_time;
+		this.lecture_postcode = lecture_postcode;
+		this.lecture_address = lecture_address;
+		this.lecture_address2 = lecture_address2;
 		this.file1 = file1;
 		this.file2 = file2;
 	}
+
 	public TeacherDTO() {
-	}
-	
-	
-	
-	
+	}	
 	
 }

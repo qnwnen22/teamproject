@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 헤더 제거 -->
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
-<script src="${path}/include/js/join.js"></script>
+<%-- <script src="${path}/include/js/join.js"></script> --%>
 <script src="${path}/include/js/common.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
@@ -37,14 +38,14 @@ $('#content').summernote({
 	
 	<!-- input 코드 -->
 	<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm" style="padding-left: 10px; padding-right: 10px;">
-		<form method="post" name="online"
-					enctype="multipart/form-data" class="form-horizontal"
-					action="${path}/teacher/teacher_type3_insert">
+		<form method="post"
+				enctype="multipart/form-data"
+				class="form-horizontal"
+				action="${path}/teacher/teacher_type3_insert.do">
 		<!-- 메인 카테고리 -->
 		<div class="form-group">
-			<label for="category">카테고리1</label> <select name="main_category" id="main_category"
-					class="form-control"
-					onChange="javascript:submenuchange(document.menu_add_form.main_category.options.selectedIndex)">
+			<label for="category">카테고리1</label>
+			 <select name="main_category" id="main_category" class="form-control">
 				<option selected value="">-메인메뉴-</option>
 				<option value="BEST">BEST</option>
 				<option value="SALE">SALE</option>
@@ -57,7 +58,7 @@ $('#content').summernote({
 		<div class="form-group">
 			<label for="category">카테고리2</label>
 				<select name="sub_category" id="sub_category" class="form-control">
-				<option selected value="">-서브메뉴-</option>
+				<option selected value="test">-서브메뉴-</option>
 			</select>
 		</div>
 		<!-- 아이디 -->
@@ -83,10 +84,10 @@ $('#content').summernote({
 		
 		<!-- 내용 -->
 		<div class="form-group">
-					<label for="content_label">내용</label><br>
-					<textarea class="form-control text_cotent" name="content"
-						id="content" rows="10" cols="10"></textarea>
-				</div>
+			<label for="content_label">내용</label><br>
+			<textarea class="form-control text_cotent" name="content"
+			id="content" rows="10" cols="10"></textarea>
+			</div>
 		
 		
 		<!-- 강의 시작날짜 -->
@@ -115,11 +116,6 @@ $('#content').summernote({
 			<label for="lecture_road_address">도로명 주소</label>
 			<input type="text" class="form-control" name="lecture_address" id="lecture_address">
 		</div>
-		<!-- 강의장 주소 -->
-		<!-- <div class="form-group">
-			<label for="lecture_address">지번 주소</label>
-			<input type="text" class="form-control" name="lecture_address" id="lecture_address">
-		</div> -->
 		<!-- 강의장 상세 주소 -->
 		<div class="form-group">
 			<label for="lecture_address2">상세 주소</label>
