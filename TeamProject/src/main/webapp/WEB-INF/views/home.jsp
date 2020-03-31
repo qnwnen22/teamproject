@@ -446,8 +446,8 @@
 																	<a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
-																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a> <a
-																			class="dropdown-item" href="#">강의관리</a> <a
+																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
+																		<a class="dropdown-item" href="#">강의관리</a> <a
 																			class="dropdown-item" href="#">패키지관리</a>
 																	</div>
 																</div>
@@ -467,7 +467,13 @@
 																<c:when test="${sessionScope.userid == null}">
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
-																		<a class="plain cursor" data-ga-category="header" href="${path}/member/teacherIsert.do"><b>전문가
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
+																	</div>
+																	<div class="item col-xl-4 text-center"
+																		style="display: initial !important;">
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/member/teacherIsert.do"><b>전문가
 																				등록</b></a>
 																	</div>
 																	<div class="item col-xl-4 text-center"
@@ -508,7 +514,9 @@
 																		<c:otherwise>
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
-																				<a class="plain cursor" data-ga-category="header" href="${path}/member/teacherIsert.do"><b>전문가 등록</b></a>
+																				<a class="plain cursor" data-ga-category="header"
+																					href="${path}/member/teacherIsert.do"><b>전문가
+																						등록</b></a>
 																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div

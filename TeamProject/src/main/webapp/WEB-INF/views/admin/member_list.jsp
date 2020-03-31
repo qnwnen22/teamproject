@@ -38,8 +38,6 @@
 	</div>
 
 	<div class="container table-responsive">
-		<div>
-			<br>
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
 					<tr>
@@ -63,32 +61,43 @@
 					</c:forEach>
 				</tbody>
 				<!-- 페이지 네비게이션 출력 -->
-				<tr>
-					<td colspan="5" align="center"><c:if
-							test="${map.pager.curBlock > 1}">
-							<a href="#" onclick="list('1')">[처음]</a>
-						</c:if> <c:if test="${map.pager.curBlock > 1}">
-							<a href="#" onclick="list('${map.pager.prevPage}')"> [이전]</a>
-						</c:if> <c:forEach var="num" begin="${map.pager.blockBegin}"
-							end="${map.pager.blockEnd}">
-							<c:choose>
-								<c:when test="${num == map.pager.curPage}">
-									<!-- 현재 페이지인 경우 하이퍼링크 제거 -->
-									<span style="color: red;">${num}</span>
-								</c:when>
-								<c:otherwise>
-									<a href="#" onclick="list('${num}')">${num}</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach> <c:if test="${map.pager.curBlock < map.pager.totBlock}">
-							<a href="#" onclick="list('${map.pager.nextPage}')">[다음]</a>
-						</c:if> <c:if test="${map.pager.curPage < map.pager.totPage}">
-							<a href="#" onclick="list('${map.pager.totPage}')">[끝]</a>
-						</c:if></td>
-				</tr>
 			</table>
+			<!-- 페이징 처리 -->
+		<div class="row justify-content-center">
+			<nav aria-label="Page navigation example center-block">
+				<ul class="pagination">
+					<c:if test="${map.pager.curBlock>1}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('1')">&lt;&lt;</a></li>
+					</c:if>
+					<c:if test="${map.pager.curBlock >1}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('${map.pager.prevPage}')">&lt;</a></li>
+					</c:if>
+					<c:forEach var="num" begin="${map.pager.blockBegin}"
+						end="${map.pager.blockEnd}">
+						<c:choose>
+							<c:when test="${num==map.pager.curPage}">
+								<li class="page-item"><a class="page-link">${num}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="#"
+									onclick="list('${num}')">${num}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${map.pager.curBlock < map.pager.totBlock}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('${map.pager.nextPage}')">&gt;</a></li>
+					</c:if>
+					<c:if test="${map.pager.curPage <map.pager.totPage}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('${map.pager.totPage}')">&gt;&gt;</a></li>
+					</c:if>
+				</ul>
+			</nav>
 		</div>
-	</div>
+		</div>
 	<br>
 	<%@ include file="../include/footer.jsp"%>
 </body>

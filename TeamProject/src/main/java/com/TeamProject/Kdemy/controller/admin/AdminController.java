@@ -52,12 +52,12 @@ public class AdminController {
 		return "redirect:/admin/list.do";
 	}
 	
-	@ResponseBody
-	@RequestMapping("view.do")
-	public String view(@RequestParam String admin_id, Model model) {
-		model.addAttribute("dto", adminService.viewAdmin(admin_id));
-		return "admin/view";
-	}
+//	@ResponseBody
+//	@RequestMapping("view.do")
+//	public String view(@RequestParam String admin_id, Model model) {
+//		model.addAttribute("dto", adminService.viewAdmin(admin_id));
+//		return "admin/view";
+//	}
 	@RequestMapping(value="/view.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
 	public Model view(String admin_id, Model model) {
 		if(admin_id!=null) {

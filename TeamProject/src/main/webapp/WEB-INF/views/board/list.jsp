@@ -16,7 +16,6 @@
 </script>
 </head>
 <body>
-<<<<<<< HEAD
 	<br><br><br><br><br><br><br><br>
 	<div class="board_table">
 		<div>
@@ -32,7 +31,6 @@
 	 	<select name="search_option" class=" search_option" style="visibility: hidden;">
 			<%--	<option value="username"
 					<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
-=======
 	<div class="board_table" style="margin-top: 170px;">
 	<div>
 		<ul class="upper_shift">
@@ -44,7 +42,6 @@
 			<select name="search_option" class=" search_option">
 				<option value="username"
 				<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 				<option value="title"
 					<c:if test="${map.search_option=='title' }">selected</c:if>>제목</option>
 				<option value="content"
@@ -54,7 +51,6 @@
 			</select><!--분류 삭제  -->
 		
 			<div class="input-group mb-3">
-<<<<<<< HEAD
 				<input type="text" class="form-control" placeholder="검색"
 					aria-label="Recipient's username" aria-describedby="basic-addon2"
 					name="keyword" value="${map.keyword}">
@@ -63,7 +59,6 @@
 				</div>
 		</div>
 		</form>
-=======
   <input type="text" class="form-control" 
   placeholder="검색" aria-label="Recipient's username" aria-describedby="basic-addon2"
   name="keyword" maxlength="20" value="${map.keyword}">
@@ -105,8 +100,6 @@
 						</tr>
 						</c:forEach>
 		</table>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
-
 			<br>
 		<table class="table table-hover ">
 			<thead>
@@ -187,8 +180,6 @@
 			</nav>
 	</div>
 	<br><br>
-
-
 
 
 

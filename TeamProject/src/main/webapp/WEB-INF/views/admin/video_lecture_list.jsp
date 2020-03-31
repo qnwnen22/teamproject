@@ -5,62 +5,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
-<script type="text/javascript">
-	function list(page) {
-		location.href = "${path}/member/list.do?curPage=" + page;
-	}
-</script>
+<%@include file="../include/header.jsp"%>
 </head>
 <body>
+	<%@include file="../include/fixed-topbar.jsp"%>
 	<div class="container" style="margin-top: 170px;">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link"
-				href="${path}/member/list.do">전체회원</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${path}/member/list.do?location=normal">일반회원</a></li>
-			<li class="nav-item"><a class="nav-link active"
-				href="${path}/member/list.do?location=teacher">강사회원</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${path}/member/list.do?location=request">강사신청</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/teacher/online_list.do?admin=admin">실시간
+					강의</a></li>
+			<li class="nav-item"><a class="nav-link active" href="${path}/teacher/videoList.do?admin=admin">동영상 강의</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/teacher/offline_list.do?admin=admin">오프라인 강의</a></li>
 			<li class="input-group col-3 ml-auto mr-0">
-				<form class="input-group" action="${path}/member/list.do">
+				<form class="input-group" action="#">
 					<input type="text" class="form-control" placeholder="검색어 입력"
 						value="" id="keyword" name="keyword"> <input type="hidden"
-						id="location" name="location" value="teacher">
+						id="location" name="location" value="">
 					<div class="input-group-append">
 						<button class="btn btn-outline-primary" type="submit">검색</button>
 					</div>
 				</form>
 			</li>
 		</ul>
-	</div>
-
-	<div class="container table-responsive">
-		<table class="table table-bordered table-hover">
-			<thead class="thead-dark">
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>연락처</th>
-					<th>생년월일</th>
-					<th>가입일자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="row" items="${map.list}">
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover">
+				<thead class="thead-dark">
 					<tr>
-						<td>${row.userid}</td>
-						<td><a href="#"> ${row.username}</a></td>
-						<td>${row.phone}</td>
-						<td>${row.birthday}</td>
-						<td><fmt:formatDate value="${row.join_date}"
-								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<th></th>
+						<th>작성자</th>
+						<th>제목</th>
+						<th>가격</th>
+						<th>등록일</th>
+						<th>강의일</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<c:forEach var="dto" items="${map.list}">
+						<tr>
+							<td><a
+								href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
+									<img src="../upload/${dto.main_img}"
+									class="align-self-center mr-3" style="width: 60px">
+							</a></td>
+							<td>${dto.subject}</td>
+							<td>${dto.userid}</td>
+							<td>${dto.price}</td>
+							<td>${dto.upload_date}</td>
+							<td>${dto.lecture_start}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 		<!-- 페이징 처리 -->
 		<div class="row justify-content-center">
 			<nav aria-label="Page navigation example center-block">
@@ -96,8 +91,7 @@
 				</ul>
 			</nav>
 		</div>
-	</div>
-	<br>
-	<%@ include file="../include/footer.jsp"%>
+		</div>
+		<%@include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -51,7 +51,8 @@ public class TeacherController {
 	
 	//동영상 리스트 페이지 이동
 	@RequestMapping("videoList.do")
-	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage) throws Exception {
+	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue="") String admin) throws Exception {
 		//레코드 갯수 계산
 		int count=teacherService.countTypeAList();
 				//페이지 관련 설정
@@ -69,14 +70,20 @@ public class TeacherController {
 		map.put("count", count);
 		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
 	    //이동 경로 
-		mav.setViewName("teacher/video_list");
+		if(admin.equals("admin")) {
+			mav.setViewName("admin/video_lecture_list");
+		}else {
+			mav.setViewName("teacher/video_list");
+		}
 		mav.addObject("map", map); //ModelAndView에 map을 저장
 		return mav;
 	}
 	
 	//실시간 강의 리스트 출력 메소드
 	@RequestMapping("online_list.do")
-	public ModelAndView online_list(@RequestParam(defaultValue="1")int curPage) throws Exception {
+	public ModelAndView online_list(@RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue="") String admin
+			) throws Exception {
 		
 		int count=teacherService.countTypeBList();
 		TeacherPager pager=new TeacherPager(count, curPage);
@@ -92,7 +99,11 @@ public class TeacherController {
 		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
 		
 		mav.addObject("map",map);
-		mav.setViewName("teacher/online_list");
+		if(admin.equals("admin")) {
+			mav.setViewName("admin/online_lecture_list");
+		}else {
+			mav.setViewName("teacher/online_list");
+		}
 		return mav;
 	}
 	
@@ -100,7 +111,8 @@ public class TeacherController {
 	@RequestMapping("offline_list.do")
 	public ModelAndView offline_list(
 			@RequestParam(defaultValue="") String keyword,
-			@RequestParam(defaultValue="1")int curPage
+			@RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue="") String admin
 			) throws Exception {
 		
 		int count=teacherService.countTypeCList(keyword);
@@ -116,7 +128,11 @@ public class TeacherController {
 		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
 		
 		mav.addObject("map",map);
-		mav.setViewName("teacher/offline_list");
+		if(admin.equals("admin")) {
+			mav.setViewName("admin/offline_lecture_list");
+		}else {
+			mav.setViewName("teacher/offline_list");
+		}
 		return mav;
 		
 	}
@@ -148,7 +164,8 @@ public class TeacherController {
 	}
 	
 	
-	@RequestMapping("teacher_type3_insert.do")
+	@RequestMapping(value="teacher_type3_insert.do",method= {RequestMethod.POST},
+			consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String teacher_type3_insert(TeacherDTO dto) throws Exception {
 		System.out.println(dto.getFile1());
 		MultipartFile file1=dto.getFile1();
@@ -178,8 +195,6 @@ public class TeacherController {
 	}
 	@RequestMapping("teacher_type2_insert.do")
 	public String teacher_type2_insert(TeacherDTO dto) throws Exception {
-		System.out.println(dto.getFile1());
-		System.out.println(dto.getFile2());
 		MultipartFile file1=dto.getFile1();
 		String main_img=file1.getOriginalFilename();
 		try {
