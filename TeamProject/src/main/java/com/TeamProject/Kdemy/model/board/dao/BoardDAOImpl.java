@@ -31,8 +31,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void addAttach(String fullName) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("board.addAttach", fullName);
 	}
 
 	@Override
@@ -43,19 +42,18 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void create(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.insert("board.insert", dto);
 		
 	}
 
 	@Override
 	public void update(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("board.update", dto);
 	}
 
 	@Override
 	public void delete(int bno) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.delete("board.delete", bno);
 		
 	}
 
@@ -78,12 +76,13 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void increateViewcnt(int bno) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("board.increateViewcnt", bno);
 		
 	}
 
 	@Override
 	public int countArticle() throws Exception {
+		Map<String, String> map=new HashMap<>();
 		return sqlSession.selectOne("board.countArticle");
 	}
 	
@@ -97,8 +96,13 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public BoardDTO read(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("board.read", bno);
+	}
+
+	@Override
+	public BoardDTO detailBoard(int bno) {
+		return sqlSession.selectOne("board.detail_board",bno);
+				
 	}
 
 }
