@@ -5,13 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
-<<<<<<< HEAD
-	<insert id="insertMember"> insert into kdemymember
-=======
-
 	<insert id="insertMember">
 		insert into kdemymember
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		(usernum, userid,
 		passwd,
 		username,
@@ -45,8 +40,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select COUNT(*) from kdemymember
 		WHERE userid=#{userid}
 	</select>
-<<<<<<< HEAD
-
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />
@@ -65,10 +58,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) A
 		) where rn between #{start} and #{end}
 	</sql>
-=======
-
-</mapper>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 	<!-- 레코드 갯수 계산 -->
 	<select id="countMember" resultType="int">

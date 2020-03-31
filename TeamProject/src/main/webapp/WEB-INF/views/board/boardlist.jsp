@@ -16,7 +16,6 @@
 </script>
 </head>
 <body>
-	<br><br><br><br>
 	<div class="board_table">
 		<div>
 			<ul class="upper_shift">
@@ -24,17 +23,8 @@
 				<li>공지사항</li>
 			</ul>
 		</div>
-		<br>
-		
-		
 		<form action="${path}/board/searchlist.do" name="form1" method="post"> 
 	 	<select name="search_option" class=" search_option" style="visibility: hidden;">
-			<%--	<option value="username"
-					<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
-				<option value="title"
-					<c:if test="${map.search_option=='title' }">selected</c:if>>제목</option>
-				<option value="content"
-					<c:if test="${map.search_option=='content' }">selected</c:if>>내용</option> --%>
 				<option value="all"
 					<c:if test="${map.search_option=='all' }">selected</c:if>>이름+내용+제목</option>
 			</select><!--분류 삭제  -->
