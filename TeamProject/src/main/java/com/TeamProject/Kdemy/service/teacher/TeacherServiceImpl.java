@@ -15,40 +15,6 @@ public class TeacherServiceImpl implements TeacherService {
 	@Inject
 	TeacherDAO teacherDao;
 
-	//영상 강의 페이지 페이징 처리
-	@Override
-	public List<TeacherDTO> typeAList(int start, int end) {
-		return teacherDao.typeAList(start,end);
-	}
-	@Override
-	public int countTypeAList() {
-		return teacherDao.countTypeAList();
-	}
-	////////////////////////////////////////////////////////////////
-	
-	//실시간 페이지 페이징 처리
-	@Override
-	public List<TeacherDTO> online_list(int start, int end) {
-		return teacherDao.online_list(start ,end);
-	}
-
-	@Override
-	public int countTypeBList() {
-		return teacherDao.countTypeBList();
-	}
-	////////////////////////////////////////////////////////////////
-
-	//현장 강의 페이지 페이징 처리
-	@Override
-	public List<TeacherDTO> offline_list(int start, int end) {
-		return teacherDao.offline_list(start, end);
-	}
-	@Override
-	public int countTypeCList(String keyword) {
-		return teacherDao.countTypeCList(keyword);
-	}
-	////////////////////////////////////////////////////////////////
-	
 	@Override
 	public void teacher_type1_insert(TeacherDTO dto) throws Exception {
 		teacherDao.teacher_type1_insert(dto);
@@ -69,6 +35,21 @@ public class TeacherServiceImpl implements TeacherService {
 	public TeacherDTO lecture_list_view(int lecture_idx) {
 		return teacherDao.lecture_list_view(lecture_idx);
 	}
-
+	@Override
+	public int searchCount(String cell_type, String keyword) {
+		return teacherDao.searchCount(cell_type, keyword);
+	}
+	@Override
+	public List<TeacherDTO> searchList(String cell_type, String keyword, int start, int end) {
+		return teacherDao.searchList(cell_type, keyword, start, end);
+	}
+	@Override
+	public int countList(String cell_type) {
+		return teacherDao.countList(cell_type);
+	}
+	@Override
+	public List<TeacherDTO> lecture_list(String cell_type, int start, int end) {
+		return teacherDao.lecture_list(cell_type, start, end);
+	}
 	
 }
