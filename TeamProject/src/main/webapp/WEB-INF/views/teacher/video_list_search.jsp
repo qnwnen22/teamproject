@@ -9,26 +9,28 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script type="text/javascript">
 function list(page) {
-	location.href = "${path}/teacher/online_list.do?curPage="+page;
+	var keyword=document.getElementById("keyword").value;
+	location.href = "${path}/teacher/video_list_search.do?curPage="+page+"&keyword="+keyword;
 }
 function search(){
 	var keyword=document.getElementById("keyword").value;
-	location.href = "${path}/teacher/online_list_search.do?keyword="+keyword;
+	location.href = "${path}/teacher/video_list_search.do?keyword="+keyword;
 }
 </script>
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
-<h2>실시간 강의 판매 리스트</h2>
+<h2>현장 강의 판매 리스트</h2>
 <hr>
 	<form name="form_search">
 		<div style="float: right;">
-			<input name="keyword" id="keyword">
+			<input name="keyword" id="keyword" value="${map.keyword}">
 			<input type="button" value="조회" onclick="search()">
 		</div>
 	</form>
 	<table style="width: 100%; border: 1px solid">
 		<tr>
+			<th>번호</th>
 			<th>썸네일</th>
 			<th>제목</th>
 			<th>제작자</th>
@@ -36,6 +38,7 @@ function search(){
 		</tr>
 		<c:forEach var="dto" items="${map.list}">
 		<tr>
+			<td>${dto.lecture_idx}</td>
 			<!-- 썸네일 -->
 			<td><a href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
 				<img width="300px" height="100px" src="../upload/${dto.main_img}"></a>

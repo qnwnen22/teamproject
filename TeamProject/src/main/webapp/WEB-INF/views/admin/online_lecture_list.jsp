@@ -13,7 +13,7 @@
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active" href="${path}/teacher/online_list.do?admin=admin">실시간
 					강의</a></li>
-			<li class="nav-item"><a class="nav-link" href="${path}/teacher/videoList.do?admin=admin">동영상 강의</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/teacher/video_List.do?admin=admin">동영상 강의</a></li>
 			<li class="nav-item"><a class="nav-link" href="${path}/teacher/offline_list.do?admin=admin">오프라인 강의</a></li>
 			<li class="input-group col-3 ml-auto mr-0">
 				<form class="input-group" action="#">

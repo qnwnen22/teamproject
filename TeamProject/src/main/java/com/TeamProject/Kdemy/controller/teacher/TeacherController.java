@@ -50,20 +50,17 @@ public class TeacherController {
 	}
 	
 	//동영상 리스트 페이지 이동
-	@RequestMapping("videoList.do")
+	@RequestMapping("video_List.do")
 	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage,
 			@RequestParam(defaultValue="") String admin) throws Exception {
-		//레코드 갯수 계산
-		int count=teacherService.countTypeAList();
-				//페이지 관련 설정
+		String cell_type="1";
+		int count=teacherService.countList(cell_type);
 		TeacherPager pager=new TeacherPager(count, curPage);
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
-		List<TeacherDTO>list=teacherService.typeAList(start,end);
-		ModelAndView mav=new ModelAndView();
 		
-		System.out.println(list);
-		System.out.println(count);
+		List<TeacherDTO> list=teacherService.lecture_list(cell_type, start, end);
+		ModelAndView mav=new ModelAndView();
 		
 		HashMap<String, Object> map=new HashMap<>();
 		map.put("list", list); //map에 자료 저장
@@ -78,19 +75,41 @@ public class TeacherController {
 		mav.addObject("map", map); //ModelAndView에 map을 저장
 		return mav;
 	}
+	@RequestMapping("video_list_search.do")
+	public ModelAndView video_list_search(
+			@RequestParam(defaultValue="") String keyword,
+			@RequestParam(defaultValue="1") int curPage
+			) throws Exception {
+		String cell_type="1";
+		System.out.println("키워드 : "+keyword);
+		int count=teacherService.searchCount(cell_type, keyword);
+		TeacherPager pager=new TeacherPager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<TeacherDTO> list=teacherService.searchList(cell_type, keyword, start, end);
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		map.put("keyword", keyword);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map",map);
+		mav.setViewName("teacher/video_list_search");
+		return mav;
+	}
 	
 	//실시간 강의 리스트 출력 메소드
 	@RequestMapping("online_list.do")
-	public ModelAndView online_list(@RequestParam(defaultValue="1")int curPage,
-			@RequestParam(defaultValue="") String admin
-			) throws Exception {
-		
-		int count=teacherService.countTypeBList();
+	public ModelAndView online_list(@RequestParam(defaultValue="1")int curPage,	@RequestParam(defaultValue="") String admin) throws Exception {
+		String cell_type="2";
+		int count=teacherService.countList(cell_type);
 		TeacherPager pager=new TeacherPager(count, curPage);
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
 		
-		List<TeacherDTO> list=teacherService.online_list(start, end);
+		List<TeacherDTO> list=teacherService.lecture_list(cell_type, start, end);
 		ModelAndView mav=new ModelAndView();
 		
 		HashMap<String, Object> map=new HashMap<>();
@@ -106,22 +125,46 @@ public class TeacherController {
 		}
 		return mav;
 	}
-	
-	//현장 강의 리스트 출력 메소드
-	@RequestMapping("offline_list.do")
-	public ModelAndView offline_list(
+	@RequestMapping("online_list_search.do")
+	public ModelAndView online_list_search(
 			@RequestParam(defaultValue="") String keyword,
-			@RequestParam(defaultValue="1")int curPage,
-			@RequestParam(defaultValue="") String admin
+			@RequestParam(defaultValue="1") int curPage
 			) throws Exception {
-		
-		int count=teacherService.countTypeCList(keyword);
+		String cell_type="2";
+		System.out.println("키워드 : "+keyword);
+		int count=teacherService.searchCount(cell_type, keyword);
 		TeacherPager pager=new TeacherPager(count, curPage);
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
-		List<TeacherDTO> list=teacherService.offline_list(start,end);
-		ModelAndView mav=new ModelAndView();
+		List<TeacherDTO> list=teacherService.searchList(cell_type, keyword, start, end);
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		map.put("keyword", keyword);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map",map);
+		mav.setViewName("teacher/online_list_search");
+		return mav;
+	}
+	
+	//현장 강의 리스트 출력 메소드
+	@RequestMapping("offline_list.do")
+	public ModelAndView offline_list(@RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue="") String admin) throws Exception {
+		
+		String cell_type="3";
 
+		int count=teacherService.countList(cell_type);
+		TeacherPager pager=new TeacherPager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		
+		List<TeacherDTO> list=teacherService.lecture_list(cell_type, start, end);
+		ModelAndView mav=new ModelAndView();
+		
 		HashMap<String, Object> map=new HashMap<>();
 		map.put("list", list); //map에 자료 저장
 		map.put("count", count);
@@ -134,7 +177,31 @@ public class TeacherController {
 			mav.setViewName("teacher/offline_list");
 		}
 		return mav;
+	}
+	@RequestMapping("offline_list_search.do")
+	public ModelAndView offline_list_search(
+			@RequestParam(defaultValue="") String keyword,
+			@RequestParam(defaultValue="1") int curPage
+			) throws Exception {
+		String cell_type="3";
 		
+		System.out.println("키워드 : "+keyword);
+		int count=teacherService.searchCount(cell_type, keyword);
+		TeacherPager pager=new TeacherPager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<TeacherDTO> list=teacherService.searchList(cell_type, keyword, start, end);
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		map.put("keyword", keyword);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map",map);
+		mav.setViewName("teacher/offline_list_search");
+		return mav;
 	}
 	
 	@RequestMapping(value="teacher_type1_insert.do",method= {RequestMethod.POST},
@@ -160,7 +227,7 @@ public class TeacherController {
 			dto.setMain_img(main_img);
 			dto.setVideofile(videofile);
 		teacherService.teacher_type1_insert(dto);
-		return "redirect:/teacher/videoList.do";
+		return "redirect:/teacher/video_List.do";
 	}
 	
 	

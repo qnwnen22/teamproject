@@ -9,7 +9,11 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script type="text/javascript">
 function list(page) {
-	location.href = "${path}/teacher/offline_list.do?curPage=" + page;
+	location.href = "${path}/teacher/offline_list.do?curPage="+page;
+}
+function search(){
+	var keyword=document.getElementById("keyword").value;
+	location.href = "${path}/teacher/offline_list_search.do?keyword="+keyword;
 }
 </script>
 </head>
@@ -17,6 +21,12 @@ function list(page) {
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
 <h2>현장 강의 판매 리스트</h2>
 <hr>
+	<form name="form_search">
+		<div style="float: right;">
+			<input name="keyword" id="keyword">
+			<input type="button" value="조회" onclick="search()">
+		</div>
+	</form>
 	<table style="width: 100%; border: 1px solid">
 		<tr>
 			<th>번호</th>
@@ -38,42 +48,46 @@ function list(page) {
 			<td>${dto.userid}</td>
 			<!-- 가격 -->
 			<td>${dto.price}</td>
-		</tr>
-		</c:forEach>
+			</tr>
+			</c:forEach>
 	</table>
-	<!-- 페이징 처리 -->
-	<div class="text-center">
-    	<ul class="pagination">
-      		<c:if test="${map.pager.curBlock > 1 }">
-        		<li><a href="#" onclick="list('1')">[처음]</a></li>
-      		</c:if>
-      		
-      		<c:if test="${map.pager.curBlock > 1 }">
-				<li><a href="#" onclick="list('${map.pager.prevPage}')">[이전]</a></li>
-      		</c:if>
-      		
-      		<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
-        		<c:choose>
-          			<c:when test="${num == map.pager.curPage}">
-            			<li><span style="color: red">${num}</span></li>
-          			</c:when>
-          			
-          			<c:otherwise>
-            			<li><a href="#" onclick="list('${num}')">${num}</a></li>
-          			</c:otherwise>
-        		</c:choose>
-      		</c:forEach>
-      		
-      		<c:if test="${map.pager.curBlock < map.pager.totBlock}">
-        		<li><a href="#" onclick="list('${map.pager.nextPage}')">[다음]</a></li>
-      		</c:if>
-      		
-      		<c:if test="${map.pager.curPage < map.pager.totPage}">
-        		<li><a href="#" onclick="list('${map.pager.totPage}')">[끝]</a></li>
-      		</c:if>
-		</ul>
-	</div>
 </div>
+<br>
+<!-- 페이징 처리 -->
+		<div class="row justify-content-center">
+			<nav aria-label="Page navigation example center-block">
+				<ul class="pagination">
+					<c:if test="${map.pager.curBlock>1}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('1')">&lt;&lt;</a></li>
+					</c:if>
+					<c:if test="${map.pager.curBlock >1}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('${map.pager.prevPage}')">&lt;</a></li>
+					</c:if>
+					<c:forEach var="num" begin="${map.pager.blockBegin}"
+						end="${map.pager.blockEnd}">
+						<c:choose>
+							<c:when test="${num==map.pager.curPage}">
+								<li class="page-item"><a class="page-link">${num}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="#"
+									onclick="list('${num}')">${num}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${map.pager.curBlock < map.pager.totBlock}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('${map.pager.nextPage}')">&gt;</a></li>
+					</c:if>
+					<c:if test="${map.pager.curPage <map.pager.totPage}">
+						<li class="page-item"><a class="page-link" href="#"
+							onclick="list('${map.pager.totPage}')">&gt;&gt;</a></li>
+					</c:if>
+				</ul>
+			</nav>
+		</div>
 
 <%@ include file="../include/footer.jsp"%>
 </body>

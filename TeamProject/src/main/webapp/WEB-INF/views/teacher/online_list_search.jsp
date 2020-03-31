@@ -9,7 +9,8 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script type="text/javascript">
 function list(page) {
-	location.href = "${path}/teacher/online_list.do?curPage="+page;
+	var keyword=document.getElementById("keyword").value;
+	location.href = "${path}/teacher/online_list_search.do?curPage="+page+"&keyword="+keyword;
 }
 function search(){
 	var keyword=document.getElementById("keyword").value;
@@ -19,11 +20,11 @@ function search(){
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
-<h2>실시간 강의 판매 리스트</h2>
+<h2>현장 강의 판매 리스트</h2>
 <hr>
 	<form name="form_search">
 		<div style="float: right;">
-			<input name="keyword" id="keyword">
+			<input name="keyword" id="keyword" value="${map.keyword}">
 			<input type="button" value="조회" onclick="search()">
 		</div>
 	</form>
