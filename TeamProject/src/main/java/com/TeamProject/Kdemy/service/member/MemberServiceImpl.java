@@ -1,5 +1,7 @@
 package com.TeamProject.Kdemy.service.member;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -34,6 +36,19 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.passwdCheck(dto);
 	}
 	
+//	@Override
+//	public List<MemberDTO> list() {
+//		return memberDao.list();
+//		
+//	}
 	
-
+	@Override
+	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception {
+		return memberDao.listAll(location, keyword, start,end);
+	}
+	
+	@Override
+	public int countMember(String keyword, String location) throws Exception {
+		return memberDao.countMember(keyword, location);
+	}
 }

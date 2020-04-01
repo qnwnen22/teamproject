@@ -52,7 +52,7 @@
 				<li>예금주: KDEMY</li>
 			</ul>
 			<a href="https://pgweb.uplus.co.kr/" target="_blank"><img
-				src="../include/images/footer/lgup.png" alt=""></a>
+				src="${path}/include/images/footer/lgup.png" alt=""></a>
 		</div>
 
 		<div class="tail_item flex-shrink-3">
@@ -66,23 +66,28 @@
 		<div class="tail_item flex-shrink-1">
 			<div class="title_tail">WITH US</div>
 			<ul class="shop_info">
-				<li><a href="#"><span>COMPANY</span> <small> 회사소개</small></a></li>
+				<li><a href="${path}/footermenu/withus.do"><span>COMPANY</span> <small> 회사소개</small></a></li>
 				<li><a href="#"><span>AGREEMENT</span> <small> 이용약관</small></a></li>
 				<li><a href="#"><span>PRIVACYPOLICY</span> <small>
 							개인정보처리방침</small></a></li>
+<<<<<<< HEAD
 				<li><a href="${path}/notice/list.do"><span>NOTICE</span> <small> 공지사항</small></a></li>
+=======
+				<li><a href="${path}/board/list.do"><span>NOTICE</span> <small>
+							공지사항</small></a></li>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 				<li><a href="#"><span>GUIDE</span> <small> 이용안내</small></a></li>
 			</ul>
 			<div class="bsns_wrap">
 				<ul class="sns ">
 					<li><a href="https://www.youtube.com" target="_blank"><img
-							src="../include/images/footer/ico_yt.png" alt="youtube"></a></li>
+							src="${path}/include/images/footer/ico_yt.png" alt="youtube"></a></li>
 					<li><a href="https://www.facebook.com" target="_blank"><img
-							src="../include/images/footer/ico_fb.png" alt="facebook"></a></li>
+							src="${path}/include/images/footer/ico_fb.png" alt="facebook"></a></li>
 					<li><a href="https://www.instagram.com" target="_blank"><img
-							src="../include/images/footer/ico_ist.png" alt="insta"></a></li>
+							src="${path}/include/images/footer/ico_ist.png" alt="insta"></a></li>
 					<li><a href="https://twitter.com" target="_blank"><img
-							src="../include/images/footer/ico_tw.png" alt="twitter"></a></li>
+							src="${path}/include/images/footer/ico_tw.png" alt="twitter"></a></li>
 				</ul>
 			</div>
 		</div>

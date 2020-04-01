@@ -447,8 +447,8 @@
 																	<a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
-																		<a class="dropdown-item" href="#">회원관리</a> <a
-																			class="dropdown-item" href="#">강의관리</a> <a
+																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
+																		<a class="dropdown-item" href="#">강의관리</a> <a
 																			class="dropdown-item" href="#">패키지관리</a>
 																	</div>
 																</div>
@@ -469,6 +469,14 @@
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
+<<<<<<< HEAD
+=======
+																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
+																	</div>
+																	<div class="item col-xl-4 text-center"
+																		style="display: initial !important;">
+																		<a class="plain cursor" data-ga-category="header"
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 																			href="${path}/member/teacherIsert.do"><b>전문가
 																				등록</b></a>
 																	</div>
@@ -476,8 +484,6 @@
 																		style="display: initial !important;">
 																		<a href="${path}/member/loginPage.do"
 																			class="plain cursor" data-ga-category="header"><b>로그인</b></a>
-																		<a href="${path}/member/teacherPage.do"
-																			class="plain cursor" data-ga-category="header"><b>강사페이지</b></a>
 																	</div>
 																	<div id="" class="item position-relative col-xl-4"
 																		style="display: initial !important;">
@@ -496,7 +502,8 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="#">강의목록</a> <a
+																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a
+																					
 																						class="dropdown-item" href="#">나의정보</a> <a
 																						class="dropdown-item" href="#">장바구니</a> <a
 																						class="dropdown-item" href="#">관심상품</a>
@@ -511,8 +518,12 @@
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"
+<<<<<<< HEAD
 																					href="${path}/member/teacherIsert.do"><b>전문가
 																						등록</b></a>
+=======
+																					href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div

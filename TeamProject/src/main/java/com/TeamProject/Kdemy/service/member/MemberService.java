@@ -1,5 +1,7 @@
 package com.TeamProject.Kdemy.service.member;
 
+import java.util.List;
+
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberService {
@@ -11,4 +13,8 @@ public interface MemberService {
 	public int idCheck(MemberDTO dto);
 
 	public String passwdCheck(MemberDTO dto);
+	
+	public int countMember(String keyword,String location) throws Exception;
+	
+	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception;
 }

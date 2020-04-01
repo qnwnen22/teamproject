@@ -41,8 +41,8 @@
 						  <div class="dropdown-menu">
 						    <a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
 						    <a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
-						    <a class="dropdown-item" href="#">강의관리</a>
-						    <a class="dropdown-item" href="#">패키지관리</a>
+						    <a class="dropdown-item" href="${path}/teacher/online_list.do?admin=admin">강의관리</a>
+						    <a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
 						  </div>
 						</div>
 						<div class="item dropdown col-xl-4 text-center dropdown-toggle"
