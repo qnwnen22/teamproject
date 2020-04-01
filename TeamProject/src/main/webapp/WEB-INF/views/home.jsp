@@ -275,6 +275,7 @@
 																							href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
 																					</div>
 
+
 																				</div>
 																			</div>
 																		</div>
@@ -468,11 +469,14 @@
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
+<<<<<<< HEAD
+=======
 																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
 																	</div>
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 																			href="${path}/member/teacherIsert.do"><b>전문가
 																				등록</b></a>
 																	</div>
@@ -514,7 +518,12 @@
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"
+<<<<<<< HEAD
+																					href="${path}/member/teacherIsert.do"><b>전문가
+																						등록</b></a>
+=======
 																					href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div
@@ -584,6 +593,7 @@
 													<a class="market-main-link-text .flex-center-center"
 														href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
 												</div>
+
 
 											</div>
 										</div>
@@ -714,6 +724,13 @@
 	</div>
 	</div>
 	<!-- content -->
+
+	<div style="width: 63%; margin: auto;">
+		<a href="${path}/review/list.do"> <marquee scrollamount="8">
+				<h4 style="color: red;">★수강후기★</h4>
+			</marquee>
+		</a>
+	</div>
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">

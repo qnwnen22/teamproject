@@ -70,8 +70,12 @@
 				<li><a href="#"><span>AGREEMENT</span> <small> 이용약관</small></a></li>
 				<li><a href="#"><span>PRIVACYPOLICY</span> <small>
 							개인정보처리방침</small></a></li>
+<<<<<<< HEAD
+				<li><a href="${path}/notice/list.do"><span>NOTICE</span> <small> 공지사항</small></a></li>
+=======
 				<li><a href="${path}/board/list.do"><span>NOTICE</span> <small>
 							공지사항</small></a></li>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 				<li><a href="#"><span>GUIDE</span> <small> 이용안내</small></a></li>
 			</ul>
 			<div class="bsns_wrap">

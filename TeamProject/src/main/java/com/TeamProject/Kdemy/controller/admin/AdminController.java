@@ -1,16 +1,19 @@
 package com.TeamProject.Kdemy.controller.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,14 +61,12 @@ public class AdminController {
 //		model.addAttribute("dto", adminService.viewAdmin(admin_id));
 //		return "admin/view";
 //	}
-	@RequestMapping(value="/view.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
-	public Model view(String admin_id, Model model) {
-		if(admin_id!=null) {
+	@RequestMapping(value="/admin_view.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
+	public ModelAndView view(String admin_id,ModelAndView mav) {
 			AdminDTO dto=adminService.viewAdmin(admin_id);
-			model.addAttribute("dto",dto);
-			return model;
-			}
-		return model;
+			mav.addObject("dto",dto);
+			mav.setViewName("admin/admin_view");
+			return mav;
 		}
 	@RequestMapping("updateAdmin.do")
 	public String update(AdminDTO dto) {
