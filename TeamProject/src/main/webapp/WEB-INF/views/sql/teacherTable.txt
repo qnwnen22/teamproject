@@ -1,0 +1,43 @@
+drop table teacher;
+
+delete teacher;
+
+select * from teacher;
+delete teacher;
+
+create table teacher(
+teacher_num number, -- 강사 번호(리스트 출력용)
+userid varchar2(500), --멤버 아이디 userid
+username varchar2(500), --멤버 이름 username
+teacher_profileImagePath clob, --강사 등록용 프로필 사진 
+highschool varchar2(500), --고등학교
+university varchar2(500), -- 대학교
+spec1 varchar2(500),  --자격증 이름
+spec1_img clob, --자격증 이미지
+spec1_getDate varchar2(500), --자격층 취득 일자
+request_date date default sysdate --신청 날짜
+);
+
+insert into teacher
+		(	teacher_num,
+			userid, username,
+			teacher_profileImagePath, 
+			highschool, university,
+			spec1, spec1_img,
+			spec1_getDate	)
+		values
+		(
+			(select nvl(max(teacher_num)+1,1) from teacher),
+			'#{userid}', '#{username}',
+			'#{teacher_profileImagePath}',
+			'#{highschool}','#{university}',
+			'#{spec1}', '#{spec1_img}',
+			'#{spec1_getDate}'
+		);
+
+
+commit;
+
+select * from kdemymember;
+
+update kdemymember set teacher='n' where userid='qnwnen12';
