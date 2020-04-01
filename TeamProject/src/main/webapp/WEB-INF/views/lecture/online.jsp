@@ -30,11 +30,47 @@ $(function(){
 	     focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 	     lang: "ko-KR",               // 한글 설정
 	     placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
-	  
 	});
+
+	function select_main(){
+		var main_category=document.getElementById("main_category");
+		var sub1=document.getElementById("sub1");
+		switch(main_category.value){
+		case 'main1':
+			
+
+		}
+		
+
+	}
+	
 });
 </script>
+<script type="text/javascript">
+function insert2(){
 
+	var main_category=document.getElementById("main_category");
+	var sub_category=document.getElementById("sub_category");
+	var userid=document.getElementById("userid");
+	var subject=document.getElementById("subject");
+	var price=document.getElementById("price");
+	var file1=document.getElementById("file1");
+	var file2=document.getElementById("file2");
+	var content=document.getElementById("content");
+	var lecture_date=document.getElementById("lecture_date");
+	var lecture_start=document.getElementById("lecture_start");
+	var lecture_time=document.getElementById("lecture_time");
+
+	if(main_category.value==""){
+		alert("메인 카테고리를 선택해 주세요.");
+		main_category.focus();
+		return false;
+	}
+	alert("test중");
+}
+
+
+</script>
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
@@ -51,20 +87,23 @@ $(function(){
       <!-- 메인 카테고리 -->
       <div class="form-group">
          <label for="category">카테고리1</label>
-          <select name="main_category" id="main_category" class="form-control">
+          <select name="main_category" id="main_category" class="form-control" onchange="select_main()">
             <option selected value="">-메인메뉴-</option>
-            <option value="BEST">BEST</option>
-            <option value="SALE">SALE</option>
-            <option value="BABY">BABY</option>
-            <option value="JUNIOR">JUNIOR</option>
-            <option value="ACC">ACC</option>
+            <option value="main1">main1</option>
+            <option value="main2">main2</option>
+            <option value="main3">main3</option>
+            <option value="main4">main4</option>
+            <option value="main5">main5</option>
          </select>
       </div>
       <!-- 서브 카테고리 -->
       <div class="form-group">
          <label for="category">카테고리2</label>
             <select name="sub_category" id="sub_category" class="form-control">
-            <option selected value="test">-서브메뉴-</option>
+            	<option selected value="test">-서브메뉴-</option>
+            	<option value="" id="sub1"></option>
+            	<option value="" id="sub2"></option>
+            	
          </select>
       </div>
       <!-- 아이디 -->
@@ -120,7 +159,10 @@ $(function(){
       
       <!-- 등록 버튼 -->
       <div class="form-group text-center">
+         <input type="button" onclick="insert2()" class="btn btn-primary" value="강의 등록">
+         
          <button type="submit" id="btnSave" class="btn btn-primary">등록</button>
+         
          <a type="submit" href="#" class="btn btn-warning"> 취소 </a>
          <a type="submit" id="btnList" href="#" class="btn btn-dark pull-left">목록</a>
       </div>

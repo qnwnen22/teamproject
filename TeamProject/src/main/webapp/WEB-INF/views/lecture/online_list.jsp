@@ -29,6 +29,7 @@ function search(){
 	</form>
 	<table style="width: 100%; border: 1px solid">
 		<tr>
+			<th>번호</th>
 			<th>썸네일</th>
 			<th>제목</th>
 			<th>제작자</th>
@@ -36,6 +37,7 @@ function search(){
 		</tr>
 		<c:forEach var="dto" items="${map.list}">
 		<tr>
+			<td>${dto.lecture_idx}</td>
 			<!-- 썸네일 -->
 			<td><a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
 				<img width="300px" height="100px" src="../upload/${dto.main_img}"></a>
