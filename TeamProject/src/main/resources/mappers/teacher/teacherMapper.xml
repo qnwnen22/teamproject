@@ -5,5 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="teacher">
-
+	<insert id="teacherInsert">
+		insert into teacher
+		(	teacher_num,
+			userid, username,
+			teacher_profileImagePath, 
+			highschool, university,
+			spec1, spec1_img,
+			spec1_getDate	)
+		values
+		(
+			(select nvl(max(teacher_num)+1,1) from teacher),
+			#{userid}, #{username},
+			#{teacher_profileImagePath},
+			#{highschool}, #{university},
+			#{spec1}, #{spec1_img},
+			#{spec1_getDate}
+		)
+	</insert>
+	
+	<update id="member_teacherUpdate">
+		update kdemymember set teacher='w' where userid=#{userid}
+	</update>
 </mapper>

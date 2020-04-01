@@ -1,7 +1,12 @@
 package com.TeamProject.Kdemy.service.teacher;
 
+import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 
 public interface TeacherService {
+
+	public void teacherInsert(TeacherDTO dto) throws Exception ;
+
+	public void member_teacherUpdate(TeacherDTO dto);
 	
 
 }

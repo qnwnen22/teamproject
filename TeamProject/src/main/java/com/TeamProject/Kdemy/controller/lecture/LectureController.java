@@ -210,7 +210,8 @@ public class LectureController {
 			    MultipartFile file1=dto.getFile1();
 				String main_img=file1.getOriginalFilename();
 				try {
-					main_img = UploadFileUtils.uploadFile(uploadPath,main_img, file1.getBytes());
+					main_img = UploadFileUtils.uploadFile(
+							uploadPath,main_img, file1.getBytes());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

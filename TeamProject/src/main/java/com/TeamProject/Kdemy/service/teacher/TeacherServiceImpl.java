@@ -11,6 +11,19 @@ import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
+
+	@Inject
+	TeacherDAO teacherDao;
+	
+	@Override
+	public void teacherInsert(TeacherDTO dto) throws Exception {
+		teacherDao.teacherInsert(dto);
+	}
+
+	@Override
+	public void member_teacherUpdate(TeacherDTO dto) {
+		teacherDao.member_teacherUpdate(dto);
+	}
 	
 	
 }
