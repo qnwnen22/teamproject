@@ -1,24 +1,23 @@
 drop table lecture;
 
 create table lecture(
-lecture_idx number, --¿µ»óÀÇ ÀÎµ¦½º ¹øÈ£
-cell_type varchar2(200), --ÆÇ¸Å Å¸ÀÔ(¿µ»ó=1, ¿Â¶óÀÎ=2, ¿ÀÇÁ¶óÀÎ=3)
-main_category varchar2(500), --¸ŞÀÎ Ä«Å×°í¸®
-sub_category varchar2(500), -- ¼­ºê Ä«Å×°í¸®
+lecture_idx number, --ì˜ìƒì˜ ì¸ë±ìŠ¤ ë²ˆí˜¸
+cell_type varchar2(200), --íŒë§¤ íƒ€ì…(ì˜ìƒ=1, ì˜¨ë¼ì¸=2, ì˜¤í”„ë¼ì¸=3)
+main_category varchar2(500), --ë©”ì¸ ì¹´í…Œê³ ë¦¬
+sub_category varchar2(500), -- ì„œë¸Œ ì¹´í…Œê³ ë¦¬
 userid varchar2(200), -- kmodymember-userid foreign
-subject varchar2(500), --¿µ»ó Á¦¸ñ
-main_img clob, --¿µ»ó ½æ³×ÀÏ(¸ŞÀÎ ÀÌ¹ÌÁö)
-videofile clob, -- µ¿¿µ»óÀÇ ÆÄÀÏÀÌ¸§
-content clob, --¿µ»ó¿¡ ´ëÇÑ ¼³¸í
-upload_date date default sysdate, --ÃÖÃÊ ¾÷·Îµå ³¯Â¥
-price number default 0, -- ¿µ»ó °¡°İ
--- ¿©±â¼­ ºÎÅÍ´Â ½Ç½Ã°£/ÇöÀå °­ÀÇ Ä®·³
-lecture_date varchar2(500), --°­ÀÇ ³¯Â¥
-lecture_start varchar2(500), --°­ÀÇ ½ÃÀÛ ½ÃÀÛ
-lecture_time varchar2(500), -- °­ÀÇ ÃÑ ½Ã°£
-lecture_postcode varchar2(500), --°­ÀÇ ¿ìÆí¹øÈ£
-lecture_address varchar2(500), -- °­ÀÇÀå ÁÖ¼Ò
-lecture_address2 varchar2(500) --°­ÀÇÀå »ó¼¼ ÁÖ¼Ò
+subject varchar2(500), --ì˜ìƒ ì œëª©
+main_img clob, --ì˜ìƒ ì¸ë„¤ì¼(ë©”ì¸ ì´ë¯¸ì§€)
+videofile clob, -- ë™ì˜ìƒì˜ íŒŒì¼ì´ë¦„
+content clob, --ì˜ìƒì— ëŒ€í•œ ì„¤ëª…
+upload_date date default sysdate, --ìµœì´ˆ ì—…ë¡œë“œ ë‚ ì§œ
+price number default 0, -- ì˜ìƒ ê°€ê²©
+-- ì—¬ê¸°ì„œ ë¶€í„°ëŠ” ì‹¤ì‹œê°„/í˜„ì¥ ê°•ì˜ ì¹¼ëŸ¼
+lecture_date varchar2(500), --ê°•ì˜ ë‚ ì§œ
+lecture_start varchar2(500), --ê°•ì˜ ì‹œì‘ ì‹œì‘
+lecture_time varchar2(500), -- ê°•ì˜ ì´ ì‹œê°„
+lecture_address varchar2(500), -- ê°•ì˜ì¥ ì£¼ì†Œ
+lecture_address2 varchar2(500) --ê°•ì˜ì¥ ìƒì„¸ ì£¼ì†Œ
 );
 
 --drop sequence seq_lecture;
@@ -96,10 +95,10 @@ select count(*) from lecture
         
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---ÆäÀÌÁö ³ª´©±â Å×½ºÆ®¸¦ À§ÇØ ·¹ÄÚµå ÀÔ·Â
-declare --¼±¾ğºÎ
+--í˜ì´ì§€ ë‚˜ëˆ„ê¸° í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•´ ë ˆì½”ë“œ ì…ë ¥
+declare --ì„ ì–¸ë¶€
     i number := 1;
-begin --½ÇÇàºÎ
+begin --ì‹¤í–‰ë¶€
     while i<=200 loop
         insert into lecture 
         (lecture_idx, cell_type, main_category,
@@ -109,7 +108,7 @@ begin --½ÇÇàºÎ
         (select nvl(max(lecture_idx)+1,1) from lecture),
         '3','main'||i,'sub'||i,'iop'||i,'iop'||i,10000,'iop'||i
         );
-        i := i+1; --Á¶°Ç º¯°æ
+        i := i+1; --ì¡°ê±´ ë³€ê²½
     end loop;
 end;
 /
@@ -136,3 +135,142 @@ select count(*) from lecture where cell_type=3 order by lecture_idx;
 
 select * from lecture where cell_type=1;
 
+drop table lecture;
+
+create table lecture(
+lecture_idx number, --ì˜ìƒì˜ ì¸ë±ìŠ¤ ë²ˆí˜¸
+cell_type varchar2(200), --íŒë§¤ íƒ€ì…(ì˜ìƒ=1, ì˜¨ë¼ì¸=2, ì˜¤í”„ë¼ì¸=3)
+main_category varchar2(500), --ë©”ì¸ ì¹´í…Œê³ ë¦¬
+sub_category varchar2(500), -- ì„œë¸Œ ì¹´í…Œê³ ë¦¬
+userid varchar2(200), -- kmodymember-userid foreign
+subject varchar2(500), --ì˜ìƒ ì œëª©
+main_img clob, --ì˜ìƒ ì¸ë„¤ì¼(ë©”ì¸ ì´ë¯¸ì§€)
+videofile clob, -- ë™ì˜ìƒì˜ íŒŒì¼ì´ë¦„
+content clob, --ì˜ìƒì— ëŒ€í•œ ì„¤ëª…
+upload_date date default sysdate, --ìµœì´ˆ ì—…ë¡œë“œ ë‚ ì§œ
+price number default 0, -- ì˜ìƒ ê°€ê²©
+-- ì—¬ê¸°ì„œ ë¶€í„°ëŠ” ì‹¤ì‹œê°„/í˜„ì¥ ê°•ì˜ ì¹¼ëŸ¼
+lecture_date varchar2(500), --ê°•ì˜ ë‚ ì§œ
+lecture_start varchar2(500), --ê°•ì˜ ì‹œì‘ ì‹œì‘
+lecture_time varchar2(500), -- ê°•ì˜ ì´ ì‹œê°„
+lecture_postcode varchar2(500), --ê°•ì˜ ìš°í¸ë²ˆí˜¸
+lecture_address varchar2(500), -- ê°•ì˜ì¥ ì£¼ì†Œ
+lecture_address2 varchar2(500) --ê°•ì˜ì¥ ìƒì„¸ ì£¼ì†Œ
+);
+
+--drop sequence seq_lecture;
+
+--create sequence seq_lecture
+--start with 1
+--increment by 1;
+--
+--alter table lecture add constraint fk_kmodymember
+--foreign key(userid) references kmodymember(userid);
+--
+--commit;
+
+insert into lecture
+		(lecture_idx, cell_type, main_category,
+		 sub_category, userid, subject,
+		 price, content, main_img, 
+		 lecture_date, lecture_start, lecture_time,
+		 lecture_address, lecture_address2 )
+		values
+		(
+		 (select nvl(max(lecture_idx)+1, 1) from lecture),
+		 '3', 'test', 'test',
+		 'ttt', 'wwwqwww', 30000,
+		 'test', 'test', 'test',
+		 'test', 'test', 'test',
+		 'test'
+		);
+
+desc lecture;
+
+select * from lecture where cell_type=3;
+
+select * from lecture 
+where 
+userid like '%%' or 
+main_category like '%%'or
+sub_category like '%%'or
+subject like '%%'or
+content like '%%'
+;
+select * from lecture where cell_type='3' order by lecture_idx desc;
+
+select count(*) from lecture 
+where cell_type='3' and
+(userid like '%%' or 
+main_category like '%%' or
+sub_category like '%%' or
+subject like '%%' or
+content like '%%');
+
+select * from lecture
+where cell_type=3 and
+userid like '%q%'
+;
+select count(*) from lecture where cell_type=3;
+
+;
+
+
+select count(*) from lecture where cell_type=3;
+commit; 
+
+select count(*) from lecture
+		where cell_type=3 and
+		(
+		userid like '%q%' or 
+		main_category like '%q%' or
+		sub_category like '%q%' or
+		subject like '%q%' or
+		content like '%q%'
+		);
+        
+        delete lecture;
+        
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--í˜ì´ì§€ ë‚˜ëˆ„ê¸° í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•´ ë ˆì½”ë“œ ì…ë ¥
+declare --ì„ ì–¸ë¶€
+    i number := 1;
+begin --ì‹¤í–‰ë¶€
+    while i<=200 loop
+        insert into lecture 
+        (lecture_idx, cell_type, main_category,
+		 sub_category, userid, subject, price, content )
+        values
+        (
+        (select nvl(max(lecture_idx)+1,1) from lecture),
+        '3','main'||i,'sub'||i,'iop'||i,'iop'||i,10000,'iop'||i
+        );
+        i := i+1; --ì¡°ê±´ ë³€ê²½
+    end loop;
+end;
+/
+
+
+insert into lecture
+		(lecture_idx, cell_type, main_category,
+		 sub_category, userid, subject,
+		 price, content, main_img, 
+		 lecture_date, lecture_start, lecture_time,
+		 lecture_address, lecture_address2 )
+		values
+		(
+		 (select nvl(max(lecture_idx)+1, 1) from lecture),
+		 '3', 'main1', 'sub1',
+		 'kim', 'kim', 30000,
+		 'kim', 'kim', 'kim',
+		 'kim', 'kim', 'kim',
+		 'kim'
+);
+
+select count(*) from lecture where cell_type=3 order by lecture_idx;
+
+select * from lecture;
+
+delete lecture;
+commit;
