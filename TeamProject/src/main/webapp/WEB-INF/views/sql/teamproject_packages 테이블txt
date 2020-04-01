@@ -4,6 +4,6 @@ packages_name varchar2(50) primary key,
 packages_text varchar2(200) not null,
 packages_image varchar2(200) not null,
 packages_price number not null,
-packages_date date not null
+packages_date int not null
 );
 commit;

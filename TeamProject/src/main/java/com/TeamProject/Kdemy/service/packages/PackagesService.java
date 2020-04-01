@@ -4,5 +4,8 @@ import java.util.List;
 
 import com.TeamProject.Kdemy.model.packages.dto.PackagesDTO;
 
-public class PackagesService {
+public interface PackagesService {
+	public List<PackagesDTO> list();
+	public void insertpackages(PackagesDTO dto) throws Exception;
+	public PackagesDTO viewPackages(String packages_name);
 }

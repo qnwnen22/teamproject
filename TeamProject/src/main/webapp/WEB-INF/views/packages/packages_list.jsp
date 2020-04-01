@@ -14,21 +14,17 @@
 <h2 class="col-4">패키지 구매</h2>
 </div>
 <br>
+<c:forEach var="dto" items="${list}">
 <div class="card" style="width:400px">
-  <a href="#"><img class="card-img-top" src="../include/images/coupon/kdemycoupon1.png" alt="Card image"></a>
+  <a href="#"><img class="card-img-top" src="../include/images/coupon/${dto.packages_image}" alt="Card image"></a>
   <div class="card-body">
-    <h4 class="card-title">정기이용권(30일)</h4>
-    <p class="card-text">구매일로 부터 30일간 VOD서비스를 무제한으로 즐기실 수 있습니다.</p>
+    <h4 class="card-title">${dto.packages_name}</h4>
+    <h5 class="text-danger"><fmt:formatNumber value="${dto.packages_price}" pattern="#,###" /></h5>
+    <p class="card-text">${dto.packages_text}</p>
   </div>
 </div>
 <br>
-<div class="card" style="width:400px">
-  <a href="#"><img class="card-img-top" src="../include/images/coupon/kdemycoupon3.png" alt="Card image"></a>
-  <div class="card-body">
-    <h4 class="card-title">정기이용권(90일)</h4>
-    <p class="card-text">구매일로 부터 90일간 VOD서비스를 무제한으로 즐기실 수 있습니다.</p>
-  </div>
-</div>
+</c:forEach>
 </div>
 <br>
 <%@include file="../include/footer.jsp" %>
