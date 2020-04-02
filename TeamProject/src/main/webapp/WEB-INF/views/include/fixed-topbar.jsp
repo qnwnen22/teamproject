@@ -41,8 +41,8 @@
 						  <div class="dropdown-menu">
 						    <a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
 						    <a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
-						    <a class="dropdown-item" href="#">강의관리</a>
-						    <a class="dropdown-item" href="#">패키지관리</a>
+						    <a class="dropdown-item" href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
+						    <a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
 						  </div>
 						</div>
 						<div class="item dropdown col-xl-4 text-center dropdown-toggle"
@@ -68,7 +68,7 @@
 							style="display: initial !important;">
 							<a
 								class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-								href="${path}/member/write.do" data-ga-category="header">
+								href="${path}/member/join.do" data-ga-category="header">
 								무료회원가입 </a>
 						</div>
 					</div>

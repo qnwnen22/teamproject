@@ -1,28 +1,12 @@
 package com.TeamProject.Kdemy.model.teacher.dao;
 
-import java.util.List;
-
 import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 
 public interface TeacherDAO {
 
-	public List<TeacherDTO> typeAList(int start, int end);
+	public void teacherInsert(TeacherDTO dto) throws Exception ;
 
-	public List<TeacherDTO> offline_list(int start, int end);
-	
-	public List<TeacherDTO> online_list(int start, int end);
-	
-	public int countTypeAList();
-	public int countTypeBList();
-	public int countTypeCList(String keyword);
+	public void member_teacherUpdate(TeacherDTO dto);
 
-	public void teacher_type3_insert(TeacherDTO dto);
-
-	public void teacher_type2_insert(TeacherDTO dto);
-	
-	public void teacher_type1_insert(TeacherDTO dto) throws Exception;
-
-	public TeacherDTO lecture_list_view(int lecture_idx);
-
-	
+	public TeacherDTO requestMemberView(String userid);
 }

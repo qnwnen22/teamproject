@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="packages">
+	<select id="packagesList" resultType="com.TeamProject.Kdemy.model.packages.dto.PackagesDTO">
+		select * from packages
+		order by packages_date
+	</select>
+
+	<insert id="insertpackages">
+		insert into packages(packages_name, packages_text, packages_image, packages_price, packages_date)
+		values (#{packages_name}, #{packages_text},#{packages_image},#{packages_price},#{packages_date})
+	</insert>
+	
+	<select id="viewPackages" resultType="com.TeamProject.Kdemy.model.packages.dto.PackagesDTO">
+		select * from packages
+		where packages_name=#{packages_name}
+	</select>
+	<update id="updatePackages">
+		update packages
+		set packages_name=#{packages_name}, packages_text=#{packages_text}, packages_price=#{packages_price}, 
+		packages_date=#{packages_date}, packages_image=#{packages_image}
+		 where packages_name=#{packages_name}        
+	</update>
+	
+	<delete id="deletePackages">
+		delete from packages
+		where packages_name=#{packages_name}
+	</delete>
+</mapper>

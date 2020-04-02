@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="lecture">
+	<!-- 강의 등록 insert -->
+	<insert id="teacher_type1_insert">
+		insert into lecture
+		(lecture_idx, cell_type, main_category, sub_category,
+		userid, subject, main_img, videofile, content, price)
+		values ((select nvl(max(lecture_idx)+1,1) from lecture),
+		'1', #{main_category}, #{sub_category},
+		#{userid}, #{subject}, #{main_img}, #{videofile}, #{content}, #{price})
+	</insert>
+	<insert id="teacher_type2_insert">
+		insert into lecture
+		(lecture_idx,
+		 cell_type, main_category, sub_category, 
+		 userid, subject, price,
+		 content, main_img, videofile,
+		 lecture_date, lecture_start, lecture_time
+		 )
+		values
+		(
+		 (select nvl(max(lecture_idx)+1, 1) from lecture),
+		 '2', #{main_category}, #{sub_category}, 
+		 #{userid}, #{subject}, #{price},
+		 #{content}, #{main_img}, #{videofile},
+		 #{lecture_date}, #{lecture_start}, #{lecture_time}
+		 )
+	</insert>
+	<insert id="teacher_type3_insert">
+		insert into lecture
+		(lecture_idx, cell_type, main_category,
+		 sub_category, userid, subject,
+		 price, content, main_img, 
+		 lecture_date, lecture_start, lecture_time,
+		 lecture_address, lecture_address2 )
+		values
+		(
+		 (select nvl(max(lecture_idx)+1, 1) from lecture),
+		 '3', #{main_category}, #{sub_category}, 
+		 #{userid}, #{subject}, #{price}, 
+		 #{content}, #{main_img}, #{lecture_date}, 
+		 #{lecture_start}, #{lecture_time}, #{lecture_address},
+		 #{lecture_address2}
+		)
+	</insert>
+
+	<select id="countList"
+	resultType="int">
+		select count(*) from lecture where cell_type=#{cell_type}
+	</select>
+	
+	<select id="lecture_list"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from (	
+			select rownum as rn, A.* from 
+			(
+				select * from lecture
+				where cell_type=#{cell_type}
+				order by lecture_idx desc
+			) A
+		) where rn between #{start} and #{end}
+	</select>
+
+	<select id="searchCount"
+	resultType="int">
+		select count(*) from lecture
+		where cell_type=#{cell_type} and
+		<include refid="search" />
+	</select>
+	
+	<select id="searchList"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from (
+			select rownum as rn, A.* from 
+			(
+				select * from lecture
+				where cell_type=#{cell_type} and
+				<include refid="search" />
+				order by lecture_idx desc
+			) A
+		) where rn between #{start} and #{end}
+	</select>
+	
+	<sql id="search">
+		( userid like #{keyword} or 
+		main_category like #{keyword} or
+		sub_category like #{keyword} or
+		subject like #{keyword} or
+		content like #{keyword} )
+	</sql>
+	
+	<!-- 강의 view 처리 -->	
+	<select id="lecture_list_view"
+	parameterType="int"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from lecture
+		where lecture_idx=#{lecture_idx}
+	</select>
+</mapper>
+

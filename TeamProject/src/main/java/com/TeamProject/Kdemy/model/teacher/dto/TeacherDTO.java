@@ -4,52 +4,34 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+//import java.util.Date;
+
+//import org.springframework.web.multipart.MultipartFile;
+
 public class TeacherDTO {
-	
-	private int lecture_idx; 
-	private String cell_type; // 판매타입
-	
-	private String main_category; // 메인 카테고리
-	private String sub_category; // 서브 카테고리
-	private String userid; // 사용자 아이디
-	private String subject; // 제목
-	private String main_img; // 썸네일
-	private String videofile; //; 비디오 파일 이름
-	private String content; // 설명
-	private Date upload_date; // 업로드 날짜
-	private int price; // 가격
-	private String lecture_date; // 강의 시작날짜
-	private String lecture_start; // 강의 시작시간
-	private String lecture_time; // 강의 시간
-	private String lecture_postcode; // 강의 우편번호
-	private String lecture_address; // 강의장 도로명 주소
-	private String lecture_address2; // 상세 주소
+
+	private int teacher_num; //리스트 출력용 강사 번호
+	private String userid; //kdemymember 사용자 아이디
+	private String username; //사용자 이름
+	private String teacher_profileImagePath; //사용자 프로필 사진 
+	private String highschool; //고등학교
+	private String university; //대학교
+	private String spec1; //자격증1 ( 최대 n개까지 추가할 수 있도록 구현할 예정 )
+	private String spec1_img; //자격증1 이미지 파일
+	private String spec1_getDate; //자격증 취득일자
+	private Date request_date; //선생님 권한을 신청한 날짜
 	
 	private MultipartFile file1;
 	private MultipartFile file2;
-	public int getLecture_idx() {
-		return lecture_idx;
+	private MultipartFile file3;
+	private MultipartFile file4;
+	private MultipartFile file5;
+	private MultipartFile file6;
+	public int getTeacher_num() {
+		return teacher_num;
 	}
-	public void setLecture_idx(int lecture_idx) {
-		this.lecture_idx = lecture_idx;
-	}
-	public String getCell_type() {
-		return cell_type;
-	}
-	public void setCell_type(String cell_type) {
-		this.cell_type = cell_type;
-	}
-	public String getMain_category() {
-		return main_category;
-	}
-	public void setMain_category(String main_category) {
-		this.main_category = main_category;
-	}
-	public String getSub_category() {
-		return sub_category;
-	}
-	public void setSub_category(String sub_category) {
-		this.sub_category = sub_category;
+	public void setTeacher_num(int teacher_num) {
+		this.teacher_num = teacher_num;
 	}
 	public String getUserid() {
 		return userid;
@@ -57,77 +39,53 @@ public class TeacherDTO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public String getSubject() {
-		return subject;
+	public String getUsername() {
+		return username;
 	}
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getMain_img() {
-		return main_img;
+	public String getTeacher_profileImagePath() {
+		return teacher_profileImagePath;
 	}
-	public void setMain_img(String main_img) {
-		this.main_img = main_img;
+	public void setTeacher_profileImagePath(String teacher_profileImagePath) {
+		this.teacher_profileImagePath = teacher_profileImagePath;
 	}
-	public String getVideofile() {
-		return videofile;
+	public String getHighschool() {
+		return highschool;
 	}
-	public void setVideofile(String videofile) {
-		this.videofile = videofile;
+	public void setHighschool(String highschool) {
+		this.highschool = highschool;
 	}
-	public String getContent() {
-		return content;
+	public String getUniversity() {
+		return university;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setUniversity(String university) {
+		this.university = university;
 	}
-	public Date getUpload_date() {
-		return upload_date;
+	public String getSpec1() {
+		return spec1;
 	}
-	public void setUpload_date(Date upload_date) {
-		this.upload_date = upload_date;
+	public void setSpec1(String spec1) {
+		this.spec1 = spec1;
 	}
-	public int getPrice() {
-		return price;
+	public String getSpec1_img() {
+		return spec1_img;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setSpec1_img(String spec1_img) {
+		this.spec1_img = spec1_img;
 	}
-	public String getLecture_date() {
-		return lecture_date;
+	public String getSpec1_getDate() {
+		return spec1_getDate;
 	}
-	public void setLecture_date(String lecture_date) {
-		this.lecture_date = lecture_date;
+	public void setSpec1_getDate(String spec1_getDate) {
+		this.spec1_getDate = spec1_getDate;
 	}
-	public String getLecture_start() {
-		return lecture_start;
+	public Date getRequest_date() {
+		return request_date;
 	}
-	public void setLecture_start(String lecture_start) {
-		this.lecture_start = lecture_start;
-	}
-	public String getLecture_time() {
-		return lecture_time;
-	}
-	public void setLecture_time(String lecture_time) {
-		this.lecture_time = lecture_time;
-	}
-	public String getLecture_postcode() {
-		return lecture_postcode;
-	}
-	public void setLecture_postcode(String lecture_postcode) {
-		this.lecture_postcode = lecture_postcode;
-	}
-	public String getLecture_address() {
-		return lecture_address;
-	}
-	public void setLecture_address(String lecture_address) {
-		this.lecture_address = lecture_address;
-	}
-	public String getLecture_address2() {
-		return lecture_address2;
-	}
-	public void setLecture_address2(String lecture_address2) {
-		this.lecture_address2 = lecture_address2;
+	public void setRequest_date(Date request_date) {
+		this.request_date = request_date;
 	}
 	public MultipartFile getFile1() {
 		return file1;
@@ -141,42 +99,60 @@ public class TeacherDTO {
 	public void setFile2(MultipartFile file2) {
 		this.file2 = file2;
 	}
+	public MultipartFile getFile3() {
+		return file3;
+	}
+	public void setFile3(MultipartFile file3) {
+		this.file3 = file3;
+	}
+	public MultipartFile getFile4() {
+		return file4;
+	}
+	public void setFile4(MultipartFile file4) {
+		this.file4 = file4;
+	}
+	public MultipartFile getFile5() {
+		return file5;
+	}
+	public void setFile5(MultipartFile file5) {
+		this.file5 = file5;
+	}
+	public MultipartFile getFile6() {
+		return file6;
+	}
+	public void setFile6(MultipartFile file6) {
+		this.file6 = file6;
+	}
 	@Override
 	public String toString() {
-		return "TeacherDTO [lecture_idx=" + lecture_idx + ", cell_type=" + cell_type + ", main_category="
-				+ main_category + ", sub_category=" + sub_category + ", userid=" + userid + ", subject=" + subject
-				+ ", main_img=" + main_img + ", videofile=" + videofile + ", content=" + content + ", upload_date="
-				+ upload_date + ", price=" + price + ", lecture_date=" + lecture_date + ", lecture_start="
-				+ lecture_start + ", lecture_time=" + lecture_time + ", lecture_postcode=" + lecture_postcode
-				+ ", lecture_address=" + lecture_address + ", lecture_address2=" + lecture_address2 + ", file1=" + file1
-				+ ", file2=" + file2 + "]";
+		return "TeacherDTO [teacher_num=" + teacher_num + ", userid=" + userid + ", username=" + username
+				+ ", teacher_profileImagePath=" + teacher_profileImagePath + ", highschool=" + highschool
+				+ ", university=" + university + ", spec1=" + spec1 + ", spec1_img=" + spec1_img + ", spec1_getDate="
+				+ spec1_getDate + ", request_date=" + request_date + ", file1=" + file1 + ", file2=" + file2
+				+ ", file3=" + file3 + ", file4=" + file4 + ", file5=" + file5 + ", file6=" + file6 + "]";
 	}
-	public TeacherDTO(int lecture_idx, String cell_type, String main_category, String sub_category, String userid,
-			String subject, String main_img, String videofile, String content, Date upload_date, int price,
-			String lecture_date, String lecture_start, String lecture_time, String lecture_postcode,
-			String lecture_address, String lecture_address2, MultipartFile file1, MultipartFile file2) {
-		this.lecture_idx = lecture_idx;
-		this.cell_type = cell_type;
-		this.main_category = main_category;
-		this.sub_category = sub_category;
+	public TeacherDTO(int teacher_num, String userid, String username, String teacher_profileImagePath,
+			String highschool, String university, String spec1, String spec1_img, String spec1_getDate,
+			Date request_date, MultipartFile file1, MultipartFile file2, MultipartFile file3, MultipartFile file4,
+			MultipartFile file5, MultipartFile file6) {
+		this.teacher_num = teacher_num;
 		this.userid = userid;
-		this.subject = subject;
-		this.main_img = main_img;
-		this.videofile = videofile;
-		this.content = content;
-		this.upload_date = upload_date;
-		this.price = price;
-		this.lecture_date = lecture_date;
-		this.lecture_start = lecture_start;
-		this.lecture_time = lecture_time;
-		this.lecture_postcode = lecture_postcode;
-		this.lecture_address = lecture_address;
-		this.lecture_address2 = lecture_address2;
+		this.username = username;
+		this.teacher_profileImagePath = teacher_profileImagePath;
+		this.highschool = highschool;
+		this.university = university;
+		this.spec1 = spec1;
+		this.spec1_img = spec1_img;
+		this.spec1_getDate = spec1_getDate;
+		this.request_date = request_date;
 		this.file1 = file1;
 		this.file2 = file2;
+		this.file3 = file3;
+		this.file4 = file4;
+		this.file5 = file5;
+		this.file6 = file6;
 	}
-
-	public TeacherDTO() {
-	}	
 	
+	public TeacherDTO() {
+	}
 }

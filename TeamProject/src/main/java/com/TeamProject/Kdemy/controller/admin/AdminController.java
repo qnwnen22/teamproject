@@ -1,11 +1,15 @@
 package com.TeamProject.Kdemy.controller.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+//github.com/qnwnen22/teamproject.git
+
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.service.admin.AdminService;
 @RestController 
-
 @RequestMapping("admin/*") //공통 url mapping
 public class AdminController {
 	private static final Logger logger 
@@ -50,16 +55,19 @@ public class AdminController {
 		return "redirect:/admin/list.do";
 	}
 	
-	@RequestMapping(value="/view.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
-	public Model view(String admin_id,Model model) {
-		if(admin_id!=null) {
+//	@ResponseBody
+//	@RequestMapping("view.do")
+//	public String view(@RequestParam String admin_id, Model model) {
+//		model.addAttribute("dto", adminService.viewAdmin(admin_id));
+//		return "admin/view";
+//	}
+	@RequestMapping(value="/admin_view.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
+	public ModelAndView view(String admin_id,ModelAndView mav) {
 			AdminDTO dto=adminService.viewAdmin(admin_id);
-			model.addAttribute("dto",dto);
-			return model;
+			mav.addObject("dto",dto);
+			mav.setViewName("admin/admin_view");
+			return mav;
 		}
-		return model;
-	}
-	
 	@RequestMapping("updateAdmin.do")
 	public String update(AdminDTO dto) {
 		String admin_id=dto.getAdmin_id();

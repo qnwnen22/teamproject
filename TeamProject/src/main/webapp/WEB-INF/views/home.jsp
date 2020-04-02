@@ -212,7 +212,8 @@
 																							<div class="item col-xl-4 text-center"
 																								style="display: initial !important;">
 																								<a class="plain cursor"
-																									data-ga-category="header"><b>로그인</b></a>
+																									data-ga-category="header"><a href="${path}/member/loginPage.do"
+																			class="plain cursor" data-ga-category="header"><b>로그인</b></a>
 
 																							</div>
 																							<div id=""
@@ -220,7 +221,7 @@
 																								style="display: initial !important;">
 																								<a
 																									class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-																									href="${path}/member/write.do"
+																									href="${path}/member/join.do"
 																									data-ga-category="header"> 무료회원가입 </a>
 																							</div>
 																						</div>
@@ -274,6 +275,7 @@
 																							class="market-main-link-text .flex-center-center"
 																							href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
 																					</div>
+
 
 																				</div>
 																			</div>
@@ -446,8 +448,8 @@
 																	<a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
-																		<a class="dropdown-item" href="#">회원관리</a> <a
-																			class="dropdown-item" href="#">강의관리</a> <a
+																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
+																		<a class="dropdown-item" href="#">강의관리</a> <a
 																			class="dropdown-item" href="#">패키지관리</a>
 																	</div>
 																</div>
@@ -467,21 +469,25 @@
 																<c:when test="${sessionScope.userid == null}">
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
-																		<a class="plain cursor" data-ga-category="header" href="${path}/member/teacherIsert.do"><b>전문가
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
+																	</div>
+																	<div class="item col-xl-4 text-center"
+																		style="display: initial !important;">
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/member/teacherIsert.do"><b>전문가
 																				등록</b></a>
 																	</div>
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a href="${path}/member/loginPage.do"
 																			class="plain cursor" data-ga-category="header"><b>로그인</b></a>
-																		<a href="${path}/member/teacherPage.do"
-																			class="plain cursor" data-ga-category="header"><b>강사페이지</b></a>
 																	</div>
 																	<div id="" class="item position-relative col-xl-4"
 																		style="display: initial !important;">
 																		<a
 																			class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-																			href="${path}/member/write.do"
+																			href="${path}/member/join.do"
 																			data-ga-category="header"> 무료회원가입 </a>
 																	</div>
 																</c:when>
@@ -494,8 +500,9 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="#">강의목록</a> <a
-																						class="dropdown-item" href="#">나의정보</a> <a
+																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a
+																		
+																						class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> <a
 																						class="dropdown-item" href="#">장바구니</a> <a
 																						class="dropdown-item" href="#">관심상품</a>
 																				</div>
@@ -508,7 +515,8 @@
 																		<c:otherwise>
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
-																				<a class="plain cursor" data-ga-category="header" href="${path}/member/teacherIsert.do"><b>전문가 등록</b></a>
+																				<a class="plain cursor" data-ga-category="header"
+																					href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
 																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div
@@ -516,7 +524,7 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="#">나의정보</a> <a
+																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> <a
 																						class="dropdown-item" href="#">장바구니</a> <a
 																						class="dropdown-item" href="#">관심상품</a> <a
 																						class="dropdown-item" href="#"></a>
@@ -578,6 +586,7 @@
 													<a class="market-main-link-text .flex-center-center"
 														href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
 												</div>
+
 
 											</div>
 										</div>
@@ -708,6 +717,13 @@
 	</div>
 	</div>
 	<!-- content -->
+
+	<div style="width: 63%; margin: auto;">
+		<a href="${path}/review/list.do"> <marquee scrollamount="8">
+				<h4 style="color: red;">★수강후기★</h4>
+			</marquee>
+		</a>
+	</div>
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
