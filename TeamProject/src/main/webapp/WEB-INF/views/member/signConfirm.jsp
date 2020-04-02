@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>인증메일 발송</title>
     <%@ include file="../include/header.jsp"%>
-    <link rel="stylesheet" href="./css/signConfirm.css">
+    <link rel="stylesheet" href="css/signConfirm.css">
 </head>
 <body>
 <div id="scWrapper">

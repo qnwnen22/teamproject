@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>회원가입 성공</title>
     <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="./css/signSuccess.css">
+<link rel="stylesheet" href="css/signSuccess.css">
 </head>
 <body>
     <div id="ssWrapper">

@@ -220,7 +220,7 @@
 																								style="display: initial !important;">
 																								<a
 																									class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-																									href="${path}/member/write.do"
+																									href="${path}/member/join.do"
 																									data-ga-category="header"> 무료회원가입 </a>
 																							</div>
 																						</div>
@@ -515,9 +515,9 @@
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"
-																					href="${path}/member/teacherIsert.do"><b>전문가
+											                                         href="${path}/member/teacherIsert.do"><b>전문가
 																						등록</b></a>
-																					href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
+																				<a href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
 																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div
