@@ -20,5 +20,9 @@ public interface MemberService {
 
 	public void verifyMember(MemberDTO dto);
 
+	public MemberDTO searchID(MemberDTO dto);
+
+	public void updatePW(MemberDTO dto);
+
 	//public MemberDTO getMember(MemberDTO dto);
 }

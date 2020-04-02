@@ -49,7 +49,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid}
 	</select>
 
-
+	<select id="searchID" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+	    select * from kdemymember
+		where username=#{username} and useremail=#{useremail} 
+	</select>
+	
+	<update id="updatePW">
+		update kdemymember set passwd=#{passwd}
+		where userid=#{userid} and useremail=#{useremail}
+	</update>
+	
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />

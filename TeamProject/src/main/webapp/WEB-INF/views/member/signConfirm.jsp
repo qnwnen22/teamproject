@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>인증메일 발송</title>
+ <link rel="stylesheet" href="${path}/member/css/signConfirm.css">
     <%@ include file="../include/header.jsp"%>
-    <link rel="stylesheet" href="css/signConfirm.css">
 </head>
 <body>
 <div id="scWrapper">

@@ -1,9 +1,12 @@
 package com.TeamProject.Kdemy.controller.member;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.mail.javamail.JavaMailSender;
@@ -34,10 +37,22 @@ public class MemberController {
 		return "member/join";
 	}
 	
-	@RequestMapping("searchIdpass.do")
-	public String searchIdpass() {
-		return "member/searchIdpass";
+	@RequestMapping("myPage.do")
+	public String myPage() {
+		return "member/myPage";
 	}
+	
+	@RequestMapping("searchId.do")
+	public String searchIdpass1() {
+		return "member/searchId";
+	}
+	
+	@RequestMapping("searchpass.do")
+	public String searchIdpass2() {
+		return "member/searchpass";
+	}
+
+	
 
 	@RequestMapping("insertMember.do")
 	public String insertMember(MemberDTO dto) throws Exception {
@@ -53,7 +68,7 @@ public class MemberController {
 		
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[이메일 인증]");
-		sendMail.setText(new StringBuffer().append("<h1>메일인증</h1>")
+		sendMail.setText(new StringBuffer().append("<h1>KDEMY 메일인증</h1>")
 				.append("kdemy에 가입해주셔서 감사합니다.<br><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
 				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
@@ -61,6 +76,7 @@ public class MemberController {
 		sendMail.send();
 		return "member/signConfirm";	
 	}
+	
 	
 	@RequestMapping(value = "/verify.do", method = RequestMethod.GET)
 	public String signSuccess(@RequestParam String useremail) {
@@ -82,6 +98,52 @@ public class MemberController {
 			return 2;
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/searchID.do", method = RequestMethod.POST)
+	public String searchID(HttpServletRequest request) {
+		String username = request.getParameter("username");
+		String useremail = request.getParameter("useremail");
+		System.out.println(username);
+		System.out.println(useremail);
+		MemberDTO dto = new MemberDTO();
+		dto.setUsername(username);
+		dto.setUseremail(useremail);
+		MemberDTO search = memberService.searchID(dto);
+		if (search != null) {
+			return search.getUserid();
+		} else {
+			return "x";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/searchPW.do", method = RequestMethod.POST)
+	public void searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+		String userid = request.getParameter("userid");
+		String useremail = request.getParameter("useremail");
+		System.out.println(userid);
+		System.out.println(useremail);
+		MemberDTO dto = new MemberDTO();
+		dto.setUserid(userid);
+		dto.setUseremail(useremail);
+		String passwd = BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt()); //랜덤함수로 변경 예정
+		dto.setPasswd(passwd);
+		memberService.updatePW(dto);
+		
+		MailHandler sendMail = new MailHandler(mailSender);
+		sendMail.setSubject("[비밀번호 찾기]");
+		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
+				.append("<b>임시 비밀번호 발급 : " + passwd + "</b><br>")
+				.append("<a href='http://localhost/Kdemy/")
+				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
+		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
+		sendMail.setTo(dto.getUseremail());
+		sendMail.send();
+
+	}
+
+
 
 	@RequestMapping("teacherPage.do")
 	public String teacherPage() {

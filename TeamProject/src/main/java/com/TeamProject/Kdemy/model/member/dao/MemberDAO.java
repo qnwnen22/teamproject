@@ -23,4 +23,8 @@ public interface MemberDAO {
 //	public MemberDTO getMember(MemberDTO dto);
 
 	public void verifyMember(MemberDTO dto);
+
+	public MemberDTO searchID(MemberDTO dto);
+
+	public void updatePW(MemberDTO dto);
 }

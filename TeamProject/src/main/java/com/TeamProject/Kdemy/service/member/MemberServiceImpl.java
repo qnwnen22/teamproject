@@ -45,6 +45,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.passwdCheck(dto);
 	}
 	
+	@Override
+	public MemberDTO searchID(MemberDTO dto) {
+		return memberDao.searchID(dto);
+	}
+	
+	@Override
+	public void updatePW(MemberDTO dto) {
+		memberDao.updatePW(dto);
+		
+	}
+
+
 //	@Override
 //	public List<MemberDTO> list() {
 //		return memberDao.list();
@@ -60,5 +72,8 @@ public class MemberServiceImpl implements MemberService {
 	public int countMember(String keyword, String location) throws Exception {
 		return memberDao.countMember(keyword, location);
 	}
+
+
+
 
 }

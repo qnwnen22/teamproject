@@ -212,7 +212,8 @@
 																							<div class="item col-xl-4 text-center"
 																								style="display: initial !important;">
 																								<a class="plain cursor"
-																									data-ga-category="header"><b>로그인</b></a>
+																									data-ga-category="header"><a href="${path}/member/loginPage.do"
+																			class="plain cursor" data-ga-category="header"><b>로그인</b></a>
 
 																							</div>
 																							<div id=""
@@ -500,8 +501,8 @@
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
 																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a
-																					
-																						class="dropdown-item" href="#">나의정보</a> <a
+																		
+																						class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> <a
 																						class="dropdown-item" href="#">장바구니</a> <a
 																						class="dropdown-item" href="#">관심상품</a>
 																				</div>
@@ -525,7 +526,7 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="#">나의정보</a> <a
+																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> <a
 																						class="dropdown-item" href="#">장바구니</a> <a
 																						class="dropdown-item" href="#">관심상품</a> <a
 																						class="dropdown-item" href="#"></a>
