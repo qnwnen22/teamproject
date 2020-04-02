@@ -21,6 +21,17 @@ public class MemberDAOImpl implements MemberDAO {
 	public void insertMember(MemberDTO dto) {
 		sqlSession.insert("member.insertMember",dto);
 	}
+	
+//	@Override
+//	public MemberDTO getMember(MemberDTO dto) {
+//		return sqlSession.selectOne("member.getMember",dto);
+//	}
+	
+	@Override
+	public void verifyMember(MemberDTO dto) {
+		sqlSession.update("member.verifyMember", dto);
+		
+	}
 
 
 	@Override
@@ -76,4 +87,8 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("location", location);
 		return sqlSession.selectOne("member.countMember", map);
 	}
+
+
+
+	
 }

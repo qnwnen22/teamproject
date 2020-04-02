@@ -6,31 +6,41 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-//github.com/qnwnen22/teamproject.git
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
+import com.TeamProject.Kdemy.util.MailHandler;
+
 
 @Controller
 @RequestMapping("member/*")
 public class MemberController {
 	@Inject
 	MemberService memberService;
-
-	@RequestMapping("write.do")
+	@Inject
+	private JavaMailSender mailSender;
+	
+	@RequestMapping("join.do")
 	public String join() {
 		return "member/join";
 	}
+	
+	@RequestMapping("searchIdpass.do")
+	public String searchIdpass() {
+		return "member/searchIdpass";
+	}
 
 	@RequestMapping("insertMember.do")
-	public String insertMember(MemberDTO dto) {
+	public String insertMember(MemberDTO dto) throws Exception {
 
 		String birthday=dto.getBirthday1()+"년"+dto.getBirthday2()+"월"+dto.getBirthday3()+"일";
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
@@ -40,7 +50,37 @@ public class MemberController {
 		dto.setPhone(phone);
 		System.out.println(dto);
 		memberService.insertMember(dto);
-		return "home";
+		
+		MailHandler sendMail = new MailHandler(mailSender);
+		sendMail.setSubject("[이메일 인증]");
+		sendMail.setText(new StringBuffer().append("<h1>메일인증</h1>")
+				.append("kdemy에 가입해주셔서 감사합니다.<br><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
+				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
+		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
+		sendMail.setTo(dto.getUseremail());
+		sendMail.send();
+		return "member/signConfirm";	
+	}
+	
+	@RequestMapping(value = "/verify.do", method = RequestMethod.GET)
+	public String signSuccess(@RequestParam String useremail) {
+		System.out.println("이메일 인증기능 처리");
+		MemberDTO dto = new MemberDTO();
+		dto.setUseremail(useremail);
+		memberService.verifyMember(dto);
+		return "member/signSuccess";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/checkId.do")
+	public int idCheck(MemberDTO dto) throws Exception {
+		String exp1="^[A-Za-z0-9]{4,10}$";
+		if(dto.getUserid().matches(exp1)) {
+			int result = memberService.idCheck(dto);
+			return result;			
+		}else {
+			return 2;
+		}
 	}
 
 	@RequestMapping("teacherPage.do")
@@ -77,17 +117,7 @@ public class MemberController {
 		}
 		return mav;
 	}
-	@ResponseBody
-	@RequestMapping(value="/checkId.do")
-	public int idCheck(MemberDTO dto) throws Exception {
-		String exp1="^[A-Za-z0-9]{4,10}$";
-		if(dto.getUserid().matches(exp1)) {
-			int result = memberService.idCheck(dto);
-			return result;			
-		}else {
-			return 2;
-		}
-	}
+
 
 	@RequestMapping("list.do")
 	public ModelAndView list(
