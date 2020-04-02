@@ -19,6 +19,15 @@ public class MemberServiceImpl implements MemberService {
 	public void insertMember(MemberDTO dto) {
 		memberDao.insertMember(dto);
 	}
+//	@Override
+//	public MemberDTO getMember(MemberDTO dto) {
+//		return memberDao.getMember(dto);
+//	}
+	
+	@Override
+	public void verifyMember(MemberDTO dto) {
+		 memberDao.verifyMember(dto);
+		}
 
 	@Override
 	public MemberDTO kdemyLogin(MemberDTO dto) {
@@ -51,4 +60,5 @@ public class MemberServiceImpl implements MemberService {
 	public int countMember(String keyword, String location) throws Exception {
 		return memberDao.countMember(keyword, location);
 	}
+
 }

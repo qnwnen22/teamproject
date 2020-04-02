@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/topbar.jsp"%>
+<%@ include file="../include/fixed-topbar.jsp" %>
 <script src="${path}/include/js/common.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 	crossorigin="anonymous"></script>
@@ -77,7 +77,10 @@ function submenuchange(item){
     temp.options[0].selected=true;
     return true;
 }
+
+
 var count = 1;       
+
 function addForm(){
 	   if(count<=8) {
           var addedFormDiv = document.getElementById("addedFormDiv");                 
@@ -148,7 +151,7 @@ function delForm(){
 </style>
 </head>
 <body>
-
+<div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
 
 	<div class="container menu_add_div">
 		<div
@@ -232,6 +235,7 @@ function delForm(){
 			</form>
 		</div>
 	</div>
+</div>	
 	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

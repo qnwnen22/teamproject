@@ -10,12 +10,13 @@ public class MemberDTO {
 	private String username;
 	private String birthday; 
 	private String useremail;
+	private String emaildomain;
 	private String phone;
 	private String postcode;
 	private String address;
 	private String address2;
 	private Date join_date;
-
+	private char verify;
 	private String teacher;
 	
 	private String bpasswd;
@@ -63,6 +64,12 @@ public class MemberDTO {
 	public void setUseremail(String useremail) {
 		this.useremail = useremail;
 	}
+	public String getEmaildomain() {
+		return emaildomain;
+	}
+	public void setEmaildomain(String emaildomain) {
+		this.emaildomain = emaildomain;
+	}
 	public String getPhone() {
 		return phone;
 	}
@@ -92,6 +99,12 @@ public class MemberDTO {
 	}
 	public void setJoin_date(Date join_date) {
 		this.join_date = join_date;
+	}
+	public char getVerify() {
+		return verify;
+	}
+	public void setVerify(char verify) {
+		this.verify = verify;
 	}
 	public String getTeacher() {
 		return teacher;
@@ -144,9 +157,11 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [usernum=" + usernum + ", userid=" + userid + ", passwd=" + passwd + ", username=" + username
-				+ ", birthday=" + birthday + ", useremail=" + useremail + ", phone=" + phone + ", postcode=" + postcode
-				+ ", address=" + address + ", address2=" + address2 + ", join_date=" + join_date + ", teacher="
-				+ teacher + ", bpasswd=" + bpasswd + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
-				+ ", birthday1=" + birthday1 + ", birthday2=" + birthday2 + ", birthday3=" + birthday3 + "]";
+				+ ", birthday=" + birthday + ", useremail=" + useremail + ", emaildomain=" + emaildomain + ", phone="
+				+ phone + ", postcode=" + postcode + ", address=" + address + ", address2=" + address2 + ", join_date="
+				+ join_date + ", verify=" + verify + ", teacher=" + teacher + ", bpasswd=" + bpasswd + ", phone1="
+				+ phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1=" + birthday1 + ", birthday2="
+				+ birthday2 + ", birthday3=" + birthday3 + "]";
 	}
+	
 }

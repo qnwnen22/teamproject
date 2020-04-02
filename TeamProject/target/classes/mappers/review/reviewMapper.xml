@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select bno, subject, teacher, title, writer, regdate, viewcnt, show,
 		(select count(*)
 		from kdemyreview_reply where bno=b.bno) cnt
-		from kdemyreview b
+		from kdemyreview b where show='Y'
 		order by bno
 		desc
 
@@ -66,57 +66,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose>
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	<insert id="insert">
-		insert into kdemynotice (bno,subject,teacher,title,content,writer) values
+		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
 		(
-		seq_kdemynotice.nextval, #{title}, #{content}, #{writer} )
+		seq_kdemynotice.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer} )
 	</insert>
 
 	<!-- 첨부파일 정보 저장 -->
 	<insert id="addAttach">
-		insert into kdemynotice_attach (fullName, bno) values
+		insert into kdemyreview_attach (fullName, bno) values
 		( #{fullName},
-		seq_kdemynotice.currval )
+		seq_kdemyreview.currval )
 	</insert>
-
+	
 	<!-- 조회수 증가 처리 -->
 	<update id="increateViewcnt">
-		update kdemynotice set viewcnt=viewcnt+1
+		update kdemyreview set viewcnt=viewcnt+1
 		where bno=#{bno}
 	</update>
-
+		
 	<select id="read"
-		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
-		select bno,title,regdate,content,viewcnt,username,writer
-		from kdemynotice b, kdemymember m
+		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
+		select bno,subject,b.teacher,title,regdate,content,viewcnt,username,writer
+		from kdemyreview b, kdemymember m
 		where b.writer=m.userid and bno=#{bno}
 	</select>
 
-	<select id="detail_notice"
-		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
-		select * from kdemynotice
+	<select id="detail_review"
+		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
+		select * from kdemyreview
 		where bno=#{bno}
 	</select>
-
+	
 	<!-- 게시물 내용 수정 -->
 	<update id="update">
-		update kdemynotice
-		set title=#{title}, content=#{content}
+		update kdemyreview
+		set subject=#{subject}, teacher=#{teacher}, title=#{title}, content=#{content}
 		where bno=#{bno}
 	</update>
 
 	<delete id="delete">
-		update kdemynotice set show='N' where bno=#{bno}
+		update kdemyreview set show='N' where bno=#{bno}
 	</delete>
 
 </mapper>

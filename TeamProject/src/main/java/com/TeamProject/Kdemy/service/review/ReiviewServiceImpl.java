@@ -30,20 +30,22 @@ public class ReiviewServiceImpl implements ReviewService {
 
 	@Override
 	public void create(ReviewDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		reviewDao.create(dto);
+		String[] files=dto.getFiles();
+		if(files==null) return;
+		for(String name : files) {
+			reviewDao.addAttach(name);
+		}
 	}
 
 	@Override
 	public void update(ReviewDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		reviewDao.update(dto);
 	}
 
 	@Override
 	public void delete(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		
+		reviewDao.delete(bno);
 	}
 
 	@Override
@@ -58,7 +60,16 @@ public class ReiviewServiceImpl implements ReviewService {
 
 	@Override
 	public void increateViewcnt(int bno, HttpSession session) throws Exception {
-		// TODO Auto-generated method stub
+		long update_time=0;
+		if(session.getAttribute("update_time_"+bno)!=null) {
+			update_time=(long)session.getAttribute("update_time_"+bno);
+		}
+		long current_time=System.currentTimeMillis();
+		//조회수 증가 처리
+		if(current_time-update_time>5*1000) {
+			reviewDao.increateViewcnt(bno);
+			session.setAttribute("update_time_"+bno, current_time);
+		}
 		
 	}
 
@@ -74,14 +85,12 @@ public class ReiviewServiceImpl implements ReviewService {
 
 	@Override
 	public ReviewDTO read(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return reviewDao.read(bno);
 	}
 
 	@Override
 	public ReviewDTO detailReview(int bno) {
-		// TODO Auto-generated method stub
-		return null;
+		return reviewDao.detailReview(bno);
 	}
 
 }

@@ -1,0 +1,28 @@
+select * from kdemymember;
+
+drop table kdemymember;
+
+create table kdemymember(
+usernum number not null,
+userid varchar2(200) primary key, 
+passwd varchar2(200) not null, 
+username varchar2(200) not null, 
+useremail varchar2(200) not null, 
+phone varchar2(200), 
+birthday varchar2(200), 
+postcode varchar2(200), 
+address varchar2(200), 
+address2 varchar2(200),
+join_date date default sysdate, 
+verify varchar2(10) default 'n',
+teacher varchar2(200),
+bpasswd varchar2(200),
+phone1 varchar2(200),
+phone2 varchar2(200),
+phone3 varchar2(200),
+birthday1 varchar2(200),
+birthday2 varchar2(200),
+birthday3 varchar2(200)
+);
+
+commit;

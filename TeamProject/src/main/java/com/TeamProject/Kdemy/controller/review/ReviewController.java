@@ -5,12 +5,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TeamProject.Kdemy.model.notice.dto.NoticeDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 import com.TeamProject.Kdemy.service.review.ReviewService;
 import com.TeamProject.Kdemy.service.review.Review_Pager;
@@ -80,5 +84,51 @@ public class ReviewController {
 		return "review/reviewwrite";
 	}// end write()
 	
+	
+	@RequestMapping("insert.do")
+	public String insert(@ModelAttribute ReviewDTO dto, HttpSession session) throws Exception{
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("dto");
+		reviewService.create(dto);
+		return "redirect:/review/list.do";
+	}//end insert
+	
+	@RequestMapping("view.do")
+	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
+		reviewService.increateViewcnt(bno, session);
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("review/reviewview");
+		mav.addObject("dto", reviewService.read(bno));
+		return mav;
+	}
+	
+	@RequestMapping("edit/{bno}")
+	public ModelAndView update(@PathVariable("bno") int bno, ModelAndView mav) {
+		mav.setViewName("review/reviewedit");
+		mav.addObject("dto",reviewService.detailReview(bno));
+		return mav;
+	}
+	
+	@RequestMapping("update.do")
+	public String update(ReviewDTO dto) throws Exception {
+		if(dto != null) {
+			reviewService.update(dto);
+		}
+		//수정 후 상세 화면으로 되돌아감
+		return "redirect:/review/view.do?bno="+dto.getBno();
+	}
+	
+	@RequestMapping("delete/{bno}")
+	public String delete(@PathVariable("bno") int bno,  
+			@ModelAttribute ReviewDTO dto, HttpSession session) throws Exception{
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		reviewService.delete(bno);
+		return "redirect:/review/list.do";//목록으로 이동
+	}
 
 }

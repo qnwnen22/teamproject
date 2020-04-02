@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -126,7 +125,7 @@ height: 50% !important;
 						<td class="col-1">${rows.subject}</td>
 						<td class="col-2">${rows.teacher}</td>
 						<td class="col-3"><a
-							href="${path}/notice/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
+							href="${path}/review/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
 								test="${rows.cnt>0}">
 								<span style="color: blue;" class="badge badge-primary">${rows.cnt}</span>
 							</c:if></td>

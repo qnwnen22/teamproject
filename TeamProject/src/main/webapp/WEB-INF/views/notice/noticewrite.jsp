@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -110,13 +109,17 @@ function GoList(){
 	<br>
 
 	<div class="form-group">
-		<label for="formGroupExampleInput">제목</label> <input type="text"
+		<label for="title">제목</label> <input type="text"
 			class="form-control" id="title" name="title"
 			placeholder="제목을 입력하세요">
 	</div><br>
 	
-
-	
+				<div class="form-group">
+					<label for="title">작성자</label> <input type="text"
+						class="form-control" id="userid" name="userid"
+						value="${sessionScope.userid }" disabled="disabled">
+				</div>
+				<br>
 
 		<div class="mb-3 was-validated">
 			<label for="validationTextarea">내용</label>

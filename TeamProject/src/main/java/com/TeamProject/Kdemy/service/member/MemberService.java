@@ -17,4 +17,8 @@ public interface MemberService {
 	public int countMember(String keyword,String location) throws Exception;
 	
 	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception;
+
+	public void verifyMember(MemberDTO dto);
+
+	//public MemberDTO getMember(MemberDTO dto);
 }
