@@ -12,13 +12,17 @@
 
 <!--  -->
 <%@ include file="../include/fixed-topbar.jsp" %>
-<script src="${path}/include/js/join.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
+	rel="stylesheet">
 <script src="${path}/include/js/common.js"></script>
-
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 
 <script>
+$(function(){
 $('#content').summernote({
 	  height: 300,                 // 에디터 높이
 	  minHeight: null,             // 최소 높이
@@ -27,6 +31,7 @@ $('#content').summernote({
 	  lang: "ko-KR",					// 한글 설정
 	  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
   
+});
 });
 </script>
 
@@ -124,5 +129,7 @@ $('#content').summernote({
 	</div>
 </div>
 <%@ include file="../include/footer.jsp"%>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
