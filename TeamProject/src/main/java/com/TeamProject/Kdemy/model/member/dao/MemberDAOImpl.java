@@ -32,8 +32,13 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update("member.verifyMember", dto);
 		
 	}
+	
 
-
+	@Override
+	public int idCheck(MemberDTO dto) {
+		return sqlSession.selectOne("member.idCheck",dto);
+	}
+	
 	@Override
 	public String passwdCheck(MemberDTO dto) {
 	    String result="";	
@@ -55,15 +60,24 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 
+
+	@Override
+	public MemberDTO searchID(MemberDTO dto) {
+		return sqlSession.selectOne("member.searchID",dto);
+	}
+
+	@Override
+	public void updatePW(MemberDTO dto) {
+		sqlSession.update("member.updatePW",dto);
+		
+	}
+	
 	@Override
 	public MemberDTO kdemyLogin(MemberDTO dto) {
 	  return sqlSession.selectOne("member.kdemyLogin",dto);
 	}
 
-	@Override
-	public int idCheck(MemberDTO dto) {
-		return sqlSession.selectOne("member.idCheck",dto);
-	}
+
 
 //	@Override
 //	public List<MemberDTO> list() {
@@ -87,8 +101,18 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("location", location);
 		return sqlSession.selectOne("member.countMember", map);
 	}
-
-
-
+	@Override
+	public List<MemberDTO> listTeacher(){
+		return sqlSession.selectList("member.listTeacher");
+	}
 	
+	@Override
+	public void approval(String userid) {
+		sqlSession.update("member.approval",userid);
+	}
+	@Override
+	public void reject(String userid) {
+		sqlSession.delete("member.reject",userid);
+		sqlSession.update("member.rejectmember",userid);
+	}
 }

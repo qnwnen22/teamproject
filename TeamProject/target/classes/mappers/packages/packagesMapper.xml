@@ -19,4 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from packages
 		where packages_name=#{packages_name}
 	</select>
+	<update id="updatePackages">
+		update packages
+		set packages_name=#{packages_name}, packages_text=#{packages_text}, packages_price=#{packages_price}, 
+		packages_date=#{packages_date}, packages_image=#{packages_image}
+		 where packages_name=#{packages_name}        
+	</update>
+	
+	<delete id="deletePackages">
+		delete from packages
+		where packages_name=#{packages_name}
+	</delete>
 </mapper>

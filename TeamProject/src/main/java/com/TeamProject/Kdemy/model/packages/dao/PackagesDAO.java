@@ -9,4 +9,6 @@ public interface PackagesDAO {
 	public List<PackagesDTO> list();
 	public void insertpackages(PackagesDTO dto) throws Exception;
 	public PackagesDTO viewPackages(String packages_name);
+	public void updatePackages(PackagesDTO dto);
+	public void deletePackages(String packages_name);
 }

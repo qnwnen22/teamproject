@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>회원가입 성공</title>
+    <link rel="stylesheet" href="${path}/member/css/signSuccess.css">
     <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="./css/signSuccess.css">
+
 </head>
 <body>
     <div id="ssWrapper">
