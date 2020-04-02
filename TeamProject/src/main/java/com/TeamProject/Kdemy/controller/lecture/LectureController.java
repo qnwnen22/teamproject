@@ -286,6 +286,12 @@ public class LectureController {
 		
 		@RequestMapping("lecture_list_view.do")
 		public ModelAndView lecture_list_view(int lecture_idx, LectureDTO dto) {
+			
+//			밑에 코드를 실행하기 전에 session에서 userid와 파라미터의 lecture_idx값을 가져와서
+//			lecture_box 테이블에 count(*)가 있는지 조회하고 
+//			1이면 영상시청(아래 코드 그대로 실행),
+//			0이면 결제 유도(다른 view 페이지로 이동 후 결제가 완료되면 다시 여기로)
+			
 			dto.setLecture_idx(lecture_idx);
 			System.out.println(lecture_idx);
 			LectureDTO dto2=lectureService.lecture_list_view(lecture_idx);

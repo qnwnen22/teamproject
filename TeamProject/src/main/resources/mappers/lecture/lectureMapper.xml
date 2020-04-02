@@ -61,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(
 				select * from lecture
 				where cell_type=#{cell_type}
+				order by lecture_idx desc
 			) A
 		) where rn between #{start} and #{end}
 	</select>
@@ -80,6 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select * from lecture
 				where cell_type=#{cell_type} and
 				<include refid="search" />
+				order by lecture_idx desc
 			) A
 		) where rn between #{start} and #{end}
 	</select>
