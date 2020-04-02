@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
+import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
@@ -114,6 +115,9 @@ public class MemberController {
 		}else if(location.equals("teacher")){
 			mav.setViewName("admin/teacher_member_list");
 		}else if(location.equals("request")){
+			List<MemberDTO> list2=memberService.listTeacher();
+			map.put("list2", list2);
+			mav.addObject("map", map);
 			mav.setViewName("admin/teacher_request_list");
 		}else {
 			mav.setViewName("admin/member_list");
@@ -124,5 +128,16 @@ public class MemberController {
 	@RequestMapping("teacherIsert.do")
 	public String teacherIsert() {
 		return "member/teacherJoin";
+	}
+	@RequestMapping("approval.do")
+	public String approval(String userid) {
+		memberService.approval(userid);
+		return "admin/teacher_request_list";
+	}
+	@RequestMapping("reject.do")
+	public String reject(String userid) {
+		System.out.println("reject.do 실행");
+		memberService.reject(userid);
+		return "admin/teacher_request_list";
 	}
 }

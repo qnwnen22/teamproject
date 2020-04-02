@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -73,4 +74,37 @@ public class PackagesController {
 			mav.setViewName("admin/packages_view");
 			return mav;
 		}
+	@RequestMapping(value="packagesUpdate.do",method= {RequestMethod.POST},
+			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
+	public String update(PackagesDTO dto) {
+		String packages_name = dto.getPackages_name();
+		String packages_text= dto.getPackages_text();
+		int packages_date = dto.getPackages_date();
+		int packages_price = dto.getPackages_price();
+		dto.setPackages_name(packages_name);
+		dto.setPackages_text(packages_text);
+		dto.setPackages_price(packages_price);
+		dto.setPackages_date(packages_date);
+		MultipartFile file1 = dto.getfile1();
+		String packages_image = file1.getOriginalFilename();
+		System.out.println("packages_image:"+packages_image);
+		if(packages_image != "") {
+			try {
+				packages_image = UploadFileUtils.uploadFile(packagesuploadPath,packages_image, file1.getBytes());
+				dto.setPackages_image(packages_image);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			packages_image = dto.getPackages_image();
+			dto.setPackages_image(packages_image);
+		}
+		packagesService.updatePackages(dto);
+		return "redirect:/packages/adminlist.do";
+	}
+	@RequestMapping("deletepackages.do")
+	public String delete(@RequestParam String packages_name) {
+			packagesService.deletePackages(packages_name);
+			return "redirect:/packages/adminlist.do";
+	}
 }

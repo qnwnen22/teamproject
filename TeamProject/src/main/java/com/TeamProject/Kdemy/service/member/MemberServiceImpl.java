@@ -51,4 +51,18 @@ public class MemberServiceImpl implements MemberService {
 	public int countMember(String keyword, String location) throws Exception {
 		return memberDao.countMember(keyword, location);
 	}
+	
+	@Override
+	public List<MemberDTO> listTeacher(){
+		return memberDao.listTeacher();
+	}
+	
+	@Override
+	public void approval(String userid) {
+		memberDao.approval(userid);
+	}
+	@Override
+	public void reject(String userid) {
+		memberDao.reject(userid);
+	}
 }

@@ -76,4 +76,18 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("location", location);
 		return sqlSession.selectOne("member.countMember", map);
 	}
+	@Override
+	public List<MemberDTO> listTeacher(){
+		return sqlSession.selectList("member.listTeacher");
+	}
+	
+	@Override
+	public void approval(String userid) {
+		sqlSession.update("member.approval",userid);
+	}
+	@Override
+	public void reject(String userid) {
+		sqlSession.delete("member.reject",userid);
+		sqlSession.update("member.rejectmember",userid);
+	}
 }

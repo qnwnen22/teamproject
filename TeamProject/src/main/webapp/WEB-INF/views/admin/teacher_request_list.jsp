@@ -8,6 +8,23 @@
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/fixed-topbar.jsp"%>
 <script type="text/javascript">
+	function requestMemberView(userid) {
+		var inputed = userid;
+		console.log(inputed);
+		$.ajax({
+			data : {
+				userid : inputed
+			},
+			url : "${path}/teacher/requestMemberView.do",
+			type : "POST",
+			success : function(data) {
+				if (data != null) {
+					$("#approvalModal").html(data);
+					$("#approvalModal").show();
+				}
+			}
+		});
+	}
 	function list(page) {
 		location.href = "${path}/member/list.do?curPage=" + page;
 	}
@@ -50,9 +67,9 @@
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${map.list}">
-					<tr>
+					<tr onclick="requestMemberView('${row.userid}')" style="cursor:pointer;" data-toggle="modal" data-target="#approvalModal">
 						<td>${row.userid}</td>
-						<td><a href="#"> ${row.username}</a></td>
+						<td>${row.username}</td>
 						<td>${row.phone}</td>
 						<td>${row.birthday}</td>
 						<td><fmt:formatDate value="${row.join_date}"
@@ -97,6 +114,7 @@
 			</nav>
 		</div>
 	</div>
+	<div class="modal" id="approvalModal"></div>
 	<br>
 	<%@ include file="../include/footer.jsp"%>
 </body>

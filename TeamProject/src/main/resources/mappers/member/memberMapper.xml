@@ -67,6 +67,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="location" />
 	</select>
 
+	<!-- 검색기능, sql태그는 다른 태그에 끼워넣을 수 있는 기능을 가지고 있음 -->
+	<sql id="search">
+		<choose>
+			<when test="keyword != '%'+''+'%' ">
+				where userid like #{keyword} or username like
+				#{keyword}
+			</when>
+			<otherwise>
+				<include refid="location" />
+			</otherwise>
+		</choose>
+	</sql>
 	<sql id="location">
 		<choose>
 			<when test="location == 'normal'">
@@ -82,16 +94,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</sql>
-	<!-- 검색기능, sql태그는 다른 태그에 끼워넣을 수 있는 기능을 가지고 있음 -->
-	<sql id="search">
-		<choose>
-			<when test="keyword != '%'+''+'%' ">
-				where userid like #{keyword} or username like
-				#{keyword}
-			</when>
-			<otherwise>
-				<include refid="location" />
-			</otherwise>
-		</choose>
-	</sql>
+	<select id="listTeacher" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from teacher
+	</select>
+	
+	<update id="approval">
+		update kdemymember set teacher='y'  where userid=#{userid}
+	</update>
+	
+	<delete id="reject">
+		delete from teacher where userid=#{userid}
+	</delete>
+	
+	<update id="rejectmember">
+		update kdemymember set teacher='n'  where userid=#{userid}
+	</update>
 </mapper>
