@@ -16,7 +16,7 @@ public class LectureDTO {
 	private String videofile; //영상 파일 이름
 	private String content; //설명
 	private Date upload_date; //업로드 날짜
-	private int price; //가겨
+	private int price; //가격
 	
 	//여기서 부터는 실시간/현장 강의 용 칼럼 
 	private String lecture_date; //강의 시작 날짜

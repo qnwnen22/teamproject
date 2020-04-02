@@ -204,36 +204,7 @@ public class LectureController {
 		
 		@RequestMapping(value="teacher_type1_insert.do",method= {RequestMethod.POST},
 				consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
-		public String teacher_type1_insert(LectureDTO dto) 
-				throws Exception {
-				//첨부 파일의 이름
-			    MultipartFile file1=dto.getFile1();
-				String main_img=file1.getOriginalFilename();
-				try {
-					main_img = UploadFileUtils.uploadFile(
-							uploadPath,main_img, file1.getBytes());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				//첨부 파일의 이름
-				MultipartFile file2=dto.getFile2();
-				String videofile=file2.getOriginalFilename();
-				try {
-					videofile = UploadFileUtils.uploadFile(uploadPath,videofile, file2.getBytes());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				dto.setMain_img(main_img);
-				dto.setVideofile(videofile);
-			lectureService.teacher_type1_insert(dto);
-			return "redirect:/lecture/video_List.do";
-		}
-		
-		
-		@RequestMapping(value="teacher_type3_insert.do",method= {RequestMethod.POST},
-				consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-		public String teacher_type3_insert(LectureDTO dto) throws Exception {
-			System.out.println(dto.getFile1());
+		public String teacher_type1_insert(LectureDTO dto) throws Exception {			
 			MultipartFile file1=dto.getFile1();
 			String main_img=file1.getOriginalFilename();
 			try {
@@ -242,21 +213,33 @@ public class LectureController {
 				e.printStackTrace();
 			}
 			dto.setMain_img(main_img);
+			
+			MultipartFile file2=dto.getFile2();
+			String videofile=file2.getOriginalFilename();
+			try {
+				videofile=UploadFileUtils.uploadFile(uploadPath, videofile, file2.getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			dto.setVideofile(videofile);
 
-			System.out.println(dto.getMain_category());
-			System.out.println(dto.getSub_category());
-			System.out.println(dto.getUserid());
-			System.out.println(dto.getSubject());
-			System.out.println(dto.getPrice());
-			System.out.println(dto.getContent());
-			System.out.println(dto.getLecture_date());
-			System.out.println(dto.getLecture_start());
-			System.out.println(dto.getLecture_time());
-			System.out.println(dto.getLecture_address());
-			System.out.println(dto.getLecture_address2());
-			
+			lectureService.teacher_type1_insert(dto);
+			return "redirect:/lecture/video_List.do";
+		}
+		
+		
+		@RequestMapping(value="teacher_type3_insert.do",method= {RequestMethod.POST},
+				consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+		public String teacher_type3_insert(LectureDTO dto) throws Exception {
+			MultipartFile file1=dto.getFile1();
+			String main_img=file1.getOriginalFilename();
+			try {
+				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			dto.setMain_img(main_img);
 			lectureService.teacher_type3_insert(dto);
-			
 			return "redirect:/lecture/offline_list.do";
 		}
 		@RequestMapping("teacher_type2_insert.do")
