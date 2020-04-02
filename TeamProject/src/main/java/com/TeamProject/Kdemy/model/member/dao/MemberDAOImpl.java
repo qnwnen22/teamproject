@@ -21,8 +21,24 @@ public class MemberDAOImpl implements MemberDAO {
 	public void insertMember(MemberDTO dto) {
 		sqlSession.insert("member.insertMember",dto);
 	}
+	
+//	@Override
+//	public MemberDTO getMember(MemberDTO dto) {
+//		return sqlSession.selectOne("member.getMember",dto);
+//	}
+	
+	@Override
+	public void verifyMember(MemberDTO dto) {
+		sqlSession.update("member.verifyMember", dto);
+		
+	}
+	
 
-
+	@Override
+	public int idCheck(MemberDTO dto) {
+		return sqlSession.selectOne("member.idCheck",dto);
+	}
+	
 	@Override
 	public String passwdCheck(MemberDTO dto) {
 	    String result="";	
@@ -44,15 +60,24 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 
+
+	@Override
+	public MemberDTO searchID(MemberDTO dto) {
+		return sqlSession.selectOne("member.searchID",dto);
+	}
+
+	@Override
+	public void updatePW(MemberDTO dto) {
+		sqlSession.update("member.updatePW",dto);
+		
+	}
+	
 	@Override
 	public MemberDTO kdemyLogin(MemberDTO dto) {
 	  return sqlSession.selectOne("member.kdemyLogin",dto);
 	}
 
-	@Override
-	public int idCheck(MemberDTO dto) {
-		return sqlSession.selectOne("member.idCheck",dto);
-	}
+
 
 //	@Override
 //	public List<MemberDTO> list() {

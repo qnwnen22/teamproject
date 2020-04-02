@@ -23,4 +23,10 @@ public interface MemberService {
 	public void approval(String userid);
 	
 	public void reject(String userid);
+	
+	public void verifyMember(MemberDTO dto);
+
+	public MemberDTO searchID(MemberDTO dto);
+
+	public void updatePW(MemberDTO dto);
 }

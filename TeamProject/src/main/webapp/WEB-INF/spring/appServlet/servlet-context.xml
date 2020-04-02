@@ -27,6 +27,10 @@
 		mapping="/summernote/**" />
 	<resources location="/WEB-INF/views/upload/"
 		mapping="/upload/**" />
+	<resources location="/WEB-INF/views/member/" mapping="/member/**" />
+	<resources location="/WEB-INF/views/include/" mapping="/include/**" />
+	<resources location="/WEB-INF/views/summernote/" mapping="/summernote/**" />
+	<resources location="/WEB-INF/views/upload/" mapping="/upload/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->

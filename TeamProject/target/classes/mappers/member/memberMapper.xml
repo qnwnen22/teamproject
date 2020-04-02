@@ -22,7 +22,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{address},#{address2}
 		)
 	</insert>
-
+	
+<!-- 	<select id="getMember" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from kdemymember
+		where userid=#{userid} and passwd=#{passwd}
+	</select> -->
+	
+	<update id="verifyMember">
+		update kdemymember set verify='y' where useremail=#{useremail}
+	</update>
+	
+    <select id="idCheck" resultType="Int">
+		select COUNT(*) from kdemymember
+		WHERE userid=#{userid}
+	</select>
 
 	<select id="passwdCheck"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
@@ -36,10 +49,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid}
 	</select>
 
-	<select id="idCheck" resultType="Int">
-		select COUNT(*) from kdemymember
-		WHERE userid=#{userid}
+	<select id="searchID" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+	    select * from kdemymember
+		where username=#{username} and useremail=#{useremail} 
 	</select>
+	
+	<update id="updatePW">
+		update kdemymember set passwd=#{passwd}
+		where userid=#{userid} and useremail=#{useremail}
+	</update>
+	
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />

@@ -19,6 +19,11 @@ public class MemberServiceImpl implements MemberService {
 	public void insertMember(MemberDTO dto) {
 		memberDao.insertMember(dto);
 	}
+	
+	@Override
+	public void verifyMember(MemberDTO dto) {
+		 memberDao.verifyMember(dto);
+		}
 
 	@Override
 	public MemberDTO kdemyLogin(MemberDTO dto) {
@@ -36,12 +41,17 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.passwdCheck(dto);
 	}
 	
-//	@Override
-//	public List<MemberDTO> list() {
-//		return memberDao.list();
-//		
-//	}
+	@Override
+	public MemberDTO searchID(MemberDTO dto) {
+		return memberDao.searchID(dto);
+	}
 	
+	@Override
+	public void updatePW(MemberDTO dto) {
+		memberDao.updatePW(dto);
+		
+	}
+
 	@Override
 	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception {
 		return memberDao.listAll(location, keyword, start,end);
