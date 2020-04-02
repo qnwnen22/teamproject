@@ -486,7 +486,7 @@
 																		style="display: initial !important;">
 																		<a
 																			class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-																			href="${path}/member/write.do"
+																			href="${path}/member/join.do"
 																			data-ga-category="header"> 무료회원가입 </a>
 																	</div>
 																</c:when>
