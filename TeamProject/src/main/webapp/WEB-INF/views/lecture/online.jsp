@@ -66,6 +66,53 @@ function insert2(){
 		main_category.focus();
 		return false;
 	}
+	if(sub_category.value==""){
+		alert("서브 카테고리를 선택해 주세요.");
+		sub_category.focus();
+		return false;
+	}
+	/* if(userid.value==""){
+		alert("선택해 주세요.");
+		userid.focus();
+		return false;
+	} */
+	if(subject.value==""){
+		alert("제목을 입력해주세요.");
+		subject.focus();
+		return false;
+	}
+	if(price.value==""){
+		alert("가격을 입력해주세요.");
+		price.focus();
+		return false;
+	}
+	if(file1.value==""){
+		alert("메인 이미지로 사용할 파일을 선택해주세요.");
+		file1.focus();
+		return false;
+	}
+	if(file2.value==""){
+		alert("상품으로 등록할 영상을 선택해주세요.");
+		file2.focus();
+		return false;
+	}
+	if(lecture_date.value==""){
+		alert("강의를 시작할 날짜를 지정해주세요.");
+		lecture_date.focus();
+		return false;
+	}
+	if(lecture_start.value==""){
+		alert("강의를 진행할 시간을 지정해주세요.");
+		lecture_start.focus();
+		return false;
+	}
+	if(lecture_time.value==""){
+		alert("메인 카테고리를 선택해 주세요.");
+		lecture_time.focus();
+		return false;
+	}
+	
+	
 	alert("test중");
 }
 
@@ -109,12 +156,12 @@ function insert2(){
       <!-- 아이디 -->
       <div class="form-group">
          <label for="userid">강사아이디</label>
-         <input class="form-control" id="userid" name="userid" placeholder="상품명 입력해 주세요">
+         <input class="form-control" id="userid" name="userid" value="${sessionScope.userid}" readonly>
       </div>
       <!-- 강의 제목 -->
       <div class="form-group">
          <label for="subject">강의제목</label> <input class="form-control"
-            id="subject" name="subject" placeholder="상품명 입력해 주세요">
+            id="subject" name="subject" placeholder="강의 제목을 입력해주세요.">
             </div>
       <!-- 가격 -->   
       <div class="form-group">
@@ -150,6 +197,13 @@ function insert2(){
       <div class="form-group">
          <label for="lecture_start">강의 시작 시간</label>
          <input type="text" class="form-control"   name="lecture_start" id="lecture_start">
+         <select>
+         	<option>00 : 00</option> <option>01 : 00</option> <option>02 : 00</option> <option>03 : 00</option> 
+         	<option>04 : 00</option> <option>05 : 00</option> <option>06 : 00</option> <option>07 : 00</option> 
+         	<option>08 : 00</option> <option>09 : 00</option> <option>10 : 00</option> <option>11 : 00</option> 
+         	
+         	
+         </select>
       </div>
       <!-- 강의 시간 -->
       <div class="form-group">
