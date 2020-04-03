@@ -5,6 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
+	
+	<!-- 첨부파일 레코드 삭제 -->
+	<delete id="deleteFile">
+	  delete from attach
+		where fullName=#{fullName}
+	</delete>
+	
+	
 	<insert id="insertMember">
 		insert into kdemymember
 		(usernum, userid,
@@ -12,14 +20,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		username,
 		birthday, useremail,
 		phone, postcode,
-		address, address2)
+		address, address2,thumbnail)
 		values
 		(
 		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
 		#{passwd},#{username},
 		#{birthday},#{useremail},
 		#{phone},#{postcode},
-		#{address},#{address2}
+		#{address},#{address2},#{thumbnail}
 		)
 	</insert>
 	
