@@ -1,10 +1,12 @@
 package com.TeamProject.Kdemy.controller.lecture;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,13 +76,64 @@ public class LectureController {
 		mav.addObject("map", map); //ModelAndView에 map을 저장
 		return mav;
 	}
+
+	@RequestMapping("all_list_search.do")
+	public ModelAndView all_list(
+			@RequestParam(defaultValue="") String keyword,
+			@RequestParam(defaultValue="1") int curPage
+			) throws Exception {
+		int count = lectureService.searchCount(keyword);
+		LecturePager pager=new LecturePager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<LectureDTO> list=lectureService.searchList(keyword, start, end);
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		map.put("keyword", keyword);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("map",map);
+		mav.setViewName("lecture/all_list_search");
+		
+		return mav;
+	}
+	@RequestMapping("all_list.do")
+	public ModelAndView all_list(
+			@RequestParam(defaultValue="1")int curPage,	
+			@RequestParam(defaultValue="") String admin) throws Exception {
+		int count=lectureService.countList();
+		LecturePager pager=new LecturePager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		
+		List<LectureDTO> list=lectureService.lecture_list(start, end);
+		ModelAndView mav=new ModelAndView();
+		
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("list", list); //map에 자료 저장
+		map.put("count", count);
+		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
+		
+		mav.addObject("map",map);
+		if(admin.equals("admin")) {
+			mav.setViewName("admin/all_list");
+		}else {
+			mav.setViewName("lecture/all_list");
+		}
+		return mav;
+	}
+	
+	
+	
 	@RequestMapping("video_list_search.do")
 	public ModelAndView video_list_search(
 			@RequestParam(defaultValue="") String keyword,
 			@RequestParam(defaultValue="1") int curPage
 			) throws Exception {
 		String cell_type="1";
-		System.out.println("키워드 : "+keyword);
 		int count=lectureService.searchCount(cell_type, keyword);
 		LecturePager pager=new LecturePager(count, curPage);
 		int start=pager.getPageBegin();
@@ -100,7 +153,9 @@ public class LectureController {
 	}
 	//실시간 강의 리스트 출력 메소드
 		@RequestMapping("online_list.do")
-		public ModelAndView online_list(@RequestParam(defaultValue="1")int curPage,	@RequestParam(defaultValue="") String admin) throws Exception {
+		public ModelAndView online_list(
+				@RequestParam(defaultValue="1")int curPage,	
+				@RequestParam(defaultValue="") String admin) throws Exception {
 			String cell_type="2";
 			int count=lectureService.countList(cell_type);
 			LecturePager pager=new LecturePager(count, curPage);
@@ -126,10 +181,8 @@ public class LectureController {
 		@RequestMapping("online_list_search.do")
 		public ModelAndView online_list_search(
 				@RequestParam(defaultValue="") String keyword,
-				@RequestParam(defaultValue="1") int curPage
-				) throws Exception {
+				@RequestParam(defaultValue="1") int curPage	) throws Exception {
 			String cell_type="2";
-			System.out.println("키워드 : "+keyword);
 			int count=lectureService.searchCount(cell_type, keyword);
 			LecturePager pager=new LecturePager(count, curPage);
 			int start=pager.getPageBegin();
@@ -183,7 +236,6 @@ public class LectureController {
 				) throws Exception {
 			String cell_type="3";
 			
-			System.out.println("키워드 : "+keyword);
 			int count=lectureService.searchCount(cell_type, keyword);
 			LecturePager pager=new LecturePager(count, curPage);
 			int start=pager.getPageBegin();
@@ -276,7 +328,6 @@ public class LectureController {
 //			0이면 결제 유도(다른 view 페이지로 이동 후 결제가 완료되면 다시 여기로)
 			
 			dto.setLecture_idx(lecture_idx);
-			System.out.println(lecture_idx);
 			LectureDTO dto2=lectureService.lecture_list_view(lecture_idx);
 			ModelAndView mav=new ModelAndView();
 			mav.addObject("dto",dto2);
@@ -296,5 +347,54 @@ public class LectureController {
 			}
 			return mav;
 		}
-	
+
+		// 강의 관리 페이지 이동
+		@RequestMapping("myLecturePage.do")
+		public ModelAndView myLecturePage(String userid, HttpSession session) {
+//			LectureDTO dto=new LectureDTO();
+//			dto.setUserid(userid);
+			ModelAndView mav=new ModelAndView();
+//			로그인된 userid의 세션이 파라미터의 userid와 값이 다르면 예외처리
+			if(!((String)session.getAttribute("userid")).equals(userid)) {
+				mav.setViewName("home");
+				return mav;
+			}
+			
+			List<LectureDTO> list=lectureService.myLectureList(userid);
+			
+			mav.addObject("list",list);
+			mav.setViewName("lecture/myLecturePage");
+			return mav;
+		}
+		
+		//강의 지우기
+		@RequestMapping("lectureDelete.do")
+		public String lectureDelete(int lecture_idx, HttpSession session) {
+			
+			//파일 지우기 처리
+			LectureDTO dto=lectureService.selectFile(lecture_idx);
+
+			File file1=new File(uploadPath+dto.getMain_img());
+			String front=dto.getMain_img().substring(0, 12);//0~11까지
+			String end=dto.getMain_img().substring(14);//14부터 끝까지
+			new File(uploadPath+(front+end).replace(
+					'/',File.separatorChar)).delete();
+			if(file1.exists()) {
+				file1.delete();
+			}else {
+				logger.info("파일이 없습니다");
+			}
+
+			File file2=new File(uploadPath+dto.getVideofile());
+			
+			if(file2.exists()) {
+				file2.delete();
+			}else {
+				logger.info("이미지 파일이 존재하지 않습니다.");
+			}
+			
+			lectureService.lectureDelete(lecture_idx);
+			String userid=(String)session.getAttribute("userid");
+			return "redirect:/lecture/myLecturePage.do?userid="+userid;
+		}
 }
