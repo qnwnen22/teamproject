@@ -48,7 +48,7 @@ $(document).ready(function(){
 	  if (socket.readyState !== 1) return;
 	    	  var msg = $('input#msg').val();
 	    	  socket.send(msg);
-	    	  msg.val("");
+	    	  $('input#msg').val();
 	    });
 		
 });

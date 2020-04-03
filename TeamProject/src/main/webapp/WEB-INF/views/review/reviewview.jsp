@@ -76,6 +76,47 @@
 			document.form1.submit();
 		}
 	}
+
+
+	$(function(){ //자동으로 실행되는 코드
+		//댓글 목록 출력
+		listReply();
+	
+		
+		//댓글 쓰기
+		$("#btnReply").click(function(){
+			var replytext=$("#replytext").val(); //댓글 내용
+			var bno="${dto.bno}"; //게시물 번호
+			var param={ "replytext": replytext, "bno": bno};
+			$.ajax({
+				type: "post",
+				url: "${path}/review/replyinsert.do",
+				data: param,
+				success: function(){
+					listReply();
+					$("#replytext").val(""); 
+				}
+			});
+		});
+	});
+
+	$(document).keydown(function(event){
+		if(event.keyCode ==13){
+			$("#btnReply").click();
+			}
+		});
+
+		function listReply(){
+			$.ajax({
+				type: "get",
+				url: "${path}/review/replylist.do?bno=${dto.bno}",
+				success: function(result){
+					$("#replyList").html(result);
+					
+				}
+			});
+		}
+		
 </script>
 
 </head>
@@ -129,6 +170,9 @@
 				</div>
 			</form>
 			<br>
+			
+			<div id="replyList" style="border: 1px solid lightgray;">
+			</div>
 
 
 
@@ -139,7 +183,7 @@
 						<div
 							class="mb-3 input-group row justify-content-md-center">
 							<input type="text" class="form-control"
-								placeholder="댓글을 입력해주세요">
+								placeholder="댓글을 입력해주세요" id="replytext">
 							<div class="input-group-append">
 								<button type="button"
 									class="justify-content-end btn-outline-secondary btn btn-sm btn-primary font-color-fff btn-normal-silver"

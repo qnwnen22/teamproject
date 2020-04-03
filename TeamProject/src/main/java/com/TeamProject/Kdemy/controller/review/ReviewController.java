@@ -7,24 +7,28 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.TeamProject.Kdemy.model.notice.dto.NoticeDTO;
+import com.TeamProject.Kdemy.model.review.dto.ReplyDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
+import com.TeamProject.Kdemy.service.review.ReplyService;
 import com.TeamProject.Kdemy.service.review.ReviewService;
 import com.TeamProject.Kdemy.service.review.Review_Pager;
 
-@Controller
+@RestController
 @RequestMapping("review/*")
 public class ReviewController {
 	
 	@Inject
 	ReviewService reviewService;
+	
+	@Inject
+	ReplyService replyService;
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
@@ -130,5 +134,32 @@ public class ReviewController {
 		reviewService.delete(bno);
 		return "redirect:/review/list.do";//목록으로 이동
 	}
+	
+	@RequestMapping("replyinsert.do")
+	public void replyinsert(ReplyDTO dto, HttpSession session) {
+		String userid=(String)session.getAttribute("userid");
+		dto.setReplyer(userid);
+		replyService.create(dto);
+	}
+	
+	@RequestMapping("replylist.do")
+	public ModelAndView replylist(int bno, ModelAndView mav) {
+		List<ReplyDTO> list=replyService.list(bno);
+		mav.setViewName("review/reply_list");
+		mav.addObject("replylist", list);
+		return mav;
+	}
+	
+	@RequestMapping("delete/{rno}")
+	public String delete(@PathVariable("rno") int rno,  
+			@ModelAttribute ReplyDTO dto, HttpSession session) throws Exception{
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		replyService.delete(rno);
+		return "redirect:/review/list.do";//목록으로 이동
+	}
+	
+	
+	
 
 }

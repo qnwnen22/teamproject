@@ -63,7 +63,7 @@ $(document).ready(function() {
 function GoList(){
 	var go_confirm=confirm("입력하신 내용은 저장이 되지 않습니다. 그래도 나가시겠습니까?");
 	if(go_confirm==true){
-	location.href="${path}/review/list.do";
+	location.href="${path}/review/view.do?bno=${bno}";
 		}
 	}
 

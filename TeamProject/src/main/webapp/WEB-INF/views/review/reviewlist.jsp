@@ -127,7 +127,7 @@ height: 50% !important;
 						<td class="col-3"><a
 							href="${path}/review/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
 								test="${rows.cnt>0}">
-								<span style="color: blue;" class="badge badge-primary">${rows.cnt}</span>
+								<span style="color: white;" class="badge badge-pill badge-dark">${rows.cnt}</span>
 							</c:if></td>
 						<td class="col-2">${rows.writer}</td>
 						<td class="col-2"><fmt:formatDate value="${rows.regdate}"
