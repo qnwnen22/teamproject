@@ -1,0 +1,126 @@
+
+--!!!!!!!!게시판!!!!!!!!!!!--
+
+drop table kdemyreview cascade constraints;
+
+--게시판 테이블
+create table kdemyreview (
+bno number not null, --게시물번호
+subject varchar2(30) not null,
+teacher varchar2(30) not null,
+title varchar2(200) not null, --제목
+content clob, --본문
+writer varchar2(50) not null, --작성자
+regdate date default sysdate, --작성일자
+viewcnt number default 0, --조회수
+love number default 0,
+show char(1) default 'Y',
+primary key(bno)
+);
+
+delete from kdemyreview;
+
+
+
+insert into kdemyreview (bno,title,content,writer) values
+(1,'제목','내용','kim');
+
+select * from kdemyreview;
+
+COMMIT;
+
+
+--댓글 테이블
+drop table kdemyreview_reply cascade constraints;
+create table kdemyreview_reply (
+rno number not null primary key,
+bno number default 0,
+replytext varchar2(1000) not null,
+replyer varchar2(50) not null,
+regdate date default sysdate,
+updatedate date default sysdate
+);
+--foreign key 제약조건 추가
+alter table kdemyreview_reply add constraint fk_review
+foreign key(bno) references kdemyreview(bno);
+
+create sequence seq_kdemyreview
+start with 1001
+increment by 1;
+drop sequence seq_kdemyreview;
+
+--시퀀스 생성
+drop sequence review_reply_seq;
+create sequence review_reply_seq
+start with 1
+increment by 1;
+
+--첨부파일 테이블
+--drop table attach cascade constraints;
+create table kdemyreview_attach (
+fullName varchar2(150) not null, --첨부파일 이름
+bno number not null, --board 테이블의 글번호
+regdate date default sysdate, --업로드 날짜
+primary key(fullName) --uuid적용한 파일이름
+);
+
+--bno 컬럼에 foreign key 설정
+alter table kdemyreview_attach add constraint fk_review_attach
+foreign key(bno) references kdemyreview(bno);
+
+drop table kdemyreview_attach;
+select bno,title,writer,username,regdate,viewcnt
+from kdemyreview b, kdemymember m
+where b.writer=m.userid
+order by bno desc;
+
+select * from kdemymember;
+
+delete from kdemyreview_attach;
+commit;
+
+
+--페이지 나누기 테스트를 위해 레코드 입력
+declare --선언부
+    i number := 1;
+begin --실행부
+    while i<=1000 loop
+        insert into kdemyreview (bno,subject,teacher,title,content,writer)
+        values
+        ( (select nvl(max(bno)+1,1) from kdemyreview)
+        ,'과목'||i,'선생님'||i,'제목'||i, '내용'||i, '관리자');
+        i := i+1; --조건 변경
+    end loop;
+end;
+/
+
+select * from kdemyreview order by bno desc;
+
+--레코드 갯수 확인
+select count(*) from kdemyreview;
+
+commit;
+
+delete from kdemyreview ;
+
+
+
+--글쓰기를 하기 위해
+--시퀀스 삭제
+drop sequence seq_kdemyreview;
+
+--1000번부터 시작하는 시퀀스 생성
+create sequence seq_kdemyreview
+start with 1001
+increment by 1;
+commit;
+
+select*from kdemyreview_reply;
+
+select count(*) from kdemyreview_reply where bno=1001;
+
+select bno,subject, b.teacher, title,regdate,content,viewcnt,username,writer   from kdemyreview b, kdemymember m   where b.writer=m.userid and bno=1021;
+
+insert into kdemyreview_reply (rno,bno,replytext,replyer) values
+		( review_reply_seq.nextval, 1021, 'zzzz', 'ansdlans' );
+
