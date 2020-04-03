@@ -39,16 +39,59 @@ public class LectureServiceImpl implements LectureService {
 	public int searchCount(String cell_type, String keyword) {
 		return lectureDao.searchCount(cell_type, keyword);
 	}
+
+	@Override
+	public int searchCount(String keyword) {
+		return lectureDao.searchCount(keyword);
+	}
+
+	
 	@Override
 	public List<LectureDTO> searchList(String cell_type, String keyword, int start, int end) {
 		return lectureDao.searchList(cell_type, keyword, start, end);
 	}
+	
+	@Override
+	public List<LectureDTO> searchList(String keyword, int start, int end) {
+		return lectureDao.searchList(keyword, start, end);
+	}
+
 	@Override
 	public int countList(String cell_type) {
 		return lectureDao.countList(cell_type);
 	}
+	
 	@Override
 	public List<LectureDTO> lecture_list(String cell_type, int start, int end) {
 		return lectureDao.lecture_list(cell_type, start, end);
 	}
+	
+	@Override
+	public List<LectureDTO> lecture_list(int start, int end) {
+		return lectureDao.lecture_list(start, end);
+	}
+	
+	
+	@Override
+	public int countList() {
+		return lectureDao.countList();
+	}
+
+	//강사 페이지
+	@Override
+	public List<LectureDTO> myLectureList(String userid) {
+		return lectureDao.myLectureList(userid);
+	}
+
+	@Override
+	public void lectureDelete(int lecture_idx) {
+		lectureDao.lectureDelete(lecture_idx);
+	}
+
+	@Override
+	public LectureDTO selectFile(int lecture_idx) {
+		return lectureDao.selectFile(lecture_idx);
+	}
+
+	
 }

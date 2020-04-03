@@ -21,7 +21,6 @@ public class LectureDAOImpl implements LectureDAO {
 	public List<LectureDTO> lecture_list(String cell_type, int start, int end) {
 		HashMap<String, Object> map=new HashMap<>();
 		map.put("cell_type", cell_type);
-		map.put("cell_type", cell_type);
 		map.put("start", start);
 		map.put("end",end);
 		return sqlSession.selectList("lecture.lecture_list",map);
@@ -56,6 +55,14 @@ public class LectureDAOImpl implements LectureDAO {
 		map.put("keyword", "%"+keyword+"%");
 		return sqlSession.selectOne("lecture.searchCount",map);
 	}
+	
+	@Override
+	public int searchCount(String keyword) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectOne("lecture.searchCount_all",map);
+	}
+	
 	@Override
 	public List<LectureDTO> searchList(String cell_type, String keyword, int start, int end) {
 		HashMap<String,Object> map=new HashMap<>();
@@ -68,5 +75,44 @@ public class LectureDAOImpl implements LectureDAO {
 	@Override
 	public int countList(String cell_type) {
 		return sqlSession.selectOne("lecture.countList",cell_type);
+	}
+
+	
+
+	@Override
+	public List<LectureDTO> searchList(String keyword, int start, int end) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("lecture.searchList_all",map);
+	}
+
+	@Override
+	public int countList() {
+		return sqlSession.selectOne("lecture.countList_all");
+	}
+
+	@Override
+	public List<LectureDTO> lecture_list(int start, int end) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("start", start);
+		map.put("end",end);
+		return sqlSession.selectList("lecture.lecture_list_all",map);
+	}
+
+	@Override
+	public List<LectureDTO> myLectureList(String userid) {
+		return sqlSession.selectList("lecture.myLectureList",userid);
+	}
+
+	@Override
+	public void lectureDelete(int lecture_idx) {
+		sqlSession.delete("lecture.lectureDelete",lecture_idx);
+	}
+
+	@Override
+	public LectureDTO selectFile(int lecture_idx) {
+		return sqlSession.selectOne("lecture.selectFile",lecture_idx);
 	}
 }
