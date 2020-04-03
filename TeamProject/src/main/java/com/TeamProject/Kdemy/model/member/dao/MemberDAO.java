@@ -14,13 +14,15 @@ public interface MemberDAO {
 
 	public int idCheck(MemberDTO dto);
 	
-//	public List<MemberDTO> list();
-	
 	public List<MemberDTO> listAll(String location,String keyword, int start, int end) throws Exception;
 	
 	public int countMember(String keyword, String location) throws Exception;
-
-//	public MemberDTO getMember(MemberDTO dto);
+	
+	public List<MemberDTO> listTeacher();
+	
+	public void approval(String userid);
+	
+	public void reject(String userid);
 
 	public void verifyMember(MemberDTO dto);
 

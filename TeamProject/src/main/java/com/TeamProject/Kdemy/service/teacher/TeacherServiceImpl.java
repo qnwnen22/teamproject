@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.TeamProject.Kdemy.model.packages.dto.PackagesDTO;
 import com.TeamProject.Kdemy.model.teacher.dao.TeacherDAO;
 import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 
@@ -25,5 +26,8 @@ public class TeacherServiceImpl implements TeacherService {
 		teacherDao.member_teacherUpdate(dto);
 	}
 	
-	
+	@Override
+	public TeacherDTO requestMemberView(String userid) {
+		return teacherDao.requestMemberView(userid);
+	}
 }

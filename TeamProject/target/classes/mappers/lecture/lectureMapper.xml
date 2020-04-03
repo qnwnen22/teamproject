@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(lecture_idx, cell_type, main_category, sub_category,
 		userid, subject, main_img, videofile, content, price)
 		values ((select nvl(max(lecture_idx)+1,1) from lecture),
-		#{cell_type}, #{main_category}, #{sub_category},
+		'1', #{main_category}, #{sub_category},
 		#{userid}, #{subject}, #{main_img}, #{videofile}, #{content}, #{price})
 	</insert>
 	<insert id="teacher_type2_insert">

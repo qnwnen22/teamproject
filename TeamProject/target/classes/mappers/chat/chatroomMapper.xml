@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="chatroom">
+
+  <insert id="createRoom">
+    insert into CHATROOM
+       (chatroom_id,chatroom_name,create_user_id)
+       values (
+       (select nvl(max(chatroom_id)+1,1) from CHATROOM)
+       ,#{chatroom_name}
+       ,#{create_user_id})
+  </insert>
+	<select id="chatRoomListAll" resultType="com.TeamProject.Kdemy.model.chat.dto.ChatRoomDTO">
+	  select * from CHATROOM
+	</select>
+	
+	<select id="chatRoomView" resultType="com.TeamProject.Kdemy.model.chat.dto.ChatRoomDTO">
+	  select * from CHATROOM where chatroom_id=#{chatroom_id}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

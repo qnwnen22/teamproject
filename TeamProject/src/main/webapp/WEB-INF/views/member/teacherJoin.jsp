@@ -7,13 +7,174 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
 </head>
+<script type="text/javascript">  
+var submenu0 = new Array("-전체-");
+var submenu1 = new Array("-전체-");
+var submenu2 = new Array("일반고","특성화고","특수목적고","자율고","기타");
+var submenu3 = new Array("전문대학","대학(4년제)");
+
+var submenuvalue0 = new Array("");
+var submenuvalue1 = new Array("");
+var submenuvalue2 = new Array("100362","100363","100364","100365","100366");
+var submenuvalue3 = new Array("100322","100323");
+
+/* var highschoolbigo0 = new Array("일반고");
+var highschoolbigo1 = new Array("대안교육","직업교육","기타");
+var highschoolbigo2 = new Array("과학계열","외국어국제계열","예술체육계열","마이스터고");
+var highschoolbigo3 = new Array("자율형사립","자율형공립");
+var highschoolbigo4 = new Array("영재학교");
+
+var highschoolbigovalue0 = new Array("104228");
+var highschoolbigovalue1 = new Array("100368","100369","100370");
+var highschoolbigovalue2 = new Array("100371","100372","100373","100374");
+var highschoolbigovalue3 = new Array("100375","100376");
+var highschoolbigovalue4 = new Array("100377");
+
+
+var univschoolbigo0 = new Array("전문대학","기능대학(폴리텍대학)","사이버대학(2년제)","각종대학(전문)");
+var univschoolbigo1 = new Array("일반대학","교육대학","산업대학","사이버대학(4년제)","각종대학(대학)");
+
+var univschoolbigovalue0 = new Array("100324","100325","100326","100327");
+var univschoolbigovalue1 = new Array("100328","100329","100330","100331","100332"); */
+
+
+function sch1change(item){
+    var temp, i=0, j=0;
+    var ccount, cselect, cvalue;
+
+    temp = document.school_search_form.sch1;
+    
+    for (i=(temp.options.length-1) ; i>0 ; i--){ temp.options[i] = null; }
+    eval('ccount = submenu' + item + '.length');
+    for (j=0 ; j<ccount ; j++) {
+        eval('cselect = submenu' + item + '[' + j + '];');
+        eval('cvalue = submenuvalue' + item + '[' + j + '];');
+        temp.options[j]= new Option(cselect,cvalue); 
+    }
+    temp.options[0].selected=true;
+    return true;
+}
+
+
+/* function sch2change(item){
+    var temp, i=0, j=0;
+    var ccount, cucount, cselect, cvalue;
+
+    temp1 = document.school_search_form.sch1;
+
+    temp = document.school_search_form.sch2;
+    for (i=(temp.options.length-1) ; i>0 ; i--){ temp.options[i] = null; }
+    eval('ccount = highschoolbigo' + item + '.length');
+    
+    for (j=0 ; j<ccount ; j++) {
+        eval('cselect = highschoolbigo' + item + '[' + j + '];');
+        eval('cvalue = highschoolbigovalue' + item + '[' + j + '];');
+        temp.options[j]= new Option(cselect,cvalue); 
+    }
+    console.log(ccount);
+    temp.options[0].selected=true;
+    return true;
+}
+ */
+
+
+
+function drawChart(){
+	//차트 그리기에 필요한 json 데이터 로딩
+	var jsonData=$.ajax({
+		url: "${path}/chart/cart_money_list.do",
+		dataType: "json",
+		async: false //동기식처리(순차적 처리:데이터를 다부른 후 챠트출력하기 위해)
+	}).responseText;
+	console.log(jsonData);//콘솔에도 출력해봄
+	//json => 데이터테이블
+	var data=new google.visualization.DataTable(jsonData);
+	console.log("데이터 테이블:"+data);
+		var chart=new google.visualization.PieChart(
+			document.getElementById("chart_div")); 
+/* 	var chart=new google.visualization.LineChart(
+			document.getElementById("chart_div")); */
+/* 	var chart=new google.visualization.ColumnChart(
+			document.getElementById("chart_div")); */	
+	chart.draw(data, {
+		title: "차트 예제",
+		//curveType: "function", //곡선 처리		
+		width: 600,
+		height: 440
+	});
+}
+ </script>
 <body>
 	<%@ include file="../include/fixed-topbar.jsp"%>
-
+<a href="${path}/chatroom/room">채팅방만들기</a>
+<a href="${path}/chatroom/chatRoomList.do">채팅방리스트이동</a>
 	<div class="container-lg joinDiv">
 		<div class="page-header col-xl-8 offset-xl-2 text-center">
 			<h2>전문가등록</h2>
 		</div>
+	<form name="school_search_form">	
+		<div class="form-horizontal" id="search-block">
+	<div class="margin-bottom-5">
+		<select class="form-control form-group-margin"
+			data-bind="value: region" name="region" placeholder="지역">
+			<option value="">전체</option>
+			<option value="100260">서울특별시</option>
+			<option value="100267">부산광역시</option>
+			<option value="100269">인천광역시</option>
+			<option value="100271">대전광역시</option>
+			<option value="100272">대구광역시</option>
+			<option value="100273">울산광역시</option>
+			<option value="100275">광주광역시</option>
+			<option value="100276">경기도</option>
+			<option value="100278">강원도</option>
+			<option value="100280">충청북도</option>
+			<option value="100281">충청남도</option>
+			<option value="100282">전라북도</option>
+			<option value="100283">전라남도</option>
+			<option value="100285">경상북도</option>
+			<option value="100291">경상남도</option>
+			<option value="100292">제주도</option>
+		</select>
+	</div>
+	<div class="margin-bottom-5">
+		<select class="form-control form-group-margin"
+			data-bind="value: gubun" name="gubun" placeholder="구분" onChange="javascript:sch1change(document.school_search_form.gubun.options.selectedIndex)"> 
+			<option value="elem_list">초등학교</option>
+			<option value="midd_list">중학교</option>
+			<option value="high_list">고등학교</option>
+			<option value="univ_list">대학교</option>
+		</select>
+	</div>
+
+	
+	<div class="margin-bottom-5">
+		<select class="form-control form-group-margin"
+			data-bind="value: sch1" name="sch1" placeholder="학교유형1" onChange="javascript:sch2change(document.school_search_form.sch1.options.selectedIndex)">
+			<option value="">전체</option>
+		</select>
+	</div>
+	
+	<div class="margin-bottom-5">
+		<select class="form-control form-group-margin"
+			data-bind="value: sch1" name="sch2" placeholder="학교유형2">
+			<option value="">전체</option>
+		</select>
+	</div>
+	
+	
+
+	<div class="margin-bottom-5">
+		<input class="form-control" data-bind="value: name" placeholder="학교이름"
+			type="text">
+	</div>
+	<div class="margin-bottom-5">
+		<button class="btn btn-default" data-bind="click:search" type="button">검색</button>
+	</div>
+</div>
+<div id="school-grid">
+
+</div>
+	</form>	
 		<div
 			class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm"
 			style="padding-left: 10px; padding-right: 10px;">
@@ -133,6 +294,10 @@
 					<input type="text" id="address2" placeholder="상세주소" name="address2"
 						class="form-control">
 				</div>
+				
+				<button type="submit" id="school_search" class="btn btn-primary">
+						회원가입
+					</button>
 
 			</form>
 		</div>

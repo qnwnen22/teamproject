@@ -8,5 +8,5 @@ public interface TeacherDAO {
 
 	public void member_teacherUpdate(TeacherDTO dto);
 
-	
+	public TeacherDTO requestMemberView(String userid);
 }

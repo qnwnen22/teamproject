@@ -516,9 +516,7 @@
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"
-											                                         href="${path}/member/teacherIsert.do"><b>전문가
-																						등록</b></a>
-																				<a href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
+																					href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
 																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div

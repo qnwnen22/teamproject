@@ -27,4 +27,12 @@ public class PackagesServiceImpl implements PackagesService {
 	public PackagesDTO viewPackages(String packages_name) {
 		return packagesDao.viewPackages(packages_name);
 	}
+	@Override
+	public void updatePackages(PackagesDTO dto) {
+		packagesDao.updatePackages(dto);
+	}
+	@Override
+	public void deletePackages(String packages_name) {
+		packagesDao.deletePackages(packages_name);
+	}
 }

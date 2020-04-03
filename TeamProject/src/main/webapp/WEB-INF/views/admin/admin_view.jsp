@@ -11,8 +11,8 @@
 
 			<!-- Modal body -->
 			<div class="modal-body">
-				<form id="adminjoin" name="adminjoin"
-					action="${path}/admin/insertAdmin.do" method="post">
+				<form id="adminUpdate" name="adminUpdate"
+					action="${path}/admin/updateAdmin.do" method="post">
 
 					<div class="form-group">
 						<label for="admin_id">아이디</label> <input type="text"
@@ -38,8 +38,9 @@
 					</div>
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">수정</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+						<button type="submit" class="btn btn-outline-warning">수정</button>
+						<button type="submit" class="btn btn-outline-danger">삭제</button>
+						<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
 					</div>
 				</form>
 			</div>
