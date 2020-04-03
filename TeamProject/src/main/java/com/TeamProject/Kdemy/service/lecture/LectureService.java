@@ -21,7 +21,16 @@ public interface LectureService {
 	public LectureDTO lecture_list_view(int lecture_idx);
 
 	public int searchCount(String cell_type, String keyword);
+	public int searchCount(String keyword);
 
+	public int countList();
+	public List<LectureDTO> lecture_list(int start, int end);
+	
 	public List<LectureDTO> searchList(String cell_type, String keyword, int start, int end);
+	public List<LectureDTO> searchList(String keyword, int start, int end);
+	
+	public List<LectureDTO> myLectureList(String userid);
+	public void lectureDelete(int lecture_idx);
+	public LectureDTO selectFile(int lecture_idx);
 	
 }
