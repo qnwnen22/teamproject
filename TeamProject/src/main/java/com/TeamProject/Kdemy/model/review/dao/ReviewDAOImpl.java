@@ -31,8 +31,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public void addAttach(String fullName) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("review.addAttach", fullName);
 	}
 
 	@Override
@@ -43,20 +42,19 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public void create(ReviewDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.insert("review.insert", dto);
 		
 	}
 
 	@Override
 	public void update(ReviewDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("review.update", dto);
 		
 	}
 
 	@Override
 	public void delete(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.delete("review.delete", bno);
 	}
 
 	@Override
@@ -79,7 +77,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public void increateViewcnt(int bno) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("review.increateViewcnt",bno);
 		
 	}
 
@@ -99,14 +97,12 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public ReviewDTO read(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("review.read", bno);
 	}
 
 	@Override
 	public ReviewDTO detailReview(int bno) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("review.detail_review", bno);
 	}
 
 }

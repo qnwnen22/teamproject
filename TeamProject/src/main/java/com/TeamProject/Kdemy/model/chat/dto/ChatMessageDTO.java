@@ -1,6 +1,5 @@
 package com.TeamProject.Kdemy.model.chat.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -21,7 +20,7 @@ public class ChatMessageDTO {
     private String roomId; // 방번호
     private String sender; // 메시지 보낸사람
     private String message; // 메시지
-    private long userCount; 
+    private long userCount;
     
 }
 
