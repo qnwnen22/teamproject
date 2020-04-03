@@ -31,4 +31,16 @@ public class ReplyServiceImpl implements ReplyService {
 		replyDao.create(dto);
 	}
 
+	@Override
+	public void update(ReplyDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int rno) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
