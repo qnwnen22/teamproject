@@ -417,12 +417,11 @@ STORE 및 STORE 관련 제반 서비스(모바일 웹/앱 포함)의 회원관�
 					</div>
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" id="join-submit" class="btn btn-primary">
+					<button type="submit" class="btn btn-primary">
 						회원가입<i class="fa fa-check spaceLeft"></i>
 					</button>
-					<button type="submit" class="btn btn-warning">
-						가입취소<i class="fa fa-times spaceLeft"></i>
-					</button>
+					<a href="javascript:history.back()"><button type="button" class="btn btn-warning">
+					가입취소<i class="fa fa-times spaceLeft"></i></button></a>
 				</div>
 			</form>
 		</div>

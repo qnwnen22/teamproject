@@ -19,10 +19,6 @@ public class MemberServiceImpl implements MemberService {
 	public void insertMember(MemberDTO dto) {
 		memberDao.insertMember(dto);
 	}
-//	@Override
-//	public MemberDTO getMember(MemberDTO dto) {
-//		return memberDao.getMember(dto);
-//	}
 	
 	@Override
 	public void verifyMember(MemberDTO dto) {
@@ -45,12 +41,17 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.passwdCheck(dto);
 	}
 	
-//	@Override
-//	public List<MemberDTO> list() {
-//		return memberDao.list();
-//		
-//	}
+	@Override
+	public MemberDTO searchID(MemberDTO dto) {
+		return memberDao.searchID(dto);
+	}
 	
+	@Override
+	public void updatePW(MemberDTO dto) {
+		memberDao.updatePW(dto);
+		
+	}
+
 	@Override
 	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception {
 		return memberDao.listAll(location, keyword, start,end);
@@ -60,5 +61,18 @@ public class MemberServiceImpl implements MemberService {
 	public int countMember(String keyword, String location) throws Exception {
 		return memberDao.countMember(keyword, location);
 	}
-
+	
+	@Override
+	public List<MemberDTO> listTeacher(){
+		return memberDao.listTeacher();
+	}
+	
+	@Override
+	public void approval(String userid) {
+		memberDao.approval(userid);
+	}
+	@Override
+	public void reject(String userid) {
+		memberDao.reject(userid);
+	}
 }

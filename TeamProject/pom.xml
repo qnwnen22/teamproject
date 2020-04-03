@@ -153,7 +153,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-
+		
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -179,6 +179,10 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
+
+
+
 		<!-- pdf 관련 라이브러리 설정 -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
@@ -211,11 +215,55 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		
+		
+		<!-- 롬복 라이브러리 설정   -->
+		
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.8</version>
+		    <scope>provided</scope>
+		</dependency>
+
+		
+		<!-- 채팅을 위한 라이브러리 설정 -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.websocket</groupId>	      
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.eclipse.jetty.websocket</groupId>
+		    <artifactId>javax-websocket-client-impl</artifactId>
+		    <version>9.4.18.v20190429</version>
+		</dependency>
+					
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-messaging</artifactId>
+		    <version>5.0.3.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>5.0.3.RELEASE</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.6</version>
 		</dependency>
+
 		<!-- jfreechart -->
 		<dependency>
 			<groupId>org.jfree</groupId>
@@ -290,6 +338,7 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 </project>

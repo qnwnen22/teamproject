@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 import com.TeamProject.Kdemy.service.teacher.TeacherService;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
@@ -27,8 +27,8 @@ public class TeacherController {
 	@Inject
 	TeacherService teacherService;
 
-	@Resource(name="uploadPath")
-	String uploadPath;
+	@Resource(name="teacheruploadPath")
+	String teacheruploadPath;
 	
 	//강사 페이지로 이동
 	@RequestMapping("teacherPage.do")
@@ -48,7 +48,7 @@ public class TeacherController {
 		String teacher_profileImagePath=file1.getOriginalFilename();
 		try {
 			teacher_profileImagePath=UploadFileUtils.uploadFile(
-					uploadPath, teacher_profileImagePath, file1.getBytes());
+					teacheruploadPath, teacher_profileImagePath, file1.getBytes());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +57,7 @@ public class TeacherController {
 		String spec1_img=file2.getOriginalFilename();
 		try {
 			spec1_img=UploadFileUtils.uploadFile(
-					uploadPath, spec1_img, file2.getBytes());
+					teacheruploadPath, spec1_img, file2.getBytes());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,7 +71,13 @@ public class TeacherController {
 		teacherService.teacherInsert(dto);
 		return "home";
 	}
-
+	@RequestMapping(value="/requestMemberView.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
+	public ModelAndView view(String userid,ModelAndView mav) {
+		TeacherDTO dto=teacherService.requestMemberView(userid);
+		mav.addObject("dto",dto);
+		mav.setViewName("admin/requestmember_view");
+		return mav;
+	}
 	
 }
 

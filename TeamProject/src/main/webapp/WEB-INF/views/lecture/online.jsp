@@ -7,166 +7,123 @@
 <title>Insert title here</title>
 <!-- 헤더 제거 -->
 <%@ include file="../include/header.jsp" %>
-<!-- 추가 -->
-<%-- <script src="${path}/include/jquery-3.4.1.min.js"></script> --%>
-
-<!--  -->
 <%@ include file="../include/fixed-topbar.jsp" %>
+<!-- 썸머 노트 -->
 <link
    href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
    rel="stylesheet">
-<script src="${path}/include/js/common.js"></script>
 <script
    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 
-<script>
-$(function(){
-	$('#content').summernote({
-	     height: 300,                 // 에디터 높이
-	     minHeight: null,             // 최소 높이
-	     maxHeight: null,             // 최대 높이
-	     focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-	     lang: "ko-KR",               // 한글 설정
-	     placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
-	});
-
-	function select_main(){
-		var main_category=document.getElementById("main_category");
-		var sub1=document.getElementById("sub1");
-		switch(main_category.value){
-		case 'main1':
-			
-
-		}
-		
-
-	}
-	
-});
-</script>
-<script type="text/javascript">
-function insert2(){
-
-	var main_category=document.getElementById("main_category");
-	var sub_category=document.getElementById("sub_category");
-	var userid=document.getElementById("userid");
-	var subject=document.getElementById("subject");
-	var price=document.getElementById("price");
-	var file1=document.getElementById("file1");
-	var file2=document.getElementById("file2");
-	var content=document.getElementById("content");
-	var lecture_date=document.getElementById("lecture_date");
-	var lecture_start=document.getElementById("lecture_start");
-	var lecture_time=document.getElementById("lecture_time");
-
-	if(main_category.value==""){
-		alert("메인 카테고리를 선택해 주세요.");
-		main_category.focus();
-		return false;
-	}
-	alert("test중");
-}
-
-
-</script>
+<!-- 강의 등록용 JS -->
+<script src="${path}/include/js/lectureInsert.js"></script>
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
-   <div class="page-header col-xl-8 offset-xl-2 text-center">
-      <h2>실시간 강의 등록 페이지</h2>
-   </div>
+   	<div class="page-header col-xl-8 offset-xl-2 text-center">
+		<h2>실시간 강의 등록 페이지</h2>
+   	</div>
    
-   <!-- input 코드 -->
-   <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm" style="padding-left: 10px; padding-right: 10px;">
-      <form method="post"
-            enctype="multipart/form-data"
+   	<!-- input 코드 -->
+	<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm" style="padding-left: 10px; padding-right: 10px;">
+		<form method="post"
+			name="form1"
+			id="form1"
+			enctype="multipart/form-data"
             class="form-horizontal"
             action="${path}/lecture/teacher_type2_insert.do">
-      <!-- 메인 카테고리 -->
-      <div class="form-group">
-         <label for="category">카테고리1</label>
-          <select name="main_category" id="main_category" class="form-control" onchange="select_main()">
-            <option selected value="">-메인메뉴-</option>
-            <option value="main1">main1</option>
-            <option value="main2">main2</option>
-            <option value="main3">main3</option>
-            <option value="main4">main4</option>
-            <option value="main5">main5</option>
-         </select>
-      </div>
-      <!-- 서브 카테고리 -->
-      <div class="form-group">
-         <label for="category">카테고리2</label>
-            <select name="sub_category" id="sub_category" class="form-control">
-            	<option selected value="test">-서브메뉴-</option>
-            	<option value="" id="sub1"></option>
-            	<option value="" id="sub2"></option>
-            	
-         </select>
-      </div>
-      <!-- 아이디 -->
-      <div class="form-group">
-         <label for="userid">강사아이디</label>
-         <input class="form-control" id="userid" name="userid" placeholder="상품명 입력해 주세요">
-      </div>
-      <!-- 강의 제목 -->
-      <div class="form-group">
-         <label for="subject">강의제목</label> <input class="form-control"
-            id="subject" name="subject" placeholder="상품명 입력해 주세요">
-            </div>
-      <!-- 가격 -->   
-      <div class="form-group">
-         <label for="price">가격</label>
-         <input class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
-      </div>
-      <!-- 썸네일 -->
-      <div class="form-group" id="photo_add">
-         <label for="file1">사진파일 (맨위에 파일은 메인사진입니다. 사진추가가 필요시 추가버튼을 이용해주세요.)</label>
-         <input class="file1" type="file" name="file1" id="file1">
-      </div>
-      <!-- 동영상 업로드 -->
-      <div class="form-group" id="video_add">
-         <input type="hidden" name="count" value="0">
-         <label for="file2">동영상파일 (맨위에 파일은 메인사진입니다. 사진추가가 필요시 추가버튼을 이용해주세요.)</label>
-         <input class="file2" type="file" name="file2" id="file2">
-      </div>
+    <!-- 메인 카테고리 -->
+	<div class="form-group">
+		<label for="category">메인 카테고리 선택</label>
+		<select name="main_category" id="main_category" class="form-control"
+		onChange="category()">
+			<option selected value="">-메인메뉴-</option>
+			<option value="디자인">디자인</option>
+			<option value="IT,프로그래밍">IT,프로그래밍</option>
+			<option value="콘텐츠 제작">콘텐츠 제작</option>
+			<option value="마케팅">마케팅</option>
+			<option value="번역,통역">번역,통역</option>
+			<option value="문서,취업">문서,취업</option>
+			<option value="비즈니스컨설팅">비즈니스컨설팅</option>
+			<option value="운세,상담">운세,상담</option>
+			<option value="레슨,실무교육">레슨,실무교육</option>
+			<option value="주문제작">주문제작</option>
+			<option value="간판,인쇄">간판,인쇄</option>
+		</select>
+	</div>
+	<!-- 서브 카테고리 -->
+	<div class="form-group">
+		<label for="category">서브 카테고리 선택</label>
+		<select name="sub_category" id="sub_category" class="form-control">
+			<option style="color: red;" value="">-메인 카테고리를 선택해주세요-</option>
+		</select>
+	</div>
+    <!-- 아이디 -->
+    <div class="form-group">
+		<label for="userid">강사아이디</label>
+        <input class="form-control" id="userid" name="userid" value="${sessionScope.userid}" readonly>
+	</div>
+    <!-- 강의 제목 -->
+    <div class="form-group">
+    	<label for="subject">강의제목</label> <input class="form-control"
+			id="subject" name="subject" placeholder="강의 제목을 입력해주세요.">
+	</div>
+    <!-- 가격 -->	
+	<div class="form-group">
+		<label for="price">가격(원)</label>
+		<input type="number" class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
+	</div>
+    <!-- 썸네일 -->
+	<div class="form-group" id="photo_add">
+		<label for="file1">메인 이미지 등록(썸네일)</label><br>
+		<p style="color: blue; font-size: 12px;">선택한 파일을 초기화방법 = 파일 선택 → 취소</p>
+		<input class="file1" type="file" name="file1" id="file1">
+	</div>
+	
+	<!-- 동영상 -->
+	<div class="form-group" id="video_add">
+		<label for="file2">강의 영상 등록</label><br>
+		<p style="color: blue; font-size: 12px;">선택한 파일을 초기화방법 = 파일 선택 → 취소</p>
+		<input class="file2" type="file" name="file2" id="file2">
+	</div>
+	<!-- 내용 -->
+	<div class="form-group">
+		<label for="content_label">내용</label><br>
+		<textarea class="form-control text_cotent" name="content" id="content" rows="10" cols="10"></textarea>
+	</div>
+
+	<!-- 강의 시작날짜 -->
+	<div class="form-group">
+		<label for="lecture_date_label">강의 시작 날짜</label>
+		<input class="form-control" type="date" name="lecture_date" id="lecture_date">
+	</div>
+	<!-- 강의장 시작 날짜 -->
+	<div class="form-group">
+		<label for="lecture_start">강의 시작 시간</label>
+		<input type="time" class="form-control"	name="lecture_start" id="lecture_start">
+	</div>
+	<!-- 강의 시간 -->
+	<div class="form-group">
+		<label for="lecture_time">강의 시간</label>
+		<select class="form-control" name="lecture_time" id="lecture_time">
+			<option value="1">1시간</option>
+			<option value="2">2시간</option>
+			<option value="3">3시간</option>
+			<option value="4">4시간</option>
+			<option value="5">5시간</option>
+			<option value="6">6시간</option>
+		</select>
+	</div>
       
-      <!-- 내용 -->
-      <div class="form-group">
-         <label for="content_label">내용</label><br>
-         <textarea class="form-control text_cotent" name="content"
-         id="content" rows="10" cols="10"></textarea>
-         </div>
-      
-      
-      <!-- 강의 시작날짜 -->
-      <div class="form-group">
-         <label for="lecture_date_label">강의 시작 날짜</label>
-         <input type="date" name="lecture_date">
-      </div>
-      <!-- 강의장 시작 날짜 -->
-      <div class="form-group">
-         <label for="lecture_start">강의 시작 시간</label>
-         <input type="text" class="form-control"   name="lecture_start" id="lecture_start">
-      </div>
-      <!-- 강의 시간 -->
-      <div class="form-group">
-         <label for="lecture_time">강의 시간</label>
-         <input type="text" class="form-control" name="lecture_time" id="lecture_time">
-      </div>
-      
-      <!-- 등록 버튼 -->
-      <div class="form-group text-center">
-         <input type="button" onclick="insert2()" class="btn btn-primary" value="강의 등록">
-         
-         <button type="submit" id="btnSave" class="btn btn-primary">등록</button>
-         
-         <a type="submit" href="#" class="btn btn-warning"> 취소 </a>
-         <a type="submit" id="btnList" href="#" class="btn btn-dark pull-left">목록</a>
-      </div>
-      </form>
+	<!-- 등록 버튼 -->
+	<div class="form-group text-center">
+		<input type="button" onclick="insert2()" class="btn btn-primary" value="강의 등록">
+		<input type="button" class="btn btn-warning" onclick="history.back()" value="뒤로 가기">
+		<a href="${path}/lecture/offline_list.do" class="btn btn-dark pull-left">목록</a>
+	</div>
+	</form>
       
    </div>
 </div>

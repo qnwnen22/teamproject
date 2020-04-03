@@ -18,6 +18,7 @@ public class MemberDTO {
 	private Date join_date;
 	private char verify;
 	private String teacher;
+	private Date request_date;
 	
 	private String bpasswd;
 	private String phone1;
@@ -28,11 +29,17 @@ public class MemberDTO {
 	private String birthday2;
 	private String birthday3;
 	//
-	public int getUsernum() {
-		return usernum;
+	public void setRequest_date(Date request_date) {
+		this.request_date = request_date;
 	}
 	public void setUsernum(int usernum) {
 		this.usernum = usernum;
+	}
+	public int getUsernum() {
+		return usernum;
+	}
+	public Date getRequest_date() {
+		return request_date;
 	}
 	public String getUserid() {
 		return userid;

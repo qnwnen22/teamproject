@@ -33,6 +33,8 @@
 						취소
 					</button>
 				</div>
+					<div><a href="${path}/member/searchId.do" class="more">아이디 찾기</a></div>
+					<div><a href="${path}/member/searchpass.do" class="more">비밀번호 찾기</a></div>
 			</form>
 		</div>
 	</div>
