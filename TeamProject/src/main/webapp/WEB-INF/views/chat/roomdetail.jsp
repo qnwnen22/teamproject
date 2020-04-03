@@ -48,7 +48,21 @@ $(document).ready(function(){
 	  if (socket.readyState !== 1) return;
 	    	  var msg = $('input#msg').val();
 	    	  socket.send(msg);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	    	  $('input#msg').val("");
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+	    	  $('input#msg').val();
+=======
+	    	  $('input#msg').val("");
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	    });
 		
 });

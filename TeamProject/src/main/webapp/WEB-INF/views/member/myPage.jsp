@@ -8,7 +8,8 @@
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
-<a href="https://www.gruveo.com/@jane11">화상채팅</a>
-
+<p>
+<a href="https://www.gruveo.com/@jane11">화상채팅</a></p>
 </body>
 </html>
+

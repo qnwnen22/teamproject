@@ -75,4 +75,10 @@ public class MemberServiceImpl implements MemberService {
 	public void reject(String userid) {
 		memberDao.reject(userid);
 	}
+
+//	@Override
+//	public void deleteFile(String fullName) {
+//		memberDao.deleteFile(fullName);
+//	}
+//	
 }
