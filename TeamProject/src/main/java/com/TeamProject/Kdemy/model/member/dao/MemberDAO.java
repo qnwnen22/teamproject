@@ -30,5 +30,10 @@ public interface MemberDAO {
 
 	public void updatePW(MemberDTO dto);
 
+	public void updateCoupon(MemberDTO dto);
+
+	public void updatePoint(MemberDTO dto);
+
+
 //	public void deleteFile(String fullName);
 }

@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  delete from attach
 		where fullName=#{fullName}
 	</delete>
-	
+
 	
 	<insert id="insertMember">
 		insert into kdemymember
@@ -65,6 +65,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updatePW">
 		update kdemymember set passwd=#{passwd}
 		where userid=#{userid} and useremail=#{useremail}
+	</update>
+	
+	<update id="updateCoupon">
+		update kdemymember set coupon=#{coupon}
+		where useremail=#{useremail}
+	</update>
+	
+	<update id="updatePoint">
+       update kdemymember
+       set point = (select point from coupon b where b.coupon=#{coupon})
 	</update>
 	
 	<select id="listAll"
