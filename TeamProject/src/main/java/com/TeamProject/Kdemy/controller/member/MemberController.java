@@ -148,13 +148,8 @@ public class MemberController {
 		MemberDTO dto = new MemberDTO();
 		dto.setUserid(userid);
 		dto.setUseremail(useremail);
-<<<<<<< HEAD
 		String temp_passwd = "temp"+ dto.getUserid();
 		String passwd= BCrypt.hashpw(temp_passwd, BCrypt.gensalt()); //랜덤함수로 변경 예정
-=======
-		String temp_passwd = "temp"+dto.getUserid(); //랜덤함수로 변경 예정  
-		String passwd=BCrypt.hashpw(temp_passwd, BCrypt.gensalt());
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		dto.setPasswd(passwd);
 		memberService.updatePW(dto);
 	
@@ -163,11 +158,7 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-<<<<<<< HEAD
 				.append("<b>임시 비밀번호 발급 : " + temp_passwd + "</b><br>")
-=======
-				.append("<b>임시 비밀번호 발급 : " + temp_passwd+ "</b><br>")
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
