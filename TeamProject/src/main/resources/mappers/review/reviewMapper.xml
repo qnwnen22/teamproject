@@ -121,6 +121,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r.replyer=m.userid and bno=#{bno}
 		order by rno
   </select>
+  
+  <delete id="replydelete">
+  	delete from kdemyreview_reply where rno=#{rno}
+  </delete>
 
 </mapper>
 
