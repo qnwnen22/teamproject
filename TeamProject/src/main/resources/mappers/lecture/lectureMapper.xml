@@ -147,6 +147,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select * from lecture
 		where userid=#{userid}
+		order by lecture_idx desc
 	</select>
 	
 	<delete id="lectureDelete">
@@ -160,8 +161,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
+	<select id="pointCheck"
+	resultType="int">
+		select point from kdemymember
+		where userid=#{userid}
+	</select>
+	
 	<select id="chartCountLecture" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select main_category, count(*) tcount from lecture group by main_category
 	</select>
+	
 </mapper>
 

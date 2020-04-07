@@ -65,10 +65,13 @@
 	<beans:bean id="teacheruploadPath" class="java.lang.String">
 		<beans:constructor-arg
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/teacher" />
+<<<<<<< HEAD
 	</beans:bean>
 	<beans:bean id="reviewuploadPath" class="java.lang.String">
 		<beans:constructor-arg
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/review" />
+=======
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</beans:bean>
 		<beans:bean id="memberUploadPath" class="java.lang.String">
 		<beans:constructor-arg

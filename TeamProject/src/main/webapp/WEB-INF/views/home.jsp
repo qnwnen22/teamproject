@@ -500,11 +500,10 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a
-																		
-																						class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> <a
-																						class="dropdown-item" href="#">장바구니</a> <a
-																						class="dropdown-item" href="#">관심상품</a>
+																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a>
+																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> 
+																					<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
+																					<a class="dropdown-item" href="#">관심상품</a>
 																				</div>
 																			</div>
 
@@ -728,7 +727,9 @@
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-					<b>카테고리</b>
+					<a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br><br><br>
+					<b>카테고리1</b>
+					<a href="${path}/lecture/video_List.do">동영상 리스트 페이지</a>
 				</h5>
 				<br>
 			</div>
@@ -771,7 +772,8 @@
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-					<b>카테고리</b>
+					<b>카테고리2</b>
+					<a href="${path}/lecture/online_list.do">실시간 강의 리스트 페이지</a>
 				</h5>
 				<br>
 			</div>
@@ -814,7 +816,8 @@
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-					<b>카테고리</b>
+					<b>카테고리3</b>
+					<a href="${path}/lecture/offline_list.do">현장 강의 리스트 페이지</a>
 				</h5>
 				<br>
 			</div>
