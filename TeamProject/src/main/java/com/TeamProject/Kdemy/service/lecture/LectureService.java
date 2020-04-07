@@ -34,14 +34,11 @@ public interface LectureService {
 	public List<LectureDTO> myLectureList(String userid);
 	public void lectureDelete(int lecture_idx);
 	public LectureDTO selectFile(int lecture_idx);
-<<<<<<< HEAD
 	
 //	강의 구매여부 확인 메소드
 	public int buyCheck(LectureBoxDTO lbDto);
 	public void buy(String userid, String idxList);
 	public int pointCheck(String userid);
 	
-=======
 	public List<LectureDTO> chartCountLecture();
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 }

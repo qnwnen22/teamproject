@@ -8,10 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
-
 public class LectureDTO {
 
 	private int lecture_idx; //강의 번호(리스트 출력용)
@@ -36,8 +32,6 @@ public class LectureDTO {
 	private MultipartFile file1;
 	private MultipartFile file2;
 	
-<<<<<<< HEAD
-=======
 	private int tcount;
 	
 	public int getTcount() {
@@ -188,5 +182,4 @@ public class LectureDTO {
 	}
 	public LectureDTO() {
 	}
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 }

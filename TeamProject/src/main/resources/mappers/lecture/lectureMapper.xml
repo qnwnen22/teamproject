@@ -161,15 +161,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
-<<<<<<< HEAD
 	<select id="pointCheck"
 	resultType="int">
 		select point from kdemymember
 		where userid=#{userid}
-=======
+	</select>
+	
 	<select id="chartCountLecture" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select main_category, count(*) tcount from lecture group by main_category
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</select>
+	
 </mapper>
 
