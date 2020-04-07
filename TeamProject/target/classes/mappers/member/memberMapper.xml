@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -71,6 +72,161 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />
 		select * from kdemymember
+		<include refid="location" />
+		<include refid="search" />
+		order by userid desc
+		<include refid="paging_footer" />
+	</select>
+	<sql id="paging_header">
+		select *
+		from (
+		select rownum as rn, A.*
+		from (
+	</sql>
+	<sql id="paging_footer">
+		) A
+		) where rn between #{start} and #{end}
+	</sql>
+
+	<!-- 레코드 갯수 계산 -->
+	<select id="countMember" resultType="int">
+		select count(*) from (select * from kdemymember
+		<include refid="location" />
+		<include refid="search" />
+		)
+	</select>
+
+	<!-- 검색기능, sql태그는 다른 태그에 끼워넣을 수 있는 기능을 가지고 있음 -->
+	<sql id="search">
+		<choose>
+			<when test="keyword != '%'+''+'%' ">
+				and (userid like #{keyword} or username like
+				#{keyword})
+			</when>
+		</choose>
+	</sql>
+	<sql id="location">
+		<choose>
+			<when test="location == 'normal'">
+				where teacher= 'n'
+			</when>
+			<when test="location == 'teacher'">
+				where teacher= 'y'
+			</when>
+			<when test="location == 'request'">
+				where teacher= 'w'
+			</when>
+			<otherwise>
+				where (teacher= 'n' or teacher= 'y' or teacher= 'w')
+			</otherwise>
+		</choose>
+	</sql>
+	<select id="listTeacher" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from teacher
+	</select>
+	
+	<update id="approval">
+		update kdemymember set teacher='y'  where userid=#{userid}
+	</update>
+	
+	<delete id="reject">
+		delete from teacher where userid=#{userid}
+	</delete>
+	
+	<update id="rejectmember">
+		update kdemymember set teacher='n'  where userid=#{userid}
+	</update>
+	
+	<select id="chartCount" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select teacher, COUNT(*) tcount from kdemymember group by teacher order by teacher
+	</select>
+	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+	SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM')
+	</select>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="member">
+	
+	<!-- 첨부파일 레코드 삭제 -->
+	<delete id="deleteFile">
+	  delete from attach
+		where fullName=#{fullName}
+	</delete>
+
+	
+	<insert id="insertMember">
+		insert into kdemymember
+		(usernum, userid,
+		passwd,
+		username,
+		birthday, useremail,
+		phone, postcode,
+		address, address2,thumbnail)
+		values
+		(
+		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
+		#{passwd},#{username},
+		#{birthday},#{useremail},
+		#{phone},#{postcode},
+		#{address},#{address2},#{thumbnail}
+		)
+	</insert>
+	
+<!-- 	<select id="getMember" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from kdemymember
+		where userid=#{userid} and passwd=#{passwd}
+	</select> -->
+	
+	<update id="verifyMember">
+		update kdemymember set verify='y' where useremail=#{useremail}
+	</update>
+	
+    <select id="idCheck" resultType="Int">
+		select COUNT(*) from kdemymember
+		WHERE userid=#{userid}
+	</select>
+
+	<select id="passwdCheck"
+		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from kdemymember
+		where userid=#{userid}
+	</select>
+
+	<select id="kdemyLogin"
+		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select * from kdemymember
+		where userid=#{userid}
+	</select>
+
+	<select id="searchID" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+	    select * from kdemymember
+		where username=#{username} and useremail=#{useremail} 
+	</select>
+	
+	<update id="updatePW">
+		update kdemymember set passwd=#{passwd}
+		where userid=#{userid} and useremail=#{useremail}
+	</update>
+	
+	<update id="updateCoupon">
+		update kdemymember set coupon=#{coupon}
+		where useremail=#{useremail}
+	</update>
+	
+	<update id="updatePoint">
+       update kdemymember
+       set point = (select point from coupon b where b.coupon=#{coupon})
+	</update>
+	
+	<select id="listAll"
+		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		<include refid="paging_header" />
+		select * from kdemymember
 		<include refid="search" />
 		order by userid desc
 		<include refid="paging_footer" />
@@ -136,4 +292,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="rejectmember">
 		update kdemymember set teacher='n'  where userid=#{userid}
 	</update>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </mapper>

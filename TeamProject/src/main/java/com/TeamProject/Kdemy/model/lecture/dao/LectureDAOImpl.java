@@ -116,6 +116,7 @@ public class LectureDAOImpl implements LectureDAO {
 	public LectureDTO selectFile(int lecture_idx) {
 		return sqlSession.selectOne("lecture.selectFile",lecture_idx);
 	}
+<<<<<<< HEAD
 
 //	강의 구매여부 확인 메소드
 	@Override
@@ -134,5 +135,10 @@ public class LectureDAOImpl implements LectureDAO {
 	@Override
 	public int pointCheck(String userid) {
 		return sqlSession.selectOne("lecture.pointCheck",userid);
+=======
+	@Override
+	public List<LectureDTO> chartCountLecture(){
+		return sqlSession.selectList("lecture.chartCountLecture");
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	}
 }

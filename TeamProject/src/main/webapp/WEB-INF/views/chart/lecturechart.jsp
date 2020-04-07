@@ -14,49 +14,24 @@
 		"packages" : [ "corechart" ]
 	});
 	//라이브러리 로딩이 완료되면 drawChart 함수 호출, ()는 안씀
-	google.setOnLoadCallback(drawChart);
-	function drawChart() {
+	google.setOnLoadCallback(drawChart3);
+	function drawChart3() {
 		//차트 그리기에 필요한 json 데이터 로딩
 		var jsonData = $.ajax({
-			url : "${path}/chart/member_list.do",
+			url : "${path}/chart/lecture_list.do",
 			dataType : "json",
 			async : false
 		//동기식처리(순차적 처리:데이터를 다부른 후 챠트출력하기 위해)
 		}).responseText;
-		console.log(jsonData);//콘솔에도 출력해봄
 		//json => 데이터테이블
 		var data = new google.visualization.DataTable(jsonData);
 		console.log("데이터 테이블:" + data);
 		var chart = new google.visualization.PieChart(document
 				.getElementById("membercount_div"));
 		chart.draw(data, {
-			title : "회원비율",
+			title : "카테고리",
 			//curveType: "function", //곡선 처리		
 			width : 550,
-			height : 440
-		});
-	}
-	google.setOnLoadCallback(drawChart1);
-	function drawChart1() {
-		//차트 그리기에 필요한 json 데이터 로딩
-		var jsonData = $.ajax({
-			url : "${path}/chart/member_list2.do",
-			dataType : "json",
-			async : false
-		//동기식처리(순차적 처리:데이터를 다부른 후 챠트출력하기 위해)
-		}).responseText;
-		console.log(jsonData);//콘솔에도 출력해봄
-		//json => 데이터테이블
-		var data = new google.visualization.DataTable(jsonData);
-		console.log("데이터 테이블:" + data);
-		/* var chart1=new google.visualization.LineChart(
-				document.getElementById("etc_div")); */
-		var chart1 = new google.visualization.ColumnChart(document
-				.getElementById("month_div"));
-		chart1.draw(data, {
-			title : "월별 가입현황",
-			//curveType: "function", //곡선 처리		
-			width : 530,
 			height : 440
 		});
 	}
@@ -96,7 +71,7 @@
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
 				<li><a href="${path}/chart/statistics.do">통계</a></li>
-				<li><a href="${path}/chart/memberchart.do">회원통계</a></li>
+				<li><a href="${path}/chart/lecturechart.do">강의통계</a></li>
 			</ul>
 		</div>
 		<div class="d-flex">

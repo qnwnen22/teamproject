@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 @Service
 public class LectureServiceImpl implements LectureService {
@@ -93,7 +94,11 @@ public class LectureServiceImpl implements LectureService {
 	public LectureDTO selectFile(int lecture_idx) {
 		return lectureDao.selectFile(lecture_idx);
 	}
-
+	
+	@Override
+	public List<LectureDTO> chartCountLecture(){
+		return lectureDao.chartCountLecture();
+	}
 	
 //	강의 구매여부 확인 메소드
 	@Override

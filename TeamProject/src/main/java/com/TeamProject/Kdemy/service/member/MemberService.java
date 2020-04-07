@@ -29,5 +29,13 @@ public interface MemberService {
 	public MemberDTO searchID(MemberDTO dto);
 
 	public void updatePW(MemberDTO dto);
+	
+	public List<MemberDTO> chartCount();
+	
+	public List<MemberDTO> chartCountMonth();
+
+	public void updateCoupon(MemberDTO dto);
+
+	public void updatePoint(MemberDTO dto);
 
 }
