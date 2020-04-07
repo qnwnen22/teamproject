@@ -3,6 +3,8 @@ package com.TeamProject.Kdemy.model.review.dto;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ReviewDTO {
 	private int bno;
 	private String title;
@@ -17,8 +19,22 @@ public class ReviewDTO {
 	private String subject;
 	private String teacher;
 	private int love;
+	private MultipartFile file1; //첨부파일
+	private String review_image;
 	public String getSubject() {
 		return subject;
+	}
+	public MultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
+	}
+	public String getReview_image() {
+		return review_image;
+	}
+	public void setReview_image(String review_image) {
+		this.review_image = review_image;
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
@@ -101,8 +117,7 @@ public class ReviewDTO {
 		return "ReviewDTO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
 				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", username=" + username + ", cnt=" + cnt
 				+ ", show=" + show + ", files=" + Arrays.toString(files) + ", subject=" + subject + ", teacher="
-				+ teacher + ", love=" + love + "]";
+				+ teacher + ", love=" + love + ", file1=" + file1 + ", review_image=" + review_image + "]";
 	}
-	
 	
 }

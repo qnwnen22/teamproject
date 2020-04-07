@@ -29,4 +29,6 @@ public interface MemberDAO {
 	public MemberDTO searchID(MemberDTO dto);
 
 	public void updatePW(MemberDTO dto);
+
+//	public void deleteFile(String fullName);
 }

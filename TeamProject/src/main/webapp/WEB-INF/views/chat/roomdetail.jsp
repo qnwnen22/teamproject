@@ -49,9 +49,13 @@ $(document).ready(function(){
 	    	  var msg = $('input#msg').val();
 	    	  socket.send(msg);
 <<<<<<< HEAD
+	    	  $('input#msg').val("");
+=======
+<<<<<<< HEAD
 	    	  $('input#msg').val();
 =======
 	    	  $('input#msg').val("");
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 >>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	    });
 		

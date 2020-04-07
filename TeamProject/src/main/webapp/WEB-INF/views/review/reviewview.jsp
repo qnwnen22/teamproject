@@ -33,6 +33,7 @@
 .input-group{
 	width: auto !important;
 }
+
 </style>
 
 <%@ include file="../include/header.jsp"%>
@@ -116,7 +117,6 @@
 				}
 			});
 		}
-		
 </script>
 
 </head>

@@ -27,15 +27,13 @@
 		
 		
 		<form action="${path}/review/searchlist.do" name="form1" method="post"> 
-	 	<select name="search_option" class=" search_option" style="visibility: hidden;">
-			<%--	<option value="username"
-					<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
-				<option value="title"
-					<c:if test="${map.search_option=='title' }">selected</c:if>>제목</option>
-				<option value="content"
-					<c:if test="${map.search_option=='content' }">selected</c:if>>내용</option> --%>
+	 	<select name="search_option" class=" search_option" >
+				<option value="subject"
+					<c:if test="${map.search_option=='subject' }">selected</c:if>>과목</option>
+				<option value="teacher"
+					<c:if test="${map.search_option=='teacher' }">selected</c:if>>강사</option>
 				<option value="all"
-					<c:if test="${map.search_option=='all' }">selected</c:if>>이름+내용+제목</option>
+					<c:if test="${map.search_option=='all' }">selected</c:if>>내용+제목</option>
 			</select><!--분류 삭제  -->
 		
 			<div class="input-group mb-3">
@@ -70,7 +68,7 @@
 						<td class="col-3"><a
 							href="${path}/review/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
 								test="${rows.cnt>0}">
-								<span style="color: blue;" class="badge badge-primary">${rows.cnt}</span>
+							<span style="color: white;" class="badge badge-pill badge-dark">${rows.cnt}</span>
 							</c:if></td>
 						<td class="col-2">${rows.writer}</td>
 						<td class="col-2"><fmt:formatDate value="${rows.regdate}"

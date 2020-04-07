@@ -60,7 +60,7 @@ textarea.form-control {
 	});
 
 	function attachAddr() {
-		const str = `<input type="file" class="form-control-file" id="exampleFormControlFile1">`;
+		const str = `<input type="file" class="form-control-file" id="fullName">`;
 		$(".Plus_one").append(str);
 	}
 
@@ -140,7 +140,8 @@ textarea.form-control {
 	<div class="container">
 		<div class="justify-content-md-center">
 			<form id="form1" name="form1" method="post"
-				action="${path}/review/insert.do">
+				action="${path}/review/insert.do"
+					>
 				<div>
 					<ul class="upper_shift">
 						<li><a href="${path}">KDEMY</a></li>
@@ -212,8 +213,8 @@ textarea.form-control {
 
 
 				<div class="form-group">
-					<label for="exampleFormControlFile1">파일 첨부</label> <input
-						type="file" class="form-control-file" id="exampleFormControlFile1">
+					<label for="fullName">파일 첨부</label> <input
+						type="file" class="form-control-file" id="fullName">
 					<div class="Plus_one"></div>
 					<div>
 						<input type="button" class="form-control-file"

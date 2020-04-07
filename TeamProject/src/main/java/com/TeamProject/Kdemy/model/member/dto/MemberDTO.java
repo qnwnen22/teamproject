@@ -2,9 +2,11 @@ package com.TeamProject.Kdemy.model.member.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDTO {
 
-	private int	usernum;
+	private int usernum;
 	private String userid;
 	private String passwd; 
 	private String username;
@@ -17,6 +19,9 @@ public class MemberDTO {
 	private String address2;
 	private Date join_date;
 	private char verify;
+    private String thumbnail;
+    private MultipartFile file;
+
 	private String teacher;
 	private Date request_date;
 	
@@ -112,6 +117,18 @@ public class MemberDTO {
 	}
 	public void setVerify(char verify) {
 		this.verify = verify;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public String getTeacher() {
 		return teacher;

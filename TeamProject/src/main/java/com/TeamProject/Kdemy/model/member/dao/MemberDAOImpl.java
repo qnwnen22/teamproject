@@ -44,7 +44,7 @@ public class MemberDAOImpl implements MemberDAO {
 	    String result="";	
 		MemberDTO dto2=sqlSession.selectOne("member.passwdCheck",dto);
 		try {
-			if(dto2!=null){
+			 if (dto2.getVerify() == 'y') {
 				if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {		
 					result="로그인성공";
 					System.out.println("비밀번호체크"+result);
@@ -52,7 +52,7 @@ public class MemberDAOImpl implements MemberDAO {
 					result="로그인실패";
 				}
 			}else {
-				result="로그인실패";
+				result="로그인실패, 이메일을 인증해 주세요";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,4 +115,13 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.delete("member.reject",userid);
 		sqlSession.update("member.rejectmember",userid);
 	}
-}
+
+//	@Override
+//	public void deleteFile(String fullName) {
+//			sqlSession.delete("member.deleteFile", fullName);
+//		}
+		
+	}
+	
+	
+

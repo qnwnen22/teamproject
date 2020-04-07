@@ -22,12 +22,12 @@ value="${fn:replace(str,newLineChar,'<br>') }" />
 
 
 <div>
+				<input type="hidden" name="bno" value="${row.bno}">
 			${row.replyer}
 			( <fmt:formatDate value="${row.regdate}"
 				 pattern="yyyy-MM-dd a HH:mm:ss" /> )
 				 <c:if test="${sessionScope.userid ==row.replyer }">
-				 <a href="${path}/review/replyupdate.do">| 수정 |</a>
-				 <a href="${path}/review/replydelete/${row.rno}"> 삭제 |</a>
+				 <a href="${path}/review/replydelete/${row.rno}+${row.bno}"> 삭제</a>
 				 </c:if>
 				 <br><br>
 			<span style="font-size: 1rem;">${str}</span><br>

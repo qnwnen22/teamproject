@@ -29,5 +29,5 @@ public interface MemberService {
 	public MemberDTO searchID(MemberDTO dto);
 
 	public void updatePW(MemberDTO dto);
-	
+
 }

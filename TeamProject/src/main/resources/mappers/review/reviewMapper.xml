@@ -9,12 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
 		<include refid="paging_header" />
 		select bno, subject, teacher, title, writer, regdate, viewcnt, show,
-		(select count(*)
-		from kdemyreview_reply where bno=b.bno) cnt
+		(select count(*) from kdemyreview_reply where bno=b.bno) cnt
 		from kdemyreview b where show='Y'
 		order by bno
 		desc
-
 		<include refid="paging_footer" />
 	</select>
 
@@ -36,6 +34,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and (title like #{keyword}
 				or content like #{keyword} )
 			</when>
+			<when test="search_option== 'subject'">
+				where show='Y'
+				and ${search_option} like #{keyword}
+			</when>
+			<when test="search_option== 'teacher'">
+				where show='Y'
+				and ${search_option} like #{keyword} 
+				</when>
 		</choose>
 		order by bno desc
 
@@ -69,12 +75,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert">
 		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
 		(
-		seq_kdemynotice.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer} )
+		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer})
 	</insert>
 
 	<!-- 첨부파일 정보 저장 -->
 	<insert id="addAttach">
-		insert into kdemyreview_attach (fullName, bno) values
+		insert into kdemyreview (fullName, filenum) values
 		( #{fullName},
 		seq_kdemyreview.currval )
 	</insert>
@@ -123,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <delete id="replydelete">
-  	delete from kdemyreview_reply where rno=#{rno}
+  	delete from kdemyreview_reply where rno=#{rno} 
   </delete>
 
 </mapper>

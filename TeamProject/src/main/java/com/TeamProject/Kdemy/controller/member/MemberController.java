@@ -4,34 +4,46 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
-import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
 import com.TeamProject.Kdemy.util.MailHandler;
+import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 
 @Controller
 @RequestMapping("member/*")
 public class MemberController {
+	
+	private static final Logger logger=LoggerFactory.getLogger(MemberController.class);
+	
 	@Inject
 	MemberService memberService;
+	
 	@Inject
 	private JavaMailSender mailSender;
+	
+	@Resource(name="memberUploadPath")
+	String uploadPath;
 	
 	@RequestMapping("join.do")
 	public String join() {
@@ -53,14 +65,20 @@ public class MemberController {
 		return "member/searchpass";
 	}
 
-	
-
-	@RequestMapping("insertMember.do")
+	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
+			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 	public String insertMember(MemberDTO dto) throws Exception {
-
+		MultipartFile file=dto.getFile();
+		String thumbnail=file.getOriginalFilename();
 		String birthday=dto.getBirthday1()+"년"+dto.getBirthday2()+"월"+dto.getBirthday3()+"일";
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
 		String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
+		try {
+			thumbnail=UploadFileUtils.uploadFile(uploadPath, thumbnail, file.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		dto.setThumbnail(thumbnail);
 		dto.setPasswd(passwd);
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
@@ -75,8 +93,10 @@ public class MemberController {
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
 		sendMail.send();
+				
 		return "member/signConfirm";	
 	}
+	
 	
 	
 	@RequestMapping(value = "/verify.do", method = RequestMethod.GET)
@@ -128,14 +148,17 @@ public class MemberController {
 		MemberDTO dto = new MemberDTO();
 		dto.setUserid(userid);
 		dto.setUseremail(useremail);
-		String passwd = BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt()); //랜덤함수로 변경 예정
+		String temp_passwd = "temp"+dto.getUserid(); //랜덤함수로 변경 예정  
+		String passwd=BCrypt.hashpw(temp_passwd, BCrypt.gensalt());
 		dto.setPasswd(passwd);
 		memberService.updatePW(dto);
+	
+		
 		
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-				.append("<b>임시 비밀번호 발급 : " + passwd + "</b><br>")
+				.append("<b>임시 비밀번호 발급 : " + temp_passwd+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
@@ -143,8 +166,6 @@ public class MemberController {
 		sendMail.send();
 
 	}
-
-
 
 	@RequestMapping("teacherPage.do")
 	public String teacherPage() {
@@ -167,6 +188,7 @@ public class MemberController {
 	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
 		String result=memberService.passwdCheck(dto);
 		ModelAndView mav=new ModelAndView();
+		
 		if(result.equals("로그인성공")) {
 			MemberDTO dto2=memberService.kdemyLogin(dto);
 			session.setAttribute("userid", dto2.getUserid());

@@ -7,10 +7,21 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
 <script src="${path}/include/js/join.js"></script>
+<%-- <script src="${path}/member/js/upload.js"></script> --%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<!-- <style>
+.fileDrop {
+	width: 100%;
+	height: 200px;
+	border: 1px dotted blue;
+}
+small {
+	margin-left:3px;
+	font-weight: bold;
+	color: gray;
+}
+</style> -->
 <script type="text/javascript">
-
-
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();
@@ -57,9 +68,15 @@ function checkId() {
 			<h2>회원가입</h2>
 		</div>
 		<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm" style="padding-left: 10px; padding-right: 10px;">
-			<form method="post" id="join_form" name="join_form"
+			<form method="post" id="join_form" name="join_form" enctype="multipart/form-data"
 				action="${path}/member/insertMember.do"
 				class="form-horizontal">
+
+				<div class="form-group" id="thumbnail">
+			   <label for="file">thumbnail</label><br>
+			   <input class="file" type="file" name="file" id="file">
+		       </div>
+		       
 				<div class="form-group">
 					<label for="username">성명</label> &nbsp;
 					<span id="usernameM"></span>

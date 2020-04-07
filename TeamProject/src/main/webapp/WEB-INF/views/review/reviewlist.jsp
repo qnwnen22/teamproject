@@ -79,17 +79,15 @@ height: 50% !important;
 		<br> <br> <br> <br> <br> 
 		<br>
 
-		<form action="${path}/review/searchlist.do" name="form1" method="post">
+		<form action="${path}/review/searchlist.do" name="form1" method="post" >
 			<select name="search_option" class=" search_option"
-				style="visibility: hidden;">
-				<%--	<option value="username"
-					<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
-				<option value="title"
-					<c:if test="${map.search_option=='title' }">selected</c:if>>제목</option>
-				<option value="content"
-					<c:if test="${map.search_option=='content' }">selected</c:if>>내용</option> --%>
+				>
+				<option value="subject"
+					<c:if test="${map.search_option=='subject' }">selected</c:if>>과목</option>
+				<option value="teacher"
+					<c:if test="${map.search_option=='teacher' }">selected</c:if>>강사</option>
 				<option value="all"
-					<c:if test="${map.search_option=='all' }">selected</c:if>>이름+내용+제목</option>
+					<c:if test="${map.search_option=='all' }">selected</c:if>>내용+제목</option>
 			</select>
 			<!--분류 삭제  -->
 
@@ -139,9 +137,9 @@ height: 50% !important;
 		</table>
 	</div>
 	<br>
-	<%-- 	<c:choose>
+ 	<c:choose>
 				<c:when test="${sessionScope.userid != null }">
-					<!-- 관리자로 로그인했을때 아이디 바꾸기--> --%>
+					<!-- 관리자로 로그인했을때 아이디 바꾸기-->
 	<div class="container">
 		<div class="row">
 			<div class="write_btn_align col align-self-end">
@@ -150,8 +148,8 @@ height: 50% !important;
 			</div>
 		</div>
 	</div>
-	<%-- </c:when>
-			</c:choose> --%>
+</c:when>
+			</c:choose>
 
 	<br>
 	<div class="row justify-content-center">
