@@ -30,4 +30,7 @@ public interface MemberService {
 
 	public void updatePW(MemberDTO dto);
 	
+	public List<MemberDTO> chartCount();
+	
+	public List<MemberDTO> chartCountMonth();
 }

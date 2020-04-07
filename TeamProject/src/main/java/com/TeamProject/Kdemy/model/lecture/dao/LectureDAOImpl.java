@@ -115,4 +115,8 @@ public class LectureDAOImpl implements LectureDAO {
 	public LectureDTO selectFile(int lecture_idx) {
 		return sqlSession.selectOne("lecture.selectFile",lecture_idx);
 	}
+	@Override
+	public List<LectureDTO> chartCountLecture(){
+		return sqlSession.selectList("lecture.chartCountLecture");
+	}
 }

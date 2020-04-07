@@ -202,6 +202,11 @@ $(function(){
 	 });
 	 
 	$('#join-submit').click(function(e){
+/*		if(!$('#file').val()){
+			alert("메인 이미지로 사용할 파일을 첨부해주세요.");
+			return false;
+		}		*/
+		
 		if($('#usernameConfirm').val()!="y") {
 			$('#username').focus();
 			alert("1");

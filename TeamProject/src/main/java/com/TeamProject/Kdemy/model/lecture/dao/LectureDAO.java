@@ -30,5 +30,5 @@ public interface LectureDAO {
 	public List<LectureDTO> myLectureList(String userid);
 	public void lectureDelete(int lecture_idx);
 	public LectureDTO selectFile(int lecture_idx);
-	
+	public List<LectureDTO> chartCountLecture();
 }

@@ -17,11 +17,133 @@
 <script
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 
+<<<<<<< HEAD
+<script>
+$(function(){
+
+	
+	$('#content').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+        
+	});
+
+
+	
+	$("#btnSave").click(function(){
+		document.menu_add_form.action="${path}/lecture/teacher_type1_insert.do";
+		document.menu_add_form.submit();
+	});
+});
+
+
+var sub_category0 = new Array("-서브메뉴-");
+var sub_category1 = new Array("BEST BABY","BEST JUNIOR","BEST ACC");
+var sub_category2 = new Array("SPRING","SUMMER","FALL","WINTER");
+var sub_category3 = new Array("BABY OUTER","BABY TOP","BABY BOTTOM","BABY SET","BABY DRESS");
+var sub_category4 = new Array("JUNIOR OUTER","JUNIOR TOP","JUNIOR BOTTOM","JUNIOR SET","JUNIOR DRESS");
+var sub_category5 = new Array("CAP", "BAG", "SOCKS", "MUFFLER");
+
+
+
+function submenuchange(item){
+    var temp, i=0, j=0;
+    var ccount, cselect;
+
+    temp = document.menu_add_form.sub_category;
+
+    for (i=(temp.options.length-1) ; i>0 ; i--){ temp.options[i] = null; }
+    eval('ccount = sub_category' + item + '.length');
+    for (j=0 ; j<ccount ; j++) {
+        eval('cselect = sub_category' + item + '[' + j + '];');
+        temp.options[j]= new Option(cselect,cselect); 
+    }
+    temp.options[0].selected=true;
+    return true;
+}
+
+
+var count = 1;       
+
+function addForm(){
+	   if(count<=8) {
+          var addedFormDiv = document.getElementById("addedFormDiv");                 
+          var str = "";
+          str+=" <input type='file' class='form-control' name='filename"+count+"'id='filename"+count+"'>";
+          // 추가할 폼(에 들어갈 HTML)             
+          var addedDiv = document.createElement("div"); // 폼 생성
+          addedDiv.id = "added_"+count; // 폼 Div에 ID 부여 (삭제를 위해)
+          addedDiv.innerHTML  = str; // 폼 Div안에 HTML삽입
+          addedFormDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입         
+          count++;
+          document.baseForm.count.value=count;
+          // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
+	   }
+}
+function delForm(){
+          var addedFormDiv = document.getElementById("addedFormDiv");    
+          if(count >1){ // 현재 폼이 두개 이상이면
+                     var addedDiv = document.getElementById("added_"+(--count));
+                     // 마지막으로 생성된 폼의 ID를 통해 Div객체를 가져옴
+                     addedFormDiv.removeChild(addedDiv); // 폼 삭제 
+          }else{ // 마지막 폼만 남아있다면
+                     document.baseForm.reset(); // 폼 내용 삭제
+          }
+}
+
+</script>
+<style type="text/css">
+.menu_add_div .text_cotent {
+	padding: 0 !important;
+}
+
+.menu_add_div .btn-dark {
+	background-color: #333 !important;
+	color: white !important;
+}
+
+.menu_add_div .btn-primary {
+	background-color: #333 !important;
+	color: white !important;
+	border-color: #333 !important;
+}
+
+.menu_add_div .color_form {
+	margin-bottom: 0;
+}
+
+.menu_add_div .color_input {
+	padding-right: 0;
+	display: inline-block;
+}
+
+.menu_add_div .modelsize_input {
+	padding-right: 0;
+	display: inline-block;
+}
+
+.menu_add_div .color_padding {
+	padding-right: 2%;
+}
+
+.menu_add_div .modelsize_padding {
+	padding-right: 2%;
+}
+
+@media ( max-width : 800px) {
+}
+</style>
+=======
 <!-- 이원혁 추가 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
 <!-- 강의 등록용 JS -->
 <script src="${path}/include/js/lectureInsert.js"></script>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">

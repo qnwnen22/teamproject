@@ -75,4 +75,19 @@ public class MemberServiceImpl implements MemberService {
 	public void reject(String userid) {
 		memberDao.reject(userid);
 	}
+	
+	@Override
+	public List<MemberDTO> chartCount(){
+		return memberDao.chartCount();
+	}
+	@Override
+	public List<MemberDTO> chartCountMonth(){
+		return memberDao.chartCountMonth();
+	}
+	
+//	@Override
+//	public void deleteFile(String fullName) {
+//		memberDao.deleteFile(fullName);
+//	}
+//	
 }

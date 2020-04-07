@@ -65,12 +65,12 @@ $(document).ready(function(){
 					<input type="text" maxlength="50" class="siInputTextBox_Email"  id="useremail"
 						placeholder="이메일">
 				</div>
-			<div class="modalTextBox">
-						<p id="modalText">
-						</p>
-					</div>
 			</div>
 			<img id="searchIdbtn" class="showMask" src="${path}/member/img/ok.png" style="cursor: pointer;">
+			<div class="modalTextBox">
+						<p id="modalText" style="color:red;">
+						</p>
+					</div>
         </div>
 	</div>
 	</div>

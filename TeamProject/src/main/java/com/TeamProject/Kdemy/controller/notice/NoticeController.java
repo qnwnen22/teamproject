@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.notice.dto.NoticeDTO;
+import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 import com.TeamProject.Kdemy.service.notice.NoticeService;
 import com.TeamProject.Kdemy.service.notice.Notice_Pager;
 
@@ -95,8 +96,10 @@ public class NoticeController {
 	}//end insert
 	
 	@RequestMapping("view.do")
-	public ModelAndView view(int bno, HttpSession session) throws Exception {
+	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
 		noticeService.increateViewcnt(bno, session);
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("notice/noticeview");
 		mav.addObject("dto", noticeService.read(bno));
@@ -120,8 +123,11 @@ public class NoticeController {
 		return "redirect:/notice/view.do?bno="+dto.getBno();
 	}
 	
-	@RequestMapping("delete.do")
-	public String delete(int bno) throws Exception{
+	@RequestMapping("delete/{bno}")
+	public String delete(@PathVariable("bno") int bno,  
+			@ModelAttribute ReviewDTO dto, HttpSession session) throws Exception{
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
 		noticeService.delete(bno);
 		return "redirect:/notice/list.do";//목록으로 이동
 	}

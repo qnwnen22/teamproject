@@ -19,15 +19,31 @@ public class GoogleChartController {
 	public ModelAndView view() {
 		return new ModelAndView("admin/statistics");
 	}
+	
 	@RequestMapping("memberchart.do")
 	public ModelAndView memberchart() {
-		System.out.println("memberchart.do 실행");
 		return new ModelAndView("chart/memberchart");
 	}
+	
+	@RequestMapping("lecturechart.do")
+	public ModelAndView lecturechart() {
+		System.out.println("lecturechart 실행...............");
+		return new ModelAndView("chart/lecturechart");
+	}
+	
 	@RequestMapping("member_list.do")
 	public JSONObject member_list() {
-		System.out.println("memeber_list.do 실행");
 		return googleChartService.getChartData();
 	}
 	
+	@RequestMapping("member_list2.do")
+	public JSONObject member_list2() {
+		return googleChartService.getChartData2();
+	}
+	
+	@RequestMapping("lecture_list.do")
+	public JSONObject lecture_list() {
+		System.out.println("lecture_list 실행...............");
+		return googleChartService.getChartDatalecture();
+	}
 }

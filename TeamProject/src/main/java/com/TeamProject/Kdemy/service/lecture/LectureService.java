@@ -3,6 +3,7 @@ package com.TeamProject.Kdemy.service.lecture;
 import java.util.List;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 
 public interface LectureService {
@@ -32,5 +33,5 @@ public interface LectureService {
 	public List<LectureDTO> myLectureList(String userid);
 	public void lectureDelete(int lecture_idx);
 	public LectureDTO selectFile(int lecture_idx);
-	
+	public List<LectureDTO> chartCountLecture();
 }

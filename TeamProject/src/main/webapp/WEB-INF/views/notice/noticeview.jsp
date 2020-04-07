@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,11 +56,6 @@
 		});
 	});
 
-	function attachAddr() {
-		const str = `<input type="file" class="form-control-file" id="exampleFormControlFile1">`;
-		$(".Plus_one").append(str);
-	}
-
 
 	function GoList(){
 		location.href="${path}/notice/list.do";
@@ -75,15 +69,10 @@
 		}
 
 	function GoDelete(){
-		var passwd=prompt("비밀번호를 입력하세요");
-		if(sessionScope.passwd==passwd){
 			var del_confirm=confirm("삭제하시겠습니까?");
 			if(del_confirm==true){
-					document.form1.action="${path}/notice/delete.do";
+					document.form1.action="${path}/notice/delete/${dto.bno}";
 					document.form1.submit();
-				}
-			}else{
-				alert("비밀번호가 틀렸습니다.");
 				}
 		}
 </script>
@@ -135,16 +124,23 @@
 			<!-- 수정,삭제에 필요한 글번호를 hidden 태그에 저장 -->
 			<input type="hidden" name="bno" value="${dto.bno}">
 			<div class="btn-group float-right" role="group" aria-label="Basic example">
-						<%-- <c:if test="${sessionScope.userid == dto.writer}"> --%>
+		           <c:choose>
+		            <c:when test="${dto.writer == sessionScope.userid }">
 							<button type="button" class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
 								data-toggle="button" aria-pressed="false" onclick="GoUpdate()">
 								수정</button>
+								
 							<button type="button" class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
 								data-toggle="button" aria-pressed="false" id="btnDelete" onclick="GoDelete()">
 								삭제</button>
-					<%-- 	</c:if> --%>
+														<button type="button" class="btn btn-sm btn-primary justify-content-end  font-color-fff btn-normal-silver" data-toggle="button"
+							aria-pressed="false" onclick="GoList()">목록</button>
+                </c:when>
+                <c:otherwise>
 						<button type="button" class="btn btn-sm btn-primary justify-content-end  font-color-fff btn-normal-silver" data-toggle="button"
 							aria-pressed="false" onclick="GoList()">목록</button>
+                </c:otherwise>
+			</c:choose>	
 				</div>
 		</div>
 

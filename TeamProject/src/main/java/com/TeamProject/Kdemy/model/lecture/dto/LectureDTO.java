@@ -27,6 +27,15 @@ public class LectureDTO {
 	
 	private MultipartFile file1;
 	private MultipartFile file2;
+	
+	private int tcount;
+	
+	public int getTcount() {
+		return tcount;
+	}
+	public void setTcount(int tcount) {
+		this.tcount = tcount;
+	}
 	public int getLecture_idx() {
 		return lecture_idx;
 	}
