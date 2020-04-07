@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 
 @Repository
@@ -114,5 +115,24 @@ public class LectureDAOImpl implements LectureDAO {
 	@Override
 	public LectureDTO selectFile(int lecture_idx) {
 		return sqlSession.selectOne("lecture.selectFile",lecture_idx);
+	}
+
+//	강의 구매여부 확인 메소드
+	@Override
+	public int buyCheck(LectureBoxDTO lbDto) {
+		return sqlSession.selectOne("lectureBox.buyCheck",lbDto);
+	}
+
+	@Override
+	public void buy(String userid, String idxList) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("idxList", idxList);
+		sqlSession.insert("lectureBox.buy",map);
+	}
+
+	@Override
+	public int pointCheck(String userid) {
+		return sqlSession.selectOne("lecture.pointCheck",userid);
 	}
 }

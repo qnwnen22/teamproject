@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
@@ -27,7 +28,7 @@ import com.TeamProject.Kdemy.util.UploadFileUtils;
 @RequestMapping("lecture/*")
 public class LectureController {
 
-	private static final Logger logger=LoggerFactory.getLogger(LectureController.class);
+	private static final Logger log=LoggerFactory.getLogger(LectureController.class);
 	
 	@Inject
 	LectureService lectureService;
@@ -50,6 +51,10 @@ public class LectureController {
 	public String vedioPage() {
 		return "lecture/video";
 	}
+	//동영상 구매 유도 페이지
+//	@RequestMapping("buyLecturePage")
+//	public String 
+	
 	//동영상 리스트 페이지 이동
 	@RequestMapping("video_List.do")
 	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage,
@@ -320,17 +325,18 @@ public class LectureController {
 		}
 		
 		@RequestMapping("lecture_list_view.do")
-		public ModelAndView lecture_list_view(int lecture_idx, LectureDTO dto) {
+		public ModelAndView lecture_list_view(
+				int lecture_idx, LectureDTO dto,
+				HttpSession session,LectureBoxDTO lbDto) {
 			
-//			밑에 코드를 실행하기 전에 session에서 userid와 파라미터의 lecture_idx값을 가져와서
-//			lecture_box 테이블에 count(*)가 있는지 조회하고 
-//			1이면 영상시청(아래 코드 그대로 실행),
-//			0이면 결제 유도(다른 view 페이지로 이동 후 결제가 완료되면 다시 여기로)
-			
-			dto.setLecture_idx(lecture_idx);
-			LectureDTO dto2=lectureService.lecture_list_view(lecture_idx);
+			lbDto.setUserid((String)session.getAttribute("userid"));
+			lbDto.setLecture_idx(lecture_idx);
+			int check = lectureService.buyCheck(lbDto);
+			dto=lectureService.lecture_list_view(lecture_idx);
+
 			ModelAndView mav=new ModelAndView();
-			mav.addObject("dto",dto2);
+			mav.addObject("check",check);
+			mav.addObject("dto",dto);
 			mav.setViewName("lecture/lecture_list_view");
 			return mav;
 		}
@@ -382,7 +388,7 @@ public class LectureController {
 			if(file1.exists()) {
 				file1.delete();
 			}else {
-				logger.info("파일이 없습니다");
+				log.info("파일이 없습니다");
 			}
 
 			File file2=new File(uploadPath+dto.getVideofile());
@@ -390,11 +396,41 @@ public class LectureController {
 			if(file2.exists()) {
 				file2.delete();
 			}else {
-				logger.info("이미지 파일이 존재하지 않습니다.");
+				log.info("이미지 파일이 존재하지 않습니다.");
 			}
 			
 			lectureService.lectureDelete(lecture_idx);
 			String userid=(String)session.getAttribute("userid");
 			return "redirect:/lecture/myLecturePage.do?userid="+userid;
 		}
+		
+	// 장바구니 상품 일괄구매
+//	@RequestMapping("buyList.do")
+//	public String buyList(HttpSession session, String[] idxList, 
+//			String[] cell_type, int count, int price) {
+//		System.out.println("session아이디 :"+session.getAttribute("userid"));
+//		System.out.println("count : "+count);
+//		System.out.println("price는 : "+price);
+//		String userid=(String)session.getAttribute("userid");
+//		
+//		
+//		for(int i=0; i<count; i++) {
+//			System.out.println("cell_type : "+cell_type[i]);
+//			System.out.println("idxList : "+idxList[i]);
+//		}
+//		
+////		멤버 테이블에서 포인트 차감
+//		cartService.buyLecture(price);
+////		장바구니 테이블에서 삭제
+//		
+////		렉쳐박스 테이블에 추가
+//		
+//		
+//		
+//		
+////		멤버에 있는 userid에 대한 point값을 price만큼 -처리
+////		int point=lectureService.pointCheck(userid);
+//		return "home";
+//	}
+		
 }

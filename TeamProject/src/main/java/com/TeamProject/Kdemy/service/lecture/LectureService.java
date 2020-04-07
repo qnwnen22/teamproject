@@ -2,6 +2,7 @@ package com.TeamProject.Kdemy.service.lecture;
 
 import java.util.List;
 
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 
 
@@ -32,5 +33,10 @@ public interface LectureService {
 	public List<LectureDTO> myLectureList(String userid);
 	public void lectureDelete(int lecture_idx);
 	public LectureDTO selectFile(int lecture_idx);
+	
+//	강의 구매여부 확인 메소드
+	public int buyCheck(LectureBoxDTO lbDto);
+	public void buy(String userid, String idxList);
+	public int pointCheck(String userid);
 	
 }
