@@ -90,4 +90,17 @@ public class MemberServiceImpl implements MemberService {
 //		memberDao.deleteFile(fullName);
 //	}
 //	
+
+	@Override
+	public void updateCoupon(MemberDTO dto) {
+		memberDao.updateCoupon(dto);
+		
+	}
+
+	@Override
+	public void updatePoint(MemberDTO dto) {
+		memberDao.updatePoint(dto);
+		
+	}
+
 }

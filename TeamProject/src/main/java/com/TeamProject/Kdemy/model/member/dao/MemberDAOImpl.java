@@ -42,7 +42,6 @@ public class MemberDAOImpl implements MemberDAO {
 			 if (dto2.getVerify() == 'y') {
 				if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {		
 					result="로그인성공";
-					System.out.println("비밀번호체크"+result);
 				}else {
 					result="로그인실패";
 				}
@@ -103,6 +102,19 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.delete("member.reject",userid);
 		sqlSession.update("member.rejectmember",userid);
 	}
+
+	@Override
+	public void updateCoupon(MemberDTO dto) {
+		sqlSession.update("member.updateCoupon",dto);
+		
+	}
+
+	@Override
+	public void updatePoint(MemberDTO dto) {
+		sqlSession.update("member.updatePoint",dto);
+		
+	}
+
 
 //	@Override
 //	public void deleteFile(String fullName) {

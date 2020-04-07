@@ -33,5 +33,9 @@ public interface MemberDAO {
 	public List<MemberDTO> chartCount();
 	
 	public List<MemberDTO> chartCountMonth();
-//	public void deleteFile(String fullName);
+
+	public void updateCoupon(MemberDTO dto);
+
+	public void updatePoint(MemberDTO dto);
+
 }

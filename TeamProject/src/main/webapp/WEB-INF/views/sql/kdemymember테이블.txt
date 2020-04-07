@@ -16,7 +16,18 @@ address2 varchar2(200),
 join_date date default sysdate, 
 verify varchar2(10) default 'n',
 thumbnail clob,
+<<<<<<< HEAD
 teacher varchar2(200) default 'n'
+=======
+coupon varchar2(200),
+teacher varchar2(200),
+bpasswd varchar2(200)
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 );
 
 commit;
+
+update kdemymember
+set point= (select point from coupon b where b.coupon=coupon);
+
+
