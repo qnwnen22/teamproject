@@ -44,7 +44,6 @@ textarea.form-control {
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-<script src="${path}/include/js/common.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -59,12 +58,12 @@ textarea.form-control {
 		});
 	});
 
-	function attachAddr() {
-		const str = `<input type="file" class="form-control-file" id="fullName">`;
+/* 	function attachAddr() {
+		const str = `<input type="file" class="form-control-file" id="file1">`;
 		$(".Plus_one").append(str);
-	}
+	} */
 
-	function alertClick() {
+	 function alertClick() {
 		var title = $("#title").val();
 		var content = $("#content").val();
 		var subject = $("#subject").val();
@@ -90,7 +89,7 @@ textarea.form-control {
 			$("#content").focus();
 			return;
 		}
-	}
+	} 
 
 	function GoList() {
 		var go_confirm = confirm("입력하신 내용은 저장이 되지 않습니다. 그래도 나가시겠습니까?");
@@ -141,24 +140,14 @@ textarea.form-control {
 		<div class="justify-content-md-center">
 			<form id="form1" name="form1" method="post"
 				action="${path}/review/insert.do"
-					>
+				enctype="multipart/form-data">
 				<div>
 					<ul class="upper_shift">
 						<li><a href="${path}">KDEMY</a></li>
 						<li><a href="${path}/review/list.do">수강후기</a></li>
 					</ul>
 				</div>
-				<br> <br> <select name="search_option"
-					class=" search_option" style="visibility: hidden;">
-					<%--	<option value="username"
-					<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
-				<option value="title"
-					<c:if test="${map.search_option=='title' }">selected</c:if>>제목</option>
-				<option value="content"
-					<c:if test="${map.search_option=='content' }">selected</c:if>>내용</option> --%>
-					<option value="all"
-						<c:if test="${map.search_option=='all' }">selected</c:if>>이름+내용+제목</option>
-				</select>
+				<br> <br> 
 
 				
 				<div class="form-group">
@@ -214,14 +203,14 @@ textarea.form-control {
 
 				<div class="form-group">
 					<label for="fullName">파일 첨부</label> <input
-						type="file" class="form-control-file" id="fullName">
+						type="file" class="form-control-file" id="file1" name="file1">
 					<div class="Plus_one"></div>
-					<div>
+					<!-- <div>
 						<input type="button" class="form-control-file"
 							id="exampleFormControlFile1"
 							onclick="attachAddr(); return false;" value="파일 추가"
 							style="width: 5.5em;">
-					</div>
+					</div>  -->
 				</div>
 
 
@@ -229,7 +218,7 @@ textarea.form-control {
 					aria-label="Basic example">
 					<button type="submit"
 						class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
-						data-toggle="button" aria-pressed="false" onclick="alertClick()">
+						data-toggle="button" aria-pressed="false" ><!-- onclick="alertClick()" -->
 						확인</button>
 					<button type="button"
 						class="btn btn-sm btn-primary justify-content-end  font-color-fff btn-normal-silver"

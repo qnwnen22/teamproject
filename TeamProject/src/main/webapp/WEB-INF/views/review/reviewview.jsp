@@ -163,7 +163,8 @@
 
 						<tr>
 							<td>첨부파일</td>
-							<td colspan="3"></td>
+							<td colspan="3"><img src="../include/images/review/${dto.fullName}"
+							class="align-self-center" style="width: 200px"></td>
 						</tr>
 
 					</table>

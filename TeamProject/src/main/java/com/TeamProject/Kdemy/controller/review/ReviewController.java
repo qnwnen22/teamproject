@@ -96,14 +96,21 @@ public class ReviewController {
 	}// end write()
 	
 	
-	@RequestMapping("insert.do")
-	public String insert(@ModelAttribute ReviewDTO dto, HttpSession session) throws Exception{
+	@RequestMapping(value="insert.do", method= {RequestMethod.POST},
+	         consumes=MediaType.MULTIPART_FORM_DATA_VALUE, produces="text/plain;charset=utf-8")
+	public String insert(ReviewDTO dto, HttpSession session) throws Exception{
+		MultipartFile file1=dto.getFile1();
+		String fullName=file1.getOriginalFilename();
+		try {
+			fullName=UploadFileUtils.uploadFile(reviewuploadPath, fullName, file1.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto");
+		dto.setFullName(fullName);
 		reviewService.create(dto);
-		return "redirect:/review/list.do";
+		return ("redirect:/review/list.do");
 	}//end insert
 	
 	

@@ -48,7 +48,7 @@ height: 50% !important;
 		<!-- 베스트 리뷰 -->
 		<div class="card-deck">
 			<div class="card">
-				<img src="${path}/include/images/main/디자인.png" class="card-img-top" alt="...">
+				<img src="../include/images/review/" class="card-img-top" alt="...">
 				<div class="card-body">
 				<a href="#"><h5 class="card-title">Card title</h5>
 					<p class="card-text">This card has supporting text below as a

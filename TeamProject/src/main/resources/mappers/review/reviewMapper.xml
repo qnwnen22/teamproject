@@ -73,9 +73,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert">
-		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
+		insert into kdemyreview (bno,subject,teacher,title,content,writer,fullName) values
 		(
-		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer})
+		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer}, #{fullName})
 	</insert>
 
 	<!-- 첨부파일 정보 저장 -->
@@ -93,7 +93,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<select id="read"
 		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
-		select bno,subject,b.teacher,title,regdate,content,viewcnt,username,writer
+		select bno,subject,b.teacher,title,regdate,content,viewcnt,username,writer, fullName
 		from kdemyreview b, kdemymember m
 		where b.writer=m.userid and bno=#{bno}
 	</select>

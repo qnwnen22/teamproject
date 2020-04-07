@@ -31,11 +31,6 @@ public class ReiviewServiceImpl implements ReviewService {
 	@Override
 	public void create(ReviewDTO dto) throws Exception {
 		reviewDao.create(dto);
-		String[] files=dto.getFiles();
-		if(files==null) return;
-		for(String name : files) {
-			reviewDao.addAttach(name);
-		}
 	}
 
 	@Override
