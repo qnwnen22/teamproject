@@ -22,11 +22,6 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert("member.insertMember",dto);
 	}
 	
-//	@Override
-//	public MemberDTO getMember(MemberDTO dto) {
-//		return sqlSession.selectOne("member.getMember",dto);
-//	}
-	
 	@Override
 	public void verifyMember(MemberDTO dto) {
 		sqlSession.update("member.verifyMember", dto);
@@ -47,7 +42,6 @@ public class MemberDAOImpl implements MemberDAO {
 			 if (dto2.getVerify() == 'y') {
 				if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {		
 					result="로그인성공";
-					System.out.println("비밀번호체크"+result);
 				}else {
 					result="로그인실패";
 				}
@@ -77,13 +71,6 @@ public class MemberDAOImpl implements MemberDAO {
 	  return sqlSession.selectOne("member.kdemyLogin",dto);
 	}
 
-
-
-//	@Override
-//	public List<MemberDTO> list() {
-//		return sqlSession.selectList("member.memberList");
-//	}
-	
 	@Override
 	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception {
 		Map<String,Object> map=new HashMap<>();
@@ -116,12 +103,29 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update("member.rejectmember",userid);
 	}
 
+	@Override
+	public void updateCoupon(MemberDTO dto) {
+		sqlSession.update("member.updateCoupon",dto);
+		
+	}
+
+	@Override
+	public void updatePoint(MemberDTO dto) {
+		sqlSession.update("member.updatePoint",dto);
+		
+	}
+
+
 //	@Override
 //	public void deleteFile(String fullName) {
 //			sqlSession.delete("member.deleteFile", fullName);
 //		}
-		
+	@Override
+	public List<MemberDTO> chartCount() {
+		return sqlSession.selectList("member.chartCount");
 	}
-	
-	
-
+	@Override
+	public List<MemberDTO> chartCountMonth() {
+		return sqlSession.selectList("member.chartCountMonth");
+	}
+}

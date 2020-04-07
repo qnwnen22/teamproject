@@ -27,6 +27,7 @@ import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
 import com.TeamProject.Kdemy.util.MailHandler;
+import com.TeamProject.Kdemy.util.TempKey;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 
@@ -44,6 +45,15 @@ public class MemberController {
 	
 	@Resource(name="memberUploadPath")
 	String uploadPath;
+	
+	@RequestMapping("couponMaker.do")
+	public String couponMaker() {
+		return "member/coupon";
+	}
+	@RequestMapping("updatePointPage.do")
+	public String updatePointPage() {
+		return "member/couponCheck";
+	}
 	
 	@RequestMapping("join.do")
 	public String join() {
@@ -82,7 +92,6 @@ public class MemberController {
 		dto.setPasswd(passwd);
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
-		System.out.println(dto);
 		memberService.insertMember(dto);
 		
 		MailHandler sendMail = new MailHandler(mailSender);
@@ -101,7 +110,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/verify.do", method = RequestMethod.GET)
 	public String signSuccess(@RequestParam String useremail) {
-		System.out.println("이메일 인증기능 처리");
 		MemberDTO dto = new MemberDTO();
 		dto.setUseremail(useremail);
 		memberService.verifyMember(dto);
@@ -143,22 +151,19 @@ public class MemberController {
 	public void searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 		String userid = request.getParameter("userid");
 		String useremail = request.getParameter("useremail");
-		System.out.println(userid);
-		System.out.println(useremail);
 		MemberDTO dto = new MemberDTO();
 		dto.setUserid(userid);
 		dto.setUseremail(useremail);
-		String temp_passwd = "temp"+dto.getUserid(); //랜덤함수로 변경 예정  
-		String passwd=BCrypt.hashpw(temp_passwd, BCrypt.gensalt());
+		
+		String key = new TempKey().getKey(10,false);  // 인증키 생성
+		String passwd=BCrypt.hashpw(key, BCrypt.gensalt());
 		dto.setPasswd(passwd);
 		memberService.updatePW(dto);
-	
-		
-		
+			
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-				.append("<b>임시 비밀번호 발급 : " + temp_passwd+ "</b><br>")
+				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
@@ -166,24 +171,7 @@ public class MemberController {
 		sendMail.send();
 
 	}
-
-	@RequestMapping("teacherPage.do")
-	public String teacherPage() {
-		return "teacher/teacherPage";
-	}
-
-	@RequestMapping("loginPage.do")
-	public String loginPage() {
-		return "member/login";
-	}
-
-	@RequestMapping("logOut.do")
-	public String logOut(HttpSession session) {
-		session.invalidate();
-		return "member/login";
-	}
-
-
+	
 	@RequestMapping("login.do")
 	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
 		String result=memberService.passwdCheck(dto);
@@ -203,6 +191,65 @@ public class MemberController {
 		return mav;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/makeCouponA.do", method = RequestMethod.POST)
+	public void makeCouponA(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+		String useremail = request.getParameter("useremail");
+		String key1 = new TempKey().getKey(4,false); 
+	   	String key2 = new TempKey().getKey(4,false); 
+	   	String key3 = new TempKey().getKey(4,false); 
+	   	String key4 = "0841";
+	
+		MemberDTO dto = new MemberDTO();
+		dto.setUseremail(useremail);
+		dto.setKey1(key1); 
+	   	dto.setKey2(key2); 
+	   	dto.setKey3(key3);
+	   	dto.setCoupon(key4);
+		
+		memberService.updateCoupon(dto);
+			
+		MailHandler sendMail = new MailHandler(mailSender);
+		sendMail.setSubject("[kdemy에서 쿠폰을 받으세요!]");
+		sendMail.setText(new StringBuffer().append("<h1>10000포인트 쿠폰 발급</h1>")
+				.append("<b>쿠폰 번호 : " + key1+"-"+key2+"-"+key3+"-"+key4+ "</b><br>")
+				.append("<a href='http://localhost/Kdemy/")
+				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
+		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
+		sendMail.setTo(dto.getUseremail());
+		sendMail.send();
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/updatePoint.do", method = RequestMethod.POST)
+	public void updatePoint(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+		String coupon = request.getParameter("coupon");
+			
+		MemberDTO dto = new MemberDTO();
+	   	dto.setCoupon(coupon);
+		
+		memberService.updatePoint(dto);
+
+	}
+
+
+	@RequestMapping("teacherPage.do")
+	public String teacherPage() {
+		return "teacher/teacherPage";
+	}
+
+	@RequestMapping("loginPage.do")
+	public String loginPage() {
+		return "member/login";
+	}
+
+	@RequestMapping("logOut.do")
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		return "member/login";
+	}
+
 
 	@RequestMapping("list.do")
 	public ModelAndView list(
@@ -210,6 +257,9 @@ public class MemberController {
 			@RequestParam(defaultValue ="") String location,
 			@RequestParam(defaultValue="1") int curPage) 
 					throws Exception {
+		System.out.println("list.do실행");
+		System.out.println(curPage);
+		System.out.println(location);
 		//레코드 갯수 계산
 		int count=memberService.countMember(keyword,location);
 		//페이지 관련 설정

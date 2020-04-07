@@ -159,5 +159,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where lecture_idx=#{lecture_idx}
 	
 	</select>
+	
+	<select id="chartCountLecture" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select main_category, count(*) tcount from lecture group by main_category
+	</select>
 </mapper>
 

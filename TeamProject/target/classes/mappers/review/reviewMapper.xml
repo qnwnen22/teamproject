@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
 		<include refid="paging_header" />
 		select bno, subject, teacher, title, writer, regdate, viewcnt, show,
+<<<<<<< HEAD
 		(select count(*) from kdemyreview_reply where bno=b.bno) cnt
 		from kdemyreview b where show='Y'
 		order by bno
@@ -131,6 +132,120 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <delete id="replydelete">
   	delete from kdemyreview_reply where rno=#{rno} 
   </delete>
+=======
+		(select count(*)
+		from kdemyreview_reply where bno=b.bno) cnt
+		from kdemyreview b where show='Y'
+		order by bno
+		desc
+
+		<include refid="paging_footer" />
+	</select>
+
+	<select id="countArticle" resultType="int">
+		select count(*) from
+		kdemyreview b
+	</select>
+
+	<select id="searchlistAll"
+		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
+		<include refid="paging_header" />
+		select bno, subject, teacher, title, writer, regdate, viewcnt, show,
+		(select count(*)
+		from kdemyreview_reply where bno=b.bno) cnt
+		from kdemyreview b
+		<choose>
+			<when test="search_option== 'all'">
+				where show='Y'
+				and (title like #{keyword}
+				or content like #{keyword} )
+			</when>
+		</choose>
+		order by bno desc
+
+		<include refid="paging_footer" />
+	</select>
+
+	<sql id="paging_header">
+		select *
+		from (
+		select rownum as rn, A.*
+		from (
+	</sql>
+
+	<sql id="paging_footer">
+		) A
+		) where rn between #{start} and #{end}
+	</sql>
+
+
+	<select id="searchcountArticle" resultType="int">
+		select count(*) from kdemyreview b
+		<choose>
+			<when test="search_option== 'all'">
+				where show='Y'
+				and (title like #{keyword}
+				or content like #{keyword} )
+			</when>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
+		(
+		seq_kdemynotice.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer} )
+	</insert>
+
+	<!-- 첨부파일 정보 저장 -->
+	<insert id="addAttach">
+		insert into kdemyreview_attach (fullName, bno) values
+		( #{fullName},
+		seq_kdemyreview.currval )
+	</insert>
+	
+	<!-- 조회수 증가 처리 -->
+	<update id="increateViewcnt">
+		update kdemyreview set viewcnt=viewcnt+1
+		where bno=#{bno}
+	</update>
+		
+	<select id="read"
+		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
+		select bno,subject,b.teacher,title,regdate,content,viewcnt,username,writer
+		from kdemyreview b, kdemymember m
+		where b.writer=m.userid and bno=#{bno}
+	</select>
+
+	<select id="detail_review"
+		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
+		select * from kdemyreview
+		where bno=#{bno}
+	</select>
+	
+	<!-- 게시물 내용 수정 -->
+	<update id="update">
+		update kdemyreview
+		set subject=#{subject}, teacher=#{teacher}, title=#{title}, content=#{content}
+		where bno=#{bno}
+	</update>
+
+	<delete id="delete">
+		update kdemyreview set show='N' where bno=#{bno}
+	</delete>
+	
+	 <insert id="insertReply">
+    insert into kdemyreview_reply (rno,bno,replytext,replyer) values
+		( review_reply_seq.nextval, #{bno}, #{replytext}, #{replyer} )
+  </insert>
+  
+   <select id="listReply" 
+  resultType="com.TeamProject.Kdemy.model.review.dto.ReplyDTO">
+    select rno,bno,replyer,regdate,updatedate,username,r.replytext
+		from kdemyreview_reply r, kdemymember m
+		where r.replyer=m.userid and bno=#{bno}
+		order by rno
+  </select>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 </mapper>
 
