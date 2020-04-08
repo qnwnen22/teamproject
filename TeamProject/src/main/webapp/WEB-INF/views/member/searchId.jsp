@@ -6,16 +6,29 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="${path}/member/css/searchID.css?ver=5" rel="stylesheet" type="text/css">
 <%@ include file="../include/header.jsp"%>
 <style type="text/css">
+/* div{border:solid black 1px;} */
+.searchID{
+text-align:center;
+}
 #wrap{
     width:100%;
     height:100%;
 }
   
-#searchIdPwSearch{ 
-    width:300px;
+.panel-body{ 
+    width:1000px;
+    height:500px;
+    margin:0 auto;
+}
+.inner-box-msg{
+    width: 800px;
+    height:50px;
+    margin:0 auto;
+}
+.inner-box-form{
+    width: 800px;
     height:300px;
     margin:0 auto;
 }
@@ -32,10 +45,10 @@ $(document).ready(function(){
             },
             success: function(result){
                 if($.trim(result) =="x"){
-					$('#modalText').html('가입기록이 없습니다.<br>이름 또는 이메일을 다시 한 번 확인해주세요!');
+					$('#text').html('가입기록이 없습니다.<br>이름 또는 이메일을 다시 한 번 확인해주세요!');
                 }
                 else{
-                	$('#modalText').html('<br>회원님의 아이디는 <b>'+$.trim(result)+'</b>입니다.');
+                	$('#text').html('<br>회원님의 아이디는 <b>'+$.trim(result)+'</b>입니다.');
                 }
             }
         });    //end ajax    
@@ -46,33 +59,38 @@ $(document).ready(function(){
 <body>
 
 	<%@ include file="../include/fixed-topbar.jsp" %>
-	<div id="wrap">
-	<div id="searchIdPwSearch">
-		<br><br><br>
 
-		<div id="sipTitle">FIND ID</div>
-		<div id="siBoxes">
-			<div id="siTextbox">
-				<p id="siTextTitle">아이디 찾기</p>
-				<p id="siText">회원정보를 확인하여 아이디를 찾아드립니다</p>
-			</div>
-			<div id="siInputTextBoxes">
-				<div class="siInputText">
-					<input type="text" maxlength="20" class="siInputTextBox"  id="username"
-						placeholder="이름">
-				</div>
-				<div class="siInputText">
-					<input type="text" maxlength="50" class="siInputTextBox_Email"  id="useremail"
-						placeholder="이메일">
-				</div>
-			</div>
-			<img id="searchIdbtn" class="showMask" src="${path}/member/img/ok.png" style="cursor: pointer;">
-			<div class="modalTextBox">
-						<p id="modalText" style="color:red;">
+	
+	
+<div id="wrap">	
+<div class="panel-body">
+					<div class="col-sm-12">
+						<h2 class="searchID">아이디 찾기</h2>
+					</div>
+					<hr>
+					<div class="col-sm-6 inner-box-msg">
+						<p>등록한 이메일 주소를 정확히 입력해주세요.</p></div>
+					<div class="col-sm-6 inner-box-form">
+							<div>
+								<label for="name">이름</label>
+								<input id="username" id="username" type="text" class="form-control required" placeholder="이름을 입력하세요" autofocus="">
+							</div>
+							<div>
+								<label for="email">이메일 주소</label>
+								<input id="useremail" id="useremail" type="email" class="form-control required" placeholder="이메일 주소를 입력하세요" autofocus="">
+							</div>
+							
+							<br>
+							<div>
+								<button class="btn btn-danger btn-block" id="searchIdbtn">확인</button>
+							</div>
+										<div class="textBox">
+						<p id="text" style="color:red;">
 						</p>
 					</div>
-        </div>
-	</div>
-	</div>
-	
+					</div>
+				</div>
+					</div>
+					
+
 </body>
