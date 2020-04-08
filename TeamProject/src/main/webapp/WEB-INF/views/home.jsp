@@ -38,7 +38,155 @@
 			place : 'picker',
 			input : 'color'
 		});
+	//드래그 기본 효과를 막음 .은 클래스 class=fileDrop, #은 id
+	$(".fileDrop, .fileDrop1").on("dragenter dragover", function(event){
+		event.preventDefault();
 	});
+	$(".fileDrop").on("drop",function(event){
+		//drop이 될 때 기본 효과를 막음
+		event.preventDefault();
+		//첨부파일 배열(여러개를 동시에 선택해서 드래그 할 수 도 있기때문에 한개만 처리하도록 조치)
+		var files=event.originalEvent.dataTransfer.files;
+		var file=files[0]; //첫번째 첨부파일
+		var formData=new FormData(); //폼 객체
+		formData.append("file",file); //폼에 file 변수 추가
+		//서버에 파일 업로드(백그라운드에서 실행됨)
+		//아래 contentType: false는  multipart/form-data로 처리되는것과 같음
+		$.ajax({
+			type: "post",
+			url: "${path}/upload/uploadBanner",
+			data: formData,
+			dataType: "text",
+			processData: false,
+			contentType: false, 
+			success: function(data,status,req){
+				console.log("data:"+data); //업로드된 파일 이름
+				console.log("status:"+status); //성공,실패 여부
+				console.log("req:"+req.status);//요청코드값
+
+				var str="";
+				if(checkImageType(data)){//이미지 파일
+					str="<div><a href='${path}/include/images/main/uploadBanner/displayFile?fileName="
+						+getImageLink(data)+"'>";
+				str+="<img src='${path}/upload/displayFile?fileName="
+						+data+"'class='mx-auto d-block' style='height: 18rem;''></a>"; 
+					}else{//이미지가 아닌 경우
+						str="";
+						str+="<a href='${path}/include/images/main/uploadBanner/displayFile?fileName="
+								+data+"'>"+getOriginalName(data)+"</a>";
+						}
+				str+="<span data-src="+data+">[삭제]</span></div>";
+				var temp = $("img#preImg").detach();
+				$("img#save").html(temp);
+				$(".uploadedList").append(str);
+			}
+		});
+	});//fileDrop 함수
+	
+	$(".fileDrop1").on("drop",function(event){
+		//drop이 될 때 기본 효과를 막음
+		event.preventDefault();
+		//첨부파일 배열(여러개를 동시에 선택해서 드래그 할 수 도 있기때문에 한개만 처리하도록 조치)
+		var files=event.originalEvent.dataTransfer.files;
+		var file=files[0]; //첫번째 첨부파일
+		var formData=new FormData(); //폼 객체
+		formData.append("file",file); //폼에 file 변수 추가
+		//서버에 파일 업로드(백그라운드에서 실행됨)
+		//아래 contentType: false는  multipart/form-data로 처리되는것과 같음
+		$.ajax({
+			type: "post",
+			url: "${path}/upload/uploadBanner",
+			data: formData,
+			dataType: "text",
+			processData: false,
+			contentType: false, 
+			success: function(data,status,req){
+				console.log("data:"+data); //업로드된 파일 이름
+				console.log("status:"+status); //성공,실패 여부
+				console.log("req:"+req.status);//요청코드값
+
+				var str="";
+				if(checkImageType(data)){//이미지 파일
+					str="<div><a href='${path}/upload/displayFile?fileName="
+						+getImageLink(data)+"'>";
+				str+="<img src='${path}/upload/displayFile?fileName="
+						+data+"'class='mx-auto d-block'style='height: 18rem;''></a>"; 
+					}else{//이미지가 아닌 경우
+						str="";
+						str+="<a href='${path}/upload/displayFile?fileName="
+								+data+"'>"+getOriginalName(data)+"</a>";
+						}
+				str+="<span data-src="+data+">[삭제]</span></div>";
+				var temp = $("img#preImg1").detach();
+				$("img#save1").html(temp);
+				$(".uploadedList1").append(str);
+			}
+		});
+	});//fileDrop 함수
+	//첨부파일 삭제 함수
+	$(".uploadedList").on("click","span",function(event){//내부적으로 span태그가 클릭되면 삭제
+		var that=$(this);//this는 현재 클릭한 태그, 즉 span태그
+		$.ajax({
+			url: "${path}/upload/deleteFile",
+			type: "post",
+			data: {//data: "fileName="+$(this).attr("data-src") 아래와 같음	
+				fileName: $(this).attr("data-src")
+			},
+			dataType: "text",
+			success: function(result){
+				if(result=="deleted"){
+					that.parent("div").remove();//파일삭제되면 행전체<div>를 삭제처리
+					//that은 span태그를 의미하는데 그 부모인 감싸고 있는 div태그를 지운다는 뜻
+					var temp = $("img#preImg").detach();
+					$("div#imageBanner").html(temp);
+				}
+			}
+		});
+	});
+	$(".uploadedList1").on("click","span",function(event){//내부적으로 span태그가 클릭되면 삭제
+		var that=$(this);//this는 현재 클릭한 태그, 즉 span태그
+		$.ajax({
+			url: "${path}/upload/deleteFile",
+			type: "post",
+			data: {//data: "fileName="+$(this).attr("data-src") 아래와 같음	
+				fileName: $(this).attr("data-src")
+			},
+			dataType: "text",
+			success: function(result){
+				if(result=="deleted"){
+					that.parent("div").remove();//파일삭제되면 행전체<div>를 삭제처리
+					//that은 span태그를 의미하는데 그 부모인 감싸고 있는 div태그를 지운다는 뜻
+					var temp = $("img#preImg1").detach();
+					$("div#imageBanner1").html(temp);
+				}
+			}
+		});
+	});
+	
+	function getOriginalName(fileName){
+		if(checkImageType(fileName)){ //이미지 파일이면 skip
+			return;
+		}
+		var idx=fileName.indexOf("_")+1; //uuid를 제외한 파일이름만 뽑음
+		return fileName.substr(idx);
+	}
+	function getImageLink(fileName){
+		if(!checkImageType(fileName)){//이미지 파일이 아니면 skip
+			return;
+		}
+		//2018/08/25/s_f53e623b-24db-42f9-b607-9c04528056a5_apple-bg.jpg
+		var front=fileName.substr(0,12);//연월일 경로(0~11번째까지 자르고)
+		var end=fileName.substr(14);// 14번째 문자열앞의 s_ 제거
+		return front+end;
+	}
+	function checkImageType(fileName){
+		var pattern=/jpg|png|jpeg/i; //정규표현식(i는 대소문자 무시)
+		return fileName.match(pattern); //규칙에 맞으면 true가 리턴
+	}
+	function saveMain(){
+		
+		}
+});
 </script>
 </head>
 <body>
@@ -47,7 +195,7 @@
 		<div class="master-body">
 			<div class="MasterBodyDestTop">
 				<div class="kdemimobile d-lg-none d-xl-none d-md-block d-sm-block">
-					<div class="container-md col-md-12 pt-3">
+					<div class="container-md col-md-12 pt-3"> 
 						<div class="flex-between-center height-80px row">
 							<div class="text-center col-md-12 col-sm-12">
 								<div class="NavLogo nav-logo-wrapper">
@@ -147,15 +295,13 @@
 					<div class="home">
 						<div class="MarketHome">
 							<div class="MarketIndex">
-								<div id="mainHeaderContainer"
-									class="position-relative col-xl-12">
-
+								<div id="mainHeaderContainer" class="position-relative col-xl-12">
+								<div class="main-header-gradient"></div>
+								
 									<!-- 관리자 메인배너 변경 코드 -->
-									<button class="btn" data-toggle="modal"
-										data-target="#mainChange">
-										<i class="fas fa-cog" data-toggle="Modal"
-											data-target="#MainChange"></i>
-									</button>
+									<button class="btn"
+										data-toggle="modal" data-target="#mainChange"><i class="fas fa-cog" data-toggle="Modal"
+										data-target="#MainChange"></i></button>
 									<div class="modal" id="mainChange">
 										<div class="modal-dialog modal-xl">
 											<div class="modal-content">
@@ -168,267 +314,281 @@
 
 												<!-- Modal body -->
 												<div class="modal-body">
-													<div class="form-group">
-														<label for="now">현재 디자인</label>
-														<div class="global-body">
-															<div class="MasterBodyDestTop">
-																<div class="col-md-12 col-sm-12 pt-3">
-																	<div class="main-header-gradient"></div>
-																	<div class="header position-relative"
-																		id="kdemiMainHeader">
-																		<div class="index-opacity-wrap"
-																			style="padding-top: 30px;">
-																			<div
-																				class="container-xl col-xl-8 offset-xl-2 col-lg-12">
-																				<div class="flex-between-center height-80px row">
-																					<div class="flex-left-center col-3 mr-auto">
-																						<div class="NavLogo nav-logo-wrapper">
-																							<a class="cursor logofont"
-																								data-ga-category="header" href="${path}"><b>KDEMY</b></a>
-																						</div>
-																					</div>
-																					<div class="flex-end-center col-auto p-0">
-																						<div class="header-right-info NavRight col-xl-12">
-																							<c:if test="${sessionScope.userid == 'admin'}">
-																								<div
-																									class="item dropdown col-xl-4 text-center dropdown-toggle"
-																									style="display: initial !important;">
-																									<a class="plain cursor"
-																										data-ga-category="header"><b>관리메뉴</b></a>
-																									<div class="dropdown-menu">
-																										<a class="dropdown-item"
-																											href="${path}/admin/list.do">관리자계정</a> <a
-																											class="dropdown-item" href="#">회원관리</a> <a
-																											class="dropdown-item" href="#">강의관리</a> <a
-																											class="dropdown-item" href="#">패키지관리</a>
-																									</div>
-																								</div>
-																							</c:if>
-																							<div class="item col-xl-4 text-center"
-																								style="display: initial !important;">
-																								<a class="plain cursor"
-																									data-ga-category="header"><b>전문가 등록</b></a>
-																							</div>
-																							<div class="item col-xl-4 text-center"
-																								style="display: initial !important;">
-																								<a class="plain cursor"
-																									data-ga-category="header"><a href="${path}/member/loginPage.do"
-																			class="plain cursor" data-ga-category="header"><b>로그인</b></a>
-
-																							</div>
-																							<div id=""
-																								class="item position-relative col-xl-4"
-																								style="display: initial !important;">
-																								<a
-																									class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-																									href="${path}/member/join.do"
-																									data-ga-category="header"> 무료회원가입 </a>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<br>
-																			</div>
-																			<div class="margin-top-15">
-																				<div
-																					class="header-wrapper pading-side-0 col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
-																					<div>
-																						<div class="market-main-description-text">
-																							<span>136</span> <span>만건의 거래</span> <span>98.2</span>
-																							<span>%의 만족도</span>
-																						</div>
-																						<div class="hero-title NGM">프리랜서 마켓, KDEMY</div>
-																					</div>
-
-																					<div class="margin-top-35">
-																						<div class="SearchForm search-form-type-main">
-																							<form action="" id="searchKeyword"
-																								class="margin-bottom-0" method="get"
-																								onsubmit="return false">
-																								<div class="search-group text-center cursor">
-																									<div style="">
-																										<div class="index-search-bar">
-																											<span class="typed-element">웹사이트 개발</span> <span
-																												class="typed-cursor typed-cursor--blink"></span>
-																											<div class="index-search-bar-input"></div>
-																											<a id="searchBtnNone"
-																												class="index-search-btn" type="submit">
-																												<img class="width-30px"
-																												src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
-																											</a>
-																										</div>
-																									</div>
-
-																								</div>
-																							</form>
-																						</div>
-																					</div>
-
-																					<div class="flex padding-top-25">
-																						<div class="market-main-or-text">
-																							<b>또는</b>
-																						</div>
-																					</div>
-																					<div
-																						class="margin-top-30 MarketIndex .flex-center-center">
-																						<a
-																							class="market-main-link-text .flex-center-center"
-																							href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
-																					</div>
-
-
-																				</div>
-																			</div>
-																		</div>
-
-																		<div class="index-header-left d-none d-xl-block"></div>
-																		<div class="index-header-right d-none d-xl-block"></div>
-
-																	</div>
-																</div>
-
-																<div class="MainThemes">
-																	<section class="ROOT_DIRECTORY"
-																		style="margin-top: 70px;"></section>
-																	<div class="RootDirectoryTheme">
-																		<div class="background">
-																			<div style="margin-right: auto; margin-left: auto;"
-																				class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
-																				<div class="items-container">
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon1"></div>
-																							<div class="iconName">
-																								<span><b>디자인</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon2"></div>
-																							<div class="iconName">
-																								<span><b>마케팅</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon3"></div>
-																							<div class="iconName">
-																								<span><b>문서,취업</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon4"></div>
-																							<div class="iconName">
-																								<span><b>아이콘</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon5"></div>
-																							<div class="iconName">
-																								<span><b>아이콘2</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon6"></div>
-																							<div class="iconName">
-																								<span><b>안드로이드</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon7"></div>
-																							<div class="iconName">
-																								<span><b>어플</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon8"></div>
-																							<div class="iconName">
-																								<span><b>콘텐츠제작</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon9"></div>
-																							<div class="iconName">
-																								<span><b>콘텐츠제작2</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon10"></div>
-																							<div class="iconName">
-																								<span><b>IT프로그래밍</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon icon11"></div>
-																							<div class="iconName">
-																								<span><b>번역,통역</b></span>
-																							</div>
-																						</a>
-																					</div>
-
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
+														<div class="form-group">
+															<label for="now">현재 디자인</label> 
+															<div class="global-body">
+			<div class="MasterBodyDestTop">
+						<div class="col-md-12 col-sm-12 pt-3" style="background-color: #71c9ce" id="color">
+									<div class="header position-relative" id="kdemiMainHeader">
+										<div class="index-opacity-wrap">
+											<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
+												<div class="flex-between-center height-80px row">
+													<div class="flex-left-center col-3 mr-auto">
+														<div class="NavLogo nav-logo-wrapper">
+															<a class="cursor logofont" data-ga-category="header"
+																href="${path}"><b>KDEMY</b></a>
 														</div>
-														<div class="d-flex">
-															<div class="setting-items col-4">
-																<label for="color-container">배경색</label>
-																<div id="color-container">
-																	<div id="picker"></div>
-																	<input id="color" value="">
+													</div>
+													<div class="flex-end-center col-auto p-0">
+														<div class="header-right-info NavRight col-xl-12">
+															<c:if test="${sessionScope.userid == 'admin'}">
+																<div
+																	class="item dropdown col-xl-4 text-center dropdown-toggle"
+																	style="display: initial !important;">
+																	<a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
+																	<div class="dropdown-menu">
+																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
+																		<a class="dropdown-item" href="#">회원관리</a> <a
+																			class="dropdown-item" href="#">강의관리</a> <a
+																			class="dropdown-item" href="#">패키지관리</a>
+																	</div>
 																</div>
+															</c:if>
+															<div class="item col-xl-4 text-center"
+																style="display: initial !important;">
+																<a class="plain cursor" data-ga-category="header"><b>전문가
+																		등록</b></a>
 															</div>
-															<div class="setting-items col-4">
-																<label for="image-container">이미지</label>
-																<div id="image-container"></div>
+															<div class="item col-xl-4 text-center"
+																style="display: initial !important;">
+																<a class="plain cursor" data-ga-category="header"><b>로그인</b></a>
+																
 															</div>
-															<div class="setting-items col-4">
-																<label for="icon-container">아이콘</label>
+															<div id="" class="item position-relative col-xl-4"
+																style="display: initial !important;">
+																<a
+																	class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
+																	href="${path}/member/write.do"
+																	data-ga-category="header"> 무료회원가입 </a>
 															</div>
 														</div>
 													</div>
-													<!-- Modal footer -->
-													<div class="modal-footer">
-														<button type="submit" class="btn btn-primary">변경</button>
-														<button type="button" class="btn btn-danger"
-															data-dismiss="modal">취소</button>
+												</div>
+												<br>
+											</div>
+											<div class="d-flex margin-top-15">
+											<div class="col-4 fileDrop uploadedList justify-content-center" id="fileDropDiv">
+												<div class="col-12" id="imageBanner">
+													<img id="preImg" src="include/images/main/uploadImage.png" class="mx-auto d-block">
+												</div>
+											</div>
+												<div class="col-4 text-align-center" style="text-align: center;">
+													<div>
+														<div class="market-main-description-text">
+															<span>136</span> <span>만건의 거래</span> <span>98.2</span> <span>%의
+																만족도</span>
+														</div>
+														<div class="hero-title NGM">프리랜서 마켓, KDEMY</div>
 													</div>
+
+													<div class="margin-top-35">
+														<div class="SearchForm search-form-type-main">
+														</div>
+													</div>
+
+													<div class="flex padding-top-25">
+														<div class="market-main-or-text">
+															<b>또는</b>
+														</div>
+													</div>
+													<div class="margin-top-30 MarketIndex .flex-center-center">
+														<a class="market-main-link-text .flex-center-center"
+															href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
+													</div>
+													
+												</div>
+												<div class="col-4 fileDrop1 uploadedList1 justify-content-center">
+												<div class="col-12" id="imageBanner1">
+													<img id="preImg1" src="include/images/main/uploadImage.png" class="mx-auto d-block" id="preImg">
+												</div>
+												</div>
+													<img id="save">
+													<img id="save1">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="MainThemes">
+									<section class="ROOT_DIRECTORY" style="margin-top: 70px;"></section>
+									<div class="RootDirectoryTheme">
+										<div class="background">
+											<div style="margin-right: auto; margin-left: auto;"
+												class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
+												<div class="items-container">
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon1"></div>
+															<div class="iconName">
+																<span><b>디자인</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon2"></div>
+															<div class="iconName">
+																<span><b>마케팅</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon3"></div>
+															<div class="iconName">
+																<span><b>문서,취업</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon4"></div>
+															<div class="iconName">
+																<span><b>아이콘</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon5"></div>
+															<div class="iconName">
+																<span><b>아이콘2</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon6"></div>
+															<div class="iconName">
+																<span><b>안드로이드</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon7"></div>
+															<div class="iconName">
+																<span><b>어플</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon8"></div>
+															<div class="iconName">
+																<span><b>콘텐츠제작</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon9"></div>
+															<div class="iconName">
+																<span><b>콘텐츠제작2</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon10"></div>
+															<div class="iconName">
+																<span><b>IT프로그래밍</b></span>
+															</div>
+														</a>
+													</div>
+
+													<div class="RootDirectoryThemeItem">
+														<a class="plain" href="#">
+															<div class="icon icon11"></div>
+															<div class="iconName">
+																<span><b>번역,통역</b></span>
+															</div>
+														</a>
+													</div>
+
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="main-header-gradient"></div>
+								</div>
+							</div>
+						</div>
+						<hr>
+														<div class="d-flex">
+														<div class="setting-items col-4">
+														<label for="color-container">배경색</label>
+														<div id="color-container">
+														<div id="picker"></div>
+														<input id="color1" value="">
+														</div>
+														</div>
+														<div class="setting-items col-4">
+														<label for="image-container">이미지</label>
+														<div id="image-container">
+														</div>
+														</div>
+														<div class="setting-items col-4">
+														<label for="icon-container">아이콘</label>
+														<div id="icon-container" class="d-flex">
+															<div class="RootDirectoryThemeItem col-4">
+															<div class="icon icon11"></div>
+															<div class="iconName">
+																<span><b>번역,통역</b></span>
+															</div>
+													</div>
+													<div class="RootDirectoryThemeItem col-4">
+															<div class="icon icon11"></div>
+															<div class="iconName">
+																<span><b>번역,통역</b></span>
+															</div>
+													</div>
+													<div class="RootDirectoryThemeItem col-4">
+															<div class="icon icon11"></div>
+															<div class="iconName">
+																<span><b>번역,통역</b></span>
+															</div>
+													</div>
+													<div class="RootDirectoryThemeItem col-4">
+															<div class="icon icon11"></div>
+															<div class="iconName">
+																<span><b>번역,통역</b></span>
+															</div>
+													</div>
+													<div class="RootDirectoryThemeItem col-4">
+															<div class="icon icon11"></div>
+															<div class="iconName">
+																<span><b>번역,통역</b></span>
+															</div>
+													</div>
+													<div class="RootDirectoryThemeItem col-4">
+															<div class="icon icon11"></div>
+															<div class="iconName">
+																<span><b>번역,통역</b></span>
+															</div>
+													</div>
+														</div>
+														</div>
+														</div>
+														</div>
+														<!-- Modal footer -->
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-outline-primary">변경</button>
+															<button type="button" class="btn btn-outline-secondary"
+																data-dismiss="modal">취소</button>
+														</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 메인 변경 끝 -->
 									<div class="header position-relative" id="kdemiMainHeader">
 										<div class="index-opacity-wrap" style="padding-top: 30px;">
 											<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">

@@ -8,6 +8,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FooterMenuController {
 	@RequestMapping("withus.do")
 	public void withus() {
-		
 	}
 }
