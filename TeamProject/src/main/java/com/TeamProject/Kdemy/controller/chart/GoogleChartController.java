@@ -1,10 +1,6 @@
 package com.TeamProject.Kdemy.controller.chart;
-import javax.inject.Inject;
-
-import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController //ajax =>json으로 리턴(스프링4.0부터 지원)
 //만약 일반 Controller로 쓰게 되면 메소드에 @ResponseBody를 써야 json으로 리턴

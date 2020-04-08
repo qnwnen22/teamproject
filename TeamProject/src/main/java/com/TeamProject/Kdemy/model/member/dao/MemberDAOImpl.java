@@ -115,4 +115,12 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.delete("member.reject",userid);
 		sqlSession.update("member.rejectmember",userid);
 	}
+
+	@Override
+	public void update_nik(String userid,String nikname) {
+		Map<String,String> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("nikname", nikname);
+		sqlSession.update("member.update_nik",map);
+	}
 }

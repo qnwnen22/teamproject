@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
-import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
@@ -169,9 +168,11 @@ public class MemberController {
 		ModelAndView mav=new ModelAndView();
 		if(result.equals("로그인성공")) {
 			MemberDTO dto2=memberService.kdemyLogin(dto);
+			session.setAttribute("nikname", dto2.getNikname());
 			session.setAttribute("userid", dto2.getUserid());
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("passwd", dto2.getPasswd());
+			session.setAttribute("user_img", dto2.getUser_profileImagePath());
 			session.setAttribute("teacher", dto2.getTeacher());
 			mav.setViewName("home");
 		}else {
@@ -231,5 +232,11 @@ public class MemberController {
 		System.out.println("reject.do 실행");
 		memberService.reject(userid);
 		return "admin/teacher_request_list";
+	}
+	
+	@RequestMapping("update_nik.do")
+	public void update_nik(HttpSession session,MemberDTO dto) {
+		String userid=(String)session.getAttribute("userid");
+		memberService.update_nik(userid,dto.getNikname());
 	}
 }

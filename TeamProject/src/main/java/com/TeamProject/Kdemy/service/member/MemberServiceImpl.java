@@ -75,4 +75,9 @@ public class MemberServiceImpl implements MemberService {
 	public void reject(String userid) {
 		memberDao.reject(userid);
 	}
+
+	@Override
+	public void update_nik(String userid,String nikname) {
+		memberDao.update_nik(userid,nikname);
+	}
 }
