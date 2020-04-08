@@ -14,7 +14,7 @@ $(function(){
 		 var name = document.getElementById("username");
 
 		//\x20: 16진수 20=> 10진수 32, (스페이스 1개인 공객문자를 의미) 
-		var exp2= /^[가-힣ㄱ-ㅎㅏ-ㅣ\x20]{1,10}$/;
+		var exp2= /^[가-힣ㄱ-ㅎㅏ-ㅣ\x20]{2,10}$/;
 		if(!exp2.test(name.value)){
 			$("#username").css("border", "2px solid red");
 			$("#usernameM").html("<b style='color:red'>이름은 한글 2~10자 이내로 입력하세요.</b>");

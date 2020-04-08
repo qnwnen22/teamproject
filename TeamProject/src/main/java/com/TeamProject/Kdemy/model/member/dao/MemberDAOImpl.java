@@ -122,16 +122,29 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void updatePoint(MemberDTO dto) {
-		sqlSession.update("member.updatePoint",dto);
+	public void updateCouponPoint(MemberDTO dto) {
+		sqlSession.update("member.updateCouponPoint",dto);
+		
 		
 	}
 
+	@Override
+	public void update_thumbnail(MemberDTO dto) {
+		sqlSession.update("member.update_thumbnail",dto);
+		
+	}
 
-//	@Override
-//	public void deleteFile(String fullName) {
-//			sqlSession.delete("member.deleteFile", fullName);
-//		}
+	@Override
+	public MemberDTO detailMember(String userid) {
+		return sqlSession.selectOne("member.detail_member", userid);
+	}
+
+	@Override
+	public List<MemberDTO> listMember() {
+		return sqlSession.selectList("member.member_list");
+	}
+
+
 		
 	}
 	
