@@ -29,8 +29,8 @@
 <video controls="controls" width="100%" preload="metadata">
 	<source src="../upload${dto.videofile}" type="video/mp4">
 </video><br>
-</c:if>
-컨텐츠 : ${dto.content}<br>
+</c:if> 
+내용 : ${dto.content}<br>
 업로드 날짜 : ${dto.upload_date}<br>
 가격 : ${dto.price}<br>
 강의 날짜 : ${dto.lecture_date}<br>
@@ -39,8 +39,27 @@
 강의주소 : ${dto.lecture_address}<br>
 강의 상세주소 : ${dto.lecture_address2}<br>
 <hr>
-<input type="button" value="구입">
- <input type="button" value="뒤로" onclick="history.back()">
+<h2>구매 여부 체크</h2>
+<b>${check}</b>
+<hr>
+<c:choose>
+<c:when test="${check==0}">
+	<form method="post" action="${path}/cart/insertCart.do">
+	<input type="hidden" name="cell_type" value="${dto.cell_type}">
+	<input type="hidden" name="price" value="${dto.price}">
+	<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+	<input type="submit" value="구매하기">
+	<%-- <a href="${path}/cart/cartPage.do">구입하기</a><br> --%>
+	</form>
+</c:when>
+<c:when test="${check==1}">
+	<a>시청하기</a><br>
+</c:when>
+<c:otherwise>
+	<a>Error</a>
+</c:otherwise>
+</c:choose>
+<input type="button" value="뒤로" onclick="history.back()">
 </div>
 <%@ include file="../include/footer.jsp"%>
 </body>

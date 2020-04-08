@@ -7,7 +7,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 @Service
 public class LectureServiceImpl implements LectureService {
@@ -39,16 +41,80 @@ public class LectureServiceImpl implements LectureService {
 	public int searchCount(String cell_type, String keyword) {
 		return lectureDao.searchCount(cell_type, keyword);
 	}
+
+	@Override
+	public int searchCount(String keyword) {
+		return lectureDao.searchCount(keyword);
+	}
+
+	
 	@Override
 	public List<LectureDTO> searchList(String cell_type, String keyword, int start, int end) {
 		return lectureDao.searchList(cell_type, keyword, start, end);
 	}
+	
+	@Override
+	public List<LectureDTO> searchList(String keyword, int start, int end) {
+		return lectureDao.searchList(keyword, start, end);
+	}
+
 	@Override
 	public int countList(String cell_type) {
 		return lectureDao.countList(cell_type);
 	}
+	
 	@Override
 	public List<LectureDTO> lecture_list(String cell_type, int start, int end) {
 		return lectureDao.lecture_list(cell_type, start, end);
 	}
+	
+	@Override
+	public List<LectureDTO> lecture_list(int start, int end) {
+		return lectureDao.lecture_list(start, end);
+	}
+	
+	
+	@Override
+	public int countList() {
+		return lectureDao.countList();
+	}
+
+	//강사 페이지
+	@Override
+	public List<LectureDTO> myLectureList(String userid) {
+		return lectureDao.myLectureList(userid);
+	}
+
+	@Override
+	public void lectureDelete(int lecture_idx) {
+		lectureDao.lectureDelete(lecture_idx);
+	}
+
+	@Override
+	public LectureDTO selectFile(int lecture_idx) {
+		return lectureDao.selectFile(lecture_idx);
+	}
+	
+	@Override
+	public List<LectureDTO> chartCountLecture(){
+		return lectureDao.chartCountLecture();
+	}
+	
+//	강의 구매여부 확인 메소드
+	@Override
+	public int buyCheck(LectureBoxDTO lbDto) {
+		return lectureDao.buyCheck(lbDto);
+	}
+
+	@Override
+	public void buy(String userid, String idxList) {
+		lectureDao.buy(userid,idxList);
+	}
+
+	@Override
+	public int pointCheck(String userid) {
+		return lectureDao.pointCheck(userid);
+	}
+
+	
 }

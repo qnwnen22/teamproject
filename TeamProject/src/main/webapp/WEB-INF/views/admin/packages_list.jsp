@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 <%@include file="../include/header.jsp"%>
 <script type="text/javascript">
+$(function(){
+	listview();
+});
+function listview(){
+	$.ajax({
+		type: "post",
+		url: "${path}/packages/adminlist.do",
+	});
+}
 	function packagesView(packages_name) {
 		var inputed = packages_name;
 		console.log(inputed);
@@ -29,6 +38,7 @@
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
+	<div id="list"></div>
 	<div class="container" style="margin-top: 170px;">
 		<div class="table-responsive">
 			<br>

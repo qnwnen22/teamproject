@@ -1,7 +1,13 @@
 package com.TeamProject.Kdemy.model.notice.dto;
 
-import java.util.Arrays;
 import java.util.Date;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+@Getter
+@Setter
+@ToString
 
 public class NoticeDTO {
 	private int bno;
@@ -14,71 +20,7 @@ public class NoticeDTO {
 	private int cnt; //댓글 갯수
 	private String show; //화면 표시 여부
 	private String[] files; //첨부파일 이름 배열
-	//getter,setter,toString()
-	public int getBno() {
-		return bno;
-	}
-	public void setBno(int bno) {
-		this.bno = bno;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
-	public Date getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
-	public int getViewcnt() {
-		return viewcnt;
-	}
-	public void setViewcnt(int viewcnt) {
-		this.viewcnt = viewcnt;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public int getCnt() {
-		return cnt;
-	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
-	public String getShow() {
-		return show;
-	}
-	public void setShow(String show) {
-		this.show = show;
-	}
-	public String[] getFiles() {
-		return files;
-	}
-	public void setFiles(String[] files) {
-		this.files = files;
-	}
-	@Override
-	public String toString() {
-		return "NoticeDTO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", username=" + username + ", cnt=" + cnt + ", show=" + show
-				+ ", files=" + Arrays.toString(files) + "]";
-	}
+	
+	
+
 }

@@ -2,7 +2,9 @@ package com.TeamProject.Kdemy.service.lecture;
 
 import java.util.List;
 
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 
 public interface LectureService {
@@ -21,7 +23,22 @@ public interface LectureService {
 	public LectureDTO lecture_list_view(int lecture_idx);
 
 	public int searchCount(String cell_type, String keyword);
+	public int searchCount(String keyword);
 
-	public List<LectureDTO> searchList(String cell_type, String keyword, int start, int end);
+	public int countList();
+	public List<LectureDTO> lecture_list(int start, int end);
 	
+	public List<LectureDTO> searchList(String cell_type, String keyword, int start, int end);
+	public List<LectureDTO> searchList(String keyword, int start, int end);
+	
+	public List<LectureDTO> myLectureList(String userid);
+	public void lectureDelete(int lecture_idx);
+	public LectureDTO selectFile(int lecture_idx);
+	
+//	강의 구매여부 확인 메소드
+	public int buyCheck(LectureBoxDTO lbDto);
+	public void buy(String userid, String idxList);
+	public int pointCheck(String userid);
+	
+	public List<LectureDTO> chartCountLecture();
 }

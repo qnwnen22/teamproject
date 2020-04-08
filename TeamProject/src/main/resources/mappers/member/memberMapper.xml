@@ -5,6 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
+	
+	<!-- 첨부파일 레코드 삭제 -->
+	<delete id="deleteFile">
+	  delete from attach
+		where fullName=#{fullName}
+	</delete>
+
+	
 	<insert id="insertMember">
 		insert into kdemymember
 		(usernum, userid,
@@ -12,14 +20,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		username,
 		birthday, useremail,
 		phone, postcode,
-		address, address2)
+		address, address2,thumbnail)
 		values
 		(
 		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
 		#{passwd},#{username},
 		#{birthday},#{useremail},
 		#{phone},#{postcode},
-		#{address},#{address2}
+		#{address},#{address2},#{thumbnail}
 		)
 	</insert>
 	
@@ -59,10 +67,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid} and useremail=#{useremail}
 	</update>
 	
+	<update id="updateCoupon">
+		update kdemymember set coupon=#{coupon}
+		where useremail=#{useremail}
+	</update>
+	
+	<update id="updatePoint">
+       update kdemymember
+       set point = (select point from coupon b where b.coupon=#{coupon})
+	</update>
+	
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />
 		select * from kdemymember
+		<include refid="location" />
 		<include refid="search" />
 		order by userid desc
 		<include refid="paging_footer" />
@@ -81,21 +100,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 레코드 갯수 계산 -->
 	<select id="countMember" resultType="int">
 		select count(*) from (select * from kdemymember
+		<include refid="location" />
 		<include refid="search" />
 		)
-		<include refid="location" />
 	</select>
 
 	<!-- 검색기능, sql태그는 다른 태그에 끼워넣을 수 있는 기능을 가지고 있음 -->
 	<sql id="search">
 		<choose>
 			<when test="keyword != '%'+''+'%' ">
-				where userid like #{keyword} or username like
-				#{keyword}
+				and (userid like #{keyword} or username like
+				#{keyword})
 			</when>
-			<otherwise>
-				<include refid="location" />
-			</otherwise>
 		</choose>
 	</sql>
 	<sql id="location">
@@ -110,6 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				where teacher= 'w'
 			</when>
 			<otherwise>
+				where (teacher= 'n' or teacher= 'y' or teacher= 'w')
 			</otherwise>
 		</choose>
 	</sql>
@@ -129,8 +146,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update kdemymember set teacher='n'  where userid=#{userid}
 	</update>
 	
+<<<<<<< HEAD
 	
 	<update id="update_nik">
 	  update kdemymember set nikname=#{nikname}  where userid=#{userid}
 	</update>
+=======
+	<select id="chartCount" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select teacher, COUNT(*) tcount from kdemymember group by teacher order by teacher
+	</select>
+	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+	SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM')
+	</select>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </mapper>

@@ -49,11 +49,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
+	<!-- 판매타입별 리스트 카운트-->
 	<select id="countList"
 	resultType="int">
 		select count(*) from lecture where cell_type=#{cell_type}
 	</select>
 	
+	<!-- 모든 리스트 카운트 -->
+	<select id="countList_all"
+	resultType="int">
+	select count(*) from lecture
+	</select>
+	
+	<!-- 판매타입별 리스트 -->
 	<select id="lecture_list"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select * from (	
@@ -65,7 +73,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			) A
 		) where rn between #{start} and #{end}
 	</select>
+	
+	<!-- 모든 리스트 -->
+	<select id="lecture_list_all"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from (	
+			select rownum as rn, A.* from 
+			(
+				select * from lecture
+				order by lecture_idx desc
+			) A
+		) where rn between #{start} and #{end}
+	
+	</select>
 
+	<!-- 판매 타입별 검색 카운트 -->
 	<select id="searchCount"
 	resultType="int">
 		select count(*) from lecture
@@ -73,6 +95,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="search" />
 	</select>
 	
+	<select id="searchCount_all"
+	resultType="int">
+		select count(*) from lecture
+	</select>
+	
+	<!-- 판매 타입별 검색 리스트 -->
 	<select id="searchList"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select * from (
@@ -80,6 +108,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(
 				select * from lecture
 				where cell_type=#{cell_type} and
+				<include refid="search" />
+				order by lecture_idx desc
+			) A
+		) where rn between #{start} and #{end}
+	</select>
+	
+	<select id="searchList_all"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from (
+			select rownum as rn, A.* from 
+			(
+				select * from lecture
+				where 
 				<include refid="search" />
 				order by lecture_idx desc
 			) A
@@ -101,5 +142,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from lecture
 		where lecture_idx=#{lecture_idx}
 	</select>
+	
+	<select id="myLectureList"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from lecture
+		where userid=#{userid}
+		order by lecture_idx desc
+	</select>
+	
+	<delete id="lectureDelete">
+		delete lecture where lecture_idx=#{lecture_idx}
+	</delete>
+	
+	<select id="selectFile"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from lecture
+		where lecture_idx=#{lecture_idx}
+	
+	</select>
+	
+	<select id="pointCheck"
+	resultType="int">
+		select point from kdemymember
+		where userid=#{userid}
+	</select>
+	
+	<select id="chartCountLecture" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select main_category, count(*) tcount from lecture group by main_category
+	</select>
+	
 </mapper>
 

@@ -75,9 +75,41 @@ public class MemberServiceImpl implements MemberService {
 	public void reject(String userid) {
 		memberDao.reject(userid);
 	}
+<<<<<<< HEAD
 
 	@Override
 	public void update_nik(String userid,String nikname) {
 		memberDao.update_nik(userid,nikname);
 	}
 }
+=======
+	
+	@Override
+	public List<MemberDTO> chartCount(){
+		return memberDao.chartCount();
+	}
+	@Override
+	public List<MemberDTO> chartCountMonth(){
+		return memberDao.chartCountMonth();
+	}
+	
+//	@Override
+//	public void deleteFile(String fullName) {
+//		memberDao.deleteFile(fullName);
+//	}
+//	
+
+	@Override
+	public void updateCoupon(MemberDTO dto) {
+		memberDao.updateCoupon(dto);
+		
+	}
+
+	@Override
+	public void updatePoint(MemberDTO dto) {
+		memberDao.updatePoint(dto);
+		
+	}
+
+}
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
