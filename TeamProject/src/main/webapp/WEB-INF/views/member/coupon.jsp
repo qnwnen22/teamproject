@@ -21,15 +21,45 @@
 </style>
 <script>
 $(document).ready(function(){
-    $('#Couponbtn').on('click', function(){
+    $('#Couponbtn1').on('click', function(){
         $.ajax({
             type: 'POST',
             url: "${path}/member/makeCouponA.do",
             data: {
-                 "useremail" : $('#useremail').val()
+                 "useremail1" : $('#useremail1').val()
             },
             success: function(data){
-            	$('#SuccessText').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            	$('#SuccessText1').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            }
+        });    //end ajax    
+    });    //end on   
+});
+
+$(document).ready(function(){
+    $('#Couponbtn2').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: "${path}/member/makeCouponB.do",
+            data: {
+                 "useremail2" : $('#useremail2').val()
+            },
+            success: function(data){
+            	$('#SuccessText2').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            }
+        });    //end ajax    
+    });    //end on   
+});
+
+$(document).ready(function(){
+    $('#Couponbtn3').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: "${path}/member/makeCouponC.do",
+            data: {
+                 "useremail3" : $('#useremail3').val()
+            },
+            success: function(data){
+            	$('#SuccessText3').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
             }
         });    //end ajax    
     });    //end on   
@@ -55,12 +85,12 @@ $(document).ready(function(){
               <li><span class="fa-li"><i class="fas fa-check"></i></span>이메일 및 회원정보를 확인하세요.</li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 발송 성공시 아래 메시지가 출력됩니다.</li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span><div class="TextBox"><p id="SuccessText" style="color:blue;"></p></div></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail" placeholder="이메일">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail1" placeholder="이메일">
              </li>
             </ul>
             	
-            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn">쿠폰 보내기</a>
-            <div class="modalTextBox"><p id="SuccessText" style="color:blue;"></p></div>
+            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn1">쿠폰 보내기</a>
+            <div class="textBox"><p id="SuccessText1" style="color:blue;"></p></div>
           </div>
         </div>
       </div>
@@ -76,12 +106,12 @@ $(document).ready(function(){
               <li><span class="fa-li"><i class="fas fa-check"></i></span>이메일 및 회원정보를 확인하세요.</li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 발송 성공시 아래 메시지가 출력됩니다.</li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span><div class="modalTextBox"><p id="SuccessText" style="color:blue;"></p></div></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail" placeholder="이메일">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail2" placeholder="이메일">
              </li>
             </ul>
             	
-            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn">쿠폰 보내기</a>
-            <div class="modalTextBox"><p id="SuccessText" style="color:blue;"></p></div>
+            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn2">쿠폰 보내기</a>
+            <div class="textBox"><p id="SuccessText2" style="color:blue;"></p></div>
           </div>
         </div>
       </div>
@@ -97,12 +127,12 @@ $(document).ready(function(){
               <li><span class="fa-li"><i class="fas fa-check"></i></span>이메일 및 회원정보를 확인하세요.</li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 발송 성공시 아래 메시지가 출력됩니다.</li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span><div class="modalTextBox"><p id="SuccessText" style="color:blue;"></p></div></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail" placeholder="이메일">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail3" placeholder="이메일">
              </li>
             </ul>
             	
-            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn">쿠폰 보내기</a>
-            <div class="modalTextBox"><p id="SuccessText" style="color:blue;"></p></div>
+            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn3">쿠폰 보내기</a>
+            <div class="textBox"><p id="SuccessText3" style="color:blue;"></p></div>
           </div>
         </div>
       </div>

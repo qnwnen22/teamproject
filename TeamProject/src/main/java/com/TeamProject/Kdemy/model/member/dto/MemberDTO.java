@@ -41,7 +41,6 @@ public class MemberDTO {
     private String coupon_point; 
 	private String teacher;
 	private Date request_date;	
-	private String user_profileImagePath;
 	private String nikname;
 	private String bpasswd;
 	
@@ -79,13 +78,7 @@ public class MemberDTO {
 	public Date getRequest_date() {
 		return request_date;
 	}
-	
-	public String getUser_profileImagePath() {
-		return user_profileImagePath;
-	}
-	public void setUser_profileImagePath(String user_profileImagePath) {
-		this.user_profileImagePath = user_profileImagePath;
-	}
+
 	public String getNikname() {
 		return nikname;
 	}
@@ -277,11 +270,11 @@ public class MemberDTO {
 				+ join_date + ", verify=" + verify + ", thumbnail=" + thumbnail + ", thumbnail_path=" + thumbnail_path
 				+ ", file=" + file + ", tcount=" + tcount + ", join_Month=" + join_Month + ", key1=" + key1 + ", key2="
 				+ key2 + ", key3=" + key3 + ", coupon=" + coupon + ", point=" + point + ", coupon_point=" + coupon_point
-				+ ", teacher=" + teacher + ", request_date=" + request_date + ", user_profileImagePath="
-				+ user_profileImagePath + ", nikname=" + nikname + ", bpasswd=" + bpasswd + ", phone1=" + phone1
-				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1=" + birthday1 + ", birthday2=" + birthday2
-				+ ", birthday3=" + birthday3 + "]";
+				+ ", teacher=" + teacher + ", request_date=" + request_date + ", nikname=" + nikname + ", bpasswd="
+				+ bpasswd + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1="
+				+ birthday1 + ", birthday2=" + birthday2 + ", birthday3=" + birthday3 + "]";
 	}
+
 
 
 
