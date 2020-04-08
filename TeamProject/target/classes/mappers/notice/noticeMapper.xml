@@ -11,7 +11,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select bno, title, writer, regdate, viewcnt, show,
 		(select count(*)
 		from kdemynotice_reply where bno=b.bno) cnt
+<<<<<<< HEAD
+		from kdemynotice b
+=======
 		from kdemynotice b where show='Y'
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		order by bno
 		desc
 

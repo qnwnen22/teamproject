@@ -47,11 +47,11 @@
 						</div>
 						<div class="item dropdown col-xl-4 text-center dropdown-toggle"
 							style="display: initial !important;">
-							<a class="plain cursor" data-ga-category="header"><b>통계</b></a>
+							<a class="plain cursor" data-ga-category="header" href="${path}/chart/statistics.do"><b>통계</b></a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="${path}/chart/statistics.do">회원통계</a> <a
-									class="dropdown-item" href="#">회원관리</a> <a
-									class="dropdown-item" href="#">강의관리</a> <a
+								<a class="dropdown-item" href="${path}/chart/memberchart.do">회원통계</a> <a
+									class="dropdown-item" href="${path}/chart/lecturechart.do">강의통계</a> <a
+									class="dropdown-item" href="${path}/chart/saleschart.do">매출통계</a> <a
 									class="dropdown-item" href="#">패키지관리</a>
 							</div>
 						</div>

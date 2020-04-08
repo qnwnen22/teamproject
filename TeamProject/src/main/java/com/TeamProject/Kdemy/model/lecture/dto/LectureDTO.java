@@ -4,6 +4,10 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 public class LectureDTO {
 
 	private int lecture_idx; //강의 번호(리스트 출력용)
@@ -27,6 +31,15 @@ public class LectureDTO {
 	
 	private MultipartFile file1;
 	private MultipartFile file2;
+	
+	private int tcount;
+	
+	public int getTcount() {
+		return tcount;
+	}
+	public void setTcount(int tcount) {
+		this.tcount = tcount;
+	}
 	public int getLecture_idx() {
 		return lecture_idx;
 	}

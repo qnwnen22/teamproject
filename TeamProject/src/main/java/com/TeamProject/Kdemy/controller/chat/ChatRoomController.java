@@ -55,4 +55,10 @@ public class ChatRoomController {
 	    	return mav;
 	    }
 	    
+	    @RequestMapping("chatTest.do")
+	    public ModelAndView roomTest(ModelAndView mav) throws Exception {
+	    	mav.setViewName("chat/chatTest");
+	    	return mav;
+	    }
+	    
 }

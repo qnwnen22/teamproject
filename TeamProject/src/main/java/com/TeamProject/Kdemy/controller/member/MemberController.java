@@ -278,6 +278,7 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
+//				.append("<b>임시 비밀번호 발급 : " + temp_passwd + "</b><br>")
 				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
@@ -348,12 +349,16 @@ public class MemberController {
 	}
 
 
+
 	@RequestMapping("list.do")
 	public ModelAndView list(
 			@RequestParam(defaultValue ="") String keyword,
 			@RequestParam(defaultValue ="") String location,
 			@RequestParam(defaultValue="1") int curPage) 
 					throws Exception {
+		System.out.println("list.do실행");
+		System.out.println(curPage);
+		System.out.println(location);
 		//레코드 갯수 계산
 		int count=memberService.countMember(keyword,location);
 		//페이지 관련 설정
@@ -397,5 +402,11 @@ public class MemberController {
 		System.out.println("reject.do 실행");
 		memberService.reject(userid);
 		return "admin/teacher_request_list";
+	}
+	
+	@RequestMapping("update_nik.do")
+	public void update_nik(HttpSession session,MemberDTO dto) {
+		String userid=(String)session.getAttribute("userid");
+		memberService.update_nik(userid,dto.getNikname());
 	}
 }

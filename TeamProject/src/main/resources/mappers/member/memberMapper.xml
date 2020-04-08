@@ -98,6 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />
 		select * from kdemymember
+		<include refid="location" />
 		<include refid="search" />
 		order by userid desc
 		<include refid="paging_footer" />
@@ -116,21 +117,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 레코드 갯수 계산 -->
 	<select id="countMember" resultType="int">
 		select count(*) from (select * from kdemymember
+		<include refid="location" />
 		<include refid="search" />
 		)
-		<include refid="location" />
 	</select>
 
 	<!-- 검색기능, sql태그는 다른 태그에 끼워넣을 수 있는 기능을 가지고 있음 -->
 	<sql id="search">
 		<choose>
 			<when test="keyword != '%'+''+'%' ">
-				where userid like #{keyword} or username like
-				#{keyword}
+				and (userid like #{keyword} or username like
+				#{keyword})
 			</when>
-			<otherwise>
-				<include refid="location" />
-			</otherwise>
 		</choose>
 	</sql>
 	<sql id="location">
@@ -145,6 +143,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				where teacher= 'w'
 			</when>
 			<otherwise>
+				where (teacher= 'n' or teacher= 'y' or teacher= 'w')
 			</otherwise>
 		</choose>
 	</sql>
@@ -163,4 +162,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="rejectmember">
 		update kdemymember set teacher='n'  where userid=#{userid}
 	</update>
+	
+
+	
+	<update id="update_nik">
+	  update kdemymember set nikname=#{nikname}  where userid=#{userid}
+	</update>
+
+	<select id="chartCount" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select teacher, COUNT(*) tcount from kdemymember group by teacher order by teacher
+	</select>
+	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+	SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM')
+	</select>
+
 </mapper>

@@ -77,6 +77,27 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void update_nik(String userid,String nikname) {
+		memberDao.update_nik(userid,nikname);
+	}
+
+	
+	@Override
+	public List<MemberDTO> chartCount(){
+		return memberDao.chartCount();
+	}
+	@Override
+	public List<MemberDTO> chartCountMonth(){
+		return memberDao.chartCountMonth();
+	}
+	
+//	@Override
+//	public void deleteFile(String fullName) {
+//		memberDao.deleteFile(fullName);
+//	}
+//	
+
+	@Override
 	public void updateCoupon(MemberDTO dto) {
 		memberDao.updateCoupon(dto);
 		
@@ -107,3 +128,4 @@ public class MemberServiceImpl implements MemberService {
 
 
 }
+

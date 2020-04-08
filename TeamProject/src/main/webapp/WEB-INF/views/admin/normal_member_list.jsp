@@ -9,7 +9,7 @@
 <%@ include file="../include/fixed-topbar.jsp"%>
 <script type="text/javascript">
 function list(page){
-	location.href="${path}/member/list.do?curPage="+page;
+	location.href="${path}/member/list.do?curPage="+page+"&location=normal"+"&keyword=${map.keyword}";
 } 
 </script>
 </head>
@@ -22,7 +22,7 @@ function list(page){
 			<li class="nav-item"><a class="nav-link" href="${path}/member/list.do?location=request">강사신청</a></li>
 			<li class="input-group col-3 ml-auto mr-0">
 			<form class="input-group" action="${path}/member/list.do">
-					<input type="text" class="form-control" placeholder="검색어 입력" value="" id="keyword" name="keyword">
+					<input type="text" class="form-control" placeholder="검색어 입력" value="${map.keyword}" id="keyword" name="keyword">
 					<input type="hidden" id="location" name="location" value="normal">
 					<div class="input-group-append">
 						<button class="btn btn-outline-primary" type="submit">검색</button>

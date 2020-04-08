@@ -22,11 +22,6 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert("member.insertMember",dto);
 	}
 	
-//	@Override
-//	public MemberDTO getMember(MemberDTO dto) {
-//		return sqlSession.selectOne("member.getMember",dto);
-//	}
-	
 	@Override
 	public void verifyMember(MemberDTO dto) {
 		sqlSession.update("member.verifyMember", dto);
@@ -76,13 +71,6 @@ public class MemberDAOImpl implements MemberDAO {
 	  return sqlSession.selectOne("member.kdemyLogin",dto);
 	}
 
-
-
-//	@Override
-//	public List<MemberDTO> list() {
-//		return sqlSession.selectList("member.memberList");
-//	}
-	
 	@Override
 	public List<MemberDTO> listAll(String location, String keyword, int start, int end) throws Exception {
 		Map<String,Object> map=new HashMap<>();
@@ -116,6 +104,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public void update_nik(String userid,String nikname) {
+		Map<String,String> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("nikname", nikname);
+		sqlSession.update("member.update_nik",map);
+	}
+
+
 	public void updateCoupon(MemberDTO dto) {
 		sqlSession.update("member.updateCoupon",dto);
 		
@@ -134,6 +130,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
+
 	@Override
 	public MemberDTO detailMember(String userid) {
 		return sqlSession.selectOne("member.detail_member", userid);
@@ -146,7 +143,19 @@ public class MemberDAOImpl implements MemberDAO {
 
 
 		
+
+//	@Override
+//	public void deleteFile(String fullName) {
+//			sqlSession.delete("member.deleteFile", fullName);
+//		}
+	@Override
+	public List<MemberDTO> chartCount() {
+		return sqlSession.selectList("member.chartCount");
+
 	}
-	
-	
+	@Override
+	public List<MemberDTO> chartCountMonth() {
+		return sqlSession.selectList("member.chartCountMonth");
+	}
+}
 

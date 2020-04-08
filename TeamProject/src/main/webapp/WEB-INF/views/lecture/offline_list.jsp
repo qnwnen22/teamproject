@@ -34,6 +34,8 @@ function search(){
 			<th>제목</th>
 			<th>제작자</th>
 			<th>가격</th>
+			<th>조회수</th>
+			<th>좋아요?</th>
 		</tr>
 		<c:forEach var="dto" items="${map.list}">
 		<tr>
@@ -44,10 +46,14 @@ function search(){
 			</td>
 			<!-- 제목 -->
 			<td>${dto.subject}</td>
-			<!-- 사용자 아이디 -->
+			<!-- 사용자 아이디 -->	
 			<td>${dto.userid}</td>
 			<!-- 가격 -->
 			<td>${dto.price}</td>
+			<!--  -->
+			<td>{dto.readCount}</td>
+			<!--  -->
+			<td>{dto.like}</td>
 			</tr>
 			</c:forEach>
 	</table>

@@ -40,4 +40,10 @@ public interface MemberService {
 
 	public List<MemberDTO> listMember();
 
+	public void update_nik(String userid, String nikname);
+
+	public List<MemberDTO> chartCount();
+
+	public List<MemberDTO> chartCountMonth();
+
 }

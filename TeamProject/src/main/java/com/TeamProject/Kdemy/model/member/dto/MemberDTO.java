@@ -2,7 +2,13 @@ package com.TeamProject.Kdemy.model.member.dto;
 
 import java.util.Date;
 
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import org.springframework.web.multipart.MultipartFile;
+
 
 public class MemberDTO {
 
@@ -22,6 +28,11 @@ public class MemberDTO {
     private String thumbnail;
     private String thumbnail_path;
 	private MultipartFile file;
+    
+    //chart Data
+    private int tcount;
+	private int join_Month;
+	//
     private String key1;
     private String key2;
     private String key3;
@@ -30,7 +41,10 @@ public class MemberDTO {
     private String coupon_point; 
 	private String teacher;
 	private Date request_date;	
+	private String user_profileImagePath;
+	private String nikname;
 	private String bpasswd;
+	
 	private String phone1;
 	private String phone2;
 	private String phone3;
@@ -39,6 +53,20 @@ public class MemberDTO {
 	private String birthday2;
 	private String birthday3;
 	//
+
+	public int getJoin_Month() {
+		return join_Month;
+	}
+	public void setJoin_Month(int join_Month) {
+		this.join_Month = join_Month;
+	}
+	public int getTcount() {
+		return tcount;
+	}
+	public void setTcount(int tcount) {
+		this.tcount = tcount;
+	}
+
 	public void setRequest_date(Date request_date) {
 		this.request_date = request_date;
 	}
@@ -50,6 +78,19 @@ public class MemberDTO {
 	}
 	public Date getRequest_date() {
 		return request_date;
+	}
+	
+	public String getUser_profileImagePath() {
+		return user_profileImagePath;
+	}
+	public void setUser_profileImagePath(String user_profileImagePath) {
+		this.user_profileImagePath = user_profileImagePath;
+	}
+	public String getNikname() {
+		return nikname;
+	}
+	public void setNikname(String nikname) {
+		this.nikname = nikname;
 	}
 	public String getUserid() {
 		return userid;
@@ -234,11 +275,14 @@ public class MemberDTO {
 				+ ", birthday=" + birthday + ", useremail=" + useremail + ", emaildomain=" + emaildomain + ", phone="
 				+ phone + ", postcode=" + postcode + ", address=" + address + ", address2=" + address2 + ", join_date="
 				+ join_date + ", verify=" + verify + ", thumbnail=" + thumbnail + ", thumbnail_path=" + thumbnail_path
-				+ ", file=" + file + ", key1=" + key1 + ", key2=" + key2 + ", key3=" + key3 + ", coupon=" + coupon
-				+ ", point=" + point + ", coupon_point=" + coupon_point + ", teacher=" + teacher + ", request_date="
-				+ request_date + ", bpasswd=" + bpasswd + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3="
-				+ phone3 + ", birthday1=" + birthday1 + ", birthday2=" + birthday2 + ", birthday3=" + birthday3 + "]";
+				+ ", file=" + file + ", tcount=" + tcount + ", join_Month=" + join_Month + ", key1=" + key1 + ", key2="
+				+ key2 + ", key3=" + key3 + ", coupon=" + coupon + ", point=" + point + ", coupon_point=" + coupon_point
+				+ ", teacher=" + teacher + ", request_date=" + request_date + ", user_profileImagePath="
+				+ user_profileImagePath + ", nikname=" + nikname + ", bpasswd=" + bpasswd + ", phone1=" + phone1
+				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1=" + birthday1 + ", birthday2=" + birthday2
+				+ ", birthday3=" + birthday3 + "]";
 	}
+
 
 
 }
