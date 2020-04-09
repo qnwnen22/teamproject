@@ -11,8 +11,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  delete from attach
 		where fullName=#{fullName}
 	</delete>
-
-	
+   
+    <!-- 나의 페이지 수정 (일단 썸네일) -->
+   <update id="update_thumbnail">
+    update kdemymember
+    set 
+    thumbnail=#{thumbnail}
+    where userid=#{userid}
+    
+  </update>
+  
+  <!-- 나의 페이지 출력  -->
+   <select id="member_list" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+  	select * from kdemymember
+  	order by usernum
+  </select>
+  
+   <select id="detail_member" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+    select * from kdemymember
+    where userid=#{userid}
+  </select>
+    
 	<insert id="insertMember">
 		insert into kdemymember
 		(usernum, userid,
@@ -20,21 +39,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		username,
 		birthday, useremail,
 		phone, postcode,
-		address, address2,thumbnail)
+		address, address2, thumbnail)
 		values
 		(
 		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
 		#{passwd},#{username},
 		#{birthday},#{useremail},
 		#{phone},#{postcode},
-		#{address},#{address2},#{thumbnail}
+		#{address},#{address2},#{thumbnail, jdbcType=VARCHAR}
 		)
 	</insert>
-	
-<!-- 	<select id="getMember" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
-		select * from kdemymember
-		where userid=#{userid} and passwd=#{passwd}
-	</select> -->
 	
 	<update id="verifyMember">
 		update kdemymember set verify='y' where useremail=#{useremail}
@@ -72,9 +86,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where useremail=#{useremail}
 	</update>
 	
-	<update id="updatePoint">
+	<update id="updateCouponPoint">
        update kdemymember
-       set point = (select point from coupon b where b.coupon=#{coupon})
+       set coupon_point = (select point from coupon b where b.coupon=#{coupon})
+       where userid=#{userid}
 	</update>
 	
 	<select id="listAll"
@@ -146,10 +161,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update kdemymember set teacher='n'  where userid=#{userid}
 	</update>
 	
+
+	
+	<update id="update_nik">
+	  update kdemymember set nikname=#{nikname}  where userid=#{userid}
+	</update>
+
 	<select id="chartCount" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select teacher, COUNT(*) tcount from kdemymember group by teacher order by teacher
 	</select>
 	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 	SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM')
 	</select>
+
 </mapper>

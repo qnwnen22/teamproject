@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.TeamProject.Kdemy.model.packages.dto.PackagesDTO;
 import com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO;
 
 @Repository

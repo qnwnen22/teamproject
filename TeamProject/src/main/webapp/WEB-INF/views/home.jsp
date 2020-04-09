@@ -495,15 +495,27 @@
 																	<c:choose>
 																		<c:when test="${sessionScope.teacher == 'y'}">
 																			<a><b>${sessionScope.username}님</b></a>
+																			<div class="item col-xl-4 text-center"
+																				style="display: initial !important;">
+																				<a href="${path}/member/couponMaker.do" class="plain cursor" ><b>쿠폰 생성</b></a>
+																			</div>
 																			<div
 																				class="item dropdown col-xl-4 text-center dropdown-toggle"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
+<<<<<<< HEAD
+																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a															
+																						class="dropdown-item" href="${path}/member/detail/${sessionScope.userid}">나의정보</a> <a
+																						class="dropdown-item" href="#">장바구니</a> <a
+																						class="dropdown-item" href="#">관심상품</a><a
+																						class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
+=======
 																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a>
 																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> 
 																					<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 																					<a class="dropdown-item" href="#">관심상품</a>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 																				</div>
 																			</div>
 
@@ -517,19 +529,23 @@
 																				<a class="plain cursor" data-ga-category="header"
 																					href="${path}/teacher/teacherJoinPage.do"><b>전문가 등록</b></a>
 																			</div>
+																			<div class="item col-xl-4 text-center"
+																				style="display: initial !important;">
+																				<a href="${path}/member/couponMaker.do" class="plain cursor" ><b>쿠폰 생성</b></a>
+																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div
 																				class="item dropdown col-xl-4 text-center dropdown-toggle"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> <a
+																					<a class="dropdown-item" href="${path}/member/detail/${sessionScope.userid}">나의정보</a> <a
 																						class="dropdown-item" href="#">장바구니</a> <a
 																						class="dropdown-item" href="#">관심상품</a> <a
-																						class="dropdown-item" href="#"></a>
+																						class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 																				</div>
 																			</div>
-																			<a style="color: blue;">${sessionScope.teacher}</a>
+																			<a style="color: blue;">${sessionScope.teacher}</a>														
 																			<a href="${path}/member/logOut.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																		</c:otherwise>

@@ -5,7 +5,7 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="${path}/member/css/searchID.css?ver=5" rel="stylesheet" type="text/css">
+
 <%@ include file="../include/header.jsp"%>
 <style type="text/css">
 #wrap{
@@ -21,15 +21,45 @@
 </style>
 <script>
 $(document).ready(function(){
-    $('#Couponbtn').on('click', function(){
+    $('#Couponbtn1').on('click', function(){
         $.ajax({
             type: 'POST',
             url: "${path}/member/makeCouponA.do",
             data: {
-                 "useremail" : $('#useremail').val()
+                 "useremail1" : $('#useremail1').val()
             },
             success: function(data){
-            	$('#modalText').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            	$('#SuccessText1').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            }
+        });    //end ajax    
+    });    //end on   
+});
+
+$(document).ready(function(){
+    $('#Couponbtn2').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: "${path}/member/makeCouponB.do",
+            data: {
+                 "useremail2" : $('#useremail2').val()
+            },
+            success: function(data){
+            	$('#SuccessText2').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            }
+        });    //end ajax    
+    });    //end on   
+});
+
+$(document).ready(function(){
+    $('#Couponbtn3').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: "${path}/member/makeCouponC.do",
+            data: {
+                 "useremail3" : $('#useremail3').val()
+            },
+            success: function(data){
+            	$('#SuccessText3').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
             }
         });    //end ajax    
     });    //end on   
@@ -39,56 +69,75 @@ $(document).ready(function(){
 <body>
 
 	<%@ include file="../include/fixed-topbar.jsp" %>
-	<div id="wrap">
-	<div id="makeCoupon">
-		<br><br><br>
- 
-		<div id="sipTitle"> 10000포인트 쿠폰 생성기</div>
-			<div id="pwBoxes">
-			<div id="spwTextbox">
-			</div>
-	        <div id="siInputTextBoxes">
-			<div class="spwInputText">
-				<input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail"
-						placeholder="이메일">
-			</div>
-					</div>
-            <button id="Couponbtn" class="makeCoupon" style="cursor: pointer;">쿠폰 보내기</button>
-			<div class="modalTextBox">
-						<p id="modalText" style="color:blue;">
-						</p>
-					</div>
-	</div>
-</div>
-</div>
-<%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="${path}/member/js/id_modal.js"></script>	 --%>
-</body>
 
-<div class="container-fluid">
- <div class="row">
-  <div class="col-xs-12">
-  	<form method="post" id="couponMaker" name="couponMaker" action="${path}/member/coupon.do" class="form-horizontal">
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control" id="useremail"><span class="input-group-addon">-</span>
-      <input type="text" class="form-control" id="key2"><span class="input-group-addon">-</span>
-      <input type="text" class="form-control" id="key3"><span class="input-group-addon">-</span>
-      <input type="text" class="form-control" id="key4">
-      <button class="btn btn-primary" type="submit">쿠폰 생성</button>
+<section class="pricing py-5">
+  <div class="container">
+    <div class="row">
+      <!-- 1만 포인트 -->
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">10000포인트</h5>
+            <h6 class="card-price text-center">$10000</h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 포인트가 10000포인트 충전됩니다.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>이메일 및 회원정보를 확인하세요.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 발송 성공시 아래 메시지가 출력됩니다.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><div class="TextBox"><p id="SuccessText" style="color:blue;"></p></div></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail1" placeholder="이메일">
+             </li>
+            </ul>
+            	
+            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn1">쿠폰 보내기</a>
+            <div class="textBox"><p id="SuccessText1" style="color:blue;"></p></div>
+          </div>
+        </div>
+      </div>
+        <!-- 3만 포인트 -->
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">30000포인트</h5>
+            <h6 class="card-price text-center">$30000</h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 포인트가 30000포인트 충전됩니다.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>이메일 및 회원정보를 확인하세요.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 발송 성공시 아래 메시지가 출력됩니다.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><div class="modalTextBox"><p id="SuccessText" style="color:blue;"></p></div></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail2" placeholder="이메일">
+             </li>
+            </ul>
+            	
+            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn2">쿠폰 보내기</a>
+            <div class="textBox"><p id="SuccessText2" style="color:blue;"></p></div>
+          </div>
+        </div>
+      </div>
+        <!-- 5만 포인트 -->
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">50000포인트</h5>
+            <h6 class="card-price text-center">$50000</h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 포인트가 50000포인트 충전됩니다.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>이메일 및 회원정보를 확인하세요.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>쿠폰 발송 성공시 아래 메시지가 출력됩니다.</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><div class="modalTextBox"><p id="SuccessText" style="color:blue;"></p></div></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span> <input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail3" placeholder="이메일">
+             </li>
+            </ul>
+            	
+            <a href="#" class="btn btn-block btn-primary text-uppercase" id="Couponbtn3">쿠폰 보내기</a>
+            <div class="textBox"><p id="SuccessText3" style="color:blue;"></p></div>
+          </div>
+        </div>
+      </div>
     </div>
-    </form>
   </div>
-  </div>
-</div>
-
-<div class="container-fluid">
- <div class="row">
-  <div class="col-xs-12">
-      <a href="${path}/member/coupon.do" class="more">쿠폰 생성</a>
-    </div>
-  </div>
-  </div>
-
-
+</section>
 </body>
 </html>
