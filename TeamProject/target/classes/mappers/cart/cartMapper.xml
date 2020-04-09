@@ -12,17 +12,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by cart_idx desc
 	</select>
 	
-	<delete id="deleteCart">
-		delete cart
-		where userid=#{userid} and lecture_idx=#{lecture_idx}
-	</delete>
 	<insert id="insertCart">
 		insert into cart
-		(cart_idx, cell_type, userid, lecture_idx, price)
+		(cart_idx, cell_type, userid, lecture_idx, main_category, sub_category,subject, price)
 		values
 		( 
 		(select nvl(max(cart_idx)+1, 1) from cart where userid=#{userid}),
-		#{cell_type}, #{userid}, #{lecture_idx} ,#{price}
+		#{cell_type}, #{userid}, #{lecture_idx}, #{main_category}, #{sub_category}, #{subject}, #{price}
 		)
 	</insert>
 	<select id="pointCheck"
@@ -47,5 +43,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{cell_type}, #{userid}, #{lecture_idx}
 		)
 	</insert>
+	
+	<delete id="deleteAll">
+    delete from cart
+    where userid=#{userid}
+  </delete>
+  
+  <delete id="delete">
+    delete from cart
+    where cart_idx=#{cart_idx}
+  </delete>
+  
 </mapper>
 

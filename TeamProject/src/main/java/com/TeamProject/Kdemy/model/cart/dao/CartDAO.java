@@ -10,7 +10,6 @@ public interface CartDAO {
 
 	public List<CartDTO> testList();
 
-	public void deleteCart(String userid, String lecture_idx);
 
 	public void insertCart(CartDTO dto);
 
@@ -19,5 +18,9 @@ public interface CartDAO {
 	public void buyLecture(String userid, int price);
 	
 	public void insertLectureBox(String userid, String cell_type, String lecture_idx);
+	
+	public void deleteAll(String userid);//장바구니 전체지우기
+	
+	public void delete(String cart_idx);//장바구니 개별 상품 삭제
 
 }

@@ -34,7 +34,6 @@
 </style>
 
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
@@ -79,6 +78,7 @@
 
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp"%>
 	<br>
 	<br>
 	<div class="container">
@@ -148,16 +148,7 @@
 		<br>
 		<br>
 
-
-
-
-
-
-
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	</div>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="../include/footer.jsp"%>
-

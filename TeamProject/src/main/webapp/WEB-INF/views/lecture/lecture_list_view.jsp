@@ -48,6 +48,11 @@
 	<input type="hidden" name="cell_type" value="${dto.cell_type}">
 	<input type="hidden" name="price" value="${dto.price}">
 	<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+	<input type="hidden" name="main_category" value="${dto.main_category}">
+	<input type="hidden" name="sub_category" value="${dto.sub_category}">
+	<input type="hidden" name="subject" value="${dto.subject}">
+	
+	
 	<input type="submit" value="구매하기">
 	<%-- <a href="${path}/cart/cartPage.do">구입하기</a><br> --%>
 	</form>

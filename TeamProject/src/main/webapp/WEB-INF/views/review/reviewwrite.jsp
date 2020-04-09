@@ -35,16 +35,13 @@ textarea.form-control {
 	height: 15em !important;
 }
 </style>
-
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#content').summernote({
@@ -133,6 +130,7 @@ textarea.form-control {
 
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp"%>
 	<br>
 	<br>
 	<br>
@@ -231,15 +229,8 @@ textarea.form-control {
 
 
 
-
-
-
-
-			<script
-				src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		</div>
 	</div>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="../include/footer.jsp"%>
-
