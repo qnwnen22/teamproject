@@ -30,6 +30,8 @@ public interface MemberDAO {
 
 	public void updatePW(MemberDTO dto);
 
+	public void update_nik(String userid,String nikname);
+	
 	public List<MemberDTO> chartCount();
 	
 	public List<MemberDTO> chartCountMonth();

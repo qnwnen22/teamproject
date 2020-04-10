@@ -11,38 +11,74 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
 	connectStomp();
+
+	$('#btnSend').on('click', function(evt) {
+		  evt.preventDefault();
+	  if (!isStomp && socket.readyState !== 1) return;
+	    	 let msg = $('input#msg').val();
+	    	 let sender = $('input#sender').val();
+	    	 if(isStomp) {
+	    		 socket.send('/talk', {}, JSON.stringify({sender:sender,msg:msg}));
+	    	    $('input#msg').val("");
+		      	 }
+	    	 else {
+	    		 socket.send(msg);
+		    	 }
+	    	 socket.subscribe('/topic/talk', function (msg) {
+		        	console.log("!!!!!!!!!!!!event>>", msg)
+		        	 $("#roomchat1").append("<b>"+msg+"</b><br>");
+		        });
+	    	
+	    });
 });
+
+
 var socket=null;
 var isStomp= false;
 
 function connectStomp() {
-	var sock = new SockJS("/Kdemy/ws-stomp");
-	console.log(sock);
-    var client = Stomp.over(sock);
-    isStomp = true;
-    socket = client;
-    
-    client.connect({}, function () {
-    	console.log("Connected stompTest!");
-        // Controller's MessageMapping, header, message(자유형식)
-        client.send('/pub/join', {}, "msg:접속하였습니다.");
+	 var sock = new SockJS("/Kdemy/stompTest"); // endpoint
+	    var client = Stomp.over(sock);
+	    socket=client;
+	    isStomp= true;
 
-        // 해당 토픽을 구독한다!
-        client.subscribe("/sub/chat/room/", function(message) { 
-        	var recv = JSON.parse(message.body);
-        	$("#roomchat").html("<b>"+recv+"</b>");
-        });
-    });
+	    client.connect({}, function () {
+	    	console.log("Connected stompTest!");
+	    	 let sender = $('input#sender').val();
+	    	 let chatroom_id = $('input#chatroom_id').val();
+	        // Controller's MessageMapping, header, message(자유형식)
+	        client.send('/chatjoin', {}, JSON.stringify({type:'JOIN',sender:sender,chatroom_id:chatroom_id}));
+	        // 해당 토픽을 구독한다!
+	        client.subscribe('/topic/chat/'+chatroom_id, function (event) {
+	        	console.log("!!!!!!!!!!!!event>>", event)
+	        	 $("#roomchat").append("<b>"+event.body+"</b><br>");
+	        });
+	    });
+
+ 	   /*  client.connect({}, function () {
+	    	console.log("Connected stompTest!");
+	        // Controller's MessageMapping, header, message(자유형식)
+	        client.send('/TTT', {}, "${sessionScope.userid} 님이 입장하였습니다.");
+
+	        // 해당 토픽을 구독한다!
+	        client.subscribe('/topic/abc', function (event) {
+	        	console.log("!!!!!!!!!!!!event>>", event)
+	        	 $("#roomchat").append("<b>"+event.body+"</b><br>");
+	        });
+	    });
+ */
 }
-</script> -->
 
-<script>
+</script> 
+
+<!-- <script>
 $(document).ready(function(){
 	connect();
 
+	
 	$('#btnSend').on('click', function(evt) {
 		  evt.preventDefault();
 	  if (socket.readyState !== 1) return;
@@ -51,11 +87,9 @@ $(document).ready(function(){
 <<<<<<< HEAD
 	    	  $('input#msg').val("");
 =======
-<<<<<<< HEAD
-	    	  $('input#msg').val();
-=======
+
 	    	  $('input#msg').val("");
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+
 >>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	    });
 		
@@ -73,26 +107,26 @@ sock.onopen = function () {
      	 console.log("ReceiveMessage:", event.data+"\n");
      	 $("#roomchat").append("<b>"+event.data+"</b><br>");
     };
+};
+function connectclose() {
     sock.onclose = function (event) {
         console.log('Info: connection closed.');
     };
-};
+}
 	
 }
-</script>
+</script> -->
 <body>
 <div class="container">
         <div>
             <h2>${map.dto.chatroom_name}</h2>
         </div>
         <div class="input-group">
-            <div class="input-group-prepend">
-                <label class="input-group-text">내용</label>
-            </div>
              <div class="input-group-prepend">
                 <input type="text" id="msg" name="msg">
+                <input type="hidden" id="sender" name="sender" value="${sessionScope.userid}">
+                <input type="hidden" id="chatroom_id" name="chatroom_id" value="${map.dto.chatroom_id}">           
             </div>
-            <input type="text" class="form-control">
             <div class="input-group-append">
                 <button class="btn btn-primary" id="btnSend">보내기</button>
             </div>
@@ -108,63 +142,6 @@ sock.onopen = function () {
         
         </div>
     </div>
-    <!-- JavaScript -->
-   <!--  <script>
-        //alert(document.title);
-        // websocket &amp; stomp initialize
-        var sock = new SockJS("/ws-stomp");
-        var ws = Stomp.over(sock);
-        var reconnect = 0;
-        // vue.js
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                roomId: '',
-                room: {},
-                sender: '',
-                message: '',
-                messages: []
-            },
-            created() {
-                this.roomId = localStorage.getItem('wschat.roomId');
-                this.sender = localStorage.getItem('wschat.sender');
-                this.findRoom();
-            },
-            methods: {
-                findRoom: function() {
-                    axios.get('/chat/room/'+this.roomId).then(response => { this.room = response.data; });
-                },
-                sendMessage: function() {
-                    ws.send("/pub/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
-                    this.message = '';
-                },
-                recvMessage: function(recv) {
-                    this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
-                }
-            }
-        });
- 
-        function connect() {
-            // pub/sub event
-            ws.connect({}, function(frame) {
-                ws.subscribe("/sub/chat/room/"+vm.$data.roomId, function(message) {
-                    var recv = JSON.parse(message.body);
-                    vm.recvMessage(recv);
-                });
-                ws.send("/pub/chat/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender}));
-            }, function(error) {
-                if(reconnect++ <= 5) {
-                    setTimeout(function() {
-                        console.log("connection reconnect");
-                        sock = new SockJS("/ws-stomp");
-                        ws = Stomp.over(sock);
-                        connect();
-                    },10*1000);
-                }
-            });
-        }
-        connect();
-    </script>
- -->
+
 </body>
 </html>

@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <script type="text/javascript">
 	function adminView(mdadmin_id) {
 		var inputed = mdadmin_id;
@@ -29,6 +28,7 @@
 </script>
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp"%>
 	<div class="container table-responsive" style="margin-top: 170px;">
 		<br>
 		<table class="table table-bordered table-hover">

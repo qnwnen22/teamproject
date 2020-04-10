@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/notice.css">
 <script type="text/javascript">
@@ -15,6 +14,7 @@
 </script>
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp"%>
 	<br><br><br><br><br><br><br><br>
 	<div class="board_table">
 		<div>
@@ -138,10 +138,8 @@
 
 
 
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="../include/footer.jsp"%>
 

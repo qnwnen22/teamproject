@@ -2,6 +2,9 @@ package com.TeamProject.Kdemy.model.member.dto;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 
 public class MemberDTO {
@@ -34,6 +37,8 @@ public class MemberDTO {
     
 	private String teacher;
 	private Date request_date;
+	private String user_profileImagePath;
+	private String nikname;
 	
 	private String bpasswd;
 	private String phone1;
@@ -244,6 +249,5 @@ public class MemberDTO {
 				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1=" + birthday1 + ", birthday2=" + birthday2
 				+ ", birthday3=" + birthday3 + "]";
 	}
-
 
 }

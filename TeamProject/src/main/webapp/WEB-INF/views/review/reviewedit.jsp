@@ -186,13 +186,9 @@ function subjectchange(item){
 
 
 
-
-
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </div>
 </div>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="../include/footer.jsp"%>
 

@@ -104,6 +104,12 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public void update_nik(String userid,String nikname) {
+		Map<String,String> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("nikname", nikname);
+		sqlSession.update("member.update_nik",map);
+	}
 	public void updateCoupon(MemberDTO dto) {
 		sqlSession.update("member.updateCoupon",dto);
 		
@@ -115,11 +121,6 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
-
-//	@Override
-//	public void deleteFile(String fullName) {
-//			sqlSession.delete("member.deleteFile", fullName);
-//		}
 	@Override
 	public List<MemberDTO> chartCount() {
 		return sqlSession.selectList("member.chartCount");

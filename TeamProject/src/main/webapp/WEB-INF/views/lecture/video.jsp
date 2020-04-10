@@ -16,8 +16,6 @@
    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-
-<<<<<<< HEAD
 <script>
 $(function(){
 
@@ -137,13 +135,11 @@ function delForm(){
 @media ( max-width : 800px) {
 }
 </style>
-=======
 <!-- 이원혁 추가 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
 <!-- 강의 등록용 JS -->
 <script src="${path}/include/js/lectureInsert.js"></script>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">

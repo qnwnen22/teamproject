@@ -163,6 +163,7 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
+//				.append("<b>임시 비밀번호 발급 : " + temp_passwd + "</b><br>")
 				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
@@ -249,7 +250,6 @@ public class MemberController {
 		session.invalidate();
 		return "member/login";
 	}
-
 
 	@RequestMapping("list.do")
 	public ModelAndView list(

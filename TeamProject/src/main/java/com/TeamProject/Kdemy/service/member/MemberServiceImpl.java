@@ -85,22 +85,14 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.chartCountMonth();
 	}
 	
-//	@Override
-//	public void deleteFile(String fullName) {
-//		memberDao.deleteFile(fullName);
-//	}
-//	
-
 	@Override
 	public void updateCoupon(MemberDTO dto) {
 		memberDao.updateCoupon(dto);
-		
 	}
 
 	@Override
 	public void updatePoint(MemberDTO dto) {
 		memberDao.updatePoint(dto);
-		
 	}
 
 }
