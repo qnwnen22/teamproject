@@ -32,8 +32,6 @@
 				</div>
 					<div style="text-align: left;"><a href="${path}/member/searchId.do" class="more">아이디 찾기</a></div>
 					<span><a href="${path}/member/searchpass.do" class="more">비밀번호 찾기</a></span>
-					<span><a href="${path}/member/couponMaker.do" class="more">쿠폰 생성</a></span>
-					<span><a href="${path}/member/updatePointPage.do" class="more">쿠폰 확인</a></span>
 			</form>
 		</div>
 	</div>

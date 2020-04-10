@@ -75,6 +75,12 @@ public class MemberServiceImpl implements MemberService {
 	public void reject(String userid) {
 		memberDao.reject(userid);
 	}
+
+	@Override
+	public void update_nik(String userid,String nikname) {
+		memberDao.update_nik(userid,nikname);
+	}
+
 	
 	@Override
 	public List<MemberDTO> chartCount(){
@@ -98,9 +104,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void updatePoint(MemberDTO dto) {
-		memberDao.updatePoint(dto);
+	public void updateCouponPoint(MemberDTO dto) {
+		memberDao.updateCouponPoint(dto);
 		
 	}
 
+	@Override
+	public void update_thumbnail(MemberDTO dto) {
+		memberDao.update_thumbnail(dto);
+		
+	}
+
+	@Override
+	public MemberDTO detailMember(String userid) {
+		return memberDao.detailMember(userid);
+	}
+
+	@Override
+	public List<MemberDTO> listMember() {
+		return memberDao.listMember();
+	}
+
+
+
 }
+

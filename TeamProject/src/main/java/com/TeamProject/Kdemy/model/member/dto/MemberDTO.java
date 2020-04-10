@@ -2,7 +2,13 @@ package com.TeamProject.Kdemy.model.member.dto;
 
 import java.util.Date;
 
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import org.springframework.web.multipart.MultipartFile;
+
 
 public class MemberDTO {
 
@@ -20,7 +26,8 @@ public class MemberDTO {
 	private Date join_date;
 	private char verify;
     private String thumbnail;
-    private MultipartFile file;
+    private String thumbnail_path;
+	private MultipartFile file;
     
     //chart Data
     private int tcount;
@@ -31,11 +38,12 @@ public class MemberDTO {
     private String key3;
     private String coupon;
     private String point; 
-    
+    private String coupon_point; 
 	private String teacher;
-	private Date request_date;
-	
+	private Date request_date;	
+	private String nikname;
 	private String bpasswd;
+	
 	private String phone1;
 	private String phone2;
 	private String phone3;
@@ -44,6 +52,7 @@ public class MemberDTO {
 	private String birthday2;
 	private String birthday3;
 	//
+
 	public int getJoin_Month() {
 		return join_Month;
 	}
@@ -68,6 +77,13 @@ public class MemberDTO {
 	}
 	public Date getRequest_date() {
 		return request_date;
+	}
+
+	public String getNikname() {
+		return nikname;
+	}
+	public void setNikname(String nikname) {
+		this.nikname = nikname;
 	}
 	public String getUserid() {
 		return userid;
@@ -147,6 +163,12 @@ public class MemberDTO {
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
+	public String getThumbnail_path() {
+		return thumbnail_path;
+	}
+	public void setThumbnail_path(String thumbnail_path) {
+		this.thumbnail_path = thumbnail_path;
+	}
 	public MultipartFile getFile() {
 		return file;
 	}
@@ -185,6 +207,13 @@ public class MemberDTO {
 	public void setPoint(String point) {
 		this.point = point;
 	}
+	public String getCoupon_point() {
+		return coupon_point;
+	}
+	public void setCoupon_point(String coupon_point) {
+		this.coupon_point = coupon_point;
+	}
+	
 	public String getTeacher() {
 		return teacher;
 	}
@@ -238,12 +267,15 @@ public class MemberDTO {
 		return "MemberDTO [usernum=" + usernum + ", userid=" + userid + ", passwd=" + passwd + ", username=" + username
 				+ ", birthday=" + birthday + ", useremail=" + useremail + ", emaildomain=" + emaildomain + ", phone="
 				+ phone + ", postcode=" + postcode + ", address=" + address + ", address2=" + address2 + ", join_date="
-				+ join_date + ", verify=" + verify + ", thumbnail=" + thumbnail + ", file=" + file + ", key1=" + key1
-				+ ", key2=" + key2 + ", key3=" + key3 + ", coupon=" + coupon + ", point=" + point + ", teacher="
-				+ teacher + ", request_date=" + request_date + ", bpasswd=" + bpasswd + ", phone1=" + phone1
-				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1=" + birthday1 + ", birthday2=" + birthday2
-				+ ", birthday3=" + birthday3 + "]";
+				+ join_date + ", verify=" + verify + ", thumbnail=" + thumbnail + ", thumbnail_path=" + thumbnail_path
+				+ ", file=" + file + ", tcount=" + tcount + ", join_Month=" + join_Month + ", key1=" + key1 + ", key2="
+				+ key2 + ", key3=" + key3 + ", coupon=" + coupon + ", point=" + point + ", coupon_point=" + coupon_point
+				+ ", teacher=" + teacher + ", request_date=" + request_date + ", nikname=" + nikname + ", bpasswd="
+				+ bpasswd + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", birthday1="
+				+ birthday1 + ", birthday2=" + birthday2 + ", birthday3=" + birthday3 + "]";
 	}
+
+
 
 
 }

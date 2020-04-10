@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.TeamProject.Kdemy.model.notice.dto.NoticeDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 
 public interface ReviewService {

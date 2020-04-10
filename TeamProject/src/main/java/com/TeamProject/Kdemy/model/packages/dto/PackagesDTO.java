@@ -1,7 +1,5 @@
 package com.TeamProject.Kdemy.model.packages.dto;
 
-import java.util.Date;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class PackagesDTO {
