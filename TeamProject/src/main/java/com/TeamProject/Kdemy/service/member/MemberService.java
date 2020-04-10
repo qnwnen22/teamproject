@@ -2,6 +2,8 @@ package com.TeamProject.Kdemy.service.member;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberService {
@@ -45,5 +47,11 @@ public interface MemberService {
 	public List<MemberDTO> chartCount();
 
 	public List<MemberDTO> chartCountMonth();
+
+	public MemberDTO checkPw(MemberDTO dto);
+
+	public void updateMember(MemberDTO dto);
+
+	public void logout(HttpSession session);
 
 }

@@ -3,6 +3,8 @@ package com.TeamProject.Kdemy.model.review.dto;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ReviewDTO {
 	private int bno;
 	private String title;
@@ -13,12 +15,26 @@ public class ReviewDTO {
 	private String username; //작성자 이름
 	private int cnt; //댓글 갯수
 	private String show; //화면 표시 여부
-	private String[] files; //첨부파일 이름 배열
 	private String subject;
 	private String teacher;
 	private int love;
+	private MultipartFile file1; //첨부파일
+	private String fullName;
+	
 	public String getSubject() {
 		return subject;
+	}
+	public MultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
@@ -90,18 +106,12 @@ public class ReviewDTO {
 	public void setShow(String show) {
 		this.show = show;
 	}
-	public String[] getFiles() {
-		return files;
-	}
-	public void setFiles(String[] files) {
-		this.files = files;
-	}
 	@Override
 	public String toString() {
 		return "ReviewDTO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
 				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", username=" + username + ", cnt=" + cnt
-				+ ", show=" + show + ", files=" + Arrays.toString(files) + ", subject=" + subject + ", teacher="
-				+ teacher + ", love=" + love + "]";
+				+ ", show=" + show + ", subject=" + subject + ", teacher=" + teacher + ", love=" + love + ", file1="
+				+ file1 + ", fullName=" + fullName + "]";
 	}
 	
 	

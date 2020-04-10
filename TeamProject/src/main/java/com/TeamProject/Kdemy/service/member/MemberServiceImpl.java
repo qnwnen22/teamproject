@@ -3,6 +3,7 @@ package com.TeamProject.Kdemy.service.member;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,17 @@ public class MemberServiceImpl implements MemberService {
 	@Inject
 	MemberDAO memberDao;
 
+
 	@Override
 	public void insertMember(MemberDTO dto) {
 		memberDao.insertMember(dto);
+	}
+
+
+	@Override
+	public void updateMember(MemberDTO dto) {
+		memberDao.updateMember(dto);
+		
 	}
 	
 	@Override
@@ -29,6 +38,11 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO kdemyLogin(MemberDTO dto) {
 		MemberDTO dto2=memberDao.kdemyLogin(dto);	
 		return dto2;
+	}
+	
+	@Override
+	public void logout(HttpSession session) {
+		session.invalidate();
 	}
 
 	@Override
@@ -125,7 +139,19 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.listMember();
 	}
 
+	@Override
+	public MemberDTO checkPw(MemberDTO dto) {
+		return  memberDao.checkPw(dto);
+	}
 
 
-}
+
+
+
+	}
+	
+
+
+
+
 

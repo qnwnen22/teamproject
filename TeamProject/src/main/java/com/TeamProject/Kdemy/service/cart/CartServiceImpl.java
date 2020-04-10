@@ -25,10 +25,6 @@ public class CartServiceImpl implements CartService {
 		return cartDao.testList();
 	}
 
-	@Override
-	public void deleteCart(String userid, String lecture_idx) {
-		cartDao.deleteCart(userid,lecture_idx);
-	}
 
 	@Override
 	public void insertCart(CartDTO dto) {
@@ -53,6 +49,15 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public int cartCheck(CartDTO dto) {
 		return cartDao.cartCheck(dto);
+	}
+	public void deleteAll(String userid) {
+		cartDao.deleteAll(userid);
+	}
+
+	@Override
+	public void delete(String cart_idx) {
+		cartDao.delete(cart_idx);
+		
 	}
 
 }

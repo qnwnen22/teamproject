@@ -40,7 +40,6 @@ textarea.form-control{
 </style>
 
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"	 rel="stylesheet">
@@ -68,12 +67,11 @@ function GoList(){
 	}
 
 
-
 </script>
 
 </head>
 <body>
-	<br>
+<%@ include file="../include/fixed-topbar.jsp"%>
 	<br>
 	<br>
 <div class="container">
@@ -122,14 +120,8 @@ function GoList(){
 
 
 
-
-
-
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </div>
 </div>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="../include/footer.jsp"%>
-

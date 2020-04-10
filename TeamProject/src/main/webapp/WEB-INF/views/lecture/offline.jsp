@@ -24,7 +24,7 @@
 <script src="${path}/include/js/lectureInsert.js"></script>
 </head>
 <body>
-<div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
+<div class="container-lg" style="margin-top: 170px; width: 100%;">
 	<div style="width: 20%; height: 500px; float: left; border: 1px solid;">
 		<h4>test</h4>
 		<a href="${path}/chatroom/room">채팅방만들기</a><br>
@@ -57,7 +57,7 @@
 					class="form-horizontal"
 					action="${path}/lecture/teacher_type3_insert.do">
 			<!-- 메인 카테고리 -->
-			<div class="form-group">
+			<div class="form-group kdemy-group">
 				<label for="category">메인 카테고리 선택</label>
 				<select name="main_category" id="main_category" class="form-control"
 				onChange="category()">

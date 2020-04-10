@@ -10,16 +10,17 @@ public interface CartService {
 
 	List<CartDTO> testList();
 
-	public void deleteCart(String userid, String lecture_idx);
-
 	public void insertCart(CartDTO dto);
 
 	public int pointCheck(String userid);
 
 	public void buyLecture(String userid, int price);
 
-	public void insertLectureBox(String userid, String cell_type, String lecture_idx);
+	public void insertLectureBox(String userid, String cell_type, String cart_idx);
+	
+	public void deleteAll(String userid);//장바구니 전체지우기
 
 	public int cartCheck(CartDTO dto);
 
+	public void delete(String cart_idx);//장바구니 개별 상품 삭제
 }

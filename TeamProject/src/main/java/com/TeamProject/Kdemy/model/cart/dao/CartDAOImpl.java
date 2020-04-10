@@ -26,13 +26,6 @@ public class CartDAOImpl implements CartDAO {
 		return sqlSession.selectList("cart.testList");
 	}
 
-	@Override
-	public void deleteCart(String userid, String lecture_idx) {
-		HashMap<String,Object> map=new HashMap<>();
-		map.put("userid", userid);
-		map.put("lecture_idx", lecture_idx);
-		sqlSession.delete("cart.deleteCart",map);
-	}
 
 	@Override
 	public void insertCart(CartDTO dto) {
@@ -64,6 +57,16 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public int cartCheck(CartDTO dto) {
 		return sqlSession.selectOne("cart.cartCheck",dto);
+	}
+	public void deleteAll(String userid) {
+		sqlSession.delete("cart.deleteAll",userid);
+		
+	}
+
+	@Override
+	public void delete(String cart_idx) {
+		sqlSession.delete("cart.delete",cart_idx);
+		
 	}
 
 }
