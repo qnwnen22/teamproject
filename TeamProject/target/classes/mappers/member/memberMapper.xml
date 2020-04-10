@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
-	
+
 	<!-- 첨부파일 레코드 삭제 -->
 	<delete id="deleteFile">
 	  delete from attach
@@ -17,9 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     update kdemymember
     set 
     thumbnail=#{thumbnail}
-    where userid=#{userid}
-    
+    where userid=#{userid}    
   </update>
+  
+    <!-- 수정 -->
+  	<update id="updateMember">
+       update kdemymember
+       set username = #{username}, passwd=#{passwd}, phone=#{phone}, birthday=#{birthday}, address=#{address}, address2=#{address2}
+       where userid=#{userid}
+	</update>
+  
   
   <!-- 나의 페이지 출력  -->
    <select id="member_list" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
@@ -59,12 +66,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE userid=#{userid}
 	</select>
 
-	<select id="passwdCheck"
+	<select id="passwdCheck" 
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select * from kdemymember
-		where userid=#{userid}
+		where userid=#{userid, jdbcType=VARCHAR}
 	</select>
-
+	
+	<!-- 수정용 비밀번호 체크  -->
+	<select id="checkPw" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select count(*) from member
+		where userid=#{userid} and passwd=#{passwd}
+	</select>
+	
+ 
 	<select id="kdemyLogin"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select * from kdemymember
@@ -88,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateCouponPoint">
        update kdemymember
-       set coupon_point = (select point from coupon b where b.coupon=#{coupon})
+       set point = (select point from coupon b where b.coupon=#{coupon})
        where userid=#{userid}
 	</update>
 	
