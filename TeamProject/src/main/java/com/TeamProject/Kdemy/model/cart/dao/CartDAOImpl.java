@@ -61,4 +61,9 @@ public class CartDAOImpl implements CartDAO {
 		sqlSession.insert("cart.insertLectureBox",map);
 	}
 
+	@Override
+	public int cartCheck(CartDTO dto) {
+		return sqlSession.selectOne("cart.cartCheck",dto);
+	}
+
 }

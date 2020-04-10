@@ -50,4 +50,9 @@ public class CartServiceImpl implements CartService {
 		cartDao.insertLectureBox(userid, cell_type, lecture_idx);
 	}
 
+	@Override
+	public int cartCheck(CartDTO dto) {
+		return cartDao.cartCheck(dto);
+	}
+
 }

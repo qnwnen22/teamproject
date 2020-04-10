@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="lectureBox">
 	<select id="buyCheck"
 	resultType="int">
-		select count(*) from cart
+		select count(*) from lectureBox
 		where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</select>
 </mapper>

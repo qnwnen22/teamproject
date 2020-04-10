@@ -46,7 +46,10 @@ public class CartController {
 		
 		String userid=(String)session.getAttribute("userid");
 		dto.setUserid(userid);
-		cartService.insertCart(dto);
+		int check=cartService.cartCheck(dto);
+		if(!(check>0)) {
+			cartService.insertCart(dto);
+		}
 		return "redirect:/cart/cartPage.do";
 	}
 	

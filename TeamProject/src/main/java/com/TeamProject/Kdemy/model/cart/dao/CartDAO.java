@@ -20,4 +20,6 @@ public interface CartDAO {
 	
 	public void insertLectureBox(String userid, String cell_type, String lecture_idx);
 
+	public int cartCheck(CartDTO dto);
+
 }

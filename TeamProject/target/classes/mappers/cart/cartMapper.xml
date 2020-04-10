@@ -47,5 +47,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{cell_type}, #{userid}, #{lecture_idx}
 		)
 	</insert>
+	
+	<select id="cartCheck"
+	resultType="int">
+		select count(*) from cart
+		where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</select>
 </mapper>
 
