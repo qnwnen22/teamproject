@@ -18,7 +18,7 @@
   <link href="${path}/member/css/stylish-portfolio.min.css" rel="stylesheet">
   
 <link href="${path}/member/css/searchID.css?ver=5" rel="stylesheet" type="text/css">
-<%@ include file="../include/header.jsp"%>
+
 <style type="text/css">
 #wrap{
     width:100%;
@@ -50,7 +50,6 @@ $(document).ready(function(){
 </head>
 <body>
 
-	<%@ include file="../include/fixed-topbar.jsp" %>
 
 <section class="pricing py-5">
   <div class="container">
