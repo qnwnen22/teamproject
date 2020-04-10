@@ -38,11 +38,8 @@ public interface MemberService {
 
 	public void updateCoupon(MemberDTO dto);
 
-<<<<<<< HEAD
 	public void updatePoint(MemberDTO dto);
 
-}
-=======
 	public void updateCouponPoint(MemberDTO dto);
 
 	public void update_thumbnail(MemberDTO dto);
@@ -64,4 +61,3 @@ public interface MemberService {
 	public void logout(HttpSession session);
 
 }
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

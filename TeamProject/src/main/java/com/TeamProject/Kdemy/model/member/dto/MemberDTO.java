@@ -2,23 +2,11 @@ package com.TeamProject.Kdemy.model.member.dto;
 
 import java.util.Date;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 import org.springframework.web.multipart.MultipartFile;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 public class MemberDTO {
 
 	private int usernum;
@@ -61,10 +49,6 @@ public class MemberDTO {
 	private String birthday2;
 	private String birthday3;
 	//
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	public int getJoin_Month() {
 		return join_Month;
 	}
@@ -287,11 +271,7 @@ public class MemberDTO {
 				+ birthday1 + ", birthday2=" + birthday2 + ", birthday3=" + birthday3 + "]";
 	}
 
-<<<<<<< HEAD
 }
-=======
 
 
 
-}
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

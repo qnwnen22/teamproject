@@ -108,18 +108,15 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update("member.rejectmember",userid);
 	}
 
-	@Override
-	public void update_nik(String userid,String nikname) {
-		Map<String,String> map=new HashMap<>();
-		map.put("userid", userid);
-		map.put("nikname", nikname);
-		sqlSession.update("member.update_nik",map);
-	}
-<<<<<<< HEAD
-=======
+//	@Override
+//	public void update_nik(String userid,String nikname) {
+//		Map<String,String> map=new HashMap<>();
+//		map.put("userid", userid);
+//		map.put("nikname", nikname);
+//		sqlSession.update("member.update_nik",map);
+//	}
 
 
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	public void updateCoupon(MemberDTO dto) {
 		sqlSession.update("member.updateCoupon",dto);
 		
@@ -132,8 +129,6 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public void update_thumbnail(MemberDTO dto) {
 		sqlSession.update("member.update_thumbnail",dto);
@@ -152,7 +147,6 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	@Override
 	public List<MemberDTO> chartCount() {
 		return sqlSession.selectList("member.chartCount");
@@ -162,28 +156,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberDTO> chartCountMonth() {
 		return sqlSession.selectList("member.chartCountMonth");
 	}
-<<<<<<< HEAD
-}
-=======
 
 	@Override
-	public MemberDTO checkPw(MemberDTO dto){
-		return sqlSession.selectOne("member.checkPw", dto);
-//		String result="";	
-//		MemberDTO dto2=sqlSession.selectOne("member.passwdCheck",dto);
-//		try {
-//			 if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {		
-//					result="성공";
-//				}else {
-//					result="실패";
-//				}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return result;
+	public MemberDTO checkPw(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	
 }
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

@@ -5,11 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	<!-- 첨부파일 레코드 삭제 -->
 	<delete id="deleteFile">
 	  delete from attach
@@ -99,7 +95,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid} and useremail=#{useremail}
 	</update>
 	
-	<update id="updateCoupon">
+	<update id="updateCouponPoint">
 		update kdemymember set coupon=#{coupon}
 		where useremail=#{useremail}
 	</update>
@@ -179,7 +175,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update kdemymember set teacher='n'  where userid=#{userid}
 	</update>
 	
-
 	
 	<update id="update_nik">
 	  update kdemymember set nikname=#{nikname}  where userid=#{userid}
@@ -188,12 +183,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="chartCount" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select teacher, COUNT(*) tcount from kdemymember group by teacher order by teacher
 	</select>
+
 	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
-	SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM')
-<<<<<<< HEAD
-	</select>
-=======
+		SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM')
 	</select>
 
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </mapper>
