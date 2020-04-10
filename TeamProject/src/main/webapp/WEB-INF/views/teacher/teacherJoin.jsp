@@ -7,6 +7,26 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
+<script src="${path}/include/js/teacherJoin.js"></script>
+<script type="text/javascript">
+function nicknameC(){
+	var nickname = $("#nickname").val();
+	
+	$.ajax({
+		url : "${path}/teacher/nicknameC.do?nickname="+nickname,
+		type : "get",
+		success : function(data){
+			if(data=='1'){
+				$("#nicknameC").html("<a style='color: red;'>중복된 아이디 입니다</a>");
+				$("#nicknameC_result").val('1');
+			}else {
+				$("#nicknameC").html("<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
+				$("#nicknameC_result").val('0');
+			}
+		}
+	});
+}
+</script>
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
@@ -16,19 +36,159 @@
 <c:choose>
 	<c:when test="${sessionScope.teacher == 'n'}">
 		<form method="post"
+			name="form1" id="form1"
 			enctype="multipart/form-data"
 			action="${path}/teacher/teacherInsert.do">
-			아이디 : <input type="text" value="${sessionScope.userid}" readonly name="userid"><br>
+			<div style="width: 100%; height: auto; border: 1px solid black">
+				<!-- 개인정보 -->
+				<div style="border: 1px solid; height: 150px;">
+					<h3>개인정보</h3>
+					<hr>
+					<div style="float: left; width: 30%;">
+						프로필 사진 등록 : <input type="file" name="thumbnailFile" id="thumbnailFile"><br>
+					</div>
+					
+					<div style="float: right; width: 70%">
+						아이디 : <input type="hidden" value="${sessionScope.userid}" readonly name="userid" id="userid">${sessionScope.userid}<br>
+						이름 : <input type="hidden" value="${sessionScope.username}" readonly name="username" id="username">${sessionScope.username}<br>
+						닉네임 : <input type="text" name="nickname" id="nickname" onchange="nicknameC()">
+						<span id="nicknameC" name="nicknameC"></span>
+						<input type="hidden" name="nicknameC_result" id="nicknameC_result" value="1">
+					</div>
+				</div>
+				<!-- 학력 -->
+				<div style="border: 1px solid; height: 250px;">
+					<h3>학력</h3>
+					<hr>
+					<div>
+						<table>
+							<tr>						
+								<th>최종학력</th>
+								<td>
+									<select id="finalEducation" name="finalEducation">
+										<option value=""  selected>-학력 선택-</option>
+										<option value="고등학교 졸업">고등학교 졸업</option>
+										<option value="대학교(2,3년) 졸업">대학교(2,3년제) 졸업</option>
+										<option value="대학교 졸업">대학교(4년제) 졸업</option>
+									</select>
+								</td>
+							</tr>
+							<%-- <tr>
+								<th>고등학교</th>
+								<td>
+									<select id="highStart" name="highStart">
+										<option value="">--</option>
+										<%for(int i=2020; i>=1900; i--){ %>
+											<option value="<%=i%>"><%=i %></option>
+										<%} %>
+									</select> ~
+									<select id="hignEnd" name="hignEnd">
+										<option value="">--</option>
+										<%for(int i=2020; i>=1900; i--){ %>
+											<option value="<%=i%>"><%=i %></option>
+										<%} %>
+									</select>년
+									<br>
+									<input type="text" id="highSchool" name="highSchool">고등학교<input type="button" value="고등학교 검색">
+								</td>
+							</tr>
+							<tr>
+								<th>대학교</th>
+								<td>
+									<select name="uniStart" id="uniStart">
+										<option value="">--</option>
+										<%for(int i=2020; i>=1900; i--){ %>
+											<option value="<%=i%>"><%=i %></option>
+										<%} %>
+									</select> ~
+									<select name="uniEnd" id="uniEnd">
+										<option value="">--</option>
+										<%for(int i=2020; i>=1900; i--){ %>
+											<option value="<%=i%>"><%=i %></option>
+										<%} %>
+									</select>년
+									<br>
+									<input type="text" name="university" id="university">대학교<input type="button" value="대학교 검색"><br>
+									<input type="text" name="department" id="department">학과
+								</td>
+							</tr> --%>
+						</table>
+					</div>
+				</div>
+				<!-- 자격증 등록 -->
+				<div style="border: 1px solid; height: auto;">
+					<h3>자격증</h3>
+					<hr>
+					<table name="specTable" id="specTable">
+						<tr>
+							<td>
+								<div>
+								<label for="spec1" class="control-label"> 자격증(1) 이름 : </label>
+								<input type="text" class="from-control" name="spec1" id="spec1">
+								<input type="button" value="자격증 검색(기능 미구현)"><br>
+							 	
+							 	<label for="spec1_date" class="control-label"> 취득일자 : </label>
+							 	<span id="spec1_date">
+							 	<select name="spec1_y" id="spec1_y">
+									<option value="">--</option>
+									<%for(int i=2020; i>=1900; i--){ %>
+										<option value="<%=i%>"><%=i %></option>
+									<%} %>
+								</select>년
+								<select name="spec1_m" id="spec1_m">
+									<option value="">--</option>
+									<%for(int i=1; i<=12; i++){ %>
+										<option value="<%=i%>"><%=i %></option>
+									<%} %>
+								</select>월
+								<select name="spec1_d" id="spec1_d">
+									<option value="">--</option>
+									<%for(int i=1; i<=30; i++){ %>
+										<option value="<%=i%>"><%=i %></option>
+									<%} %>
+								</select>일
+								</span>
+																
+								</div>
+								<label for="spec1File">자격증 이미지 : </label>
+								<input type="file" name="spec1File" id="spec1File">
+								<!-- 추가할 div영역 -->
+								<hr>
+								<div id="addSpecDiv" style="height: auto"></div>
+							</td>
+						</tr>
+						
+						
+						<!-- 추가 버튼 -->
+						<tr>
+							<td><input type="button" value="추가" onclick="addSpec()"></td>
+							<td><input type="button" value="삭제" onclick="deleteSpec()"></td>
+						</tr>
+						
+					</table>
+				</div>	
+				<!-- 경력사항 -->
+				<div style="border: 1px solid; height: 500px;">
+					<h3>경력사항</h3>
+					<hr>
+					<label>기타 경력사항을 적어주세요.</label>
+					<textarea name="career" id="career" rows="" cols="" style="width: 100%; height: 200px;"></textarea>
+					<a>ex) ##회사 n년근무 등</a>
+				
+				</div>
+			</div>
+			<%-- 아이디 : <input type="text" value="${sessionScope.userid}" readonly name="userid"><br>
 			이름 : <input type="text" value="${sessionScope.username}" readonly name="username" ><br>
 			프로필 사진 등록 : <input type="file" name="file1" id="file1"><br>
 			졸업한 고등학교 : <input type="text" name="highschool"><br>
 			졸업한 대학교 : <input type="text" name="university"><br>
-			자격증 이름 : <input type="text" name="spec1"> | <input type="button" value="자격증 검색(기능 미구현)"><br>
+			자격증 이름 : <input type="text" name="spec1"> | 
 			자격증 이미지 : <input type="file" name="file2" id="file2"><br>
 			자격증 획득 일자 <input type="date" name="spec1_getDate"><br>
 			<input type="button" value="추가"><br>
-			<p>자격증은 최대 5개 까지 등록할 수 있습니다.(미구현)</p>
-			<input type="submit" value="강사 신청하기">
+			<p>자격증은 최대 5개 까지 등록할 수 있습니다.(미구현)</p> --%>
+			<input style="width: 200px; height: 50px;" type="button" onclick="insertTeacher()" value="강사 신청하기">
+			<input style="width: 200px; height: 50px;" type="button" value="취소" onclick="history.back()">
 		</form>
 	</c:when>
 	
@@ -41,10 +201,11 @@
 		<h1>이미 강사 회원입니다.</h1>
 	</c:when>
 	<c:otherwise>
-		<h2>세션이 없습니다. 로그인 에러</h2>
+		<h2>세션이 없습니다. 다시 로그인 해주세요.</h2>
 	</c:otherwise>
 </c:choose>
 </div>
 <%@ include file="../include/footer.jsp"%>
+
 </body>
 </html>

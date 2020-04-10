@@ -523,10 +523,10 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> <a
-																						class="dropdown-item" href="#">장바구니</a> <a
-																						class="dropdown-item" href="#">관심상품</a> <a
-																						class="dropdown-item" href="#"></a>
+																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> 
+																					<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
+																					<a class="dropdown-item" href="#">관심상품</a> 
+																					<a class="dropdown-item" href="#"></a>
 																				</div>
 																			</div>
 																			<a style="color: blue;">${sessionScope.teacher}</a>

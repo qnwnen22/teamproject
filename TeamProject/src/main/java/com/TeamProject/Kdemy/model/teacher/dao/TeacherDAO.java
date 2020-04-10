@@ -9,4 +9,8 @@ public interface TeacherDAO {
 	public void member_teacherUpdate(TeacherDTO dto);
 
 	public TeacherDTO requestMemberView(String userid);
+
+	public int nicknameC(String nickname);
+
+	public void memberUpdate(String userid);
 }

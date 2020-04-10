@@ -30,4 +30,14 @@ public class TeacherServiceImpl implements TeacherService {
 	public TeacherDTO requestMemberView(String userid) {
 		return teacherDao.requestMemberView(userid);
 	}
+
+	@Override
+	public int nicknameC(String nickname) {
+		return teacherDao.nicknameC(nickname);
+	}
+
+	@Override
+	public void memberUpdate(String userid) {
+		teacherDao.memberUpdate(userid);
+	}
 }
