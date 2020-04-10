@@ -48,7 +48,7 @@ public interface MemberDAO {
 
 	public void updateMember(MemberDTO dto);
 
-	public void updatePoint(MemberDTO dto);
+
 
 
 
