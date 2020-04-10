@@ -19,6 +19,7 @@ height: 50% !important;
 	width: 75%;
 	margin: auto;
 }
+
 </style>
 <script type="text/javascript">
 	function list(page) {
@@ -138,6 +139,7 @@ height: 50% !important;
  	<c:choose>
 				<c:when test="${sessionScope.userid != null }">
 					<!-- 관리자로 로그인했을때 아이디 바꾸기-->
+	<div id="write_container">
 	<div class="container">
 		<div class="row">
 			<div class="write_btn_align col align-self-end">
@@ -145,6 +147,7 @@ height: 50% !important;
 					href="${path}/review/write.do" data-ga-category="header"> 글쓰기 </a>
 			</div>
 		</div>
+	</div>
 	</div>
 </c:when>
 			</c:choose>

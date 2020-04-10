@@ -84,7 +84,6 @@ public class NoticeController {
 		//글쓰기 폼 페이지로 이동
 		return "notice/noticewrite";
 	}// end write()
-	
 	@RequestMapping("insert.do")
 	public String insert(@ModelAttribute NoticeDTO dto, HttpSession session) throws Exception{
 		String writer=(String)session.getAttribute("userid");

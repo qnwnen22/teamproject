@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="review">
+
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
 		<include refid="paging_header" />
@@ -90,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update kdemyreview set viewcnt=viewcnt+1
 		where bno=#{bno}
 	</update>
-		
+
 	<select id="read"
 		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
 		select bno,subject,b.teacher,title,regdate,content,viewcnt,username,writer, fullName

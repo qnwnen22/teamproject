@@ -202,7 +202,7 @@ textarea.form-control {
 				<div class="form-group">
 					<label for="fullName">파일 첨부</label> <input
 						type="file" class="form-control-file" id="file1" name="file1">
-					<div class="Plus_one"></div>
+					<!-- <div class="Plus_one"></div> -->
 					<!-- <div>
 						<input type="button" class="form-control-file"
 							id="exampleFormControlFile1"

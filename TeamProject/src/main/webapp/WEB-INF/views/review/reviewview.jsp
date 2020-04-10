@@ -34,9 +34,12 @@
 	width: auto !important;
 }
 
+
+
 </style>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
 	rel="stylesheet">
@@ -45,6 +48,7 @@
 <script src="${path}/include/js/common.js"></script>
 
 <script type="text/javascript">
+state=0;
 	$(document).ready(function() {
 		$('#content').summernote({
 			height : 300, // 에디터 높이
@@ -97,7 +101,11 @@
 				}
 			});
 		});
+
+	
 	});
+
+	
 
 	$(document).keydown(function(event){
 		if(event.keyCode ==13){
@@ -111,10 +119,12 @@
 				url: "${path}/review/replylist.do?bno=${dto.bno}",
 				success: function(result){
 					$("#replyList").html(result);
-					
 				}
 			});
 		}
+
+
+
 </script>
 
 </head>
@@ -162,14 +172,24 @@
 
 						<tr>
 							<td>첨부파일</td>
-							<td colspan="3"><img src="../include/images/review/${dto.fullName}"
-							class="align-self-center" style="width: 200px"></td>
+							<td colspan="3">
+							<c:choose>
+								<c:when test="${dto.fullName != null }">
+									<img src="../include/images/review/${dto.fullName}" class="align-self-center" style="width: 200px">
+								</c:when>
+							<c:otherwise>
+								<span>-</span>
+							</c:otherwise>
+							</c:choose>
+							</td>
+							
 						</tr>
 
 					</table>
 				</div>
 			</form>
 			<br>
+
 			
 			<div id="replyList" style="border: 1px solid lightgray;">
 			</div>

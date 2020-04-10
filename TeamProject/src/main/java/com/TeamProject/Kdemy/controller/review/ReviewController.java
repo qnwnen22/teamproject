@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TeamProject.Kdemy.model.review.dto.LikeDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReplyDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 import com.TeamProject.Kdemy.service.review.ReplyService;
@@ -99,10 +101,13 @@ public class ReviewController {
 	@RequestMapping(value="insert.do", method= {RequestMethod.POST},
 	         consumes=MediaType.MULTIPART_FORM_DATA_VALUE, produces="text/plain;charset=utf-8")
 	public String insert(ReviewDTO dto, HttpSession session) throws Exception{
+		
+		if(dto.getFile1() != null) {
 		MultipartFile file1=dto.getFile1();
 		String fullName=file1.getOriginalFilename();
 		try {
 			fullName=UploadFileUtils.uploadFile(reviewuploadPath, fullName, file1.getBytes());
+			System.out.println(fullName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -111,6 +116,13 @@ public class ReviewController {
 		dto.setFullName(fullName);
 		reviewService.create(dto);
 		return ("redirect:/review/list.do");
+		}else {
+			String writer=(String)session.getAttribute("userid");
+			dto.setWriter(writer);
+			dto.setFullName(null);
+			reviewService.create(dto);
+			return ("redirect:/review/list.do");
+		}
 	}//end insert
 	
 	
@@ -138,7 +150,6 @@ public class ReviewController {
 		reviewService.delete(bno);
 		return "redirect:/review/list.do";//목록으로 이동
 	}
-	
 	
 	
 	@RequestMapping("view.do")
@@ -177,6 +188,10 @@ public class ReviewController {
 		return "redirect:/review/view.do?bno="+bno;
 		//목록으로 이동
 	}
+	
+	
+
+
 	
 
 }

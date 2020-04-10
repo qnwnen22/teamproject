@@ -27,7 +27,7 @@
 }
 
 .search_option {
-	width: 150px;
+	width: 150rem;
 	height: 40px;
 	font-size: 14px;
 	border-radius: 4px;
@@ -40,17 +40,16 @@
 }
 
 .board_table {
-	width: 80%;
+	width: 70%;
 	margin: auto;
 }
 
-.write_btn_align a {
-	width: 10%;
+.write_btn_align .btn {
+	width: 5rem;
 	float: right;
-	margin: auto;
 }
 
-.container {
+#write_container .container {
 	margin-right: 11% !important;
 }
 
@@ -62,9 +61,9 @@ table th, tr {
 
 .form-control {
 	width: 15% !important;
-	max-width: 20%;
 	display: flex !important;
 }
+
 
 .board_page {
 	width: 40%;

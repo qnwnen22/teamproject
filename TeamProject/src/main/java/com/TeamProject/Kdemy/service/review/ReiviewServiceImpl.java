@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.TeamProject.Kdemy.model.review.dao.ReviewDAO;
+import com.TeamProject.Kdemy.model.review.dto.LikeDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 
 @Service
@@ -87,5 +88,7 @@ public class ReiviewServiceImpl implements ReviewService {
 	public ReviewDTO detailReview(int bno) {
 		return reviewDao.detailReview(bno);
 	}
+
+
 
 }
