@@ -9,13 +9,27 @@
 <link href="${path}/member/css/searchID.css?ver=5" rel="stylesheet" type="text/css">
 <%@ include file="../include/header.jsp"%>
 <style type="text/css">
+/* div{border:solid black 1px;} */
+.searchPass{
+text-align:center;
+}
 #wrap{
     width:100%;
     height:100%;
 }
   
-#searchIdPwSearch{ 
-    width:300px;
+.panel-body{ 
+    width:1000px;
+    height:500px;
+    margin:0 auto;
+}
+.inner-box-msg{
+    width: 800px;
+    height:70px;
+    margin:0 auto;
+}
+.inner-box-form{
+    width: 800px;
     height:300px;
     margin:0 auto;
 }
@@ -31,7 +45,7 @@ $(document).ready(function(){
                 "useremail" : $('#useremail').val()
             },
             success: function(data){
-            	$('#modalText').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            	$('#text').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
             }
         });    //end ajax    
     });    //end on   
@@ -41,34 +55,37 @@ $(document).ready(function(){
 <body>
 
 	<%@ include file="../include/fixed-topbar.jsp" %>
-	<div id="wrap">
-	<div id="searchIdPwSearch">
-		<br><br><br>
- 
-		<div id="sipTitle">FIND PASSWORD</div>
-			<div id="pwBoxes">
-			<div id="spwTextbox">
-				<p id="spwTextTitle">비밀번호 찾기</p>
-				<p id="spwText">본인인증으로 비밀번호를 변경하세요</p>
-			</div>
-	        <div id="siInputTextBoxes">
-			<div class="siInputText">
-				<input type="text" maxlength="20" class="spwInputTextBox" id="userid"
-					placeholder="아이디">
-			</div>
-			<div class="spwInputText">
-				<input type="text" maxlength="50" class="siInputTextBox_Email" id="useremail"
-						placeholder="이메일">
-			</div>
+<div id="wrap">	
+<div class="panel-body">
+					<div class="col-sm-12">
+						<h2 class="searchPass">비밀번호 찾기</h2>
 					</div>
-            <img id="searchPasswdbtn" class="sendEmail" src="${path}/member/img/email.png" style="cursor: pointer;">
-			<div class="modalTextBox">
-						<p id="modalText" style="color:blue;">
+					<hr>
+					<div class="col-sm-6 inner-box-msg">
+						<p>아이디와 이메일 주소를 정확히 입력해주세요.</p>
+						<p>이메일로 임시비밀번호를 보내드립니다.</p></div>
+					<div class="col-sm-6 inner-box-form">
+							<div>
+								<label for="userid">아이디</label>
+								<input id="userid" id="userid" type="text" class="form-control required" placeholder="아이디를 입력하세요" autofocus="">
+							</div>
+							<div>
+								<label for="email">이메일 주소</label>
+								<input id="useremail" id="useremail" type="email" class="form-control required" placeholder="이메일 주소를 입력하세요" autofocus="">
+							</div>
+							
+							<br>
+							<div>
+								<button class="btn btn-warning btn-block" id="searchPasswdbtn">확인</button>
+							</div>
+										<div class="textBox">
+						<p id="text" style="color:blue;">
 						</p>
 					</div>
-	</div>
-</div>
-</div>
-<%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="${path}/member/js/id_modal.js"></script>	 --%>
+					</div>
+				</div>
+					</div>					
+					
+
+
 </body>

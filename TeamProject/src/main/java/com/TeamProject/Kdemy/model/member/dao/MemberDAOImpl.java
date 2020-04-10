@@ -23,12 +23,17 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
+	public void updateMember(MemberDTO dto) {
+		sqlSession.update("member.updateMember",dto);
+		
+	}
+	
+	@Override
 	public void verifyMember(MemberDTO dto) {
 		sqlSession.update("member.verifyMember", dto);
 		
 	}
 	
-
 	@Override
 	public int idCheck(MemberDTO dto) {
 		return sqlSession.selectOne("member.idCheck",dto);
@@ -46,7 +51,7 @@ public class MemberDAOImpl implements MemberDAO {
 					result="로그인실패";
 				}
 			}else {
-				result="로그인실패, 이메일을 인증해 주세요";
+				result="no";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,23 +115,75 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("nikname", nikname);
 		sqlSession.update("member.update_nik",map);
 	}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	public void updateCoupon(MemberDTO dto) {
 		sqlSession.update("member.updateCoupon",dto);
 		
 	}
 
 	@Override
-	public void updatePoint(MemberDTO dto) {
-		sqlSession.update("member.updatePoint",dto);
+	public void updateCouponPoint(MemberDTO dto) {
+		sqlSession.update("member.updateCouponPoint",dto);
+		
 		
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public void update_thumbnail(MemberDTO dto) {
+		sqlSession.update("member.update_thumbnail",dto);
+		
+	}
+	
+
+	@Override
+	public MemberDTO detailMember(String userid) {
+		return sqlSession.selectOne("member.detail_member", userid);
+	}
+
+	@Override
+	public List<MemberDTO> listMember() {
+		return sqlSession.selectList("member.member_list");
+	}
+	
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	@Override
 	public List<MemberDTO> chartCount() {
 		return sqlSession.selectList("member.chartCount");
+
 	}
 	@Override
 	public List<MemberDTO> chartCountMonth() {
 		return sqlSession.selectList("member.chartCountMonth");
 	}
+<<<<<<< HEAD
 }
+=======
+
+	@Override
+	public MemberDTO checkPw(MemberDTO dto){
+		return sqlSession.selectOne("member.checkPw", dto);
+//		String result="";	
+//		MemberDTO dto2=sqlSession.selectOne("member.passwdCheck",dto);
+//		try {
+//			 if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {		
+//					result="성공";
+//				}else {
+//					result="실패";
+//				}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return result;
+	}
+	
+	
+}
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

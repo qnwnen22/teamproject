@@ -39,7 +39,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public void delete(int rno) throws Exception {
-		// TODO Auto-generated method stub
+		replyDao.delete(rno);
 		
 	}
 

@@ -30,14 +30,37 @@ public interface MemberDAO {
 
 	public void updatePW(MemberDTO dto);
 
+<<<<<<< HEAD
 	public void update_nik(String userid,String nikname);
 	
+=======
+    public void update_nik(String userid,String nikname);
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	public List<MemberDTO> chartCount();
 	
 	public List<MemberDTO> chartCountMonth();
 
 	public void updateCoupon(MemberDTO dto);
 
-	public void updatePoint(MemberDTO dto);
+	public void updateCouponPoint(MemberDTO dto);
 
+<<<<<<< HEAD
+=======
+	public void update_thumbnail(MemberDTO dto);
+
+	public MemberDTO detailMember(String userid);
+
+	public List<MemberDTO> listMember();
+
+	public MemberDTO checkPw(MemberDTO dto);
+
+	public void updateMember(MemberDTO dto);
+
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 }

@@ -5,14 +5,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	<!-- 첨부파일 레코드 삭제 -->
 	<delete id="deleteFile">
 	  delete from attach
 		where fullName=#{fullName}
 	</delete>
-
-	
+   
+    <!-- 나의 페이지 수정 (일단 썸네일) -->
+   <update id="update_thumbnail">
+    update kdemymember
+    set 
+    thumbnail=#{thumbnail}
+    where userid=#{userid}    
+  </update>
+  
+    <!-- 수정 -->
+  	<update id="updateMember">
+       update kdemymember
+       set username = #{username}, passwd=#{passwd}, phone=#{phone}, birthday=#{birthday}, address=#{address}, address2=#{address2}
+       where userid=#{userid}
+	</update>
+  
+  
+  <!-- 나의 페이지 출력  -->
+   <select id="member_list" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+  	select * from kdemymember
+  	order by usernum
+  </select>
+  
+   <select id="detail_member" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+    select * from kdemymember
+    where userid=#{userid}
+  </select>
+    
 	<insert id="insertMember">
 		insert into kdemymember
 		(usernum, userid,
@@ -20,21 +50,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		username,
 		birthday, useremail,
 		phone, postcode,
-		address, address2,thumbnail)
+		address, address2, thumbnail)
 		values
 		(
 		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
 		#{passwd},#{username},
 		#{birthday},#{useremail},
 		#{phone},#{postcode},
-		#{address},#{address2},#{thumbnail}
+		#{address},#{address2},#{thumbnail, jdbcType=VARCHAR}
 		)
 	</insert>
-	
-<!-- 	<select id="getMember" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
-		select * from kdemymember
-		where userid=#{userid} and passwd=#{passwd}
-	</select> -->
 	
 	<update id="verifyMember">
 		update kdemymember set verify='y' where useremail=#{useremail}
@@ -45,12 +70,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE userid=#{userid}
 	</select>
 
-	<select id="passwdCheck"
+	<select id="passwdCheck" 
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select * from kdemymember
-		where userid=#{userid}
+		where userid=#{userid, jdbcType=VARCHAR}
 	</select>
-
+	
+	<!-- 수정용 비밀번호 체크  -->
+	<select id="checkPw" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+		select count(*) from member
+		where userid=#{userid} and passwd=#{passwd}
+	</select>
+	
+ 
 	<select id="kdemyLogin"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select * from kdemymember
@@ -72,9 +104,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where useremail=#{useremail}
 	</update>
 	
-	<update id="updatePoint">
+	<update id="updateCouponPoint">
        update kdemymember
        set point = (select point from coupon b where b.coupon=#{coupon})
+       where userid=#{userid}
 	</update>
 	
 	<select id="listAll"
@@ -146,10 +179,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update kdemymember set teacher='n'  where userid=#{userid}
 	</update>
 	
+
+	
+	<update id="update_nik">
+	  update kdemymember set nikname=#{nikname}  where userid=#{userid}
+	</update>
+
 	<select id="chartCount" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select teacher, COUNT(*) tcount from kdemymember group by teacher order by teacher
 	</select>
 	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 	SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM')
+<<<<<<< HEAD
 	</select>
+=======
+	</select>
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </mapper>

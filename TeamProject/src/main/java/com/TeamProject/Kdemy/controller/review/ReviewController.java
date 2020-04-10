@@ -5,22 +5,29 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TeamProject.Kdemy.model.review.dto.LikeDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReplyDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 import com.TeamProject.Kdemy.service.review.ReplyService;
 import com.TeamProject.Kdemy.service.review.ReviewService;
 import com.TeamProject.Kdemy.service.review.Review_Pager;
+import com.TeamProject.Kdemy.util.UploadFileUtils;
 
-@RestController
+@Controller
 @RequestMapping("review/*")
 public class ReviewController {
 	
@@ -30,8 +37,10 @@ public class ReviewController {
 	@Inject
 	ReplyService replyService;
 	
-	@Resource(name="uploadPath")
-	String uploadPath;
+	@Resource(name="reviewuploadPath")
+	String reviewuploadPath;
+	
+	
 	
 	@RequestMapping("list.do")
 	public ModelAndView list(
@@ -89,26 +98,33 @@ public class ReviewController {
 	}// end write()
 	
 	
-	@RequestMapping("insert.do")
-	public String insert(@ModelAttribute ReviewDTO dto, HttpSession session) throws Exception{
+	@RequestMapping(value="insert.do", method= {RequestMethod.POST},
+	         consumes=MediaType.MULTIPART_FORM_DATA_VALUE, produces="text/plain;charset=utf-8")
+	public String insert(ReviewDTO dto, HttpSession session) throws Exception{
+		
+		if(dto.getFile1() != null) {
+		MultipartFile file1=dto.getFile1();
+		String fullName=file1.getOriginalFilename();
+		try {
+			fullName=UploadFileUtils.uploadFile(reviewuploadPath, fullName, file1.getBytes());
+			System.out.println(fullName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto");
+		dto.setFullName(fullName);
 		reviewService.create(dto);
-		return "redirect:/review/list.do";
+		return ("redirect:/review/list.do");
+		}else {
+			String writer=(String)session.getAttribute("userid");
+			dto.setWriter(writer);
+			dto.setFullName(null);
+			reviewService.create(dto);
+			return ("redirect:/review/list.do");
+		}
 	}//end insert
 	
-	@RequestMapping("view.do")
-	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
-		reviewService.increateViewcnt(bno, session);
-		String writer=(String)session.getAttribute("userid");
-		dto.setWriter(writer);
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("review/reviewview");
-		mav.addObject("dto", reviewService.read(bno));
-		return mav;
-	}
 	
 	@RequestMapping("edit/{bno}")
 	public ModelAndView update(@PathVariable("bno") int bno, ModelAndView mav) {
@@ -135,7 +151,20 @@ public class ReviewController {
 		return "redirect:/review/list.do";//목록으로 이동
 	}
 	
+	
+	@RequestMapping("view.do")
+	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
+		reviewService.increateViewcnt(bno, session);
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("review/reviewview");
+		mav.addObject("dto", reviewService.read(bno));
+		return mav;
+	}
+	
 	@RequestMapping("replyinsert.do")
+	@ResponseBody
 	public void replyinsert(ReplyDTO dto, HttpSession session) {
 		String userid=(String)session.getAttribute("userid");
 		dto.setReplyer(userid);
@@ -150,16 +179,19 @@ public class ReviewController {
 		return mav;
 	}
 	
-	@RequestMapping("delete/{rno}")
-	public String delete(@PathVariable("rno") int rno,  
+	@RequestMapping("replydelete/{rno}+{bno}")
+	public String delete(@PathVariable("rno") int rno,@PathVariable("bno") int bno,   
 			@ModelAttribute ReplyDTO dto, HttpSession session) throws Exception{
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
 		replyService.delete(rno);
-		return "redirect:/review/list.do";//목록으로 이동
+		return "redirect:/review/view.do?bno="+bno;
+		//목록으로 이동
 	}
 	
 	
+
+
 	
 
 }

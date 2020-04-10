@@ -27,4 +27,14 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public TeacherDTO requestMemberView(String userid) {
 		return sqlSession.selectOne("teacher.requestMemberView", userid);
 	}
+
+	@Override
+	public int nicknameC(String nickname) {
+		return sqlSession.selectOne("teacher.nicknameC",nickname);
+	}
+
+	@Override
+	public void memberUpdate(String userid) {
+		sqlSession.update("teacher.memberUpdate",userid);
+	}
 }

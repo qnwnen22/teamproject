@@ -2,6 +2,7 @@ package com.TeamProject.Kdemy.model.review.dao;
 
 import java.util.List;
 
+import com.TeamProject.Kdemy.model.review.dto.LikeDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 
 public interface ReviewDAO {
@@ -19,5 +20,4 @@ public interface ReviewDAO {
 	public int searchcountArticle(String search_option, String keyword) throws Exception;//레코드 갯수 계산
 	public ReviewDTO read(int bno) throws Exception;//레코드 조회
 	public ReviewDTO  detailReview(int bno);
-	
 }

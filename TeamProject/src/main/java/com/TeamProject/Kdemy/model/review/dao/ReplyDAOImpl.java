@@ -39,8 +39,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	@Override
 	public void delete(int rno) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.delete("review.replydelete", rno);
 	}
 
 }

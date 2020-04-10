@@ -2,6 +2,8 @@ package com.TeamProject.Kdemy.service.member;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberService {
@@ -36,6 +38,30 @@ public interface MemberService {
 
 	public void updateCoupon(MemberDTO dto);
 
+<<<<<<< HEAD
 	public void updatePoint(MemberDTO dto);
 
 }
+=======
+	public void updateCouponPoint(MemberDTO dto);
+
+	public void update_thumbnail(MemberDTO dto);
+
+	public MemberDTO detailMember(String userid);
+
+	public List<MemberDTO> listMember();
+
+	public void update_nik(String userid, String nikname);
+
+	public List<MemberDTO> chartCount();
+
+	public List<MemberDTO> chartCountMonth();
+
+	public MemberDTO checkPw(MemberDTO dto);
+
+	public void updateMember(MemberDTO dto);
+
+	public void logout(HttpSession session);
+
+}
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

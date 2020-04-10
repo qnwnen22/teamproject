@@ -118,10 +118,6 @@
 			<div class="form-group">
 				<label for="lecture_start">강의 시작 시간</label><br>
 				<input type="time" class="form-control"	name="lecture_start" id="lecture_start">
-				<input type="button" value="08:00"> <input type="button" value="10:00"> 
-				<input type="button" value="12:00"> <input type="button" value="14:00"><br>
-				<input type="button" value="16:00"> <input type="button" value="18:00"> 
-				<input type="button" value="20:00"> <input type="button" value="22:00">  
 			</div>
 			<!-- 강의 시간 -->
 			<div class="form-group">
