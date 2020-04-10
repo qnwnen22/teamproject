@@ -324,8 +324,8 @@ button.accent {
 <div id="chat-page" class="col-4 offset-8">
 <div class="user-container">
             <div class="form-group">
-                <input type="hidden" id="nikname" 
-                value="${sessionScope.nikname}" autocomplete="off"  />
+                <input type="hidden" id="nickname" 
+                value="${sessionScope.nickname}" autocomplete="off"  />
                 <input type="hidden" id="userid" 
                 value="${sessionScope.userid}" autocomplete="off"  />
             </div>
@@ -366,7 +366,7 @@ var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
-var nikname = null;
+var nickname = null;
 var chatroom_id = 1;
 
 
@@ -380,9 +380,9 @@ $(function(){
 });
 
 function connect() {
-	nikname = document.querySelector('#nikname').value.trim();
+	nickname = document.querySelector('#nickname').value.trim();
 	userid = document.querySelector('#userid').value.trim();
-    if(nikname) {
+    if(nickname) {
         var socket = new SockJS('/Kdemy/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
@@ -398,7 +398,7 @@ function onConnected() {
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
-        JSON.stringify({sender: nikname, type: 'JOIN', chatroom_id : chatroom_id, userid:userid})
+        JSON.stringify({sender: nickname, type: 'JOIN', chatroom_id : chatroom_id, userid:userid})
     )
     connectingElement.classList.add('hidden');
 }
@@ -415,7 +415,7 @@ function sendMessage(event) {
     var messageContent = messageInput.value.trim();
     if(messageContent && stompClient) {
         var chatMessage = {
-            sender: nikname,
+            sender: nickname,
             userid:userid,
             chatroom_id: chatroom_id,
             content: messageInput.value,

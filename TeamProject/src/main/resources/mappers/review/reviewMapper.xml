@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert">
 		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
 		(
-		seq_kdemynotice.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer} )
+		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer} )
 	</insert>
 
 	<!-- 첨부파일 정보 저장 -->

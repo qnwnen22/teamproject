@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.kdemy-login-form .modal-content{
+	padding: 3rem !important;
+	justify-content: space-between !important;
+	flex-direction: column !important;
+}
+.kdemy-login-form input::placeholder {
+	font-size: 0.9rem !important;
+	color: silver !important;
+}
+
+.kdemy-login-form input:focus, .kdemy-login-form textarea:focus {
+	outline:none;
+	box-shadow: none;
+    border: 1px solid #333;
+    border-radius: 0.3rem;
+}

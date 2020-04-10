@@ -76,15 +76,16 @@
     
     <beans:bean id="webSocketHandler" class="com.TeamProject.Kdemy.handler.WsTranportHandler" />
     <beans:bean id="ChatHandler" class="com.TeamProject.Kdemy.handler.ChatHandler" />
+    <beans:bean id="reviewReplyHandler" class="com.TeamProject.Kdemy.handler.reviewReplyHandler" />
 
 	<websocket:handlers>
+	    <websocket:mapping handler="reviewReplyHandler" path="/reviewReply" />
 	 	<websocket:mapping handler="webSocketHandler" path="/echo" />
 	 	<websocket:mapping handler="ChatHandler" path="/chat" />
 	 	<websocket:handshake-interceptors>
 	      <beans:bean
 	          class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
 	 	</websocket:handshake-interceptors>
-	 	<websocket:sockjs />
 	</websocket:handlers>
 
 </beans:beans>

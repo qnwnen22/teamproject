@@ -101,5 +101,38 @@
 	<!-- end tail_body -->
 </div>
 <!-- End of Footer -->
-</body>
-</html>
+<script>
+var socket = null;
+$(document).ready( function () {
+	conectWS();
+
+});
+
+function conectWS() {
+	var ws = new WebSocket("ws://localhost:80/Kdemy/reviewReply");
+	socket = ws;
+	
+    ws.onopen = function () {
+        console.log('Info: connection opened.');
+    };
+
+
+    ws.onmessage = function (event) {
+        console.log(event.data+'\n');
+        let $socketAlert =$('div#socketAlert');
+        $socketAlert.html(event.data);
+        $socketAlert.css("display",'block');
+        setTimeout(function(){
+        	  $socketAlert.css("display",'none');
+         },5000);
+    };
+    
+    ws.onclose = function (event) {
+         console.log('Info: connection closed.');  // retry connection!! 
+    };
+    ws.onerror = function (err) {
+         console.log('Error : ');
+     };
+}
+
+</script>

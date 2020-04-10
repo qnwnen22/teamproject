@@ -42,6 +42,7 @@
 </script>
 </head>
 <body>
+<div id="socketAlert" class="alert alert-primary" role="alert" style="display: none;"></div>
 	<%@ include file="include/topbar.jsp"%>
 	<div class="global-body">
 		<div class="master-body">
@@ -211,9 +212,7 @@
 																							</div>
 																							<div class="item col-xl-4 text-center"
 																								style="display: initial !important;">
-																								<a class="plain cursor"
-																									data-ga-category="header"><a href="${path}/member/loginPage.do"
-																			class="plain cursor" data-ga-category="header"><b>로그인</b></a>
+																								<a href="${path}/member/loginPage.do" class="plain cursor" data-ga-category="header"><b>로그인</b></a>
 
 																							</div>
 																							<div id=""
@@ -714,7 +713,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	<!-- content -->
 
 	<div style="width: 63%; margin: auto;">
@@ -906,12 +904,10 @@
 			</div>
 		</div>
 	</div>
-
-
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+<%@ include file="include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="include/footer.jsp"%>
 

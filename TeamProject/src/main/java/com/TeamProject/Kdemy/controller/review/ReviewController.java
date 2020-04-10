@@ -7,11 +7,12 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.review.dto.ReplyDTO;
@@ -20,7 +21,7 @@ import com.TeamProject.Kdemy.service.review.ReplyService;
 import com.TeamProject.Kdemy.service.review.ReviewService;
 import com.TeamProject.Kdemy.service.review.Review_Pager;
 
-@RestController
+@Controller
 @RequestMapping("review/*")
 public class ReviewController {
 	
@@ -136,6 +137,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("replyinsert.do")
+	@ResponseBody
 	public void replyinsert(ReplyDTO dto, HttpSession session) {
 		String userid=(String)session.getAttribute("userid");
 		dto.setReplyer(userid);

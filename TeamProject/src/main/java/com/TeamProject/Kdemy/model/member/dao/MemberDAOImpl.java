@@ -104,15 +104,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public void update_nik(String userid,String nikname) {
-		Map<String,String> map=new HashMap<>();
-		map.put("userid", userid);
-		map.put("nikname", nikname);
-		sqlSession.update("member.update_nik",map);
-	}
-}
-=======
+
 	public void updateCoupon(MemberDTO dto) {
 		sqlSession.update("member.updateCoupon",dto);
 		
@@ -138,4 +130,3 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList("member.chartCountMonth");
 	}
 }
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

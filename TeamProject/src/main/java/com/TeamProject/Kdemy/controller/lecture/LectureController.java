@@ -404,6 +404,9 @@ public class LectureController {
 			return "redirect:/lecture/myLecturePage.do?userid="+userid;
 		}
 		
+
+
+		
 	// 장바구니 상품 일괄구매
 //	@RequestMapping("buyList.do")
 //	public String buyList(HttpSession session, String[] idxList, 
