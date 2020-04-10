@@ -32,10 +32,7 @@ function nicknameC(){
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
 <a href="${path}/chatroom/room">채팅방만들기</a>
 <a href="${path}/chatroom/chatRoomList.do">채팅방리스트이동</a>
-<<<<<<< HEAD
 <a href="${path}/chatroom/chatTest.do">채팅테스트이동</a>
-=======
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 <h2>전문가 등록 페이지</h2>
 <c:choose>
 	<c:when test="${sessionScope.teacher == 'n'}">

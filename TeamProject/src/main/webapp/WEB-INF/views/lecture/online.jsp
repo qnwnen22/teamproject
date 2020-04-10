@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <!-- 헤더 제거 -->
 <%@ include file="../include/header.jsp" %>
-<%@ include file="../include/fixed-topbar.jsp" %>
 <!-- 썸머 노트 -->
 <link
    href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
@@ -21,6 +20,7 @@
 <script src="${path}/include/js/lectureInsert.js"></script>
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp" %>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
    	<div style="width: 20%; height: 500px; float: left; border: 1px solid;">
 		<h4>test</h4>

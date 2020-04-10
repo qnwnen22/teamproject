@@ -15,11 +15,8 @@
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp"%>
-<<<<<<< HEAD
 	<br><br><br><br><br><br><br><br>
-=======
 	<br><br><br><br><br><br>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	<div class="board_table">
 		<div>
 			<ul class="upper_shift">
@@ -135,15 +132,6 @@
 	</div>
 	<br><br>
 
-
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

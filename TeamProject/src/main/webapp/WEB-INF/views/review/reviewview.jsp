@@ -38,28 +38,45 @@
 
 </style>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/home.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-<script src="${path}/include/js/common.js"></script>
+
 
 <script type="text/javascript">
-state=0;
-	$(document).ready(function() {
-		$('#content').summernote({
-			height : 300, // 에디터 높이
-			minHeight : null, // 최소 높이
-			maxHeight : null, // 최대 높이
-			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
-			lang : "ko-KR", // 한글 설정
-			placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
 
+$(document).ready(function() {
+		listReply();
+
+		$("#btnReply").click(function(evt){
+			evt.preventDefault();
+			var replytext=$("#replytext").val(); //댓글 내용
+			var bno="${dto.bno}"; //게시물 번호
+			var param={ "replytext": replytext, "bno": bno};
+			$.ajax({
+				type: "post",
+				url: "${path}/review/replyinsert.do",
+				data: param,
+				success: function(){
+					listReply();
+					$("#replytext").val("");
+				}
+			});
+			if (socket.readyState !== 1) return;
+					console.log(socket);	
+					let replyer = $('input#replyer').val();
+					let gbwriter = $('input#gbwriter').val();
+					let gbno = $('input#gbno').val();
+					// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+					socket.send("reply,"+replyer+","+gbwriter+","+gbno);
+					
 		});
-	});
+
+		$(document).keydown(function(event){
+			if(event.keyCode ==13){
+				$("#btnReply").click();
+				}
+			});
+});
+
+
 
 	function GoList() {
 		location.href = "${path}/review/list.do";
@@ -79,33 +96,7 @@ state=0;
 			document.form1.submit();
 		}
 	}
-
-
-	$(function(){ //자동으로 실행되는 코드
-		//댓글 목록 출력
-		listReply();
-	
 		
-		//댓글 쓰기
-		$("#btnReply").click(function(){
-			var replytext=$("#replytext").val(); //댓글 내용
-			var bno="${dto.bno}"; //게시물 번호
-			var param={ "replytext": replytext, "bno": bno};
-			$.ajax({
-				type: "post",
-				url: "${path}/review/replyinsert.do",
-				data: param,
-				success: function(){
-					listReply();
-					$("#replytext").val(""); 
-				}
-			});
-		});
-
-	
-	});
-
-	
 
 	$(document).keydown(function(event){
 		if(event.keyCode ==13){
@@ -263,8 +254,11 @@ state=0;
 		</div>
 		<br> <br> <br>
 
+	<input type="hidden" value="${sessionScope.userid}" id="replyer">
+	<input type="hidden" value="${dto.writer}" id="gbwriter">
+	<input type="hidden" value="${dto.bno}" id="gbno">
 
 	</div>
-	<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

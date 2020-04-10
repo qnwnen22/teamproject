@@ -192,14 +192,8 @@ height: 50% !important;
 	<br>
 
 
-<<<<<<< HEAD
 
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>
 
-=======
-<%@ include file="../include/footer.jsp"%>
-</body>
-</html>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

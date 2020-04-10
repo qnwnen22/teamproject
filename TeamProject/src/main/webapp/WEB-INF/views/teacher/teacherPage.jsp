@@ -16,6 +16,7 @@
 		<h4>test</h4>
 		<a href="${path}/chatroom/room">채팅방만들기</a><br>
 		<a href="${path}/chatroom/chatRoomList.do">채팅방리스트이동</a>
+		<a href="${path}/chatroom/chatTest.do">채팅테스트이동</a>
 		<hr>
 		<h4>강의 관리</h4>
 		<a href="${path}/lecture/myLecturePage.do?userid=${sessionScope.userid}">내가 올린 강의 관리</a>

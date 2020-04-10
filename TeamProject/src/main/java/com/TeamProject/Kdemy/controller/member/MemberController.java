@@ -22,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TeamProject.Kdemy.interceptor.SessionNames;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
@@ -212,25 +212,7 @@ public class MemberController {
 	}
 	
 
-	@RequestMapping("login.do")
-	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
-		String result=memberService.passwdCheck(dto);
-		ModelAndView mav=new ModelAndView();
-		
-		if(result.equals("로그인성공")) {
-			MemberDTO dto2=memberService.kdemyLogin(dto);
-			session.setAttribute("usernum", dto2.getUsernum());
-			session.setAttribute("userid", dto2.getUserid());
-			session.setAttribute("username", dto2.getUsername());
-			session.setAttribute("passwd", dto2.getPasswd());
-			session.setAttribute("teacher", dto2.getTeacher());
-			mav.setViewName("home");
-		}else {
-			mav.addObject("message","로그인 실패");
-			mav.setViewName("member/login");
-		}
-		return mav;
-	}
+	
 
 
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
@@ -329,6 +311,28 @@ public class MemberController {
 
 	}
 	
+	@RequestMapping("login.do")
+	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
+		String result=memberService.passwdCheck(dto);
+		ModelAndView mav=new ModelAndView();
+		
+		if(result.equals("로그인성공")) {
+			MemberDTO dto2=memberService.kdemyLogin(dto);
+			session.setAttribute(SessionNames.LOGIN, dto2);
+			session.setAttribute("userid", dto2.getUserid());
+			session.setAttribute("nickname", dto2.getNickname());
+			session.setAttribute("username", dto2.getUsername());
+			session.setAttribute("passwd", dto2.getPasswd());
+			session.setAttribute("teacher", dto2.getTeacher());
+			mav.setViewName("home");
+		}else {
+			mav.addObject("message","로그인실패");
+			mav.setViewName("member/login");
+		}
+		return mav;
+	}
+
+	
 	@ResponseBody
 	@RequestMapping(value = "/updatePoint.do", method = RequestMethod.POST)
 	public void updatePoint(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
@@ -337,7 +341,7 @@ public class MemberController {
 	   	dto.setCoupon(coupon);
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
-		memberService.updateCouponPoint(dto);
+		memberService.updatePoint(dto);
 
 	}
 
@@ -357,14 +361,7 @@ public class MemberController {
 //		session.invalidate();
 //		return "member/login";
 //	}
-	
 	@RequestMapping("logOut.do")
-<<<<<<< HEAD
-	public String logOut(HttpSession session) {
-		session.invalidate();
-		return "member/login";
-	}
-=======
 	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
 		//세션 초기화
 		memberService.logout(session);
@@ -374,8 +371,6 @@ public class MemberController {
 		return mav;
 	}
 
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 	@RequestMapping("list.do")
 	public ModelAndView list(
@@ -430,4 +425,6 @@ public class MemberController {
 		memberService.reject(userid);
 		return "admin/teacher_request_list";
 	}
+	
+
 }

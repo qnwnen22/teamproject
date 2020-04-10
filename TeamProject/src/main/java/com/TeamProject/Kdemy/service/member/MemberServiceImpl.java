@@ -90,11 +90,6 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.reject(userid);
 	}
 
-//	@Override
-//	public void update_nik(String userid,String nikname) {
-//		memberDao.update_nik(userid,nikname);
-//	}
-
 	@Override
 	public List<MemberDTO> chartCount(){
 		return memberDao.chartCount();
@@ -103,13 +98,12 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberDTO> chartCountMonth(){
 		return memberDao.chartCountMonth();
 	}
-	
 	@Override
 	public void updateCoupon(MemberDTO dto) {
 		memberDao.updateCoupon(dto);
 	}
 
-	public void updateCouponPoint(MemberDTO dto) {
+	public void updatePoint(MemberDTO dto) {
 		memberDao.updateCouponPoint(dto);
 		
 	}
@@ -119,24 +113,13 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.update_thumbnail(dto);
 		
 	}
-
 	@Override
 	public MemberDTO detailMember(String userid) {
 		return memberDao.detailMember(userid);
 	}
-
 	@Override
 	public List<MemberDTO> listMember() {
 		return memberDao.listMember();
 	}
 
-	@Override
-	public MemberDTO checkPw(MemberDTO dto) {
-		return  memberDao.checkPw(dto);
-	}
-
-
-
-
-
-	}
+}

@@ -32,15 +32,9 @@ public interface MemberService {
 
 	public void updatePW(MemberDTO dto);
 	
-	public List<MemberDTO> chartCount();
-	
-	public List<MemberDTO> chartCountMonth();
-
 	public void updateCoupon(MemberDTO dto);
 
 	public void updatePoint(MemberDTO dto);
-
-	public void updateCouponPoint(MemberDTO dto);
 
 	public void update_thumbnail(MemberDTO dto);
 
@@ -48,16 +42,12 @@ public interface MemberService {
 
 	public List<MemberDTO> listMember();
 
-	public void update_nik(String userid, String nikname);
-
-	public List<MemberDTO> chartCount();
-
-	public List<MemberDTO> chartCountMonth();
-
-	public MemberDTO checkPw(MemberDTO dto);
-
 	public void updateMember(MemberDTO dto);
 
 	public void logout(HttpSession session);
+
+	public List<MemberDTO> chartCountMonth();
+
+	public List<MemberDTO> chartCount();
 
 }

@@ -23,7 +23,7 @@ public class ChatTestController {
 	@MessageMapping("/chat.addUser")
 	public void addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor)
 			throws Exception {
-		headerAccessor.getSessionAttributes().put("nikname", chatMessage.getSender());
+		headerAccessor.getSessionAttributes().put("nickname", chatMessage.getSender());
 		headerAccessor.getSessionAttributes().put("userid", chatMessage.getUserid());
 		headerAccessor.getSessionAttributes().put("chatroom", chatMessage.getChatroom_id());
 		messagingTemplate.convertAndSend("/topic/public/"+chatMessage.getChatroom_id(),chatMessage);

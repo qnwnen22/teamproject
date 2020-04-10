@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
-<%@ include file="../include/fixed-topbar.jsp" %>
 <script type="text/javascript">
 function list(page) {
 	location.href = "${path}/lecture/all_list.do?curPage="+page;
@@ -18,6 +17,7 @@ function search(){
 </script>
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp" %>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
 <h2>현장 강의 판매 리스트</h2>
 <hr>
@@ -88,7 +88,8 @@ function search(){
 				</ul>
 			</nav>
 		</div>
-
+<script
+   src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

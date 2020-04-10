@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="true"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -204,6 +203,7 @@
 </script>
 </head>
 <body>
+<div id="socketAlert" class="alert alert-primary" role="alert" style="display: none;"></div>
 	<%@ include file="include/topbar.jsp"%>
 	<div class ="global-body">
 		<div class="master-body">
@@ -430,9 +430,7 @@
 																							</div>
 																							<div class="item col-xl-4 text-center"
 																								style="display: initial !important;">
-																								<a class="plain cursor"
-																									data-ga-category="header"><b>로그인</b></a>
-
+																								<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>로그인</b></a>
 																							</div>
 																							<div id=""
 																								class="item position-relative col-xl-4"
@@ -803,8 +801,7 @@
 																	</div>
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
-																		<a href="${path}/member/loginPage.do"
-																			class="plain cursor" data-ga-category="header"><b>로그인</b></a>
+																		<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>로그인</b></a>
 																	</div>
 																	<div id="" class="item position-relative col-xl-4"
 																		style="display: initial !important;">
@@ -827,22 +824,19 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-<<<<<<< HEAD
 																					<a class="dropdown-item"
 																						href="${path}/teacher/teacherPage.do">강사 페이지이동</a>
 																					<a class="dropdown-item"
 																						href="${path}/member/myPage.do">나의정보</a> <a
 																						class="dropdown-item"
-																						href="${path}/cart/cartPage.do">장바구니</a> <a
-																						class="dropdown-item" href="#">관심상품</a>
-=======
-																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a															
-																						class="dropdown-item" href="${path}/member/detail/${sessionScope.userid}">나의정보</a> <a
+																						href="${path}/cart/cartPage.do">장바구니</a>
+																					<a class="dropdown-item" href="#">관심상품</a>
+																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a>
+																					<a class="dropdown-item" href="${path}/member/detail/${sessionScope.userid}">나의정보</a> <a
 																						class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> 
 																					<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 																					<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 																				</div>
 																			</div>
 
@@ -867,22 +861,10 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-<<<<<<< HEAD
 																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a> 
 																						<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 																						<a class="dropdown-item" href="#">관심상품</a>
 																						<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
-=======
-<<<<<<< HEAD
-																					<a class="dropdown-item"
-																						href="${path}/member/myPage.do">나의정보</a> <a
-=======
-																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a> <a
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
-																						class="dropdown-item" href="#">장바구니</a> <a
-																						class="dropdown-item" href="#">관심상품</a> <a
-																						class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 																				</div>
 																			</div>
 																			<a style="color: blue;">${sessionScope.teacher}</a>														
@@ -1071,7 +1053,7 @@
 	<!-- content -->
 
 	<div style="width: 63%; margin: auto;">
-		<a href="${path}/review/list.do"> <marquee scrollamount="85">
+		<a href="${path}/review/list.do"> <marquee scrollamount="5">
 				<h4 style="color: red;">★수강후기★</h4>
 			</marquee>
 		</a>
@@ -1259,6 +1241,9 @@
 			</div>
 		</div>
 	</div>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <%@ include file="include/footer.jsp"%>
 </body>
 </html>

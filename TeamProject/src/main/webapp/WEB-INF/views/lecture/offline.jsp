@@ -153,8 +153,9 @@
 		</form>
 	</div>
 </div>
-<%-- <%@ include file="../include/footer.jsp"%> --%>
+<script
+   src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ <%@ include file="../include/footer.jsp"%>
 <!-- 부스 스트랩 4.4.1 -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

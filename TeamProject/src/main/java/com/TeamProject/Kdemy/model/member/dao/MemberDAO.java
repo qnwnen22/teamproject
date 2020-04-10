@@ -30,6 +30,7 @@ public interface MemberDAO {
 
 	public void updatePW(MemberDTO dto);
 
+
 	public List<MemberDTO> chartCount();
 	
 	public List<MemberDTO> chartCountMonth();
@@ -44,15 +45,6 @@ public interface MemberDAO {
 
 	public List<MemberDTO> listMember();
 
-	public MemberDTO checkPw(MemberDTO dto);
-
 	public void updateMember(MemberDTO dto);
-
-
-
-
-
-
-
 
 }

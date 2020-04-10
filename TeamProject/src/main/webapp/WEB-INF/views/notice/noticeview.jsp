@@ -178,8 +178,12 @@
 				</div>
 			</form>
 		</div>
-		<br> <br> <br>
+
+		<br>
+		<br>
+		<br>
 	</div>
+
 	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

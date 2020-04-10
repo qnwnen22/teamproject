@@ -108,15 +108,7 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update("member.rejectmember",userid);
 	}
 
-//	@Override
-//	public void update_nik(String userid,String nikname) {
-//		Map<String,String> map=new HashMap<>();
-//		map.put("userid", userid);
-//		map.put("nikname", nikname);
-//		sqlSession.update("member.update_nik",map);
-//	}
-
-
+	@Override
 	public void updateCoupon(MemberDTO dto) {
 		sqlSession.update("member.updateCoupon",dto);
 		
@@ -156,11 +148,6 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberDTO> chartCountMonth() {
 		return sqlSession.selectList("member.chartCountMonth");
 	}
-
-	@Override
-	public MemberDTO checkPw(MemberDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }
+	

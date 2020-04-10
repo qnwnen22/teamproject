@@ -94,8 +94,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update kdemymember set passwd=#{passwd}
 		where userid=#{userid} and useremail=#{useremail}
 	</update>
-	
-	<update id="updateCouponPoint">
+
+	<update id="updateCoupon">
 		update kdemymember set coupon=#{coupon}
 		where useremail=#{useremail}
 	</update>
@@ -105,7 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        set point = (select point from coupon b where b.coupon=#{coupon})
        where userid=#{userid}
 	</update>
-	
+
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />
@@ -174,7 +174,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="rejectmember">
 		update kdemymember set teacher='n'  where userid=#{userid}
 	</update>
-	
 	
 	<update id="update_nik">
 	  update kdemymember set nikname=#{nikname}  where userid=#{userid}

@@ -10,6 +10,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
+
 
 public class ChatHandler extends TextWebSocketHandler{
 	
@@ -29,8 +31,8 @@ public class ChatHandler extends TextWebSocketHandler{
     // 메세지 수신
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        System.err.println("handle message +=" + session + ", message=" + message);
         Map<String,Object> httpSession=session.getAttributes();
+        
         String userId=(String)httpSession.get("userid");
         for(WebSocketSession sess : sessions) {
         	sess.sendMessage(new TextMessage(userId +": " + message.getPayload()));
@@ -48,6 +50,18 @@ public class ChatHandler extends TextWebSocketHandler{
         System.err.println("session close -=" + session);
  
     }
+    
+    private String getId(WebSocketSession session) {
+    	Map<String, Object> httpSession =session.getAttributes();
+    	MemberDTO loginUser = (MemberDTO)httpSession.get("userid");
+    	if(null == loginUser) {
+    		return session.getId();
+    	}else {
+    		return loginUser.getUserid();
+    	}
+    	
+    }
+    
 
 
 }

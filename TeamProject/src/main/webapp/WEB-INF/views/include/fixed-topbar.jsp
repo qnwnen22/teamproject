@@ -62,7 +62,7 @@
 						</div>
 						<div class="item col-xl-4 text-center"
 							style="display: initial !important;">
-							<a class="plain cursor" data-ga-category="header"><b>로그인</b></a>
+							<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>로그인</b></a>
 						</div>
 						<div id="" class="item col-xl-4"
 							style="display: initial !important;">

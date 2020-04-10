@@ -42,10 +42,12 @@ textarea.form-control{
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"	 rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-<script src="${path}/include/js/common.js"></script>
-
+   href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
+   rel="stylesheet">
+<script
+   src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#content').summernote({
@@ -155,6 +157,8 @@ function GoList(){
 
 </div>
 </div>
+<script
+   src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>
