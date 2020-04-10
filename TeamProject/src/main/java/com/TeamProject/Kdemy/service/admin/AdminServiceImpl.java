@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.TeamProject.Kdemy.model.admin.dao.AdminDAO;
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
+import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -33,5 +34,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteAdmin(String admin_id) {
 		adminDao.deleteAdmin(admin_id);
+	}
+	@Override
+	public List<MainDTO> resoucelist(){
+		return adminDao.resoucelist();
+	}
+	@Override
+	public void mainChange(MainDTO dto) {
+		adminDao.mainChange(dto);
 	}
 }

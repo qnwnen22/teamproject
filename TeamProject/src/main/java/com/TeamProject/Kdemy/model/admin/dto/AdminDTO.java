@@ -14,6 +14,7 @@ public class AdminDTO {
 	private String admin_hp1;
 	private String admin_hp2;
 	private String admin_hp3;
+	
 	public String getAdmin_id() {
 		return admin_id;
 	}

@@ -115,8 +115,11 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("nikname", nikname);
 		sqlSession.update("member.update_nik",map);
 	}
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	public void updateCoupon(MemberDTO dto) {
 		sqlSession.update("member.updateCoupon",dto);
 		
@@ -129,6 +132,8 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
+<<<<<<< HEAD
+=======
 	@Override
 	public void update_thumbnail(MemberDTO dto) {
 		sqlSession.update("member.update_thumbnail",dto);
@@ -147,6 +152,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	@Override
 	public List<MemberDTO> chartCount() {
 		return sqlSession.selectList("member.chartCount");
@@ -156,6 +162,9 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberDTO> chartCountMonth() {
 		return sqlSession.selectList("member.chartCountMonth");
 	}
+<<<<<<< HEAD
+}
+=======
 
 	@Override
 	public MemberDTO checkPw(MemberDTO dto){
@@ -177,3 +186,4 @@ public class MemberDAOImpl implements MemberDAO {
 	
 }
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

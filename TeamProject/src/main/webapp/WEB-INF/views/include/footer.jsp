@@ -101,5 +101,7 @@
 	<!-- end tail_body -->
 </div>
 <!-- End of Footer -->
-</body>
-</html>
+<script src="${path}/include/js/test.js"></script>
+<script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

@@ -35,9 +35,11 @@ value="${fn:replace(str,newLineChar,'<br>') }" />
 			
 			</c:forEach>	
 
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </body>
 </html>
-

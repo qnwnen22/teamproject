@@ -359,6 +359,12 @@ public class MemberController {
 //	}
 	
 	@RequestMapping("logOut.do")
+<<<<<<< HEAD
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		return "member/login";
+	}
+=======
 	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
 		//세션 초기화
 		memberService.logout(session);
@@ -369,6 +375,7 @@ public class MemberController {
 	}
 
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 	@RequestMapping("list.do")
 	public ModelAndView list(
@@ -422,11 +429,5 @@ public class MemberController {
 		System.out.println("reject.do 실행");
 		memberService.reject(userid);
 		return "admin/teacher_request_list";
-	}
-	
-	@RequestMapping("update_nik.do")
-	public void update_nik(HttpSession session,MemberDTO dto) {
-		String userid=(String)session.getAttribute("userid");
-		memberService.update_nik(userid,dto.getNikname());
 	}
 }

@@ -89,12 +89,15 @@ public class MemberServiceImpl implements MemberService {
 	public void reject(String userid) {
 		memberDao.reject(userid);
 	}
+<<<<<<< HEAD
+=======
 
 	@Override
 	public void update_nik(String userid,String nikname) {
 		memberDao.update_nik(userid,nikname);
 	}
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	
 	@Override
 	public List<MemberDTO> chartCount(){
@@ -105,24 +108,25 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.chartCountMonth();
 	}
 	
-//	@Override
-//	public void deleteFile(String fullName) {
-//		memberDao.deleteFile(fullName);
-//	}
-//	
-
 	@Override
 	public void updateCoupon(MemberDTO dto) {
 		memberDao.updateCoupon(dto);
-		
 	}
 
 	@Override
+<<<<<<< HEAD
+	public void updatePoint(MemberDTO dto) {
+		memberDao.updatePoint(dto);
+=======
 	public void updateCouponPoint(MemberDTO dto) {
 		memberDao.updateCouponPoint(dto);
 		
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	}
 
+<<<<<<< HEAD
+}
+=======
 	@Override
 	public void update_thumbnail(MemberDTO dto) {
 		memberDao.update_thumbnail(dto);
@@ -155,3 +159,4 @@ public class MemberServiceImpl implements MemberService {
 
 
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

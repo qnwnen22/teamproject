@@ -186,8 +186,11 @@ function subjectchange(item){
 
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </div>
 </div>
 <%@ include file="../include/footer.jsp"%>
