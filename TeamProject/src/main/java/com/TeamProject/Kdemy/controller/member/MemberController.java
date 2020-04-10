@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +41,7 @@ import com.TeamProject.Kdemy.util.TempKey;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 
+
 @Controller
 @RequestMapping("member/*")
 public class MemberController {
@@ -55,6 +57,30 @@ public class MemberController {
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
+	
+
+	@RequestMapping("check.do")
+	public ModelAndView check(MemberDTO dto, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		dto.setUserid(userid);
+		String result=memberService.passwdCheck(dto);
+		ModelAndView mav=new ModelAndView();
+		
+		if(result.equals("로그인성공")) {
+			MemberDTO dto2=memberService.detailMember(userid);
+			session.setAttribute("dto", dto2);
+			mav.setViewName("member/myPage1");
+		}else {
+			mav.setViewName("member/myPage");
+		}
+		return mav;
+	}
+
+	@RequestMapping("myPageUpdate.do")
+	public String myPageUpdate() {
+		return "member/mypageUpdate";
+	}
+ 
 	@RequestMapping("couponMaker.do")
 	public String couponMaker() {
 		return "member/coupon";
@@ -68,25 +94,7 @@ public class MemberController {
 	public String join() {
 		return "member/join";
 	}
-	
-	@RequestMapping("memberList.do") 
-	public ModelAndView list(ModelAndView mav) {
-		mav.setViewName("member/member_list");
-		mav.addObject("list", memberService.listMember());
-		return mav;
-	}//list()
-	
 
-	
-	@RequestMapping("detail/{userid}")
-	public ModelAndView detail(@PathVariable String userid, ModelAndView mav) {
-		MemberDTO dto=memberService.detailMember(userid);
-		mav.addObject("dto",dto);
-		mav.setViewName("member/myPage");
-		return mav;
-	}//detail()
-	
-	
 	@RequestMapping("searchId.do")
 	public String searchIdpass1() {
 		return "member/searchId";
@@ -137,36 +145,73 @@ public class MemberController {
 	}
 	
 	
-	
-	
+	@RequestMapping("memberList.do") 
+	public ModelAndView list(ModelAndView mav) {
+		mav.setViewName("member/member_list");
+		mav.addObject("list", memberService.listMember());
+		return mav;
+	}//list()
+
+	@RequestMapping("mypage/{userid}")
+	public ModelAndView mypage(@PathVariable String userid, ModelAndView mav) {
+		MemberDTO dto=memberService.detailMember(userid);
+		mav.addObject("dto",dto);
+		mav.setViewName("member/myPage");
+		return mav;
+	}
+
+	@RequestMapping("detail/{userid}")
+	public ModelAndView detail(@PathVariable String userid, ModelAndView mav) {
+		MemberDTO dto=memberService.detailMember(userid);
+		mav.addObject("dto",dto);
+		mav.setViewName("member/myPage1");
+		return mav;
+	}
+
+	@RequestMapping(value = "/updateMember.do", method = RequestMethod.POST)
+	public String updateMember(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
+		String username = request.getParameter("username");	
+		String bpasswd = request.getParameter("bpasswd");
+		String phone = request.getParameter("phone");
+		String birthday = request.getParameter("birthday");
+		String address = request.getParameter("address");
+		String address2 = request.getParameter("address2");
+		MemberDTO dto = new MemberDTO();
+	   	dto.setUsername(username);
+	   	dto.setBpasswd(bpasswd);
+	   	dto.setPhone(phone);
+	   	String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
+	   	dto.setPasswd(passwd);
+	   	dto.setBirthday(birthday);
+	   	dto.setAddress(address);
+	   	dto.setAddress2(address2);
+	   	String userid = (String) session.getAttribute("userid");
+		dto.setUserid(userid);
+		memberService.updateMember(dto);
+		//세션 다시 저장해 주세요~~
+        return "member/myPage";  
+	}
+   
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String uploadAjax(MultipartFile file, String str, HttpSession session,
 			HttpServletRequest request, Model model) throws Exception {
-            logger.info("originalName: " + file.getOriginalFilename());
+            //logger.info("originalName: " + file.getOriginalFilename());
 			ResponseEntity<String> img_path = new ResponseEntity<>(
 					UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
 					HttpStatus.CREATED);
 			String thumbnail = (String) img_path.getBody();
-			logger.info(thumbnail);
+			//logger.info(thumbnail);
 			MemberDTO dto = new MemberDTO();
 			dto.setThumbnail(thumbnail);
 		    String userid = (String) session.getAttribute("userid");
 			dto.setUserid(userid);
-			logger.info("file name : " + thumbnail);
+			//logger.info("file name : " + thumbnail);
 			memberService.update_thumbnail(dto);
 			return thumbnail;
 	}
 	
 
-//	@RequestMapping("update/{usernum}")
-//	public ModelAndView edit(@PathVariable("usernum") 
-//	int usernum, ModelAndView mav) {
-//		mav.setViewName("member/myPage_edit");
-//		mav.addObject("dto", memberService.detailMember(usernum));
-//		return mav;
-//	}
-	
 	@RequestMapping("login.do")
 	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
 		String result=memberService.passwdCheck(dto);
@@ -181,7 +226,7 @@ public class MemberController {
 			session.setAttribute("teacher", dto2.getTeacher());
 			mav.setViewName("home");
 		}else {
-			mav.addObject("message","로그인실패");
+			mav.addObject("message","로그인 실패");
 			mav.setViewName("member/login");
 		}
 		return mav;
@@ -193,7 +238,7 @@ public class MemberController {
 	public String insertMember(MemberDTO dto) throws Exception {
 		MultipartFile file=dto.getFile();				
 		String thumbnail=null;
-		String birthday=dto.getBirthday1()+"년"+dto.getBirthday2()+"월"+dto.getBirthday3()+"일";
+		String birthday=dto.getBirthday1()+"-"+dto.getBirthday2()+"-"+dto.getBirthday3();
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
 		String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
     	try {
@@ -307,10 +352,20 @@ public class MemberController {
 		return "member/login";
 	}
 
+//	@RequestMapping("logOut.do")
+//	public String logOut(HttpSession session) {
+//		session.invalidate();
+//		return "member/login";
+//	}
+	
 	@RequestMapping("logOut.do")
-	public String logOut(HttpSession session) {
-		session.invalidate();
-		return "member/login";
+	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
+		//세션 초기화
+		memberService.logout(session);
+		//login.jsp로 이동
+		mav.setViewName("member/login");
+		mav.addObject("message", "logout");
+		return mav;
 	}
 
 

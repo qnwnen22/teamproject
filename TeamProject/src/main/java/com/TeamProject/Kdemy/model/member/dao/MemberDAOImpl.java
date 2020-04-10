@@ -23,12 +23,17 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
+	public void updateMember(MemberDTO dto) {
+		sqlSession.update("member.updateMember",dto);
+		
+	}
+	
+	@Override
 	public void verifyMember(MemberDTO dto) {
 		sqlSession.update("member.verifyMember", dto);
 		
 	}
 	
-
 	@Override
 	public int idCheck(MemberDTO dto) {
 		return sqlSession.selectOne("member.idCheck",dto);
@@ -46,7 +51,7 @@ public class MemberDAOImpl implements MemberDAO {
 					result="로그인실패";
 				}
 			}else {
-				result="로그인실패, 이메일을 인증해 주세요";
+				result="no";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,7 +134,7 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update("member.update_thumbnail",dto);
 		
 	}
-
+	
 
 	@Override
 	public MemberDTO detailMember(String userid) {
@@ -140,14 +145,8 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberDTO> listMember() {
 		return sqlSession.selectList("member.member_list");
 	}
+	
 
-
-		
-
-//	@Override
-//	public void deleteFile(String fullName) {
-//			sqlSession.delete("member.deleteFile", fullName);
-//		}
 	@Override
 	public List<MemberDTO> chartCount() {
 		return sqlSession.selectList("member.chartCount");
@@ -157,5 +156,24 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberDTO> chartCountMonth() {
 		return sqlSession.selectList("member.chartCountMonth");
 	}
+
+	@Override
+	public MemberDTO checkPw(MemberDTO dto){
+		return sqlSession.selectOne("member.checkPw", dto);
+//		String result="";	
+//		MemberDTO dto2=sqlSession.selectOne("member.passwdCheck",dto);
+//		try {
+//			 if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {		
+//					result="성공";
+//				}else {
+//					result="실패";
+//				}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return result;
+	}
+	
+	
 }
 
