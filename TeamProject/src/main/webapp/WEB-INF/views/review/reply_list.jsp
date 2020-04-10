@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+=======
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
+<<<<<<< HEAD
 
 <link rel="stylesheet" href="${path}/include/css/home.css">
+=======
+<%@ include file="../include/header.jsp"%>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </head>
 <body>
 <% pageContext.setAttribute("newLineChar","\n"); %>
@@ -24,12 +31,12 @@ value="${fn:replace(str,newLineChar,'<br>') }" />
 
 
 <div>
+				<input type="hidden" name="bno" value="${row.bno}">
 			${row.replyer}
 			( <fmt:formatDate value="${row.regdate}"
 				 pattern="yyyy-MM-dd a HH:mm:ss" /> )
 				 <c:if test="${sessionScope.userid ==row.replyer }">
-				 <a href="${path}/review/replyupdate.do">| 수정 |</a>
-				 <a href="${path}/review/replydelete/${row.rno}"> 삭제 |</a>
+				 <a href="${path}/review/replydelete/${row.rno}+${row.bno}"> 삭제</a>
 				 </c:if>
 				 <br><br>
 			<span style="font-size: 1rem;">${str}</span><br>
@@ -39,6 +46,14 @@ value="${fn:replace(str,newLineChar,'<br>') }" />
 			
 			</c:forEach>	
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </body>
 </html>
-

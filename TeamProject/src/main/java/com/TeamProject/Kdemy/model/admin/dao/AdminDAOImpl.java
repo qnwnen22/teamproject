@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
+import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 	@Inject
@@ -32,5 +33,13 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void deleteAdmin(String admin_id) {
 		sqlSession.delete("admin.deleteAdmin", admin_id);
+	}
+	@Override
+	public List<MainDTO> resoucelist() {
+		return sqlSession.selectList("admin.resouceList");
+	}
+	@Override
+	public void mainChange(MainDTO dto) {
+		sqlSession.update("admin.mainChange", dto);
 	}
 }

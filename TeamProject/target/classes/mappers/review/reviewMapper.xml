@@ -5,16 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="review">
+
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
 		<include refid="paging_header" />
 		select bno, subject, teacher, title, writer, regdate, viewcnt, show,
+<<<<<<< HEAD
 		(select count(*)
 		from kdemyreview_reply where bno=b.bno) cnt
+=======
+		(select count(*) from kdemyreview_reply where bno=b.bno) cnt
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		from kdemyreview b where show='Y'
 		order by bno
 		desc
-
 		<include refid="paging_footer" />
 	</select>
 
@@ -36,6 +40,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and (title like #{keyword}
 				or content like #{keyword} )
 			</when>
+			<when test="search_option== 'subject'">
+				where show='Y'
+				and ${search_option} like #{keyword}
+			</when>
+			<when test="search_option== 'teacher'">
+				where show='Y'
+				and ${search_option} like #{keyword} 
+				</when>
 		</choose>
 		order by bno desc
 
@@ -67,14 +79,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert">
-		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
+		insert into kdemyreview (bno,subject,teacher,title,content,writer,fullName) values
 		(
+<<<<<<< HEAD
 		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer} )
+=======
+		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer}, #{fullName})
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</insert>
 
 	<!-- 첨부파일 정보 저장 -->
 	<insert id="addAttach">
-		insert into kdemyreview_attach (fullName, bno) values
+		insert into kdemyreview (fullName, filenum) values
 		( #{fullName},
 		seq_kdemyreview.currval )
 	</insert>
@@ -84,10 +100,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update kdemyreview set viewcnt=viewcnt+1
 		where bno=#{bno}
 	</update>
-		
+
 	<select id="read"
 		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
-		select bno,subject,b.teacher,title,regdate,content,viewcnt,username,writer
+		select bno,subject,b.teacher,title,regdate,content,viewcnt,username,writer, fullName
 		from kdemyreview b, kdemymember m
 		where b.writer=m.userid and bno=#{bno}
 	</select>
@@ -121,6 +137,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r.replyer=m.userid and bno=#{bno}
 		order by rno
   </select>
+<<<<<<< HEAD
+=======
+  
+  <delete id="replydelete">
+  	delete from kdemyreview_reply where rno=#{rno} 
+  </delete>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 </mapper>
 

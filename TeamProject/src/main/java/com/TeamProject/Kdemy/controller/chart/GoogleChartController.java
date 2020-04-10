@@ -27,7 +27,6 @@ public class GoogleChartController {
 	
 	@RequestMapping("lecturechart.do")
 	public ModelAndView lecturechart() {
-		System.out.println("lecturechart 실행...............");
 		return new ModelAndView("chart/lecturechart");
 	}
 	
@@ -43,7 +42,6 @@ public class GoogleChartController {
 	
 	@RequestMapping("lecture_list.do")
 	public JSONObject lecture_list() {
-		System.out.println("lecture_list 실행...............");
 		return googleChartService.getChartDatalecture();
 	}
 }

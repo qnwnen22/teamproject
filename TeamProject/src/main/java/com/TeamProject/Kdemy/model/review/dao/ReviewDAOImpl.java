@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.TeamProject.Kdemy.model.review.dto.LikeDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 
 @Repository
@@ -104,5 +105,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public ReviewDTO detailReview(int bno) {
 		return sqlSession.selectOne("review.detail_review", bno);
 	}
+
 
 }

@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/notice.css">
 <style type="text/css">
@@ -20,6 +19,7 @@ height: 50% !important;
 	width: 75%;
 	margin: auto;
 }
+
 </style>
 <script type="text/javascript">
 	function list(page) {
@@ -28,12 +28,11 @@ height: 50% !important;
 </script>
 </head>
 <body>
+<%@ include file="../include/fixed-topbar.jsp"%>
 	<br>
 	<br>
 	<br>
 	<br>
-
-
 	<div class="board_table">
 		<div>
 			<ul class="upper_shift">
@@ -48,7 +47,7 @@ height: 50% !important;
 		<!-- 베스트 리뷰 -->
 		<div class="card-deck">
 			<div class="card">
-				<img src="${path}/include/images/main/디자인.png" class="card-img-top" alt="...">
+				<img src="../include/images/review/" class="card-img-top" alt="...">
 				<div class="card-body">
 				<a href="#"><h5 class="card-title">Card title</h5>
 					<p class="card-text">This card has supporting text below as a
@@ -79,17 +78,15 @@ height: 50% !important;
 		<br> <br> <br> <br> <br> 
 		<br>
 
-		<form action="${path}/review/searchlist.do" name="form1" method="post">
+		<form action="${path}/review/searchlist.do" name="form1" method="post" >
 			<select name="search_option" class=" search_option"
-				style="visibility: hidden;">
-				<%--	<option value="username"
-					<c:if test="${map.search_option=='username' }">selected</c:if>>이름</option>
-				<option value="title"
-					<c:if test="${map.search_option=='title' }">selected</c:if>>제목</option>
-				<option value="content"
-					<c:if test="${map.search_option=='content' }">selected</c:if>>내용</option> --%>
+				>
+				<option value="subject"
+					<c:if test="${map.search_option=='subject' }">selected</c:if>>과목</option>
+				<option value="teacher"
+					<c:if test="${map.search_option=='teacher' }">selected</c:if>>강사</option>
 				<option value="all"
-					<c:if test="${map.search_option=='all' }">selected</c:if>>이름+내용+제목</option>
+					<c:if test="${map.search_option=='all' }">selected</c:if>>내용+제목</option>
 			</select>
 			<!--분류 삭제  -->
 
@@ -139,9 +136,10 @@ height: 50% !important;
 		</table>
 	</div>
 	<br>
-	<%-- 	<c:choose>
+ 	<c:choose>
 				<c:when test="${sessionScope.userid != null }">
-					<!-- 관리자로 로그인했을때 아이디 바꾸기--> --%>
+					<!-- 관리자로 로그인했을때 아이디 바꾸기-->
+	<div id="write_container">
 	<div class="container">
 		<div class="row">
 			<div class="write_btn_align col align-self-end">
@@ -150,8 +148,9 @@ height: 50% !important;
 			</div>
 		</div>
 	</div>
-	<%-- </c:when>
-			</c:choose> --%>
+	</div>
+</c:when>
+			</c:choose>
 
 	<br>
 	<div class="row justify-content-center">
@@ -189,19 +188,18 @@ height: 50% !important;
 		</nav>
 	</div>
 	
-	</div>
 	<br>
 	<br>
 
 
+<<<<<<< HEAD
 
-
-
-
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
-<%@ include file="../include/footer.jsp"%>
 
+=======
+<%@ include file="../include/footer.jsp"%>
+</body>
+</html>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

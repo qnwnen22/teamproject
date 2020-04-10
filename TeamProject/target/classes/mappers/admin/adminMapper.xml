@@ -34,6 +34,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from admin
 		where admin_id=#{admin_id}
 	</delete>
+	
+	<select id="resouceList" resultType="com.TeamProject.Kdemy.model.admin.dto.MainDTO">
+		select * from mainresouce
+	</select>
+	
+	<update id="mainChange">
+		update mainresouce
+		set color=#{color},background_img0=#{background_img0}, background_img1=#{background_img1},icon_img0=#{icon_img0},
+        icon_img1=#{icon_img1},icon_img2=#{icon_img2},icon_img3=#{icon_img3},icon_img4=#{icon_img4},icon_img5=#{icon_img5}
+ 		,icon_img6=#{icon_img6},icon_img7=#{icon_img7},icon_img8=#{icon_img8},icon_img9=#{icon_img9},icon_img10=#{icon_img10}
+		</update>
 </mapper>
 
 

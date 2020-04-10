@@ -7,24 +7,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="teacher">
 	<insert id="teacherInsert">
 		insert into teacher
-		(	teacher_num,
-			userid, username,
-			teacher_profileImagePath, 
-			highschool, university,
-			spec1, spec1_img,
-			spec1_getDate	)
-		values
-		(
+			(
+			teacher_num,
+			userid,username,nickname,teacher_thumbnail,finalEducation,
+			spec1,spec1_getDate,spec1_img,
+			spec2,spec2_getDate,spec2_img,
+			spec3,spec3_getDate,spec3_img,
+			spec4,spec4_getDate,spec4_img,
+			spec5,spec5_getDate,spec5_img,
+			career
+			)
+			values(
 			(select nvl(max(teacher_num)+1,1) from teacher),
-			#{userid}, #{username},
-			#{teacher_profileImagePath},
-			#{highschool}, #{university},
-			#{spec1}, #{spec1_img},
-			#{spec1_getDate}
-		)
+			#{userid},#{username},#{nickname},
+			#{teacher_thumbnail},#{finalEducation},
+			#{spec1},#{spec1_getDate},#{spec1_img},
+			#{spec2},#{spec2_getDate},#{spec2_img},
+			#{spec3},#{spec3_getDate},#{spec3_img},
+			#{spec4},#{spec4_getDate},#{spec4_img},
+			#{spec5},#{spec5_getDate},#{spec5_img},
+			#{career}
+			)
 	</insert>
 	
-	<update id="member_teacherUpdate">
+	<update id="memberUpdate">
 		update kdemymember set teacher='w' where userid=#{userid}
 	</update>
+	
+	<select id="nicknameC"
+	resultType="int">
+		select count(*) from teacher
+		where nickname=#{nickname}
+	</select>
 </mapper>

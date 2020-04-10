@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
@@ -40,6 +41,7 @@ public class CartController {
 		mav.setViewName("cart/cart");
 		return mav;
 	}
+	
 //	결제를 위한 장바구니 추가
 	@RequestMapping("insertCart.do")
 	public String insertCart(CartDTO dto, HttpSession session) {
@@ -51,30 +53,36 @@ public class CartController {
 	}
 	
 	
-	@RequestMapping("test.do")
-	public String test(String userid, int count, String[] idxList) {
-		List<String> list=new ArrayList<>();
-		
-		for(int i=0; i<count; i++) {
-			list.add(idxList[i]);
-			System.out.println("userid : "+userid);
-			System.out.println("lecture_idx : "+idxList[i]);
-			
-		}
-		return "home";
-	}
 	@RequestMapping("buyList.do")
-	public String buyList(HttpSession session, String[] lecture_idx, 
+	public String buyList(HttpSession session, String[] cart_idx, 
 			String[] cell_type, int count, int price) {
 		String userid=(String)session.getAttribute("userid");
 //		멤버 테이블에서 포인트 차감
 		cartService.buyLecture(userid,price);
 //		장바구니 테이블에서 레코드 삭제 & LectureBox 테이블에 레코드 추가
 		for(int i=0; i<count; i++) {
-			cartService.deleteCart(userid,lecture_idx[i]);
-			cartService.insertLectureBox(userid,cell_type[i],lecture_idx[i]);
+			cartService.delete(cart_idx[i]); 
+			cartService.insertLectureBox(userid,cell_type[i],cart_idx[i]);
 		}
 		return "redirect:/cart/cartPage.do";
 	}
+	
+	@RequestMapping("deleteAll.do")
+	public String deleteAll(HttpSession session) {
+		//세션변수 조회(로그인 여부 검사)
+		String userid = (String)session.getAttribute("userid");
+			cartService.deleteAll(userid);
+		//장바구니 목록으로 이동
+		return "redirect:/cart/cartPage.do";
+	}
+	
+	@RequestMapping("delete.do")
+	public String delete(@RequestParam String cart_idx, 
+			HttpSession session) {
+			cartService.delete(cart_idx);
+			return "redirect:/cart/cartPage.do";
+		
+	}
+	
 	
 }

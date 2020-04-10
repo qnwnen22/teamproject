@@ -274,7 +274,8 @@ public class LectureController {
 			MultipartFile file2=dto.getFile2();
 			String videofile=file2.getOriginalFilename();
 			try {
-				videofile=UploadFileUtils.uploadFile(uploadPath, videofile, file2.getBytes());
+				videofile=UploadFileUtils.uploadFile(
+						uploadPath, videofile, file2.getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

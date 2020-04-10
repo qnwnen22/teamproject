@@ -1,5 +1,7 @@
 package com.TeamProject.Kdemy.controller.member;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -10,11 +12,18 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,8 +37,10 @@ import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
 import com.TeamProject.Kdemy.util.MailHandler;
+import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.TempKey;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
+
 
 
 @Controller
@@ -47,6 +58,30 @@ public class MemberController {
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
+	
+
+	@RequestMapping("check.do")
+	public ModelAndView check(MemberDTO dto, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		dto.setUserid(userid);
+		String result=memberService.passwdCheck(dto);
+		ModelAndView mav=new ModelAndView();
+		
+		if(result.equals("로그인성공")) {
+			MemberDTO dto2=memberService.detailMember(userid);
+			session.setAttribute("dto", dto2);
+			mav.setViewName("member/myPage1");
+		}else {
+			mav.setViewName("member/myPage");
+		}
+		return mav;
+	}
+
+	@RequestMapping("myPageUpdate.do")
+	public String myPageUpdate() {
+		return "member/mypageUpdate";
+	}
+ 
 	@RequestMapping("couponMaker.do")
 	public String couponMaker() {
 		return "member/coupon";
@@ -60,12 +95,7 @@ public class MemberController {
 	public String join() {
 		return "member/join";
 	}
-	
-	@RequestMapping("myPage.do")
-	public String myPage() {
-		return "member/myPage";
-	}
-	
+
 	@RequestMapping("searchId.do")
 	public String searchIdpass1() {
 		return "member/searchId";
@@ -76,20 +106,148 @@ public class MemberController {
 		return "member/searchpass";
 	}
 
+	@ResponseBody
+	@RequestMapping("/displayFile")
+	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+
+		logger.info("FILE NAME: " + fileName);
+
+		try {
+
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+			MediaType mType = MediaUtils.getMediaType(formatName);
+
+			HttpHeaders headers = new HttpHeaders();
+
+			in = new FileInputStream(uploadPath + fileName);
+
+			if (mType != null) {
+				headers.setContentType(mType);
+			} else {
+
+				fileName = fileName.substring(fileName.indexOf("_") + 1);
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				headers.add("Content-Disposition",
+						"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+			}
+
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close();
+		}
+		return entity;
+	}
+	
+	
+	@RequestMapping("memberList.do") 
+	public ModelAndView list(ModelAndView mav) {
+		mav.setViewName("member/member_list");
+		mav.addObject("list", memberService.listMember());
+		return mav;
+	}//list()
+
+	@RequestMapping("mypage/{userid}")
+	public ModelAndView mypage(@PathVariable String userid, ModelAndView mav) {
+		MemberDTO dto=memberService.detailMember(userid);
+		mav.addObject("dto",dto);
+		mav.setViewName("member/myPage");
+		return mav;
+	}
+
+	@RequestMapping("detail/{userid}")
+	public ModelAndView detail(@PathVariable String userid, ModelAndView mav) {
+		MemberDTO dto=memberService.detailMember(userid);
+		mav.addObject("dto",dto);
+		mav.setViewName("member/myPage1");
+		return mav;
+	}
+
+	@RequestMapping(value = "/updateMember.do", method = RequestMethod.POST)
+	public String updateMember(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
+		String username = request.getParameter("username");	
+		String bpasswd = request.getParameter("bpasswd");
+		String phone = request.getParameter("phone");
+		String birthday = request.getParameter("birthday");
+		String address = request.getParameter("address");
+		String address2 = request.getParameter("address2");
+		MemberDTO dto = new MemberDTO();
+	   	dto.setUsername(username);
+	   	dto.setBpasswd(bpasswd);
+	   	dto.setPhone(phone);
+	   	String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
+	   	dto.setPasswd(passwd);
+	   	dto.setBirthday(birthday);
+	   	dto.setAddress(address);
+	   	dto.setAddress2(address2);
+	   	String userid = (String) session.getAttribute("userid");
+		dto.setUserid(userid);
+		memberService.updateMember(dto);
+		//세션 다시 저장해 주세요~~
+        return "member/myPage";  
+	}
+   
+	@ResponseBody
+	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String uploadAjax(MultipartFile file, String str, HttpSession session,
+			HttpServletRequest request, Model model) throws Exception {
+            //logger.info("originalName: " + file.getOriginalFilename());
+			ResponseEntity<String> img_path = new ResponseEntity<>(
+					UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
+					HttpStatus.CREATED);
+			String thumbnail = (String) img_path.getBody();
+			//logger.info(thumbnail);
+			MemberDTO dto = new MemberDTO();
+			dto.setThumbnail(thumbnail);
+		    String userid = (String) session.getAttribute("userid");
+			dto.setUserid(userid);
+			//logger.info("file name : " + thumbnail);
+			memberService.update_thumbnail(dto);
+			return thumbnail;
+	}
+	
+
+	@RequestMapping("login.do")
+	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
+		String result=memberService.passwdCheck(dto);
+		ModelAndView mav=new ModelAndView();
+		
+		if(result.equals("로그인성공")) {
+			MemberDTO dto2=memberService.kdemyLogin(dto);
+			session.setAttribute("usernum", dto2.getUsernum());
+			session.setAttribute("userid", dto2.getUserid());
+			session.setAttribute("username", dto2.getUsername());
+			session.setAttribute("passwd", dto2.getPasswd());
+			session.setAttribute("teacher", dto2.getTeacher());
+			mav.setViewName("home");
+		}else {
+			mav.addObject("message","로그인 실패");
+			mav.setViewName("member/login");
+		}
+		return mav;
+	}
+
+
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 	public String insertMember(MemberDTO dto) throws Exception {
-		MultipartFile file=dto.getFile();
-		String thumbnail=file.getOriginalFilename();
-		String birthday=dto.getBirthday1()+"년"+dto.getBirthday2()+"월"+dto.getBirthday3()+"일";
+		MultipartFile file=dto.getFile();				
+		String thumbnail=null;
+		String birthday=dto.getBirthday1()+"-"+dto.getBirthday2()+"-"+dto.getBirthday3();
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
 		String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
-		try {
+    	try {
 			thumbnail=UploadFileUtils.uploadFile(uploadPath, thumbnail, file.getBytes());
-		} catch (Exception e) {
+     	} catch (Exception e) {
 			e.printStackTrace();
 		}
-		dto.setThumbnail(thumbnail);
+    	dto.setThumbnail(thumbnail);
 		dto.setPasswd(passwd);
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
@@ -106,9 +264,7 @@ public class MemberController {
 				
 		return "member/signConfirm";	
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/verify.do", method = RequestMethod.GET)
 	public String signSuccess(@RequestParam String useremail) {
 		MemberDTO dto = new MemberDTO();
@@ -174,6 +330,7 @@ public class MemberController {
 
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("login.do")
 	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
 		String result=memberService.passwdCheck(dto);
@@ -224,15 +381,17 @@ public class MemberController {
 		sendMail.send();
 
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	@ResponseBody
 	@RequestMapping(value = "/updatePoint.do", method = RequestMethod.POST)
-	public void updatePoint(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
-		String coupon = request.getParameter("coupon");
-			
+	public void updatePoint(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
+		String coupon = request.getParameter("coupon");	
 		MemberDTO dto = new MemberDTO();
 	   	dto.setCoupon(coupon);
-		
-		memberService.updatePoint(dto);
+	   	String userid = (String) session.getAttribute("userid");
+		dto.setUserid(userid);
+		memberService.updateCouponPoint(dto);
 
 	}
 
@@ -247,14 +406,37 @@ public class MemberController {
 		return "member/login";
 	}
 
+//	@RequestMapping("logOut.do")
+//	public String logOut(HttpSession session) {
+//		session.invalidate();
+//		return "member/login";
+//	}
+	
 	@RequestMapping("logOut.do")
+<<<<<<< HEAD
 	public String logOut(HttpSession session) {
 		session.invalidate();
 		return "member/login";
 	}
+<<<<<<< HEAD
 
 
 
+=======
+=======
+	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
+		//세션 초기화
+		memberService.logout(session);
+		//login.jsp로 이동
+		mav.setViewName("member/login");
+		mav.addObject("message", "logout");
+		return mav;
+	}
+
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	@RequestMapping("list.do")
 	public ModelAndView list(
 			@RequestParam(defaultValue ="") String keyword,
@@ -308,6 +490,10 @@ public class MemberController {
 		memberService.reject(userid);
 		return "admin/teacher_request_list";
 	}
+<<<<<<< HEAD
 	
 
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
