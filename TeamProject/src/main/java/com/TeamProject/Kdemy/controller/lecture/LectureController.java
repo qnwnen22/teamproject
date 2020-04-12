@@ -329,10 +329,17 @@ public class LectureController {
 		public ModelAndView lecture_list_view(
 				int lecture_idx, LectureDTO dto,
 				HttpSession session,LectureBoxDTO lbDto) {
+			String userid=(String)session.getAttribute("userid");
+			System.err.println("로그인 안하면? : "+session.getAttribute("userid"));
 			
-			lbDto.setUserid((String)session.getAttribute("userid"));
-			lbDto.setLecture_idx(lecture_idx);
-			int check = lectureService.buyCheck(lbDto);
+			int check=-1;
+			
+			if(userid!=null) {
+				lbDto.setUserid(userid);
+				lbDto.setLecture_idx(lecture_idx);
+				check = lectureService.buyCheck(lbDto);
+			}
+				
 			dto=lectureService.lecture_list_view(lecture_idx);
 
 			ModelAndView mav=new ModelAndView();

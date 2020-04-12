@@ -155,7 +155,7 @@
 </div>
 <script
    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
- <%@ include file="../include/footer.jsp"%>
+ <%-- <%@ include file="../include/footer.jsp"%> --%>
 <!-- 부스 스트랩 4.4.1 -->
 </body>
 </html>

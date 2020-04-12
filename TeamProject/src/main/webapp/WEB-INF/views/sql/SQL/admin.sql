@@ -1,0 +1,16 @@
+--관리자 계정 테이블 -----------------------------------------
+drop table admin;
+
+create table admin (
+admin_id varchar2(50) not null primary key,
+admin_passwd varchar2(50) not null,
+admin_name varchar2(50) not null,
+admin_email varchar2(50),
+admin_hp varchar2(50) not null,
+join_date date default sysdate,
+admin_level number not null
+);
+
+desc admin;
+
+commit;

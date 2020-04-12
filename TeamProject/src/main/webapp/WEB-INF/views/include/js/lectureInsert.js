@@ -216,78 +216,52 @@ function insert3(){
 }
 
 function category() {
-	sub = document.form1.sub_category;
 	
-	var category=document.getElementById("main_category").value;
-	sub.options[0]= new Option("서브 카테고리를 선택해주세요.","");
+	var main1 = ['m1-s1','m1-s2','m1-s3','m1-s4','m1-s5','m1-s6','m1-s7','m1-s8'];
+	var main2 = ['m2-s1','m2-s2','m2-s3','m2-s4','m2-s5','m2-s6','m2-s7','m2-s8'];
+	var main3 = ['m3-s1','m3-s2','m3-s3','m3-s4','m3-s5','m3-s6','m3-s7','m3-s8'];
+	var main4 = ['m4-s1','m4-s2','m4-s3','m4-s4','m4-s5','m4-s6','m4-s7','m4-s8'];
+	var main5 = ['m5-s1','m5-s2','m5-s3','m5-s4','m5-s5','m5-s6','m5-s7','m5-s8'];
+	var main6 = ['m6-s1','m6-s2','m6-s3','m6-s4','m6-s5','m6-s6','m6-s7','m6-s8'];
+	var main7 = ['m7-s1','m7-s2','m7-s3','m7-s4','m7-s5','m7-s6','m7-s7','m7-s8'];
+	var main8 = ['m8-s1','m8-s2','m8-s3','m8-s4','m8-s5','m8-s6','m8-s7','m8-s8'];
+	var main9 = ['m9-s1','m9-s2','m9-s3','m9-s4','m9-s5','m9-s6','m9-s7','m9-s8'];
+	var main10 = ['m10-s1','m10-s2','m10-s3','m10-s4','m10-s5','m10-s6','m10-s7','m10-s8'];
+	var main11 = ['m11-s1','m11-s2','m11-s3','m11-s4','m11-s5','m11-s6','m11-s7','m11-s8'];
 	
-	if(category=='디자인'){
-		sub.options[1]= new Option("로고,브랜딩","로고,브랜딩");
-		sub.options[2]= new Option("인쇄물","인쇄물");
-		sub.options[3]= new Option("제품,패키지","제품,패키지");
-		sub.options[4]= new Option("북,앨범디자인","북,앨범디자인");
-		sub.options[5]= new Option("공간디자인","공간디자인");		
-	} else if(category=='IT,프로그래밍'){
-		sub.options[1]= new Option("워드프레스","워드프레스");
-		sub.options[2]= new Option("웹사이트 개발","웹사이트 ");
-		sub.options[3]= new Option("쇼핑몰,커머스","쇼핑몰,커머스");
-		sub.options[4]= new Option("모바일앱,웹","모바일앱,웹");
-		sub.options[5]= new Option("게임","게임");
-	} else if(category=='콘텐츠 제작'){
-		sub.options[1]= new Option("영상촬영,편집","영상촬영,편집");
-		sub.options[2]= new Option("유튜브 제작","유튜브 제작");
-		sub.options[3]= new Option("애니메이션","애니메이션");
-		sub.options[4]= new Option("3D,VR","3D,VR");
-		sub.options[5]= new Option("사진촬영","사진촬영");
-	} else if(category=='마케팅'){
-		sub.options[1]= new Option("종합광고대행","종합광고대행");
-		sub.options[2]= new Option("블로그","블로그");
-		sub.options[3]= new Option("영상 마케팅","영상 마케팅");
-		sub.options[4]= new Option("SNS 마케팅","SNS 마케팅");
-		sub.options[5]= new Option("쇼핑몰,스토어","쇼핑몰,스토어");
-	} else if(category=='번역,통역'){
-		sub.options[1]= new Option("번역","번역");
-		sub.options[2]= new Option("통역","통역");
-		sub.options[3]= new Option("영상번역","영상번역");
-		sub.options[4]= new Option("감수","감수");
-		sub.options[5]= new Option("번역공증","번역공증");
-	} else if(category=='문서,취업'){
-		sub.options[1]= new Option("면접,취업 코칭","면접,취업 코칭");
-		sub.options[2]= new Option("자소서","자소서");
-		sub.options[3]= new Option("카피라이팅","카피라이팅");
-		sub.options[4]= new Option("논문","논문");
-		sub.options[5]= new Option("타이핑","타이핑");
-	} else if(category=='비즈니스컨설팅'){
-		sub.options[0]= new Option("서브 카테고리를 선택해주세요.","");
-		sub.options[1]= new Option("투잡,부업","투잡,부업");
-		sub.options[2]= new Option("세무회계","세무회계");
-		sub.options[3]= new Option("창업,경영컨설팅","창업,경영컨설팅");
-		sub.options[4]= new Option("리서치,서베이","리서치,서베이");
-		sub.options[5]= new Option("해외사업","해외사업");
-	} else if(category=='운세,상담'){
-		sub.options[1]= new Option("신점","신점");
-		sub.options[2]= new Option("사주,운세","사주,운세");
-		sub.options[3]= new Option("타로","타로");
-		sub.options[4]= new Option("작명","작명");
-		sub.options[5]= new Option("심리상담","심리상담");
-	} else if(category=='레슨,실무교육'){
-		sub.options[1]= new Option("프로그래밍","프로그래밍");
-		sub.options[2]= new Option("그래픽디자인","그래픽디자인");
-		sub.options[3]= new Option("데이터분석","데이터분석");
-		sub.options[4]= new Option("유튜브,영상&사진","유튜브,영상&사진");
-		sub.options[5]= new Option("외국어","외국어");
-	} else if(category=='주문제작'){
-		sub.options[0]= new Option("서브 카테고리를 선택해주세요.","");
-		sub.options[1]= new Option("3D프린팅","3D프린팅");
-		sub.options[2]= new Option("패키지제작","패키지제작");
-		sub.options[3]= new Option("가게용품제작","가게용품제작");
-		sub.options[4]= new Option("굿즈제작","굿즈제작");
-		sub.options[5]= new Option("모형제작","모형제작");
-	} else if(category=='간판,인쇄'){
-		sub.options[1]= new Option("인쇄","인쇄");
-		sub.options[2]= new Option("간판","간판");
-		sub.options[3]= new Option("test1","test1");
-		sub.options[4]= new Option("test2","test2");
-		sub.options[5]= new Option("test3","test3");
+	var sub = new Array();
+	
+	var main = $("#main_category").val();
+	
+	switch(main){
+	case '디자인' : sub = main1;
+	break;
+	case 'IT,프로그래밍' : sub = main2;
+	break;
+	case '콘텐츠' : sub = main3;
+	break;
+	case '마케팅' : sub = main4;
+	break;
+	case '번역,통역' : sub = main5;
+	break;
+	case '문서,취업' : sub = main6;
+	break;
+	case '비즈니스컨설팅' : sub = main7;
+	break;
+	case '운세,상담' : sub = main8;
+	break;
+	case '레슨,실무교육' : sub = main9;
+	break;
+	case '주문제작' : sub = main10;
+	break;
+	case '간판,인쇄' : sub = main11;
+	break;
+	}
+	
+	$('#sub_category').empty();
+		
+	for(var i=0; i<sub.length; i++){
+		var option = $("<option value='"+sub[i]+"'>"+sub[i]+"</option>;");
+		$('#sub_category').append(option);
 	}
 }

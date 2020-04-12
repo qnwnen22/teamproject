@@ -42,11 +42,6 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void insertLectureBox(String userid, String cell_type, String lecture_idx) {
-		cartDao.insertLectureBox(userid, cell_type, lecture_idx);
-	}
-
-	@Override
 	public int cartCheck(CartDTO dto) {
 		return cartDao.cartCheck(dto);
 	}
@@ -58,6 +53,20 @@ public class CartServiceImpl implements CartService {
 	public void delete(String cart_idx) {
 		cartDao.delete(cart_idx);
 		
+	}
+
+	@Override
+	public void buyCart(String userid, String lecture_idx) {
+		cartDao.buyCart(userid, lecture_idx);
+	}
+	@Override
+	public void insertLectureBox(String userid, String cell_type, String lecture_idx) {
+		cartDao.insertLectureBox(userid, cell_type, lecture_idx);
+	}
+
+	@Override
+	public void pointCharge(String userid) {
+		cartDao.pointCharge(userid);
 	}
 
 }

@@ -7,11 +7,14 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
-function buyList(){
 
+</script>
+<script type="text/javascript">
+
+function buyList(){
 	var point=Number(document.getElementById("point").value);
 	var price=Number(document.getElementById("price").value);
-
+	
 	if(point < price){
 		alert("포인트가 모자랍니다.");
 		return false;
@@ -37,13 +40,9 @@ $(function(){
 			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우 
 			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다. 
 		$("input[type=checkbox]").prop("checked",false);
-	 } 
-		 }); 
+		} 
+	}); 
 });
-
-
-
-
 </script>
 <style type="text/css">
 
@@ -91,7 +90,7 @@ $(function(){
 
 	<h4>보유중인 포인트</h4>
 	<input type="text" name="point" id="point" value="${point}" readonly>
-	<input type="button" value="포인트 충전 (아직 미구현)"><br>
+		<input type="button" onclick="location.href='${path}/cart/pointCharge.do'" value="10,000포인트 충전 (작업용)"><br>
 	<hr><br>
 	<div>
 		장바구니 갯수 : ${count}<br>
@@ -142,6 +141,7 @@ $(function(){
 		<c:forEach var="dto" items="${list}" begin="0" end="${list.size()}">
 			<c:set var="sum" value="${sum + dto.price}"/>
 		</c:forEach>
+		
 	
 		<form method="post" name="form1" id="form1" action="${path}/cart/buyList.do">
 			레코드 갯수 : <input type="text" name="count" value="${count}" readonly><br>
@@ -151,10 +151,10 @@ $(function(){
 				<input type="hidden" name="cell_type" value="${dto.cell_type}">
 				렉쳐 인덱스 : 
 				<input type="text" name="lecture_idx" value="${dto.lecture_idx}"><br>
-			
 			</c:forEach>
+			<input type="hidden" name="price" id="price" value="${sum}">
 			총가격 : <fmt:formatNumber pattern="###,###,###원" value="${sum}" /> <br>
-			<button class="btn btn-sm btn-primary font-color-fff btn-normal-silver" onclick="buyList()">일괄 구매</button> 
+			<button type="button" class="btn btn-sm btn-primary font-color-fff btn-normal-silver" onclick="buyList()">일괄 구매</button> 
 		</form>
 		<br><br><br><br>
 	</div>

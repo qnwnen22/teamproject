@@ -17,12 +17,17 @@ public interface CartDAO {
 
 	public void buyLecture(String userid, int price);
 	
-	public void insertLectureBox(String userid, String cell_type, String lecture_idx);
-	
 	public void deleteAll(String userid);//장바구니 전체지우기
 	
 	public void delete(String cart_idx);//장바구니 개별 상품 삭제
 
 	public int cartCheck(CartDTO dto);
 
+	// 총괄 구매 시 카트에서 userid와 lecture_idx를 조회해서 cart 테이블에서 제거 후 lectureBox 테이블로 생성
+	public void buyCart(String userid, String lecture_idx); 
+	public void insertLectureBox(String userid, String cell_type, String lecture_idx);
+	////////////////////////////////////////////////////////////////////////////////////
+
+	public void pointCharge(String userid);
+	
 }

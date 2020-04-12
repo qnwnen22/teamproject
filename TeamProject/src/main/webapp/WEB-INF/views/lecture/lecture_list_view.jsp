@@ -67,15 +67,19 @@
 			</table>
 		</div>
 		
-		<%-- <div class="col-3 fixed-top ml-auto" style="background-color: white; margin-top: 170px;">
+		<div class="col-3 fixed-top ml-auto" style="background-color: white; margin-top: 170px; border: 1px solid;">
 			<c:choose>
 				<c:when test="${check==0}">
 					<form method="post" action="${path}/cart/insertCart.do">
 					<input type="hidden" name="cell_type" value="${dto.cell_type}">
 					<input type="hidden" name="price" value="${dto.price}">
 					<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
-					<input style="width: 200px; height: 50px;" type="submit" value="구매하기">
-					<a href="${path}/cart/cartPage.do">구입하기</a><br>
+					<input type="hidden" name="main_category" value="${dto.main_category}">
+					<input type="hidden" name="sub_category" value="${dto.sub_category}">
+					<input type="hidden" name="subject" value="${dto.subject}">
+					
+					<input type="submit" value="구매하기">
+					<%-- <a href="${path}/cart/cartPage.do">구입하기</a><br> --%>
 					</form>
 				</c:when>
 				
@@ -84,10 +88,10 @@
 				</c:when>
 				
 				<c:otherwise>
-					<a>Error</a>
+					<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>시청하기</b></a>
 				</c:otherwise>
 			</c:choose>
-		</div> --%>
+		</div>
 	</div>
 	<br>
 	
@@ -138,7 +142,7 @@
 			<a>시청하기</a><br>
 		</c:when>
 		<c:otherwise>
-			<a>Error</a>
+			<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>시청하기</b></a>
 		</c:otherwise>
 		</c:choose>
 		<input type="button" value="뒤로" onclick="history.back()">

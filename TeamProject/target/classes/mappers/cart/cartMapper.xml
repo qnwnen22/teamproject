@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertCart">
 		insert into cart
-		(cart_idx, cell_type, userid, lecture_idx, main_category, sub_category,subject, price)
+		(cart_idx, cell_type, userid, lecture_idx, main_category, sub_category, subject, price)
 		values
 		( 
 		(select nvl(max(cart_idx)+1, 1) from cart where userid=#{userid}),
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertLectureBox">
 		insert into lectureBox
-		(box_idx,cell_type,userid,lecture_idx)
+		(box_idx, cell_type, userid, lecture_idx)
 		values
 		(
 		(select nvl(max(box_idx)+1, 1) from lectureBox ), 
@@ -58,6 +58,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     delete from cart
     where cart_idx=#{cart_idx}
   </delete>
+  
+  <delete id="buyCart">
+  	delete cart 
+  	where userid=#{userid} and lecture_idx=#{lecture_idx}
+  </delete>
+  
+  <update id="pointCharge">
+  	update kdemymember set point=(
+  	(select point from kdemymember where userid=#{userid} )+10000)
+  	where userid=#{userid}
+  </update>
   
 </mapper>
 

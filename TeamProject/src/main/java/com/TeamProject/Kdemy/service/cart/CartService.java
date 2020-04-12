@@ -23,4 +23,8 @@ public interface CartService {
 	public int cartCheck(CartDTO dto);
 
 	public void delete(String cart_idx);//장바구니 개별 상품 삭제
+
+	public void buyCart(String userid, String lecture_idx);
+
+	public void pointCharge(String userid);
 }

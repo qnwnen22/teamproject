@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
@@ -57,15 +58,15 @@ public class CartController {
 	
 	
 	@RequestMapping("buyList.do")
-	public String buyList(HttpSession session, String[] cart_idx, 
+	public String buyList(HttpSession session, String[] lecture_idx, 
 			String[] cell_type, int count, int price) {
 		String userid=(String)session.getAttribute("userid");
 //		멤버 테이블에서 포인트 차감
 		cartService.buyLecture(userid,price);
 //		장바구니 테이블에서 레코드 삭제 & LectureBox 테이블에 레코드 추가
 		for(int i=0; i<count; i++) {
-			cartService.delete(cart_idx[i]); 
-			cartService.insertLectureBox(userid,cell_type[i],cart_idx[i]);
+			cartService.buyCart(userid,lecture_idx[i]); 
+			cartService.insertLectureBox(userid, cell_type[i], lecture_idx[i]);
 		}
 		return "redirect:/cart/cartPage.do";
 	}
@@ -84,8 +85,12 @@ public class CartController {
 			HttpSession session) {
 			cartService.delete(cart_idx);
 			return "redirect:/cart/cartPage.do";
-		
 	}
 	
-	
+	@RequestMapping("pointCharge.do")
+	public String pointCharge(HttpSession session) {
+		String userid=(String)session.getAttribute("userid");
+		cartService.pointCharge(userid);
+		return "redirect:/cart/cartPage.do"; 
+	}
 }

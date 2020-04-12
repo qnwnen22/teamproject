@@ -69,4 +69,17 @@ public class CartDAOImpl implements CartDAO {
 		
 	}
 
+	@Override
+	public void buyCart(String userid, String lecture_idx) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("lecture_idx", lecture_idx);
+		sqlSession.delete("cart.buyCart",map);
+	}
+
+	@Override
+	public void pointCharge(String userid) {
+		sqlSession.update("cart.pointCharge",userid);
+	}
+
 }
