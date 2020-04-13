@@ -38,4 +38,5 @@ public interface LectureDAO {
 	public int pointCheck(String userid);
 	
 	public List<LectureDTO> chartCountLecture();
+	public LectureDTO lectureView_success(int lecture_idx);
 }

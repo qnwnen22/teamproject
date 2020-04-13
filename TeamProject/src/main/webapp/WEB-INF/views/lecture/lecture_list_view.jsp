@@ -34,6 +34,12 @@
 	color: #01447e;
 }
 </style>
+<script type="text/javascript">
+function lectureView_success(){
+	document.viewForm.submit();
+}
+
+</script>
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
@@ -139,7 +145,12 @@
 			</form>
 		</c:when>
 		<c:when test="${check==1}">
-			<a>시청하기</a><br>
+			<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do">
+				<input type="text" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
+				
+				<input type="button" value="시청하기" onclick="lectureView_success()">
+			</form>
+			
 		</c:when>
 		<c:otherwise>
 			<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>시청하기</b></a>

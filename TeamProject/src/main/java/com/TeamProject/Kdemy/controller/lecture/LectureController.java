@@ -412,36 +412,14 @@ public class LectureController {
 			return "redirect:/lecture/myLecturePage.do?userid="+userid;
 		}
 		
-
-
-		
-	// 장바구니 상품 일괄구매
-//	@RequestMapping("buyList.do")
-//	public String buyList(HttpSession session, String[] idxList, 
-//			String[] cell_type, int count, int price) {
-//		System.out.println("session아이디 :"+session.getAttribute("userid"));
-//		System.out.println("count : "+count);
-//		System.out.println("price는 : "+price);
-//		String userid=(String)session.getAttribute("userid");
-//		
-//		
-//		for(int i=0; i<count; i++) {
-//			System.out.println("cell_type : "+cell_type[i]);
-//			System.out.println("idxList : "+idxList[i]);
-//		}
-//		
-////		멤버 테이블에서 포인트 차감
-//		cartService.buyLecture(price);
-////		장바구니 테이블에서 삭제
-//		
-////		렉쳐박스 테이블에 추가
-//		
-//		
-//		
-//		
-////		멤버에 있는 userid에 대한 point값을 price만큼 -처리
-////		int point=lectureService.pointCheck(userid);
-//		return "home";
-//	}
+		@RequestMapping("lectureView_success.do")
+		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
+			ModelAndView mav=new ModelAndView();
+			LectureDTO ldto=new LectureDTO();
+			ldto=lectureService.lectureView_success(lecture_idx);
+			mav.addObject("ldto", ldto);
+			mav.setViewName("lecture/lectureView_success");
+			return mav;
+		}
 		
 }

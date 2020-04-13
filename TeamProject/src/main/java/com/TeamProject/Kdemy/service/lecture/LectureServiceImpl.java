@@ -11,6 +11,8 @@ import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
+import oracle.net.aso.l;
+
 @Service
 public class LectureServiceImpl implements LectureService {
 
@@ -114,6 +116,11 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public int pointCheck(String userid) {
 		return lectureDao.pointCheck(userid);
+	}
+
+	@Override
+	public LectureDTO lectureView_success(int lecture_idx) {
+		return lectureDao.lectureView_success(lecture_idx);
 	}
 
 	

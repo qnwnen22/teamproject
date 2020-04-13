@@ -1053,6 +1053,10 @@
 	<!-- content -->
 
 	<div style="width: 63%; margin: auto;">
+		<div class="flex-end-center col-auto p-0">
+														
+													</div>
+		<hr>
 		<a href="${path}/review/list.do"> <marquee scrollamount="5">
 				<h4 style="color: red;">★수강후기★</h4>
 			</marquee>
