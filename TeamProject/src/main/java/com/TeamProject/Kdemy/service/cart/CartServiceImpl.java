@@ -60,8 +60,8 @@ public class CartServiceImpl implements CartService {
 		cartDao.buyCart(userid, lecture_idx);
 	}
 	@Override
-	public void insertLectureBox(String userid, String cell_type, String lecture_idx) {
-		cartDao.insertLectureBox(userid, cell_type, lecture_idx);
+	public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx) {
+		cartDao.insertLectureBox(userid, nickname, cell_type, lecture_idx);
 	}
 
 	@Override

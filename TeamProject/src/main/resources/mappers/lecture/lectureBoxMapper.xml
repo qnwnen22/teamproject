@@ -10,5 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from lectureBox
 		where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</select>
+	
 </mapper>
 

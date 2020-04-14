@@ -15,11 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
@@ -51,10 +53,7 @@ public class LectureController {
 	public String vedioPage() {
 		return "lecture/video";
 	}
-	//동영상 구매 유도 페이지
-//	@RequestMapping("buyLecturePage")
-//	public String 
-	
+
 	//동영상 리스트 페이지 이동
 	@RequestMapping("video_List.do")
 	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage,
@@ -421,5 +420,28 @@ public class LectureController {
 			mav.setViewName("lecture/lectureView_success");
 			return mav;
 		}
-		
+		@RequestMapping(value="reviewStar.do", method= {RequestMethod.GET},produces="text/plain;charset=utf-8")
+		@ResponseBody
+		public String reviewStar(HttpSession session, String reviewStar_idx, String num) {
+			System.err.println("reviewStar_idx : "+reviewStar_idx);
+			System.err.println("num : "+num);
+			
+			String userid=(String)session.getAttribute("userid");
+			int lecture_idx=Integer.parseInt(reviewStar_idx);
+			int star=Integer.parseInt(num);
+			LectureReviewDTO dto=new LectureReviewDTO();
+			dto.setUserid(userid);
+			dto.setLecture_idx(lecture_idx);
+			dto.setStar(star);
+
+			String result="";
+			
+			if(userid==null) {
+				result="로그인이 필요합니다.";
+			}else {
+				lectureService.reviewStarUpdate(dto);
+				result="별점이 등록되었습니다.";
+			}
+			return result;
+		}
 }

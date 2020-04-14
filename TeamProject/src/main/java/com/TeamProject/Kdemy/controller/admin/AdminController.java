@@ -48,7 +48,7 @@ public class AdminController {
 	@RequestMapping("updateAdmin.do")
 	public String update(AdminDTO dto) {
 		adminService.updateAdmin(dto);
-		return "redirect:/admin/list.do";
+		return "redirect:/admin/list.do";	
 	}
 	@RequestMapping("deleteAdmin.do")
 	public String delete(@RequestParam String admin_id) {

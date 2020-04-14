@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 
 @Repository
 public class LectureDAOImpl implements LectureDAO {
@@ -144,4 +145,15 @@ public class LectureDAOImpl implements LectureDAO {
 	public LectureDTO lectureView_success(int lecture_idx) {
 		return sqlSession.selectOne("lecture.lectureView_success",lecture_idx);
 	}
+
+	@Override
+	public void reviewStar(LectureReviewDTO dto) {
+		sqlSession.insert("lectureReview.reviewStar",dto);
+	}
+
+	@Override
+	public void reviewStarUpdate(LectureReviewDTO dto) {
+		sqlSession.update("lectureReview.reviewStarUpdate",dto);
+	}
+
 }

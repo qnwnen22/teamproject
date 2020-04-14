@@ -33,12 +33,75 @@
 	font-size: 1.1em;
 	color: #01447e;
 }
+#reviewStar a{ 
+	text-decoration: none;
+	color: gray; 
+} 
+#reviewStar a.on{
+	color: yellow; 
+}
+
 </style>
 <script type="text/javascript">
 function lectureView_success(){
 	document.viewForm.submit();
 }
+$('#star1 a').click(function(){
+	$(this).parent().children("a").removeClass("on"); 
+	$(this).addClass("on").prevAll("a").addClass("on"); 
+	console.log($(this).attr("value"));
+});
 
+function reviewStar(num){
+	switch(num){
+	case 1 : 
+		document.getElementById("star1").style="color: #ffa500;"
+		document.getElementById("star2").style.color="gray";
+		document.getElementById("star3").style.color="gray";
+		document.getElementById("star4").style.color="gray";
+		document.getElementById("star5").style.color="gray";
+	break;
+	case 2 : 
+		document.getElementById("star1").style.color="#ffa500";
+		document.getElementById("star2").style.color="#ffa500";
+		document.getElementById("star3").style.color="gray";
+		document.getElementById("star4").style.color="gray";
+		document.getElementById("star5").style.color="gray";
+	break; 
+	case 3 : 
+		document.getElementById("star1").style.color="#ffa500";
+		document.getElementById("star2").style.color="#ffa500";
+		document.getElementById("star3").style.color="#ffa500";
+		document.getElementById("star4").style.color="gray";
+		document.getElementById("star5").style.color="gray";
+	break;
+	case 4 : 
+		document.getElementById("star1").style.color="#ffa500";
+		document.getElementById("star2").style.color="#ffa500";
+		document.getElementById("star3").style.color="#ffa500";
+		document.getElementById("star4").style.color="#ffa500";
+		document.getElementById("star5").style.color="gray";
+	break;
+	case 5 : 
+		document.getElementById("star1").style.color="#ffa500";
+		document.getElementById("star2").style.color="#ffa500";
+		document.getElementById("star3").style.color="#ffa500";
+		document.getElementById("star4").style.color="#ffa500";
+		document.getElementById("star5").style.color="#ffa500";
+	break;
+	}
+	
+	var reviewStar_idx=document.getElementById("reviewStar_idx").value;
+	$.ajax({
+		url : "${path}/lecture/reviewStar.do",
+		type : "get",
+		data : {'reviewStar_idx' : reviewStar_idx, 'num' : num},
+		success : function(data){
+			alert(data);
+			}
+		});
+	//document.reviewStar.submit();
+}
 </script>
 </head>
 <body>
@@ -68,7 +131,19 @@ function lectureView_success(){
 				<tr>
 					<th>평점</th>
 					<th> : </th>
-					<td>★★★★★</td>
+					<td>
+						<P id="reviewStar" style="font-size: 20px;">
+							<a href="#" id="star1" onclick="reviewStar(1)">★</a>
+							<a href="#" id="star2" onclick="reviewStar(2)">★</a>
+							<a href="#" id="star3" onclick="reviewStar(3)">★</a>
+							<a href="#" id="star4" onclick="reviewStar(4)">★</a>
+							<a href="#" id="star5" onclick="reviewStar(5)">★</a>
+							<%-- <form method="post" name="reviewStar" id="reviewStar" action="${path}lectureReview/ReviewStar.do"> --%>
+							<input type="hidden" name="reviewStar_idx" id="reviewStar_idx" value="${dto.lecture_idx}">
+							<!-- </form> -->
+							
+						<p>
+					</td>
 				</tr>
 			</table>
 		</div>
