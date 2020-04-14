@@ -51,6 +51,11 @@ function search(){
 			</tr>
 			</c:forEach>
 	</table>
+		<div class="row">
+		<div class="col-4 border border-dark">col-4</div>
+		<div class="col-4 border border-dark">col-4</div>
+		<div class="col-4 border border-dark">col-4</div>
+		</div>
 </div>
 <br>
 <!-- 페이징 처리 -->
@@ -87,9 +92,10 @@ function search(){
 					</c:if>
 				</ul>
 			</nav>
+
 		</div>
-<script
-   src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -105,50 +105,36 @@ function reviewStar(num){
 </script>
 </head>
 <body>
-<div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
+<div class="container-xl lectureListDiv">
 	<ul class="upper_shift">
 		<li><a href="${path}">KDEMY</a></li>
 		<li><a href="#">${dto.main_category}</a></li>
 		<li><a href="#">${dto.sub_category}</a></li>
 	</ul>
-	<div class="d-flex" style="width: 100%; border: 1px solid black; height: 200px;">
-		<div class="col-6"style="width: 50%; height: 198px; border-right: 1px solid black;">
-			<c:choose>
-				<c:when test="${dto.cell_type == 1}"><h2>동영상 강의</h2></c:when>
-				<c:when test="${dto.cell_type == 2}"><h2>실시간 강의</h2></c:when>
-				<c:when test="${dto.cell_type == 3}"><h2>현장 강의</h2></c:when>
-			</c:choose>
-			<img style="background-color: white; border: 1px solid black;" width="300px" height="100px" src="../upload/${dto.main_img}">
-			<table style="display: inline;">
-				<tr>
-					<th colspan="3">${dto.subject}</th>
-				</tr>
-				<tr>
-					<th>강사이름</th>
-					<th> : </th>
-					<td>${dto.userid}</td>
-				</tr>
-				<tr>
-					<th>평점</th>
-					<th> : </th>
-					<td>
-						<P id="reviewStar" style="font-size: 20px;">
-							<a href="#" id="star1" onclick="reviewStar(1)">★</a>
-							<a href="#" id="star2" onclick="reviewStar(2)">★</a>
-							<a href="#" id="star3" onclick="reviewStar(3)">★</a>
-							<a href="#" id="star4" onclick="reviewStar(4)">★</a>
-							<a href="#" id="star5" onclick="reviewStar(5)">★</a>
-							<%-- <form method="post" name="reviewStar" id="reviewStar" action="${path}lectureReview/ReviewStar.do"> --%>
-							<input type="hidden" name="reviewStar_idx" id="reviewStar_idx" value="${dto.lecture_idx}">
-							<!-- </form> -->
-							
-						<p>
-					</td>
-				</tr>
-			</table>
+	<div class="row row-cols-2 border border-primary">
+		<div class="col-8 row  border-right border-primary">
+			<div class="col-12">
+				<c:choose>
+					<c:when test="${dto.cell_type == 1}"><h2>동영상 강의</h2></c:when>
+					<c:when test="${dto.cell_type == 2}"><h2>실시간 강의</h2></c:when>
+					<c:when test="${dto.cell_type == 3}"><h2>현장 강의</h2></c:when>
+				</c:choose>
+			</div>
+			<div class="col-6 border border-primary">
+				<img style="width: 200px; height: 200px;" src="../upload/${dto.main_img}">
+			</div>
+			<div class="col-6">
+				<h2>${dto.subject}</h2>
+				<p>${dto.userid}</p>
+				<p>☆☆☆☆☆ (0개의 수강평)</p>
+			</div>
 		</div>
-		
-		<div class="col-3 fixed-top ml-auto" style="background-color: white; margin-top: 170px; border: 1px solid;">
+		<div class="col-4">
+			<div class="col-12">
+				<h3>${dto.price}원</h3>
+			</div>
+			
+			<div class="col-12">
 			<c:choose>
 				<c:when test="${check==0}">
 					<form method="post" action="${path}/cart/insertCart.do">
@@ -175,13 +161,29 @@ function reviewStar(num){
 					<a class="plain cursor btn btn-dark" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>구매하기</b></a>
 				</c:otherwise>
 			</c:choose>
+			<a href="#" class="btn btn-primary">장바구니 등록</a>
+			</div>
+		</div>
+
+		<div class="col-6">
+			
 		</div>
 	</div>
+	<hr>
+	<div class="col-12 m">
+		<nav class="nav nav-pills nav-fill">
+			<a class="nav-item nav-link active" href="#">Active</a>
+			<a class="nav-item nav-link" href="#">Much longer nav link</a>
+			<a class="nav-item nav-link" href="#">Link</a>
+			<a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+		</nav>
+	</div>
+	
 	<br>
 	
 	<hr>
 	<h2>강의 설명</h2>
-	<div style="width: 100%; border: 1px solid black;">
+	<div>
 		인덱스 번호 : ${dto.lecture_idx}<br>
 		판매타입 : ${dto.cell_type}<br>
 		메인 카테고리 : ${dto.main_category}<br>
