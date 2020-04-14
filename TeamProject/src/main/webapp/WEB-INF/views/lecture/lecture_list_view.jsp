@@ -159,17 +159,20 @@ function reviewStar(num){
 					<input type="hidden" name="sub_category" value="${dto.sub_category}">
 					<input type="hidden" name="subject" value="${dto.subject}">
 					
-					<input type="submit" value="구매하기">
+					<input class="btn btn-dark" type="submit" value="구매하기">
 					<%-- <a href="${path}/cart/cartPage.do">구입하기</a><br> --%>
 					</form>
 				</c:when>
 				
 				<c:when test="${check==1}">
-					<a>시청하기</a><br>
+					<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do">
+						<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
+						<input class="btn btn-primary" type="button" value="시청하기" onclick="lectureView_success()">
+					</form>
 				</c:when>
 				
 				<c:otherwise>
-					<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>시청하기</b></a>
+					<a class="plain cursor btn btn-dark" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>구매하기</b></a>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -202,35 +205,6 @@ function reviewStar(num){
 		강의주소 : ${dto.lecture_address}<br>
 		강의 상세주소 : ${dto.lecture_address2}<br>
 		<hr>
-		<h2>구매 여부 체크</h2>
-		<b>${check}</b>
-		<hr>
-		<c:choose>
-		<c:when test="${check==0}">
-			<form method="post" action="${path}/cart/insertCart.do">
-			<input type="hidden" name="cell_type" value="${dto.cell_type}">
-			<input type="hidden" name="price" value="${dto.price}">
-			<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
-			<input type="hidden" name="main_category" value="${dto.main_category}">
-			<input type="hidden" name="sub_category" value="${dto.sub_category}">
-			<input type="hidden" name="subject" value="${dto.subject}">
-			
-			<input type="submit" value="구매하기">
-			<%-- <a href="${path}/cart/cartPage.do">구입하기</a><br> --%>
-			</form>
-		</c:when>
-		<c:when test="${check==1}">
-			<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do">
-				<input type="text" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
-				
-				<input type="button" value="시청하기" onclick="lectureView_success()">
-			</form>
-			
-		</c:when>
-		<c:otherwise>
-			<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal"><b>시청하기</b></a>
-		</c:otherwise>
-		</c:choose>
 		<input type="button" value="뒤로" onclick="history.back()">
 	</div>
 </div>

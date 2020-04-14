@@ -238,7 +238,7 @@ function category() {
 	break;
 	case 'IT,프로그래밍' : sub = main2;
 	break;
-	case '콘텐츠' : sub = main3;
+	case '콘텐츠 제작' : sub = main3;
 	break;
 	case '마케팅' : sub = main4;
 	break;
