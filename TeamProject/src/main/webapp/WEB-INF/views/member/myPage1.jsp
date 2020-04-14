@@ -7,13 +7,39 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script type="text/javascript">
+
+
+$(function(){
+	$("#listButton").click(function(){
+		  $.ajax({
+		          type: 'post'
+		        , url: 'orderDetail.do'
+		        , dataType : 'text'
+		        , success: function(data) {
+		        	$("#listDiv").html(data);
+		          }
+		  });	
+	})		
+}) 
+
+$(function(){
+	$("#listButton").click(function(){
+		  $.ajax({
+		          type: 'post'
+		        , url: 'cartPage.do'
+		        , dataType : 'text'
+		        , success: function(data) {
+		        	$("#list2Div").html(data);
+		          }
+		  });	
+	})		
+})
+
+
+
 
 $(document).ready(function(){
 	$("#profileImg").click(function(){
@@ -228,8 +254,9 @@ $(function() {
     	<div class="col-sm-9">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">내 정보수정</a></li>
-                <li><a data-toggle="tab" href="#settings">강의목록</a></li>
-              </ul>
+                <li><a id="listButton" data-toggle="tab" href="#settings">강의목록</a></li>
+
+          </ul>
 
               
           <div class="tab-content">
@@ -309,9 +336,14 @@ $(function() {
               
              </div><!--/tab-pane-->
               <div class="tab-pane" id="settings">
-            		
-               	
                   <hr>
+                  <br/>
+                  <div id="list2Div"></div>
+                  <br>
+                  <hr>
+                  <div id="listDiv"></div>
+
+
                   
           </div><!--/tab-content-->
 
@@ -320,6 +352,6 @@ $(function() {
     </div>
     </div>
 <br><br><br><br><br><br><br><br>
-                                   
+ <%@ include file="../include/footer.jsp"%>                                  
 </body>
 </html>

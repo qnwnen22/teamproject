@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.service.cart.CartService;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 
@@ -71,6 +72,7 @@ public class CartController {
 		return "redirect:/cart/cartPage.do";
 	}
 	
+
 	@RequestMapping("deleteAll.do")
 	public String deleteAll(HttpSession session) {
 		//세션변수 조회(로그인 여부 검사)
