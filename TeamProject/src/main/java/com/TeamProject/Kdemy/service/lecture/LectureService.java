@@ -49,4 +49,5 @@ public interface LectureService {
 	public String getMain_img(int lecture_idx);	//이원혁 작업
 	public int lectureViewCheck(LectureBoxDTO dto);
 	public LectureDTO lectureList(LectureDTO dto);
+	public void update_main_img(LectureDTO dto);
 }

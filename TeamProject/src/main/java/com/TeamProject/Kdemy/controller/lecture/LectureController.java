@@ -1,6 +1,8 @@
 package com.TeamProject.Kdemy.controller.lecture;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,8 +11,10 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +32,8 @@ import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
+import com.TeamProject.Kdemy.service.member.BCrypt;
+import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 
@@ -42,6 +48,53 @@ public class LectureController {
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String uploadAjax(MultipartFile file, String str, HttpSession session,
+			HttpServletRequest request, Model model) throws Exception {
+			ResponseEntity<String> img_path = new ResponseEntity<>(
+					UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
+					HttpStatus.CREATED);
+			String main_img = (String) img_path.getBody();
+			LectureDTO dto = new LectureDTO();
+			dto.setMain_img(main_img);
+		    String userid = (String) session.getAttribute("userid");
+			dto.setUserid(userid);
+			lectureService.update_main_img(dto);
+			return main_img;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/displayFile")
+	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+		
+		try {
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			MediaType mType = MediaUtils.getMediaType(formatName);
+			HttpHeaders headers = new HttpHeaders();
+			in = new FileInputStream(uploadPath + fileName);
+			if (mType != null) {
+				headers.setContentType(mType);
+			} else {
+				fileName = fileName.substring(fileName.indexOf("_") + 1);
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				headers.add("Content-Disposition",
+						"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+			}
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close();
+		}
+		return entity;
+	}
+	
 	
 	//실시간 강의를 등록하는 페이지
 	@RequestMapping("onlinePage.do")
@@ -263,11 +316,13 @@ public class LectureController {
 			return mav;
 		}
 		
+	
+		
 		@RequestMapping(value="teacher_type1_insert.do",method= {RequestMethod.POST},
 				consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 		public String teacher_type1_insert(LectureDTO dto) throws Exception {			
 			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
+			String main_img=null;
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -276,7 +331,7 @@ public class LectureController {
 			dto.setMain_img(main_img);
 			
 			MultipartFile file2=dto.getFile2();
-			String videofile=file2.getOriginalFilename();
+			String videofile=null;
 			try {
 				videofile=UploadFileUtils.uploadFile(
 						uploadPath, videofile, file2.getBytes());
@@ -294,7 +349,7 @@ public class LectureController {
 				consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 		public String teacher_type3_insert(LectureDTO dto) throws Exception {
 			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
+			String main_img=null;
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -307,7 +362,7 @@ public class LectureController {
 		@RequestMapping("teacher_type2_insert.do")
 		public String teacher_type2_insert(LectureDTO dto) throws Exception {
 			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
+			String main_img=null;
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -316,7 +371,7 @@ public class LectureController {
 			dto.setMain_img(main_img);
 			
 			MultipartFile file2=dto.getFile2();
-			String videofile=file2.getOriginalFilename();
+			String videofile=null;
 			try {
 				videofile=UploadFileUtils.uploadFile(uploadPath, videofile, file2.getBytes());
 			} catch (Exception e) {

@@ -2,15 +2,176 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
-<script type="text/javascript">
 
+<head>
+  <title>나의 정보 수정</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-3 col-sm-offset-9"><h4>${dto.username} 님 환영합니다. </h4></div>
+    </div>
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+              
+
+      <div class="text-center">    
+ <c:choose>
+		<c:when test="${empty dto.thumbnail}">
+	<div>
+	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail">
+	</div>
+		</c:when>
+		<c:otherwise>
+	<div>
+	<img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar img-circle img-thumbnail"  style = "height:200px;">
+	</div>
+		</c:otherwise>
+</c:choose>
+        <form name="form1" method="post" enctype="multipart/form-data" >
+        <input type="file" class="text-center center-block file-upload" id="input_img">
+        </form>
+      </div></hr><br>
+
+               
+          <div class="panel panel-default">
+            <div class="panel-heading">사용가능한 포인트<i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body"><h6>현재 사용가능 포인트는<span style="color:blue;"> ${dto.point} </span>입니다.</h6>
+            <hr>
+            <h6><strong>아이디</strong> ${dto.userid}</h6>
+            <h6><strong>이메일</strong> ${dto.useremail}</h6>
+
+           </div>
+          </div>
+          
+<%--          <ul class="list-group">
+            <li class="list-group-item text-muted">나의 정보 <i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>아이디</strong></span>${dto.userid}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>이메일</strong></span>${dto.useremail}</li>
+          </ul> 
+                --%>
+<!--           <div class="panel panel-default">
+            <div class="panel-heading">즐겨찾기</div>
+            <div class="panel-body">
+            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+            </div>
+          </div> -->
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">내 정보수정</a></li>
+                <li><a id="listButton" data-toggle="tab" href="#settings">강의목록</a></li>
+
+          </ul>
+
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                  <form class="form" action="${path}/member/updateMember.do" method="post" onsubmit="return beforeSubmit()">
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="name"><h6>이름</h6></label>
+                              <input type="text" class="form-control" name="username" id="username" placeholder="name" value="${dto.username}">
+                          </div>
+                      </div>
+                      
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                            <label for="nickname"><h6>닉네임</h6></label>
+                              <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="password"><h6>비밀번호</h6></label>
+                              <input type="password" class="form-control" name="bpasswd" id="bpasswd" placeholder="password" required="true">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="password2"><h6>비밀번호 확인</h6></label>
+                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" required="true">
+                              <span id="passwdCheckM"></span> 
+                          </div>
+                      </div>
+                          
+                          <div class="col-xs-12">
+                              <label for="phone"><h6>전화번호</h6></label>
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder="000-0000-0000" value="${dto.phone}">
+                              <span id="phoneM"></span> 
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-12">
+                              <label for="birthday"><h6>생년월일</h6></label>
+                              <input type="text" class="form-control" id="birthday" name="birthday" placeholder="0000년 00월 00일" value="${dto.birthday}">
+                              <span id="birthdayM"></span>
+                          </div>
+                      </div>
+                       <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="address"><h6>주소</h6></label>
+                               <input type="text" class="form-control" name="address" id="address" value="${dto.address}">
+                               </div>
+                      </div>
+          
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="address2"><h6>상세주소</h6></label>
+                              <input type="text" class="form-control" name="address2" id="address2" value="${dto.address2}">
+                          </div>
+                      </div>
+                      
+                    
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                               	</div>
+                      </div>
+              	</form>
+              
+             </div><!--/tab-pane-->   
+              <hr>
+              
+              <div class="tab-pane" id="settings">
+              <hr>
+                  <div id="list2Div"></div>
+                  <hr>
+                  <div id="listDiv"></div>
+                  
+                  
+                  
+             </div>
+             
+             </div><!--/tab-content-->
+        </div><!--/col-9-->
+    </div><!--/row-->
+    </div>
+
+<br><br><br><br><br><br><br><br>
+ <%@ include file="../include/footer.jsp"%>   
+ <script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>                               
+</body>
+<script>
 
 $(function(){
 	$("#listButton").click(function(){
@@ -40,7 +201,6 @@ $(function(){
 
 
 
-
 $(document).ready(function(){
 	$("#profileImg").click(function(){
 		$("#input_img").click() ;
@@ -52,7 +212,6 @@ var sel_file;
 $(document).ready(function() {
     $("#input_img").on("change", fileChange);
 });
-
 
 
 function fileChange(e) {
@@ -189,169 +348,6 @@ $(function() {
 });
 
 </script>
-<head>
-  <title>나의 정보 수정</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
 
 
-<hr>
-<div class="container bootstrap snippet">
-    <div class="row">
-  		<div class="col-sm-3 col-sm-offset-9"><h4>${dto.username} 님 환영합니다. </h4></div>
-    </div>
-    <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-              
-
-      <div class="text-center">    
- <c:choose>
-		<c:when test="${empty dto.thumbnail}">
-	<div>
-	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail">
-	</div>
-		</c:when>
-		<c:otherwise>
-	<div>
-	<img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar img-circle img-thumbnail"  style = "height:200px;">
-	</div>
-		</c:otherwise>
-</c:choose>
-        <form name="form1" method="post" enctype="multipart/form-data" >
-        <input type="file" class="text-center center-block file-upload" id="input_img">
-        </form>
-      </div></hr><br>
-
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">사용가능한 포인트<i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><h6>현재 사용가능 포인트는<span style="color:blue;"> ${dto.point} </span>입니다.</h6>
-            <hr>
-            <h6><strong>아이디</strong> ${dto.userid}</h6>
-            <h6><strong>이메일</strong> ${dto.useremail}</h6>
-
-           </div>
-          </div>
-          
-<%--          <ul class="list-group">
-            <li class="list-group-item text-muted">나의 정보 <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>아이디</strong></span>${dto.userid}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>이메일</strong></span>${dto.useremail}</li>
-          </ul> 
-                --%>
-<!--           <div class="panel panel-default">
-            <div class="panel-heading">즐겨찾기</div>
-            <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-            </div>
-          </div> -->
-          
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">내 정보수정</a></li>
-                <li><a id="listButton" data-toggle="tab" href="#settings">강의목록</a></li>
-
-          </ul>
-
-              
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                  <form class="form" action="${path}/member/updateMember.do" method="post" onsubmit="return beforeSubmit()">
-                      <div class="form-group">
-                          
-                          
-                          <div class="col-xs-6">
-                              <label for="name"><h6>이름</h6></label>
-                              <input type="text" class="form-control" name="username" id="username" placeholder="name" value="${dto.username}">
-                          </div>
-                      </div>
-                      
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                            <label for="nickname"><h6>닉네임</h6></label>
-                              <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h6>비밀번호</h6></label>
-                              <input type="password" class="form-control" name="bpasswd" id="bpasswd" placeholder="password" required="true">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h6>비밀번호 확인</h6></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" required="true">
-                              <span id="passwdCheckM"></span> 
-                          </div>
-                      </div>
-                          
-                          <div class="col-xs-12">
-                              <label for="phone"><h6>전화번호</h6></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="000-0000-0000" value="${dto.phone}">
-                              <span id="phoneM"></span> 
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-12">
-                              <label for="birthday"><h6>생년월일</h6></label>
-                              <input type="text" class="form-control" id="birthday" name="birthday" placeholder="0000년 00월 00일" value="${dto.birthday}">
-                              <span id="birthdayM"></span>
-                          </div>
-                      </div>
-                       <div class="form-group">
-                          <div class="col-xs-6">
-                              <label for="address"><h6>주소</h6></label>
-                               <input type="text" class="form-control" name="address" id="address" value="${dto.address}">
-                               </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="address2"><h6>상세주소</h6></label>
-                              <input type="text" class="form-control" name="address2" id="address2" value="${dto.address2}">
-                          </div>
-                      </div>
-                      
-                    
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	</div>
-                      </div>
-              	</form>
-              
-              <hr>
-              
-             </div><!--/tab-pane-->
-              <div class="tab-pane" id="settings">
-                  <hr>
-                  <br/>
-                  <div id="list2Div"></div>
-                  <br>
-                  <hr>
-                  <div id="listDiv"></div>
-
-
-                  
-          </div><!--/tab-content-->
-
-        </div><!--/col-9-->
-    </div><!--/row-->
-    </div>
-    </div>
-<br><br><br><br><br><br><br><br>
- <%@ include file="../include/footer.jsp"%>                                  
-</body>
 </html>

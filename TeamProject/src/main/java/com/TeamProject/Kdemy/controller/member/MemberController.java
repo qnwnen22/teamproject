@@ -69,7 +69,7 @@ public class MemberController {
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
-	@RequestMapping("orderDetail.do")
+	@RequestMapping("mypage/orderDetail.do")
 	public ModelAndView orderDetail(HttpSession session, LectureBoxDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		String userid=(String)session.getAttribute("userid");
@@ -81,7 +81,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping("cartPage.do")
+	@RequestMapping("mypage/cartPage.do")
 	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		String userid=(String)session.getAttribute("userid");
@@ -96,7 +96,7 @@ public class MemberController {
 	
 	
 
-	@RequestMapping("check.do")
+	@RequestMapping("mypage/check.do")
 	public ModelAndView check(MemberDTO dto, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
@@ -225,7 +225,6 @@ public class MemberController {
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updateMember(dto);
-		//세션 다시 저장해 주세요~~
         return "member/myPage";  
 	}
    
@@ -249,7 +248,6 @@ public class MemberController {
 	}
 	
 
-	
 
 
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
@@ -322,7 +320,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/searchPW.do", method = RequestMethod.POST)
+	@RequestMapping("searchPW.do")
 	public void searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 		String userid = request.getParameter("userid");
 		String useremail = request.getParameter("useremail");
@@ -330,7 +328,7 @@ public class MemberController {
 		dto.setUserid(userid);
 		dto.setUseremail(useremail);
 		
-		String key = new TempKey().getKey(10,false);  // 인증키 생성
+		String key = new TempKey().getKey(10,false);  
 		String passwd=BCrypt.hashpw(key, BCrypt.gensalt());
 		dto.setPasswd(passwd);
 		memberService.updatePW(dto);
@@ -338,7 +336,6 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-//				.append("<b>임시 비밀번호 발급 : " + temp_passwd + "</b><br>")
 				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());

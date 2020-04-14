@@ -45,4 +45,5 @@ public interface LectureDAO {
 	public String getMain_img(int lecture_idx);
 	public int lectureViewCheck(LectureBoxDTO dto);
 	public LectureDTO lectureList(LectureDTO dto);
+	public void update_main_img(LectureDTO dto);
 }

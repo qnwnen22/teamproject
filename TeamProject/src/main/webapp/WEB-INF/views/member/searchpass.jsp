@@ -6,10 +6,9 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="${path}/member/css/searchID.css?ver=5" rel="stylesheet" type="text/css">
 <%@ include file="../include/header.jsp"%>
 <style type="text/css">
-/* div{border:solid black 1px;} */
+
 .searchPass{
 text-align:center;
 }

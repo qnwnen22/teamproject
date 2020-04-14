@@ -41,7 +41,7 @@ function insert1(){
 		price.focus();
 		return false;
 	}
-	if(!file1.value){
+	/*if(!file1.value){
 		alert("메인 이미지로 사용할 파일을 첨부해주세요.");
 		file1.focus();
 		return false;
@@ -50,7 +50,7 @@ function insert1(){
 		alert("동영상을 등록해주세요.");
 		file2.focus();
 		return false;
-	}
+	}*/
 	if(content.value==""){
 		if(confirm("강의에 대한 설명이 지정되어있지 않습니다.\n그래도 강의를 등록 하시겠습니까?") == false){
 			return false;
@@ -101,7 +101,7 @@ function insert2(){
 		price.focus();
 		return false;
 	}
-	if(!file1.value){
+/*	if(!file1.value){
 		alert("메인 이미지로 사용할 파일을 첨부해주세요.");
 		file1.focus();
 		return false;
@@ -110,7 +110,7 @@ function insert2(){
 		alert("동영상을 등록해주세요.");
 		file2.focus();
 		return false;
-	}
+	}*/
 	if(!lecture_date.value){
 		alert("강의를 시작할 날짜를 지정해주세요.");
 		lecture_date.focus();
@@ -175,7 +175,7 @@ function insert3(){
 		price.focus();
 		return false;
 	}
-	if(!file1.value){
+/*	if(!file1.value){
 		alert("메인 이미지로 사용할 파일을 첨부해주세요.");
 		file1.focus();
 		return false;
@@ -184,7 +184,7 @@ function insert3(){
 		alert("강의를 시작할 날짜를 지정해주세요.");
 		lecture_date.focus();
 		return false;
-	}
+	}*/
 	if(lecture_start.value==""){
 		alert("강의를 진행할 시간을 지정해주세요.");
 		lecture_start.focus();

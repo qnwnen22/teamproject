@@ -5,6 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="lecture">
+
+    <!-- 나의 썸네일 수정 -->
+   <update id="update_main_img">
+    update lecture
+    set 
+    main_img=#{main_img}
+    where userid=#{userid}    
+  </update>
+  
 	<!-- 강의 등록 insert -->
 	<insert id="teacher_type1_insert">
 		insert into lecture
@@ -12,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		userid, subject, main_img, videofile, content, price)
 		values ((select nvl(max(lecture_idx)+1,1) from lecture),
 		'1', #{main_category}, #{sub_category},
-		#{userid}, #{subject}, #{main_img}, #{videofile}, #{content}, #{price})
+		#{userid}, #{subject}, #{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, #{price})
 	</insert>
 	<insert id="teacher_type2_insert">
 		insert into lecture
@@ -27,8 +36,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (select nvl(max(lecture_idx)+1, 1) from lecture),
 		 '2', #{main_category}, #{sub_category}, 
 		 #{userid}, #{subject}, #{price},
-		 #{content}, #{main_img}, #{videofile},
-		 #{lecture_date}, #{lecture_start}, #{lecture_time}
+		 #{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
+		 #{lecture_date, jdbcType=VARCHAR}, #{lecture_start, jdbcType=VARCHAR}, #{lecture_time, jdbcType=VARCHAR}
 		 )
 	</insert>
 	<insert id="teacher_type3_insert">
@@ -43,9 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (select nvl(max(lecture_idx)+1, 1) from lecture),
 		 '3', #{main_category}, #{sub_category}, 
 		 #{userid}, #{subject}, #{price}, 
-		 #{content}, #{main_img}, #{lecture_date}, 
-		 #{lecture_start}, #{lecture_time}, #{lecture_address},
-		 #{lecture_address2}
+		#{main_img, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, 
+		 #{lecture_date, jdbcType=VARCHAR}, 
+		 #{lecture_start, jdbcType=VARCHAR}, #{lecture_time, jdbcType=VARCHAR}, #{lecture_address, jdbcType=VARCHAR},
+		 #{lecture_address2, jdbcType=VARCHAR}
 		)
 	</insert>
 
