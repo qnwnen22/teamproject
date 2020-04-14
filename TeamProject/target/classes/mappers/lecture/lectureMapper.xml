@@ -177,5 +177,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where lecture_idx=#{lecture_idx}
 	</select>
 	
+	<select id="getMain_img"
+	resultType="String">
+		select main_img from lecture
+		where lecture_idx=#{lecture_idx} 
+		order by lecture_idx desc
+	</select>
+	
+	<select id="lectureList"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from lecture
+		where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</select>
+	
 </mapper>
 

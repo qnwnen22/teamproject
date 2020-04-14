@@ -42,4 +42,7 @@ public interface LectureDAO {
 	public LectureDTO lectureView_success(int lecture_idx);
 	public void reviewStar(LectureReviewDTO dto);
 	public void reviewStarUpdate(LectureReviewDTO dto);
+	public String getMain_img(int lecture_idx);
+	public int lectureViewCheck(LectureBoxDTO dto);
+	public LectureDTO lectureList(LectureDTO dto);
 }

@@ -2,6 +2,8 @@ package com.TeamProject.Kdemy.model.member.dao;
 
 import java.util.List;
 
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberDAO {
@@ -47,4 +49,7 @@ public interface MemberDAO {
 
 	public void updateMember(MemberDTO dto);
 
+    public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto);
+	
+	public List<CartDTO> cartList(CartDTO dto);
 }

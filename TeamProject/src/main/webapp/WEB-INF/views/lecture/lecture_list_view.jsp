@@ -165,7 +165,7 @@ function reviewStar(num){
 				</c:when>
 				
 				<c:when test="${check==1}">
-					<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do">
+					<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
 						<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
 						<input class="btn btn-primary" type="button" value="시청하기" onclick="lectureView_success()">
 					</form>

@@ -6,6 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
 
+    <select id="orderDetail" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
+		select * from lecture,lectureBox
+		where lecture.lecture_idx = lectureBox.lecture_idx and lectureBox.userid=#{userid}
+		order by lecture.lecture_idx desc
+	</select>
+	
+	<select id="cartList" resultType="com.TeamProject.Kdemy.model.cart.dto.CartDTO">
+		select * from cart
+		where userid=#{userid}
+		order by cart_idx desc
+	</select>
+
+
 	<!-- 첨부파일 레코드 삭제 -->
 	<delete id="deleteFile">
 	  delete from attach

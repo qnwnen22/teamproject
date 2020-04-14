@@ -6,12 +6,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
@@ -379,7 +384,6 @@ public class LectureController {
 			mav.setViewName("lecture/myLecturePage");
 			return mav;
 		}
-		
 		//강의 지우기
 		@RequestMapping("lectureDelete.do")
 		public String lectureDelete(int lecture_idx, HttpSession session) {
@@ -411,13 +415,48 @@ public class LectureController {
 			return "redirect:/lecture/myLecturePage.do?userid="+userid;
 		}
 		
+		@RequestMapping("lectureUpdatePage.do")
+		public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
+			ModelAndView mav=new ModelAndView();
+			
+			LectureDTO dto = new LectureDTO();
+			dto.setUserid((String)session.getAttribute("userid"));
+			dto.setLecture_idx(lecture_idx);
+			dto=lectureService.lectureList(dto);
+			
+			System.err.println("cellType: "+dto.getCell_type());
+			String cell_type=dto.getCell_type();
+			if(cell_type.equals("1")) {
+				mav.setViewName("/lecture/lectureUpdate1");
+			}else if(cell_type.equals("2")) {
+				mav.setViewName("/lecture/lectureUpdate2");
+			}else if(cell_type.equals("3")) {
+				mav.setViewName("/lecture/lectureUpdate3");
+			}else {
+				mav.setViewName("redirect:/");
+			}
+			mav.addObject("dto",dto);
+			return mav;
+		}
+		
 		@RequestMapping("lectureView_success.do")
 		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
 			ModelAndView mav=new ModelAndView();
-			LectureDTO ldto=new LectureDTO();
-			ldto=lectureService.lectureView_success(lecture_idx);
-			mav.addObject("ldto", ldto);
-			mav.setViewName("lecture/lectureView_success");
+			LectureBoxDTO dto=new LectureBoxDTO();
+			String userid=(String)session.getAttribute("userid");
+			dto.setUserid(userid);
+			dto.setLecture_idx(lecture_idx);
+			
+			int check=lectureService.lectureViewCheck(dto);
+			System.err.println("check : "+check);
+			if(check==1) {
+				LectureDTO ldto=new LectureDTO();
+				ldto=lectureService.lectureView_success(lecture_idx);
+				mav.addObject("ldto", ldto);
+				mav.setViewName("lecture/lectureView_success");
+			}else {
+				mav.setViewName("redirect:/");
+			}
 			return mav;
 		}
 		@RequestMapping(value="reviewStar.do", method= {RequestMethod.GET},produces="text/plain;charset=utf-8")
@@ -444,4 +483,6 @@ public class LectureController {
 			}
 			return result;
 		}
+		
+
 }

@@ -3,6 +3,7 @@ package com.TeamProject.Kdemy.controller.member;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +32,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.interceptor.SessionNames;
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
+import com.TeamProject.Kdemy.service.cart.CartService;
+import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
@@ -50,12 +55,44 @@ public class MemberController {
 	
 	@Inject
 	MemberService memberService;
+	@Inject
+	CartService cartService;
+	
+	//이원혁 추가 04.14 수강중인 강의 리스트 추가 작업
+	@Inject
+	LectureService lectureService;
+	
 	
 	@Inject
 	private JavaMailSender mailSender;
 	
 	@Resource(name="memberUploadPath")
 	String uploadPath;
+	
+	@RequestMapping("orderDetail.do")
+	public ModelAndView orderDetail(HttpSession session, LectureBoxDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		List<LectureBoxDTO> list2=new ArrayList<>();
+		list2= memberService.orderDetail(dto);
+		mav.addObject("list2",list2);
+		mav.setViewName("member/orderDetail");
+		return mav;
+	}
+	
+	@RequestMapping("cartPage.do")
+	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		List<CartDTO> list=new ArrayList<>();
+		list=memberService.cartList(dto);		
+		mav.addObject("list",list);
+		mav.setViewName("member/cartDetail");
+		return mav;
+	}
+	
 	
 	
 

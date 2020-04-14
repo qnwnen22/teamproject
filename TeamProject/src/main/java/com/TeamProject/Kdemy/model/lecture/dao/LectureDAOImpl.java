@@ -156,4 +156,19 @@ public class LectureDAOImpl implements LectureDAO {
 		sqlSession.update("lectureReview.reviewStarUpdate",dto);
 	}
 
+	@Override
+	public String getMain_img(int lecture_idx) {
+		return sqlSession.selectOne("lecture.getMain_img",lecture_idx);
+	}
+
+	@Override
+	public int lectureViewCheck(LectureBoxDTO dto) {
+		return sqlSession.selectOne("lectureBox.lectureViewCheck",dto);
+	}
+
+	@Override
+	public LectureDTO lectureList(LectureDTO dto) {
+		return sqlSession.selectOne("lecture.lectureList",dto);
+	}
+
 }

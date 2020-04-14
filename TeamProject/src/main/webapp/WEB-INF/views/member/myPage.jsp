@@ -117,7 +117,7 @@ function fileChange(e) {
 <c:choose>
 			 	<c:when test="${empty dto.thumbnail}">
 				<div>
-					<img id ="profileImg" src = "${path}/member/displayFile?fileName=/icon.png" style = "border-radius:0%; padding-top : 10px; height:100px; width:100px;">
+					<img id ="profileImg" src = "" style = "border-radius:0%; padding-top : 10px; height:100px; width:100px;">
 				</div>
 				</c:when>
 				<c:otherwise>

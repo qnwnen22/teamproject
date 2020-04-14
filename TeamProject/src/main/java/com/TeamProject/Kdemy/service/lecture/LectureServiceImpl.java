@@ -134,5 +134,20 @@ public class LectureServiceImpl implements LectureService {
 		lectureDao.reviewStarUpdate(dto);
 	}
 
+	@Override
+	public String getMain_img(int lecture_idx) {
+		return lectureDao.getMain_img(lecture_idx);
+	}
+
+	@Override
+	public int lectureViewCheck(LectureBoxDTO dto) {
+		return lectureDao.lectureViewCheck(dto);
+	}
+
+	@Override
+	public LectureDTO lectureList(LectureDTO dto) {
+		return lectureDao.lectureList(dto);
+	}
+
 	
 }

@@ -11,5 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</select>
 	
+	<select id="lectureViewCheck"
+	resultType="int">
+		select count(*) from lectureBox
+		where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</select>
 </mapper>
 
