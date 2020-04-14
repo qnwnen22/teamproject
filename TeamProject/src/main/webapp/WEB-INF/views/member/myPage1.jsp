@@ -152,7 +152,7 @@
               <hr>
               
               <div class="tab-pane" id="settings">
-        <hr>
+              <hr>
                   <div id="list2Div"></div>
                   <hr>
                   <div id="listDiv"></div>

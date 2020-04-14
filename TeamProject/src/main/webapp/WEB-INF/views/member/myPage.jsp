@@ -72,46 +72,29 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">내 정보수정</a></li>
                 <li><a id="listButton" data-toggle="tab" href="#settings">강의목록</a></li>
-
           </ul>
-
-              
           <div class="tab-content">
             <div class="tab-pane active" id="home">
-                <hr>            
+           
                       <div class="form-group">
                           <div class="col-xs-6">
                               <label for="name"><h6>이름</h6></label>
-                              <input type="text" class="form-control" name="username" id="username" placeholder="name" value="${dto.username}">
+                              <h4 style="color:green">${dto.username}</h4>
                           </div>
                       </div>
                       
                       <div class="form-group">
                           <div class="col-xs-6">
                             <label for="nickname"><h6>닉네임</h6></label>
-                              <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
+                               <h4 style="color:green">${dto.username}</h4>
                           </div>
                       </div>
                       <div class="form-group">
                         <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h6>비밀번호</h6></label>
-                              <input type="password" class="form-control" name="bpasswd" id="bpasswd" placeholder="password" required="true">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h6>비밀번호 확인</h6></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" required="true">
-                              <span id="passwdCheckM"></span> 
-                          </div>
-                      </div>
-                          
+  
                           <div class="col-xs-12">
                               <label for="phone"><h6>전화번호</h6></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="000-0000-0000" value="${dto.phone}">
+                               <h4 style="color:green">${dto.phone}</h4>
                               <span id="phoneM"></span> 
                           </div>
                       </div>
@@ -119,32 +102,23 @@
                           
                           <div class="col-xs-12">
                               <label for="birthday"><h6>생년월일</h6></label>
-                              <input type="text" class="form-control" id="birthday" name="birthday" placeholder="0000년 00월 00일" value="${dto.birthday}">
+                              <h4 style="color:green">${dto.birthday}</h4>
                               <span id="birthdayM"></span>
                           </div>
                       </div>
                        <div class="form-group">
-                          <div class="col-xs-6">
+                          <div class="col-xs-12">
                               <label for="address"><h6>주소</h6></label>
-                               <input type="text" class="form-control" name="address" id="address" value="${dto.address}">
+                               <h4 style="color:green">${dto.address}${dto.address2}</h4>
                                </div>
                       </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="address2"><h6>상세주소</h6></label>
-                              <input type="text" class="form-control" name="address2" id="address2" value="${dto.address2}">
-                          </div>
-                      </div>
-                      
-                    
+         
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>나의 정보 수정</button>
-                               	</div>
-                      </div>
-              	</form>
+                              <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal" data-target="#myModal" >회원정보 수정</button>
+                         	</div>
+                                </div>
               
              </div><!--/tab-pane-->   
               <hr>
@@ -163,6 +137,46 @@
         </div><!--/col-9-->
     </div><!--/row-->
     </div>
+
+
+<!-- 비밀번호 확인 모달 -->
+<div class="container">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
+   style ="margin-left: 500px; height:400px; width:700px;">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title pull-left" id="myModalLabel">비밀번호 확인</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+</div>
+
+<div class="modal-body">
+         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm">
+			<form method="post" id="passForm" name="passForm" action="check.do" class="form-horizontal">
+				<div class="form-group">
+					<!-- <label for="userid">아이디</label> -->
+					<input type="hidden" class="form-control" id="userid" name="userid" value="${dto.userid}">		
+				</div>
+				<div class="form-group">
+					<label for="passwd">비밀번호를 입력하세요</label>
+					<input type="password" class="form-control" id="passwd" name="passwd">
+				</div>
+
+         
+</div>
+<div class="modal-footer">
+<div class="form-group">
+<button type="submit" id="submit" class="btn btn-danger">확인</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+</div>
+</div>
+	</form>
+		</div>
+
+</div>
+</div>
+</div>
+</div>
 
 <br><br><br><br><br><br><br><br>
  <%@ include file="../include/footer.jsp"%>   
@@ -287,4 +301,5 @@ function fileChange(e) {
 }
 
 </script>
+
 </html>

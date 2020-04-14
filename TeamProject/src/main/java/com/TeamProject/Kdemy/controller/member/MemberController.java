@@ -36,6 +36,7 @@ import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.cart.CartService;
+import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
@@ -57,6 +58,10 @@ public class MemberController {
 	@Inject
 	CartService cartService;
 	
+	//이원혁 추가 04.14 수강중인 강의 리스트 추가 작업
+	@Inject
+	LectureService lectureService;
+	
 	
 	@Inject
 	private JavaMailSender mailSender;
@@ -64,7 +69,7 @@ public class MemberController {
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
-	@RequestMapping("orderDetail.do")
+	@RequestMapping("mypage/orderDetail.do")
 	public ModelAndView orderDetail(HttpSession session, LectureBoxDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		String userid=(String)session.getAttribute("userid");
@@ -72,11 +77,11 @@ public class MemberController {
 		List<LectureBoxDTO> list2=new ArrayList<>();
 		list2= memberService.orderDetail(dto);
 		mav.addObject("list2",list2);
-		mav.setViewName("member/orderDetail1");
+		mav.setViewName("member/orderDetail");
 		return mav;
 	}
 	
-	@RequestMapping("cartPage.do")
+	@RequestMapping("mypage/cartPage.do")
 	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		String userid=(String)session.getAttribute("userid");
@@ -91,7 +96,7 @@ public class MemberController {
 	
 	
 
-	@RequestMapping("check.do")
+	@RequestMapping("mypage/check.do")
 	public ModelAndView check(MemberDTO dto, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
@@ -243,7 +248,6 @@ public class MemberController {
 	}
 	
 
-	
 
 
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},

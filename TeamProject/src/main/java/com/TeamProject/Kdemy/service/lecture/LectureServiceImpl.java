@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 import oracle.net.aso.l;
@@ -122,6 +123,37 @@ public class LectureServiceImpl implements LectureService {
 	public LectureDTO lectureView_success(int lecture_idx) {
 		return lectureDao.lectureView_success(lecture_idx);
 	}
+
+	@Override
+	public void reviewStar(LectureReviewDTO dto) {
+		lectureDao.reviewStar(dto);
+	}
+
+	@Override
+	public void reviewStarUpdate(LectureReviewDTO dto) {
+		lectureDao.reviewStarUpdate(dto);
+	}
+
+	@Override
+	public String getMain_img(int lecture_idx) {
+		return lectureDao.getMain_img(lecture_idx);
+	}
+
+	@Override
+	public int lectureViewCheck(LectureBoxDTO dto) {
+		return lectureDao.lectureViewCheck(dto);
+	}
+
+	@Override
+	public LectureDTO lectureList(LectureDTO dto) {
+		return lectureDao.lectureList(dto);
+	}
+
+	@Override
+	public void update_main_img(LectureDTO dto) {
+		 lectureDao.update_main_img(dto);
+			
+		}
 
 	
 }

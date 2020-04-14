@@ -1,26 +1,39 @@
 package com.TeamProject.Kdemy.controller.lecture;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
+import com.TeamProject.Kdemy.service.member.BCrypt;
+import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 
@@ -35,6 +48,53 @@ public class LectureController {
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String uploadAjax(MultipartFile file, String str, HttpSession session,
+			HttpServletRequest request, Model model) throws Exception {
+			ResponseEntity<String> img_path = new ResponseEntity<>(
+					UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
+					HttpStatus.CREATED);
+			String main_img = (String) img_path.getBody();
+			LectureDTO dto = new LectureDTO();
+			dto.setMain_img(main_img);
+		    String userid = (String) session.getAttribute("userid");
+			dto.setUserid(userid);
+			lectureService.update_main_img(dto);
+			return main_img;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/displayFile")
+	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+		
+		try {
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			MediaType mType = MediaUtils.getMediaType(formatName);
+			HttpHeaders headers = new HttpHeaders();
+			in = new FileInputStream(uploadPath + fileName);
+			if (mType != null) {
+				headers.setContentType(mType);
+			} else {
+				fileName = fileName.substring(fileName.indexOf("_") + 1);
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				headers.add("Content-Disposition",
+						"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+			}
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close();
+		}
+		return entity;
+	}
+	
 	
 	//실시간 강의를 등록하는 페이지
 	@RequestMapping("onlinePage.do")
@@ -51,10 +111,7 @@ public class LectureController {
 	public String vedioPage() {
 		return "lecture/video";
 	}
-	//동영상 구매 유도 페이지
-//	@RequestMapping("buyLecturePage")
-//	public String 
-	
+
 	//동영상 리스트 페이지 이동
 	@RequestMapping("video_List.do")
 	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage,
@@ -259,11 +316,13 @@ public class LectureController {
 			return mav;
 		}
 		
+	
+		
 		@RequestMapping(value="teacher_type1_insert.do",method= {RequestMethod.POST},
 				consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 		public String teacher_type1_insert(LectureDTO dto) throws Exception {			
 			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
+			String main_img=null;
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -272,7 +331,7 @@ public class LectureController {
 			dto.setMain_img(main_img);
 			
 			MultipartFile file2=dto.getFile2();
-			String videofile=file2.getOriginalFilename();
+			String videofile=null;
 			try {
 				videofile=UploadFileUtils.uploadFile(
 						uploadPath, videofile, file2.getBytes());
@@ -290,7 +349,7 @@ public class LectureController {
 				consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 		public String teacher_type3_insert(LectureDTO dto) throws Exception {
 			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
+			String main_img=null;
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -303,7 +362,7 @@ public class LectureController {
 		@RequestMapping("teacher_type2_insert.do")
 		public String teacher_type2_insert(LectureDTO dto) throws Exception {
 			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
+			String main_img=null;
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -312,7 +371,7 @@ public class LectureController {
 			dto.setMain_img(main_img);
 			
 			MultipartFile file2=dto.getFile2();
-			String videofile=file2.getOriginalFilename();
+			String videofile=null;
 			try {
 				videofile=UploadFileUtils.uploadFile(uploadPath, videofile, file2.getBytes());
 			} catch (Exception e) {
@@ -380,7 +439,6 @@ public class LectureController {
 			mav.setViewName("lecture/myLecturePage");
 			return mav;
 		}
-		
 		//강의 지우기
 		@RequestMapping("lectureDelete.do")
 		public String lectureDelete(int lecture_idx, HttpSession session) {
@@ -412,14 +470,74 @@ public class LectureController {
 			return "redirect:/lecture/myLecturePage.do?userid="+userid;
 		}
 		
-		@RequestMapping("lectureView_success.do")
-		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
+		@RequestMapping("lectureUpdatePage.do")
+		public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
 			ModelAndView mav=new ModelAndView();
-			LectureDTO ldto=new LectureDTO();
-			ldto=lectureService.lectureView_success(lecture_idx);
-			mav.addObject("ldto", ldto);
-			mav.setViewName("lecture/lectureView_success");
+			
+			LectureDTO dto = new LectureDTO();
+			dto.setUserid((String)session.getAttribute("userid"));
+			dto.setLecture_idx(lecture_idx);
+			dto=lectureService.lectureList(dto);
+			
+			System.err.println("cellType: "+dto.getCell_type());
+			String cell_type=dto.getCell_type();
+			if(cell_type.equals("1")) {
+				mav.setViewName("/lecture/lectureUpdate1");
+			}else if(cell_type.equals("2")) {
+				mav.setViewName("/lecture/lectureUpdate2");
+			}else if(cell_type.equals("3")) {
+				mav.setViewName("/lecture/lectureUpdate3");
+			}else {
+				mav.setViewName("redirect:/");
+			}
+			mav.addObject("dto",dto);
 			return mav;
 		}
 		
+		@RequestMapping("lectureView_success.do")
+		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
+			ModelAndView mav=new ModelAndView();
+			LectureBoxDTO dto=new LectureBoxDTO();
+			String userid=(String)session.getAttribute("userid");
+			dto.setUserid(userid);
+			dto.setLecture_idx(lecture_idx);
+			
+			int check=lectureService.lectureViewCheck(dto);
+			System.err.println("check : "+check);
+			if(check==1) {
+				LectureDTO ldto=new LectureDTO();
+				ldto=lectureService.lectureView_success(lecture_idx);
+				mav.addObject("ldto", ldto);
+				mav.setViewName("lecture/lectureView_success");
+			}else {
+				mav.setViewName("redirect:/");
+			}
+			return mav;
+		}
+		@RequestMapping(value="reviewStar.do", method= {RequestMethod.GET},produces="text/plain;charset=utf-8")
+		@ResponseBody
+		public String reviewStar(HttpSession session, String reviewStar_idx, String num) {
+			System.err.println("reviewStar_idx : "+reviewStar_idx);
+			System.err.println("num : "+num);
+			
+			String userid=(String)session.getAttribute("userid");
+			int lecture_idx=Integer.parseInt(reviewStar_idx);
+			int star=Integer.parseInt(num);
+			LectureReviewDTO dto=new LectureReviewDTO();
+			dto.setUserid(userid);
+			dto.setLecture_idx(lecture_idx);
+			dto.setStar(star);
+
+			String result="";
+			
+			if(userid==null) {
+				result="로그인이 필요합니다.";
+			}else {
+				lectureService.reviewStarUpdate(dto);
+				result="별점이 등록되었습니다.";
+			}
+			return result;
+		}
+		
+
 }

@@ -7,8 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member">
 
     <select id="orderDetail" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
-		select * from lectureBox
-		 where userid=#{userid}
+		select * from lecture,lectureBox
+		where lecture.lecture_idx = lectureBox.lecture_idx and lectureBox.userid=#{userid}
+		order by lecture.lecture_idx desc
 	</select>
 	
 	<select id="cartList" resultType="com.TeamProject.Kdemy.model.cart.dto.CartDTO">
