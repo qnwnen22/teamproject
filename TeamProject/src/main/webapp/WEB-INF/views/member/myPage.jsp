@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
 <style type="text/css">
@@ -139,43 +139,42 @@ function fileChange(e) {
 </button>
 
 <!-- 비밀번호 확인 모달 -->
-<div class="container">
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
-   style ="margin-left: 500px; height:400px; width:700px;">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title pull-left" id="myModalLabel">비밀번호 확인</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-</div>
-
-<div class="modal-body">
-         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-xl-2 offset-lg-2 joinForm">
-			<form method="post" id="passForm" name="passForm" action="${path}/member/check.do" class="form-horizontal">
-				<div class="form-group">
-					<!-- <label for="userid">아이디</label> -->
-					<input type="hidden" class="form-control" id="userid" name="userid" value="${dto.userid}">		
+<div class="modal fade kdemy-login-form" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center">비밀번호 확인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form method="post" id="passForm" name="passForm" action="${path}/member/check.do" class="form-horizontal">
+				<div class="input-group input-group-lg pt-2 pb-1">
+				 <input type="hidden" class="form-control" id="userid" name="userid" value="${dto.userid}">	
 				</div>
-				<div class="form-group">
-					<label for="passwd">비밀번호를 입력하세요</label>
-					<input type="password" class="form-control" id="passwd" name="passwd">
+				<div class="input-group input-group-lg pt-2 pb-1">
+					<input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요.">
 				</div>
+				<div class="input-group input-group-lg text-center pt-2 pb-1">
+					<button type="submit" id="submit" class="btn btn-outline-dark btn-lg btn-block">
+						확인
+					</button>
+				</div>
+             </form>
 
-         
+					<div class="float-right pt-2 pb-1">
+					  <a class="plain cursor" data-dismiss="modal"  data-ga-category="header" data-toggle="modal" data-target="#kdemySearchPWModal"><b>비밀번호 찾기</b></a>	
+					</div>
+		
+      </div>
+    </div>
+  </div>
 </div>
-<div class="modal-footer">
-<div class="form-group">
-<button type="submit" id="submit" class="btn btn-danger">확인</button>
-<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-</div>
-</div>
-	</form>
-		</div>
-
-</div>
-</div>
-</div>
-</div>
+	
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
 

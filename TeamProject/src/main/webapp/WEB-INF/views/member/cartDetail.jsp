@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <%@ include file="../include/header.jsp" %>
-</head>
-<body>
-	<div class="container">
-	<div class="">
 	<p>카트목록</p>
 	<table class="table table-hover">
 			<thead>
@@ -38,11 +30,7 @@
 				<td class="col-1">${dto.price}</td>	
 			</tr>
 		</c:forEach>
-	</tbody>
-	
+	</tbody>	
 	</table>
 
-	</div>
-	</div>
-</body>
-</html>
+

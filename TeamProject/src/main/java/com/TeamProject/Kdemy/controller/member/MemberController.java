@@ -72,7 +72,7 @@ public class MemberController {
 		List<LectureBoxDTO> list2=new ArrayList<>();
 		list2= memberService.orderDetail(dto);
 		mav.addObject("list2",list2);
-		mav.setViewName("member/orderDetail");
+		mav.setViewName("member/orderDetail1");
 		return mav;
 	}
 	
@@ -220,7 +220,6 @@ public class MemberController {
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updateMember(dto);
-		//세션 다시 저장해 주세요~~
         return "member/myPage";  
 	}
    
@@ -317,7 +316,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/searchPW.do", method = RequestMethod.POST)
+	@RequestMapping("searchPW.do")
 	public void searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 		String userid = request.getParameter("userid");
 		String useremail = request.getParameter("useremail");
@@ -325,7 +324,7 @@ public class MemberController {
 		dto.setUserid(userid);
 		dto.setUseremail(useremail);
 		
-		String key = new TempKey().getKey(10,false);  // 인증키 생성
+		String key = new TempKey().getKey(10,false);  
 		String passwd=BCrypt.hashpw(key, BCrypt.gensalt());
 		dto.setPasswd(passwd);
 		memberService.updatePW(dto);
@@ -333,7 +332,6 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-//				.append("<b>임시 비밀번호 발급 : " + temp_passwd + "</b><br>")
 				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
