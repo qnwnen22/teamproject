@@ -97,20 +97,20 @@
 				<label for="price">가격(원)</label>
 				<input type="number" class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
 			</div>
-			    <!-- 썸네일 -->
-		<div class="form-group" id="photo_add">
-		 <c:choose>
-		 <c:when test="${empty dto.main_img}">
-     	 <div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
-		 </c:when>
-		<c:otherwise>
-	    <div><img id ="profileImg" src = "${path}/lecture/displayFile?fileName=${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
-		</c:otherwise>
-        </c:choose>
-        <form name="form1" method="post" enctype="multipart/form-data" >
-        <input type="file" class="text-center center-block file-upload" id="input_img">
-        </form>
-		</div>
+			<!-- 썸네일 -->
+			<div class="">
+				<c:choose>
+			 		<c:when test="${empty dto.main_img}">
+	     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
+			 		</c:when>
+					
+					<c:otherwise>
+		    			<div><img id ="profileImg" src = "${path}/lecture/displayFile?fileName=${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
+					</c:otherwise>
+	        	</c:choose>
+	        	
+	        	<input type="file" name="file1" class="text-center center-block file-upload" id="input_img">
+			</div>
 	
 			<!-- 내용 -->
 			<div class="form-group">
@@ -211,6 +211,7 @@ function fileChange(e) {
 
 		$.ajax({
     	url: '${path}/lecture/uploadAjax.do',
+    	  enctype:'multipart/form-data',
 		  data: formData,
 		  dataType:'text',
 		  processData: false,

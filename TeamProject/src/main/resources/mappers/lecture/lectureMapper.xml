@@ -11,24 +11,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     update lecture
     set 
     main_img=#{main_img}
-    where userid=#{userid}    
+    where lecture_idx=#{lecture_idx}    
   </update>
   
 	<!-- 강의 등록 insert -->
 	<insert id="teacher_type1_insert">
 		insert into lecture
-		(lecture_idx, cell_type, main_category, sub_category,
-		userid, subject, main_img, videofile, content, price)
-		values ((select nvl(max(lecture_idx)+1,1) from lecture),
+		(lecture_idx, 
+		cell_type, main_category, sub_category,
+		userid, subject, 
+		main_img, videofile, content, 
+		price)
+		values 
+		((select nvl(max(lecture_idx)+1,1) from lecture),
 		'1', #{main_category}, #{sub_category},
-		#{userid}, #{subject}, #{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, #{price})
+		#{userid}, #{subject}, 
+		#{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content}, 
+		#{price})
 	</insert>
 	<insert id="teacher_type2_insert">
 		insert into lecture
 		(lecture_idx,
 		 cell_type, main_category, sub_category, 
 		 userid, subject, price,
-		 content, main_img, videofile,
+		 main_img, videofile, content, 
 		 lecture_date, lecture_start, lecture_time
 		 )
 		values
@@ -36,15 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (select nvl(max(lecture_idx)+1, 1) from lecture),
 		 '2', #{main_category}, #{sub_category}, 
 		 #{userid}, #{subject}, #{price},
-		 #{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
+		 #{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content},
 		 #{lecture_date, jdbcType=VARCHAR}, #{lecture_start, jdbcType=VARCHAR}, #{lecture_time, jdbcType=VARCHAR}
 		 )
 	</insert>
 	<insert id="teacher_type3_insert">
 		insert into lecture
-		(lecture_idx, cell_type, main_category,
-		 sub_category, userid, subject,
-		 price, content, main_img, 
+		(lecture_idx, 
+		 cell_type, main_category, sub_category, 
+		 userid, subject, price,
+		 main_img, content,  
 		 lecture_date, lecture_start, lecture_time,
 		 lecture_address, lecture_address2 )
 		values
@@ -52,10 +59,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (select nvl(max(lecture_idx)+1, 1) from lecture),
 		 '3', #{main_category}, #{sub_category}, 
 		 #{userid}, #{subject}, #{price}, 
-		#{main_img, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, 
+		#{main_img, jdbcType=VARCHAR}, #{content}, 
 		 #{lecture_date, jdbcType=VARCHAR}, 
-		 #{lecture_start, jdbcType=VARCHAR}, #{lecture_time, jdbcType=VARCHAR}, #{lecture_address, jdbcType=VARCHAR},
-		 #{lecture_address2, jdbcType=VARCHAR}
+		 #{lecture_start}, #{lecture_time}, #{lecture_address},
+		 #{lecture_address2}
 		)
 	</insert>
 

@@ -18,8 +18,6 @@
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 <script>
 $(function(){
-
-	
 	$('#content').summernote({
 		  height: 300,                 // 에디터 높이
 		  minHeight: null,             // 최소 높이
@@ -27,17 +25,12 @@ $(function(){
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		  lang: "ko-KR",					// 한글 설정
 		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
-        
 	});
-
-
-	
 	$("#btnSave").click(function(){
 		document.menu_add_form.action="${path}/lecture/teacher_type1_insert.do";
 		document.menu_add_form.submit();
 	});
 });
-
 
 var sub_category0 = new Array("-서브메뉴-");
 var sub_category1 = new Array("BEST BABY","BEST JUNIOR","BEST ACC");
@@ -45,9 +38,6 @@ var sub_category2 = new Array("SPRING","SUMMER","FALL","WINTER");
 var sub_category3 = new Array("BABY OUTER","BABY TOP","BABY BOTTOM","BABY SET","BABY DRESS");
 var sub_category4 = new Array("JUNIOR OUTER","JUNIOR TOP","JUNIOR BOTTOM","JUNIOR SET","JUNIOR DRESS");
 var sub_category5 = new Array("CAP", "BAG", "SOCKS", "MUFFLER");
-
-
-
 function submenuchange(item){
     var temp, i=0, j=0;
     var ccount, cselect;
@@ -63,8 +53,6 @@ function submenuchange(item){
     temp.options[0].selected=true;
     return true;
 }
-
-
 var count = 1;       
 
 function addForm(){
@@ -218,20 +206,21 @@ function delForm(){
 				<label for="price">가격(원)</label>
 				<input type="number" class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
 			</div>
-			    <!-- 썸네일 -->
-		<div class="">
-		 <c:choose>
-		 <c:when test="${empty dto.main_img}">
-     	 <div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
-		 </c:when>
-		<c:otherwise>
-	    <div><img id ="profileImg" src = "${path}/lecture/displayFile?fileName=${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
-		</c:otherwise>
-        </c:choose>
-        <form name="thumbnailForm" method="post" enctype="multipart/form-data" >
-        <input type="file" class="text-center center-block file-upload" id="input_img">
-        </form>
-		</div>
+			
+			<!-- 썸네일 -->
+			<div class="">
+				<c:choose>
+			 		<c:when test="${empty dto.main_img}">
+	     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
+			 		</c:when>
+					
+					<c:otherwise>
+		    			<div><img id ="profileImg" src = "${path}/lecture/displayFile?fileName=${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
+					</c:otherwise>
+	        	</c:choose>
+	        	
+	        	<input type="file" name="file1" class="text-center center-block file-upload" id="input_img">
+			</div>
 			
 			<!-- 동영상 -->
 			<div class="form-group" id="video_add">
@@ -304,6 +293,7 @@ function fileChange(e) {
 
 		$.ajax({
     	url: '${path}/lecture/uploadAjax.do',
+		  enctype:'multipart/form-data',
 		  data: formData,
 		  dataType:'text',
 		  processData: false,
@@ -311,7 +301,7 @@ function fileChange(e) {
 		  type: 'POST',
 		  success: function(data){
 
-			alert("프로필 이미지가 변경 되었습니다.")
+			alert("프로필 이미지가 변경 되었습니다.");
 
 		  }
 		})

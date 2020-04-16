@@ -16,6 +16,16 @@ $(function(){
 // 영상 강의 등록 
 function insert1(){
 
+	var main_category=document.getElementById("main_category");
+	var sub_category=document.getElementById("sub_category");
+	var userid=document.getElementById("userid");
+	var subject=document.getElementById("subject");
+	var price=document.getElementById("price");
+	var input_img=document.getElementById("input_img");
+	var file2=document.getElementById("file2");
+	var content=document.getElementById("content");
+	
+	
 	if(main_category.value==""){
 		alert("메인 카테고리를 선택해 주세요.");
 		main_category.focus();
@@ -41,110 +51,36 @@ function insert1(){
 		price.focus();
 		return false;
 	}
-	/*if(!file1.value){
+	if(!input_img.value){
 		alert("메인 이미지로 사용할 파일을 첨부해주세요.");
-		file1.focus();
+		input_img.focus();
 		return false;
 	}
 	if(!file2.value){
 		alert("동영상을 등록해주세요.");
 		file2.focus();
 		return false;
-	}*/
+	}
 	if(content.value==""){
 		if(confirm("강의에 대한 설명이 지정되어있지 않습니다.\n그래도 강의를 등록 하시겠습니까?") == false){
 			return false;
 		}
 	}
-	document.form1.submit();
 	alert("강의가 등록되었습니다.");
+	document.form1.submit();
 	
 }
 
 // 실시간 강의 등록
 function insert2(){
 
-	/*var main_category=document.getElementById("main_category");
-	var sub_category=document.getElementById("sub_category");
-	var userid=document.getElementById("userid");
-	var subject=document.getElementById("subject");
-	var price=document.getElementById("price");
-	var file1=document.getElementById("file1");
-	var file2=document.getElementById("file2");
-	var lecture_date=document.getElementById("lecture_date");
-	var lecture_start=document.getElementById("lecture_start");
-	var lecture_time=document.getElementById("lecture_time");
-	var content=document.getElementById("content");*/
-
-	if(main_category.value==""){
-		alert("메인 카테고리를 선택해 주세요.");
-		main_category.focus();
-		return false;
-	}
-	if(sub_category.value==""){
-		alert("서브 카테고리를 선택해 주세요.");
-		sub_category.focus();
-		return false;
-	}
-	if(userid.value==""){
-		alert("로그인 후 다시 시도해주세요.");
-		userid.focus();
-		return false;
-	}
-	if(subject.value==""){
-		alert("제목을 입력해주세요.");
-		subject.focus();
-		return false;
-	}
-	if(price.value==""){
-		alert("가격을 입력해주세요.");
-		price.focus();
-		return false;
-	}
-/*	if(!file1.value){
-		alert("메인 이미지로 사용할 파일을 첨부해주세요.");
-		file1.focus();
-		return false;
-	}
-	if(!file2.value){
-		alert("동영상을 등록해주세요.");
-		file2.focus();
-		return false;
-	}*/
-	if(!lecture_date.value){
-		alert("강의를 시작할 날짜를 지정해주세요.");
-		lecture_date.focus();
-		return false;
-	}
-	if(lecture_start.value==""){
-		alert("강의를 진행할 시간을 지정해주세요.");
-		lecture_start.focus();
-		return false;
-	}
-	if(lecture_time.value==""){
-		alert("강의를 진행하는 총 시간을 지정해주세요.");
-		lecture_time.focus();
-		return false;
-	}
-	
-	if(content.value==""){
-		if(confirm("강의에 대한 설명이 지정되어있지 않습니다.\n그래도 강의를 등록 하시겠습니까?") == false){
-			return false;
-		}
-	}
-	document.form1.submit();
-	alert("강의가 등록되었습니다.");
-	
-}
-// 현장 강의 등록
-function insert3(){
-
 	var main_category=document.getElementById("main_category");
 	var sub_category=document.getElementById("sub_category");
 	var userid=document.getElementById("userid");
 	var subject=document.getElementById("subject");
 	var price=document.getElementById("price");
-	var file1=document.getElementById("file1");
+	var input_img=document.getElementById("input_img");
+	var file2=document.getElementById("file2");
 	var lecture_date=document.getElementById("lecture_date");
 	var lecture_start=document.getElementById("lecture_start");
 	var lecture_time=document.getElementById("lecture_time");
@@ -175,16 +111,90 @@ function insert3(){
 		price.focus();
 		return false;
 	}
-/*	if(!file1.value){
+	if(!input_img.value){
 		alert("메인 이미지로 사용할 파일을 첨부해주세요.");
-		file1.focus();
+		input_img.focus();
+		return false;
+	}
+	if(!file2.value){
+		alert("동영상을 등록해주세요.");
+		file2.focus();
 		return false;
 	}
 	if(!lecture_date.value){
 		alert("강의를 시작할 날짜를 지정해주세요.");
 		lecture_date.focus();
 		return false;
-	}*/
+	}
+	if(lecture_start.value==""){
+		alert("강의를 진행할 시간을 지정해주세요.");
+		lecture_start.focus();
+		return false;
+	}
+	if(lecture_time.value==""){
+		alert("강의를 진행하는 총 시간을 지정해주세요.");
+		lecture_time.focus();
+		return false;
+	}
+	
+	if(content.value==""){
+		if(confirm("강의에 대한 설명이 지정되어있지 않습니다.\n그래도 강의를 등록 하시겠습니까?") == false){
+			return false;
+		}
+	}
+	alert("강의가 등록되었습니다.");
+	document.form1.submit();
+	
+}
+// 현장 강의 등록
+function insert3(){
+
+	var main_category=document.getElementById("main_category");
+	var sub_category=document.getElementById("sub_category");
+	var userid=document.getElementById("userid");
+	var subject=document.getElementById("subject");
+	var price=document.getElementById("price");
+	var input_img=document.getElementById("input_img");
+	var lecture_date=document.getElementById("lecture_date");
+	var lecture_start=document.getElementById("lecture_start");
+	var lecture_time=document.getElementById("lecture_time");
+	var content=document.getElementById("content");
+
+	if(main_category.value==""){
+		alert("메인 카테고리를 선택해 주세요.");
+		main_category.focus();
+		return false;
+	}
+	if(sub_category.value==""){
+		alert("서브 카테고리를 선택해 주세요.");
+		sub_category.focus();
+		return false;
+	}
+	if(userid.value==""){
+		alert("로그인 후 다시 시도해주세요.");
+		userid.focus();
+		return false;
+	}
+	if(subject.value==""){
+		alert("제목을 입력해주세요.");
+		subject.focus();
+		return false;
+	}
+	if(price.value==""){
+		alert("가격을 입력해주세요.");
+		price.focus();
+		return false;
+	}
+	if(!input_img.value){
+		alert("메인 이미지로 사용할 파일을 첨부해주세요.");
+		input_img.focus();
+		return false;
+	}
+	if(!lecture_date.value){
+		alert("강의를 시작할 날짜를 지정해주세요.");
+		lecture_date.focus();
+		return false;
+	}
 	if(lecture_start.value==""){
 		alert("강의를 진행할 시간을 지정해주세요.");
 		lecture_start.focus();
@@ -211,8 +221,8 @@ function insert3(){
 			return false;
 		}
 	}
-	document.form1.submit();
 	alert("강의가 등록되었습니다.");
+	document.form1.submit();
 }
 
 function category() {

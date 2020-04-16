@@ -61,7 +61,7 @@ public class LectureController {
 			dto.setMain_img(main_img);
 		    String userid = (String) session.getAttribute("userid");
 			dto.setUserid(userid);
-			lectureService.update_main_img(dto);
+//			lectureService.update_main_img(dto);
 			return main_img;
 	}
 	
@@ -322,7 +322,7 @@ public class LectureController {
 				consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 		public String teacher_type1_insert(LectureDTO dto) throws Exception {			
 			MultipartFile file1=dto.getFile1();
-			String main_img=null;
+			String main_img=file1.getOriginalFilename();
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -331,7 +331,7 @@ public class LectureController {
 			dto.setMain_img(main_img);
 			
 			MultipartFile file2=dto.getFile2();
-			String videofile=null;
+			String videofile=file2.getOriginalFilename();
 			try {
 				videofile=UploadFileUtils.uploadFile(
 						uploadPath, videofile, file2.getBytes());
@@ -349,7 +349,7 @@ public class LectureController {
 				consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 		public String teacher_type3_insert(LectureDTO dto) throws Exception {
 			MultipartFile file1=dto.getFile1();
-			String main_img=null;
+			String main_img=file1.getOriginalFilename();
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -362,7 +362,7 @@ public class LectureController {
 		@RequestMapping("teacher_type2_insert.do")
 		public String teacher_type2_insert(LectureDTO dto) throws Exception {
 			MultipartFile file1=dto.getFile1();
-			String main_img=null;
+			String main_img=file1.getOriginalFilename();
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -371,7 +371,7 @@ public class LectureController {
 			dto.setMain_img(main_img);
 			
 			MultipartFile file2=dto.getFile2();
-			String videofile=null;
+			String videofile=file2.getOriginalFilename();
 			try {
 				videofile=UploadFileUtils.uploadFile(uploadPath, videofile, file2.getBytes());
 			} catch (Exception e) {
