@@ -43,10 +43,10 @@ $(document).ready(function(){
 					<h6 class="card-title ">쿠폰 번호를 입력해 주세요</h6>
  <form method="post" id="form1" name="form1" class="form-horizontal">
 	<div class="input-group input-group-sm m-3 col-sm-11 align-items-center">
-      <input type="text" class="form-control" id="key1"><span class="input-group-addon">-</span>
-      <input type="text" class="form-control" id="key2"><span class="input-group-addon">-</span>
-      <input type="text" class="form-control" id="key3"><span class="input-group-addon">-</span>
-      <input type="text" class="form-control" id="coupon">
+      <input type="text" class="form-control" id="key1" maxlength="4"><span class="input-group-addon">-</span>
+      <input type="text" class="form-control" id="key2" maxlength="4"><span class="input-group-addon">-</span>
+      <input type="text" class="form-control" id="key3" maxlength="4"><span class="input-group-addon">-</span>
+      <input type="text" class="form-control" id="coupon" maxlength="4">
     </div>
           <div id="keyM"></div>
     <button class="btn btn-primary" type="submit" id="bnt">쿠폰 생성</button>

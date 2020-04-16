@@ -3,6 +3,7 @@ package com.TeamProject.Kdemy.controller.member;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,8 +33,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.interceptor.SessionNames;
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.admin.AdminService;
+import com.TeamProject.Kdemy.service.cart.CartService;
+import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
@@ -52,6 +57,13 @@ public class MemberController {
 	
 	@Inject
 	MemberService memberService;
+	@Inject
+	CartService cartService;
+	
+	//이원혁 추가 04.14 수강중인 강의 리스트 추가 작업
+	@Inject
+	LectureService lectureService;
+	
 	
 	@Inject
 	private JavaMailSender mailSender;
@@ -62,6 +74,29 @@ public class MemberController {
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
+	@RequestMapping("orderDetail.do")
+	public ModelAndView orderDetail(HttpSession session, LectureBoxDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		List<LectureBoxDTO> list2=new ArrayList<>();
+		list2= memberService.orderDetail(dto);
+		mav.addObject("list2",list2);
+		mav.setViewName("member/orderList");
+		return mav;
+	}
+	
+	@RequestMapping("cartPage.do")
+	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		List<CartDTO> list=new ArrayList<>();
+		list=memberService.cartList(dto);		
+		mav.addObject("list",list);
+		mav.setViewName("member/cartDetail");
+		return mav;
+	}
 	
 
 	@RequestMapping("check.do")
@@ -81,6 +116,11 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping("myOrderList.do")
+	public String orderList() {
+		return "member/orderList";
+	}
+	
 	@RequestMapping("myPageUpdate.do")
 	public String myPageUpdate() {
 		return "member/mypageUpdate";
@@ -193,7 +233,6 @@ public class MemberController {
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updateMember(dto);
-		//세션 다시 저장해 주세요~~
         return "member/myPage";  
 	}
    
@@ -217,7 +256,6 @@ public class MemberController {
 	}
 	
 
-	
 
 
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
@@ -290,7 +328,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/searchPW.do", method = RequestMethod.POST)
+	@RequestMapping("searchPW.do")
 	public void searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 		String userid = request.getParameter("userid");
 		String useremail = request.getParameter("useremail");
@@ -298,7 +336,7 @@ public class MemberController {
 		dto.setUserid(userid);
 		dto.setUseremail(useremail);
 		
-		String key = new TempKey().getKey(10,false);  // 인증키 생성
+		String key = new TempKey().getKey(10,false);  
 		String passwd=BCrypt.hashpw(key, BCrypt.gensalt());
 		dto.setPasswd(passwd);
 		memberService.updatePW(dto);
@@ -306,7 +344,6 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-//				.append("<b>임시 비밀번호 발급 : " + temp_passwd + "</b><br>")
 				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());

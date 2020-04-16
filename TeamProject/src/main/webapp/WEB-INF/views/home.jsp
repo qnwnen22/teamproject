@@ -85,7 +85,6 @@
 										}
 									});
 						});//fileDrop 함수
-
 		$(".fileDrop1").on("drop",function(event) {
 							//drop이 될 때 기본 효과를 막음
 							event.preventDefault();
@@ -107,7 +106,6 @@
 											console.log("data:" + data); //업로드된 파일 이름
 											console.log("status:" + status); //성공,실패 여부
 											console.log("req:" + req.status);//요청코드값
-
 											var str = "";
 											if (checkImageType(data)) {//이미지 파일
 												str = "<div><a href='${path}/upload/displayFile?fileName="
@@ -855,9 +853,10 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="${path}/member/detail/${sessionScope.userid}">나의정보</a> 
+																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a>
 																					<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
-																					<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
+																					<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>																		
 																				</div>
 																			</div>
 
@@ -879,7 +878,8 @@
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a> 
+																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+																					<a class="dropdown-item" href="${path}/lecture/myLectureListPage.do">구입한 강의 목록</a> 
 																						<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 																						<a class="dropdown-item" href="#">관심상품</a>
 																						<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
@@ -1075,6 +1075,10 @@
 	<!-- content -->
 
 	<div style="width: 63%; margin: auto;">
+		<div class="flex-end-center col-auto p-0">
+														
+													</div>
+		<hr>
 		<a href="${path}/review/list.do"> <marquee scrollamount="5">
 				<h4 style="color: red;">★수강후기★</h4>
 			</marquee>

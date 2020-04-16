@@ -3,6 +3,7 @@ package com.TeamProject.Kdemy.model.cart.dao;
 import java.util.List;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 
 public interface CartDAO {
 
@@ -25,9 +26,13 @@ public interface CartDAO {
 
 	// 총괄 구매 시 카트에서 userid와 lecture_idx를 조회해서 cart 테이블에서 제거 후 lectureBox 테이블로 생성
 	public void buyCart(String userid, String lecture_idx); 
-	public void insertLectureBox(String userid, String cell_type, String lecture_idx);
+	public void insertLectureBox(String userid, String nickname, String lecture_idx, String lecture_idx2);
 	////////////////////////////////////////////////////////////////////////////////////
 
 	public void pointCharge(String userid);
+
+
+
+
 	
 }

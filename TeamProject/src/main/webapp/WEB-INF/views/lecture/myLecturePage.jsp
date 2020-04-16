@@ -55,7 +55,7 @@ function search(){
 			<!-- 가격 -->
 			<td>${dto.price}</td>
 			<!-- 관리 -->
-			<td><a href="#">수정</a> | <a href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}">삭제</a></td>
+			<td><a href="${path}/lecture/lectureUpdatePage.do?lecture_idx=${dto.lecture_idx}">수정</a> | <a href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}">삭제</a></td>
 			</tr>
 			</c:forEach>
 	</table>

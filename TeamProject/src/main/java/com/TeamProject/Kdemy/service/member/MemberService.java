@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberService {
@@ -50,5 +51,9 @@ public interface MemberService {
 	public List<MemberDTO> chartCountMonth();
 
 	public List<MemberDTO> chartCount();
+	
+    public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto);
+	
+	public List<CartDTO> cartList(CartDTO dto);
 
 }

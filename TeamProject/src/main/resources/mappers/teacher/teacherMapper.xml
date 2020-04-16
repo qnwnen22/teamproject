@@ -9,7 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into teacher
 			(
 			teacher_num,
-			userid,username,nickname,teacher_thumbnail,finalEducation,
+			userid,username,nickname,teacher_thumbnail,
+			finalEducation,schoolName,department,
 			spec1,spec1_getDate,spec1_img,
 			spec2,spec2_getDate,spec2_img,
 			spec3,spec3_getDate,spec3_img,
@@ -21,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(select nvl(max(teacher_num)+1,1) from teacher),
 			#{userid},#{username},#{nickname},
 			#{teacher_thumbnail},#{finalEducation},
+			#{schoolName},#{department},
 			#{spec1},#{spec1_getDate},#{spec1_img},
 			#{spec2},#{spec2_getDate},#{spec2_img},
 			#{spec3},#{spec3_getDate},#{spec3_img},
@@ -38,5 +40,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	resultType="int">
 		select count(*) from teacher
 		where nickname=#{nickname}
+	</select>
+	
+	<select id="requestMemberView" resultType="com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO">
+		select * from teacher
+		where userid=#{userid}
 	</select>
 </mapper>

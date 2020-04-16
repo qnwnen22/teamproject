@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 
@@ -17,6 +19,18 @@ import com.TeamProject.Kdemy.service.member.BCrypt;
 public class MemberDAOImpl implements MemberDAO {
 	@Inject
 	SqlSession sqlSession;
+	
+	
+	@Override
+	public List<CartDTO> cartList(CartDTO dto) {
+		return sqlSession.selectList("member.cartList",dto);
+	}
+	
+	@Override
+	public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto) {
+		return sqlSession.selectList("member.orderDetail",dto);
+	}
+
 
 	@Override
 	public void insertMember(MemberDTO dto) {
@@ -39,7 +53,6 @@ public class MemberDAOImpl implements MemberDAO {
 	public int idCheck(MemberDTO dto) {
 		return sqlSession.selectOne("member.idCheck",dto);
 	}
-	
 	@Override
 	public String passwdCheck(MemberDTO dto) throws Exception{
 	    String result="";	

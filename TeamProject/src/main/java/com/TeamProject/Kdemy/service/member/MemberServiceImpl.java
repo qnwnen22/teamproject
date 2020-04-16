@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dao.MemberDAO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
@@ -15,6 +17,17 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Inject
 	MemberDAO memberDao;
+	
+	@Override
+	public List<CartDTO> cartList(CartDTO dto) {
+		return memberDao.cartList(dto);
+	}
+	
+	@Override
+	public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto) {
+		return memberDao.orderDetail(dto);
+	}	
+	
 
 
 	@Override
