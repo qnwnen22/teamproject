@@ -178,4 +178,14 @@ public class LectureDAOImpl implements LectureDAO {
 	
 	}
 
+	@Override
+	public void update(LectureDTO dto) {
+		sqlSession.update("lecture.update",dto);
+	}
+
+	@Override
+	public void updateAddImg(LectureDTO dto) {
+		sqlSession.update("lecture.updateAddImg",dto);
+	}
+
 }

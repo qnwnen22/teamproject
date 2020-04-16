@@ -155,5 +155,15 @@ public class LectureServiceImpl implements LectureService {
 			
 		}
 
+	@Override
+	public void update(LectureDTO dto) {
+		lectureDao.update(dto);
+	}
+
+	@Override
+	public void updateAddImg(LectureDTO dto) {
+		lectureDao.updateAddImg(dto);
+	}
+
 	
 }

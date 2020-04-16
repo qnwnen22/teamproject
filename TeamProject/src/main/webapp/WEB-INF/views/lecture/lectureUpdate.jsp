@@ -6,24 +6,39 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
-<%@ include file="../include/fixed-topbar.jsp" %>
 
+<!-- 썸머 노트 -->
+<link
+   href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
+   rel="stylesheet">
+<script
+   src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+   
+<!-- 이원혁 추가 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
+<!-- 강의 등록용 JS -->
 <script src="${path}/include/js/lectureInsert.js"></script>
 
+<%@ include file="../include/fixed-topbar.jsp" %>
 </head>
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
 	<div class="page-header col-xl-8 offset-xl-2 text-center">
-		<h2>실시간</h2>
+		<h2>실시간강의 수정</h2>
 		<h4>판매타입 : ${dto.cell_type}</h4>
 	</div>
 
 	<form method="post"
-				name="form1"
-				id="form1"
-				enctype="multipart/form-data"
-	            class="form-horizontal"
-	            action="${path}/lecture/teacher_type2_insert.do">
+		name="form1"
+		id="form1"
+		enctype="multipart/form-data"
+          class="form-horizontal"
+          action="${path}/lecture/lectureUpdate.do">
+          
+		<input type="hidden" id="lecture_idx" name="lecture_idx" value="${dto.lecture_idx}">
 	    <!-- 메인 카테고리 -->
 	    <div class="row">
 		<div class="form-group col-6">
@@ -67,23 +82,20 @@
 			<label for="price">가격(원)</label>
 			<input type="number" class="form-control" id="price" name="price" value="${dto.price}">
 		</div>
+	    
 	    <!-- 썸네일 -->
-		<div class="form-group" id="photo_add">
-		      <c:choose>
-		<c:when test="${empty dto.main_img}">
-	<div>
-	<img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail">
-	</div>
-		</c:when>
-		<c:otherwise>
-	<div>
-	<img id ="profileImg" src = "${path}/lecture/displayFile?fileName=${dto.main_img}" class="avatar img-circle"  style = "height:100px;">
-	</div>
-		</c:otherwise>
-</c:choose>
-        <form name="form1" method="post" enctype="multipart/form-data" >
-        <input type="file" class="text-center center-block file-upload" id="input_img">
-        </form>
+	    <div class="">
+			<c:choose>
+		 		<c:when test="${empty dto.main_img}">
+     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
+		 		</c:when>
+				
+				<c:otherwise>
+	    			<div><img id ="profileImg" src = "../upload${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
+				</c:otherwise>
+        	</c:choose>
+        	
+        	<input type="file" name="file1" class="text-center center-block file-upload" id="input_img">
 		</div>
 	
 		
@@ -93,6 +105,7 @@
 			<textarea class="form-control text_cotent" name="content" id="content" rows="10" cols="10">${dto.content}</textarea>
 		</div>
 	
+		<c:if test="${dto.cell_type>1}">
 		<!-- 강의 시작날짜 -->
 		<div class="form-group">
 			<label for="lecture_date_label">강의 시작 날짜</label>
@@ -115,16 +128,34 @@
 				<option value="6">6시간</option>
 			</select>
 		</div>
+		</c:if>
+		
+		<c:if test="${dto.cell_type>2}">
+			<hr>
+			<h3>강의장 주소</h3>
+			<%@ include file="kakaoMap.jsp" %>
+			<div class="form-group">
+				<label for="lecture_road_address">도로명 주소</label>
+				<input type="text" class="form-control" name="lecture_address" id="lecture_address" value="${dto.lecture_address}">
+			</div>
+			<!-- 강의장 상세 주소 -->
+			<div class="form-group">
+				<label for="lecture_address2">상세 주소</label>
+				<input type="text" class="form-control" name="lecture_address2" id="lecture_address2" value="${dto.lecture_address2}">
+			</div>
+			
+		</c:if>
 	      
 		<!-- 등록 버튼 -->
 		<div class="form-group text-center">
-			<input type="button" onclick="insert2()" class="btn btn-primary" value="강의 등록">
+			<input type="button" onclick="update()" class="btn btn-primary" value="강의 등록">
 			<input type="button" class="btn btn-warning" onclick="history.back()" value="뒤로 가기">
 			<a href="${path}/lecture/offline_list.do" class="btn btn-dark pull-left">목록</a>
 		</div>
 	</form>
 </div>
 <%@ include file="../include/footer.jsp"%>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
 
 $(document).ready(function(){
@@ -170,6 +201,7 @@ function fileChange(e) {
 
 		$.ajax({
     	url: '${path}/lecture/uploadAjax.do',
+    	  enctype:'multipart/form-data',
 		  data: formData,
 		  dataType:'text',
 		  processData: false,

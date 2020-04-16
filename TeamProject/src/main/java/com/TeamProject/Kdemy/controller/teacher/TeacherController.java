@@ -116,7 +116,7 @@ public class TeacherController {
 			String spec2_img=spec2File.getOriginalFilename();
 			if(spec2_img=="") {
 				spec2_img="-";
-			
+			 
 			}else {
 				try {
 					spec2_img=UploadFileUtils.uploadFile(

@@ -479,17 +479,19 @@ public class LectureController {
 			dto.setLecture_idx(lecture_idx);
 			dto=lectureService.lectureList(dto);
 			
-			System.err.println("cellType: "+dto.getCell_type());
-			String cell_type=dto.getCell_type();
-			if(cell_type.equals("1")) {
-				mav.setViewName("/lecture/lectureUpdate1");
-			}else if(cell_type.equals("2")) {
-				mav.setViewName("/lecture/lectureUpdate2");
-			}else if(cell_type.equals("3")) {
-				mav.setViewName("/lecture/lectureUpdate3");
-			}else {
-				mav.setViewName("redirect:/");
-			}
+//			System.err.println("cellType: "+dto.getCell_type());
+//			String cell_type=dto.getCell_type();
+//			if(cell_type.equals("1")) {
+//				mav.setViewName("/lecture/lectureUpdate1");
+//			}else if(cell_type.equals("2")) {
+//				mav.setViewName("/lecture/lectureUpdate2");
+//			}else if(cell_type.equals("3")) {
+//				mav.setViewName("/lecture/lectureUpdate3");
+//			}else {
+//				mav.setViewName("redirect:/");
+//			}
+			
+			mav.setViewName("/lecture/lectureUpdate");
 			mav.addObject("dto",dto);
 			return mav;
 		}
@@ -539,5 +541,29 @@ public class LectureController {
 			return result;
 		}
 		
+		@RequestMapping(value="lectureUpdate.do",method= {RequestMethod.POST},
+		consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
+		public String lectureUpdate(LectureDTO dto) throws Exception {
+			if(dto.getLecture_date()==null) dto.setLecture_date("");
+			if(dto.getLecture_start()==null) dto.setLecture_start("");
+			if(dto.getLecture_time()==null) dto.setLecture_time("");
+			if(dto.getLecture_address()==null) dto.setLecture_address("");
+			if(dto.getLecture_address2()==null) dto.setLecture_address2("");
+			MultipartFile file1=dto.getFile1();
+			String main_img=file1.getOriginalFilename();
+			if(main_img=="") {
+				lectureService.update(dto);
+			}else {
+				System.err.println("else");
+				try {
+					main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				dto.setMain_img(main_img);
+				lectureService.updateAddImg(dto);
+			}
+			return "redirect:/";
+		}
 
 }

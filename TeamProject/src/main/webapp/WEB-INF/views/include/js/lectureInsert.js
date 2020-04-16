@@ -146,6 +146,57 @@ function insert2(){
 	document.form1.submit();
 	
 }
+
+function update(){
+
+	var main_category=document.getElementById("main_category");
+	var sub_category=document.getElementById("sub_category");
+	var userid=document.getElementById("userid");
+	var subject=document.getElementById("subject");
+	var price=document.getElementById("price");
+	var input_img=document.getElementById("input_img");
+	var file2=document.getElementById("file2");
+	var lecture_date=document.getElementById("lecture_date");
+	var lecture_start=document.getElementById("lecture_start");
+	var lecture_time=document.getElementById("lecture_time");
+	var content=document.getElementById("content");
+
+	if(main_category.value==""){
+		alert("메인 카테고리를 선택해 주세요.");
+		main_category.focus();
+		return false;
+	}
+	if(sub_category.value==""){
+		alert("서브 카테고리를 선택해 주세요.");
+		sub_category.focus();
+		return false;
+	}
+	if(userid.value==""){
+		alert("로그인 후 다시 시도해주세요.");
+		userid.focus();
+		return false;
+	}
+	if(subject.value==""){
+		alert("제목을 입력해주세요.");
+		subject.focus();
+		return false;
+	}
+	if(price.value==""){
+		alert("가격을 입력해주세요.");
+		price.focus();
+		return false;
+	}
+	
+	if(content.value==""){
+		if(confirm("강의에 대한 설명이 지정되어있지 않습니다.\n그래도 강의를 등록 하시겠습니까?") == false){
+			return false;
+		}
+	}
+	alert("강의가 수정되었습니다.");
+	document.form1.submit();
+	
+}
+
 // 현장 강의 등록
 function insert3(){
 
