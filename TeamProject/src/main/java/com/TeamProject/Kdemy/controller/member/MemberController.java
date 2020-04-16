@@ -77,7 +77,7 @@ public class MemberController {
 		List<LectureBoxDTO> list2=new ArrayList<>();
 		list2= memberService.orderDetail(dto);
 		mav.addObject("list2",list2);
-		mav.setViewName("member/orderDetail");
+		mav.setViewName("member/orderList");
 		return mav;
 	}
 	

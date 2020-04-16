@@ -17,10 +17,11 @@
 	  <c:forEach var="dto" items="${list2}">
 			<div class="row" align="center">
 			    <div class="col-sm-6">${dto.lecture_idx}</div>
-				<div class="col-sm-6"><%-- ${dto.box_idx}</td> --%>
+				<div class="col-sm-6">
 				<div class="short-div">${dto.cell_type}</div>
 				<div class="short-div">${dto.userid}</div></div>
 				
+				<%-- ${dto.box_idx}</td> --%>
 				<%-- <td class="col-2">${dto.buy_date}</td> --%>
 				</div>
 		</c:forEach>
