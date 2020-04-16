@@ -69,7 +69,7 @@ public class MemberController {
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
-	@RequestMapping("mypage/orderDetail.do")
+	@RequestMapping("orderDetail.do")
 	public ModelAndView orderDetail(HttpSession session, LectureBoxDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		String userid=(String)session.getAttribute("userid");
@@ -77,11 +77,11 @@ public class MemberController {
 		List<LectureBoxDTO> list2=new ArrayList<>();
 		list2= memberService.orderDetail(dto);
 		mav.addObject("list2",list2);
-		mav.setViewName("member/orderDetail");
+		mav.setViewName("member/orderList");
 		return mav;
 	}
 	
-	@RequestMapping("mypage/cartPage.do")
+	@RequestMapping("cartPage.do")
 	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		String userid=(String)session.getAttribute("userid");
@@ -93,10 +93,8 @@ public class MemberController {
 		return mav;
 	}
 	
-	
-	
 
-	@RequestMapping("mypage/check.do")
+	@RequestMapping("check.do")
 	public ModelAndView check(MemberDTO dto, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
@@ -113,6 +111,11 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping("myOrderList.do")
+	public String orderList() {
+		return "member/orderList";
+	}
+	
 	@RequestMapping("myPageUpdate.do")
 	public String myPageUpdate() {
 		return "member/mypageUpdate";

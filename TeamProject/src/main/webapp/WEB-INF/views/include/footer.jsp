@@ -221,6 +221,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <form method="post" id="searchPWForm" name="searchPWForm" action="${path}/member/searchID.do" class="form-horizontal">
 				<div class="input-group input-group-lg pt-2 pb-1">
 					<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디를 입력해주세요." required>	
 				</div>
@@ -229,7 +230,7 @@
 				</div>
 				
 				<div class="input-group input-group-lg text-center pt-2 pb-1">			
-					<button type="button" id="searchPasswdbtn" class="btn btn-outline-dark btn-lg btn-block" >비밀번호 찾기</button>
+					<button type="submit" class="btn btn-outline-dark btn-lg btn-block" >비밀번호 찾기</button>
 				</div>
 				<div class="textBox"><p id="text" style="color:red;"></p></div>
 
@@ -250,7 +251,7 @@
 			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="include/images/footer/ico_tw.png"></a></div>
 			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="include/images/footer/ico_yt.png"></a></div>
  			   </div>
-
+       </form>
       </div>
       <div class="modal-footer">
         
@@ -330,7 +331,7 @@ $(document).ready(function(){
             url: "${path}/member/searchPW.do",
             data: {
                 "userid" : $('#userid').val(),
-                "useremail" : $('#useremail').val()
+                "useremail" : $('#useremail1').val()
             },
             success: function(data){
             	$('#text').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
