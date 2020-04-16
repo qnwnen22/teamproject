@@ -55,6 +55,8 @@ public interface MemberService {
     public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto);
 	
 	public List<CartDTO> cartList(CartDTO dto);
+	
+	
 
 
 }
