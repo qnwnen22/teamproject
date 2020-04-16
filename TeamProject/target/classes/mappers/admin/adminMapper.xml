@@ -5,6 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="admin">
+	<select id="passwdCheck"  resultType="com.TeamProject.Kdemy.model.admin.dto.AdminDTO">
+		select * from admin
+		where admin_id=#{userid, jdbcType=VARCHAR}
+	</select>
+	
 	<select id="adminList"
 		resultType="com.TeamProject.Kdemy.model.admin.dto.AdminDTO">
 		select * from admin
@@ -45,18 +50,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         icon_img1=#{icon_img1},icon_img2=#{icon_img2},icon_img3=#{icon_img3},icon_img4=#{icon_img4},icon_img5=#{icon_img5}
  		,icon_img6=#{icon_img6},icon_img7=#{icon_img7},icon_img8=#{icon_img8},icon_img9=#{icon_img9},icon_img10=#{icon_img10}
 		</update>
+		
+	<select id="resouceList1" resultType="string">
+		select ${value} from mainresource
+	</select>
+	
+	<select id="adminLogin" resultType="com.TeamProject.Kdemy.model.admin.dto.AdminDTO">
+	    select * from admin
+	    where admin_id=#{userid}
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

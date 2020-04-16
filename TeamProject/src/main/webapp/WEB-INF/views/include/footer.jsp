@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
-<div class="container-fluid" id="footer-body">
+<div class="container-fluid align-items-end" id="footer-body">
 	<div id="footertoggle" class="d-flex py-1 ">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
@@ -143,10 +143,10 @@
 				</div>
 				
 			   <div class="d-flex row justify-content-md-center pt-2 pb-1">
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="../include/images/footer/ico_fb.png"></a></div>
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="../include/images/footer/ico_ist.png"></a></div>
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="../include/images/footer/ico_tw.png"></a></div>
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="../include/images/footer/ico_yt.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_yt.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_fb.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_ist.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_tw.png"></a></div>
  			   </div>
          </form>
       </div>

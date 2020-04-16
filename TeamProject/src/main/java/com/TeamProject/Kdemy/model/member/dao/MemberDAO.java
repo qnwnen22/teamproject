@@ -8,9 +8,9 @@ public interface MemberDAO {
 
 	public void insertMember(MemberDTO dto);
 
-	public MemberDTO kdemyLogin(MemberDTO dto);
+	public MemberDTO kdemyLogin(MemberDTO dto) throws Exception;
 
-	public String passwdCheck(MemberDTO dto);
+	public String passwdCheck(MemberDTO dto) throws Exception;
 
 	public int idCheck(MemberDTO dto);
 	
@@ -29,7 +29,6 @@ public interface MemberDAO {
 	public MemberDTO searchID(MemberDTO dto);
 
 	public void updatePW(MemberDTO dto);
-
 
 	public List<MemberDTO> chartCount();
 	

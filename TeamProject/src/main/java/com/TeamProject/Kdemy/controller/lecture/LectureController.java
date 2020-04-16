@@ -36,6 +36,10 @@ public class LectureController {
 	@Resource(name="uploadPath")
 	String uploadPath;
 	
+	@RequestMapping("addLecturePage.do")
+	public String addLecturePage() {
+		return "lecture/addLecture";
+	}
 	//실시간 강의를 등록하는 페이지
 	@RequestMapping("onlinePage.do")
 	public String onlinePage() {

@@ -45,6 +45,20 @@ public class UploadFileUtils {
 		}
 		return uploadedFileName;
 	}
+	public static String uploadIcon(String uploadPath
+			, String originalName, byte[] fileData) 
+					throws Exception {
+		// uuid 발급
+		UUID uid = UUID.randomUUID();
+		String savedName = uid.toString() + "_" + originalName;
+		// 업로드할 디렉토리 생성
+		String savedPath = calcPath(uploadPath);
+		File target = new File(uploadPath 
+				+ savedPath, savedName);
+		// 임시 디렉토리에 업로드된 파일을 지정된 디렉토리로 복사
+		FileCopyUtils.copy(fileData, target);
+		return originalName;
+	}
 	
 	
 	//썸네일 이미지(아이콘) 생성, pom.xml에서 썸네일 관련 라이브러리 셋팅해 두었음

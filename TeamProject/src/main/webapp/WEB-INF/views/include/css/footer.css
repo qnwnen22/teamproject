@@ -20,6 +20,7 @@
 	  flex-wrap: wrap;
 	}
 }
+
 .tail_body {
 	justify-content:space-around;
 	align-item:flex-start;

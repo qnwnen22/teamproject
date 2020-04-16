@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 	@Override
-	public MemberDTO kdemyLogin(MemberDTO dto) {
+	public MemberDTO kdemyLogin(MemberDTO dto) throws Exception{
 		MemberDTO dto2=memberDao.kdemyLogin(dto);	
 		return dto2;
 	}
@@ -51,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String passwdCheck(MemberDTO dto) {
+	public String passwdCheck(MemberDTO dto) throws Exception{
 		return memberDao.passwdCheck(dto);
 	}
 	

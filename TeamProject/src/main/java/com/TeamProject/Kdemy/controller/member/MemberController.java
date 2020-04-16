@@ -31,7 +31,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.interceptor.SessionNames;
+import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
+import com.TeamProject.Kdemy.service.admin.AdminService;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.member.member_Pager;
@@ -54,13 +56,16 @@ public class MemberController {
 	@Inject
 	private JavaMailSender mailSender;
 	
+	@Inject
+	AdminService adminService;
+	
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
 	
 
 	@RequestMapping("check.do")
-	public ModelAndView check(MemberDTO dto, HttpSession session) {
+	public ModelAndView check(MemberDTO dto, HttpSession session) throws Exception{
 		String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		String result=memberService.passwdCheck(dto);
@@ -312,8 +317,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("login.do")
-	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) {
+	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) throws Exception{
 		String result=memberService.passwdCheck(dto);
+		System.out.println(result);
 		ModelAndView mav=new ModelAndView();
 		
 		if(result.equals("로그인성공")) {
@@ -324,7 +330,14 @@ public class MemberController {
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
-			mav.setViewName("home");
+			mav.setViewName("redirect:/");
+		}else if(result.equals("관리자로그인")){
+			AdminDTO dtoa=adminService.adminLogin(dto);
+			session.setAttribute(SessionNames.ADMINLOGIN, dtoa);
+			session.setAttribute("admin_id", dtoa.getAdmin_id());
+			session.setAttribute("admin_name", dtoa.getAdmin_name());
+			session.setAttribute("admin_level", dtoa.getAdmin_level());
+			mav.setViewName("redirect:/");
 		}else {
 			mav.addObject("message","로그인실패");
 			mav.setViewName("member/login");
@@ -366,8 +379,7 @@ public class MemberController {
 		//세션 초기화
 		memberService.logout(session);
 		//login.jsp로 이동
-		mav.setViewName("member/login");
-		mav.addObject("message", "logout");
+		mav.setViewName("redirect:/");
 		return mav;
 	}
 

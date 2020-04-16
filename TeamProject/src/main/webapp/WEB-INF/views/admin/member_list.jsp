@@ -14,7 +14,7 @@
 </script>
 </head>
 <body>
-	<div class="container" style="margin-top: 170px;">
+	<div class="container">
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
 				href="${path}/member/list.do">전체회원</a></li>

@@ -39,7 +39,7 @@ function listview(){
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
 	<div id="list"></div>
-	<div class="container" style="margin-top: 170px;">
+	<div class="container">
 		<div class="table-responsive">
 			<br>
 			<button class="btn btn-outline-primary mb-1" data-toggle="modal"

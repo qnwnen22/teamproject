@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
-	<div class="container" style="margin-top: 170px;">
+	<div class="container">
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active" href="${path}/lecture/online_list.do?admin=admin">실시간
 					강의</a></li>

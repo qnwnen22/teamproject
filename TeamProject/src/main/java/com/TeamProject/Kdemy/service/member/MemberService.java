@@ -4,17 +4,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberService {
 
 	public void insertMember(MemberDTO dto);
 
-	public MemberDTO kdemyLogin(MemberDTO dto);
+	public MemberDTO kdemyLogin(MemberDTO dto) throws Exception;
 
 	public int idCheck(MemberDTO dto);
 
-	public String passwdCheck(MemberDTO dto);
+	public String passwdCheck(MemberDTO dto) throws Exception;
 	
 	public int countMember(String keyword,String location) throws Exception;
 	
