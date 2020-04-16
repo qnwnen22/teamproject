@@ -424,17 +424,12 @@ public class LectureController {
 		// 강의 관리 페이지 이동
 		@RequestMapping("myLecturePage.do")
 		public ModelAndView myLecturePage(String userid, HttpSession session) {
-//			LectureDTO dto=new LectureDTO();
-//			dto.setUserid(userid);
 			ModelAndView mav=new ModelAndView();
-//			로그인된 userid의 세션이 파라미터의 userid와 값이 다르면 예외처리
 			if(!((String)session.getAttribute("userid")).equals(userid)) {
-				mav.setViewName("home");
+				mav.setViewName("redirect:/");
 				return mav;
 			}
-			
 			List<LectureDTO> list=lectureService.myLectureList(userid);
-			
 			mav.addObject("list",list);
 			mav.setViewName("lecture/myLecturePage");
 			return mav;
