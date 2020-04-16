@@ -111,7 +111,8 @@ function reviewStar(num){
 		<li><a href="#">${dto.main_category}</a></li>
 		<li><a href="#">${dto.sub_category}</a></li>
 	</ul>
-	<div class="row">
+	<div class="row" style="background-color: #eeeeee; color: #71c9ce;">
+	<!-- shadow p-3 mb-5 rounded --> 
 		<div class="col-xl-8 col-lg-12 border-right border-primary">
 			<div class="col-xl-12">
 				<c:choose>
@@ -165,40 +166,90 @@ function reviewStar(num){
 			</div>
 			<div class="input-group col-xl-12">
 				<div class="col-xl-6"><button type="button" class="btn btn-primary btn-sm col-12">장바구니 등록</button></div>
-				<div class="col-xl-6"><button type="button" class="btn btn-secondary btn-sm col-12" onclick="history.back()">뒤로</button></div>	
+				<div class="col-xl-6"><button type="button" class="btn btn-secondary btn-sm col-12" onclick="history.back()">돌아가기</button></div>	
 			</div>	
 		</div>
 	</div>
 	<hr>
 	<div class="col-12 m">
-		<nav class="nav nav-pills nav-fill">
-			<a class="nav-item nav-link active" href="#">Active</a>
-			<a class="nav-item nav-link" href="#">Much longer nav link</a>
-			<a class="nav-item nav-link" href="#">Link</a>
-			<a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-		</nav>
+		<ul class="nav nav-tabs">
+  			<li class="nav-item">
+    			<a class="nav-link active" onclick="lecturetext()" data-toggle="tab" href="#">강의 소개</a>
+  			</li>
+  			
+  			<li class="nav-item">
+    			<a class="nav-link" onclick="lecturetime()" data-toggle="tab" href="#">강의 시간</a>
+  			</li>
+  			
+  			<li class="nav-item">
+    			<a class="nav-link" onclick="lectureaddr()" data-toggle="tab" href="#">강의 장소</a>
+  			</li>
+		</ul>
+	</div>
+	<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
+		내용 : ${dto.content}
 	</div>
 	
-	<br>
-	
-	<hr>
-	<div class="col-12">
-		<div class="col-12">
-			<c:if test="${dto.cell_type > 1}">
-				강의 날짜 : ${dto.lecture_date}<br>
-				강의 시작시간 : ${dto.lecture_start}<br>
-				강의 시간 : ${dto.lecture_time}<br>
-			</c:if>
-			<c:if test="${dto.cell_type > 2}">
+	<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureTime" style="display: none;">
+		<c:choose>
+			<c:when test="${dto.cell_type > 1}">
+				<div class="col-12">
+					<label class="label" for="lectureDate">강의 날짜 : </label>
+					<p name="lectureDate" id="lectureDate">${dto.lecture_date}</p>
+					
+					강의 시작시간 : ${dto.lecture_start}
+					강의 시간 : ${dto.lecture_time}
+				</div>
+			</c:when>
+		
+			<c:otherwise>
+				<h2>온라인 강의 입니다.</h2>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureAddr" style="display: none;">
+		<c:choose>
+			<c:when test="${dto.cell_type > 2}">
 				강의주소 : ${dto.lecture_address}<br>
 				강의 상세주소 : ${dto.lecture_address2}<br>
-			</c:if>
-	
-			내용 : ${dto.content}<br>
-		</div>
-		<hr>
+			</c:when>
+			<c:otherwise>
+				<h2>내용이 없습니다</h2>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <%@ include file="../include/footer.jsp"%>
+<script type="text/javascript">
+	function lecturetext(){
+		var text = document.getElementById("lectureText");
+		var time = document.getElementById("lectureTime");
+		var addr = document.getElementById("lectureAddr");
+		
+		text.style.display ='block';
+		time.style.display ='none';
+		addr.style.display ='none';
+	}
+	
+	function lecturetime(){
+		var text = document.getElementById("lectureText");
+		var time = document.getElementById("lectureTime");
+		var addr = document.getElementById("lectureAddr");
+		
+		text.style.display ='none';
+		time.style.display ='block';
+		addr.style.display ='none';
+	}
+	
+	function lectureaddr(){
+		var text = document.getElementById("lectureText");
+		var time = document.getElementById("lectureTime");
+		var addr = document.getElementById("lectureAddr");
+		
+		text.style.display ='none';
+		time.style.display ='none';
+		addr.style.display ='block';
+	}
+</script>
 </body>
 </html>
