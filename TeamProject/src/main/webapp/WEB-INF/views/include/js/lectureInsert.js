@@ -278,17 +278,17 @@ function insert3(){
 
 function category() {
 	
-	var main1 = ['m1-s1','m1-s2','m1-s3','m1-s4','m1-s5','m1-s6','m1-s7','m1-s8'];
-	var main2 = ['m2-s1','m2-s2','m2-s3','m2-s4','m2-s5','m2-s6','m2-s7','m2-s8'];
-	var main3 = ['m3-s1','m3-s2','m3-s3','m3-s4','m3-s5','m3-s6','m3-s7','m3-s8'];
+	var main1 = ['m1-s1','m1-s2','m1-s3','m1-s4','m1-s5'];
+	var main2 = ['m2-s1','m2-s2','m2-s3','m2-s4','m2-s5','m2-s6'];
+	var main3 = ['m3-s1','m3-s2','m3-s3','m3-s4','m3-s5','m3-s6','m3-s7'];
 	var main4 = ['m4-s1','m4-s2','m4-s3','m4-s4','m4-s5','m4-s6','m4-s7','m4-s8'];
 	var main5 = ['m5-s1','m5-s2','m5-s3','m5-s4','m5-s5','m5-s6','m5-s7','m5-s8'];
-	var main6 = ['m6-s1','m6-s2','m6-s3','m6-s4','m6-s5','m6-s6','m6-s7','m6-s8'];
+	var main6 = ['m6-s1','m6-s2'];
 	var main7 = ['m7-s1','m7-s2','m7-s3','m7-s4','m7-s5','m7-s6','m7-s7','m7-s8'];
-	var main8 = ['m8-s1','m8-s2','m8-s3','m8-s4','m8-s5','m8-s6','m8-s7','m8-s8'];
+	var main8 = ['m8-s1','m8-s2'];
 	var main9 = ['m9-s1','m9-s2','m9-s3','m9-s4','m9-s5','m9-s6','m9-s7','m9-s8'];
-	var main10 = ['m10-s1','m10-s2','m10-s3','m10-s4','m10-s5','m10-s6','m10-s7','m10-s8'];
-	var main11 = ['m11-s1','m11-s2','m11-s3','m11-s4','m11-s5','m11-s6','m11-s7','m11-s8'];
+	var main10 = ['m10-s1'];
+	var main11 = ['m11-s1'];
 	
 	var sub = new Array();
 	
