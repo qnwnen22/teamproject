@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.TeamProject.Kdemy.model.lecture.dto;
 
 import lombok.Getter;
@@ -16,3 +17,23 @@ public class LectureReviewDTO {
 	private int star;
 	
 }
+=======
+package com.TeamProject.Kdemy.model.lecture.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+
+public class LectureReviewDTO {
+
+	private String userid;
+	private int lecture_idx;
+	private String review;
+	private int star;
+	
+}
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git

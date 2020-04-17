@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 import oracle.net.aso.l;
@@ -124,6 +125,7 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception {
 		lectureDao.onlineVideoCaht(userid,lecture_idx); 
 		
@@ -137,6 +139,46 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public void onlineVideoCahtOff(String userid, int lecture_idx) {
 		lectureDao.onlineVideoCahtOff(userid,lecture_idx); 
+=======
+	public void reviewStar(LectureReviewDTO dto) {
+		lectureDao.reviewStar(dto);
+	}
+
+	@Override
+	public void reviewStarUpdate(LectureReviewDTO dto) {
+		lectureDao.reviewStarUpdate(dto);
+	}
+
+	@Override
+	public String getMain_img(int lecture_idx) {
+		return lectureDao.getMain_img(lecture_idx);
+	}
+
+	@Override
+	public int lectureViewCheck(LectureBoxDTO dto) {
+		return lectureDao.lectureViewCheck(dto);
+	}
+
+	@Override
+	public LectureDTO lectureList(LectureDTO dto) {
+		return lectureDao.lectureList(dto);
+	}
+
+	@Override
+	public void update_main_img(LectureDTO dto) {
+		 lectureDao.update_main_img(dto);
+			
+		}
+
+	@Override
+	public void update(LectureDTO dto) {
+		lectureDao.update(dto);
+	}
+
+	@Override
+	public void updateAddImg(LectureDTO dto) {
+		lectureDao.updateAddImg(dto);
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	}
 
 	

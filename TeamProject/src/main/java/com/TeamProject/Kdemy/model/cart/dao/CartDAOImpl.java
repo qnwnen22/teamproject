@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 
 @Repository
 public class CartDAOImpl implements CartDAO {
@@ -19,11 +20,6 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public List<CartDTO> cartList(CartDTO dto) {
 		return sqlSession.selectList("cart.cartList",dto);
-	}
-
-	@Override
-	public List<CartDTO> testList() {
-		return sqlSession.selectList("cart.testList");
 	}
 
 
@@ -52,7 +48,13 @@ public class CartDAOImpl implements CartDAO {
 		map.put("nickname", nickname);
 		map.put("cell_type", cell_type);
 		map.put("lecture_idx", lecture_idx);
+		map.put("nickname", nickname);
 		sqlSession.insert("cart.insertLectureBox",map);
+	}
+	
+	@Override
+	public List<CartDTO> testList() {
+		return sqlSession.selectList("cart.testList");
 	}
 
 	@Override

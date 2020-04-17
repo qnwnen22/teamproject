@@ -36,4 +36,6 @@ public class MainDTO {
 	private MultipartFile file8;
 	private MultipartFile file9;
 	private MultipartFile file10;
+	
+	private String column;
 }

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 	<div class="modal-dialog">
 		<div class="modal-content">
 
@@ -13,7 +17,6 @@
 			<div class="modal-body">
 				<form id="adminUpdate" name="adminUpdate"
 					action="${path}/admin/updateAdmin.do" method="post">
-
 					<div class="form-group">
 						<label for="admin_id">아이디</label> <input type="text"
 							class="form-control mb-1" id="mdadmin_id" name="admin_id"
@@ -39,7 +42,7 @@
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-outline-warning">수정</button>
-						<button type="submit" class="btn btn-outline-danger">삭제</button>
+						<button type="button" class="btn btn-outline-danger" onclick="location.href='${path}/admin/deleteAdmin.do?admin_id=${dto.admin_id}'">삭제</button>
 						<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
 					</div>
 				</form>

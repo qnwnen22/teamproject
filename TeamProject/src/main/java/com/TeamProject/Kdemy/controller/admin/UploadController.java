@@ -30,8 +30,8 @@ public class UploadController {
 	= LoggerFactory.getLogger(UploadController.class);
 	
 	// 업로드 디렉토리 servlet-context.xml에 설정되어 있음 (value="d:/upload")
-	@Resource(name = "uploadPath")
-	String uploadPath; //String uploadPath="d:/uplade"
+	@Resource(name = "mainResoucePath")
+	String mainResoucePath; //String uploadPath="d:/uplade"
 
 	@ResponseBody //뷰가 아닌 json형식으로 데이터를 리턴(서버=>클라이언트)
 	//비교) @RequestBody : json형식으로 전달(클라이언트=>서버)
@@ -43,7 +43,7 @@ public class UploadController {
 			throws Exception {
 		//ResponseEntity : 메시지 + http 상태코드
 		return new ResponseEntity<String>(UploadFileUtils.uploadFile(
-				uploadPath, file.getOriginalFilename(), file.getBytes()), 
+				mainResoucePath, file.getOriginalFilename(), file.getBytes()), 
 				HttpStatus.OK);
 		//파일의 성공여부가 uploadAjax.jsp의 
 		//success:function(data,status,req)으로 넘어감
@@ -68,7 +68,7 @@ public class UploadController {
 				// 헤더 구성 객체
 				HttpHeaders headers = new HttpHeaders();
 				// InputStream 생성
-				in = new FileInputStream(uploadPath + fileName);
+				in = new FileInputStream(mainResoucePath + fileName);
 //				if (mType != null) { // 이미지 파일이면
 //					headers.setContentType(mType);
 //				} else { // 이미지가 아니면
@@ -118,11 +118,11 @@ public class UploadController {
 				String front=fileName.substring(0, 12);//0~11까지
 				String end=fileName.substring(14);//14부터 끝까지
 	 		//File.separatorChar : 유닉스 / 윈도우즈\	
-				new File(uploadPath+(front+end).replace(
+				new File(mainResoucePath+(front+end).replace(
 						'/',File.separatorChar)).delete();
 			}
 			//기타종류 원본 파일 삭제(이미지이면 썸네일 삭제)
-			new File(uploadPath+fileName.replace(
+			new File(mainResoucePath+fileName.replace(
 					'/',File.separatorChar)).delete();
 			
 			return new ResponseEntity<String>("deleted"

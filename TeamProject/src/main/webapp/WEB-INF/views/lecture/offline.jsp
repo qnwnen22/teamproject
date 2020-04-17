@@ -98,11 +98,20 @@
 				<input type="number" class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
 			</div>
 			<!-- 썸네일 -->
-			<div class="form-group" id="photo_add">
-				<label for="file1">사진파일 (맨위에 파일은 메인사진입니다)</label><br>
-				<p style="color: blue; font-size: 12px;">선택한 파일을 초기화방법 = 파일 선택 → 취소</p>
-				<input class="file1" type="file" name="file1" id="file1">
+			<div class="">
+				<c:choose>
+			 		<c:when test="${empty dto.main_img}">
+	     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
+			 		</c:when>
+					
+					<%-- <c:otherwise>
+		    			<div><img id ="profileImg" src = "${path}/lecture/displayFile?fileName=${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
+					</c:otherwise> --%>
+	        	</c:choose>
+	        	
+	        	<input type="file" name="file1" class="text-center center-block file-upload" id="input_img">
 			</div>
+	
 			<!-- 내용 -->
 			<div class="form-group">
 				<label for="content_label">내용</label><br>
@@ -157,5 +166,96 @@
    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
  <%-- <%@ include file="../include/footer.jsp"%> --%>
 <!-- 부스 스트랩 4.4.1 -->
+<script>
+
+$(document).ready(function(){
+	$("#profileImg").click(function(){
+		$("#input_img").click() ;
+		})			
+	}) 
+
+var sel_file;
+
+$(document).ready(function() {
+    $("#input_img").on("change", fileChange);
+});
+
+
+function fileChange(e) {
+	e.preventDefault();
+
+	var files = e.target.files;
+    var filesArr = Array.prototype.slice.call(files);
+
+    filesArr.forEach(function(f) {
+        if(!f.type.match("image.*")) {
+            alert("확장자는 이미지 확장자만 가능합니다.");
+            return;
+        }
+
+        sel_file = f;
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $(".avatar").attr("src", e.target.result);
+        	$(".avatar").css("height", "200px")
+        }
+        reader.readAsDataURL(f);
+    });
+
+    var file = files[0]
+    console.log(file)
+    var formData = new FormData();
+
+    formData.append("file", file);
+
+		$.ajax({
+    	url: '${path}/lecture/uploadAjax.do',
+    	  enctype:'multipart/form-data',
+		  data: formData,
+		  dataType:'text',
+		  processData: false,
+		  contentType: false,
+		  type: 'POST',
+		  success: function(data){
+
+			alert("프로필 이미지가 변경 되었습니다.")
+
+		  }
+		})
+
+
+ 		function checkImageType(fileName){
+ 			var pattern = /jpg$|gif$|png$|jpeg$/i;
+ 			return fileName.match(pattern);
+ 		}
+
+
+ 		function getOriginalName(fileName){
+ 			if(checkImageType(fileName)){
+ 				return;
+ 			}
+
+ 			var idx = fileName.indexOf("_") + 1 ;
+ 			return fileName.substr(idx);
+
+ 		}
+
+
+ 		function getImageLink(fileName){
+
+ 			if(!checkImageType(fileName)){
+ 				return;
+ 			}
+ 			var front = fileName.substr(0,12);
+ 			var end = fileName.substr(14);
+
+ 			return front + end;
+
+ 		}
+
+}
+
+</script>
 </body>
 </html>

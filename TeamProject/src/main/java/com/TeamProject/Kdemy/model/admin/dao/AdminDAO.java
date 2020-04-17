@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface AdminDAO {
 	public List<AdminDTO> list();
@@ -13,4 +14,6 @@ public interface AdminDAO {
 	public void deleteAdmin(String admin_id);
 	public List<MainDTO> resoucelist();
 	public void mainChange(MainDTO dto);
+	public String resoucelist1(String column);
+	public AdminDTO adminLogin(MemberDTO dto);
 }

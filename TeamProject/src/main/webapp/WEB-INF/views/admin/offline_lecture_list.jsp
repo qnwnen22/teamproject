@@ -14,7 +14,11 @@ function list(page) {
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
+<<<<<<< HEAD
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3" style="margin-top: 170px;">
+=======
+	<div class="container">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link" href="${path}/lecture/online_list.do?admin=admin">실시간
 					강의</a></li>

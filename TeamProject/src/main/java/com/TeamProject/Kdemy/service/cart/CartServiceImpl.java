@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.TeamProject.Kdemy.model.cart.dao.CartDAO;
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -40,6 +41,7 @@ public class CartServiceImpl implements CartService {
 	public void buyLecture(String userid, int price) {
 		cartDao.buyLecture(userid, price);
 	}
+	
 
 	@Override
 	public int cartCheck(CartDTO dto) {
@@ -60,7 +62,11 @@ public class CartServiceImpl implements CartService {
 		cartDao.buyCart(userid, lecture_idx);
 	}
 	@Override
+<<<<<<< HEAD
 	public void insertLectureBox(String userid,String nickname, String cell_type, String lecture_idx) {
+=======
+	public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx) {
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		cartDao.insertLectureBox(userid, nickname, cell_type, lecture_idx);
 	}
 

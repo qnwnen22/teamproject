@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 	
@@ -43,5 +44,13 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void mainChange(MainDTO dto) {
 		sqlSession.update("admin.mainChange", dto);
+	}
+	@Override
+	public String resoucelist1(String column) {
+		return sqlSession.selectOne("admin.resouceList1", column);
+	}
+	@Override
+	public AdminDTO adminLogin(MemberDTO dto) {
+		return sqlSession.selectOne("admin.adminLogin", dto);
 	}
 }

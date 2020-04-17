@@ -9,6 +9,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 
@@ -16,6 +19,18 @@ import com.TeamProject.Kdemy.service.member.BCrypt;
 public class MemberDAOImpl implements MemberDAO {
 	@Inject
 	SqlSession sqlSession;
+	
+	
+	@Override
+	public List<CartDTO> cartList(CartDTO dto) {
+		return sqlSession.selectList("member.cartList",dto);
+	}
+	
+	@Override
+	public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto) {
+		return sqlSession.selectList("member.orderDetail",dto);
+	}
+
 
 	@Override
 	public void insertMember(MemberDTO dto) {
@@ -38,28 +53,40 @@ public class MemberDAOImpl implements MemberDAO {
 	public int idCheck(MemberDTO dto) {
 		return sqlSession.selectOne("member.idCheck",dto);
 	}
-	
 	@Override
-	public String passwdCheck(MemberDTO dto) {
+	public String passwdCheck(MemberDTO dto) throws Exception{
 	    String result="";	
-		MemberDTO dto2=sqlSession.selectOne("member.passwdCheck",dto);
+	    MemberDTO dto2=sqlSession.selectOne("member.passwdCheck",dto);
 		try {
-			 if (dto2.getVerify() == 'y') {
-				if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {		
-					result="로그인성공";
+			if(dto2 !=null) {
+				if (dto2.getVerify()=='y') {
+					if(BCrypt.checkpw(dto.getPasswd(),dto2.getPasswd())) {
+						result="로그인성공";
+					}else {
+						result="로그인실패";
+					}
+			}else {
+				result="no";
+			}
+			}else {
+				 //관리자 로그인 
+				AdminDTO dtoa=sqlSession.selectOne("admin.passwdCheck",dto);
+				if(dtoa != null) {
+					if(BCrypt.checkpw(dto.getPasswd(),dtoa.getAdmin_passwd())) { 
+						result="관리자로그인";
+					}else { 
+						result="로그인실패";
+					}
 				}else {
 					result="로그인실패";
 				}
-			}else {
-				result="no";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-
-
+	
 	@Override
 	public MemberDTO searchID(MemberDTO dto) {
 		return sqlSession.selectOne("member.searchID",dto);
@@ -72,7 +99,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public MemberDTO kdemyLogin(MemberDTO dto) {
+	public MemberDTO kdemyLogin(MemberDTO dto) throws Exception{
 	  return sqlSession.selectOne("member.kdemyLogin",dto);
 	}
 

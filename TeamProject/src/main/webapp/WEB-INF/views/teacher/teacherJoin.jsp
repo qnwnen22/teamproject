@@ -64,8 +64,8 @@ function nicknameC(){
 					<div>
 						<table>
 							<tr>						
-								<th>최종학력</th>
 								<td>
+								<label for="finalEducation">최종 학력</label>
 									<select id="finalEducation" name="finalEducation">
 										<option value=""  selected>-학력 선택-</option>
 										<option value="고등학교 졸업">고등학교 졸업</option>
@@ -74,6 +74,15 @@ function nicknameC(){
 									</select>
 								</td>
 							</tr>
+							<tr>
+								<td>
+									<label for="schoolName">학교 이름 : </label>
+									<input type="text" name="schoolName"><input type="button" value="학교 검색(미구현)"><br>
+									<label for="department">전공</label>
+									<input type="text" name="department">
+								</td>
+							</tr>
+
 							<%-- <tr>
 								<th>고등학교</th>
 								<td>
