@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
-<<<<<<< HEAD
 
 	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
-=======
 <div class="container-fluid align-items-end" id="footer-body">
 	<div id="footertoggle" class="d-flex py-1 ">
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
 			<i class="fa fa-bars" style="font-size: 50px;"></i>

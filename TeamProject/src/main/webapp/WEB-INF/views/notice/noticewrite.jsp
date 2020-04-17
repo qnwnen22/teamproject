@@ -47,6 +47,8 @@
 			location.href = "${path}/notice/list.do";
 		}
 	}
+
+	
 </script>
 
 </head>

@@ -128,6 +128,11 @@ function subjectchange(item){
 		</div>
 	<br>
 	
+		<div class="form-group mb-4 ">
+					<label for="fullName">파일 첨부</label> <input
+						type="file" class="form-control-file" id="file1" name="file1">
+				</div>
+	
 	<input type="hidden" name="bno" value="${dto.bno}">
  
  	
