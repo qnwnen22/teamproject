@@ -64,6 +64,30 @@ public class ReviewController {
 		
 	}//end list
 	
+	@RequestMapping("view.do")
+	public ModelAndView view(	@RequestParam(defaultValue="1") int curPage, @ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
+		int count =reviewService.countArticle();
+		//페이지 처리
+		Review_Pager pager=new Review_Pager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		reviewService.increateViewcnt(bno, session);
+		
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		
+		List<ReviewDTO> list = reviewService.listAll(start, end);
+		ModelAndView mav=new ModelAndView();
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("reviewlist", list);
+		map.put("count",  count);
+		map.put("pager", pager);
+		mav.setViewName("review/reviewview");
+		mav.addObject("map", map);
+		mav.addObject("dto", reviewService.read(bno));
+		return mav;
+	}
+	
 
 	@RequestMapping("searchlist.do")
 	public ModelAndView searchlist(
@@ -152,16 +176,7 @@ public class ReviewController {
 	}
 	
 	
-	@RequestMapping("view.do")
-	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
-		reviewService.increateViewcnt(bno, session);
-		String writer=(String)session.getAttribute("userid");
-		dto.setWriter(writer);
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("review/reviewview");
-		mav.addObject("dto", reviewService.read(bno));
-		return mav;
-	}
+	
 	
 	@RequestMapping("replyinsert.do")
 	@ResponseBody

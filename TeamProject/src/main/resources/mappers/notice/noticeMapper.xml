@@ -17,6 +17,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		<include refid="paging_footer" />
 	</select>
+	
+	<select id="listAll2"
+		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
+		select bno, title, writer, regdate 
+		from kdemynotice b where show='Y'
+		order by bno
+		desc
+
+	</select>
 
 	<select id="searchlistAll"
 		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
@@ -71,12 +80,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		seq_kdemynotice.nextval, #{title}, #{content}, #{writer} )
 	</insert>
 
-	<!-- 첨부파일 정보 저장 -->
-	<insert id="addAttach">
-		insert into kdemynotice_attach (fullName, bno) values
-		( #{fullName},
-		seq_kdemynotice.currval )
-	</insert>
 
 	<!-- 조회수 증가 처리 -->
 	<update id="increateViewcnt">

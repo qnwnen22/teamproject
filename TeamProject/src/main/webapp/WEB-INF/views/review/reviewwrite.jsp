@@ -4,38 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-<style type="text/css">
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
-
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-}
-
-textarea.form-control {
-	height: 15em !important;
-}
-</style>
 <%@ include file="../include/header.jsp"%>
+<link rel="stylesheet" href="${path}/include/css/upper.css">
 <link
    href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
    rel="stylesheet">
@@ -133,23 +103,20 @@ textarea.form-control {
 <body>
 <%@ include file="../include/fixed-topbar.jsp"%>
 	<br>
-	<br>
-	<br>
-	<div class="container">
-		<div class="justify-content-md-center">
-			<form id="form1" name="form1" method="post"
-				action="${path}/review/insert.do"
-				enctype="multipart/form-data">
-				<div>
+<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
+				
+				<div >
 					<ul class="upper_shift">
 						<li><a href="${path}">KDEMY</a></li>
 						<li><a href="${path}/review/list.do">수강후기</a></li>
 					</ul>
 				</div>
-				<br> <br> 
 
 				
-				<div class="form-group">
+			<form id="form1" name="form1" method="post"
+				action="${path}/review/insert.do"
+				enctype="multipart/form-data">
+				<div class="form-group mb-4">
 					<label for="subject">과목</label> <select
 						class="custom-select" required name="subject" id="subject"
 						onchange="javascript:subjectchange(document.form1.subject.options.selectedIndex);">
@@ -169,21 +136,21 @@ textarea.form-control {
 				</div>
 
 
-				<div class="form-group t1">
+				<div class="form-group t1 mb-4">
 					<label for="teacher">강사</label> <select
 						class="custom-select" required name="teacher" id="teacher">
 						<option selected value="">-선택-</option>
 					</select>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group mb-4">
 					<label for="title">제목</label> <input type="text"
 						class="form-control" id="title" name="title"
 						placeholder="제목을 입력하세요" >
 				</div>
 				<br>
 				
-				<div class="form-group">
+				<div class="form-group mb-4">
 					<label for="title">작성자</label> <input type="text"
 						class="form-control" id="userid" name="userid"
 						value="${sessionScope.userid }" disabled="disabled">
@@ -192,7 +159,7 @@ textarea.form-control {
 
 
 
-				<div class="mb-3 was-validated">
+				<div class=" was-validated mb-4">
 					<label for="content">내용</label>
 					<textarea class="form-control is-invalid form-control-lg "
 						id="content" name="content" placeholder="내용을 입력하세요" required></textarea>
@@ -200,7 +167,7 @@ textarea.form-control {
 				<br>
 
 
-				<div class="form-group">
+				<div class="form-group mb-4 ">
 					<label for="fullName">파일 첨부</label> <input
 						type="file" class="form-control-file" id="file1" name="file1">
 					<!-- <div class="Plus_one"></div> -->
@@ -213,11 +180,11 @@ textarea.form-control {
 				</div>
 
 
-				<div class="btn-group float-right" role="group"
+				<div class="btn-group float-right mb-5" role="group"
 					aria-label="Basic example">
 					<button type="submit"
 						class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
-						data-toggle="button" aria-pressed="false" ><!-- onclick="alertClick()" -->
+						data-toggle="button" aria-pressed="false" onclick="alertClick()">
 						확인</button>
 					<button type="button"
 						class="btn btn-sm btn-primary justify-content-end  font-color-fff btn-normal-silver"
@@ -225,13 +192,10 @@ textarea.form-control {
 				</div>
 			</form>
 
-
-			<br> <br> <br>
-
-
+			<br> 
+			<br> 
 
 		</div>
-	</div>
 	<script
    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <%@ include file="../include/footer.jsp"%>
