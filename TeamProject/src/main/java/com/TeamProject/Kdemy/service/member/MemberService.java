@@ -14,11 +14,11 @@ public interface MemberService {
 
 	public void insertMember(MemberDTO dto);
 
-	public MemberDTO kdemyLogin(MemberDTO dto);
+	public MemberDTO kdemyLogin(MemberDTO dto) throws Exception;
 
 	public int idCheck(MemberDTO dto);
 
-	public String passwdCheck(MemberDTO dto);
+	public String passwdCheck(MemberDTO dto) throws Exception;
 	
 	public int countMember(String keyword,String location) throws Exception;
 	
@@ -59,10 +59,13 @@ public interface MemberService {
     public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto);
 	
 	public List<CartDTO> cartList(CartDTO dto);
+<<<<<<< HEAD
 
 	public List<CouponDTO> couponDetail(CouponDTO dto);
 
 	public int couponCheck(CouponDTO dto);
 
+=======
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 }

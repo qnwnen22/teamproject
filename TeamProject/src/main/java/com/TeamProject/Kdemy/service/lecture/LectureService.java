@@ -43,6 +43,9 @@ public interface LectureService {
 	
 	public List<LectureDTO> chartCountLecture();
 	public LectureDTO lectureView_success(int lecture_idx);
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception;
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx);
+	public void onlineVideoCahtOff(String userid, int lecture_idx);
 	public void reviewStar(LectureReviewDTO dto);
 	public void reviewStarUpdate(LectureReviewDTO dto);
 
@@ -50,4 +53,6 @@ public interface LectureService {
 	public int lectureViewCheck(LectureBoxDTO dto);
 	public LectureDTO lectureList(LectureDTO dto);
 	public void update_main_img(LectureDTO dto);
+	public void update(LectureDTO dto);
+	public void updateAddImg(LectureDTO dto);
 }

@@ -38,9 +38,11 @@ import org.springframework.web.util.CookieGenerator;
 import org.springframework.web.util.WebUtils;
 
 import com.TeamProject.Kdemy.interceptor.SessionNames;
+import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
+import com.TeamProject.Kdemy.service.admin.AdminService;
 import com.TeamProject.Kdemy.service.cart.CartService;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.service.member.BCrypt;
@@ -72,6 +74,9 @@ public class MemberController {
 	@Inject
 	private JavaMailSender mailSender;
 	
+	@Inject
+	AdminService adminService;
+	
 	@Resource(name="memberUploadPath")
 	String uploadPath;
 	
@@ -101,7 +106,7 @@ public class MemberController {
 	
 
 	@RequestMapping("check.do")
-	public ModelAndView check(MemberDTO dto, HttpSession session) {
+	public ModelAndView check(MemberDTO dto, HttpSession session) throws Exception{
 		String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		String result=memberService.passwdCheck(dto);
@@ -278,7 +283,7 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[이메일 인증]");
 		sendMail.setText(new StringBuffer().append("<h1>KDEMY 메일인증</h1>")
-				.append("kdemy에 가입해주셔서 감사합니다.<br><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
+				.append("kdemy에 가입해주셔서 땡큐 베리 감사합니다.<br><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
 				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
@@ -352,8 +357,13 @@ public class MemberController {
 	}
 
 	@RequestMapping("login.do")
+<<<<<<< HEAD
 	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) throws Exception {
+=======
+	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) throws Exception{
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		String result=memberService.passwdCheck(dto);
+		System.out.println(result);
 		ModelAndView mav=new ModelAndView();
 
 		if(result.equals("로그인성공")) {
@@ -363,7 +373,18 @@ public class MemberController {
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
+<<<<<<< HEAD
 		
+=======
+			mav.setViewName("redirect:/");
+		}else if(result.equals("관리자로그인")){
+			AdminDTO dtoa=adminService.adminLogin(dto);
+			session.setAttribute(SessionNames.ADMINLOGIN, dtoa);
+			session.setAttribute("admin_id", dtoa.getAdmin_id());
+			session.setAttribute("admin_name", dtoa.getAdmin_name());
+			session.setAttribute("admin_level", dtoa.getAdmin_level());
+			mav.setViewName("redirect:/");
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		}else {
 			mav.addObject("message","로그인실패");
 			mav.setViewName("member/login");
@@ -398,8 +419,19 @@ public class MemberController {
 //	session.invalidate();
 //	return "member/login";
 //	}
+<<<<<<< HEAD
 
 
+=======
+	@RequestMapping("logOut.do")
+	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
+		//세션 초기화
+		memberService.logout(session);
+		//login.jsp로 이동
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 
 	@RequestMapping("list.do")

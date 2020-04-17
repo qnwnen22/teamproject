@@ -4,45 +4,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-<style type="text/css">
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
-
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-}
-
-textarea.form-control {
-	height: 15em !important;
-}
-</style>
 <%@ include file="../include/header.jsp"%>
+<link rel="stylesheet" href="${path}/include/css/upper.css">
 <link
-   href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
-   rel="stylesheet">
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
+	rel="stylesheet">
 <script
-   src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
-   src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#content').summernote({
@@ -127,113 +97,211 @@ textarea.form-control {
 	    return true;
 	}
 
+	 
+
+/* 첨부파일 */
+
+ $(document).ready(function(){
+	$("#profileImg").click(function(){
+		$("#file1").click() ;
+		})			
+	}) 
+
+		var sel_file;
+
+		$(document).ready(function() {
+		    $("#file1").on("change", fileChange);
+		});
+
+		function fileChange(e) {
+			e.preventDefault();
+
+			var files = e.target.files;
+		    var filesArr = Array.prototype.slice.call(files);
+
+		    filesArr.forEach(function(f) {
+		        if(!f.type.match("image.*")) {
+		            alert(" 이미지 파일만 가능합니다.");
+		            return;
+		        }
+
+		        sel_file = f;
+
+		        var reader = new FileReader();
+		        reader.onload = function(e) {
+		            $("#profileImg").attr("src", e.target.result);
+		        	$("#profileImg").css("height", "400px")
+		        }
+		        reader.readAsDataURL(f);
+		    });
+
+		    var file = files[0]
+		    console.log(file)
+		    var formData = new FormData();
+
+		    formData.append("file", file);
+
+				$.ajax({
+		    	url: '${path}/review/uploadAjax.do',
+				  data: formData,
+				  dataType:'text',
+				  processData: false,
+				  contentType: false,
+				  type: 'POST',
+				  success: function(data){
+
+					alert("파일이 업로드 되었습니다.")
+
+				  }
+				})
+
+
+		 		function checkImageType(fullName){
+		 			var pattern = /jpg$|gif$|png$|jpeg$/i;
+		 			return fullName.match(pattern);
+		 		}
+
+
+		 		function getOriginalName(fullName){
+		 			if(checkImageType(fullName)){
+		 				return;
+		 			}
+
+		 			var idx = fullName.indexOf("_") + 1 ;
+		 			return fullName.substr(idx);
+
+		 		}
+
+
+		 		function getImageLink(fullName){
+
+		 			if(!checkImageType(fullName)){
+		 				return;
+		 			}
+		 			var front = fullName.substr(0,12);
+		 			var end = fullName.substr(14);
+
+		 			return front + end;
+
+		 		}
+
+		}
+
 	</script>
 
 </head>
 <body>
-<%@ include file="../include/fixed-topbar.jsp"%>
+	<%@ include file="../include/fixed-topbar.jsp"%>
 	<br>
-	<br>
-	<br>
-	<div class="container">
-		<div class="justify-content-md-center">
-			<form id="form1" name="form1" method="post"
-				action="${path}/review/insert.do"
-				enctype="multipart/form-data">
-				<div>
-					<ul class="upper_shift">
-						<li><a href="${path}">KDEMY</a></li>
-						<li><a href="${path}/review/list.do">수강후기</a></li>
-					</ul>
-				</div>
-				<br> <br> 
+	<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
 
-				
-				<div class="form-group">
-					<label for="subject">과목</label> <select
-						class="custom-select" required name="subject" id="subject"
-						onchange="javascript:subjectchange(document.form1.subject.options.selectedIndex);">
-						<option selected value="">-선택-</option>
-						<option value="디자인">디자인</option>
-						<option value="마케팅">마케팅</option>
-						<option value="문서, 취업">문서, 취업</option>
-						<option value="아이콘">아이콘</option>
-						<option value="아이콘2">아이콘2</option>
-						<option value="안드로이드">안드로이드</option>
-						<option value="어플">어플</option>
-						<option value="콘텐츠제작">콘텐츠제작</option>
-						<option value="콘텐츠제작2">콘텐츠제작2</option>
-						<option value="IT프로그래밍">IT프로그래밍</option>
-						<option value="번역,통역">번역,통역</option>
-					</select>
-				</div>
+		<div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><a href="${path}/review/list.do">수강후기</a></li>
+			</ul>
+		</div>
 
 
-				<div class="form-group t1">
-					<label for="teacher">강사</label> <select
-						class="custom-select" required name="teacher" id="teacher">
-						<option selected value="">-선택-</option>
-					</select>
-				</div>
+		<form id="form1" name="form1" method="post"
+			action="${path}/review/insert.do" enctype="multipart/form-data">
+			<div class="form-group mb-4">
+				<label for="subject">과목</label> <select class="custom-select"
+					required name="subject" id="subject"
+					onchange="javascript:subjectchange(document.form1.subject.options.selectedIndex);">
+					<option selected value="">-선택-</option>
+					<option value="디자인">디자인</option>
+					<option value="마케팅">마케팅</option>
+					<option value="문서, 취업">문서, 취업</option>
+					<option value="아이콘">아이콘</option>
+					<option value="아이콘2">아이콘2</option>
+					<option value="안드로이드">안드로이드</option>
+					<option value="어플">어플</option>
+					<option value="콘텐츠제작">콘텐츠제작</option>
+					<option value="콘텐츠제작2">콘텐츠제작2</option>
+					<option value="IT프로그래밍">IT프로그래밍</option>
+					<option value="번역,통역">번역,통역</option>
+				</select>
+			</div>
 
-				<div class="form-group">
-					<label for="title">제목</label> <input type="text"
-						class="form-control" id="title" name="title"
-						placeholder="제목을 입력하세요" >
-				</div>
-				<br>
-				
-				<div class="form-group">
-					<label for="title">작성자</label> <input type="text"
-						class="form-control" id="userid" name="userid"
-						value="${sessionScope.userid }" disabled="disabled">
-				</div>
-				<br>
+
+			<div class="form-group t1 mb-4">
+				<label for="teacher">강사</label> <select class="custom-select"
+					required name="teacher" id="teacher">
+					<option selected value="">-선택-</option>
+				</select>
+			</div>
+
+			<div class="form-group mb-4">
+				<label for="title">제목</label> <input type="text"
+					class="form-control" id="title" name="title"
+					placeholder="제목을 입력하세요">
+			</div>
+			<br>
+
+			<div class="form-group mb-4">
+				<label for="title">작성자</label> <input type="text"
+					class="form-control" id="userid" name="userid"
+					value="${sessionScope.userid }" disabled="disabled">
+			</div>
+			<br>
 
 
 
-				<div class="mb-3 was-validated">
-					<label for="content">내용</label>
-					<textarea class="form-control is-invalid form-control-lg "
-						id="content" name="content" placeholder="내용을 입력하세요" required></textarea>
-				</div>
-				<br>
+			<div class=" was-validated mb-4">
+				<label for="content">내용</label>
+				<textarea class="form-control is-invalid form-control-lg "
+					id="content" name="content" placeholder="내용을 입력하세요" required></textarea>
+			</div>
+			<br>
 
 
-				<div class="form-group">
-					<label for="fullName">파일 첨부</label> <input
-						type="file" class="form-control-file" id="file1" name="file1">
-					<!-- <div class="Plus_one"></div> -->
-					<!-- <div>
+			<div class="form-group mb-4 ">
+				<label for="fullName">파일 첨부</label>
+				<c:choose>
+					<c:when test="${empty dto.fullName}">
+						<div>
+							<img id="profileImg"
+								src="https://icons-for-free.com/iconfiles/png/512/excel+file+spreadsheet+table+xls+xls+icon+icon-1320167722079480642.png"
+								class="avatar img-thumbnail" style="height: 100px;">
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div>
+							<img id="profileImg"
+								src="${path}/review/displayFile?fullName=${dto.fullName}"
+								class="avatar img-thumbnail" >
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<input type="file" class="form-control-file" id="file1" name="file1">
+				<!-- <div class="Plus_one"></div> -->
+				<!-- <div>
 						<input type="button" class="form-control-file"
 							id="exampleFormControlFile1"
 							onclick="attachAddr(); return false;" value="파일 추가"
 							style="width: 5.5em;">
 					</div>  -->
-				</div>
+			</div>
 
 
-				<div class="btn-group float-right" role="group"
-					aria-label="Basic example">
-					<button type="submit"
-						class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
-						data-toggle="button" aria-pressed="false" ><!-- onclick="alertClick()" -->
-						확인</button>
-					<button type="button"
-						class="btn btn-sm btn-primary justify-content-end  font-color-fff btn-normal-silver"
-						data-toggle="button" aria-pressed="false" onclick="GoList()">취소</button>
-				</div>
-			</form>
+			<div class="btn-group float-right mb-5" role="group"
+				aria-label="Basic example">
+				<button type="submit"
+					class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
+					data-toggle="button" aria-pressed="false" onclick="alertClick()">
+					확인</button>
+				<button type="button"
+					class="btn btn-sm btn-primary justify-content-end  font-color-fff btn-normal-silver"
+					data-toggle="button" aria-pressed="false" onclick="GoList()">취소</button>
+			</div>
+		</form>
 
+		<br> <br>
 
-			<br> <br> <br>
-
-
-
-		</div>
 	</div>
 	<script
-   src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<%@ include file="../include/footer.jsp"%>
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

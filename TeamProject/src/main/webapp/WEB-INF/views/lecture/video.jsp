@@ -214,9 +214,9 @@ function delForm(){
 	     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
 			 		</c:when>
 					
-					<c:otherwise>
+					<%-- <c:otherwise>
 		    			<div><img id ="profileImg" src = "${path}/lecture/displayFile?fileName=${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
-					</c:otherwise>
+					</c:otherwise> --%>
 	        	</c:choose>
 	        	
 	        	<input type="file" name="file1" class="text-center center-block file-upload" id="input_img">

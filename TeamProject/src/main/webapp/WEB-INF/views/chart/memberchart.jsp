@@ -61,37 +61,10 @@
 		});
 	}
 </script>
-<style type="text/css">
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
-
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-}
-</style>
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
-	<div class="container" style="margin-top: 170px;">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3" style="margin-top: 170px;">
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>

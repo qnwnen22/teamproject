@@ -25,11 +25,26 @@
 		});
 
 	}
+	function deleteAdmin(){
+		href.location="${path}/admin/deleteAdmin.do";
+	}
+		
 </script>
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="container table-responsive" style="margin-top: 170px;">
+<<<<<<< HEAD
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 table-responsive" style="margin-top: 170px;">
+=======
+	<div class="container table-responsive">
+		<div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li>ADMIN</li>
+				<li><a href="${path}/admin/list.do">관리자계정</a></li>
+			</ul>
+		</div>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<br>
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
@@ -79,7 +94,7 @@
 								<label for="admin_id">아이디</label> <input type="text"
 									class="form-control mb-1" id="admin_id" name="admin_id"><br>
 								<label for="admin_passwd">비밀번호</label> <input type="password"
-									class="form-control mb-1" id="admin_passwd" name="admin_passwd"><br>
+									class="form-control mb-1" id="badmin_passwd" name="badmin_passwd"><br>
 								<label for="admin_name">이름</label> <input type="text"
 									class="form-control mb-1" id="admin_name" name="admin_name"><br>
 								<label for="admin_hp">연락처</label> <input type="text"

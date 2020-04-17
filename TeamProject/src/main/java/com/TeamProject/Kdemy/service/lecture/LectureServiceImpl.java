@@ -125,6 +125,20 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception {
+		lectureDao.onlineVideoCaht(userid,lecture_idx); 
+		
+	}
+
+	@Override
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx) {
+		return lectureDao.lectureBoxList(lecture_idx);
+	}
+
+	@Override
+	public void onlineVideoCahtOff(String userid, int lecture_idx) {
+		lectureDao.onlineVideoCahtOff(userid,lecture_idx); 
+	}
 	public void reviewStar(LectureReviewDTO dto) {
 		lectureDao.reviewStar(dto);
 	}
@@ -154,6 +168,16 @@ public class LectureServiceImpl implements LectureService {
 		 lectureDao.update_main_img(dto);
 			
 		}
+
+	@Override
+	public void update(LectureDTO dto) {
+		lectureDao.update(dto);
+	}
+
+	@Override
+	public void updateAddImg(LectureDTO dto) {
+		lectureDao.updateAddImg(dto);
+	}
 
 	
 }

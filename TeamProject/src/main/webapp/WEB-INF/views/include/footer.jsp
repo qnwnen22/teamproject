@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
-<div class="container-fluid" id="footer-body">
+
+	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
+<div class="container-fluid align-items-end" id="footer-body">
 	<div id="footertoggle" class="d-flex py-1 ">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
@@ -28,6 +30,8 @@
 			<i class="fas fa-angle-right" style="font-size: 50px;"></i>
 		</button>
 	</div>
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 d-none d-xl-block d-lg-block" id="footer-body">
+	<hr>
 	<div class="tail_body collapse show" id="tail_body">
 		<div class="tail_item flex-shrink-2">
 			<div class="title_tail">CS CENTER</div>
@@ -98,8 +102,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- end tail_body -->
 </div>
+
+	<!-- end tail_body -->
 <div class="modal fade kdemy-login-form" id="kdemyLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -143,10 +148,10 @@
 				</div>
 				
 			   <div class="d-flex row justify-content-md-center pt-2 pb-1">
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="include/images/footer/ico_fb.png"></a></div>
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="include/images/footer/ico_ist.png"></a></div>
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="include/images/footer/ico_tw.png"></a></div>
-			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="include/images/footer/ico_yt.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_yt.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_fb.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_ist.png"></a></div>
+			     <div class="col-2 text-center"><a href="#"><img style="width: 50px; height: 50px;"src="${path}/include/images/footer/ico_tw.png"></a></div>
  			   </div>
          </form>
       </div>

@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -30,9 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
-import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
-import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
@@ -49,6 +48,10 @@ public class LectureController {
 	@Resource(name="uploadPath")
 	String uploadPath;
 	
+	@RequestMapping("addLecturePage.do")
+	public String addLecturePage() {
+		return "lecture/addLecture";
+	}
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String uploadAjax(MultipartFile file, String str, HttpSession session,
@@ -424,17 +427,12 @@ public class LectureController {
 		// 강의 관리 페이지 이동
 		@RequestMapping("myLecturePage.do")
 		public ModelAndView myLecturePage(String userid, HttpSession session) {
-//			LectureDTO dto=new LectureDTO();
-//			dto.setUserid(userid);
 			ModelAndView mav=new ModelAndView();
-//			로그인된 userid의 세션이 파라미터의 userid와 값이 다르면 예외처리
 			if(!((String)session.getAttribute("userid")).equals(userid)) {
-				mav.setViewName("home");
+				mav.setViewName("redirect:/");
 				return mav;
 			}
-			
 			List<LectureDTO> list=lectureService.myLectureList(userid);
-			
 			mav.addObject("list",list);
 			mav.setViewName("lecture/myLecturePage");
 			return mav;
@@ -473,23 +471,31 @@ public class LectureController {
 		@RequestMapping("lectureUpdatePage.do")
 		public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
 			ModelAndView mav=new ModelAndView();
+			LectureDTO ldto=new LectureDTO();
+			ldto=lectureService.lectureView_success(lecture_idx);
+			Map<String, Object> map=new HashMap<>();
+			map.put("ldto", ldto);
+			mav.addObject("map", map);
+			mav.setViewName("lecture/lectureView_success");
 			
 			LectureDTO dto = new LectureDTO();
 			dto.setUserid((String)session.getAttribute("userid"));
 			dto.setLecture_idx(lecture_idx);
 			dto=lectureService.lectureList(dto);
 			
-			System.err.println("cellType: "+dto.getCell_type());
-			String cell_type=dto.getCell_type();
-			if(cell_type.equals("1")) {
-				mav.setViewName("/lecture/lectureUpdate1");
-			}else if(cell_type.equals("2")) {
-				mav.setViewName("/lecture/lectureUpdate2");
-			}else if(cell_type.equals("3")) {
-				mav.setViewName("/lecture/lectureUpdate3");
-			}else {
-				mav.setViewName("redirect:/");
-			}
+//			System.err.println("cellType: "+dto.getCell_type());
+//			String cell_type=dto.getCell_type();
+//			if(cell_type.equals("1")) {
+//				mav.setViewName("/lecture/lectureUpdate1");
+//			}else if(cell_type.equals("2")) {
+//				mav.setViewName("/lecture/lectureUpdate2");
+//			}else if(cell_type.equals("3")) {
+//				mav.setViewName("/lecture/lectureUpdate3");
+//			}else {
+//				mav.setViewName("redirect:/");
+//			}
+			
+			mav.setViewName("/lecture/lectureUpdate");
 			mav.addObject("dto",dto);
 			return mav;
 		}
@@ -539,5 +545,29 @@ public class LectureController {
 			return result;
 		}
 		
+		@RequestMapping(value="lectureUpdate.do",method= {RequestMethod.POST},
+		consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
+		public String lectureUpdate(LectureDTO dto) throws Exception {
+			if(dto.getLecture_date()==null) dto.setLecture_date("");
+			if(dto.getLecture_start()==null) dto.setLecture_start("");
+			if(dto.getLecture_time()==null) dto.setLecture_time("");
+			if(dto.getLecture_address()==null) dto.setLecture_address("");
+			if(dto.getLecture_address2()==null) dto.setLecture_address2("");
+			MultipartFile file1=dto.getFile1();
+			String main_img=file1.getOriginalFilename();
+			if(main_img=="") {
+				lectureService.update(dto);
+			}else {
+				System.err.println("else");
+				try {
+					main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				dto.setMain_img(main_img);
+				lectureService.updateAddImg(dto);
+			}
+			return "redirect:/";
+		}
 
 }

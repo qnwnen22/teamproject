@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.admin.dao.AdminDAO;
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -42,5 +43,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void mainChange(MainDTO dto) {
 		adminDao.mainChange(dto);
+	}
+	@Override
+	public String resoucelist1(String column) {
+		return adminDao.resoucelist1(column);
+	}
+	@Override
+	public AdminDTO adminLogin(MemberDTO dto) {
+		return adminDao.adminLogin(dto);
 	}
 }

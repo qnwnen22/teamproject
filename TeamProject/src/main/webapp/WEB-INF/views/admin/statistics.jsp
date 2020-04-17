@@ -9,7 +9,11 @@
 </head>
 <body>
 <%@include file="../include/fixed-topbar.jsp" %>
-<div class="container d-flex mb-3" style="margin-top: 170px;">
+<<<<<<< HEAD
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 d-flex mb-3" style="margin-top: 170px;">
+=======
+<div class="container d-flex mb-3">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 <div class="card col-3 d-flex align-items-center" style="width:400px">
   <img class="card-img-top" src="../include/images/chart/회원.jpg" alt="Card image">
   <div class="card-body align-items-center">

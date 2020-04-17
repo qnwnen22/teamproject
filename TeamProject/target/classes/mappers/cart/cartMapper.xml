@@ -40,7 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(
 		(select nvl(max(box_idx)+1, 1) from lectureBox ), 
+<<<<<<< HEAD
 		#{cell_type}, #{userid}, #{lecture_idx}
+=======
+		#{cell_type}, #{userid}, #{nickname}, #{lecture_idx}
+		#{cell_type}, #{userid}, #{nickname},#{lecture_idx}
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		)
 	</insert>
 

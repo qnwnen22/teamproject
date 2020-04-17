@@ -39,7 +39,11 @@ function listview(){
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
 	<div id="list"></div>
-	<div class="container" style="margin-top: 170px;">
+<<<<<<< HEAD
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12" style="margin-top: 170px;">
+=======
+	<div class="container">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<div class="table-responsive">
 			<br>
 			<button class="btn btn-outline-primary mb-1" data-toggle="modal"
