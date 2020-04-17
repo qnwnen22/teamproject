@@ -56,7 +56,7 @@
 	<!-- String uploadPath=new String("d:/upload"); -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="C:/Users/mr02-10/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
+			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/main" />
 	</beans:bean>
 	
 	<beans:bean id="packagesuploadPath" class="java.lang.String">

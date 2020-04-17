@@ -619,7 +619,7 @@
 															<div class="setting-items col-4 mb-3">
 																<h5>배경색</h5>
 																<div id="color-container" class="d-flex flex-wrap justify-content-center col-12">
-																	<div id="picker"></div>
+																	<canvas id="picker"></canvas>
 																	<div class="col-12 px-auto d-flex justify-content-center mb-3">
 																	<input id="color" name="color" value="${row.color}">
 																	</div>
@@ -866,13 +866,17 @@
 																		</c:when>
 																		
 																		<c:when test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
+																		<div class="item col-xl-4 text-center"
+																		style="display: initial !important;">
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
+																	</div>
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"
 																					href="${path}/teacher/teacherJoinPage.do"><b>전문가
 																						등록</b></a>
 																			</div>
-																			<a><b>${sessionScope.username}님</b></a>
 																			<div
 																				class="item dropdown col-xl-4 text-center dropdown-toggle"
 																				style="display: initial !important;">
@@ -885,7 +889,7 @@
 																						<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 																				</div>
 																			</div>
-																			<a style="color: blue;">${sessionScope.teacher}</a>														
+																			<a><b>${sessionScope.username}님</b></a>
 																			<a href="${path}/member/logOut.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																				</c:when>
@@ -1267,9 +1271,6 @@
 			</div>
 		</div>
 	</div>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 <%@ include file="include/footer.jsp"%>
 </body>
 </html>

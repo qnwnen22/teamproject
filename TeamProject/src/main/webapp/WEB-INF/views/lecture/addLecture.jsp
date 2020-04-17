@@ -21,7 +21,7 @@
 	<hr>
 <div class="d-flex mb-3">
 	<div class="col rounded-lg shadow p-4 mb-4 bg-white border border-secondary mx-1">
-		<h3>실시간 강의등록</h3>
+		<h3 class="text-center">실시간 강의등록</h3>
 		<a href="${path}/lecture/onlinePage.do"><img class="img-fluid d-block" src="${path}/include/images/teacher/실시간강의.png"></a><br>
 	</div>
 	<div class="col rounded-lg shadow p-4 mb-4 bg-white border border-secondary mx-1">
