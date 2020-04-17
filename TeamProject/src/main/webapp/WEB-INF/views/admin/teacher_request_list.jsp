@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <script type="text/javascript">
 	function requestMemberView(userid) {
 		var inputed = userid;
@@ -31,7 +30,12 @@
 </script>
 </head>
 <body>
-	<div class="container" style="margin-top: 170px;">
+<<<<<<< HEAD
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12" style="margin-top: 170px;">
+=======
+<%@ include file="../include/fixed-topbar.jsp"%>
+	<div class="container">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link"
 				href="${path}/member/list.do">전체회원</a></li>
@@ -54,7 +58,7 @@
 		</ul>
 	</div>
 
-	<div class="container table-responsive">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 table-responsive">
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
 				<tr>

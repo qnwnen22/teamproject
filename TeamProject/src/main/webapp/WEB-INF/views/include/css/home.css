@@ -176,26 +176,21 @@ img {
 
 .MarketIndex .index-header-left {
     position: absolute;
-    width: 558px;
-    height: 351px;
-    background-size: auto;
-    bottom: 54px;
-    left: -295px;
+    width: 400px;
+    height: 300px;
+    bottom: 80px;
     z-index:1;
-    background-size: contain;
     opacity: 0.8;
 }
 
 
 .MarketIndex .index-header-right {
-    position: absolute;
-    width: 484px;
-    height: 365px;
-        background-size: auto;
-    bottom: 40px;
-    right: -300px;
+     position: absolute;
+    width: 400px;
+    height: 300px;
+    bottom: 80px;
+    right: 10px;
     z-index: 1;
-    background-size: contain;
     opacity: 0.8;
 }
 

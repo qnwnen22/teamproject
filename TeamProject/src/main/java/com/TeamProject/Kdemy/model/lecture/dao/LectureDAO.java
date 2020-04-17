@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 
 public interface LectureDAO {
 
@@ -38,4 +39,17 @@ public interface LectureDAO {
 	public int pointCheck(String userid);
 	
 	public List<LectureDTO> chartCountLecture();
+	public LectureDTO lectureView_success(int lecture_idx);
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception;
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx);
+	public void onlineVideoCahtOff(String userid, int lecture_idx);
+	public void reviewStar(LectureReviewDTO dto);
+	public void reviewStarUpdate(LectureReviewDTO dto);
+	public String getMain_img(int lecture_idx);
+	public int lectureViewCheck(LectureBoxDTO dto);
+	public LectureDTO lectureList(LectureDTO dto);
+	public void update_main_img(LectureDTO dto);
+	
+	public void update(LectureDTO dto);
+	public void updateAddImg(LectureDTO dto);
 }

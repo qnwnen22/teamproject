@@ -19,12 +19,12 @@
 								if ($(window).scrollTop() >= 538) { //스크롤이 아래로 538px 이상 내려갔을때 실행되는 이벤트 정의
 									$('header')
 											.attr('class',
-													'nav d-xl-block d-lg-block d-md-none d-sm-none');
+													'nav d-xl-block d-lg-block d-none');
 								}
 							} else {
 								if ($(window).scrollTop() < 538) { //스크롤이 아래로 538px 이상 올라갔을때 실행되는 이벤트 정의
 									$('header').attr('class',
-											'nav d-md-none d-sm-none');
+											'nav d-none');
 								}
 							}
 							//현재 스크롤 위치(st)를 마지막 위치로 업데이트
@@ -34,6 +34,7 @@
 			place : 'picker',
 			input : 'color'
 		});
+
 		//드래그 기본 효과를 막음 .은 클래스 class=fileDrop, #은 id
 		$(".fileDrop, .fileDrop1").on("dragenter dragover", function(event) {
 			event.preventDefault();
@@ -84,7 +85,6 @@
 										}
 									});
 						});//fileDrop 함수
-
 		$(".fileDrop1").on("drop",function(event) {
 							//drop이 될 때 기본 효과를 막음
 							event.preventDefault();
@@ -106,7 +106,6 @@
 											console.log("data:" + data); //업로드된 파일 이름
 											console.log("status:" + status); //성공,실패 여부
 											console.log("req:" + req.status);//요청코드값
-
 											var str = "";
 											if (checkImageType(data)) {//이미지 파일
 												str = "<div><a href='${path}/upload/displayFile?fileName="
@@ -115,7 +114,7 @@
 												str += "<img src='${path}/upload/displayFile?fileName="
 														+ data
 														+ "'class='mx-auto d-block'style='height: 18rem;''></a>";
-												str1 ="<div class='col-12 border mb-3' id='background_div1'><h5>"+getOriginalName1(data)+"</h5></div><input type='hidden' name='background_img1' value='"+getOriginalName1(data)+"'>";
+												str1 ="<div class='col-12 border mb-3' id='background_div1'><h5>"+getOriginalName1(data)+"</h5></div><input type='hidden' name='background_img1' value='"+data+"'>";
 											} else {//이미지가 아닌 경우
 												str = "";
 												str += "<a href='${path}/upload/displayFile?fileName="
@@ -200,6 +199,8 @@
 			return fileName.match(pattern); //규칙에 맞으면 true가 리턴
 		}
 	});
+
+	
 </script>
 </head>
 <body>
@@ -271,7 +272,7 @@
 							<div class="items-container row">
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon1"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
 										<div class="iconName">
 											<span><b>디자인</b></span>
 										</div>
@@ -279,7 +280,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon2"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
 										<div class="iconName">
 											<span><b>마케팅</b></span>
 										</div>
@@ -287,7 +288,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon3"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
 										<div class="iconName">
 											<span><b>문서,취업</b></span>
 										</div>
@@ -295,7 +296,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon4"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
 										<div class="iconName">
 											<span><b>아이콘</b></span>
 										</div>
@@ -303,7 +304,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon5"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
 										<div class="iconName">
 											<span><b>아이콘2</b></span>
 										</div>
@@ -311,7 +312,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon6"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
 										<div class="iconName">
 											<span><b>안드로이드</b></span>
 										</div>
@@ -319,7 +320,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon7"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
 										<div class="iconName">
 											<span><b>어플</b></span>
 										</div>
@@ -327,7 +328,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon8"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
 										<div class="iconName">
 											<span><b>콘텐츠제작</b></span>
 										</div>
@@ -335,7 +336,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon9"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
 										<div class="iconName">
 											<span><b>콘텐츠제작2</b></span>
 										</div>
@@ -343,7 +344,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon10"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
 										<div class="iconName">
 											<span><b>IT프로그래밍</b></span>
 										</div>
@@ -351,7 +352,7 @@
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
 									<a class="plain" href="#">
-										<div class="icon icon11"></div>
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
 										<div class="iconName">
 											<span><b>번역,통역</b></span>
 										</div>
@@ -367,8 +368,9 @@
 							<div class="MarketIndex">
 							<c:forEach var="row" items="${list}">
 								<div id="mainHeaderContainer"
-									class="position-relative col-xl-12" style="background-color: ${row.color}">
+									class="position-relative col-xl-12" style="background-color: ${row.color}" id="color1">
 									
+									<c:if test="${sessionScope.admin_id != null}">
 									<!-- 관리자 메인배너 변경 코드 -->
 									<button class="btn" data-toggle="modal"
 										data-target="#mainChange">
@@ -392,7 +394,7 @@
 														<div class="global-body">
 															<div class="MasterBodyDestTop">
 																<div class="col-md-12 col-sm-12 pt-3"
-																	style="background-color:${row.color}" id="color1">
+																	style="background-color:${row.color}">
 																	
 																	<div class="header position-relative"
 																		id="kdemiMainHeader">
@@ -408,7 +410,7 @@
 																					</div>
 																					<div class="flex-end-center col-auto p-0">
 																						<div class="header-right-info NavRight col-xl-12">
-																							<c:if test="${sessionScope.userid == 'admin'}">
+																							<c:if test="${sessionScope.admin_id != 'null'}">
 																								<div
 																									class="item dropdown col-xl-4 text-center dropdown-toggle"
 																									style="display: initial !important;">
@@ -515,7 +517,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon2"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
 																							<div class="iconName">
 																								<span><b>마케팅</b></span>
 																							</div>
@@ -524,7 +526,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon3"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
 																							<div class="iconName">
 																								<span><b>문서,취업</b></span>
 																							</div>
@@ -533,7 +535,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon4"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
 																							<div class="iconName">
 																								<span><b>아이콘</b></span>
 																							</div>
@@ -542,7 +544,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon5"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
 																							<div class="iconName">
 																								<span><b>아이콘2</b></span>
 																							</div>
@@ -551,7 +553,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon6"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
 																							<div class="iconName">
 																								<span><b>안드로이드</b></span>
 																							</div>
@@ -560,7 +562,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon7"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
 																							<div class="iconName">
 																								<span><b>어플</b></span>
 																							</div>
@@ -569,7 +571,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon8"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
 																							<div class="iconName">
 																								<span><b>콘텐츠제작</b></span>
 																							</div>
@@ -578,7 +580,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon9"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
 																							<div class="iconName">
 																								<span><b>콘텐츠제작2</b></span>
 																							</div>
@@ -587,7 +589,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon10"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
 																							<div class="iconName">
 																								<span><b>IT프로그래밍</b></span>
 																							</div>
@@ -596,7 +598,7 @@
 
 																					<div class="RootDirectoryThemeItem">
 																						<a class="plain" href="#">
-																							<div class="icon icon11"></div>
+																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
 																							<div class="iconName">
 																								<span><b>번역,통역</b></span>
 																							</div>
@@ -619,7 +621,7 @@
 																<div id="color-container" class="d-flex flex-wrap justify-content-center col-12">
 																	<div id="picker"></div>
 																	<div class="col-12 px-auto d-flex justify-content-center mb-3">
-																	<input id="color" name="color" value="">
+																	<input id="color" name="color" value="${row.color}">
 																	</div>
 																</div>
 																<h5>이미지</h5>
@@ -639,7 +641,7 @@
 																		</div>
 																	</div>
 																		<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon2"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -648,7 +650,7 @@
 																		</div>
 																	</div>
 																		<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon3"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -657,7 +659,7 @@
 																		</div>
 																		</div>
 																		<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon4"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -668,7 +670,7 @@
 																	</div>
 																	<div id="icon-container" class="d-flex col-12">
 																	<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon5"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -677,7 +679,7 @@
 																		</div>
 																	</div>
 																	<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon6"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -686,7 +688,7 @@
 																		</div>
 																	</div>
 																	<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon7"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -695,7 +697,7 @@
 																		</div>
 																	</div>
 																	<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon8"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -706,7 +708,7 @@
 																	</div>
 																	<div id="icon-container" class="d-flex col-12">
 																	<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon9"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -715,7 +717,7 @@
 																		</div>
 																	</div>
 																	<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon10"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -724,7 +726,7 @@
 																		</div>
 																	</div>
 																	<div class="RootDirectoryThemeItem col-3">
-																		<div class="icon icon11"></div>
+																		<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
 																		<div class="iconName">
 																			<span><b>번역,통역</b></span>
 																		</div>
@@ -747,6 +749,7 @@
 											</div>
 										</div>
 									<!-- 메인 변경 끝 -->
+									</c:if>
 									<div class="main-header-gradient" style="opacity: 0.3
     background-image: linear-gradient(to bottom, ${row.color}, ${row.color})"></div>
 									<div class="header position-relative" id="kdemiMainHeader">
@@ -761,7 +764,18 @@
 													</div>
 													<div class="flex-end-center col-auto p-0">
 														<div class="header-right-info NavRight col-xl-12">
-															<c:if test="${sessionScope.userid == 'admin'}">
+															
+															<!-- 관리자 로그인 -->
+															<c:if test="${sessionScope.admin_id != null}">
+															<div class="item col-xl-4 text-center"
+																		style="display: initial !important;">
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
+																	</div>
+															<div class="item col-xl-4 text-center"
+																				style="display: initial !important;">
+																				<a href="${path}/member/couponMaker.do" class="plain cursor" ><b>쿠폰생성</b></a>
+																			</div>
 																<div
 																	class="item dropdown col-xl-4 text-center dropdown-toggle"
 																	style="display: initial !important;">
@@ -769,8 +783,8 @@
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
 																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
-																		<a class="dropdown-item" href="#">강의관리</a> <a
-																			class="dropdown-item" href="#">패키지관리</a>
+																		<a class="dropdown-item" href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
+						    											<a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
 																	</div>
 																</div>
 																<div
@@ -785,9 +799,14 @@
 																			class="dropdown-item" href="#">패키지관리</a>
 																	</div>
 																</div>
+																<a><b>${sessionScope.admin_id}님</b></a>
+																<a href="${path}/member/logOut.do"
+																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 															</c:if>
+															<!-- 관리자 로그인 끝 -->
+															
 															<c:choose>
-																<c:when test="${sessionScope.userid == null}">
+																<c:when test="${sessionScope.userid == null && sessionScope.admin_id == null}">
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
@@ -811,57 +830,56 @@
 																			data-ga-category="header"> 무료회원가입 </a>
 																	</div>
 																</c:when>
+																
 																<c:otherwise>
 																	<c:choose>
-																		<c:when test="${sessionScope.teacher == 'y'}">
-																			<a><b>${sessionScope.username}님</b></a>
+																		<c:when test="${sessionScope.teacher == 'y' && sessionScope.userid !=null}">
 																			<div class="item col-xl-4 text-center"
+																		style="display: initial !important;">
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
+																	</div>
+																	<div
+																				class="item dropdown col-xl-4 text-center dropdown-toggle"
 																				style="display: initial !important;">
-																				<a href="${path}/member/couponMaker.do" class="plain cursor" ><b>쿠폰 생성</b></a>
+																				<a class="plain cursor" data-ga-category="header"><b>강의관리</b></a>
+																				<div class="dropdown-menu">
+																					<a class="dropdown-item" href="${path}/lecture/addLecturePage.do">강의등록</a>
+																					<a class="dropdown-item" href="${path}/lecture/myLecturePage.do?userid=${sessionScope.userid}">등록한 강의</a>
+																				</div>
 																			</div>
 																			<div
 																				class="item dropdown col-xl-4 text-center dropdown-toggle"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item"
-																						href="${path}/teacher/teacherPage.do">강사 페이지이동</a>
-																					<a class="dropdown-item"
-																						href="${path}/member/myPage.do">나의정보</a> <a
-																						class="dropdown-item"
-																						href="${path}/cart/cartPage.do">장바구니</a>
-																					<a class="dropdown-item" href="#">관심상품</a>
+																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
 																					<a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a>
-																					<a class="dropdown-item" href="${path}/member/detail/${sessionScope.userid}">나의정보</a> <a
-																						class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
-																					<a class="dropdown-item" href="${path}/member/myPage.do">나의정보</a> 
 																					<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
-																					<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
+																					<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>																		
 																				</div>
 																			</div>
 
-																			<a style="color: blue;">${sessionScope.teacher}</a>
+																			<a><b>${sessionScope.username}님</b></a>
 																			<a href="${path}/member/logOut.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																		</c:when>
-																		<c:otherwise>
+																		
+																		<c:when test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"
 																					href="${path}/teacher/teacherJoinPage.do"><b>전문가
 																						등록</b></a>
 																			</div>
-																			<div class="item col-xl-4 text-center"
-																				style="display: initial !important;">
-																				<a href="${path}/member/couponMaker.do" class="plain cursor" ><b>쿠폰 생성</b></a>
-																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
 																			<div
 																				class="item dropdown col-xl-4 text-center dropdown-toggle"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 																				<div class="dropdown-menu">
-																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a> 
+																					<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+																					<a class="dropdown-item" href="${path}/lecture/myLectureListPage.do">구입한 강의 목록</a> 
 																						<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 																						<a class="dropdown-item" href="#">관심상품</a>
 																						<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
@@ -870,8 +888,8 @@
 																			<a style="color: blue;">${sessionScope.teacher}</a>														
 																			<a href="${path}/member/logOut.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
-																		</c:otherwise>
-
+																				</c:when>
+																				
 																	</c:choose>
 																</c:otherwise>
 															</c:choose>
@@ -927,9 +945,12 @@
 										</div>
 									</div>
 
-									<div class="index-header-left d-none d-xl-block"></div>
-									<div class="index-header-right d-none d-xl-block"></div>
-
+									<div class="index-header-left d-none d-xl-block mx-auto">
+									<img class="img-fluid" src="${path}/include/images/main/${row.background_img0}" onerror="this.style.display='none'">
+									</div>
+									<div class="index-header-right d-none d-xl-block mx-auto">
+									<img class="img-fluid" src="${path}/include/images/main/${row.background_img1}" onerror="this.style.display='none'">
+									</div>
 								</div>
 							</div>
 
@@ -951,7 +972,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon2"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
 														<div class="iconName">
 															<span><b>마케팅</b></span>
 														</div>
@@ -960,7 +981,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon3"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
 														<div class="iconName">
 															<span><b>문서,취업</b></span>
 														</div>
@@ -969,7 +990,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon4"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
 														<div class="iconName">
 															<span><b>아이콘</b></span>
 														</div>
@@ -978,7 +999,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon5"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
 														<div class="iconName">
 															<span><b>아이콘2</b></span>
 														</div>
@@ -987,7 +1008,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon6"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
 														<div class="iconName">
 															<span><b>안드로이드</b></span>
 														</div>
@@ -996,7 +1017,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon7"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
 														<div class="iconName">
 															<span><b>어플</b></span>
 														</div>
@@ -1005,7 +1026,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon8"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
 														<div class="iconName">
 															<span><b>콘텐츠제작</b></span>
 														</div>
@@ -1014,7 +1035,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon9"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
 														<div class="iconName">
 															<span><b>콘텐츠제작2</b></span>
 														</div>
@@ -1023,7 +1044,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon10"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
 														<div class="iconName">
 															<span><b>IT프로그래밍</b></span>
 														</div>
@@ -1032,7 +1053,7 @@
 
 												<div class="RootDirectoryThemeItem">
 													<a class="plain" href="#">
-														<div class="icon icon11"></div>
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
 														<div class="iconName">
 															<span><b>번역,통역</b></span>
 														</div>
@@ -1050,9 +1071,14 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- content -->
 
 	<div style="width: 63%; margin: auto;">
+		<div class="flex-end-center col-auto p-0">
+														
+													</div>
+		<hr>
 		<a href="${path}/review/list.do"> <marquee scrollamount="5">
 				<h4 style="color: red;">★수강후기★</h4>
 			</marquee>
@@ -1190,6 +1216,7 @@
 
 		</div>
 	</div>
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 	<div class="card">
 		<div class="card-header">Featured</div>
 		<div class="card-body">
@@ -1240,6 +1267,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

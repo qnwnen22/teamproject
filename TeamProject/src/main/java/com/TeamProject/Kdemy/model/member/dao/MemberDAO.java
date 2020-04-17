@@ -2,15 +2,17 @@ package com.TeamProject.Kdemy.model.member.dao;
 
 import java.util.List;
 
+import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberDAO {
 
 	public void insertMember(MemberDTO dto);
 
-	public MemberDTO kdemyLogin(MemberDTO dto);
+	public MemberDTO kdemyLogin(MemberDTO dto) throws Exception;
 
-	public String passwdCheck(MemberDTO dto);
+	public String passwdCheck(MemberDTO dto) throws Exception;
 
 	public int idCheck(MemberDTO dto);
 	
@@ -30,7 +32,6 @@ public interface MemberDAO {
 
 	public void updatePW(MemberDTO dto);
 
-
 	public List<MemberDTO> chartCount();
 	
 	public List<MemberDTO> chartCountMonth();
@@ -47,4 +48,7 @@ public interface MemberDAO {
 
 	public void updateMember(MemberDTO dto);
 
+    public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto);
+	
+	public List<CartDTO> cartList(CartDTO dto);
 }

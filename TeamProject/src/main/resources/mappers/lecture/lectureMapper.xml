@@ -5,21 +5,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="lecture">
+
+    <!-- 나의 썸네일 수정 -->
+   <update id="update_main_img">
+    update lecture
+    set 
+    main_img=#{main_img}
+    where lecture_idx=#{lecture_idx}    
+  </update>
+  
 	<!-- 강의 등록 insert -->
 	<insert id="teacher_type1_insert">
 		insert into lecture
-		(lecture_idx, cell_type, main_category, sub_category,
-		userid, subject, main_img, videofile, content, price)
-		values ((select nvl(max(lecture_idx)+1,1) from lecture),
+		(lecture_idx, 
+		cell_type, main_category, sub_category,
+		userid, subject, 
+		main_img, videofile, content, 
+		price)
+		values 
+		((select nvl(max(lecture_idx)+1,1) from lecture),
 		'1', #{main_category}, #{sub_category},
-		#{userid}, #{subject}, #{main_img}, #{videofile}, #{content}, #{price})
+		#{userid}, #{subject}, 
+		#{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content}, 
+		#{price})
 	</insert>
 	<insert id="teacher_type2_insert">
 		insert into lecture
 		(lecture_idx,
 		 cell_type, main_category, sub_category, 
 		 userid, subject, price,
-		 content, main_img, videofile,
+		 main_img, videofile, content, 
 		 lecture_date, lecture_start, lecture_time
 		 )
 		values
@@ -27,15 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (select nvl(max(lecture_idx)+1, 1) from lecture),
 		 '2', #{main_category}, #{sub_category}, 
 		 #{userid}, #{subject}, #{price},
-		 #{content}, #{main_img}, #{videofile},
+		 #{main_img, jdbcType=VARCHAR}, #{videofile, jdbcType=VARCHAR}, #{content},
 		 #{lecture_date}, #{lecture_start}, #{lecture_time}
 		 )
 	</insert>
 	<insert id="teacher_type3_insert">
 		insert into lecture
-		(lecture_idx, cell_type, main_category,
-		 sub_category, userid, subject,
-		 price, content, main_img, 
+		(lecture_idx, 
+		 cell_type, main_category, sub_category, 
+		 userid, subject, price,
+		 main_img, content,  
 		 lecture_date, lecture_start, lecture_time,
 		 lecture_address, lecture_address2 )
 		values
@@ -43,7 +59,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (select nvl(max(lecture_idx)+1, 1) from lecture),
 		 '3', #{main_category}, #{sub_category}, 
 		 #{userid}, #{subject}, #{price}, 
-		 #{content}, #{main_img}, #{lecture_date}, 
+		#{main_img, jdbcType=VARCHAR}, #{content}, 
+		 #{lecture_date}, 
 		 #{lecture_start}, #{lecture_time}, #{lecture_address},
 		 #{lecture_address2}
 		)
@@ -170,6 +187,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="chartCountLecture" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select main_category, count(*) tcount from lecture group by main_category
 	</select>
+	
+	<select id="lectureView_success"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from lecture
+		where lecture_idx=#{lecture_idx}
+	</select>
+	
+	<select id="getMain_img"
+	resultType="String">
+		select main_img from lecture
+		where lecture_idx=#{lecture_idx} 
+		order by lecture_idx desc
+	</select>
+	
+	<select id="lectureList"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+		select * from lecture
+		where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</select>
+	
+	<update id="update">
+		update lecture set 
+		main_category=#{main_category}, sub_category=#{sub_category},
+		subject=#{subject}, price=#{price}, content=#{content},
+		lecture_date=#{lecture_date}, lecture_start=#{lecture_start}, lecture_time=#{lecture_time},
+		lecture_address=#{lecture_address}, lecture_address2=#{lecture_address2}
+		where lecture_idx=#{lecture_idx}
+	</update>
+	
+	<update id="updateAddImg">
+		update lecture set 
+		main_category=#{main_category}, sub_category=#{sub_category},
+		subject=#{subject}, price=#{price}, content=#{content},
+		lecture_date=#{lecture_date}, lecture_start=#{lecture_start}, lecture_time=#{lecture_time},
+		lecture_address=#{lecture_address}, lecture_address2=#{lecture_address2},
+		main_img=#{main_img}
+		where lecture_idx=${lecture_idx}
+	</update>
 	
 </mapper>
 

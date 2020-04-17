@@ -2,6 +2,7 @@ package com.TeamProject.Kdemy.model.lecture.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 @Repository
 public class LectureDAOImpl implements LectureDAO {
@@ -139,4 +142,70 @@ public class LectureDAOImpl implements LectureDAO {
 	public List<LectureDTO> chartCountLecture(){
 		return sqlSession.selectList("lecture.chartCountLecture");
 	}
+
+	@Override
+	public LectureDTO lectureView_success(int lecture_idx) {
+		return sqlSession.selectOne("lecture.lectureView_success",lecture_idx);
+	}
+
+	@Override
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception {
+		Map <String,Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("lecture_idx",lecture_idx);
+		sqlSession.update("lectureBox.onlineVideoCaht",map);		
+	}
+
+	@Override
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx) {
+		return sqlSession.selectList("lectureBox.lectureBoxList",lecture_idx);
+	}
+
+	@Override
+	public void onlineVideoCahtOff(String userid, int lecture_idx) {
+		Map <String,Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("lecture_idx",lecture_idx);
+		sqlSession.update("lectureBox.onlineVideoCahtOff",map);			
+	}
+	public void reviewStar(LectureReviewDTO dto) {
+		sqlSession.insert("lectureReview.reviewStar",dto);
+	}
+
+	@Override
+	public void reviewStarUpdate(LectureReviewDTO dto) {
+		sqlSession.update("lectureReview.reviewStarUpdate",dto);
+	}
+
+	@Override
+	public String getMain_img(int lecture_idx) {
+		return sqlSession.selectOne("lecture.getMain_img",lecture_idx);
+	}
+
+	@Override
+	public int lectureViewCheck(LectureBoxDTO dto) {
+		return sqlSession.selectOne("lectureBox.lectureViewCheck",dto);
+	}
+
+	@Override
+	public LectureDTO lectureList(LectureDTO dto) {
+		return sqlSession.selectOne("lecture.lectureList",dto);
+	}
+
+	@Override
+	public void update_main_img(LectureDTO dto) {
+		sqlSession.update("lecture.update_main_img",dto);
+	
+	}
+
+	@Override
+	public void update(LectureDTO dto) {
+		sqlSession.update("lecture.update",dto);
+	}
+
+	@Override
+	public void updateAddImg(LectureDTO dto) {
+		sqlSession.update("lecture.updateAddImg",dto);
+	}
+
 }

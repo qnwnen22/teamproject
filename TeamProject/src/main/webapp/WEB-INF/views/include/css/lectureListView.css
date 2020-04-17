@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.lectureListDiv {
+	margin-top: 170px;
+	width: 100%;
+	border: 1px solid;
+}
+.imgDiv {
+	border: 1px solid black;	
+}

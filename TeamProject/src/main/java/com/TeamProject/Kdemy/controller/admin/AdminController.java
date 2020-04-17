@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
 import com.TeamProject.Kdemy.service.admin.AdminService;
+import com.TeamProject.Kdemy.service.member.BCrypt;
 @Controller 
 @RequestMapping("admin/*") //공통 url mapping
 public class AdminController {
@@ -34,6 +35,8 @@ public class AdminController {
 	}
 	@RequestMapping("insertAdmin.do")
 	public String insertAdmin(AdminDTO dto) {
+		String admin_passwd = BCrypt.hashpw(dto.getBadmin_passwd(), BCrypt.gensalt());
+		dto.setAdmin_passwd(admin_passwd);
 		adminService.insertAdmin(dto);
 		return "redirect:/admin/list.do";
 	}
@@ -48,7 +51,7 @@ public class AdminController {
 	@RequestMapping("updateAdmin.do")
 	public String update(AdminDTO dto) {
 		adminService.updateAdmin(dto);
-		return "redirect:/admin/list.do";
+		return "redirect:/admin/list.do";	
 	}
 	@RequestMapping("deleteAdmin.do")
 	public String delete(@RequestParam String admin_id) {
