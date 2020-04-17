@@ -357,11 +357,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("login.do")
-<<<<<<< HEAD
 	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) throws Exception {
-=======
-	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) throws Exception{
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		String result=memberService.passwdCheck(dto);
 		System.out.println(result);
 		ModelAndView mav=new ModelAndView();
@@ -373,9 +369,7 @@ public class MemberController {
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
-<<<<<<< HEAD
-		
-=======
+
 			mav.setViewName("redirect:/");
 		}else if(result.equals("관리자로그인")){
 			AdminDTO dtoa=adminService.adminLogin(dto);
@@ -384,7 +378,6 @@ public class MemberController {
 			session.setAttribute("admin_name", dtoa.getAdmin_name());
 			session.setAttribute("admin_level", dtoa.getAdmin_level());
 			mav.setViewName("redirect:/");
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		}else {
 			mav.addObject("message","로그인실패");
 			mav.setViewName("member/login");
@@ -419,19 +412,16 @@ public class MemberController {
 //	session.invalidate();
 //	return "member/login";
 //	}
-<<<<<<< HEAD
 
+//	@RequestMapping("logOut.do")
+//	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
+//		//세션 초기화
+//		memberService.logout(session);
+//		//login.jsp로 이동
+//		mav.setViewName("redirect:/");
+//		return mav;
+//	}
 
-=======
-	@RequestMapping("logOut.do")
-	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
-		//세션 초기화
-		memberService.logout(session);
-		//login.jsp로 이동
-		mav.setViewName("redirect:/");
-		return mav;
-	}
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 
 	@RequestMapping("list.do")

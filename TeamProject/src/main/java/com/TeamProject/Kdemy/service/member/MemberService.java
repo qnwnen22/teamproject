@@ -59,13 +59,11 @@ public interface MemberService {
     public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto);
 	
 	public List<CartDTO> cartList(CartDTO dto);
-<<<<<<< HEAD
 
 	public List<CouponDTO> couponDetail(CouponDTO dto);
 
 	public int couponCheck(CouponDTO dto);
 
-=======
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+
 
 }

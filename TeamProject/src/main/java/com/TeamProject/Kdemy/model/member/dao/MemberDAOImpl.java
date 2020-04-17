@@ -55,16 +55,13 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("member.idCheck",dto);
 	}
 	@Override
-<<<<<<< HEAD
+
 	public int couponCheck(CouponDTO dto) {
 		return sqlSession.selectOne("member.couponCheck",dto);
 	}
 	
 	@Override
-	public String passwdCheck(MemberDTO dto) {
-=======
 	public String passwdCheck(MemberDTO dto) throws Exception{
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	    String result="";	
 	    MemberDTO dto2=sqlSession.selectOne("member.passwdCheck",dto);
 		try {
