@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
+import com.TeamProject.Kdemy.model.member.dto.CouponDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.member.BCrypt;
 
@@ -51,6 +52,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int idCheck(MemberDTO dto) {
 		return sqlSession.selectOne("member.idCheck",dto);
+	}
+	
+	@Override
+	public int couponCheck(CouponDTO dto) {
+		return sqlSession.selectOne("member.couponCheck",dto);
 	}
 	
 	@Override
@@ -130,9 +136,12 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void updateCouponPoint(MemberDTO dto) {
-		sqlSession.update("member.updateCouponPoint",dto);
-		
-		
+		sqlSession.update("member.updateCouponPoint",dto);		
+	}
+	
+	@Override
+	public void insertCoupon(CouponDTO dto) {
+		sqlSession.insert("member.insertCoupon",dto);
 	}
 
 	@Override
@@ -161,6 +170,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<MemberDTO> chartCountMonth() {
 		return sqlSession.selectList("member.chartCountMonth");
+	}
+
+	@Override
+	public List<CouponDTO> couponDetail(CouponDTO dto) {
+		return sqlSession.selectList("member.couponDetail");
 	}
 	
 }

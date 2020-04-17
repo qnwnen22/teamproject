@@ -1,9 +1,11 @@
 package com.TeamProject.Kdemy.model.member.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
+import com.TeamProject.Kdemy.model.member.dto.CouponDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 public interface MemberDAO {
@@ -32,7 +34,6 @@ public interface MemberDAO {
 
 	public void updatePW(MemberDTO dto);
 
-
 	public List<MemberDTO> chartCount();
 	
 	public List<MemberDTO> chartCountMonth();
@@ -52,4 +53,10 @@ public interface MemberDAO {
     public List<LectureBoxDTO> orderDetail(LectureBoxDTO dto);
 	
 	public List<CartDTO> cartList(CartDTO dto);
+
+	public void insertCoupon(CouponDTO dto);
+
+	public List<CouponDTO> couponDetail(CouponDTO dto);
+
+	public int couponCheck(CouponDTO dto);
 }

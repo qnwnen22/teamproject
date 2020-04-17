@@ -9,8 +9,9 @@
 <link rel="stylesheet" href="${path}/include/css/login.css">
 </head>
 <body>
-<<<<<<< HEAD
 <%@ include file="../include/fixed-topbar.jsp" %>
+
+로그인.jsp
 	<%-- <div class="container-lg joinDiv">
 =======
 	<div class="container-lg loginDiv">
