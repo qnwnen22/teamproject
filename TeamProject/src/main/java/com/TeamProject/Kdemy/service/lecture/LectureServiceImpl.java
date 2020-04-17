@@ -123,5 +123,21 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.lectureView_success(lecture_idx);
 	}
 
+	@Override
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception {
+		lectureDao.onlineVideoCaht(userid,lecture_idx); 
+		
+	}
+
+	@Override
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx) {
+		return lectureDao.lectureBoxList(lecture_idx);
+	}
+
+	@Override
+	public void onlineVideoCahtOff(String userid, int lecture_idx) {
+		lectureDao.onlineVideoCahtOff(userid,lecture_idx); 
+	}
+
 	
 }

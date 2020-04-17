@@ -62,7 +62,7 @@
 </head>
 <body>
 <%@include file="../include/fixed-topbar.jsp" %>
-<div class="container" style="margin-top: 170px;">
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3" style="margin-top: 170px;">
 <div class="d-flex">
 <div class="card col-3 d-flex align-items-center" style="width:400px">
   <img class="card-img-top" src="../include/images/chart/회원.jpg" alt="Card image" style="opacity: 0.3">

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.service.cart.CartService;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 
@@ -48,6 +48,8 @@ public class CartController {
 	public String insertCart(CartDTO dto, HttpSession session) {
 		
 		String userid=(String)session.getAttribute("userid");
+		String nickname=(String)session.getAttribute("nickname");
+		System.err.println("닉네임은? "+nickname);
 		dto.setUserid(userid);
 		int check=cartService.cartCheck(dto);
 		if(!(check>0)) {
@@ -61,12 +63,19 @@ public class CartController {
 	public String buyList(HttpSession session, String[] lecture_idx, 
 			String[] cell_type, int count, int price) {
 		String userid=(String)session.getAttribute("userid");
+		String nickname=(String)session.getAttribute("nickname");
+		System.err.println("닉네임은? "+nickname);
 //		멤버 테이블에서 포인트 차감
 		cartService.buyLecture(userid,price);
 //		장바구니 테이블에서 레코드 삭제 & LectureBox 테이블에 레코드 추가
+//		LectureReviewDTO dto = new LectureReviewDTO();
 		for(int i=0; i<count; i++) {
 			cartService.buyCart(userid,lecture_idx[i]); 
-			cartService.insertLectureBox(userid, cell_type[i], lecture_idx[i]);
+			cartService.insertLectureBox(userid, nickname, cell_type[i], lecture_idx[i]);
+//			dto.setUserid(userid);
+//			dto.setLecture_idx(Integer.parseInt(lecture_idx[i]));
+//			dto.setStar(0);
+//			lectureService.reviewStar(dto);
 		}
 		return "redirect:/cart/cartPage.do";
 	}

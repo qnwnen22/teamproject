@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
-<div class="container-fluid" id="footer-body">
-	<div id="footertoggle" class="d-flex py-1 ">
+
+	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
 			<i class="fa fa-bars" style="font-size: 50px;"></i>
@@ -28,6 +28,8 @@
 			<i class="fas fa-angle-right" style="font-size: 50px;"></i>
 		</button>
 	</div>
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 d-none d-xl-block d-lg-block" id="footer-body">
+	<hr>
 	<div class="tail_body collapse show" id="tail_body">
 		<div class="tail_item flex-shrink-2">
 			<div class="title_tail">CS CENTER</div>
@@ -98,8 +100,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- end tail_body -->
 </div>
+
+	<!-- end tail_body -->
 <div class="modal fade kdemy-login-form" id="kdemyLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

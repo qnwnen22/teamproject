@@ -29,7 +29,7 @@
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="container table-responsive" style="margin-top: 170px;">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 table-responsive" style="margin-top: 170px;">
 		<br>
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">

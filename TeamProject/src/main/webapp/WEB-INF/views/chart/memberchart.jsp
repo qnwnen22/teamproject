@@ -91,7 +91,7 @@
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
-	<div class="container" style="margin-top: 170px;">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3" style="margin-top: 170px;">
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>

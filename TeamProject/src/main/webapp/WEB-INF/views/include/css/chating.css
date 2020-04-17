@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+.hidden {
+    display: none;
+}
+
+#username-page {
+    text-align: center;
+}
+
+#chat-page {
+    position: relative;
+    height: 80vh;
+    padding-bottom: 10px;
+}
+.video-contianer {
+	overflow: auto;
+    overflow-y: scroll;
+    height:80vh;	
+}
+
+.user-container {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    height: 70%;
+    position: absolute;
+    padding-left: 0 !important;
+    padding-right: 0 !important; 
+    z-index: 2;
+}
+
+.chat-container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    margin-top: 10px;
+    height: 76%;
+    position: relative;
+    z-index: 1;
+}
+.chat-body {
+	padding: 0 !important;
+}
+#userListTbody {
+	text-align: center;
+}
+#chat-page ul {
+    list-style-type: none;
+    background-color: #FFF;
+    margin: 0;
+    height: 68vh;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+#chat-page ul li {
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid #f4f4f4;
+    border-radius: 15px;
+}
+
+#chat-page ul li p {
+    margin: 0;
+}
+
+#chat-page .event-message {
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+#chat-page .event-message p {
+    color: #777;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+#chat-page .chat-message {
+    padding-left: 68px;
+    position: relative;
+}
+
+#chat-page .chat-message i {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+#chat-page .chat-message span {
+    color: #333;
+    font-weight: 600;
+}
+
+#chat-page .chat-message p {
+    color: #43464b;
+}
+
+#messageForm .input-group input {
+    float: left;
+}
+
+#messageForm .input-group button {
+    float: left;
+    width: 80px;
+    height: 38px;
+    margin-left: 5px;
+}
+
+.chat-header {
+    text-align: center;
+    padding: 15px;
+    height: 70px;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.connecting {
+    padding-top: 5px;
+    text-align: center;
+    color: #777;
+    position: absolute;
+    top: 65px;
+    width: 100%;
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+	.livevideo_lecture{
+	margin-top: 10px;
+
+	}
+.video-contianer {
+	 height: 50vh;
+	 overflow: hidden;
+}
+#chat-page {
+	height: 40vh;
+}
+#chat-page ul {
+	height:34vh;
+}
+ .chat-container {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        height: 40vh;
+    }
+}
+
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+.livevideo_lecture{
+	margin-top: 10px;
+
+	}
+.video-contianer {
+	 height: 70vh;
+	 overflow: hidden;
+}
+#chat-page {
+	height: 20vh;
+}
+#chat-page ul {
+	height:15vh;
+}
+ .chat-container {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        height: 26vh;
+    }
+
+}
+
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+
+@media (min-width: 413px) and (max-width: 735px) {
+}
+
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+.video-contianer {
+	 height: 70vh;
+	 overflow: hidden;
+}
+#chat-page {
+	height: 30vh;
+}
+#chat-page ul {
+	height:44vh;
+}
+ .chat-container {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        height: 50vh;
+    }
+
+}

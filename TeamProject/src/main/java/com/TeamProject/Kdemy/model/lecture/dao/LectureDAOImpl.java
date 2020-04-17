@@ -2,6 +2,7 @@ package com.TeamProject.Kdemy.model.lecture.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -143,5 +144,26 @@ public class LectureDAOImpl implements LectureDAO {
 	@Override
 	public LectureDTO lectureView_success(int lecture_idx) {
 		return sqlSession.selectOne("lecture.lectureView_success",lecture_idx);
+	}
+
+	@Override
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception {
+		Map <String,Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("lecture_idx",lecture_idx);
+		sqlSession.update("lectureBox.onlineVideoCaht",map);		
+	}
+
+	@Override
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx) {
+		return sqlSession.selectList("lectureBox.lectureBoxList",lecture_idx);
+	}
+
+	@Override
+	public void onlineVideoCahtOff(String userid, int lecture_idx) {
+		Map <String,Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("lecture_idx",lecture_idx);
+		sqlSession.update("lectureBox.onlineVideoCahtOff",map);			
 	}
 }

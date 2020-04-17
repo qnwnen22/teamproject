@@ -42,4 +42,7 @@ public interface LectureService {
 	
 	public List<LectureDTO> chartCountLecture();
 	public LectureDTO lectureView_success(int lecture_idx);
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception;
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx);
+	public void onlineVideoCahtOff(String userid, int lecture_idx);
 }

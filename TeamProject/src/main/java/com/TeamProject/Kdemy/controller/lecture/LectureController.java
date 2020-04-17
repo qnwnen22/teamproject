@@ -3,6 +3,7 @@ package com.TeamProject.Kdemy.controller.lecture;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -413,11 +414,14 @@ public class LectureController {
 		}
 		
 		@RequestMapping("lectureView_success.do")
-		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
+		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) throws Exception {
+			
 			ModelAndView mav=new ModelAndView();
 			LectureDTO ldto=new LectureDTO();
 			ldto=lectureService.lectureView_success(lecture_idx);
-			mav.addObject("ldto", ldto);
+			Map<String, Object> map=new HashMap<>();
+			map.put("ldto", ldto);
+			mav.addObject("map", map);
 			mav.setViewName("lecture/lectureView_success");
 			return mav;
 		}
