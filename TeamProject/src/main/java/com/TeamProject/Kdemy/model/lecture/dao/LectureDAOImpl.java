@@ -229,4 +229,14 @@ public class LectureDAOImpl implements LectureDAO {
 		sqlSession.update("lectureBox.downUpdate",map);
 	}
 
+	@Override
+	public int upCount(LectureBoxDTO lbDto) {
+		return sqlSession.selectOne("lectureBox.upCount",lbDto);
+	}
+
+	@Override
+	public int lectureCount(LectureBoxDTO lbDto) {
+		return sqlSession.selectOne("lectureBox.lectureCount",lbDto);
+	}
+
 }

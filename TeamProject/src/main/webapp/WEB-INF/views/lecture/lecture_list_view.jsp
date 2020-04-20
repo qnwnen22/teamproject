@@ -55,58 +55,6 @@ $('#star1 a').click(function(){
 	$(this).addClass("on").prevAll("a").addClass("on"); 
 	console.log($(this).attr("value"));
 });
-
-function reviewStar(num){
-	switch(num){
-	case 1 : 
-		document.getElementById("star1").style="color: #ffa500;"
-		document.getElementById("star2").style.color="gray";
-		document.getElementById("star3").style.color="gray";
-		document.getElementById("star4").style.color="gray";
-		document.getElementById("star5").style.color="gray";
-	break;
-	case 2 : 
-		document.getElementById("star1").style.color="#ffa500";
-		document.getElementById("star2").style.color="#ffa500";
-		document.getElementById("star3").style.color="gray";
-		document.getElementById("star4").style.color="gray";
-		document.getElementById("star5").style.color="gray";
-	break; 
-	case 3 : 
-		document.getElementById("star1").style.color="#ffa500";
-		document.getElementById("star2").style.color="#ffa500";
-		document.getElementById("star3").style.color="#ffa500";
-		document.getElementById("star4").style.color="gray";
-		document.getElementById("star5").style.color="gray";
-	break;
-	case 4 : 
-		document.getElementById("star1").style.color="#ffa500";
-		document.getElementById("star2").style.color="#ffa500";
-		document.getElementById("star3").style.color="#ffa500";
-		document.getElementById("star4").style.color="#ffa500";
-		document.getElementById("star5").style.color="gray";
-	break;
-	case 5 : 
-		document.getElementById("star1").style.color="#ffa500";
-		document.getElementById("star2").style.color="#ffa500";
-		document.getElementById("star3").style.color="#ffa500";
-		document.getElementById("star4").style.color="#ffa500";
-		document.getElementById("star5").style.color="#ffa500";
-	break;
-	}
-	
-	var reviewStar_idx=document.getElementById("reviewStar_idx").value;
-	$.ajax({
-		url : "${path}/lecture/reviewStar.do",
-		type : "get",
-		data : {'reviewStar_idx' : reviewStar_idx, 'num' : num},
-		success : function(data){
-			alert(data);
-			}
-		});
-	//document.reviewStar.submit();
-}
-/* 커밋용 수정 */
 </script>
 </head>
 <body>
@@ -139,8 +87,8 @@ function reviewStar(num){
 					<h2>${dto.subject}</h2>
 					<p>강사 아이디 : ${dto.userid}</p>
 					<p>등록일 : <fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" /></p>
-					<p>☆☆☆☆☆ (0개의 수강평)</p>
-					<p>수강중인 학생 수 : 0</p>
+					<p>수강중인 학생 수 : ${lectureCount}</p>
+					<p>좋아요 갯수 : ${upCount}</p>
 				
 				</div>
 			</div>

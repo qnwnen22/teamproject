@@ -194,5 +194,16 @@ public class LectureServiceImpl implements LectureService {
 		lectureDao.downUpdate(userid, lecture_idx);
 	}
 
+	@Override
+	public int upCount(LectureBoxDTO lbDto) {
+		return lectureDao.upCount(lbDto);
+	}
+
+	@Override
+	public int lectureCount(LectureBoxDTO lbDto) {
+		// TODO Auto-generated method stub
+		return lectureDao.lectureCount(lbDto);
+	}
+
 	
 }

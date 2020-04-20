@@ -393,6 +393,9 @@ public class LectureController {
 				HttpSession session,LectureBoxDTO lbDto) {
 			String userid=(String)session.getAttribute("userid");
 			
+			int upCount=lectureService.upCount(lbDto);
+			int lectureCount=lectureService.lectureCount(lbDto);
+			
 			int check=-1;
 			String up ="x";
 			if(userid!=null) {
@@ -407,7 +410,8 @@ public class LectureController {
 			dto=lectureService.lecture_list_view(lecture_idx);
 
 			ModelAndView mav=new ModelAndView();
-			
+			mav.addObject("upCount", upCount);
+			mav.addObject("lectureCount",lectureCount);
 			mav.addObject("up", up);
 			mav.addObject("check",check);
 			mav.addObject("dto",dto);
@@ -544,6 +548,7 @@ public class LectureController {
 			if(dto.getLecture_address()==null) dto.setLecture_address("");
 			if(dto.getLecture_address2()==null) dto.setLecture_address2("");
 			MultipartFile file1=dto.getFile1();
+					
 			String main_img=file1.getOriginalFilename();
 			if(main_img=="") {
 				lectureService.update(dto);
