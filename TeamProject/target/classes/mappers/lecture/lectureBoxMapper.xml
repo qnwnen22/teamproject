@@ -28,5 +28,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from lectureBox
 		where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</select>
+	
+	<select id="upCheck"
+	resultType="String">
+		select up from lectureBox
+		where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</select>
+	
+	<update id="upUpdate">
+		update lectureBox set up='up'
+		where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</update>
+	
+	<update id="downUpdate">
+		update lectureBox set up='down'
+		where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</update>
 </mapper>
 

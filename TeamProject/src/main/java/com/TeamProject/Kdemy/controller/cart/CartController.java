@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
@@ -50,7 +51,6 @@ public class CartController {
 		
 		String userid=(String)session.getAttribute("userid");
 		String nickname=(String)session.getAttribute("nickname");
-		System.err.println("닉네임은? "+nickname);
 		dto.setUserid(userid);
 		int check=cartService.cartCheck(dto);
 		if(!(check>0)) {
@@ -59,6 +59,19 @@ public class CartController {
 		return "redirect:/cart/cartPage.do";
 	}
 	
+	@RequestMapping("insertCart2.do")
+	public String insertCart2(CartDTO dto, HttpSession session) {
+		String userid=(String)session.getAttribute("userid");
+//		String nickname=(String)session.getAttribute("nickname");
+		dto.setUserid(userid);
+		int check=cartService.cartCheck(dto);
+		if(!(check>0)) {
+			cartService.insertCart(dto);
+		}
+		int lecture_idx=dto.getLecture_idx();
+		
+		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
+	}
 	
 	@RequestMapping("buyList.do")
 	public String buyList(HttpSession session, String[] lecture_idx, 

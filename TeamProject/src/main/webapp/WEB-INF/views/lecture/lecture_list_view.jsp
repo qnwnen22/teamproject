@@ -236,15 +236,52 @@ function reviewStar(num){
 			</div>
 		</div>
 		<div class="input-group col-xl-12">
-			<div class="col-xl-6">
-				<button type="button" class="btn btn-primary btn-sm col-12">
-					<i class="fas fa-thumbs-up">&nbsp;&nbsp;추천</i>
-				</button>
-			</div>
-
-			<div class="col-xl-6">
-				<button type="button" class="btn btn-secondary btn-sm col-12">장바구니 담기</button>
-			</div>	
+			<c:choose>
+				<c:when test="${check==1}">
+					<div class="col-xl-12">
+						<c:choose>
+							<c:when test="${up == 'up'}">
+								<form method="post" id="lectureDownForm" name="lectureDownForm"
+								 action="${path}/lecture/lectureDown.do?lecture_idx=${dto.lecture_idx}">
+									<button style="background-color: #006680" type="button" class="btn btn-primary btn-sm col-12" onclick="down()" >
+										<i class="fas fa-check">&nbsp;&nbsp;추천</i>
+									</button>
+								</form>
+							</c:when>
+							<c:when test="${up == 'down'}">
+								<form method="post" id="lectureUpForm" name="lectureUpForm"
+								 action="${path}/lecture/lectureUp.do?lecture_idx=${dto.lecture_idx}">
+									<button type="button" class="btn btn-outline-primary btn-sm col-12" onclick="up()">
+										<i class="fas fa-thumbs-up">&nbsp;&nbsp;추천</i>
+									</button>
+								</form>
+							</c:when>
+						</c:choose>
+					</div>
+				</c:when>
+				
+				<c:when test="${check==0}">
+					<div class="col-xl-12">
+					<c:choose>
+						<c:when test="${sessionScope.userid != null}">
+							<form method="post" id="cartInsert" name="cartInsert" action="${path}/cart/insertCart2.do">
+								<input type="hidden" name="cell_type" value="${dto.cell_type}">
+								<input type="hidden" name="price" value="${dto.price}">
+								<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+								<input type="hidden" name="main_category" value="${dto.main_category}">
+								<input type="hidden" name="sub_category" value="${dto.sub_category}">
+								<input type="hidden" name="subject" value="${dto.subject}">
+								<button type="button" class="btn btn-secondary btn-sm col-12" onclick="cartAdd()">장바구니 담기</button>
+							</form>
+						</c:when>
+		
+						<c:otherwise>
+							<button type="button" class="btn btn-secondary btn-sm col-12" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal">장바구니 담기</button>
+						</c:otherwise>
+					</c:choose>	
+					</div>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 </div>
@@ -277,7 +314,22 @@ function reviewStar(num){
 		
 		text.style.display ='none';
 		time.style.display ='none';
-		addr.style.display ='block';
+	}
+
+	function up(){
+		alert("up")
+		document.lectureUpForm.submit();
+		/* location.reload(); */
+	}
+
+	function down(){
+		alert("down");
+		document.lectureDownForm.submit();
+		/* location.reload(); */
+	}
+	function cartAdd(){
+		alert("장바구니에 등록 되었습니다.");
+		document.cartInsert.submit();
 	}
 </script>
 </body>

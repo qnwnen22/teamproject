@@ -208,4 +208,25 @@ public class LectureDAOImpl implements LectureDAO {
 		sqlSession.update("lecture.updateAddImg",dto);
 	}
 
+	@Override
+	public String upCheck(LectureBoxDTO lbDto) {
+		return sqlSession.selectOne("lectureBox.upCheck",lbDto);
+	}
+
+	@Override
+	public void upUpdate(String userid, int lecture_idx) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("lecture_idx", lecture_idx);
+		sqlSession.update("lectureBox.upUpdate",map);
+	}
+
+	@Override
+	public void downUpdate(String userid, int lecture_idx) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("userid", userid);
+		map.put("lecture_idx", lecture_idx);
+		sqlSession.update("lectureBox.downUpdate",map);
+	}
+
 }
