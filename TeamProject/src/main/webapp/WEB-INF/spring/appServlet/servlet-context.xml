@@ -56,12 +56,7 @@
 	<!-- String uploadPath=new String("d:/upload"); -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg
-<<<<<<< HEAD
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
-=======
-			value="C:/Users/mr02-23/git/teamproject/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
-
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</beans:bean>
 	
 	<beans:bean id="packagesuploadPath" class="java.lang.String">
