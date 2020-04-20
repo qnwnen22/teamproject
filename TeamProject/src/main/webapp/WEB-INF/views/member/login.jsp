@@ -9,12 +9,10 @@
 <link rel="stylesheet" href="${path}/include/css/login.css">
 </head>
 <body>
-<<<<<<< HEAD
 <%@ include file="../include/fixed-topbar.jsp" %>
 	<%-- <div class="container-lg joinDiv">
-=======
+
 	<div class="container-lg loginDiv">
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<div class="page-header col-xl-8 offset-xl-2 text-center">
 			<h2>로그인 </h2>
 		</div>

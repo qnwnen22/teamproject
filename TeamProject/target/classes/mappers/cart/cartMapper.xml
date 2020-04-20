@@ -40,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(
 		(select nvl(max(box_idx)+1, 1) from lectureBox ), 
+		#{cell_type}, #{userid}, #{nickname}, #{lecture_idx}
 		#{cell_type}, #{userid}, #{nickname},#{lecture_idx}
 		)
 	</insert>

@@ -51,6 +51,23 @@ public class NoticeController {
 		
 	}//end list
 	
+	@RequestMapping("view.do")
+	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
+		noticeService.increateViewcnt(bno, session);
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		List<NoticeDTO> list = noticeService.listAll2();
+		ModelAndView mav=new ModelAndView();
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("list", list);
+		
+		mav.setViewName("notice/noticeview");
+		mav.addObject("map", map);
+		mav.addObject("dto", noticeService.read(bno));
+		return mav;
+	}
+	
+	
 	
 	
 	@RequestMapping("searchlist.do")
@@ -94,16 +111,6 @@ public class NoticeController {
 		return "redirect:/notice/list.do";
 	}//end insert
 	
-	@RequestMapping("view.do")
-	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
-		noticeService.increateViewcnt(bno, session);
-		String writer=(String)session.getAttribute("userid");
-		dto.setWriter(writer);
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("notice/noticeview");
-		mav.addObject("dto", noticeService.read(bno));
-		return mav;
-	}
 	
 	@RequestMapping("edit/{bno}")
 	public ModelAndView update(@PathVariable("bno") int bno, ModelAndView mav) {

@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -470,6 +471,12 @@ public class LectureController {
 		@RequestMapping("lectureUpdatePage.do")
 		public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
 			ModelAndView mav=new ModelAndView();
+			LectureDTO ldto=new LectureDTO();
+			ldto=lectureService.lectureView_success(lecture_idx);
+			Map<String, Object> map=new HashMap<>();
+			map.put("ldto", ldto);
+			mav.addObject("map", map);
+			mav.setViewName("lecture/lectureView_success");
 			
 			LectureDTO dto = new LectureDTO();
 			dto.setUserid((String)session.getAttribute("userid"));

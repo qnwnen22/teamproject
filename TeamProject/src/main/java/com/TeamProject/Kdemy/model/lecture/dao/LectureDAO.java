@@ -40,6 +40,9 @@ public interface LectureDAO {
 	
 	public List<LectureDTO> chartCountLecture();
 	public LectureDTO lectureView_success(int lecture_idx);
+	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception;
+	public List<LectureBoxDTO> lectureBoxList(int lecture_idx);
+	public void onlineVideoCahtOff(String userid, int lecture_idx);
 	public void reviewStar(LectureReviewDTO dto);
 	public void reviewStarUpdate(LectureReviewDTO dto);
 	public String getMain_img(int lecture_idx);

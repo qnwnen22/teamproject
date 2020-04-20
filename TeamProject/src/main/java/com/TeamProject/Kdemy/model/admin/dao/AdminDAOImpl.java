@@ -12,6 +12,8 @@ import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 @Repository
 public class AdminDAOImpl implements AdminDAO {
+	
+	
 	@Inject
 	SqlSession sqlSession;
 	

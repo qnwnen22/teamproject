@@ -19,12 +19,12 @@
 								if ($(window).scrollTop() >= 538) { //스크롤이 아래로 538px 이상 내려갔을때 실행되는 이벤트 정의
 									$('header')
 											.attr('class',
-													'nav d-xl-block d-lg-block d-md-none d-sm-none');
+													'nav d-xl-block d-lg-block d-none');
 								}
 							} else {
 								if ($(window).scrollTop() < 538) { //스크롤이 아래로 538px 이상 올라갔을때 실행되는 이벤트 정의
 									$('header').attr('class',
-											'nav d-md-none d-sm-none');
+											'nav d-none');
 								}
 							}
 							//현재 스크롤 위치(st)를 마지막 위치로 업데이트
@@ -779,7 +779,7 @@
 																<div
 																	class="item dropdown col-xl-4 text-center dropdown-toggle"
 																	style="display: initial !important;">
-																	<a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
+																	<a class="plain cursor" data-ga-category="header" href="${path}/admin/managementMenu.do"><b>관리메뉴</b></a>
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
 																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
@@ -1220,6 +1220,7 @@
 
 		</div>
 	</div>
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 	<div class="card">
 		<div class="card-header">Featured</div>
 		<div class="card-body">
@@ -1270,6 +1271,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 <%@ include file="include/footer.jsp"%>
 </body>

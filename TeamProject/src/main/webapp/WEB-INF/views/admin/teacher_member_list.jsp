@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
-<%@ include file="../include/fixed-topbar.jsp"%>
 <script type="text/javascript">
 	function list(page) {
 		location.href = "${path}/member/list.do?curPage="+page+"&location=teacher"+"&keyword=${map.keyword}";
@@ -14,7 +13,16 @@
 </script>
 </head>
 <body>
-	<div class="container">
+<%@ include file="../include/fixed-topbar.jsp"%>
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12" style="margin-top: 170px;">
+	<div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><b><a href="${path}/admin/managementMenu.do">관리메뉴</a></b></li>
+				<li><b><a href="${path}/member/list.do">회원관리</a></b></li>
+				<li><b><a href="${path}/member/list.do?location=teacher" style="color:blue;">강사회원</a></b></li>
+			</ul>
+		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link"
 				href="${path}/member/list.do">전체회원</a></li>
@@ -37,7 +45,7 @@
 		</ul>
 	</div>
 
-	<div class="container table-responsive">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 table-responsive">
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
 				<tr>

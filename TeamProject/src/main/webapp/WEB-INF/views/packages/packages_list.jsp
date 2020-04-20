@@ -9,11 +9,12 @@
 </head>
 <body>
 <%@include file="../include/fixed-topbar.jsp" %>
-<div class="container">
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 <div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li><a href="${path}/packages/list.do"">패키지구매</a></li>
+				<li><b><a href="${path}/admin/managementMenu.do">관리메뉴</a></b></li>
+				<li><b><a href="#" style="color:blue;">패키지 구매</a></b></li>
 			</ul>
 		</div>
 <div class="d-flex row col-12">

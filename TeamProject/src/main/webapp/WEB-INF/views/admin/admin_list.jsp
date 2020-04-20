@@ -33,16 +33,16 @@
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="container table-responsive">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li>ADMIN</li>
-				<li><a href="${path}/admin/list.do">관리자계정</a></li>
+				<li><b><a href="${path}/admin/managementMenu.do">관리메뉴</a></b></li>
+				<li><b><a href="${path}/admin/list.do" style="color:blue;">관리자계정</a></b></li>
 			</ul>
 		</div>
 		<br>
-		<table class="table table-bordered table-hover">
+		<table class="table table-bordered table-hover text-center">
 			<thead class="thead-dark">
 				<tr>
 					<th>아이디</th>

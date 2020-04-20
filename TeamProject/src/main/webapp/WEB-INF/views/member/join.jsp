@@ -176,7 +176,7 @@ function checkId() {
 						<input type="text" id="postcode" name="postcode"
 							placeholder="우편번호" class="form-control">
 					</div>
-					<div class="form-group d-none d-lg-block d-xl-block  col-6 p-0">
+					<div class="form-group d-none d-lg-block d-xl-block col-6 p-0">
 						<input type="button" onclick='execDaumPostcode()' value="우편번호 찾기"
 							class="btn btn-primary">
 					</div>

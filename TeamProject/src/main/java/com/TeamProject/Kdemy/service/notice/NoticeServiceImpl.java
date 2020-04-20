@@ -56,6 +56,10 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<NoticeDTO> listAll(int start, int end) throws Exception {
 		return noticeDao.listAll(start, end);
 	}
+	@Override
+	public List<NoticeDTO> listAll2() throws Exception {
+		return noticeDao.listAll2();
+	}
 	
 	@Override
 	public List<NoticeDTO> searchlistAll(String search_option, String keyword, int start, int end) throws Exception {

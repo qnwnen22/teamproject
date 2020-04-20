@@ -14,7 +14,15 @@ function list(page) {
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
-	<div class="container">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3" style="margin-top: 170px;">
+<div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><b><a href="${path}/admin/managementMenu.do">관리메뉴</a></b></li>
+				<li><b><a href="${path}/admin/lectureMenu.do">강의관리</a></b></li>
+				<li><b><a href="${path}/lecture/offline_list.do?admin=admin" style="color:blue;">오프라인 강의</a></b></li>
+			</ul>
+		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link" href="${path}/lecture/online_list.do?admin=admin">실시간
 					강의</a></li>
