@@ -30,7 +30,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
-import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
@@ -516,29 +515,7 @@ public class LectureController {
 			}
 			return mav;
 		}
-		@RequestMapping(value="reviewStar.do", method= {RequestMethod.GET},produces="text/plain;charset=utf-8")
-		@ResponseBody
-		public String reviewStar(HttpSession session, String reviewStar_idx, String num) {
-			
-			String userid=(String)session.getAttribute("userid");
-			int lecture_idx=Integer.parseInt(reviewStar_idx);
-			int star=Integer.parseInt(num);
-			LectureReviewDTO dto=new LectureReviewDTO();
-			dto.setUserid(userid);
-			dto.setLecture_idx(lecture_idx);
-			dto.setStar(star);
-
-			String result="";
-			
-			if(userid==null) {
-				result="로그인이 필요합니다.";
-			}else {
-				lectureService.reviewStarUpdate(dto);
-				result="별점이 등록되었습니다.";
-			}
-			return result;
-		}
-		
+				
 		@RequestMapping(value="lectureUpdate.do",method= {RequestMethod.POST},
 		consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 		public String lectureUpdate(LectureDTO dto) throws Exception {

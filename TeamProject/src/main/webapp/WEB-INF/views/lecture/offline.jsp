@@ -219,7 +219,7 @@ function fileChange(e) {
 		  type: 'POST',
 		  success: function(data){
 
-			alert("프로필 이미지가 변경 되었습니다.")
+			alert("썸네일 이미지가 변경 되었습니다.")
 
 		  }
 		})

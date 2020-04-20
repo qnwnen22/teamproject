@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
-import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
-import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 @Repository
 public class LectureDAOImpl implements LectureDAO {
@@ -168,15 +166,6 @@ public class LectureDAOImpl implements LectureDAO {
 		map.put("lecture_idx",lecture_idx);
 		sqlSession.update("lectureBox.onlineVideoCahtOff",map);			
 	}
-	public void reviewStar(LectureReviewDTO dto) {
-		sqlSession.insert("lectureReview.reviewStar",dto);
-	}
-
-	@Override
-	public void reviewStarUpdate(LectureReviewDTO dto) {
-		sqlSession.update("lectureReview.reviewStarUpdate",dto);
-	}
-
 	@Override
 	public String getMain_img(int lecture_idx) {
 		return sqlSession.selectOne("lecture.getMain_img",lecture_idx);

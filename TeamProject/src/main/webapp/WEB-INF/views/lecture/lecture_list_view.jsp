@@ -191,7 +191,7 @@ $('#star1 a').click(function(){
 							<c:when test="${up == 'up'}">
 								<form method="post" id="lectureDownForm" name="lectureDownForm"
 								 action="${path}/lecture/lectureDown.do?lecture_idx=${dto.lecture_idx}">
-									<button style="background-color: #006680" type="button" class="btn btn-primary btn-sm col-12" onclick="down()" >
+									<button type="button" class="btn btn-primary btn-sm col-12" onclick="down()" >
 										<i class="fas fa-check">&nbsp;&nbsp;추천</i>
 									</button>
 								</form>
@@ -265,15 +265,13 @@ $('#star1 a').click(function(){
 	}
 
 	function up(){
-		alert("up")
+		alert("감사합니다 :b");
 		document.lectureUpForm.submit();
 		/* location.reload(); */
 	}
 
 	function down(){
-		alert("down");
 		document.lectureDownForm.submit();
-		/* location.reload(); */
 	}
 	function cartAdd(){
 		alert("장바구니에 등록 되었습니다.");
