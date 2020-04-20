@@ -45,6 +45,7 @@ public class CartDAOImpl implements CartDAO {
 	public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx) {
 		HashMap<String,Object> map=new HashMap<>();
 		map.put("userid", userid);
+		map.put("nickname", nickname);
 		map.put("cell_type", cell_type);
 		map.put("lecture_idx", lecture_idx);
 		map.put("nickname", nickname);

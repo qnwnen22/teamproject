@@ -30,7 +30,7 @@
 	display: flex;
 }
 #footer-body{
-	background: #eeeeee;
+	background: white;
 }
 .tail_body a {color:#4d4d4d}
 .tail_body:after {display:block;clear:both;}

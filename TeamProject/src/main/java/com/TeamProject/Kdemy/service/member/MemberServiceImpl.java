@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dao.MemberDAO;
+import com.TeamProject.Kdemy.model.member.dto.CouponDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 @Service	
@@ -28,7 +29,6 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.orderDetail(dto);
 	}	
 	
-
 
 	@Override
 	public void insertMember(MemberDTO dto) {
@@ -115,6 +115,12 @@ public class MemberServiceImpl implements MemberService {
 	public void updateCoupon(MemberDTO dto) {
 		memberDao.updateCoupon(dto);
 	}
+	
+	@Override
+	public void insertCoupon(CouponDTO dto) {
+		memberDao.insertCoupon(dto);
+		
+	}
 
 	public void updatePoint(MemberDTO dto) {
 		memberDao.updateCouponPoint(dto);
@@ -133,6 +139,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberDTO> listMember() {
 		return memberDao.listMember();
+	}
+
+	@Override
+	public List<CouponDTO> couponDetail(CouponDTO dto) {
+		return memberDao.couponDetail(dto);
+	}
+
+	@Override
+	public int couponCheck(CouponDTO dto) {
+		return memberDao.couponCheck(dto);
 	}
 
 }

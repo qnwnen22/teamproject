@@ -19,12 +19,12 @@
 								if ($(window).scrollTop() >= 538) { //스크롤이 아래로 538px 이상 내려갔을때 실행되는 이벤트 정의
 									$('header')
 											.attr('class',
-													'nav d-xl-block d-lg-block d-md-none d-sm-none');
+													'nav d-xl-block d-lg-block d-none');
 								}
 							} else {
 								if ($(window).scrollTop() < 538) { //스크롤이 아래로 538px 이상 올라갔을때 실행되는 이벤트 정의
 									$('header').attr('class',
-											'nav d-md-none d-sm-none');
+											'nav d-none');
 								}
 							}
 							//현재 스크롤 위치(st)를 마지막 위치로 업데이트
@@ -1216,6 +1216,7 @@
 
 		</div>
 	</div>
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 	<div class="card">
 		<div class="card-header">Featured</div>
 		<div class="card-body">
@@ -1266,6 +1267,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

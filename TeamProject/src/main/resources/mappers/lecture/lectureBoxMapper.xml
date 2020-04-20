@@ -11,6 +11,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</select>
 	
+	<update id="onlineVideoCaht">
+	  update lectureBox set onlineChat='y' where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</update>
+	
+	<select id="lectureBoxList" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
+	   select * from lectureBox where onlineChat='y' and lecture_idx=#{lecture_idx}
+	</select>
+	
+	<update id="onlineVideoCahtOff">
+	  update lectureBox set onlineChat='n' where userid=#{userid} and lecture_idx=#{lecture_idx}
+	</update>
+	
 	<select id="lectureViewCheck"
 	resultType="int">
 		select count(*) from lectureBox

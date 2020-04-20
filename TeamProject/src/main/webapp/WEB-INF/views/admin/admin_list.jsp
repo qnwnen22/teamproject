@@ -33,6 +33,9 @@
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp"%>
+<<<<<<< HEAD
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 table-responsive" style="margin-top: 170px;">
+=======
 	<div class="container table-responsive">
 		<div>
 			<ul class="upper_shift">
@@ -41,6 +44,7 @@
 				<li><a href="${path}/admin/list.do">관리자계정</a></li>
 			</ul>
 		</div>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<br>
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">

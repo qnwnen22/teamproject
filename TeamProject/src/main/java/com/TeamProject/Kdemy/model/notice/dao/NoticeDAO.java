@@ -13,6 +13,7 @@ public interface NoticeDAO {
 	public void update(NoticeDTO dto) throws Exception; //글수정
 	public void delete(int bno) throws Exception; //글삭제
 	public List<NoticeDTO> listAll(int start, int end) throws Exception;//목록
+	public List<NoticeDTO> listAll2() throws Exception;//목록
 	public List<NoticeDTO> searchlistAll(String search_option,String keyword, int start, int end) throws Exception;//목록
 	public void increateViewcnt(int bno) throws Exception;//조회수 증가 처리
 	public int countArticle() throws Exception;//레코드 갯수 계산

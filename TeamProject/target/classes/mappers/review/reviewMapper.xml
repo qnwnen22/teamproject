@@ -76,8 +76,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert">
 		insert into kdemyreview (bno,subject,teacher,title,content,writer,fullName) values
 		(
-		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer}, #{fullName})
+		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer}, #{fullName, jdbcType=VARCHAR})
 	</insert>
+	
+	 <update id="update_fullName">
+    update kdemyreview
+    set 
+    fullName=#{fullName}
+    	where bno=#{bno}
+  </update>
 
 	<!-- 첨부파일 정보 저장 -->
 	<insert id="addAttach">
