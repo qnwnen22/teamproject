@@ -110,7 +110,6 @@ function reviewStar(num){
 </script>
 </head>
 <body>
-<<<<<<< HEAD
 <div class="row col-xl-8 offset-xl-2 col-lg-12 mb-3">
 	<div class="col-12">
 		<div class="col-xl-12">
@@ -131,24 +130,6 @@ function reviewStar(num){
 	<div class="row col-xl-8" style="background-color: #eeeeee; color: black;">
 	<!-- shadow p-3 mb-5 rounded --> 
 		<div class="col-xl-12 col-lg-12">
-=======
-<div class="col-xl-8 offset-xl-2 col-lg-12 lectureListDiv">
-	<ul class="upper_shift">
-		<li><a href="${path}">KDEMY</a></li>
-		<li><a href="#">${dto.main_category}</a></li>
-		<li><a href="#">${dto.sub_category}</a></li>
-	</ul>
-	<div class="row" style="background-color: #eeeeee; color: #71c9ce;">
-	<!-- shadow p-3 mb-5 rounded --> 
-		<div class="col-xl-8 col-lg-12 border-right border-primary">
-			<div class="col-xl-12">
-				<c:choose>
-					<c:when test="${dto.cell_type == 1}"><h2>동영상 강의</h2></c:when>
-					<c:when test="${dto.cell_type == 2}"><h2>실시간 강의</h2></c:when>
-					<c:when test="${dto.cell_type == 3}"><h2>현장 강의</h2></c:when>
-				</c:choose>
-			</div>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			<div class="row">
 				<div class="col-xl-6" style="text-align: center;">
 					<img src="../upload/${dto.main_img}" class="img-thumbnail shadow bg-white rounded my-1">
@@ -203,7 +184,6 @@ function reviewStar(num){
 					</c:otherwise>
 				</c:choose>
 			</div>
-<<<<<<< HEAD
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureAddr" style="display: none;">
 				<c:choose>
 					<c:when test="${dto.cell_type > 2}">
@@ -264,65 +244,9 @@ function reviewStar(num){
 
 			<div class="col-xl-6">
 				<button type="button" class="btn btn-secondary btn-sm col-12">장바구니 담기</button>
-=======
-			<div class="input-group col-xl-12">
-				<div class="col-xl-6"><button type="button" class="btn btn-primary btn-sm col-12">장바구니 등록</button></div>
-				<div class="col-xl-6"><button type="button" class="btn btn-secondary btn-sm col-12" onclick="history.back()">돌아가기</button></div>	
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			</div>	
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
-	<hr>
-	<div class="col-12 m">
-		<ul class="nav nav-tabs">
-  			<li class="nav-item">
-    			<a class="nav-link active" onclick="lecturetext()" data-toggle="tab" href="#">강의 소개</a>
-  			</li>
-  			
-  			<li class="nav-item">
-    			<a class="nav-link" onclick="lecturetime()" data-toggle="tab" href="#">강의 시간</a>
-  			</li>
-  			
-  			<li class="nav-item">
-    			<a class="nav-link" onclick="lectureaddr()" data-toggle="tab" href="#">강의 장소</a>
-  			</li>
-		</ul>
-	</div>
-	<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
-		내용 : ${dto.content}
-	</div>
-	
-	<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureTime" style="display: none;">
-		<c:choose>
-			<c:when test="${dto.cell_type > 1}">
-				<div class="col-12">
-					<label class="label" for="lectureDate">강의 날짜 : </label>
-					<p name="lectureDate" id="lectureDate">${dto.lecture_date}</p>
-					
-					강의 시작시간 : ${dto.lecture_start}
-					강의 시간 : ${dto.lecture_time}
-				</div>
-			</c:when>
-		
-			<c:otherwise>
-				<h2>온라인 강의 입니다.</h2>
-			</c:otherwise>
-		</c:choose>
-	</div>
-	<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureAddr" style="display: none;">
-		<c:choose>
-			<c:when test="${dto.cell_type > 2}">
-				강의주소 : ${dto.lecture_address}<br>
-				강의 상세주소 : ${dto.lecture_address2}<br>
-			</c:when>
-			<c:otherwise>
-				<h2>내용이 없습니다</h2>
-			</c:otherwise>
-		</c:choose>
-	</div>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </div>
 <%@ include file="../include/footer.jsp"%>
 <script type="text/javascript">
