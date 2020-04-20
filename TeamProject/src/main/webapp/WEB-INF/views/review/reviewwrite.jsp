@@ -99,9 +99,9 @@
 
 	 
 
-/* 첨부파일 */
+	/* 첨부파일 */
 
- $(document).ready(function(){
+ /* $(document).ready(function(){
 	$("#profileImg").click(function(){
 		$("#file1").click() ;
 		})			
@@ -185,7 +185,7 @@
 
 		 		}
 
-		}
+		} */
 
 	</script>
 
@@ -206,7 +206,7 @@
 		<form id="form1" name="form1" method="post"
 			action="${path}/review/insert.do" enctype="multipart/form-data">
 			<div class="form-group mb-4">
-				<label for="subject">과목</label> <select class="custom-select"
+				<label for="subject">과목</label> <select class="custom-select "
 					required name="subject" id="subject"
 					onchange="javascript:subjectchange(document.form1.subject.options.selectedIndex);">
 					<option selected value="">-선택-</option>
@@ -256,7 +256,7 @@
 			<br>
 
 
-			<div class="form-group mb-4 ">
+		<%-- 	<div class="form-group mb-4 ">
 				<label for="fullName">파일 첨부</label>
 				<c:choose>
 					<c:when test="${empty dto.fullName}">
@@ -282,7 +282,7 @@
 							onclick="attachAddr(); return false;" value="파일 추가"
 							style="width: 5.5em;">
 					</div>  -->
-			</div>
+			</div> --%>
 
 
 			<div class="btn-group float-right mb-5" role="group"

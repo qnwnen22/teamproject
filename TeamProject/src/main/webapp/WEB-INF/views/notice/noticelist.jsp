@@ -10,6 +10,7 @@
 	function list(page) {
 		location.href = "${path}/notice/list.do?curPage=" + page;
 	}
+
 </script>
 </head>
 <body>
@@ -48,7 +49,7 @@
 		</form>
 
 		<div id="table_css" class="table-responsive">
-		<table class="table text-center table-hover" >
+		<table class="table text-center table-hover table-bordered" >
 		<thead>
 				<tr>
 					<th class="d-none d-xl-block d-lg-block"> 번호</th>
@@ -57,7 +58,7 @@
 					<th class="d-none d-xl-block d-lg-block">날짜</th>
 					<th>조회수</th>
 				</tr>
-				</thead>
+				</thead >
 				<tbody>
 				<c:forEach var="rows" items="${map.list}">
 					<tr>

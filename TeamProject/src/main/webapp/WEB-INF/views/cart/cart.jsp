@@ -6,9 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
-<script type="text/javascript">
-
-</script>
+<link rel="stylesheet" href="${path}/include/css/upper.css">
 <script type="text/javascript">
 
 function buyList(){
@@ -44,51 +42,19 @@ $(function(){
 	}); 
 });
 </script>
-<style type="text/css">
-
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
-
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-}
-
-</style>
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp" %>
-<br>
-	<br>
-	<div class="container">
-	<div class="">
+	<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
+		
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
 				<li>장바구니</li>
 			</ul>
 		</div>
-		<br> <br>
 
-	<h4>보유중인 포인트</h4>
+	<h4>${sessionScope.userid} 님의 보유중인 포인트</h4>
 	<input type="text" name="point" id="point" value="${point}" readonly>
 		<input type="button" onclick="location.href='${path}/cart/pointCharge.do'" value="10,000포인트 충전 (작업용)"><br>
 	<hr><br>

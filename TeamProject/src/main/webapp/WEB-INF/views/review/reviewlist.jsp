@@ -58,7 +58,7 @@
 
 		<form action="${path}/review/searchlist.do" name="form1" method="post">
 			<div class="row mt-4">
-				<div class="col-lg-2 col-xl-2 col-md-3 col-sm-3  align-self-start ">
+				<div class="col-lg-2 col-xl-2 col-md-3 col-sm-3  align-self-start mb-sm-3">
 					<select name="search_option" class=" search_option custom-select">
 						<option value="subject"
 							<c:if test="${map.search_option=='subject' }">selected</c:if>>과목</option>
@@ -86,7 +86,7 @@
 
 
 		<div id="table_css" class="table-responsive">
-			<table class="table text-center table-hover">
+			<table class="table text-center table-hover table-bordered">
 				<thead>
 					<tr>
 						<th class="d-none d-lg-block">번호</th>

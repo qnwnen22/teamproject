@@ -53,7 +53,7 @@
 		</form>
 
 		<div id="table_css" class="table-responsive">
-		<table class="table text-center table-hover">
+		<table class="table text-center table-hover table-bordered">
 			<thead>
 				<tr>
 						<th class="d-none d-lg-block">번호</th>

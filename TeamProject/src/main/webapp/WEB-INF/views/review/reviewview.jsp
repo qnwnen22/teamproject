@@ -113,92 +113,7 @@
 		location.href = "${path}/review/list.do?curPage=" + page;
 	}
 
-	 $(document).ready(function(){
-			$("#profileImg").click(function(){
-				$("#file1").click() ;
-				})			
-			}) 
-
-				var sel_file;
-
-				$(document).ready(function() {
-				    $("#file1").on("change", fileChange);
-				});
-
-				function fileChange(e) {
-					e.preventDefault();
-
-					var files = e.target.files;
-				    var filesArr = Array.prototype.slice.call(files);
-
-				    filesArr.forEach(function(f) {
-				        if(!f.type.match("image.*")) {
-				            alert(" 이미지 파일만 가능합니다.");
-				            return;
-				        }
-
-				        sel_file = f;
-
-				        var reader = new FileReader();
-				        reader.onload = function(e) {
-				            $("#profileImg").attr("src", e.target.result);
-				        	$("#profileImg").css("height", "400px")
-				        }
-				        reader.readAsDataURL(f);
-				    });
-
-				    var file = files[0]
-				    console.log(file)
-				    var formData = new FormData();
-
-				    formData.append("file", file);
-
-						$.ajax({
-				    	url: '${path}/review/uploadAjax.do',
-						  data: formData,
-						  dataType:'text',
-						  processData: false,
-						  contentType: false,
-						  type: 'POST',
-						  success: function(data){
-
-							alert("파일이 업로드 되었습니다.")
-
-						  }
-						})
-
-
-				 		function checkImageType(fullName){
-				 			var pattern = /jpg$|gif$|png$|jpeg$/i;
-				 			return fullName.match(pattern);
-				 		}
-
-
-				 		function getOriginalName(fullName){
-				 			if(checkImageType(fullName)){
-				 				return;
-				 			}
-
-				 			var idx = fullName.indexOf("_") + 1 ;
-				 			return fullName.substr(idx);
-
-				 		}
-
-
-				 		function getImageLink(fullName){
-
-				 			if(!checkImageType(fullName)){
-				 				return;
-				 			}
-				 			var front = fullName.substr(0,12);
-				 			var end = fullName.substr(14);
-
-				 			return front + end;
-
-				 		}
-
-				}
-			
+  
 </script>
 
 </head>
@@ -237,7 +152,7 @@
 				</div>
 				<hr>
 
-				<div id="fullName_css">
+			<%-- 	<div id="fullName_css">
 					<label for="content">첨부파일</label>
 					<div class="jumbotron jumbotron-fluid">
 						<c:choose>
@@ -256,7 +171,7 @@
 						</c:choose>
 					</div>
 				</div>
-
+ --%>
 
 
 			</div>
