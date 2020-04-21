@@ -5,28 +5,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="lectureBox">
-	<select id="buyCheck"
-	resultType="int">
-		select count(*) from lectureBox
-		where userid=#{userid} and lecture_idx=#{lecture_idx}
-	</select>
-	
-	<update id="onlineVideoCaht">
-	  update lectureBox set onlineChat='y' where userid=#{userid} and lecture_idx=#{lecture_idx}
-	</update>
-	
-	<select id="lectureBoxList" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
-	   select * from lectureBox where onlineChat='y' and lecture_idx=#{lecture_idx}
-	</select>
-	
-	<update id="onlineVideoCahtOff">
-	  update lectureBox set onlineChat='n' where userid=#{userid} and lecture_idx=#{lecture_idx}
-	</update>
-	
-	<select id="lectureViewCheck"
-	resultType="int">
-		select count(*) from lectureBox
-		where userid=#{userid} and lecture_idx=#{lecture_idx}
-	</select>
+   <select id="buyCheck"
+   resultType="int">
+      select count(*) from lectureBox
+      where userid=#{userid} and lecture_idx=#{lecture_idx}
+   </select>
+   
+   <update id="onlineVideoCaht">
+     update lectureBox set onlineChat='y' where userid=#{userid} and lecture_idx=#{lecture_idx}
+   </update>
+   
+   <select id="lectureBoxList" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
+      select * from lectureBox where onlineChat='y' and lecture_idx=#{lecture_idx}
+   </select>
+   
+   <update id="onlineVideoCahtOff">
+     update lectureBox set onlineChat='n' where userid=#{userid} and lecture_idx=#{lecture_idx}
+   </update>
+   
+   <select id="lectureViewCheck"
+   resultType="int">
+      select count(*) from lectureBox
+      where userid=#{userid} and lecture_idx=#{lecture_idx}
+   </select>
+   
+   <select id="upCheck"
+   resultType="String">
+      select up from lectureBox
+      where userid=#{userid} and lecture_idx=#{lecture_idx}
+   </select>
+   
+   <update id="upUpdate">
+      update lectureBox set up='up'
+      where userid=#{userid} and lecture_idx=#{lecture_idx}
+   </update>
+   
+   <update id="downUpdate">
+      update lectureBox set up='down'
+      where userid=#{userid} and lecture_idx=#{lecture_idx}
+   </update>
+   
+   <select id="upCount"
+   resultType="int">
+      select count(up) from lectureBox
+      where lecture_idx=#{lecture_idx} and up='up'
+   </select>
+   
+   <select id="lectureCount"
+   resultType="int">
+      select count(lecture_idx) from lectureBox
+      where lecture_idx=#{lecture_idx}
+   </select>
+   
+   <select id="lectureCountMoney" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
+      select cell_type, (sum(price)) price  from lectureBox group by cell_type order by cell_type
+   </select>
+   
+   <select id="totalMoney" resultType="int">
+      select sum(price) from lectureBox
+   </select>
 </mapper>
-

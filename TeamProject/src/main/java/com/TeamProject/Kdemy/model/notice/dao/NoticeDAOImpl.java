@@ -65,6 +65,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return sqlSession.selectList("notice.listAll", map);
 	}
 	@Override
+	public List<NoticeDTO> listAll2() throws Exception {
+		Map<String, Object> map=new HashMap<>();
+		return sqlSession.selectList("notice.listAll2", map);
+	}
+	@Override
 	public List<NoticeDTO> searchlistAll(String search_option, String keyword, int start, int end) throws Exception {
 		Map<String, Object> map=new HashMap<>();
 		map.put("search_option", search_option);

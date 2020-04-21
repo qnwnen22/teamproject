@@ -3,7 +3,6 @@ package com.TeamProject.Kdemy.model.cart.dao;
 import java.util.List;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
-import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 
 public interface CartDAO {
 

@@ -21,15 +21,15 @@ $(document).ready(function(){
             type: 'POST',
             url: "${path}/member/updatePoint.do",
             data: {
-                 "coupon" : $('#coupon').val()
-                 
-            },
-            success: function(data){
-            	$('#successText').html('10000포인트가 적립되었습니다.');
+                 "userid":$('#userid'.val())
+                 "coupon" : $('#coupon').val()   
+            },success: function(data){
+            	$('#successText').html('포인트가 적립되었습니다.');
             	}
         });    //end ajax    
     });    //end on   
 });
+
 
 </script>
 </head>
@@ -46,9 +46,10 @@ $(document).ready(function(){
       <input type="text" class="form-control" id="key1" maxlength="4"><span class="input-group-addon">-</span>
       <input type="text" class="form-control" id="key2" maxlength="4"><span class="input-group-addon">-</span>
       <input type="text" class="form-control" id="key3" maxlength="4"><span class="input-group-addon">-</span>
-      <input type="text" class="form-control" id="coupon" maxlength="4">
+      <input type="text" class="form-control" id="coupon" minlength="4" maxlength="4">
     </div>
           <div id="keyM"></div>
+     <input class=""  type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
     <button class="btn btn-primary" type="submit" id="bnt">쿠폰 생성</button>
     	<div class="TextBox">
 			<p id="successText" style="color:blue;"></p>

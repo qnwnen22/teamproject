@@ -38,6 +38,7 @@ $(function(){
 <body>
 <div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
 	<div class="page-header col-xl-8 offset-xl-2 text-center">
+		<h1>사용 안하는 온라인 페이지  ..이원혁</h1>
 		<h2>실시간 강의 등록 페이지</h2>
 	</div>
 	

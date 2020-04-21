@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
+<<<<<<< HEAD
 
 <div class="container-fluid align-items-end" id="footer-body">
 	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
+=======
+	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
+	<div id="footertoggle" class="d-flex py-1 ">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
 			<i class="fa fa-bars" style="font-size: 50px;"></i>
@@ -29,7 +34,7 @@
 			<i class="fas fa-angle-right" style="font-size: 50px;"></i>
 		</button>
 	</div>
-<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 d-none d-xl-block d-lg-block" id="footer-body">
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 d-none d-xl-block d-lg-block" id="footer-body">
 	<hr>
 	<div class="tail_body collapse show" id="tail_body">
 		<div class="tail_item flex-shrink-2">
@@ -123,7 +128,7 @@
 					<input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요.">
 				</div>
 			<div class="form-check pt-2 pb-1">
-				  <input class="form-check-input" type="checkbox" name="loginsave" id="loginsave" value="option1" checked>
+				  <input class="form-check-input" type="checkbox" name="savelogin" id="savelogin" value="true" checked>
 				  <label class="form-check-label" for="exampleRadios1">
 				   <b>로그인유지</b>
 				  </label>
@@ -211,6 +216,7 @@
     </div>
   </div>
 </div>
+</div>
 
 
 
@@ -225,7 +231,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" id="searchPWForm" name="searchPWForm" action="${path}/member/searchID.do" class="form-horizontal">
+        <form method="post" id="searchPWForm" name="searchPWForm" action="${path}/member/searchPW.do" class="form-horizontal">
 				<div class="input-group input-group-lg pt-2 pb-1">
 					<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디를 입력해주세요." required>	
 				</div>
@@ -264,7 +270,31 @@
   </div>
 </div>
 
+	<!-- logOut Modal -->
+<div class="modal" id="logOutModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">로그아웃</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h6>로그아웃 하시겠습니까?</h6>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <a href="${path}/member/logOut.do" type="button" class="btn btn-outline-danger">로그아웃</a>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 
@@ -335,6 +365,7 @@ $(document).ready(function(){
             }
         });       
     });   
+<<<<<<< HEAD
     $('#searchPasswdbtn').on('click', function(){
         $.ajax({
             type: 'POST',
@@ -349,5 +380,9 @@ $(document).ready(function(){
         });      
     });    
 });
+=======
+});
+
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 </script>

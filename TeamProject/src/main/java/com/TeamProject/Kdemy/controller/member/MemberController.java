@@ -3,6 +3,7 @@ package com.TeamProject.Kdemy.controller.member;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,9 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
@@ -23,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +34,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.CookieGenerator;
+import org.springframework.web.util.WebUtils;
 
 import com.TeamProject.Kdemy.interceptor.SessionNames;
 import com.TeamProject.Kdemy.model.admin.dto.AdminDTO;
@@ -98,28 +104,25 @@ public class MemberController {
 		return mav;
 	}
 	
-
+	
+	@ResponseBody
 	@RequestMapping("check.do")
 	public ModelAndView check(MemberDTO dto, HttpSession session) throws Exception{
 		String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		String result=memberService.passwdCheck(dto);
 		ModelAndView mav=new ModelAndView();
-		
+		MemberDTO dto2=memberService.detailMember(userid);
+		session.setAttribute("dto", dto2);	
 		if(result.equals("로그인성공")) {
-			MemberDTO dto2=memberService.detailMember(userid);
-			session.setAttribute("dto", dto2);
 			mav.setViewName("member/myPage1");
 		}else {
+			mav.addObject("message","비밀번호가 틀렸습니다.");
 			mav.setViewName("member/myPage");
 		}
 		return mav;
 	}
-
-	@RequestMapping("myOrderList.do")
-	public String orderList() {
-		return "member/orderList";
-	}
+	
 	
 	@RequestMapping("myPageUpdate.do")
 	public String myPageUpdate() {
@@ -134,6 +137,18 @@ public class MemberController {
 	public String updatePointPage() {
 		return "member/couponCheck";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updatePoint.do", method = RequestMethod.POST)
+	public void updatePoint(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
+		String coupon = request.getParameter("coupon");	
+		MemberDTO dto = new MemberDTO();
+	   	dto.setCoupon(coupon);
+	   	String userid = (String) session.getAttribute("userid");
+		dto.setUserid(userid);
+		memberService.updatePoint(dto);
+	}
+
 	
 	@RequestMapping("join.do")
 	public String join() {
@@ -160,25 +175,19 @@ public class MemberController {
 		logger.info("FILE NAME: " + fileName);
 
 		try {
-
 			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-
 			MediaType mType = MediaUtils.getMediaType(formatName);
-
 			HttpHeaders headers = new HttpHeaders();
 
 			in = new FileInputStream(uploadPath + fileName);
-
 			if (mType != null) {
 				headers.setContentType(mType);
 			} else {
-
 				fileName = fileName.substring(fileName.indexOf("_") + 1);
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 				headers.add("Content-Disposition",
 						"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
 			}
-
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -245,22 +254,18 @@ public class MemberController {
 					UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
 					HttpStatus.CREATED);
 			String thumbnail = (String) img_path.getBody();
-			//logger.info(thumbnail);
 			MemberDTO dto = new MemberDTO();
 			dto.setThumbnail(thumbnail);
 		    String userid = (String) session.getAttribute("userid");
 			dto.setUserid(userid);
-			//logger.info("file name : " + thumbnail);
 			memberService.update_thumbnail(dto);
 			return thumbnail;
 	}
 	
 
-
-
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
-	public String insertMember(MemberDTO dto) throws Exception {
+	public String insertMember(MemberDTO dto, HttpSession session) throws Exception {
 		MultipartFile file=dto.getFile();				
 		String thumbnail=null;
 		String birthday=dto.getBirthday1()+"-"+dto.getBirthday2()+"-"+dto.getBirthday3();
@@ -276,18 +281,20 @@ public class MemberController {
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
 		memberService.insertMember(dto);
+		session.setAttribute("useremail", dto.getUseremail());
 		
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[이메일 인증]");
-		sendMail.setText(new StringBuffer().append("<h1>KDEMY 메일인증</h1>")
-				.append("kdemy에 가입해주셔서 감사합니다.<br><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
-				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
+		sendMail.setText(new StringBuffer().append("<table><tbody>")
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")
+				.append("<tr style='text-align: center;'><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
+				.append("' target='_blenk'>이메일 인증 확인</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
 		sendMail.send();
-				
 		return "member/signConfirm";	
-	}
+	}	
+
 
 	@RequestMapping(value = "/verify.do", method = RequestMethod.GET)
 	public String signSuccess(@RequestParam String useremail) {
@@ -327,9 +334,9 @@ public class MemberController {
 		}
 	}
 	
-	@ResponseBody
+
 	@RequestMapping("searchPW.do")
-	public void searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+	public String searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 		String userid = request.getParameter("userid");
 		String useremail = request.getParameter("useremail");
 		MemberDTO dto = new MemberDTO();
@@ -343,20 +350,25 @@ public class MemberController {
 			
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
-		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
+		sendMail.setText(new StringBuffer().append("<table><tbody>")
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")		
+				.append("<tr style='text-align: center;'><b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
-				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
+				.append("' target='_blenk'>KDEMY에서 로그인 하기</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
 		sendMail.send();
-
+		
+		return "member/signConfirm";
 	}
-	
+
 	@RequestMapping("login.do")
-	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) throws Exception{
+	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String result=memberService.passwdCheck(dto);
+		String useCookie = request.getParameter("savelogin");
+		if(useCookie != null) dto.setUseCookie(true);
 		System.out.println(result);
+		System.out.println(useCookie);
 		ModelAndView mav=new ModelAndView();
 		
 		if(result.equals("로그인성공")) {
@@ -368,6 +380,17 @@ public class MemberController {
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
+		
+			if(dto.isUseCookie()) {
+			CookieGenerator c = new CookieGenerator();
+			c.setCookieName("loginCookie");
+			c.setCookieMaxAge(60*60*24*7);
+			c.setCookiePath("/kdemy");
+			c.addCookie(response, dto.getUserid());
+			mav.addObject("loginCookie", dto.getUserid());
+			}
+
+			
 			mav.setViewName("redirect:/");
 		}else if(result.equals("관리자로그인")){
 			AdminDTO dtoa=adminService.adminLogin(dto);
@@ -378,23 +401,41 @@ public class MemberController {
 			mav.setViewName("redirect:/");
 		}else {
 			mav.addObject("message","로그인실패");
-			mav.setViewName("member/login");
+			mav.setViewName("redirect:/");
 		}
 		return mav;
 	}
-
 	
-	@ResponseBody
-	@RequestMapping(value = "/updatePoint.do", method = RequestMethod.POST)
-	public void updatePoint(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
-		String coupon = request.getParameter("coupon");	
-		MemberDTO dto = new MemberDTO();
-	   	dto.setCoupon(coupon);
-	   	String userid = (String) session.getAttribute("userid");
-		dto.setUserid(userid);
-		memberService.updatePoint(dto);
+//	@RequestMapping(value="/kdemy", method=RequestMethod.GET)
+//
+//	public void testCookie(HttpServletRequest request){
+//	Cookie[] getCookie = request.getCookies(); // 모든 쿠키 가져오기
+//	if(getCookie != null){ // 만약 쿠키가 없으면 쿠키 생성
+//	for(int i=0; i<getCookie.length; i++){
+//	Cookie c = getCookie[i]; // 객체 생성
+//	String name = c.getName(); // 쿠키 이름 가져오기
+//	String value = c.getValue(); // 쿠키 값 가져오기
+//	System.out.println(name);
+//	System.out.println(value);
+//}
+//}
+//}
+	
 
-	}
+	 @RequestMapping("logout.do") public ModelAndView logOut(HttpSession session, ModelAndView mav, HttpServletResponse response) { 
+		 //세션 초기화 
+	  memberService.logout(session); 
+	  //login.jsp로 이동
+	  mav.setViewName("redirect:/"); 
+	  mav.addObject("message", "logout"); 
+	  CookieGenerator c = new CookieGenerator();
+		c.setCookieName("loginCookie");
+		c.setCookieMaxAge(0);
+		c.setCookiePath("/kdemy");
+		c.removeCookie(response);
+	  return mav; 
+	  }
+
 
 
 	@RequestMapping("teacherPage.do")
@@ -407,19 +448,6 @@ public class MemberController {
 		return "member/login";
 	}
 
-//	@RequestMapping("logOut.do")
-//	public String logOut(HttpSession session) {
-//		session.invalidate();
-//		return "member/login";
-//	}
-	@RequestMapping("logOut.do")
-	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
-		//세션 초기화
-		memberService.logout(session);
-		//login.jsp로 이동
-		mav.setViewName("redirect:/");
-		return mav;
-	}
 
 
 	@RequestMapping("list.do")
@@ -428,9 +456,6 @@ public class MemberController {
 			@RequestParam(defaultValue ="") String location,
 			@RequestParam(defaultValue="1") int curPage) 
 					throws Exception {
-		System.out.println("list.do실행");
-		System.out.println(curPage);
-		System.out.println(location);
 		//레코드 갯수 계산
 		int count=memberService.countMember(keyword,location);
 		//페이지 관련 설정
@@ -460,10 +485,6 @@ public class MemberController {
 		return mav; //board/list.jsp로 이동
 	}//list()
 	
-	@RequestMapping("teacherIsert.do")
-	public String teacherIsert() {
-		return "member/teacherJoin";
-	}
 	@RequestMapping("approval.do")
 	public String approval(String userid) {
 		memberService.approval(userid);

@@ -106,5 +106,11 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return sqlSession.selectOne("review.detail_review", bno);
 	}
 
+	@Override
+	public void update_fullName(ReviewDTO dto) {
+		sqlSession.update("review.update_fullName", dto);
+		
+	}
+
 
 }
