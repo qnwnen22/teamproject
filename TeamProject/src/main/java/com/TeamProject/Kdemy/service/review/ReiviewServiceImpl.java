@@ -89,6 +89,12 @@ public class ReiviewServiceImpl implements ReviewService {
 		return reviewDao.detailReview(bno);
 	}
 
+	@Override
+	public void update_fullName(ReviewDTO dto) {
+		reviewDao.update_fullName(dto);
+		
+	}
+
 
 
 }

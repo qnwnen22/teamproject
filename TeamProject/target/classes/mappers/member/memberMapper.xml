@@ -6,11 +6,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
 
+  <update id="keepLogin">
+   update kdemymember set session_key=#{sessionID}, session_limit=#{session_limit} where userid=#{userid}
+  </update>
+  
+  <select id="checkUserWithSessionKey" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
+   select * from kdemymember where session_key = #{value};
+  
+  </select>
+
     <select id="orderDetail" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
 		select * from lecture,lectureBox
 		where lecture.lecture_idx = lectureBox.lecture_idx and lectureBox.userid=#{userid}
 		order by lecture.lecture_idx desc
 	</select>
+	 
+	 <select id="couponDetail" resultType="com.TeamProject.Kdemy.model.member.dto.CouponDTO">
+		select * from coupon
+		order by coupon_idx desc
+	</select>
+	
+	<update id="updateCoupon">
+		update kdemymember set coupon=#{coupon}
+		where useremail=#{useremail}
+	</update>
+	
+	<update id="updateCouponPoint">
+       update kdemymember
+       set point = point + (select point from coupon b where b.coupon=#{coupon})
+       where userid=#{userid}
+	</update>
+
+    <insert id="insertCoupon">
+		insert into coupon
+		(coupon_idx,coupon_name,coupon,point,coupon_text) 
+        values 
+        ((select nvl(max(coupon_idx)+1,1) from coupon), #{coupon_name}, #{coupon}, #{point},#{coupon_text})	
+	</insert>
+	
 	
 	<select id="cartList" resultType="com.TeamProject.Kdemy.model.cart.dto.CartDTO">
 		select * from cart
@@ -78,7 +111,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select COUNT(*) from kdemymember
 		WHERE userid=#{userid}
 	</select>
-
+	
+    <select id="couponCheck" resultType="Int">
+		select COUNT(*) from coupon
+		WHERE coupon=#{coupon}
+	</select>
+	
 	<select id="passwdCheck" 
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		select * from kdemymember
@@ -108,17 +146,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid} and useremail=#{useremail}
 	</update>
 
-	<update id="updateCoupon">
-		update kdemymember set coupon=#{coupon}
-		where useremail=#{useremail}
-	</update>
-	
-	<update id="updateCouponPoint">
-       update kdemymember
-       set point = (select point from coupon b where b.coupon=#{coupon})
-       where userid=#{userid}
-	</update>
-
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		<include refid="paging_header" />
@@ -128,6 +155,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by userid desc
 		<include refid="paging_footer" />
 	</select>
+	
 	<sql id="paging_header">
 		select *
 		from (

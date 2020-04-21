@@ -41,7 +41,6 @@
 				<li><b><a href="${path}/admin/list.do" style="color:blue;">관리자계정</a></b></li>
 			</ul>
 		</div>
-		<br>
 		<table class="table table-bordered table-hover text-center">
 			<thead class="thead-dark">
 				<tr>
@@ -55,11 +54,10 @@
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${list}">
-					<tr>
+					<tr style="cursor:pointer;" onclick="adminView('${row.admin_id}')"
+							data-toggle="modal" data-target="#updateModal">
 						<td>${row.admin_id}</td>
-						<td><a href="#" onclick="adminView('${row.admin_id}')"
-							data-toggle="modal" data-target="#updateModal">${row.admin_name}</a>
-						</td>
+						<td>${row.admin_name}</td>
 						<td>${row.admin_email}</td>
 						<td>${row.admin_hp}</td>
 						<td>${row.admin_level}</td>
@@ -70,8 +68,10 @@
 			</tbody>
 		</table>
 		<hr>
-		<button class="btn btn-outline-primary col-3" data-toggle="modal"
+		<div class="d-flex">
+		<button class="btn btn-outline-primary ml-auto" data-toggle="modal"
 			data-target="#myModal">추가</button>
+		</div>
 		<div class="modal" id="myModal">
 			<div class="modal-dialog">
 				<div class="modal-content">

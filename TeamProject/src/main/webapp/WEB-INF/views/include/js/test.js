@@ -9,6 +9,4 @@ $(function(){
     		$('.container-fluid .tail_body').collapse('show');
     	};
     });
-    
-   
 });

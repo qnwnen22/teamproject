@@ -772,10 +772,6 @@
 																		<a class="plain cursor" data-ga-category="header"
 																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
 																	</div>
-															<div class="item col-xl-4 text-center"
-																				style="display: initial !important;">
-																				<a href="${path}/member/couponMaker.do" class="plain cursor" ><b>쿠폰생성</b></a>
-																			</div>
 																<div
 																	class="item dropdown col-xl-4 text-center dropdown-toggle"
 																	style="display: initial !important;">
@@ -785,18 +781,19 @@
 																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
 																		<a class="dropdown-item" href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
 						    											<a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
+						    											<a class="dropdown-item" href="${path}/member/couponMaker.do">쿠폰관리</a>
 																	</div>
 																</div>
 																<div
 																	class="item dropdown col-xl-4 text-center dropdown-toggle"
 																	style="display: initial !important;">
-																	<a class="plain cursor" data-ga-category="header"><b>통계</b></a>
+																	<a class="plain" data-ga-category="header" href="${path}/chart/statistics.do"><b>통계</b></a>
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item"
 																			href="${path}/chart/memberchart.do">회원통계</a> <a
-																			class="dropdown-item" href="#">회원관리</a> <a
-																			class="dropdown-item" href="#">강의관리</a> <a
-																			class="dropdown-item" href="#">패키지관리</a>
+																			class="dropdown-item" href="${path}/chart/lecturechart.do">강의통계</a> <a
+																			class="dropdown-item" href="#">매출통계</a> <a
+																			class="dropdown-item" href="#">방문자</a>
 																	</div>
 																</div>
 																<a><b>${sessionScope.admin_id}님</b></a>

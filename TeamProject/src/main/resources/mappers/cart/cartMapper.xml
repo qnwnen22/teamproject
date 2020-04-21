@@ -36,12 +36,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertLectureBox">
 		insert into lectureBox
-		(box_idx, cell_type, userid, nickname, lecture_idx)
+		(box_idx, cell_type, userid, lecture_idx)
 		values
 		(
 		(select nvl(max(box_idx)+1, 1) from lectureBox ), 
-		#{cell_type}, #{userid}, #{nickname}, #{lecture_idx}
-		#{cell_type}, #{userid}, #{nickname},#{lecture_idx}
+		#{cell_type}, #{userid}, #{lecture_idx}
 		)
 	</insert>
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<header class="nav d-xl-block d-lg-block d-none">
-	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed d-block pb-3" style="margin-bottom: 160px;">
+<header class="nav d-xl-block d-lg-block d-none" style="margin-bottom: 160px;">
+	<nav id="kdemiNavBar" class="MarketNav is-nav-white is-fixed d-block pb-3">
 		<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
 			<div class="flex-between-center height-80px row">
 				<div class="flex-left-center col-2">
@@ -457,4 +457,3 @@
 		</div>
 	</nav>
 </header>
-

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
 	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
-<div class="container-fluid align-items-center">
+	<div id="footertoggle" class="d-flex py-1 ">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
 			<i class="fa fa-bars" style="font-size: 50px;"></i>
@@ -122,7 +122,7 @@
 					<input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요.">
 				</div>
 			<div class="form-check pt-2 pb-1">
-				  <input class="form-check-input" type="checkbox" name="loginsave" id="loginsave" value="option1" checked>
+				  <input class="form-check-input" type="checkbox" name="savelogin" id="savelogin" value="option1" checked>
 				  <label class="form-check-label" for="exampleRadios1">
 				   <b>로그인유지</b>
 				  </label>
@@ -209,6 +209,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 

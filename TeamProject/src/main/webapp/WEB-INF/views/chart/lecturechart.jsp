@@ -44,31 +44,29 @@
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
 				<li><a href="${path}/chart/statistics.do">통계</a></li>
-				<li><a href="${path}/chart/lecturechart.do">강의통계</a></li>
+				<li><a href="${path}/chart/lecturechart.do" style="color:blue;">강의통계</a></li>
 			</ul>
 		</div>
 		<div class="d-flex">
-			<div class="card col-3 d-flex align-items-center"
-				style="width: 400px">
+			<div class="card col-3 d-flex align-items-center">
 				<img class="card-img-top" src="../include/images/chart/회원.jpg"
 					alt="Card image" style="opacity: 0.3">
 				<div class="card-img-overlay">
 					<h4 class="card-title">가입자수</h4>
-					<h4 class="card-title">120,000</h4>
+					<h4 class="card-title">${map.countMember}</h4>
 					<a href="${path}/chart/memberchart.do" class="btn btn-primary">차트보기</a>
 				</div>
 			</div>
-			<div class="card col-3 d-flex align-items-center"
-				style="width: 500px">
+			<div class="card col-3 d-flex align-items-center border-danger">
 				<img class="card-img-top" src="../include/images/chart/강의.jpg"
 					alt="Card image" style="opacity: 0.3">
 				<div class="card-img-overlay">
 					<h4 class="card-title">등록된 강의</h4>
-					<p class="card-text">Some example text.</p>
+					<h4 class="card-title">${map.countLecture}</h4>
 					<a href="${path}/chart/lecturechart.do" class="btn btn-primary">차트보기</a>
 				</div>
 			</div>
-			<div class="card col-3" style="width: 400px">
+			<div class="card col-3">
 				<img class="card-img-top" src="../include/images/chart/매출.jpg"
 					alt="Card image" style="opacity: 0.3">
 				<div class="card-img-overlay">
@@ -77,9 +75,9 @@
 					<a href="${path}/chart/saleschart.do" class="btn btn-primary">차트보기</a>
 				</div>
 			</div>
-			<div class="card col-3" style="width: 400px">
-				<img class="card-img-top" src="img_avatar1.png" alt="Card image">
-				<div class="card-body">
+			<div class="card col-3">
+				<img class="card-img-top" src="../include/images/chart/방문자.jpg" style="opacity: 0.3" alt="Card image">
+				<div class="card-img-overlay">
 					<h4 class="card-title">기타</h4>
 					<p class="card-text">Some example text.</p>
 					<a href="#" class="btn btn-primary">차트보기</a>

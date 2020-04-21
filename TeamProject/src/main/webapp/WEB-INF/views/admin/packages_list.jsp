@@ -48,8 +48,6 @@ function listview(){
 		</div>
 		<div class="table-responsive">
 			<br>
-			<button class="btn btn-outline-primary mb-1" data-toggle="modal"
-				data-target="#addModal">패키지 추가</button>
 			<div class="modal" id="addModal">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -116,6 +114,10 @@ function listview(){
 			</tbody>
 		</table>
 	</div>
+	<div class="d-flex">
+	<button class="btn btn-outline-primary mb-1 ml-auto" data-toggle="modal"
+				data-target="#addModal">패키지 추가</button>
+				</div>
 	<div class="modal" id="updateModal"></div>
 	<!-- 페이징 처리 -->
 	<div class="row justify-content-center">

@@ -1,5 +1,7 @@
 package com.TeamProject.Kdemy.service.chart;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -19,7 +21,19 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 	MemberService memberService;
 	@Inject
 	LectureService lectureService;
-
+	
+	@Override
+	public Map<String, Object> countItems() {
+		Map<String, Object> map = new HashMap<>();
+		String keyword="";
+		String location="";
+		int countMember=memberService.countMember(keyword,location);
+		int countLecture=lectureService.searchCount(keyword);
+		map.put("countMember", countMember);
+		map.put("countLecture", countLecture);
+		return map;
+	}
+	
 	@Override
 	public JSONObject getChartData() {
 		List<MemberDTO> items=memberService.chartCount();
