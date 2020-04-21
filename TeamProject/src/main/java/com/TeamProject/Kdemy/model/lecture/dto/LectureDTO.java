@@ -38,4 +38,6 @@ public class LectureDTO {
 	private MultipartFile file2;
 	
 	private int tcount;
+	//lectureBox join용 칼럼
+	private String up;
 }
