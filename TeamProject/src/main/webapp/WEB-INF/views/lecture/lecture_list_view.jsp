@@ -80,16 +80,22 @@ $('#star1 a').click(function(){
 		<div class="col-xl-12 col-lg-12">
 			<div class="row">
 				<div class="col-xl-6" style="text-align: center;">
-					<img src="../upload/${dto.main_img}" class="img-thumbnail shadow bg-white rounded my-1">
+					<%-- <img src="../upload/${dto.main_img}" class="img-thumbnail shadow bg-white rounded my-1"> --%>
+					<div class="card-image mx-0">
+						<img class="img-fluid mx-auto d-block" style="height:150px;"src="../upload/${dto.main_img}">
+					</div>
 				</div>
 				
 				<div class="col-xl-5 p-2 m-2" style="background-color: white; text-align: justify;">
 					<h2>${dto.subject}</h2>
 					<p>강사 아이디 : ${dto.userid}</p>
 					<p>등록일 : <fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" /></p>
-					<p>수강중인 학생 수 : ${lectureCount}</p>
+					
+					<div class="col-12">
+						<b>학생수</b><fmt:formatNumber value="${lectureCount}" pattern="#,###" />
+					</div>
+					<%-- <p>수강중인 학생 수 : ${lectureCount}</p> --%>
 					<p>좋아요 갯수 : ${upCount}</p>
-				
 				</div>
 			</div>
 			
