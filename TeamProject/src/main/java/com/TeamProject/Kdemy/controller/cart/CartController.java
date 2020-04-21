@@ -82,7 +82,6 @@ public class CartController {
 		for(int i=0; i<count; i++) {
 			cartService.buyCart(userid,lecture_idx[i]); 
 			cartService.insertLectureBox(userid, nickname, cell_type[i], lecture_idx[i]);
-
 		}
 		return "redirect:/cart/cartPage.do";
 	}

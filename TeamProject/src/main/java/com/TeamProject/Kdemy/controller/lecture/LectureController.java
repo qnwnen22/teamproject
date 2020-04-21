@@ -141,6 +141,7 @@ public class LectureController {
 		return mav;
 	}
 
+	
 	@RequestMapping("all_list_search.do")
 	public ModelAndView all_list(
 			@RequestParam(defaultValue="") String keyword,
@@ -190,8 +191,6 @@ public class LectureController {
 		return mav;
 	}
 	
-	
-	
 	@RequestMapping("video_list_search.do")
 	public ModelAndView video_list_search(
 			@RequestParam(defaultValue="") String keyword,
@@ -216,342 +215,342 @@ public class LectureController {
 		return mav;
 	}
 	//실시간 강의 리스트 출력 메소드
-		@RequestMapping("online_list.do")
-		public ModelAndView online_list(
-				@RequestParam(defaultValue="1")int curPage,	
-				@RequestParam(defaultValue="") String admin) throws Exception {
-			String cell_type="2";
-			int count=lectureService.countList(cell_type);
-			LecturePager pager=new LecturePager(count, curPage);
-			int start=pager.getPageBegin();
-			int end=pager.getPageEnd();
-			
-			List<LectureDTO> list=lectureService.lecture_list(cell_type, start, end);
-			ModelAndView mav=new ModelAndView();
-			
-			HashMap<String, Object> map=new HashMap<>();
-			map.put("list", list); //map에 자료 저장
-			map.put("count", count);
-			map.put("pager", pager); //페이지 네비게이션을 위한 변수 
-			
-			mav.addObject("map",map);
-			if(admin.equals("admin")) {
-				mav.setViewName("admin/online_lecture_list");
-			}else {
-				mav.setViewName("lecture/online_list");
-			}
-			return mav;
-		}
-		@RequestMapping("online_list_search.do")
-		public ModelAndView online_list_search(
-				@RequestParam(defaultValue="") String keyword,
-				@RequestParam(defaultValue="1") int curPage	) throws Exception {
-			String cell_type="2";
-			int count=lectureService.searchCount(cell_type, keyword);
-			LecturePager pager=new LecturePager(count, curPage);
-			int start=pager.getPageBegin();
-			int end=pager.getPageEnd();
-			List<LectureDTO> list=lectureService.searchList(cell_type, keyword, start, end);
-			
-			HashMap<String, Object> map=new HashMap<String, Object>();
-			map.put("list", list);
-			map.put("count", count);
-			map.put("pager", pager);
-			map.put("keyword", keyword);
-			
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("map",map);
-			mav.setViewName("lecture/online_list_search");
-			return mav;
-		}
+	@RequestMapping("online_list.do")
+	public ModelAndView online_list(
+			@RequestParam(defaultValue="1")int curPage,	
+			@RequestParam(defaultValue="") String admin) throws Exception {
+		String cell_type="2";
+		int count=lectureService.countList(cell_type);
+		LecturePager pager=new LecturePager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
 		
-		//현장 강의 리스트 출력 메소드
-		@RequestMapping("offline_list.do")
-		public ModelAndView offline_list(@RequestParam(defaultValue="1")int curPage,
-				@RequestParam(defaultValue="") String admin) throws Exception {
-			
-			String cell_type="3";
-
-			int count=lectureService.countList(cell_type);
-			LecturePager pager=new LecturePager(count, curPage);
-			int start=pager.getPageBegin();
-			int end=pager.getPageEnd();
-			
-			List<LectureDTO> list=lectureService.lecture_list(cell_type, start, end);
-			ModelAndView mav=new ModelAndView();
-			
-			HashMap<String, Object> map=new HashMap<>();
-			map.put("list", list); //map에 자료 저장
-			map.put("count", count);
-			map.put("pager", pager); //페이지 네비게이션을 위한 변수 
-			
-			mav.addObject("map",map);
-			if(admin.equals("admin")) {
-				mav.setViewName("admin/offline_lecture_list");
-			}else {
-				mav.setViewName("lecture/offline_list");
-			}
-			return mav;
-		}
-		@RequestMapping("offline_list_search.do")
-		public ModelAndView offline_list_search(
-				@RequestParam(defaultValue="") String keyword,
-				@RequestParam(defaultValue="1") int curPage
-				) throws Exception {
-			String cell_type="3";
-			
-			int count=lectureService.searchCount(cell_type, keyword);
-			LecturePager pager=new LecturePager(count, curPage);
-			int start=pager.getPageBegin();
-			int end=pager.getPageEnd();
-			List<LectureDTO> list=lectureService.searchList(cell_type, keyword, start, end);
-			
-			HashMap<String, Object> map=new HashMap<String, Object>();
-			map.put("list", list);
-			map.put("count", count);
-			map.put("pager", pager);
-			map.put("keyword", keyword);
-			
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("map",map);
-			mav.setViewName("lecture/offline_list_search");
-			return mav;
-		}
+		List<LectureDTO> list=lectureService.lecture_list(cell_type, start, end);
+		ModelAndView mav=new ModelAndView();
 		
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("list", list); //map에 자료 저장
+		map.put("count", count);
+		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
+		
+		mav.addObject("map",map);
+		if(admin.equals("admin")) {
+			mav.setViewName("admin/online_lecture_list");
+		}else {
+			mav.setViewName("lecture/online_list");
+		}
+		return mav;
+	}
+	@RequestMapping("online_list_search.do")
+	public ModelAndView online_list_search(
+			@RequestParam(defaultValue="") String keyword,
+			@RequestParam(defaultValue="1") int curPage	) throws Exception {
+		String cell_type="2";
+		int count=lectureService.searchCount(cell_type, keyword);
+		LecturePager pager=new LecturePager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<LectureDTO> list=lectureService.searchList(cell_type, keyword, start, end);
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		map.put("keyword", keyword);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map",map);
+		mav.setViewName("lecture/online_list_search");
+		return mav;
+	}
 	
+	//현장 강의 리스트 출력 메소드
+	@RequestMapping("offline_list.do")
+	public ModelAndView offline_list(@RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue="") String admin) throws Exception {
 		
-		@RequestMapping(value="teacher_type1_insert.do",method= {RequestMethod.POST},
-				consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
-		public String teacher_type1_insert(LectureDTO dto) throws Exception {			
-			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
-			try {
-				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			dto.setMain_img(main_img);
-			
-			MultipartFile file2=dto.getFile2();
-			String videofile=file2.getOriginalFilename();
-			try {
-				videofile=UploadFileUtils.uploadFile(
-						uploadPath, videofile, file2.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			dto.setVideofile(videofile);
+		String cell_type="3";
 
-			lectureService.teacher_type1_insert(dto);
-			return "redirect:/lecture/video_List.do";
-		}
+		int count=lectureService.countList(cell_type);
+		LecturePager pager=new LecturePager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
 		
+		List<LectureDTO> list=lectureService.lecture_list(cell_type, start, end);
+		ModelAndView mav=new ModelAndView();
 		
-		@RequestMapping(value="teacher_type3_insert.do",method= {RequestMethod.POST},
-				consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-		public String teacher_type3_insert(LectureDTO dto) throws Exception {
-			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
-			try {
-				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			dto.setMain_img(main_img);
-			lectureService.teacher_type3_insert(dto);
-			return "redirect:/lecture/offline_list.do";
-		}
-		@RequestMapping("teacher_type2_insert.do")
-		public String teacher_type2_insert(LectureDTO dto) throws Exception {
-			MultipartFile file1=dto.getFile1();
-			String main_img=file1.getOriginalFilename();
-			try {
-				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			dto.setMain_img(main_img);
-			
-			MultipartFile file2=dto.getFile2();
-			String videofile=file2.getOriginalFilename();
-			try {
-				videofile=UploadFileUtils.uploadFile(uploadPath, videofile, file2.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			dto.setVideofile(videofile);
-			
-			lectureService.teacher_type2_insert(dto);
-			
-			return "redirect:/lecture/online_list.do";
-		}
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("list", list); //map에 자료 저장
+		map.put("count", count);
+		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
 		
-		@RequestMapping("lecture_list_view.do")
-		public ModelAndView lecture_list_view(
-				int lecture_idx, LectureDTO dto,
-				HttpSession session,LectureBoxDTO lbDto) {
-			String userid=(String)session.getAttribute("userid");
-			
-			int upCount=lectureService.upCount(lbDto);
-			int lectureCount=lectureService.lectureCount(lbDto);
-			
-			int check=-1;
-			String up ="x";
-			if(userid!=null) {
-				lbDto.setUserid(userid);
-				lbDto.setLecture_idx(lecture_idx);
-				check = lectureService.buyCheck(lbDto);
-				up = lectureService.upCheck(lbDto);
+		mav.addObject("map",map);
+		if(admin.equals("admin")) {
+			mav.setViewName("admin/offline_lecture_list");
+		}else {
+			mav.setViewName("lecture/offline_list");
+		}
+		return mav;
+	}
+	@RequestMapping("offline_list_search.do")
+	public ModelAndView offline_list_search(
+			@RequestParam(defaultValue="") String keyword,
+			@RequestParam(defaultValue="1") int curPage
+			) throws Exception {
+		String cell_type="3";
+		
+		int count=lectureService.searchCount(cell_type, keyword);
+		LecturePager pager=new LecturePager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<LectureDTO> list=lectureService.searchList(cell_type, keyword, start, end);
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		map.put("keyword", keyword);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map",map);
+		mav.setViewName("lecture/offline_list_search");
+		return mav;
+	}
+	
+
+	
+	@RequestMapping(value="teacher_type1_insert.do",method= {RequestMethod.POST},
+			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
+	public String teacher_type1_insert(LectureDTO dto) throws Exception {			
+		MultipartFile file1=dto.getFile1();
+		String main_img=file1.getOriginalFilename();
+		try {
+			main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		dto.setMain_img(main_img);
+		
+		MultipartFile file2=dto.getFile2();
+		String videofile=file2.getOriginalFilename();
+		try {
+			videofile=UploadFileUtils.uploadFile(
+					uploadPath, videofile, file2.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		dto.setVideofile(videofile);
+
+		lectureService.teacher_type1_insert(dto);
+		return "redirect:/lecture/video_List.do";
+	}
+	
+	
+	@RequestMapping(value="teacher_type3_insert.do",method= {RequestMethod.POST},
+			consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String teacher_type3_insert(LectureDTO dto) throws Exception {
+		MultipartFile file1=dto.getFile1();
+		String main_img=file1.getOriginalFilename();
+		try {
+			main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		dto.setMain_img(main_img);
+		lectureService.teacher_type3_insert(dto);
+		return "redirect:/lecture/offline_list.do";
+	}
+	@RequestMapping("teacher_type2_insert.do")
+	public String teacher_type2_insert(LectureDTO dto) throws Exception {
+		MultipartFile file1=dto.getFile1();
+		String main_img=file1.getOriginalFilename();
+		try {
+			main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		dto.setMain_img(main_img);
+		
+		MultipartFile file2=dto.getFile2();
+		String videofile=file2.getOriginalFilename();
+		try {
+			videofile=UploadFileUtils.uploadFile(uploadPath, videofile, file2.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		dto.setVideofile(videofile);
+		
+		lectureService.teacher_type2_insert(dto);
+		
+		return "redirect:/lecture/online_list.do";
+	}
+	
+	@RequestMapping("lecture_list_view.do")
+	public ModelAndView lecture_list_view(
+			int lecture_idx, LectureDTO dto,
+			HttpSession session,LectureBoxDTO lbDto) {
+		String userid=(String)session.getAttribute("userid");
+		
+		int upCount=lectureService.upCount(lbDto);
+		int lectureCount=lectureService.lectureCount(lbDto);
+		
+		int check=-1;
+		String up ="x";
+		if(userid!=null) {
+			lbDto.setUserid(userid);
+			lbDto.setLecture_idx(lecture_idx);
+			check = lectureService.buyCheck(lbDto);
+			up = lectureService.upCheck(lbDto);
 //				System.err.println("up : "+up);
-				if(up==null) up="x";
-			}
-				
-			dto=lectureService.lecture_list_view(lecture_idx);
+			if(up==null) up="x";
+		}
+			
+		dto=lectureService.lecture_list_view(lecture_idx);
 
-			ModelAndView mav=new ModelAndView();
-			mav.addObject("upCount", upCount);
-			mav.addObject("lectureCount",lectureCount);
-			mav.addObject("up", up);
-			mav.addObject("check",check);
-			mav.addObject("dto",dto);
-			mav.setViewName("lecture/lecture_list_view");
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("upCount", upCount);
+		mav.addObject("lectureCount",lectureCount);
+		mav.addObject("up", up);
+		mav.addObject("check",check);
+		mav.addObject("dto",dto);
+		mav.setViewName("lecture/lecture_list_view");
+		return mav;
+	}
+	
+	@RequestMapping("lecture_list.do")
+	public ModelAndView lecture_list(@RequestParam int cell_type) {
+		ModelAndView mav=new ModelAndView();
+		if(cell_type==1) {
+			mav.setViewName("lecture/video_list");
+		}else if(cell_type==2) {
+			mav.setViewName("lecture/online_list.do");
+		}else if(cell_type==3) {
+			mav.setViewName("lecture/offline_list.do");
+		}
+		return mav;
+	}
+
+	// 강의 관리 페이지 이동
+	@RequestMapping("myLecturePage.do")
+	public ModelAndView myLecturePage(String userid, HttpSession session) {
+		ModelAndView mav=new ModelAndView();
+		if(!((String)session.getAttribute("userid")).equals(userid)) {
+			mav.setViewName("redirect:/");
 			return mav;
+		}
+		List<LectureDTO> list=lectureService.myLectureList(userid);
+		mav.addObject("list",list);
+		mav.setViewName("lecture/myLecturePage");
+		return mav;
+	}
+	//강의 지우기
+	@RequestMapping("lectureDelete.do")
+	public String lectureDelete(int lecture_idx, HttpSession session) {
+		
+		//파일 지우기 처리
+		LectureDTO dto=lectureService.selectFile(lecture_idx);
+
+		File file1=new File(uploadPath+dto.getMain_img());
+		String front=dto.getMain_img().substring(0, 12);//0~11까지
+		String end=dto.getMain_img().substring(14);//14부터 끝까지
+		new File(uploadPath+(front+end).replace(
+				'/',File.separatorChar)).delete();
+		if(file1.exists()) {
+			file1.delete();
+		}else {
+			log.info("파일이 없습니다");
+		}
+
+		File file2=new File(uploadPath+dto.getVideofile());
+		
+		if(file2.exists()) {
+			file2.delete();
+		}else {
+			log.info("이미지 파일이 존재하지 않습니다.");
 		}
 		
-		@RequestMapping("lecture_list.do")
-		public ModelAndView lecture_list(@RequestParam int cell_type) {
-			ModelAndView mav=new ModelAndView();
-			if(cell_type==1) {
-				mav.setViewName("lecture/video_list");
-			}else if(cell_type==2) {
-				mav.setViewName("lecture/online_list.do");
-			}else if(cell_type==3) {
-				mav.setViewName("lecture/offline_list.do");
-			}
-			return mav;
-		}
-
-		// 강의 관리 페이지 이동
-		@RequestMapping("myLecturePage.do")
-		public ModelAndView myLecturePage(String userid, HttpSession session) {
-			ModelAndView mav=new ModelAndView();
-			if(!((String)session.getAttribute("userid")).equals(userid)) {
-				mav.setViewName("redirect:/");
-				return mav;
-			}
-			List<LectureDTO> list=lectureService.myLectureList(userid);
-			mav.addObject("list",list);
-			mav.setViewName("lecture/myLecturePage");
-			return mav;
-		}
-		//강의 지우기
-		@RequestMapping("lectureDelete.do")
-		public String lectureDelete(int lecture_idx, HttpSession session) {
-			
-			//파일 지우기 처리
-			LectureDTO dto=lectureService.selectFile(lecture_idx);
-
-			File file1=new File(uploadPath+dto.getMain_img());
-			String front=dto.getMain_img().substring(0, 12);//0~11까지
-			String end=dto.getMain_img().substring(14);//14부터 끝까지
-			new File(uploadPath+(front+end).replace(
-					'/',File.separatorChar)).delete();
-			if(file1.exists()) {
-				file1.delete();
-			}else {
-				log.info("파일이 없습니다");
-			}
-
-			File file2=new File(uploadPath+dto.getVideofile());
-			
-			if(file2.exists()) {
-				file2.delete();
-			}else {
-				log.info("이미지 파일이 존재하지 않습니다.");
-			}
-			
-			lectureService.lectureDelete(lecture_idx);
-			String userid=(String)session.getAttribute("userid");
-			return "redirect:/lecture/myLecturePage.do?userid="+userid;
-		}
+		lectureService.lectureDelete(lecture_idx);
+		String userid=(String)session.getAttribute("userid");
+		return "redirect:/lecture/myLecturePage.do?userid="+userid;
+	}
+	
+	@RequestMapping("lectureUpdatePage.do")
+	public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
+		ModelAndView mav=new ModelAndView();
+		LectureDTO ldto=new LectureDTO();
+		ldto=lectureService.lectureView_success(lecture_idx);
+		Map<String, Object> map=new HashMap<>();
+		map.put("ldto", ldto);
+		mav.addObject("map", map);
+		mav.setViewName("lecture/lectureView_success");
 		
-		@RequestMapping("lectureUpdatePage.do")
-		public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
-			ModelAndView mav=new ModelAndView();
+		LectureDTO dto = new LectureDTO();
+		dto.setUserid((String)session.getAttribute("userid"));
+		dto.setLecture_idx(lecture_idx);
+		dto=lectureService.lectureList(dto);
+		
+		mav.setViewName("/lecture/lectureUpdate");
+		mav.addObject("dto",dto);
+		return mav;
+	}
+	
+	@RequestMapping("lectureView_success.do")
+	public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
+		ModelAndView mav=new ModelAndView();
+		LectureBoxDTO dto=new LectureBoxDTO();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		dto.setLecture_idx(lecture_idx);
+		
+		int check=lectureService.lectureViewCheck(dto);
+		System.err.println("check : "+check);
+		if(check==1) {
 			LectureDTO ldto=new LectureDTO();
 			ldto=lectureService.lectureView_success(lecture_idx);
-			Map<String, Object> map=new HashMap<>();
-			map.put("ldto", ldto);
-			mav.addObject("map", map);
+			mav.addObject("ldto", ldto);
 			mav.setViewName("lecture/lectureView_success");
-			
-			LectureDTO dto = new LectureDTO();
-			dto.setUserid((String)session.getAttribute("userid"));
-			dto.setLecture_idx(lecture_idx);
-			dto=lectureService.lectureList(dto);
-			
-			mav.setViewName("/lecture/lectureUpdate");
-			mav.addObject("dto",dto);
-			return mav;
+		}else {
+			mav.setViewName("redirect:/");
 		}
-		
-		@RequestMapping("lectureView_success.do")
-		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
-			ModelAndView mav=new ModelAndView();
-			LectureBoxDTO dto=new LectureBoxDTO();
-			String userid=(String)session.getAttribute("userid");
-			dto.setUserid(userid);
-			dto.setLecture_idx(lecture_idx);
+		return mav;
+	}
 			
-			int check=lectureService.lectureViewCheck(dto);
-			System.err.println("check : "+check);
-			if(check==1) {
-				LectureDTO ldto=new LectureDTO();
-				ldto=lectureService.lectureView_success(lecture_idx);
-				mav.addObject("ldto", ldto);
-				mav.setViewName("lecture/lectureView_success");
-			}else {
-				mav.setViewName("redirect:/");
-			}
-			return mav;
-		}
+	@RequestMapping(value="lectureUpdate.do",method= {RequestMethod.POST},
+	consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
+	public String lectureUpdate(LectureDTO dto) throws Exception {
+		if(dto.getLecture_date()==null) dto.setLecture_date("");
+		if(dto.getLecture_start()==null) dto.setLecture_start("");
+		if(dto.getLecture_time()==null) dto.setLecture_time("");
+		if(dto.getLecture_address()==null) dto.setLecture_address("");
+		if(dto.getLecture_address2()==null) dto.setLecture_address2("");
+		MultipartFile file1=dto.getFile1();
 				
-		@RequestMapping(value="lectureUpdate.do",method= {RequestMethod.POST},
-		consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
-		public String lectureUpdate(LectureDTO dto) throws Exception {
-			if(dto.getLecture_date()==null) dto.setLecture_date("");
-			if(dto.getLecture_start()==null) dto.setLecture_start("");
-			if(dto.getLecture_time()==null) dto.setLecture_time("");
-			if(dto.getLecture_address()==null) dto.setLecture_address("");
-			if(dto.getLecture_address2()==null) dto.setLecture_address2("");
-			MultipartFile file1=dto.getFile1();
-					
-			String main_img=file1.getOriginalFilename();
-			if(main_img=="") {
-				lectureService.update(dto);
-			}else {
+		String main_img=file1.getOriginalFilename();
+		if(main_img=="") {
+			lectureService.update(dto);
+		}else {
 //				System.err.println("else");
-				try {
-					main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				dto.setMain_img(main_img);
-				lectureService.updateAddImg(dto);
+			try {
+				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			return "redirect:/";
+			dto.setMain_img(main_img);
+			lectureService.updateAddImg(dto);
 		}
-		@RequestMapping("lectureUp.do")
-		public String lectureUp(HttpSession session, int lecture_idx) {
-			String userid = (String)session.getAttribute("userid");
-			lectureService.upUpdate(userid, lecture_idx);
-			return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
-		}
-		
-		@RequestMapping("lectureDown.do")
-		public String lectureDown(HttpSession session, int lecture_idx) {
-			String userid = (String)session.getAttribute("userid");
-			lectureService.downUpdate(userid, lecture_idx);
-			return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
-		}
+		return "redirect:/";
+	}
+	@RequestMapping("lectureUp.do")
+	public String lectureUp(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+		lectureService.upUpdate(userid, lecture_idx);
+		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
+	}
+	
+	@RequestMapping("lectureDown.do")
+	public String lectureDown(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+		lectureService.downUpdate(userid, lecture_idx);
+		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
+	}
 }
