@@ -54,4 +54,6 @@ public interface LectureDAO {
 	public void downUpdate(String userid, int lecture_idx);
 	public int upCount(LectureBoxDTO lbDto);
 	public int lectureCount(LectureBoxDTO lbDto);
+	public List<LectureBoxDTO> lectureCountMoney();
+	public int totalMoney();
 }

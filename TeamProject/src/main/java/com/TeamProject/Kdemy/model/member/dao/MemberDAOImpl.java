@@ -121,7 +121,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public int countMember(String keyword, String location) throws Exception {
+	public int countMember(String keyword, String location){
 		Map<String,String> map=new HashMap<>();
 		map.put("keyword", "%"+keyword+"%");
 		map.put("location", location);

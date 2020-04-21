@@ -228,4 +228,14 @@ public class LectureDAOImpl implements LectureDAO {
 		return sqlSession.selectOne("lectureBox.lectureCount",lbDto);
 	}
 
+	@Override
+	public List<LectureBoxDTO> lectureCountMoney() {
+		return sqlSession.selectList("lectureBox.lectureCountMoney");
+	}
+
+	@Override
+	public int totalMoney() {
+		return sqlSession.selectOne("lectureBox.totalMoney");
+	}
+
 }

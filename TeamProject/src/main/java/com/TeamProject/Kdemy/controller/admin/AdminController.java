@@ -33,6 +33,13 @@ public class AdminController {
 		mav.addObject("list", list);
 		return mav;
 	}
+	
+	@RequestMapping("managementMenu.do")
+	public void managementMenu() {
+	}
+	@RequestMapping("lectureMenu.do")
+	public void lectureMenu() {
+	}
 	@RequestMapping("insertAdmin.do")
 	public String insertAdmin(AdminDTO dto) {
 		String admin_passwd = BCrypt.hashpw(dto.getBadmin_passwd(), BCrypt.gensalt());

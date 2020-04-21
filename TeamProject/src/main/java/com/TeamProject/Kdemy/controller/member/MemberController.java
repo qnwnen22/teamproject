@@ -386,11 +386,12 @@ public class MemberController {
 	}
 	
 	
-	 @RequestMapping("logOut.do") public ModelAndView logOut(HttpSession session, ModelAndView mav) { 
-		 //세션 초기화 
+	 @RequestMapping("logOut.do") 
+	 public ModelAndView logOut(HttpSession session, ModelAndView mav) { 
+	  //세션 초기화 
 	  memberService.logout(session); 
 	  //login.jsp로 이동
-	  mav.setViewName("member/login"); 
+	  mav.setViewName("redirect:/"); 
 	  mav.addObject("message", "logout"); 
 	  return mav; 
 	  }
@@ -430,9 +431,6 @@ public class MemberController {
 			@RequestParam(defaultValue ="") String location,
 			@RequestParam(defaultValue="1") int curPage) 
 					throws Exception {
-		System.out.println("list.do실행");
-		System.out.println(curPage);
-		System.out.println(location);
 		//레코드 갯수 계산
 		int count=memberService.countMember(keyword,location);
 		//페이지 관련 설정
@@ -462,10 +460,6 @@ public class MemberController {
 		return mav; //board/list.jsp로 이동
 	}//list()
 	
-	@RequestMapping("teacherIsert.do")
-	public String teacherIsert() {
-		return "member/teacherJoin";
-	}
 	@RequestMapping("approval.do")
 	public String approval(String userid) {
 		memberService.approval(userid);

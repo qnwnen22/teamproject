@@ -192,8 +192,17 @@ public class LectureServiceImpl implements LectureService {
 
 	@Override
 	public int lectureCount(LectureBoxDTO lbDto) {
-		// TODO Auto-generated method stub
 		return lectureDao.lectureCount(lbDto);
+	}
+
+	@Override
+	public List<LectureBoxDTO> chartCountMoney() {
+		return lectureDao.lectureCountMoney();
+	}
+
+	@Override
+	public int totalMoney() {
+		return lectureDao.totalMoney();
 	}
 
 	

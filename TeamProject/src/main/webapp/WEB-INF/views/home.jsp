@@ -619,7 +619,7 @@
 															<div class="setting-items col-4 mb-3">
 																<h5>배경색</h5>
 																<div id="color-container" class="d-flex flex-wrap justify-content-center col-12">
-																	<div id="picker"></div>
+																	<canvas id="picker"></canvas>
 																	<div class="col-12 px-auto d-flex justify-content-center mb-3">
 																	<input id="color" name="color" value="${row.color}">
 																	</div>
@@ -772,36 +772,31 @@
 																		<a class="plain cursor" data-ga-category="header"
 																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
 																	</div>
-															<div class="item col-xl-4 text-center"
-																				style="display: initial !important;">
-																				<a href="${path}/member/couponMaker.do" class="plain cursor" ><b>쿠폰생성</b></a>
-																			</div>
 																<div
 																	class="item dropdown col-xl-4 text-center dropdown-toggle"
 																	style="display: initial !important;">
-																	<a class="plain cursor" data-ga-category="header"><b>관리메뉴</b></a>
+																	<a class="plain cursor" data-ga-category="header" href="${path}/admin/managementMenu.do"><b>관리메뉴</b></a>
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
 																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
 																		<a class="dropdown-item" href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
 						    											<a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
+						    											<a class="dropdown-item" href="${path}/member/couponMaker.do">쿠폰관리</a>
 																	</div>
 																</div>
 																<div
 																	class="item dropdown col-xl-4 text-center dropdown-toggle"
 																	style="display: initial !important;">
-																	<a class="plain cursor" data-ga-category="header"><b>통계</b></a>
+																	<a class="plain" data-ga-category="header" href="${path}/chart/statistics.do"><b>통계</b></a>
 																	<div class="dropdown-menu">
 																		<a class="dropdown-item"
 																			href="${path}/chart/memberchart.do">회원통계</a> <a
-																			class="dropdown-item" href="#">회원관리</a> <a
-																			class="dropdown-item" href="#">강의관리</a> <a
-																			class="dropdown-item" href="#">패키지관리</a>
+																			class="dropdown-item" href="${path}/chart/lecturechart.do">강의통계</a> <a
+																			class="dropdown-item" href="#">매출통계</a> <a
+																			class="dropdown-item" href="#">방문자</a>
 																	</div>
 																</div>
 																<a><b>${sessionScope.admin_id}님</b></a>
-																<a href="${path}/member/logOut.do"
-																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 															</c:if>
 															<!-- 관리자 로그인 끝 -->
 															
@@ -811,12 +806,6 @@
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
 																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
-																	</div>
-																	<div class="item col-xl-4 text-center"
-																		style="display: initial !important;">
-																		<a class="plain cursor" data-ga-category="header"
-																			href="${path}/member/teacherIsert.do"><b>전문가
-																				등록</b></a>
 																	</div>
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
@@ -861,18 +850,20 @@
 																			</div>
 
 																			<a><b>${sessionScope.username}님</b></a>
-																			<a href="${path}/member/logOut.do"
-																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																		</c:when>
 																		
 																		<c:when test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
+																		<div class="item col-xl-4 text-center"
+																		style="display: initial !important;">
+																		<a class="plain cursor" data-ga-category="header"
+																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
+																	</div>
 																			<div class="item col-xl-4 text-center"
 																				style="display: initial !important;">
 																				<a class="plain cursor" data-ga-category="header"
 																					href="${path}/teacher/teacherJoinPage.do"><b>전문가
 																						등록</b></a>
 																			</div>
-																			<a><b>${sessionScope.username}님</b></a>
 																			<div
 																				class="item dropdown col-xl-4 text-center dropdown-toggle"
 																				style="display: initial !important;">
@@ -885,12 +876,12 @@
 																						<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 																				</div>
 																			</div>
-																			<a style="color: blue;">${sessionScope.teacher}</a>														
-																			<a href="${path}/member/logOut.do"
-																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
+																			<a><b>${sessionScope.username}님</b></a>
 																				</c:when>
 																				
 																	</c:choose>
+																	<button type="button" data-toggle="modal" data-target="#logOutModal"
+																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver">로그아웃</button>
 																</c:otherwise>
 															</c:choose>
 														</div>
@@ -1071,7 +1062,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<!-- content -->
 
 	<div style="width: 63%; margin: auto;">
@@ -1127,9 +1117,7 @@
 			</div>
 
 		</div>
-	</div>
 
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1171,9 +1159,7 @@
 			</div>
 
 		</div>
-	</div>
 
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1215,63 +1201,72 @@
 			</div>
 
 		</div>
-	</div>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-	<div class="card">
-		<div class="card-header">Featured</div>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
+		<hr>
+		<div class="d-flex">
+		<div class="col-6 m-0 p-1">
+		<h4><b>공지사항</b></h4>
+		<table class="table table-bordered table-hover text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>제목</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr style="cursor:pointer;">
+						<td>[공지]강사신청 페이지 오류 안내</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>[공지]Kdemy공지사항 입니다</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>[공지]이벤트쿠폰 사용 안내</td>
+					</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="col-6 m-0 p-1">
+		<h4><b>베스트 후기</b></h4>
+		<table class="table table-bordered table-hover text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>이메일</th>
+					<th>연락처</th>
+					<th>권한레벨</th>
+					<th>가입일자</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr style="cursor:pointer;">
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+			</tbody>
+		</table>
+		</div>
 		</div>
 	</div>
-
-	<div class="card">
-		<h5 class="card-header">Featured</h5>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
-		</div>
-	</div>
-	<div class="card mb-3">
-		<img src="..." class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text
-				below as a natural lead-in to additional content. This content is a
-				little bit longer.</p>
-			<p class="card-text">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</p>
-		</div>
-	</div>
-	<div class="card mb-3" style="max-width: 540px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img" alt="...">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a wider card with supporting text
-						below as a natural lead-in to additional content. This content is
-						a little bit longer.</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 <%@ include file="include/footer.jsp"%>
 </body>
 </html>

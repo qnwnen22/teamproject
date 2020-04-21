@@ -338,7 +338,7 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 	header { 
 	display: none;
   } 
-  <style type="text/css">
+}
 .upper_shift {
 	padding: 10px 16px;
 	list-style: none;
@@ -363,5 +363,4 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 .upper_shift li a:hover {
 	font-size: 1.1em;
 	color: #01447e;
-}
 }
