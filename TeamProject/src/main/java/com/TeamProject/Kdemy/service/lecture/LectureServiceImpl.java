@@ -125,7 +125,6 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception {
 		lectureDao.onlineVideoCaht(userid,lecture_idx); 
 		
@@ -138,8 +137,8 @@ public class LectureServiceImpl implements LectureService {
 
 	@Override
 	public void onlineVideoCahtOff(String userid, int lecture_idx) {
-		lectureDao.onlineVideoCahtOff(userid,lecture_idx); 
-=======
+		lectureDao.onlineVideoCahtOff(userid,lecture_idx); 		
+	}
 	public void reviewStar(LectureReviewDTO dto) {
 		lectureDao.reviewStar(dto);
 	}
@@ -178,7 +177,6 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public void updateAddImg(LectureDTO dto) {
 		lectureDao.updateAddImg(dto);
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	}
 
 	

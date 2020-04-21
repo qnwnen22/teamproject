@@ -11,7 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</select>
 	
-<<<<<<< HEAD
 	<update id="onlineVideoCaht">
 	  update lectureBox set onlineChat='y' where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</update>
@@ -24,12 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  update lectureBox set onlineChat='n' where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</update>
 	
-=======
 	<select id="lectureViewCheck"
 	resultType="int">
 		select count(*) from lectureBox
 		where userid=#{userid} and lecture_idx=#{lecture_idx}
 	</select>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </mapper>
 

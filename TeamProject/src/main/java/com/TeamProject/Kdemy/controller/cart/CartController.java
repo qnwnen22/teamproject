@@ -13,10 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
-<<<<<<< HEAD
-=======
-import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 import com.TeamProject.Kdemy.service.cart.CartService;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 
@@ -28,7 +24,7 @@ public class CartController {
 	CartService cartService;
 	@Inject
 	LectureService lectureService;
-	
+		
 	
 	@RequestMapping("cartPage.do")
 	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
@@ -72,25 +68,14 @@ public class CartController {
 //		멤버 테이블에서 포인트 차감
 		cartService.buyLecture(userid,price);
 //		장바구니 테이블에서 레코드 삭제 & LectureBox 테이블에 레코드 추가
-<<<<<<< HEAD
-//		LectureReviewDTO dto = new LectureReviewDTO();
-=======
 		LectureReviewDTO dto = new LectureReviewDTO();
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		for(int i=0; i<count; i++) {
 			cartService.buyCart(userid,lecture_idx[i]); 
 			cartService.insertLectureBox(userid, nickname, cell_type[i], lecture_idx[i]);
-<<<<<<< HEAD
-//			dto.setUserid(userid);
-//			dto.setLecture_idx(Integer.parseInt(lecture_idx[i]));
-//			dto.setStar(0);
-//			lectureService.reviewStar(dto);
-=======
 			dto.setUserid(userid);
 			dto.setLecture_idx(Integer.parseInt(lecture_idx[i]));
 			dto.setStar(0);
 			lectureService.reviewStar(dto);
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		}
 		return "redirect:/cart/cartPage.do";
 	}

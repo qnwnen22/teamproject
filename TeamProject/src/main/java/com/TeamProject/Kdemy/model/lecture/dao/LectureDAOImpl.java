@@ -149,7 +149,6 @@ public class LectureDAOImpl implements LectureDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception {
 		Map <String,Object> map=new HashMap<>();
 		map.put("userid", userid);
@@ -169,7 +168,6 @@ public class LectureDAOImpl implements LectureDAO {
 		map.put("lecture_idx",lecture_idx);
 		sqlSession.update("lectureBox.onlineVideoCahtOff",map);			
 	}
-=======
 	public void reviewStar(LectureReviewDTO dto) {
 		sqlSession.insert("lectureReview.reviewStar",dto);
 	}
@@ -210,5 +208,4 @@ public class LectureDAOImpl implements LectureDAO {
 		sqlSession.update("lecture.updateAddImg",dto);
 	}
 
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 }

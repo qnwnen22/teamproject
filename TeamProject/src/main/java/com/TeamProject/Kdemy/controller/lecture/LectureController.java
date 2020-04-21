@@ -468,23 +468,15 @@ public class LectureController {
 			return "redirect:/lecture/myLecturePage.do?userid="+userid;
 		}
 		
-<<<<<<< HEAD
-		@RequestMapping("lectureView_success.do")
-		public ModelAndView lectureView_success(HttpSession session, int lecture_idx) throws Exception {
-			
-=======
 		@RequestMapping("lectureUpdatePage.do")
 		public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			ModelAndView mav=new ModelAndView();
-<<<<<<< HEAD
 			LectureDTO ldto=new LectureDTO();
 			ldto=lectureService.lectureView_success(lecture_idx);
 			Map<String, Object> map=new HashMap<>();
 			map.put("ldto", ldto);
 			mav.addObject("map", map);
 			mav.setViewName("lecture/lectureView_success");
-=======
 			
 			LectureDTO dto = new LectureDTO();
 			dto.setUserid((String)session.getAttribute("userid"));
@@ -505,7 +497,6 @@ public class LectureController {
 			
 			mav.setViewName("/lecture/lectureUpdate");
 			mav.addObject("dto",dto);
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			return mav;
 		}
 		
@@ -522,6 +513,7 @@ public class LectureController {
 			if(check==1) {
 				LectureDTO ldto=new LectureDTO();
 				ldto=lectureService.lectureView_success(lecture_idx);
+				
 				mav.addObject("ldto", ldto);
 				mav.setViewName("lecture/lectureView_success");
 			}else {

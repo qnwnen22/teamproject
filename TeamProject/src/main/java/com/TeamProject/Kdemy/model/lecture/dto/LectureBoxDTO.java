@@ -5,11 +5,9 @@ import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class LectureBoxDTO {
 	
 	private int box_idx;
@@ -20,7 +18,6 @@ public class LectureBoxDTO {
 	private Date buy_date;
 	private String onlineChat;
 	
-<<<<<<< HEAD
 	public int getBox_idx() {
 		return box_idx;
 	}
@@ -69,7 +66,6 @@ public class LectureBoxDTO {
 				+ nickname + ", lecture_idx=" + lecture_idx + ", buy_date=" + buy_date + ", onlineChat=" + onlineChat
 				+ "]";
 	}
-=======
 //	조인용 추가 칼럼(lecture)
 	private String main_category; //메인 카테고리
 	private String sub_category; //서브 카테고리
@@ -88,5 +84,4 @@ public class LectureBoxDTO {
 	private String lecture_address2; //상세 주소
 	
 	
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 }

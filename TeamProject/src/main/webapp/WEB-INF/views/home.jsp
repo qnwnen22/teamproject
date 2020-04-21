@@ -204,6 +204,7 @@
 </script>
 </head>
 <body>
+
 <div id="socketAlert" class="alert alert-primary" role="alert" style="display: none;"></div>
 	<%@ include file="include/topbar.jsp"%>
 	<div class ="global-body">
@@ -1269,9 +1270,96 @@
 		</div>
 	</div>
 	</div>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<c:if test="${sessionScope.userid != null}">
+	<div class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block" id="adminChat">
+	   <a href="#miniChat" data-toggle="collapse" id="btnMiniChatJoin"><img src="${path}/include/images/main/chaticon.png" class="mx-auto d-block mt-3 mb-3"></a>
+	</div>
+	</c:if>
+	<div class="collapse fixed-bottom ml-auto m-2 shadow bg-white mini-chat" id="miniChat">
+	     <div class="miniChat-header d-flex bg-dark">
+	      <div class="text-center col-10 mt-2 p-0">
+	        <h5 style="color:white;" class="pl-5"><b>실시간 문의</b></h5>
+	      </div>
+	     <div class="col-2 p-0">
+	       <a href="#miniChat" data-toggle="collapse"><img src="${path}/include/images/main/chatOut.png" class="ml-auto d-block mr-1.5"></a>
+	     </div>
+	     </div>
+	   	 <div class="p-3 shadow bg-silver mx-auto mt-2 mini-chat-screen overflow-auto" id="admin_chat">
+	   	   <ul id="messageAdmin" class="overflow-auto">
 
+			</ul>
+	  	 </div>
+	  	 <div class="input-group p-4 mini-chat-send">
+	   	   <input type="text" class="form-control" id="chatMsg" placeholder="Type a message...">
+	   	   <input type="hidden" id="admin_id" value="admin">
+     	   	   <input type="hidden" id="userid" value="${sessionScope.userid}"> 
+     	   	   <input type="hidden" id="chatNum" value="${sessionScope.usernum}">
+     	   	   <input type="hidden" id="sender" value="${sessionScope.userid}">
+     	   	    <input type="hidden" id="num" value="${sessionScope.usernum}">
+  				<div class="input-group-append">
+    				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+ 				 </div>
+	  	 </div>
+	 </div>
+<script>
+$(function () {
+	$('#btnMiniChatJoin').on('click', function(evt) {
+		evt.preventDefault();
+	  if (socket.readyState !== 1) return;
+	    	   let target=$("#admin_id").val();
+	    	   let chatNum=$("#chatNum").val();
+	    	   let sender=$("#userid").val();
+	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
+	    });
+
+	$("#chatMsg").keypress(function (e) {
+        if (e.which == 13){
+        	chatEnter();  // 실행할 이벤트
+        }
+    });
+
+	$('#btnchatSend').on('click', function(evt) {
+		var chatMsgExp =document.getElementById("chatMsg");
+		if(chatMsgExp.value=="") {
+			alert("메시지를 입력해주세요.");
+			chatMsgExp.focus();
+			return false;
+		}
+		evt.preventDefault();
+		  if (socket.readyState !== 1) return;
+		    	   let target=$("#admin_id").val();
+		    	   let chatNum=$("#chatNum").val();
+		    	   let sender=$("#userid").val();
+		    	   let chatMsg=$("#chatMsg").val();
+		    	   socket.send("adminsend,"+sender+","+target+","+chatNum+","+chatMsg);
+		    	   $("#chatMsg").val("");
+		    	   var mymessage="<li class='bg-warning text-right ml-auto mb-1'>"+chatMsg+"</li>"
+		    	   $("#messageAdmin").append(mymessage);
+		    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+	 });
+});
+
+function chatEnter() {
+	var chatMsgExp =document.getElementById("chatMsg");
+	if(chatMsgExp.value=="") {
+		alert("메시지를 입력해주세요.");
+		chatMsgExp.focus();
+		return false;
+	}
+	  if (socket.readyState !== 1) return;
+	    	   let target=$("#admin_id").val();
+	    	   let chatNum=$("#chatNum").val();
+	    	   let sender=$("#userid").val();
+	    	   let chatMsg=$("#chatMsg").val();
+	    	   socket.send("adminsend,"+sender+","+target+","+chatNum+","+chatMsg);
+	    	   $("#chatMsg").val("");
+	    	   var mymessage="<li class='bg-warning text-right ml-auto mb-1'>"+chatMsg+"</li>"
+	    	   $("#messageAdmin").append(mymessage);
+	    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+}
+
+</script>
+	
 <%@ include file="include/footer.jsp"%>
 </body>
 </html>

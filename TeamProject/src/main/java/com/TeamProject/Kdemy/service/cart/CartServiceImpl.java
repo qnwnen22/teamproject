@@ -62,11 +62,7 @@ public class CartServiceImpl implements CartService {
 		cartDao.buyCart(userid, lecture_idx);
 	}
 	@Override
-<<<<<<< HEAD
 	public void insertLectureBox(String userid,String nickname, String cell_type, String lecture_idx) {
-=======
-	public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx) {
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		cartDao.insertLectureBox(userid, nickname, cell_type, lecture_idx);
 	}
 

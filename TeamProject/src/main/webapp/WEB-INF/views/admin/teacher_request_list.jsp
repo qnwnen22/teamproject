@@ -30,12 +30,8 @@
 </script>
 </head>
 <body>
-<<<<<<< HEAD
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12" style="margin-top: 170px;">
-=======
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="container">
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link"
 				href="${path}/member/list.do">전체회원</a></li>

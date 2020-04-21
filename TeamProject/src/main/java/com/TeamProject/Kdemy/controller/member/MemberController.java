@@ -362,6 +362,7 @@ public class MemberController {
 		if(result.equals("로그인성공")) {
 			MemberDTO dto2=memberService.kdemyLogin(dto);
 			session.setAttribute(SessionNames.LOGIN, dto2);
+			session.setAttribute("usernum", dto2.getUsernum());
 			session.setAttribute("userid", dto2.getUserid());
 			session.setAttribute("nickname", dto2.getNickname());
 			session.setAttribute("username", dto2.getUsername());

@@ -90,14 +90,11 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
     
-    <beans:bean id="webSocketHandler" class="com.TeamProject.Kdemy.handler.WsTranportHandler" />
-    <beans:bean id="ChatHandler" class="com.TeamProject.Kdemy.handler.ChatHandler" />
-    <beans:bean id="reviewReplyHandler" class="com.TeamProject.Kdemy.handler.reviewReplyHandler" />
+    <beans:bean id="kdemyWebSocketHandler" class="com.TeamProject.Kdemy.handler.KdemyWebSocketHandler" />
+   
 
 	<websocket:handlers>
-	    <websocket:mapping handler="reviewReplyHandler" path="/reviewReply" />
-	 	<websocket:mapping handler="webSocketHandler" path="/echo" />
-	 	<websocket:mapping handler="ChatHandler" path="/chat" />
+	 	<websocket:mapping handler="kdemyWebSocketHandler" path="/socket" />
 	 	<websocket:handshake-interceptors>
 	      <beans:bean
 	          class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>

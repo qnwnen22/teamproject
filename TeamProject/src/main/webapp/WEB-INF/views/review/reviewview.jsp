@@ -41,7 +41,6 @@
 
 
 <script type="text/javascript">
-
 $(document).ready(function() {
 		listReply();
 
@@ -60,7 +59,6 @@ $(document).ready(function() {
 				}
 			});
 			if (socket.readyState !== 1) return;
-					console.log(socket);	
 					let replyer = $('input#replyer').val();
 					let gbwriter = $('input#gbwriter').val();
 					let gbno = $('input#gbno').val();
@@ -114,6 +112,26 @@ $(document).ready(function() {
 			});
 		}
 
+		function replyConectWS() {
+			var ws = new WebSocket("ws://localhost:80/Kdemy/reviewReply");
+			replySocket = ws;
+			
+		    ws.onopen = function () {
+		        console.log('Info: connection opened.');
+		    };
+
+
+		    ws.onmessage = function (event) {
+		        console.log(event.data+'\n');
+		    };
+		    
+		    ws.onclose = function (event) {
+		         console.log('Info: connection closed.');  // retry connection!! 
+		    };
+		    ws.onerror = function (err) {
+		         console.log('Error : ');
+		     };
+		}
 
 
 </script>

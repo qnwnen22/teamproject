@@ -17,11 +17,7 @@ public interface CartService {
 
 	public void buyLecture(String userid, int price);
 
-<<<<<<< HEAD
 	public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx);
-=======
-	public void insertLectureBox(String userid, String nickname,String cell_type, String cart_idx);
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	
 	public void deleteAll(String userid);//장바구니 전체지우기
 
