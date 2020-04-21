@@ -4,9 +4,6 @@ import java.util.List;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
-import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
-import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
-
 
 public interface LectureService {
 
@@ -46,8 +43,6 @@ public interface LectureService {
 	public void onlineVideoCaht(String userid, int lecture_idx) throws Exception;
 	public List<LectureBoxDTO> lectureBoxList(int lecture_idx);
 	public void onlineVideoCahtOff(String userid, int lecture_idx);
-	public void reviewStar(LectureReviewDTO dto);
-	public void reviewStarUpdate(LectureReviewDTO dto);
 
 	public String getMain_img(int lecture_idx);	//이원혁 작업
 	public int lectureViewCheck(LectureBoxDTO dto);
@@ -55,4 +50,11 @@ public interface LectureService {
 	public void update_main_img(LectureDTO dto);
 	public void update(LectureDTO dto);
 	public void updateAddImg(LectureDTO dto);
+	public String upCheck(LectureBoxDTO lbDto);
+	public void upUpdate(String userid, int lecture_idx);
+	public void downUpdate(String userid, int lecture_idx);
+	public int upCount(LectureBoxDTO lbDto);
+	public int lectureCount(LectureBoxDTO lbDto);
+	public List<LectureBoxDTO> chartCountMoney();
+	public int totalMoney();
 }

@@ -16,21 +16,18 @@
 			<form id="requestApproval" name="requestApproval"
 				action="#" method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="teacher_profileImagePath">프로필</label><br>
-					<img src="../include/images/teacher/${dto.teacher_profileImagePath}"
+					<label for="teacher_thumbnail">프로필</label><br>
+					<img src="../include/images/teacher/${dto.teacher_thumbnail}"
 							class="align-self-center mx-auto d-block" style="width: 200px"><br>
 					<label for="userid">아이디</label> <input type="text"
 						class="form-control mb-1" id="userid" name="userid"
 						value="${dto.userid}" readonly><br> <label
 						for="username">성명</label> <input type="text"
 						class="form-control mb-1" id="username" name="username"
-						value="${dto.username}" readonly><br> <label
-						for="highschool">고등학교</label> <input type="text"
-						class="form-control mb-1" id="highschool"
-						name="highschool" value="${dto.highschool}" readonly><br>
+						value="${dto.username}" readonly><br>
 					<label for="university">대학교</label> <input type="text"
-						class="form-control mb-1" id="university" name="university"
-						value="${dto.university}" readonly><br>
+						class="form-control mb-1" id="schoolname" name="schoolname"
+						value="${dto.schoolname}" readonly><br>
 						<label for="spec1_img">자격증</label><br>
 						<img src="../include/images/teacher/${dto.spec1_img}"
 							class="align-self-center mx-auto d-block" style="width: 200px"><br>

@@ -42,11 +42,16 @@ function nicknameC(){
 			action="${path}/teacher/teacherInsert.do">
 			<div style="width: 100%; height: auto; border: 1px solid black">
 				<!-- 개인정보 -->
-				<div style="border: 1px solid; height: 150px;">
+				<div style="border: 1px solid; height: 350px;">
 					<h3>개인정보</h3>
 					<hr>
 					<div style="float: left; width: 30%;">
-						프로필 사진 등록 : <input type="file" name="thumbnailFile" id="thumbnailFile"><br>
+						<c:choose>
+					 		<c:when test="${empty dto.main_img}">
+			     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
+					 		</c:when>
+			        	</c:choose>
+						프로필 사진 등록 : <input class="text-center center-block file-upload" type="file" name="thumbnailFile" id="input_img"><br>
 					</div>
 					
 					<div style="float: right; width: 70%">
@@ -82,46 +87,6 @@ function nicknameC(){
 									<input type="text" name="department">
 								</td>
 							</tr>
-
-							<%-- <tr>
-								<th>고등학교</th>
-								<td>
-									<select id="highStart" name="highStart">
-										<option value="">--</option>
-										<%for(int i=2020; i>=1900; i--){ %>
-											<option value="<%=i%>"><%=i %></option>
-										<%} %>
-									</select> ~
-									<select id="hignEnd" name="hignEnd">
-										<option value="">--</option>
-										<%for(int i=2020; i>=1900; i--){ %>
-											<option value="<%=i%>"><%=i %></option>
-										<%} %>
-									</select>년
-									<br>
-									<input type="text" id="highSchool" name="highSchool">고등학교<input type="button" value="고등학교 검색">
-								</td>
-							</tr>
-							<tr>
-								<th>대학교</th>
-								<td>
-									<select name="uniStart" id="uniStart">
-										<option value="">--</option>
-										<%for(int i=2020; i>=1900; i--){ %>
-											<option value="<%=i%>"><%=i %></option>
-										<%} %>
-									</select> ~
-									<select name="uniEnd" id="uniEnd">
-										<option value="">--</option>
-										<%for(int i=2020; i>=1900; i--){ %>
-											<option value="<%=i%>"><%=i %></option>
-										<%} %>
-									</select>년
-									<br>
-									<input type="text" name="university" id="university">대학교<input type="button" value="대학교 검색"><br>
-									<input type="text" name="department" id="department">학과
-								</td>
-							</tr> --%>
 						</table>
 					</div>
 				</div>
@@ -187,16 +152,6 @@ function nicknameC(){
 				
 				</div>
 			</div>
-			<%-- 아이디 : <input type="text" value="${sessionScope.userid}" readonly name="userid"><br>
-			이름 : <input type="text" value="${sessionScope.username}" readonly name="username" ><br>
-			프로필 사진 등록 : <input type="file" name="file1" id="file1"><br>
-			졸업한 고등학교 : <input type="text" name="highschool"><br>
-			졸업한 대학교 : <input type="text" name="university"><br>
-			자격증 이름 : <input type="text" name="spec1"> | 
-			자격증 이미지 : <input type="file" name="file2" id="file2"><br>
-			자격증 획득 일자 <input type="date" name="spec1_getDate"><br>
-			<input type="button" value="추가"><br>
-			<p>자격증은 최대 5개 까지 등록할 수 있습니다.(미구현)</p> --%>
 			<input style="width: 200px; height: 50px;" type="button" onclick="insertTeacher()" value="강사 신청하기">
 			<input style="width: 200px; height: 50px;" type="button" value="취소" onclick="history.back()">
 		</form>
@@ -216,6 +171,92 @@ function nicknameC(){
 </c:choose>
 </div>
 <%@ include file="../include/footer.jsp"%>
+<!-- 부스 스트랩 4.4.1 -->
+<script>
 
+$(document).ready(function(){
+	$("#profileImg").click(function(){
+		$("#input_img").click() ;
+		})			
+	}) 
+
+var sel_file;
+
+$(document).ready(function() {
+    $("#input_img").on("change", fileChange);
+});
+
+
+function fileChange(e) {
+	e.preventDefault();
+
+	var files = e.target.files;
+    var filesArr = Array.prototype.slice.call(files);
+
+    filesArr.forEach(function(f) {
+        if(!f.type.match("image.*")) {
+            alert("확장자는 이미지 확장자만 가능합니다.");
+            return;
+        }
+
+        sel_file = f;
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $(".avatar").attr("src", e.target.result);
+        	$(".avatar").css("height", "200px")
+        }
+        reader.readAsDataURL(f);
+    });
+
+    var file = files[0]
+    console.log(file)
+    var formData = new FormData();
+
+    formData.append("file", file);
+
+		$.ajax({
+    	url: '${path}/lecture/uploadAjax.do',
+    	  enctype:'multipart/form-data',
+		  data: formData,
+		  dataType:'text',
+		  processData: false,
+		  contentType: false,
+		  type: 'POST',
+		  success: function(data){
+			alert("프로필 이미지가 변경 되었습니다.")
+		  }
+		})
+
+
+ 		function checkImageType(fileName){
+ 			var pattern = /jpg$|gif$|png$|jpeg$/i;
+ 			return fileName.match(pattern);
+ 		}
+
+
+ 		function getOriginalName(fileName){
+ 			if(checkImageType(fileName)){
+ 				return;
+ 			}
+
+ 			var idx = fileName.indexOf("_") + 1 ;
+ 			return fileName.substr(idx);
+
+ 		}
+
+
+ 		function getImageLink(fileName){
+
+ 			if(!checkImageType(fileName)){
+ 				return;
+ 			}
+ 			var front = fileName.substr(0,12);
+ 			var end = fileName.substr(14);
+
+ 			return front + end;
+ 		}
+}
+</script>
 </body>
 </html>

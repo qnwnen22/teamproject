@@ -20,7 +20,7 @@ public interface MemberDAO {
 	
 	public List<MemberDTO> listAll(String location,String keyword, int start, int end) throws Exception;
 	
-	public int countMember(String keyword, String location) throws Exception;
+	public int countMember(String keyword, String location);
 	
 	public List<MemberDTO> listTeacher();
 	

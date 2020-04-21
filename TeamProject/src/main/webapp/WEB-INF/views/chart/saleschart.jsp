@@ -18,7 +18,7 @@
 	function drawChart(){
 		//차트 그리기에 필요한 json 데이터 로딩
 		var jsonData=$.ajax({
-			url: "${path}/chart/member_list.do",
+			url: "${path}/chart/money_list.do",
 			dataType: "json",
 			async: false //동기식처리(순차적 처리:데이터를 다부른 후 챠트출력하기 위해)
 		}).responseText;
@@ -27,37 +27,14 @@
 		var data=new google.visualization.DataTable(jsonData);
 		console.log("데이터 테이블:"+data);
  		var chart=new google.visualization.PieChart(
-				document.getElementById("membercount_div")); 
+				document.getElementById("money_div")); 
 		chart.draw(data, {
-			title: "회원비율",
+			title: "강의수입",
 			//curveType: "function", //곡선 처리		
 			width: 550,
 			height: 440
 		});
 	}
-	google.setOnLoadCallback(drawChart1);
-	function drawChart1(){
-		//차트 그리기에 필요한 json 데이터 로딩
-		var jsonData=$.ajax({
-			url: "${path}/chart/member_list2.do",
-			dataType: "json",
-			async: false //동기식처리(순차적 처리:데이터를 다부른 후 챠트출력하기 위해)
-		}).responseText;
-		console.log(jsonData);//콘솔에도 출력해봄
-		//json => 데이터테이블
-		var data=new google.visualization.DataTable(jsonData);
-		console.log("데이터 테이블:"+data);
-		/* var chart1=new google.visualization.LineChart(
-				document.getElementById("etc_div")); */
-		var chart1=new google.visualization.ColumnChart(
-				document.getElementById("month_div"));	
-		chart1.draw(data, {
-			title: "월별 가입현황",
-			//curveType: "function", //곡선 처리		
-			width: 550,
-			height: 440
-		});
-	} 
 </script>
 </head>
 <body>
@@ -98,8 +75,7 @@
 </div>
 </div>
 <div id="chart_div" class="d-flex">
-<div id="membercount_div" class="col-6 border m-0"></div>
-<div id="month_div" class="col-6 border m-0"></div>
+<div id="money_div" class="col-6 border m-0"></div>
 </div>
 </div>
 <%@include file="../include/footer.jsp" %>

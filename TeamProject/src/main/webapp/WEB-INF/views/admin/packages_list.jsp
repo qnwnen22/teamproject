@@ -38,16 +38,16 @@ function listview(){
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
-	<div id="list"></div>
-<<<<<<< HEAD
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12" style="margin-top: 170px;">
-=======
-	<div class="container">
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+	<div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><b><a href="${path}/admin/managementMenu.do">관리메뉴</a></b></li>
+				<li><b><a href="${path}/packages/adminlist.do" style="color:blue;">패키지 관리</a></b></li>
+			</ul>
+		</div>
 		<div class="table-responsive">
 			<br>
-			<button class="btn btn-outline-primary mb-1" data-toggle="modal"
-				data-target="#addModal">패키지 추가</button>
 			<div class="modal" id="addModal">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -114,6 +114,10 @@ function listview(){
 			</tbody>
 		</table>
 	</div>
+	<div class="d-flex">
+	<button class="btn btn-outline-primary mb-1 ml-auto" data-toggle="modal"
+				data-target="#addModal">패키지 추가</button>
+				</div>
 	<div class="modal" id="updateModal"></div>
 	<!-- 페이징 처리 -->
 	<div class="row justify-content-center">

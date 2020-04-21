@@ -419,6 +419,7 @@ public class MemberController {
 //}
 //}
 	
+
 	 @RequestMapping("logout.do") public ModelAndView logOut(HttpSession session, ModelAndView mav, HttpServletResponse response) { 
 		 //세션 초기화 
 	  memberService.logout(session); 
@@ -453,9 +454,6 @@ public class MemberController {
 			@RequestParam(defaultValue ="") String location,
 			@RequestParam(defaultValue="1") int curPage) 
 					throws Exception {
-		System.out.println("list.do실행");
-		System.out.println(curPage);
-		System.out.println(location);
 		//레코드 갯수 계산
 		int count=memberService.countMember(keyword,location);
 		//페이지 관련 설정

@@ -10,49 +10,54 @@
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp" %>
-  <div class="container fluid-row">
+  <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+  <div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><b><a href="${path}/admin/managementMenu.do">관리메뉴</a></b></li>
+				<li><b><a href="${path}/admin/list.do" style="color:blue;">쿠폰관리</a></b></li>
+			</ul>
+		</div>
+		<hr>
              <!-- 만들기 포인트 -->
-            <div class="row">
-           <div class="card mb-5 mb-lg-0">
-           <div class="card-body">
-            <img class="card-img-top" src="img/coupon_box.jpg" alt="Card image" style="opacity: 0.6">
-            <div class="card-img-overlay"  style="margin-top: 240px;">
+           <h4 class="mx-3 mt-3">쿠폰생성</h4>
+           <div class="card mb-5 mb-lg-0 shadow mb-3 bg-white mx-auto col-10">
+            <img class="card-img-top" src="${path}/include/images/coupon/쿠폰박스.png" alt="Card image">
+            <div class="card-img-overlay col-12 ml-3"  style="margin-top: 160px;">
               <form name="form" id="form" action="insertCoupon.do" method="post" class="form-horizontal">
-                <strong>쿠폰정보를 입력해주세요</strong>
-	           <div class="form-group form-inline">
-					<label for="coupon_name">쿠폰 이름</label>&nbsp;<span>
-					<input class="form-control"  name="coupon_name" id="coupon_name" placeholder="쿠폰이름을 입력하세요."></span>
+	           <div class="form-group form-inline mb-4">
+					<label for="coupon_name">쿠폰 이름</label>
+					<input class="form-control col-4"  name="coupon_name" id="coupon_name" placeholder="쿠폰이름을 입력하세요.">
 				</div>
-				  <div class="form-group form-inline">
-					<label for="coupon_name">쿠폰번호</label>&nbsp;
-					<input class="form-control"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()" maxlength="4">
+				  <div class="form-group form-inline mb-4">
+					<label for="coupon_name">쿠폰번호</label>
+					<input class="form-control col-4"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()">
 					<span id="CheckM"></span><span id="couponM"></span>				
 				</div>
-				<div class="form-group form-inline">
-					<label for="coupon_name">포인트</label>&nbsp;
-					<input class="form-control" name="point"  id="point" placeholder="포인트를 입력하세요.">				
+				<div class="form-group form-inline mb-4">
+					<label for="coupon_name">포인트</label>
+					<input class="form-control col-4" name="point"  id="point" placeholder="포인트를 입력하세요.">				
 				</div>
-				<div class="form-group form-inline">
-					<label for="coupon_name">쿠폰설명</label>&nbsp;
-					<input class="form-control"  name="coupon_text"  id="coupon_text" placeholder="쿠폰에 대한 설명을 입력하세요.">				
+				<div class="form-group form-inline mb-4">
+					<label for="coupon_name">쿠폰설명</label>
+					<input class="form-control col-4"  name="coupon_text"  id="coupon_text" placeholder="쿠폰에 대한 설명을 입력하세요.">
 				</div>
-				<div class="form-group align-center">
-				<button type="submit" class="btn btn-block btn-danger text-uppercase text-center" id="listButton">쿠폰 만들기</button>
+				<div class="mx-auto col-4 mt-5">
+				<button type="submit" class="btn-sm btn-block btn-danger text-uppercase text-center" id="listButton">쿠폰 만들기</button>
 				</div>
            </form>
        
             <div class="textBox"><p id="SuccessText2" style="color:blue;"></p></div>
             
           </div>
-          </div>
         </div>
       </div>
       <!--  -->
-          </div>
     <br>
     <hr>
    <div id="listDiv"></div>
-
+   <hr>
+   <div id="memberlistDiv"></div>
 
  <script>
 $(function(){
@@ -62,6 +67,16 @@ $(function(){
 		        , dataType : 'text'
 		        , success: function(data) {
 		        	$("#listDiv").html(data);
+		          }
+		  });	
+	})
+	$(function(){
+		  $.ajax({
+		          type: 'post'
+		        , url: '${path}/member/list.do'
+		        , dataType : 'text'
+		        , success: function(data) {
+		        	$("#memberlistDiv").html(data);
 		          }
 		  });	
 	})	
@@ -103,8 +118,6 @@ function checkCoupon() {
     });
     
 }
-	
-	
 	
 	$(function(){
 	 $('#coupon').change(function(e){

@@ -1,7 +1,7 @@
 function insertTeacher() {
 	/*alert("insertTeacher() 실행");*/
 	//개인정보
-	var thumbnailFile=document.getElementById("thumbnailFile");
+	var thumbnailFile=document.getElementById("input_img");
 	var userid=document.getElementById("userid");
 	var username=document.getElementById("username");
 	var nickname=document.getElementById("nickname");
