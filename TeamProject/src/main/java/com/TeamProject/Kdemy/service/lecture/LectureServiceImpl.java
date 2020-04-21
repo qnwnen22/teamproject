@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
-import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 import oracle.net.aso.l;
@@ -139,14 +138,6 @@ public class LectureServiceImpl implements LectureService {
 	public void onlineVideoCahtOff(String userid, int lecture_idx) {
 		lectureDao.onlineVideoCahtOff(userid,lecture_idx); 
 	}
-	public void reviewStar(LectureReviewDTO dto) {
-		lectureDao.reviewStar(dto);
-	}
-
-	@Override
-	public void reviewStarUpdate(LectureReviewDTO dto) {
-		lectureDao.reviewStarUpdate(dto);
-	}
 
 	@Override
 	public String getMain_img(int lecture_idx) {
@@ -177,6 +168,41 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public void updateAddImg(LectureDTO dto) {
 		lectureDao.updateAddImg(dto);
+	}
+
+	@Override
+	public String upCheck(LectureBoxDTO lbDto) {
+		return lectureDao.upCheck(lbDto);
+	}
+
+	@Override
+	public void upUpdate(String userid, int lecture_idx) {
+		lectureDao.upUpdate(userid, lecture_idx);
+	}
+
+	@Override
+	public void downUpdate(String userid, int lecture_idx) {
+		lectureDao.downUpdate(userid, lecture_idx);
+	}
+
+	@Override
+	public int upCount(LectureBoxDTO lbDto) {
+		return lectureDao.upCount(lbDto);
+	}
+
+	@Override
+	public int lectureCount(LectureBoxDTO lbDto) {
+		return lectureDao.lectureCount(lbDto);
+	}
+
+	@Override
+	public List<LectureBoxDTO> chartCountMoney() {
+		return lectureDao.lectureCountMoney();
+	}
+
+	@Override
+	public int totalMoney() {
+		return lectureDao.totalMoney();
 	}
 
 	

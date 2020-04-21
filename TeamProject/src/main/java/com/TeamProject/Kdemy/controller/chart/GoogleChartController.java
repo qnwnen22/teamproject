@@ -49,6 +49,13 @@ public class GoogleChartController {
 		mav.setViewName("chart/lecturechart");
 		return mav;
 	}
+	@RequestMapping("saleschart.do")
+	public ModelAndView saleschart(ModelAndView mav) {
+		Map<String, Object>map=googleChartService.countItems();
+		mav.addObject("map",map);
+		mav.setViewName("chart/saleschart");
+		return mav;
+	}
 	
 	@RequestMapping("member_list.do")
 	public JSONObject member_list() {
@@ -63,5 +70,11 @@ public class GoogleChartController {
 	@RequestMapping("lecture_list.do")
 	public JSONObject lecture_list() {
 		return googleChartService.getChartDatalecture();
+	}
+	
+	@RequestMapping("money_list.do")
+	public JSONObject money_list() {
+		return googleChartService.getChartDatamoney();
+		
 	}
 }

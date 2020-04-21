@@ -797,8 +797,6 @@
 																	</div>
 																</div>
 																<a><b>${sessionScope.admin_id}님</b></a>
-																<a href="${path}/member/logOut.do"
-																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 															</c:if>
 															<!-- 관리자 로그인 끝 -->
 															
@@ -858,8 +856,6 @@
 																			</div>
 
 																			<a><b>${sessionScope.username}님</b></a>
-																			<a href="${path}/member/logOut.do"
-																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																		</c:when>
 																		
 																		<c:when test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
@@ -887,11 +883,11 @@
 																				</div>
 																			</div>
 																			<a><b>${sessionScope.username}님</b></a>
-																			<a href="${path}/member/logOut.do"
-																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																				</c:when>
 																				
 																	</c:choose>
+																	<button type="button" data-toggle="modal" data-target="#logOutModal"
+																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver">로그아웃</button>
 																</c:otherwise>
 															</c:choose>
 														</div>
@@ -1072,7 +1068,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<!-- content -->
 
 	<div style="width: 63%; margin: auto;">
@@ -1128,9 +1123,7 @@
 			</div>
 
 		</div>
-	</div>
 
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1172,9 +1165,7 @@
 			</div>
 
 		</div>
-	</div>
 
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1216,59 +1207,71 @@
 			</div>
 
 		</div>
-	</div>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-	<div class="card">
-		<div class="card-header">Featured</div>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
+		<hr>
+		<div class="d-flex">
+		<div class="col-6 m-0 p-1">
+		<h4><b>공지사항</b></h4>
+		<table class="table table-bordered table-hover text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>제목</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr style="cursor:pointer;">
+						<td>[공지]강사신청 페이지 오류 안내</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>[공지]Kdemy공지사항 입니다</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>[공지]이벤트쿠폰 사용 안내</td>
+					</tr>
+			</tbody>
+		</table>
 		</div>
-	</div>
-
-	<div class="card">
-		<h5 class="card-header">Featured</h5>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
+		<div class="col-6 m-0 p-1">
+		<h4><b>베스트 후기</b></h4>
+		<table class="table table-bordered table-hover text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>이메일</th>
+					<th>연락처</th>
+					<th>권한레벨</th>
+					<th>가입일자</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr style="cursor:pointer;">
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+					<tr style="cursor:pointer;">
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+			</tbody>
+		</table>
 		</div>
-	</div>
-	<div class="card mb-3">
-		<img src="..." class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text
-				below as a natural lead-in to additional content. This content is a
-				little bit longer.</p>
-			<p class="card-text">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</p>
 		</div>
-	</div>
-	<div class="card mb-3" style="max-width: 540px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img" alt="...">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a wider card with supporting text
-						below as a natural lead-in to additional content. This content is
-						a little bit longer.</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
 	</div>
 <%@ include file="include/footer.jsp"%>
 </body>

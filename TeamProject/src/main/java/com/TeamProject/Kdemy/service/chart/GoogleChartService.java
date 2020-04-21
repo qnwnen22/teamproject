@@ -9,4 +9,5 @@ public interface GoogleChartService {
 	public JSONObject getChartData2();
 	public JSONObject getChartDatalecture();
 	public Map<String, Object> countItems();
+	public JSONObject getChartDatamoney();
 }

@@ -386,11 +386,12 @@ public class MemberController {
 	}
 	
 	
-	 @RequestMapping("logOut.do") public ModelAndView logOut(HttpSession session, ModelAndView mav) { 
-		 //세션 초기화 
+	 @RequestMapping("logOut.do") 
+	 public ModelAndView logOut(HttpSession session, ModelAndView mav) { 
+	  //세션 초기화 
 	  memberService.logout(session); 
 	  //login.jsp로 이동
-	  mav.setViewName("member/login"); 
+	  mav.setViewName("redirect:/"); 
 	  mav.addObject("message", "logout"); 
 	  return mav; 
 	  }

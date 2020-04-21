@@ -19,9 +19,9 @@
 		</div>
 <div class="d-flex row col-12">
 <c:forEach var="dto" items="${list}">
-<div class="col-3 mb-4">
-<div class="card mr-.5 rounded-lg shadow p-4 mb-4 bg-white">
-  <a href="#"><img class="img-responsive card-img-top center-block mb-3" width="400" height="130" src="../include/images/coupon/${dto.packages_image}" alt="Card image"></a>
+<div class="col-6 col-lg-3 mb-4">
+<div class="card mr-.5 rounded-lg shadow p-4 mb-4 bg-white" style="height:300px;">
+  <a href="#"><img class="img-responsive card-img-top center-block mb-3" width="420" height="130" src="../include/images/coupon/${dto.packages_image}" alt="Card image"></a>
   <div class="kdemycard-body">
     <h4 class="card-title h5">${dto.packages_name}</h4>
     <h5 class="text-danger"><fmt:formatNumber value="${dto.packages_price}" pattern="#,###" /></h5>

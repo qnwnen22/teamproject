@@ -34,8 +34,10 @@
 </div>
 <div class="card col d-flex align-items-center shadow mb-4 bg-white border border-secondary mx-1 pt-3">
     <h4 class="card-title">매출현황</h4>
-    <p class="card-text">Some example text.</p>
+    <h4 class="card-title" id="counter3"></h4>
+    <a href="${path}/chart/saleschart.do">
   <img class="card-img-top" src="../include/images/chart/매출.jpg" alt="Card image">
+  </a>
 </div>
 <div class="card col d-flex align-items-center shadow mb-4 bg-white border border-secondary mx-1 pt-3">
     <h4 class="card-title">방문자</h4>
@@ -45,8 +47,6 @@
 </div>
 </div>
 <div id="chart_div"></div>
-<!-- <button id="btn" type="button" onclick="drawChart()">
-refresh</button> -->
 <%@include file="../include/footer.jsp" %>
 <script type="text/javascript">
 	function numberCounter(target_frame, target_number) {
@@ -61,7 +61,7 @@ refresh</button> -->
 	    this.diff = this.target_count - this.count;
 	     
 	    if(this.diff > 0) {
-	        self.count += Math.ceil(this.diff / 30);
+	        self.count += Math.ceil(this.diff / 15);
 	    }
 	     
 	    this.target_frame.innerHTML = this.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -75,6 +75,7 @@ refresh</button> -->
 	};
 	new numberCounter("counter1", ${map.countMember});
 	new numberCounter("counter2", ${map.countLecture});
+	new numberCounter("counter3", ${map.totalMoney});
 	</script>
 </body>
 </html>

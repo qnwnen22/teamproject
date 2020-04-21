@@ -263,9 +263,32 @@
     </div>
   </div>
 </div>
+
+	<!-- logOut Modal -->
+<div class="modal" id="logOutModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">로그아웃</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h6>로그아웃 하시겠습니까?</h6>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <a href="${path}/member/logOut.do" type="button" class="btn btn-outline-danger">로그아웃</a>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+      </div>
+
+    </div>
+  </div>
 </div>
-
-
 
 
 
