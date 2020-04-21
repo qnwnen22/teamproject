@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 
 	 <select id="couponDetail" resultType="com.TeamProject.Kdemy.model.member.dto.CouponDTO">
 		select * from coupon
-		order by coupon_idx desc
+		order by create_date desc
 	</select>
 	
 	<update id="updateCoupon">

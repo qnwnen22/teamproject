@@ -104,23 +104,25 @@ public class MemberController {
 		return mav;
 	}
 	
-
+	
+	@ResponseBody
 	@RequestMapping("check.do")
 	public ModelAndView check(MemberDTO dto, HttpSession session) throws Exception{
 		String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		String result=memberService.passwdCheck(dto);
 		ModelAndView mav=new ModelAndView();
-		
+		MemberDTO dto2=memberService.detailMember(userid);
+		session.setAttribute("dto", dto2);	
 		if(result.equals("로그인성공")) {
-			MemberDTO dto2=memberService.detailMember(userid);
-			session.setAttribute("dto", dto2);
 			mav.setViewName("member/myPage1");
 		}else {
+			mav.addObject("message","비밀번호가 틀렸습니다.");
 			mav.setViewName("member/myPage");
 		}
 		return mav;
 	}
+	
 	
 	@RequestMapping("myPageUpdate.do")
 	public String myPageUpdate() {
@@ -263,7 +265,7 @@ public class MemberController {
 
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
-	public String insertMember(MemberDTO dto) throws Exception {
+	public String insertMember(MemberDTO dto, HttpSession session) throws Exception {
 		MultipartFile file=dto.getFile();				
 		String thumbnail=null;
 		String birthday=dto.getBirthday1()+"-"+dto.getBirthday2()+"-"+dto.getBirthday3();
@@ -279,18 +281,20 @@ public class MemberController {
 		dto.setBirthday(birthday);
 		dto.setPhone(phone);
 		memberService.insertMember(dto);
+		session.setAttribute("useremail", dto.getUseremail());
 		
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[이메일 인증]");
-		sendMail.setText(new StringBuffer().append("<h1>KDEMY 메일인증</h1>")
-				.append("kdemy에 가입해주셔서 땡큐 베리 감사합니다.<br><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
-				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
+		sendMail.setText(new StringBuffer().append("<table><tbody>")
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")
+				.append("<tr style='text-align: center;'><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
+				.append("' target='_blenk'>이메일 인증 확인</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
 		sendMail.send();
-				
 		return "member/signConfirm";	
-	}
+	}	
+
 
 	@RequestMapping(value = "/verify.do", method = RequestMethod.GET)
 	public String signSuccess(@RequestParam String useremail) {
@@ -330,9 +334,9 @@ public class MemberController {
 		}
 	}
 	
-	@ResponseBody
+
 	@RequestMapping("searchPW.do")
-	public void searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+	public String searchPW(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 		String userid = request.getParameter("userid");
 		String useremail = request.getParameter("useremail");
 		MemberDTO dto = new MemberDTO();
@@ -346,22 +350,27 @@ public class MemberController {
 			
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
-		sendMail.setText(new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
-				.append("<b>임시 비밀번호 발급 : " + key+ "</b><br>")
+		sendMail.setText(new StringBuffer().append("<table><tbody>")
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")		
+				.append("<tr style='text-align: center;'><b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
-				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
+				.append("' target='_blenk'>KDEMY에서 로그인 하기</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
 		sendMail.send();
-
+		
+		return "member/signConfirm";
 	}
 
 	@RequestMapping("login.do")
-	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session) throws Exception {
+	public ModelAndView kdemyLogin(MemberDTO dto, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String result=memberService.passwdCheck(dto);
+		String useCookie = request.getParameter("savelogin");
+		if(useCookie != null) dto.setUseCookie(true);
 		System.out.println(result);
+		System.out.println(useCookie);
 		ModelAndView mav=new ModelAndView();
-
+		
 		if(result.equals("로그인성공")) {
 			MemberDTO dto2=memberService.kdemyLogin(dto);
 			session.setAttribute("userid", dto2.getUserid());
@@ -369,7 +378,17 @@ public class MemberController {
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
+		
+			if(dto.isUseCookie()) {
+			CookieGenerator c = new CookieGenerator();
+			c.setCookieName("loginCookie");
+			c.setCookieMaxAge(60*60*24*7);
+			c.setCookiePath("/kdemy");
+			c.addCookie(response, dto.getUserid());
+			mav.addObject("loginCookie", dto.getUserid());
+			}
 
+			
 			mav.setViewName("redirect:/");
 		}else if(result.equals("관리자로그인")){
 			AdminDTO dtoa=adminService.adminLogin(dto);
@@ -380,19 +399,38 @@ public class MemberController {
 			mav.setViewName("redirect:/");
 		}else {
 			mav.addObject("message","로그인실패");
-			mav.setViewName("member/login");
+			mav.setViewName("redirect:/");
 		}
 		return mav;
 	}
 	
+//	@RequestMapping(value="/kdemy", method=RequestMethod.GET)
+//
+//	public void testCookie(HttpServletRequest request){
+//	Cookie[] getCookie = request.getCookies(); // 모든 쿠키 가져오기
+//	if(getCookie != null){ // 만약 쿠키가 없으면 쿠키 생성
+//	for(int i=0; i<getCookie.length; i++){
+//	Cookie c = getCookie[i]; // 객체 생성
+//	String name = c.getName(); // 쿠키 이름 가져오기
+//	String value = c.getValue(); // 쿠키 값 가져오기
+//	System.out.println(name);
+//	System.out.println(value);
+//}
+//}
+//}
 	
-	 @RequestMapping("logOut.do") 
-	 public ModelAndView logOut(HttpSession session, ModelAndView mav) { 
-	  //세션 초기화 
+
+	 @RequestMapping("logout.do") public ModelAndView logOut(HttpSession session, ModelAndView mav, HttpServletResponse response) { 
+		 //세션 초기화 
 	  memberService.logout(session); 
 	  //login.jsp로 이동
 	  mav.setViewName("redirect:/"); 
 	  mav.addObject("message", "logout"); 
+	  CookieGenerator c = new CookieGenerator();
+		c.setCookieName("loginCookie");
+		c.setCookieMaxAge(0);
+		c.setCookiePath("/kdemy");
+		c.removeCookie(response);
 	  return mav; 
 	  }
 
@@ -407,21 +445,6 @@ public class MemberController {
 	public String loginPage() {
 		return "member/login";
 	}
-
-//    @RequestMapping("logOut.do")
-//    public String logOut(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-//	session.invalidate();
-//	return "member/login";
-//	}
-
-//	@RequestMapping("logOut.do")
-//	public ModelAndView logOut(HttpSession session, ModelAndView mav) {
-//		//세션 초기화
-//		memberService.logout(session);
-//		//login.jsp로 이동
-//		mav.setViewName("redirect:/");
-//		return mav;
-//	}
 
 
 

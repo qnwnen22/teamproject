@@ -149,6 +149,7 @@
  <%@ include file="footer1.jsp"%> 
    
  <script>
+ 
 $(function(){
 	$("#listButton1").click(function(){
 		  $.ajax({

@@ -7,20 +7,7 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
 <script src="${path}/include/js/join.js"></script>
-<%-- <script src="${path}/member/js/upload.js"></script> --%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<!-- <style>
-.fileDrop {
-	width: 100%;
-	height: 200px;
-	border: 1px dotted blue;
-}
-small {
-	margin-left:3px;
-	font-weight: bold;
-	color: gray;
-}
-</style> -->
 <script type="text/javascript">
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 13) {
@@ -92,11 +79,6 @@ $('#useremail').change(function(e){
 				action="${path}/member/insertMember.do"
 				class="form-horizontal">
 
-				<div class="form-group" id="thumbnail">
-			   <label for="file">thumbnail</label><br>
-			   <input class="file" type="file" name="file" id="file">
-		       </div>
-		       
 				<div class="form-group">
 					<label for="username">성명</label> &nbsp;
 					<span id="usernameM"></span>
@@ -198,11 +180,11 @@ $('#useremail').change(function(e){
 					</div>
 					<div class="form-group d-none d-lg-block d-xl-block col-6 p-0">
 						<input type="button" onclick='execDaumPostcode()' value="우편번호 찾기"
-							class="btn btn-primary">
+							class="btn btn-outline-info">
 					</div>
 					<div class="form-group d-xl-none d-lg-none col-6 p-0">
 						<input type="button" onclick="openDaumZipAddress()"
-							value="우편번호 찾기" class="btn btn-primary">
+							value="우편번호 찾기" class="btn btn-outline-info">
 					</div>
 				</div>
 			    <div id="wrap" class="form-group col-sm-5 col-md-5"
@@ -454,15 +436,16 @@ STORE 및 STORE 관련 제반 서비스(모바일 웹/앱 포함)의 회원관�
 					</div>
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-primary">
+					<button type="submit" class="btn btn-outline-dark btn-lg btn-block">
 						회원가입<i class="fa fa-check spaceLeft"></i>
 					</button>
-					<a href="javascript:history.back()"><button type="button" class="btn btn-warning">
-					가입취소<i class="fa fa-times spaceLeft"></i></button></a>
+					<!-- <a href="javascript:history.back()"><button type="button" class="btn btn-outline-dark btn-lg btn-block">
+					가입취소<i class="fa fa-times spaceLeft"></i></button></a> -->
 				</div>
 			</form>
 		</div>
 	</div>
 
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
