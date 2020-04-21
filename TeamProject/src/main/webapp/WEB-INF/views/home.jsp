@@ -800,7 +800,7 @@
 																	</div>
 																</div>
 																<a><b>${sessionScope.admin_id}님</b></a>
-																<a href="${path}/member/logOut.do"
+																<a href="${path}/member/logout.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 															</c:if>
 															<!-- 관리자 로그인 끝 -->
@@ -861,7 +861,7 @@
 																			</div>
 
 																			<a><b>${sessionScope.username}님</b></a>
-																			<a href="${path}/member/logOut.do"
+																			<a href="${path}/member/logout.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																		</c:when>
 																		
@@ -886,7 +886,7 @@
 																				</div>
 																			</div>
 																			<a style="color: blue;">${sessionScope.teacher}</a>														
-																			<a href="${path}/member/logOut.do"
+																			<a href="${path}/member/logout.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>
 																				</c:when>
 																				

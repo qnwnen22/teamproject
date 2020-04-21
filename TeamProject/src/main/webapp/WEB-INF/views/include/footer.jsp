@@ -124,7 +124,7 @@
 					<input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요.">
 				</div>
 			<div class="form-check pt-2 pb-1">
-				  <input class="form-check-input" type="checkbox" name="savelogin" id="savelogin" value="option1" checked>
+				  <input class="form-check-input" type="checkbox" name="savelogin" id="savelogin" value="true" checked>
 				  <label class="form-check-label" for="exampleRadios1">
 				   <b>로그인유지</b>
 				  </label>
@@ -226,7 +226,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" id="searchPWForm" name="searchPWForm" action="${path}/member/searchID.do" class="form-horizontal">
+        <form method="post" id="searchPWForm" name="searchPWForm" action="${path}/member/searchPW.do" class="form-horizontal">
 				<div class="input-group input-group-lg pt-2 pb-1">
 					<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디를 입력해주세요." required>	
 				</div>
@@ -329,19 +329,4 @@ $(document).ready(function(){
 });
 
 
-$(document).ready(function(){
-    $('#searchPasswdbtn').on('click', function(){
-        $.ajax({
-            type: 'POST',
-            url: "${path}/member/searchPW.do",
-            data: {
-                "userid" : $('#userid').val(),
-                "useremail" : $('#useremail1').val()
-            },
-            success: function(data){
-            	$('#text').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
-            }
-        });      
-    });    
-});
 </script>

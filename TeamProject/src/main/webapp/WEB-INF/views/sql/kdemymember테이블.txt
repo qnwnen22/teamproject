@@ -16,29 +16,13 @@ address2 varchar2(200),
 join_date date default sysdate, 
 verify varchar2(10) default 'n',
 thumbnail clob,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 point number default 0,
-=======
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
-teacher varchar2(200) default 'n'
-<<<<<<< HEAD
-=======
-=======
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 coupon varchar2(200),
 coupon_point number default 0,
 teacher varchar2(200),
-<<<<<<< HEAD
 bpasswd varchar2(200),
-CONSTRAINT coupon_check check (coupon in ('8G8g','BDyC','aOnu'))
-=======
-bpasswd varchar2(200)
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+session_key varchar2(200),
+session_limit timestamp
 );
 
 commit;
