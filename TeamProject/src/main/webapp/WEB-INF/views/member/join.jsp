@@ -90,7 +90,7 @@ $('#useremail').change(function(e){
 					<label for="userid">아이디</label>&nbsp;
 					<span id="CheckM"></span>
 					<span id="useridM"></span>
-					<input class="form-control" id="userid" name="userid" oninput="checkId()"
+					<input class="form-control userid" id="userid" name="userid" oninput="checkId()"
 							placeholder="아이디를 입력해주세요">
 				</div>
 				<div class="form-group">
@@ -436,11 +436,9 @@ STORE 및 STORE 관련 제반 서비스(모바일 웹/앱 포함)의 회원관�
 					</div>
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-outline-dark btn-lg btn-block">
+					<button type="submit" class="btn btn-outline-dark btn-lg btn-block" id="join-submit">
 						회원가입<i class="fa fa-check spaceLeft"></i>
 					</button>
-					<!-- <a href="javascript:history.back()"><button type="button" class="btn btn-outline-dark btn-lg btn-block">
-					가입취소<i class="fa fa-times spaceLeft"></i></button></a> -->
 				</div>
 			</form>
 		</div>

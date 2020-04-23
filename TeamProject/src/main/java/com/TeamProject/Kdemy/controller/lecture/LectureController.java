@@ -115,7 +115,7 @@ public class LectureController {
 	}
 
 	//동영상 리스트 페이지 이동
-	@RequestMapping("video_List.do")
+	@RequestMapping("video_list.do")
 	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage,
 			@RequestParam(defaultValue="") String admin) throws Exception {
 		String cell_type="1";
@@ -175,6 +175,8 @@ public class LectureController {
 		int end=pager.getPageEnd();
 		
 		List<LectureDTO> list=lectureService.lecture_list(start, end);
+		
+		System.err.println("list :"+list);
 		ModelAndView mav=new ModelAndView();
 		
 		HashMap<String, Object> map=new HashMap<>();
@@ -342,7 +344,7 @@ public class LectureController {
 		dto.setVideofile(videofile);
 
 		lectureService.teacher_type1_insert(dto);
-		return "redirect:/lecture/video_List.do";
+		return "redirect:/lecture/video_list.do";
 	}
 	
 	
@@ -460,18 +462,23 @@ public class LectureController {
 	         log.info("파일이 없습니다");
 	      }
 
-	      File file2=new File(uploadPath+dto.getVideofile());
-	      
-	      if(file2.exists()) {
-	         file2.delete();
-	      }else {
-	         log.info("이미지 파일이 존재하지 않습니다.");
-	      }
-	      
-	      lectureService.lectureDelete(lecture_idx);
-	      String userid=(String)session.getAttribute("userid");
-	      return "redirect:/lecture/myLecturePage.do?userid="+userid;
-	   }
+		File file2=new File(uploadPath+dto.getVideofile());
+		
+		if(file2.exists()) {
+			file2.delete();
+		}else {
+			log.info("이미지 파일이 존재하지 않습니다.");
+		}
+		
+		lectureService.lectureDelete(lecture_idx);
+		if(session.getAttribute("admin_id")!=null) {
+			return "redirect:/lecture/online_list.do?admin=admin";	
+		}else {
+		String userid=(String)session.getAttribute("userid");
+		return "redirect:/lecture/myLecturePage.do?userid="+userid;
+		}
+	}
+	
 	@RequestMapping("lectureUpdatePage.do")
 	public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
 		ModelAndView mav=new ModelAndView();

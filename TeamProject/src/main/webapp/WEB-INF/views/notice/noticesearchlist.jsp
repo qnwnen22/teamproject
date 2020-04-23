@@ -48,7 +48,7 @@
 		</form>
 		
 		<div class="table-responsive">
-		<table class="table table-hover text-center">
+		<table class="table table-hover text-center table-bordered">
 			<thead>
 				<tr>
 					<th class="d-none d-xl-block d-lg-block"> 번호</th>

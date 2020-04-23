@@ -15,8 +15,6 @@ function list(page) {
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-<<<<<<< HEAD
-=======
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -25,10 +23,8 @@ function list(page) {
 				<li><b><a href="${path}/lecture/offline_list.do?admin=admin" style="color:blue;">오프라인 강의</a></b></li>
 			</ul>
 		</div>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link" href="${path}/lecture/online_list.do?admin=admin">실시간
-					강의</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/lecture/online_list.do?admin=admin">실시간	강의</a></li>
 			<li class="nav-item"><a class="nav-link" href="${path}/lecture/video_List.do?admin=admin">동영상 강의</a></li>
 			<li class="nav-item"><a class="nav-link active" href="${path}/lecture/offline_list.do?admin=admin">오프라인 강의</a></li>
 			<li class="input-group col-3 ml-auto mr-0">
@@ -56,7 +52,7 @@ function list(page) {
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${map.list}">
-						<tr>
+						<tr onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
 							<td><a
 								href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
 									<img src="../upload/${dto.main_img}"

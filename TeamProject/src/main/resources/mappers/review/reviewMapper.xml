@@ -130,15 +130,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
    <select id="listReply" 
   resultType="com.TeamProject.Kdemy.model.review.dto.ReplyDTO">
-    select rno,bno,replyer,regdate,updatedate,username,r.replytext
+     	<include refid="paging_header" />
+    select rno,bno,replyer,regdate,updatedate,r.replytext
 		from kdemyreview_reply r, kdemymember m
 		where r.replyer=m.userid and bno=#{bno}
-		order by rno
+		order by rno desc
+		) A
+		) where rn between #{start2} and #{end2}
   </select>
   
   <delete id="replydelete">
   	delete from kdemyreview_reply where rno=#{rno} 
   </delete>
+  
+  	<select id="countReply" resultType="int">
+		select count(*) from
+		kdemyreview_reply b
+	</select>
+	
 
 </mapper>
 

@@ -284,7 +284,7 @@ $(document).ready(function(){
 						<div class="col-md-12 col-sm-12 pt-3">
 							<div class="items-container row">
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=디자인">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
 										<div class="iconName">
 											<span><b>디자인</b></span>
@@ -292,82 +292,82 @@ $(document).ready(function(){
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+										<div class="iconName">
+											<span><b>IT,프로그래밍</b></span>
+										</div>
+									</a>
+								</div>
+								<div class="RootDirectoryThemeItem col-3">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+										<div class="iconName">
+											<span><b>콘텐츠 제작</b></span>
+										</div>
+									</a>
+								</div>
+								<div class="RootDirectoryThemeItem col-3">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=마케팅">
+										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
 										<div class="iconName">
 											<span><b>마케팅</b></span>
 										</div>
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
-										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-										<div class="iconName">
-											<span><b>문서,취업</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
-										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-										<div class="iconName">
-											<span><b>아이콘</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=번역,통역">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
 										<div class="iconName">
-											<span><b>아이콘2</b></span>
+											<span><b>번역,통역</b></span>
 										</div>
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=문서,통역">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
 										<div class="iconName">
-											<span><b>안드로이드</b></span>
+											<span><b>문서,통역</b></span>
 										</div>
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
 										<div class="iconName">
-											<span><b>어플</b></span>
+											<span><b>비즈니스컨설팅</b></span>
 										</div>
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=운세,상담">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
 										<div class="iconName">
-											<span><b>콘텐츠제작</b></span>
+											<span><b>운세,상담</b></span>
 										</div>
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
 										<div class="iconName">
-											<span><b>콘텐츠제작2</b></span>
+											<span><b>레슨,실무교육</b></span>
 										</div>
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=주문제작">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
 										<div class="iconName">
-											<span><b>IT프로그래밍</b></span>
+											<span><b>주문제작</b></span>
 										</div>
 									</a>
 								</div>
 								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain" href="#">
+									<a class="plain" href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
 										<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
 										<div class="iconName">
-											<span><b>번역,통역</b></span>
+											<span><b>간판,인쇄</b></span>
 										</div>
 									</a>
 								</div>
@@ -383,7 +383,7 @@ $(document).ready(function(){
 								<div id="mainHeaderContainer"
 									class="position-relative col-xl-12" style="background-color: ${row.color}" id="color1">
 									
-									<c:if test="${sessionScope.admin_id != null}">
+									<c:if test="${sessionScope.admin_id != null && sessionScope.admin_level == 3}">
 									<!-- 관리자 메인배너 변경 코드 -->
 									<button class="btn" data-toggle="modal"
 										data-target="#mainChange">
@@ -520,103 +520,103 @@ $(document).ready(function(){
 																				class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
 																				<div class="items-container">
 																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
-																							<div class="iconName">
-																								<span><b>디자인</b></span>
-																							</div>
-																						</a>
-																					</div>
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=디자인">
+														<div class="icon" style="background: url('include/images/main/${row.icon_img0}');"></div>
+														<div class="iconName">
+															<span><b>디자인</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
-																							<div class="iconName">
-																								<span><b>마케팅</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍"">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+														<div class="iconName">
+															<span><b>IT,프로그래밍</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-																							<div class="iconName">
-																								<span><b>문서,취업</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+														<div class="iconName">
+															<span><b>콘텐츠 제작</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-																							<div class="iconName">
-																								<span><b>아이콘</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=마케팅">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
+														<div class="iconName">
+															<span><b>마케팅</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
-																							<div class="iconName">
-																								<span><b>아이콘2</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=번역,통역">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
+														<div class="iconName">
+															<span><b>번역,통역</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
-																							<div class="iconName">
-																								<span><b>안드로이드</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=문서,통역">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
+														<div class="iconName">
+															<span><b>문서,통역</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
-																							<div class="iconName">
-																								<span><b>어플</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
+														<div class="iconName">
+															<span><b>비즈니스컨설팅</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
-																							<div class="iconName">
-																								<span><b>콘텐츠제작</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=운세,상담">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
+														<div class="iconName">
+															<span><b>운세,상담</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
-																							<div class="iconName">
-																								<span><b>콘텐츠제작2</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
+														<div class="iconName">
+															<span><b>레슨,실무교육</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
-																							<div class="iconName">
-																								<span><b>IT프로그래밍</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
+														<div class="iconName">
+															<span><b>주문제작</b></span>
+														</div>
+													</a>
+												</div>
 
-																					<div class="RootDirectoryThemeItem">
-																						<a class="plain" href="#">
-																							<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
-																							<div class="iconName">
-																								<span><b>번역,통역</b></span>
-																							</div>
-																						</a>
-																					</div>
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
+														<div class="iconName">
+															<span><b>간판,인쇄</b></span>
+														</div>
+													</a>
+												</div>
 																				</div>
 																			</div>
 																		</div>
@@ -790,7 +790,9 @@ $(document).ready(function(){
 																	style="display: initial !important;">
 																	<a class="plain cursor" data-ga-category="header" href="${path}/admin/managementMenu.do"><b>관리메뉴</b></a>
 																	<div class="dropdown-menu">
+																	<c:if test="${sessionScope.admin_level == 3}">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
+																		</c:if>
 																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
 																		<a class="dropdown-item" href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
 						    											<a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
@@ -893,8 +895,6 @@ $(document).ready(function(){
 																						<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 																				</div>
 																			</div>
-
-																			<a style="color: blue;">${sessionScope.teacher}</a>	
 																			<a><b>${sessionScope.username}님 </b></a>													
 																			<button data-toggle="modal" data-target="#logOutModal"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></button>
@@ -974,7 +974,7 @@ $(document).ready(function(){
 											class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
 											<div class="items-container">
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=디자인">
 														<div class="icon" style="background: url('include/images/main/${row.icon_img0}');"></div>
 														<div class="iconName">
 															<span><b>디자인</b></span>
@@ -983,8 +983,26 @@ $(document).ready(function(){
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+														<div class="iconName">
+															<span><b>IT,프로그래밍</b></span>
+														</div>
+													</a>
+												</div>
+
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+														<div class="iconName">
+															<span><b>콘텐츠 제작</b></span>
+														</div>
+													</a>
+												</div>
+
+												<div class="RootDirectoryThemeItem">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=마케팅">
+														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
 														<div class="iconName">
 															<span><b>마케팅</b></span>
 														</div>
@@ -992,82 +1010,64 @@ $(document).ready(function(){
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
-														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-														<div class="iconName">
-															<span><b>문서,취업</b></span>
-														</div>
-													</a>
-												</div>
-
-												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
-														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-														<div class="iconName">
-															<span><b>아이콘</b></span>
-														</div>
-													</a>
-												</div>
-
-												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=번역,통역">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
 														<div class="iconName">
-															<span><b>아이콘2</b></span>
+															<span><b>번역,통역</b></span>
 														</div>
 													</a>
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=문서,통역">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
 														<div class="iconName">
-															<span><b>안드로이드</b></span>
+															<span><b>문서,통역</b></span>
 														</div>
 													</a>
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
 														<div class="iconName">
-															<span><b>어플</b></span>
+															<span><b>비즈니스컨설팅</b></span>
 														</div>
 													</a>
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=운세,상담">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
 														<div class="iconName">
-															<span><b>콘텐츠제작</b></span>
+															<span><b>운세,상담</b></span>
 														</div>
 													</a>
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
 														<div class="iconName">
-															<span><b>콘텐츠제작2</b></span>
+															<span><b>레슨,실무교육</b></span>
 														</div>
 													</a>
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=주문제작">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
 														<div class="iconName">
-															<span><b>IT프로그래밍</b></span>
+															<span><b>주문제작</b></span>
 														</div>
 													</a>
 												</div>
 
 												<div class="RootDirectoryThemeItem">
-													<a class="plain" href="#">
+													<a class="plain" href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
 														<div class="icon" style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
 														<div class="iconName">
-															<span><b>번역,통역</b></span>
+															<span><b>간판,인쇄</b></span>
 														</div>
 													</a>
 												</div>
@@ -1100,7 +1100,7 @@ $(document).ready(function(){
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
 					<a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
-					<br> <b>카테고리1</b> <a href="${path}/lecture/video_List.do">동영상
+					<br> <b>카테고리1</b> <a href="${path}/lecture/video_list.do">동영상
 						리스트 페이지</a>
 				</h5>
 				<br>
@@ -1288,50 +1288,7 @@ $(document).ready(function(){
 		</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 
-	<div class="card">
-		<h5 class="card-header">Featured</h5>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
-		</div>
-	</div>
-	<div class="card mb-3">
-		<img src="..." class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text
-				below as a natural lead-in to additional content. This content is a
-				little bit longer.</p>
-			<p class="card-text">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</p>
-		</div>
-	</div>
-	<div class="card mb-3" style="max-width: 540px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img" alt="...">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a wider card with supporting text
-						below as a natural lead-in to additional content. This content is
-						a little bit longer.</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
 	<c:if test="${sessionScope.userid != null}">
 	<div class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block" id="adminChat">
 	   <a href="#miniChat" data-toggle="collapse" id="btnMiniChatJoin"><img src="${path}/include/images/main/chaticon.png" class="mx-auto d-block mt-3 mb-3"></a>
@@ -1422,8 +1379,6 @@ function chatEnter() {
 
 </script>
 	
-=======
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 <%@ include file="include/footer.jsp"%>
 </body>
 </html>

@@ -129,12 +129,6 @@
 						<input type="number" class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
 					</div>
 					
-					<!--  -->
-					<div class="col-12 form-group">
-						<label for="file2"><b>판매하실 강의를 등록해주세요.</b></label><br>
-						<input class="file2" type="file" name="file2" id="file2">
-						<p style="color: blue; font-size: 12px;">선택한 파일을 초기화방법 = 파일 선택 → 취소</p>
-					</div>
 	        	</div>
 	        	
 			</div>

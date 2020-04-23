@@ -238,4 +238,18 @@ public class LectureDAOImpl implements LectureDAO {
 	      return sqlSession.selectOne("lectureBox.totalMoney");
 	   }
 
+	   @Override
+	   public void upCount(int lecture_idx) {
+			sqlSession.update("lecture.upCount",lecture_idx);
+		}
+	   @Override
+	   public void downCount(int lecture_idx) {
+			sqlSession.update("lecture.downCount",lecture_idx);
+		}
+
+		@Override
+		public void cellCount(String lecture_idx) {
+			sqlSession.update("lecture.cellCount",lecture_idx);
+		}
+
 }

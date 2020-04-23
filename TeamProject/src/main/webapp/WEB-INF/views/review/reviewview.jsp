@@ -34,13 +34,8 @@
 }
 </style>
 <%@ include file="../include/header.jsp"%>
-
 <script type="text/javascript">
-<<<<<<< HEAD
-$(document).ready(function() {
-=======
 	$(document).ready(function() {
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		listReply();
 
 		$("#btnReply").click(function(evt) {
@@ -60,7 +55,6 @@ $(document).ready(function() {
 					$("#replytext").val("");
 				}
 			});
-<<<<<<< HEAD
 			if (socket.readyState !== 1) return;
 					let replyer = $('input#replyer').val();
 					let gbwriter = $('input#gbwriter').val();
@@ -68,7 +62,6 @@ $(document).ready(function() {
 					// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
 					socket.send("reply,"+replyer+","+gbwriter+","+gbno);
 					
-=======
 			if (socket.readyState !== 1)
 				return;
 			console.log(socket);
@@ -78,7 +71,6 @@ $(document).ready(function() {
 			// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
 			socket.send("reply," + replyer + "," + gbwriter + "," + gbno);
 
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		});
 
 		$(document).keydown(function(event) {
@@ -112,109 +104,20 @@ $(document).ready(function() {
 			$("#btnReply").click();
 		}
 	});
-
-	function listReply() {
+	function listReply(page) {
 		$.ajax({
 			type : "get",
-			url : "${path}/review/replylist.do?bno=${dto.bno}",
+			url : "${path}/review/replylist.do?bno=${dto.bno} ",
 			success : function(result) {
 				$("#replyList").html(result);
 			}
 		});
 	}
-
+	
 	function list(page) {
 		location.href = "${path}/review/list.do?curPage=" + page;
 	}
 
-	 $(document).ready(function(){
-			$("#profileImg").click(function(){
-				$("#file1").click() ;
-				})			
-			}) 
-
-				var sel_file;
-
-				$(document).ready(function() {
-				    $("#file1").on("change", fileChange);
-				});
-
-				function fileChange(e) {
-					e.preventDefault();
-
-					var files = e.target.files;
-				    var filesArr = Array.prototype.slice.call(files);
-
-				    filesArr.forEach(function(f) {
-				        if(!f.type.match("image.*")) {
-				            alert(" 이미지 파일만 가능합니다.");
-				            return;
-				        }
-
-				        sel_file = f;
-
-				        var reader = new FileReader();
-				        reader.onload = function(e) {
-				            $("#profileImg").attr("src", e.target.result);
-				        	$("#profileImg").css("height", "400px")
-				        }
-				        reader.readAsDataURL(f);
-				    });
-
-				    var file = files[0]
-				    console.log(file)
-				    var formData = new FormData();
-
-				    formData.append("file", file);
-
-						$.ajax({
-				    	url: '${path}/review/uploadAjax.do',
-						  data: formData,
-						  dataType:'text',
-						  processData: false,
-						  contentType: false,
-						  type: 'POST',
-						  success: function(data){
-
-							alert("파일이 업로드 되었습니다.")
-
-						  }
-						})
-
-
-				 		function checkImageType(fullName){
-				 			var pattern = /jpg$|gif$|png$|jpeg$/i;
-				 			return fullName.match(pattern);
-				 		}
-
-
-				 		function getOriginalName(fullName){
-				 			if(checkImageType(fullName)){
-				 				return;
-				 			}
-
-				 			var idx = fullName.indexOf("_") + 1 ;
-				 			return fullName.substr(idx);
-
-				 		}
-
-
-				 		function getImageLink(fullName){
-
-				 			if(!checkImageType(fullName)){
-				 				return;
-				 			}
-				 			var front = fullName.substr(0,12);
-				 			var end = fullName.substr(14);
-
-				 			return front + end;
-
-				 		}
-
-				}
-<<<<<<< HEAD
-			});
-		}
 
 		function replyConectWS() {
 			var ws = new WebSocket("ws://localhost:80/Kdemy/reviewReply");
@@ -238,9 +141,6 @@ $(document).ready(function() {
 		}
 
 
-=======
-			
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </script>
 
 </head>
@@ -279,27 +179,6 @@ $(document).ready(function() {
 				</div>
 				<hr>
 
-				<div id="fullName_css">
-					<label for="content">첨부파일</label>
-					<div class="jumbotron jumbotron-fluid">
-						<c:choose>
-							<c:when test="${empty dto.fullName}">
-								<div>
-									<span>-</span>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div>
-									<img id="profileImg"
-										src="${path}/review/displayFile?fullName=${dto.fullName}"
-										class="avatar img-thumbnail" style="height: 200px;">
-								</div>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
-
-
 
 			</div>
 
@@ -308,6 +187,11 @@ $(document).ready(function() {
 
 
 		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3"></div>
+		
+		
+
+		
+
 
 
 

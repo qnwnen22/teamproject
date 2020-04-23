@@ -20,7 +20,9 @@ public class AdminDTO {
 	private int admin_level;
 	
 	private String badmin_passwd;
-	private String admin_hp1;
-	private String admin_hp2;
-	private String admin_hp3;
+	private String userid;
+	private String username;
+	private String bpasswd;
+	private String useremail;
+	private String phone;
 }
