@@ -1089,7 +1089,7 @@
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
 					<a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
-					<br> <b>카테고리1</b> <a href="${path}/lecture/video_List.do">동영상
+					<br> <b>카테고리1</b> <a href="${path}/lecture/video_list.do">동영상
 						리스트 페이지</a>
 				</h5>
 				<br>

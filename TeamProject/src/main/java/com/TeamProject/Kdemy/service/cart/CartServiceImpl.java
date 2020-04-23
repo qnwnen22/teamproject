@@ -8,12 +8,15 @@ import org.springframework.stereotype.Service;
 
 import com.TeamProject.Kdemy.model.cart.dao.CartDAO;
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
+import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 
 @Service
 public class CartServiceImpl implements CartService {
 
    @Inject
    CartDAO cartDao;
+   @Inject
+   LectureDAO lectureDao;
    
    @Override
    public List<CartDTO> cartList(CartDTO dto) {
@@ -59,6 +62,7 @@ public class CartServiceImpl implements CartService {
    @Override
    public void buyCart(String userid, String lecture_idx) {
       cartDao.buyCart(userid, lecture_idx);
+      lectureDao.cellCount(lecture_idx);
    }
    @Override
    public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx) {

@@ -90,11 +90,7 @@ $('#star1 a').click(function(){
 					<h2>${dto.subject}</h2>
 					<p>강사 아이디 : ${dto.userid}</p>
 					<p>등록일 : <fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" /></p>
-					
-					<div class="col-12">
-						<b>학생수</b><fmt:formatNumber value="${lectureCount}" pattern="#,###" />
-					</div>
-					<%-- <p>수강중인 학생 수 : ${lectureCount}</p> --%>
+					<p>학생수 : <fmt:formatNumber value="${lectureCount}" pattern="#,###" /></p>
 					<p>좋아요 갯수 : ${upCount}</p>
 				</div>
 			</div>

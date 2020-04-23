@@ -38,6 +38,7 @@ public class LectureServiceImpl implements LectureService {
 	   @Override
 	   public LectureDTO lecture_list_view(int lecture_idx) {
 	      return lectureDao.lecture_list_view(lecture_idx);
+	      
 	   }
 	   @Override
 	   public int searchCount(String cell_type, String keyword) {
@@ -178,11 +179,13 @@ public class LectureServiceImpl implements LectureService {
 	   @Override
 	   public void upUpdate(String userid, int lecture_idx) {
 	      lectureDao.upUpdate(userid, lecture_idx);
+	      lectureDao.upCount(lecture_idx);
 	   }
 
 	   @Override
 	   public void downUpdate(String userid, int lecture_idx) {
 	      lectureDao.downUpdate(userid, lecture_idx);
+	      lectureDao.downCount(lecture_idx);
 	   }
 
 	   @Override

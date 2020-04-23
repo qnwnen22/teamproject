@@ -95,8 +95,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="lecture_list_all"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select * from (	
-			select rownum as rn, A.* from 
-			(
+			select rownum as rn, A.* 
+			from (
 				select * from lecture
 				order by lecture_idx desc
 			) A
@@ -115,6 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchCount_all"
 	resultType="int">
 		select count(*) from lecture
+		<include refid="search" /> 
 	</select>
 	
 	<!-- 판매 타입별 검색 리스트 -->
@@ -133,15 +134,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="searchList_all"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
-		select * from (
-			select rownum as rn, A.* from 
-			(
-				select * from lecture
-				where 
-				<include refid="search" />
-				order by lecture_idx desc
-			) A
-		) where rn between #{start} and #{end}
+		select * from ( select rownum as rn, A.* from ( select * from lecture where 
+		<include refid="search"/>
+		order by lecture_idx desc ) A ) where rn between #{start} and #{end} 
 	</select>
 	
 	<sql id="search">
@@ -224,6 +219,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		lecture_address=#{lecture_address}, lecture_address2=#{lecture_address2},
 		main_img=#{main_img}
 		where lecture_idx=${lecture_idx}
+	</update>
+
+	<update id="upCount">
+		update lecture set upCount=(select upCount from lecture where lecture_idx=#{lecture_idx})+1 where lecture_idx=#{lecture_idx}
+	</update>
+	
+	<update id="downCount">
+		update lecture set upCount=(select upCount from lecture where lecture_idx=#{lecture_idx})-1 where lecture_idx=#{lecture_idx}
+	</update>
+	
+	<update id="cellCount">
+		update lecture set cellCount=(select cellCount from lecture where lecture_idx=#{lecture_idx})+1 where lecture_idx=#{lecture_idx}
 	</update>
 	
 </mapper>
