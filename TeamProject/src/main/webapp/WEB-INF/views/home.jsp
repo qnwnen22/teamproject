@@ -1224,71 +1224,6 @@ $(document).ready(function(){
 
 		</div>
 		<hr>
-		<div class="d-flex">
-		<div class="col-6 m-0 p-1">
-		<h4><b>공지사항</b></h4>
-		<table class="table table-bordered table-hover text-center">
-			<thead class="thead-dark">
-				<tr>
-					<th>제목</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr style="cursor:pointer;">
-						<td>[공지]강사신청 페이지 오류 안내</td>
-					</tr>
-					<tr style="cursor:pointer;">
-						<td>[공지]Kdemy공지사항 입니다</td>
-					</tr>
-					<tr style="cursor:pointer;">
-						<td>[공지]이벤트쿠폰 사용 안내</td>
-					</tr>
-			</tbody>
-		</table>
-		</div>
-		<div class="col-6 m-0 p-1">
-		<h4><b>베스트 후기</b></h4>
-		<table class="table table-bordered table-hover text-center">
-			<thead class="thead-dark">
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>이메일</th>
-					<th>연락처</th>
-					<th>권한레벨</th>
-					<th>가입일자</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr style="cursor:pointer;">
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-					</tr>
-					<tr style="cursor:pointer;">
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-					</tr>
-					<tr style="cursor:pointer;">
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-					</tr>
-			</tbody>
-		</table>
-		</div>
-		</div>
-	</div>
 
 	<c:if test="${sessionScope.userid != null}">
 	<div class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block" id="adminChat">
@@ -1320,6 +1255,7 @@ $(document).ready(function(){
     				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
  				 </div>
 	  	 </div>
+	 </div>
 	 </div>
 <script>
 $(function () {

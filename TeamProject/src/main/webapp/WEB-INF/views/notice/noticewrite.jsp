@@ -75,7 +75,7 @@
 				<div class="form-group mb-4">
 					<label for="title">작성자</label> <input type="text"
 						class="form-control" id="userid" name="userid"
-						value="${sessionScope.userid }" disabled="disabled">
+						value="${sessionScope.admin_id}" disabled="disabled">
 				</div>
 
 				<div class="mb-3 was-validated mb-4">

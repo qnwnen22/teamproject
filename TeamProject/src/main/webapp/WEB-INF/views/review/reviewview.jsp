@@ -36,11 +36,7 @@
 <%@ include file="../include/header.jsp"%>
 
 <script type="text/javascript">
-<<<<<<< HEAD
-$(document).ready(function() {
-=======
 	$(document).ready(function() {
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		listReply();
 
 		$("#btnReply").click(function(evt) {
@@ -60,7 +56,6 @@ $(document).ready(function() {
 					$("#replytext").val("");
 				}
 			});
-<<<<<<< HEAD
 			if (socket.readyState !== 1) return;
 					let replyer = $('input#replyer').val();
 					let gbwriter = $('input#gbwriter').val();
@@ -68,7 +63,6 @@ $(document).ready(function() {
 					// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
 					socket.send("reply,"+replyer+","+gbwriter+","+gbno);
 					
-=======
 			if (socket.readyState !== 1)
 				return;
 			console.log(socket);
@@ -78,9 +72,7 @@ $(document).ready(function() {
 			// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
 			socket.send("reply," + replyer + "," + gbwriter + "," + gbno);
 
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		});
-
 		$(document).keydown(function(event) {
 			if (event.keyCode == 13) {
 				$("#btnReply").click();
@@ -212,7 +204,6 @@ $(document).ready(function() {
 				 		}
 
 				}
-<<<<<<< HEAD
 			});
 		}
 
@@ -238,9 +229,6 @@ $(document).ready(function() {
 		}
 
 
-=======
-			
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </script>
 
 </head>

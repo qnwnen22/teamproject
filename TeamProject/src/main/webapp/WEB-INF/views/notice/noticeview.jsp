@@ -165,7 +165,7 @@
 				<div class="btn-group float-right mt-3" role="group"
 					aria-label="Basic example">
 					<c:choose>
-						<c:when test="${dto.writer == sessionScope.userid }">
+						<c:when test="${dto.writer == sessionScope.admin_id}">
 							<button type="button"
 								class="justify-content-end  btn btn-sm btn-primary font-color-fff btn-normal-silver"
 								data-toggle="button" aria-pressed="false" onclick="GoUpdate()">
