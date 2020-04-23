@@ -1,10 +1,3 @@
-/**
- * 
- */
-/**
- * 
- */
-
 $(function(){
 	// 회원 가입 처리	 
 
@@ -47,7 +40,6 @@ $(function(){
 			return false;
 		} else {
 			var input="<input id='useridConfirm' type='hidden' value='y'>";
-			$("#userid").css("border", "2px solid #71c9ce");
 			$("#CheckM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 			//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
 			//아이디 체크하여 가입버튼 비활성화, 중복확인.
@@ -202,19 +194,14 @@ $(function(){
 	 });
 	 
 	$('#join-submit').click(function(e){
-/*		if(!$('#file').val()){
-			alert("메인 이미지로 사용할 파일을 첨부해주세요.");
-			return false;
-		}		*/
-		
 		if($('#usernameConfirm').val()!="y") {
 			$('#username').focus();
-			alert("1");
+			alert("이름을 입력하세요");
 			return false;
 		}
 		if($('#useridConfirm').val()!="y") {
 			$('#userid').focus();
-			alert("2");
+			alert("아이디를 입력하세요");
 			return false;
 		}
 		if($('#bpasswdConfirm').val()!="y") {
@@ -374,6 +361,3 @@ function offDaumZipAddress() {
 	jQuery("#wrap").slideUp();
 
 }
-
-
-

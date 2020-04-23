@@ -53,4 +53,8 @@ public class AdminDAOImpl implements AdminDAO {
 	public AdminDTO adminLogin(MemberDTO dto) {
 		return sqlSession.selectOne("admin.adminLogin", dto);
 	}
+	@Override
+	public int idCheck(String admin_id) {
+		return sqlSession.selectOne("admin.idCheck",admin_id);
+	}
 }

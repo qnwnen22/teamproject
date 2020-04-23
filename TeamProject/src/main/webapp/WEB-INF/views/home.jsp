@@ -8,6 +8,18 @@
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
 <script>
+
+$(document).ready(function(){
+	  $.ajax({
+	          type: 'post'
+	        , url: 'cookie.do'
+	        , dataType : 'text'
+	        , success: function(data) {
+	        	
+	          }
+	  });	
+})
+
 	$(function() { 
 		//마지막 스크롤 값을 저장할 lastScroll 변수
 		var lastScroll = 0;
@@ -371,7 +383,7 @@
 								<div id="mainHeaderContainer"
 									class="position-relative col-xl-12" style="background-color: ${row.color}" id="color1">
 									
-									<c:if test="${sessionScope.admin_id != null}">
+									<c:if test="${sessionScope.admin_id != null && sessionScope.admin_level == 3}">
 									<!-- 관리자 메인배너 변경 코드 -->
 									<button class="btn" data-toggle="modal"
 										data-target="#mainChange">
@@ -778,7 +790,9 @@
 																	style="display: initial !important;">
 																	<a class="plain cursor" data-ga-category="header" href="${path}/admin/managementMenu.do"><b>관리메뉴</b></a>
 																	<div class="dropdown-menu">
+																	<c:if test="${sessionScope.admin_level == 3}">
 																		<a class="dropdown-item" href="${path}/admin/list.do">관리자계정</a>
+																		</c:if>
 																		<a class="dropdown-item" href="${path}/member/list.do">회원관리</a>
 																		<a class="dropdown-item" href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
 						    											<a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
@@ -881,8 +895,6 @@
 																						<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 																				</div>
 																			</div>
-
-																			<a style="color: blue;">${sessionScope.teacher}</a>	
 																			<a><b>${sessionScope.username}님 </b></a>													
 																			<a href="${path}/member/logout.do"
 																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"><b>로그아웃</b></a>

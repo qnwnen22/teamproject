@@ -16,4 +16,5 @@ public interface AdminService {
 	public String resoucelist1(String column);
 	public void mainChange(MainDTO dto);
 	public AdminDTO adminLogin(MemberDTO dto);
+	public int idCheck(String admin_id);
 }

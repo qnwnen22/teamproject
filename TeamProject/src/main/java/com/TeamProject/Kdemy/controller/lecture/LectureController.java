@@ -462,18 +462,23 @@ public class LectureController {
 	         log.info("파일이 없습니다");
 	      }
 
-	      File file2=new File(uploadPath+dto.getVideofile());
-	      
-	      if(file2.exists()) {
-	         file2.delete();
-	      }else {
-	         log.info("이미지 파일이 존재하지 않습니다.");
-	      }
-	      
-	      lectureService.lectureDelete(lecture_idx);
-	      String userid=(String)session.getAttribute("userid");
-	      return "redirect:/lecture/myLecturePage.do?userid="+userid;
-	   }
+		File file2=new File(uploadPath+dto.getVideofile());
+		
+		if(file2.exists()) {
+			file2.delete();
+		}else {
+			log.info("이미지 파일이 존재하지 않습니다.");
+		}
+		
+		lectureService.lectureDelete(lecture_idx);
+		if(session.getAttribute("admin_id")!=null) {
+			return "redirect:/lecture/online_list.do?admin=admin";	
+		}else {
+		String userid=(String)session.getAttribute("userid");
+		return "redirect:/lecture/myLecturePage.do?userid="+userid;
+		}
+	}
+	
 	@RequestMapping("lectureUpdatePage.do")
 	public ModelAndView lectureUpdatePage(HttpSession session, int lecture_idx) {
 		ModelAndView mav=new ModelAndView();

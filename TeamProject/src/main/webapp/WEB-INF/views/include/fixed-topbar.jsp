@@ -161,16 +161,14 @@
 										<a><b>${sessionScope.username}님</b></a>
 									</c:when>
 								</c:choose>
-								<button type="button" data-toggle="modal"
-									data-target="#logOutModal"
-									class="btn btn-sm btn-primary font-color-fff btn-normal-silver">로그아웃</button>
+										<button type="button" data-toggle="modal" data-target="#logOutModal"
+																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver">로그아웃</button>
 							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
 			</div>
 			<br>
-
 			<div class="nav-category-list NavCategoryList col-lg-12">
 				<ul class="list-inline margin-all-0 col-lg-12">
 					<li class="header-list-renewal dropdown col-lg-1">
