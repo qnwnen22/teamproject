@@ -46,8 +46,8 @@ $(document).ready(function(){
             success: function(data){
             	$('#text').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
             }
-        });    //end ajax    
-    });    //end on   
+        });        
+    });      
 });
 </script>
 </head>

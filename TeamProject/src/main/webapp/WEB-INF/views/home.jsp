@@ -8,6 +8,18 @@
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
 <script>
+
+$(document).ready(function(){
+	  $.ajax({
+	          type: 'post'
+	        , url: 'cookie.do'
+	        , dataType : 'text'
+	        , success: function(data) {
+	        	
+	          }
+	  });	
+})
+
 	$(function() { 
 		//마지막 스크롤 값을 저장할 lastScroll 변수
 		var lastScroll = 0;
