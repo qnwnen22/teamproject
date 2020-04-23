@@ -286,7 +286,7 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[이메일 인증]");
 		sendMail.setText(new StringBuffer().append("<table><tbody>")
-				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg'></tr>")
 				.append("<tr style='text-align: center;'><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
 				.append("' target='_blenk'>이메일 인증 확인</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
@@ -351,15 +351,15 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<table><tbody>")
-				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")		
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200422_163/1587551759907xdqhe_PNG/mosaHfUWxc.png'></tr>")		
 				.append("<tr style='text-align: center;'><b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
 		sendMail.send();
-		
-		return "member/signConfirm";
+	
+		return "member/passChange";
 	}
 
 	@RequestMapping("login.do")
@@ -373,9 +373,12 @@ public class MemberController {
 		
 		if(result.equals("로그인성공")) {
 			MemberDTO dto2=memberService.kdemyLogin(dto);
+			session.setAttribute(SessionNames.LOGIN, dto2);
+			session.setAttribute("usernum", dto2.getUsernum());
 			session.setAttribute("userid", dto2.getUserid());
 			session.setAttribute("nickname", dto2.getNickname());
 			session.setAttribute("username", dto2.getUsername());
+			session.setAttribute("useremail", dto2.getUseremail());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
 		
@@ -383,7 +386,7 @@ public class MemberController {
 			CookieGenerator c = new CookieGenerator();
 			c.setCookieName("loginCookie");
 			c.setCookieMaxAge(60*60*24*7);
-			c.setCookiePath("/kdemy");
+			c.setCookiePath("/Kdemy");
 			c.addCookie(response, dto.getUserid());
 			mav.addObject("loginCookie", dto.getUserid());
 			}
@@ -404,20 +407,6 @@ public class MemberController {
 		return mav;
 	}
 	
-//	@RequestMapping(value="/kdemy", method=RequestMethod.GET)
-//
-//	public void testCookie(HttpServletRequest request){
-//	Cookie[] getCookie = request.getCookies(); // 모든 쿠키 가져오기
-//	if(getCookie != null){ // 만약 쿠키가 없으면 쿠키 생성
-//	for(int i=0; i<getCookie.length; i++){
-//	Cookie c = getCookie[i]; // 객체 생성
-//	String name = c.getName(); // 쿠키 이름 가져오기
-//	String value = c.getValue(); // 쿠키 값 가져오기
-//	System.out.println(name);
-//	System.out.println(value);
-//}
-//}
-//}
 	
 
 	 @RequestMapping("logout.do") 
@@ -429,7 +418,7 @@ public class MemberController {
 	  CookieGenerator c = new CookieGenerator();
 		c.setCookieName("loginCookie");
 		c.setCookieMaxAge(0);
-		c.setCookiePath("/kdemy");
+		c.setCookiePath("/Kdemy");
 		c.removeCookie(response);
 		mav.setViewName("redirect:/"); 
 	  return mav; 

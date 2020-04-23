@@ -245,4 +245,80 @@ img {
     padding-top: 10px;
     text-align: center;
     font-size: 14px;
+<<<<<<< HEAD
+}
+
+
+.icon1 {
+	background: url(../images/main/디자인.png);
+}
+
+.icon2 {
+	background: url(../images/main/마케팅.png);
+}
+.icon3 {
+	background: url(../images/main/문서-취업.png);
+}
+.icon4 {
+	background: url(../images/main/아이콘.png);
+}
+.icon5 {
+	background: url(../images/main/아이콘2.png);
+}
+.icon6 {
+	background: url(../images/main/안드로이드.png);
+}
+.icon7 {
+	background: url(../images/main/어플.png);
+}
+.icon8 {
+	background: url(../images/main/콘텐츠제작.png);
+}
+
+.icon9 {
+	background: url(../images/main/콘텐츠제작2.png);
+}
+.icon10 {
+	background: url(../images/main/IT-프로그래밍.png);
+}
+.icon11 {
+	background: url(../images/main/번역-통역.png);
+}
+
+.mini-chat {
+	width: 300px;
+	height: 565px;
+	bottom: 40px;
+}
+.mini-chat-screen {
+	width: 280px;
+	height: 440px;
+}
+.mini-chat-send{
+	width: 300px;
+	height: 60px;
+}
+
+.mini-chat-button{
+	width: 80px; height: 80px; border-radius: 40px; right: 0px;
+}
+#admin_chat {
+	overflow: scroll;
+}
+
+#messageAdmin {
+	padding-left: 0 !important;
+	overflow: scroll;
+}
+
+#admin_chat ul li{
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid #f4f4f4;
+    border-radius: 15px;
+    list-style: none;
+    width: 70%;
+=======
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 }

@@ -9,6 +9,12 @@
 </head>
 <body>
 <%@include file="../include/fixed-topbar.jsp" %>
+<<<<<<< HEAD
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 d-flex mb-3">
+<div class="card col-3 d-flex align-items-center" style="width:400px">
+  <img class="card-img-top" src="../include/images/chart/회원.jpg" alt="Card image">
+  <div class="card-body align-items-center">
+=======
 <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 mb-3" style="margin-top: 170px;">
 <div>
 			<ul class="upper_shift">
@@ -19,6 +25,7 @@
 		<hr>
 		<div class="d-flex">
 <div class="card col d-flex align-items-center shadow mb-4 bg-white border border-secondary mx-1 pt-3">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
     <h4 class="card-title">가입자수</h4>
     <h4 class="card-title" id="counter1"></h4>
 <a href="${path}/chart/memberchart.do">

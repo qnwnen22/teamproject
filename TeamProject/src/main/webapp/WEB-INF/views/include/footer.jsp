@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
-	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
-	<div id="footertoggle" class="d-flex py-1 ">
+    <div class="container-fluid align-items-end" id="footer-body">
+    <div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
 			<i class="fa fa-bars" style="font-size: 50px;"></i>
@@ -293,30 +293,41 @@
 
 
 <!-- End of Footer -->
+
+
+
 <script>
 var socket = null;
-$(document).ready( function () {
-	conectWS();
-
-});
-
-function conectWS() {
-	var ws = new WebSocket("ws://localhost:80/Kdemy/reviewReply");
+function ConectWS() {
+	var ws = new WebSocket("ws://localhost:80/Kdemy/socket");
 	socket = ws;
-	
     ws.onopen = function () {
         console.log('Info: connection opened.');
     };
 
-
     ws.onmessage = function (event) {
         console.log(event.data+'\n');
-        let $socketAlert =$('div#socketAlert');
-        $socketAlert.html(event.data);
-        $socketAlert.css("display",'block');
-        setTimeout(function(){
-        	  $socketAlert.css("display",'none');
-         },5000);
+       var strs = new Array();
+       strs=event.data.split(",");
+       var cmd=strs[0];
+       var sender=strs[1];
+       var target=strs[2];
+       var msg=strs[3];
+       var num=strs[4];
+       if(cmd=="chat") {
+        var url="${path}/chat/popup?sender="+sender+"&target="+target+"&num="+num+"&msg="+msg;
+        window.open(url,"","width=330,height=610,left=100");
+       }else if(cmd=="usersend") {
+    	   $("#messageAdmin").append(msg);
+    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+       }else{
+           let $socketAlert =$('div#socketAlert');
+           $socketAlert.html(event.data);
+           $socketAlert.css("display",'block');
+           setTimeout(function(){
+           	  $socketAlert.css("display",'none');
+            },5000);
+          }
     };
     
     ws.onclose = function (event) {
@@ -327,9 +338,8 @@ function conectWS() {
      };
 }
 
-
-
 $(document).ready(function(){
+	ConectWS();
     $('#searchIdbtn').on('click', function(){
       
         $.ajax({
@@ -349,7 +359,24 @@ $(document).ready(function(){
             }
         });       
     });   
+
+    $('#searchPasswdbtn').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: "${path}/member/searchPW.do",
+            data: {
+                "userid" : $('#userid').val(),
+                "useremail" : $('#useremail1').val()
+            },
+            success: function(data){
+            	$('#text').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            }
+        });      
+    });    
 });
+
+
+
 
 
 </script>

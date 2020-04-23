@@ -34,7 +34,6 @@ public class WebSocketEventListener {
 	        logger.info("Received a new web socket connection");
 	        
 	    }
-	    
 
 	    @EventListener
 	    public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {

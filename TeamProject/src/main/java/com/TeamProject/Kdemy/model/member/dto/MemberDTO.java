@@ -51,7 +51,7 @@ public class MemberDTO {
 
 	private String nickname;
 	private String bpasswd;
-	
+	private String visitor;
 	private String phone1;
 	private String phone2;
 	private String phone3;

@@ -443,23 +443,22 @@ public class LectureController {
 		mav.setViewName("lecture/myLecturePage");
 		return mav;
 	}
-	//강의 지우기
 	@RequestMapping("lectureDelete.do")
-	public String lectureDelete(int lecture_idx, HttpSession session) {
-		
-		//파일 지우기 처리
-		LectureDTO dto=lectureService.selectFile(lecture_idx);
+	   public String lectureDelete(int lecture_idx, HttpSession session) {
+	      
+	      //파일 지우기 처리
+	      LectureDTO dto=lectureService.selectFile(lecture_idx);
 
-		File file1=new File(uploadPath+dto.getMain_img());
-		String front=dto.getMain_img().substring(0, 12);//0~11까지
-		String end=dto.getMain_img().substring(14);//14부터 끝까지
-		new File(uploadPath+(front+end).replace(
-				'/',File.separatorChar)).delete();
-		if(file1.exists()) {
-			file1.delete();
-		}else {
-			log.info("파일이 없습니다");
-		}
+	      File file1=new File(uploadPath+dto.getMain_img());
+	      String front=dto.getMain_img().substring(0, 12);//0~11까지
+	      String end=dto.getMain_img().substring(14);//14부터 끝까지
+	      new File(uploadPath+(front+end).replace(
+	            '/',File.separatorChar)).delete();
+	      if(file1.exists()) {
+	         file1.delete();
+	      }else {
+	         log.info("파일이 없습니다");
+	      }
 
 		File file2=new File(uploadPath+dto.getVideofile());
 		
@@ -513,6 +512,7 @@ public class LectureController {
 			ldto=lectureService.lectureView_success(lecture_idx);
 			mav.addObject("ldto", ldto);
 			mav.setViewName("lecture/lectureView_success");
+			return mav;
 		}else {
 			mav.setViewName("redirect:/");
 		}

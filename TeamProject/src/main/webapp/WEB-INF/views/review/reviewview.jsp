@@ -36,7 +36,11 @@
 <%@ include file="../include/header.jsp"%>
 
 <script type="text/javascript">
+<<<<<<< HEAD
+$(document).ready(function() {
+=======
 	$(document).ready(function() {
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		listReply();
 
 		$("#btnReply").click(function(evt) {
@@ -56,6 +60,15 @@
 					$("#replytext").val("");
 				}
 			});
+<<<<<<< HEAD
+			if (socket.readyState !== 1) return;
+					let replyer = $('input#replyer').val();
+					let gbwriter = $('input#gbwriter').val();
+					let gbno = $('input#gbno').val();
+					// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+					socket.send("reply,"+replyer+","+gbwriter+","+gbno);
+					
+=======
 			if (socket.readyState !== 1)
 				return;
 			console.log(socket);
@@ -65,6 +78,7 @@
 			// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
 			socket.send("reply," + replyer + "," + gbwriter + "," + gbno);
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		});
 
 		$(document).keydown(function(event) {
@@ -198,7 +212,35 @@
 				 		}
 
 				}
+<<<<<<< HEAD
+			});
+		}
+
+		function replyConectWS() {
+			var ws = new WebSocket("ws://localhost:80/Kdemy/reviewReply");
+			replySocket = ws;
 			
+		    ws.onopen = function () {
+		        console.log('Info: connection opened.');
+		    };
+
+
+		    ws.onmessage = function (event) {
+		        console.log(event.data+'\n');
+		    };
+		    
+		    ws.onclose = function (event) {
+		         console.log('Info: connection closed.');  // retry connection!! 
+		    };
+		    ws.onerror = function (err) {
+		         console.log('Error : ');
+		     };
+		}
+
+
+=======
+			
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </script>
 
 </head>

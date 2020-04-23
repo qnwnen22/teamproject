@@ -9,6 +9,9 @@
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
+<<<<<<< HEAD
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+=======
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 	<div>
 			<ul class="upper_shift">
@@ -18,6 +21,7 @@
 				<li><b><a href="${path}/lecture/online_list.do?admin=admin" style="color:blue;">실시간 강의</a></b></li>
 			</ul>
 		</div>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active" href="${path}/lecture/online_list.do?admin=admin">실시간
 					강의</a></li>

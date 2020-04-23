@@ -59,7 +59,11 @@ function checkId() {
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp"%>
+<<<<<<< HEAD
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 table-responsive">
+=======
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -67,7 +71,12 @@ function checkId() {
 				<li><b><a href="${path}/admin/list.do" style="color:blue;">관리자계정</a></b></li>
 			</ul>
 		</div>
+<<<<<<< HEAD
+		<br>
+		<table class="table table-bordered table-hover">
+=======
 		<table class="table table-bordered table-hover text-center">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			<thead class="thead-dark">
 				<tr>
 					<th>아이디</th>
