@@ -129,7 +129,7 @@
 							</div>
 
 							<div class="col-lg-3 col-xl-3 col-md-3 mr-3 d-none d-xl-block d-lg-block d-md-block d-sm-block">
-								<img src="../upload/${dto.main_img}" class="img-thumbnail "
+								<img src="${path}/cart/displayFile?fileName=${dto.main_img}" class="img-thumbnail "
 									width="120">
 									
 							</div>
@@ -205,6 +205,9 @@
 						<input type="hidden" name="count" value="${count}" readonly>
 
 						<c:forEach var="dto" items="${list}" begin="0" end="${count}">
+					    	<input type="hidden" name="userid" value="${dto.userid}">
+					     	<%-- <input type="hidden" name="nickname" value="${dto.nickname}"> --%>
+						    <input type="hidden" name="main_img" value="${dto.main_img}">
 							<input type="hidden" name="cell_type" value="${dto.cell_type}">
 							<input type="hidden" name="lecture_idx"
 								value="${dto.lecture_idx}">
@@ -214,9 +217,9 @@
 							총가격 :
 							<fmt:formatNumber pattern="###,###,###원" value="${sum}" />
 						</div>
-						<button type="button"
+						<button type="submit"
 							class="btn btn-primary btn-lg btn-block text-center h6 "
-							onclick="buyList()">일괄 구매</button>
+							onsubmit="buyList()">일괄 구매</button>
 					</form>
 					<br>
 				</div>
@@ -249,11 +252,13 @@
 					</c:forEach>
 
 
-					<form method="post" name="form1" id="form1"
-						action="${path}/cart/buyList.do">
+					<form method="post" name="form1" id="form1" action="${path}/cart/buyList.do">
 						<input type="hidden" name="count" value="${count}" readonly>
 
 						<c:forEach var="dto" items="${list}" begin="0" end="${count}">
+						    <input type="hidden" name="userid" value="${dto.userid}">
+					    	<%-- <input type="hidden" name="nickname" value="${dto.nickname}"> --%>
+						    <input type="hidden" name="main_img" value="${dto.main_img}">
 							<input type="hidden" name="cell_type" value="${dto.cell_type}">
 							<input type="hidden" name="lecture_idx"
 								value="${dto.lecture_idx}">
@@ -263,9 +268,8 @@
 							총가격 :
 							<fmt:formatNumber pattern="###,###,###원" value="${sum}" />
 						</div>
-						<button type="button"
-							class="btn btn-primary btn-lg btn-block text-center h6 "
-							onclick="buyList()">일괄 구매</button>
+						<button type="submit" class="btn btn-primary btn-lg btn-block text-center h6 "
+							onsubmit="buyList()">일괄 구매</button>
 					</form>
 					<br>
 				</div>

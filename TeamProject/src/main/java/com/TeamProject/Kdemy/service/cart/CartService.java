@@ -17,7 +17,7 @@ public interface CartService {
 
 	public void buyLecture(String userid, int price);
 
-	public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx);
+	public void insertLectureBox(String userid, String nickname, String cell_type, String lecture_idx, String main_img);
 	
 	public void deleteAll(String userid);//장바구니 전체지우기
 

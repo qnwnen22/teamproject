@@ -45,12 +45,13 @@
 				</div>
 				
 				<div class="input-group mb-3 my-auto">
-				  <form name="form_search" class="input-group">
-					<input type="text" class="form-control" placeholder="Search" name="keyword" id="keyword">
-				      <div class="input-group-append">
-				        <button class="btn btn-outline-primary" type="button" onclick="search()">조회</button>
-				      </div>
-				  </form>
+					<form name="form_search" class="input-group">
+						<input type="text" class="form-control" placeholder="Search" name="keyword" id="keyword">
+						
+						<div class="input-group-append">
+							<button class="btn btn-outline-primary" type="button" onclick="search()">조회</button>
+						</div>
+					</form>
 				</div>
 			</div>
 	
@@ -82,7 +83,7 @@
 						</c:choose>
 						
 						<div class="card-image mx-0">
-							<img class="img-fluid mx-auto d-block" style="height:150px;"src="../upload/${dto.main_img}">
+							<img class="img-fluid mx-auto d-block" style="height:150px;"src="${path}/lecture/displayFile?fileName=${dto.main_img}">
 						</div>
 
 						<div class="col-12 mt-3">
@@ -103,7 +104,6 @@
 								<b>추천수</b><br>
 								<fmt:formatNumber value="${dto.upCount}" pattern="#,###" />	
 							</div>
-							
 						</div>
 						<hr>
 						<div class="col-12 mb-1 text-right">

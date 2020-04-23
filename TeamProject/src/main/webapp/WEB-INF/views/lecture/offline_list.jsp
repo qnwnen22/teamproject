@@ -109,7 +109,7 @@
 								</c:choose>
 								
 								<div class="card-image mx-0">
-									<img class="img-fluid mx-auto d-block" style="height:150px;"src="../upload/${dto.main_img}">
+									<img class="img-fluid mx-auto d-block" style="height:150px;"src="${path}/lecture/displayFile?fileName=${dto.main_img}">
 								</div>
 		
 								<div class="col-12 mt-3">

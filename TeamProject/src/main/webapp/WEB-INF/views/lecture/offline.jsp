@@ -7,33 +7,7 @@
 <title>Insert title here</title>
 <!-- 헤더 제거 -->
 <%@ include file="../include/header.jsp" %>
-<%@ include file="../include/fixed-topbar.jsp" %>
-<style type="text/css">
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
 
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-</style>
 <!-- 썸머 노트 -->
 <link
    href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
@@ -48,6 +22,8 @@
 <link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
 <!-- 강의 등록용 JS -->
 <script src="${path}/include/js/lectureInsert.js"></script>
+
+<%@ include file="../include/fixed-topbar.jsp" %>
 </head>
 <body>
 <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
@@ -138,19 +114,19 @@
 				<h4><label for="content_label">영상에 대한 설명을 입력해주세요.</label></h4>
 				<textarea class="form-control text_cotent" name="content" id="content" rows="10" cols="10"></textarea>
 			</div>
-						
-				<!-- 강의 시작날짜 -->
-				<div class="form-group">
+			
+			<div class="col-12 px-1 d-flex">						
+				<div class="col-4 mx-0 form-group">
 					<label for="lecture_date_label">강의 시작 날짜</label>
 					<input class="form-control" type="date" name="lecture_date" id="lecture_date">
 				</div>
 				<!-- 강의장 시작 날짜 -->
-				<div class="form-group">
+				<div class="col-4 mx-0 form-group">
 					<label for="lecture_start">강의 시작 시간</label><br>
 					<input type="time" class="form-control"	name="lecture_start" id="lecture_start">
 				</div>
 				<!-- 강의 시간 -->
-				<div class="form-group">
+				<div class="col-4 mx-0 form-group">
 					<label for="lecture_time">강의 시간</label>
 					<select class="form-control" name="lecture_time" id="lecture_time">
 						<option value="1">1시간</option>
@@ -161,8 +137,11 @@
 						<option value="6">6시간</option>
 					</select>
 				</div>
-				<hr>
-				<h3>강의장 주소</h3>
+			</div>
+			
+			<hr>
+			<div class="col-12">			
+				<h4><label for="content_label">강의장 주소를 입력해주세요.</label></h4>
 				<%@ include file="kakaoMap.jsp" %>
 				<div class="form-group">
 					<label for="lecture_road_address">도로명 주소</label>
@@ -180,6 +159,7 @@
 					<input type="button" class="btn btn-warning" onclick="history.back()" value="뒤로 가기">
 					<a href="${path}/lecture/offline_list.do" class="btn btn-dark pull-left">목록</a>
 				</div>
+			</div>	
 			</form>
 		</div>
 	</div>

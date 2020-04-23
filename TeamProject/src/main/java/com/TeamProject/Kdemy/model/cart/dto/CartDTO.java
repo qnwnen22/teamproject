@@ -1,5 +1,7 @@
 package com.TeamProject.Kdemy.model.cart.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,4 +19,5 @@ public class CartDTO {
 	private String subject;//강의제목
 	private String main_category, sub_category;
 	private String main_img;
+	private MultipartFile file1;
 }
