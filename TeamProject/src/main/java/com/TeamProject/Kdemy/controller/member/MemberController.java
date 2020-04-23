@@ -92,6 +92,18 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping("orderDetail1.do")
+	public ModelAndView orderDetail1(HttpSession session, LectureBoxDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		List<LectureBoxDTO> list2=new ArrayList<>();
+		list2= memberService.orderDetail(dto);
+		mav.addObject("list2",list2);
+		mav.setViewName("member/orderList1");
+		return mav;
+	}
+	
 	@RequestMapping("cartPage.do")
 	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
 		ModelAndView mav = new ModelAndView();
