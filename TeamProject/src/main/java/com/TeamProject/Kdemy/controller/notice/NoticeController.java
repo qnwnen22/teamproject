@@ -54,8 +54,6 @@ public class NoticeController {
 	@RequestMapping("view.do")
 	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
 		noticeService.increateViewcnt(bno, session);
-		String writer=(String)session.getAttribute("userid");
-		dto.setWriter(writer);
 		List<NoticeDTO> list = noticeService.listAll2();
 		ModelAndView mav=new ModelAndView();
 		HashMap<String, Object> map=new HashMap<>();
@@ -103,7 +101,7 @@ public class NoticeController {
 	}// end write()
 	@RequestMapping("insert.do")
 	public String insert(@ModelAttribute NoticeDTO dto, HttpSession session) throws Exception{
-		String writer=(String)session.getAttribute("userid");
+		String writer=(String)session.getAttribute("admin_id");
 		dto.setWriter(writer);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("dto");
@@ -132,7 +130,7 @@ public class NoticeController {
 	@RequestMapping("delete/{bno}")
 	public String delete(@PathVariable("bno") int bno,  
 			@ModelAttribute ReviewDTO dto, HttpSession session) throws Exception{
-		String writer=(String)session.getAttribute("userid");
+		String writer=(String)session.getAttribute("admin_id");
 		dto.setWriter(writer);
 		noticeService.delete(bno);
 		return "redirect:/notice/list.do";//목록으로 이동

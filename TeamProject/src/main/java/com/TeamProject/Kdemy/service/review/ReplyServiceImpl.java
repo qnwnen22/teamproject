@@ -16,8 +16,8 @@ public class ReplyServiceImpl implements ReplyService {
 	ReplyDAO replyDao;
 
 	@Override
-	public List<ReplyDTO> list(int bno) {
-		return replyDao.list(bno);
+	public List<ReplyDTO> list(int bno,int start2, int end2) {
+		return replyDao.list(bno, start2, end2);
 	}
 
 	@Override
@@ -42,5 +42,11 @@ public class ReplyServiceImpl implements ReplyService {
 		replyDao.delete(rno);
 		
 	}
+
+	@Override
+	public int countReply() throws Exception {
+		return replyDao.countReply();
+	}
+
 
 }

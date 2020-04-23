@@ -10,6 +10,7 @@
 	function list(page) {
 		location.href = "${path}/notice/list.do?curPage=" + page;
 	}
+
 </script>
 </head>
 <body>
@@ -47,8 +48,8 @@
 		</div>
 		</form>
 
-		<div id="table_css" class="table-responsive">
-		<table class="table text-center table-hover" >
+		<div id="table_css" class="table-responsive col-12">
+		<table class="table text-center table-hover table-bordered" >
 		<thead>
 				<tr>
 					<th class="d-none d-xl-block d-lg-block"> 번호</th>
@@ -57,7 +58,7 @@
 					<th class="d-none d-xl-block d-lg-block">날짜</th>
 					<th>조회수</th>
 				</tr>
-				</thead>
+				</thead >
 				<tbody>
 				<c:forEach var="rows" items="${map.list}">
 					<tr>
@@ -75,17 +76,14 @@
 				</tbody>
 		</table>
 		</div>
-		<%-- 	<c:choose>
-				<c:when test="${sessionScope.userid != null }">
-					<!-- 관리자로 로그인했을때 아이디 바꾸기--> --%>
+
+	 <c:if test="${sessionScope.admin_id != null }">
 					<div class="d-flex justify-content-end mt-3">
 						<a class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
 							href="${path}/notice/write.do" data-ga-category="header"> 글쓰기
 						</a>
 						</div>
-				<%-- </c:when>
-			</c:choose> --%>
-	
+			</c:if>	
 	<br>
 	<div class="d-flex justify-content-center">
 			<nav aria-label="Page navigation example center-block">
@@ -120,8 +118,7 @@
 					</c:if>
 				</ul>
 			</nav>
-	</div>
-	</div>
+	</div>	</div>
 	<br><br>
 
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

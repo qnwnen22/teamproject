@@ -26,10 +26,10 @@
 		location.href = "${path}/review/list.do?curPage=" + page;
 	}
 
-	function Goalert(){
+	function Goalert() {
 		alert("로그인 후 이용해 주시기 바랍니다.");
-		
-		}
+
+	}
 </script>
 </head>
 <body>
@@ -42,23 +42,26 @@
 			</ul>
 		</div>
 
-	<c:choose>
-		<c:when test="${sessionScope.userid != null }">
-		<a href="${path}/review/write.do"><img
-			src="${path}/include/images/review/review2.jpg"
-			class="img-fluid mb-3" alt="Responsive image"></a>
-		</c:when>
-		<c:otherwise>
-		<a class="plain cursor" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" onclick="Goalert()"><img
-			src="${path}/include/images/review/review2.jpg"
-			class="img-fluid mb-3" alt="Responsive image"></a>
-		</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${sessionScope.userid != null }">
+				<a href="${path}/review/write.do"><img
+					src="${path}/include/images/review/review2.jpg"
+					class="img-fluid mb-3" alt="Responsive image"></a>
+			</c:when>
+			<c:otherwise>
+				<a class="plain cursor" data-ga-category="header"
+					data-toggle="modal" data-target="#kdemyLoginModal"
+					onclick="Goalert()"><img
+					src="${path}/include/images/review/review2.jpg"
+					class="img-fluid mb-3" alt="Responsive image"></a>
+			</c:otherwise>
+		</c:choose>
 
 
 		<form action="${path}/review/searchlist.do" name="form1" method="post">
 			<div class="row mt-4">
-				<div class="col-lg-2 col-xl-2 col-md-3 col-sm-3  align-self-start ">
+				<div
+					class="col-lg-2 col-xl-2 col-md-3 col-sm-3  align-self-start mb-sm-3">
 					<select name="search_option" class=" search_option custom-select">
 						<option value="subject"
 							<c:if test="${map.search_option=='subject' }">selected</c:if>>과목</option>
@@ -70,7 +73,8 @@
 					<!--분류 삭제  -->
 				</div>
 
-				<div class="col-lg-5 col-xl-5 col-md-5 col-sm-4 align-self-start pl-xl-0 pl-lg-0 pl-md-0">
+				<div
+					class="col-lg-5 col-xl-5 col-md-5 col-sm-4 align-self-start pl-xl-0 pl-lg-0 pl-md-0">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="검색"
 							aria-label="Recipient's username" aria-describedby="basic-addon2"
@@ -86,7 +90,7 @@
 
 
 		<div id="table_css" class="table-responsive">
-			<table class="table text-center table-hover">
+			<table class="table text-center table-hover table-bordered">
 				<thead>
 					<tr>
 						<th class="d-none d-lg-block">번호</th>
@@ -117,11 +121,11 @@
 
 		<c:choose>
 			<c:when test="${sessionScope.userid != null }">
-					<div class="d-flex justify-content-end mt-3">
-						<a class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-							href="${path}/review/write.do" data-ga-category="header"> 글쓰기
-						</a>
-					</div>
+				<div class="d-flex justify-content-end mt-3">
+					<a class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
+						href="${path}/review/write.do" data-ga-category="header"> 글쓰기
+					</a>
+				</div>
 			</c:when>
 		</c:choose>
 
@@ -161,38 +165,9 @@
 			</nav>
 		</div>
 
-	<br>
+		<br>
 
-	<!-- 베스트 리뷰 -->
-	<div class="card-deck mb-4">
-		<div class="card">
-			<img src="../include/images/review/" class="card-img-top" alt="...">
-			<div class="card-body">
-				<a href="#"><h5 class="card-title">Card title</h5>
-					<p class="card-text">This card has supporting text below as a
-						natural lead-in to additional content.</p></a>
-			</div>
-		</div>
-		<div class="card">
-			<img src="${path}/include/images/main/디자인.png" class="card-img-top"
-				alt="...">
-			<div class="card-body">
-				<a href="#"><h5 class="card-title">Card title</h5>
-					<p class="card-text">This card has supporting text below as a
-						natural lead-in to additional content.</p></a>
-			</div>
-		</div>
-		<div class="card">
-			<img src="${path}/include/images/main/디자인.png" class="card-img-top"
-				alt="...">
-			<div class="card-body">
-				<a href="#"><h5 class="card-title">Card title</h5>
-					<p class="card-text">This card has supporting text below as a
-						natural lead-in to additional content.</p></a>
-			</div>
-		</div>
 	</div>
-</div>
 
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

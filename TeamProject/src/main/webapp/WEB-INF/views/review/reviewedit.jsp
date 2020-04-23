@@ -4,7 +4,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/upper.css">
 <link
@@ -124,15 +123,15 @@ function subjectchange(item){
 		<div class=" was-validated mb-4">
 			<label for="validationTextarea">내용</label>
 			<textarea class="form-control is-invalid form-control-lg " id="content" name="content"
-			 required cols="400">${dto.content}</textarea>
+			 required rows="50">${dto.content}</textarea>
 		</div>
 	<br>
 	
-		<div class="form-group mb-4 ">
+	<!-- 	<div class="form-group mb-4 ">
 					<label for="fullName">파일 첨부</label> <input
 						type="file" class="form-control-file" id="file1" name="file1">
 				</div>
-	
+	 -->
 	<input type="hidden" name="bno" value="${dto.bno}">
  
  	

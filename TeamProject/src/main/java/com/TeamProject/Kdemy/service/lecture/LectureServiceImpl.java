@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 import oracle.net.aso.l;
@@ -207,6 +208,12 @@ public class LectureServiceImpl implements LectureService {
 	   public int totalMoney() {
 	      return lectureDao.totalMoney();
 	   }
+
+	@Override
+	public void reviewStar(LectureReviewDTO dto) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

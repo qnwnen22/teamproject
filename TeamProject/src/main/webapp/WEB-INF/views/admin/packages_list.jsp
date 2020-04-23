@@ -39,6 +39,8 @@ function listview(){
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
 	<div id="list"></div>
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12" style="margin-top: 170px;">
+	<div class="container">
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
 	<div>
 			<ul class="upper_shift">

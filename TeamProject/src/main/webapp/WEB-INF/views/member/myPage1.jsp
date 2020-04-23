@@ -11,6 +11,42 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #6ca0bd;
+  cursor: pointer;
+  border: 1px solid #b3d5e8;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+  background-color: #b3d5e8;
+}
+
+.filebox label:active {
+  background-color: #6ca0bd;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+</style>
 </head>
 <body>
 <hr>
@@ -34,7 +70,10 @@
 		</c:otherwise>
         </c:choose>
         <form name="form1" method="post" enctype="multipart/form-data" class="m-5">
-        <input type="file" class="text-center center-block file-upload" id="input_img">
+        <div class="filebox">
+          <label for="input_img">사진 업로드</label>
+          <input type="file" class="text-center center-block file-upload" id="input_img">
+          </div>
         </form>
       </div>
 
