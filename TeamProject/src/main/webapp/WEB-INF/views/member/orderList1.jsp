@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
   <%@ include file="../include/header.jsp" %>
+  <%@ include file="../include/fixed-topbar.jsp" %> 
 <head>
   <title>구매목록</title>
   <meta charset="utf-8">
@@ -39,5 +40,6 @@
 	<script>
 	function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+page;}
 	</script>
+	<%@ include file="../member/footer1.jsp"%> 
 	</body>
 </html>
