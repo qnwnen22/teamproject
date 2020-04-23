@@ -8,9 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listAll"
 		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
 		<include refid="paging_header" />
-		select bno, title, writer, regdate, viewcnt, show,
-		(select count(*)
-		from kdemynotice_reply where bno=b.bno) cnt
+		select bno, title, writer, regdate, viewcnt, show
 		from kdemynotice b where show='Y'
 		order by bno
 		desc
@@ -31,8 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
 		<include refid="paging_header" />
 		select bno, title, writer, regdate, viewcnt, show,
-		(select count(*)
-		from kdemynotice_reply where bno=b.bno) cnt
 		from kdemynotice b
 		<choose>
 			<when test="search_option== 'all'">
@@ -89,9 +85,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read"
 		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
-		select bno,title,regdate,content,viewcnt,username,writer
-		from kdemynotice b, kdemymember m
-		where b.writer=m.userid and bno=#{bno}
+		select bno,title,regdate,content,viewcnt,writer
+		from kdemynotice b
+		where bno=#{bno}
 	</select>
 
 	<select id="detail_notice"

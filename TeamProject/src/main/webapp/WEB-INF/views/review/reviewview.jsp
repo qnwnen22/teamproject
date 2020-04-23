@@ -34,7 +34,6 @@
 }
 </style>
 <%@ include file="../include/header.jsp"%>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		listReply();
@@ -98,22 +97,20 @@
 			$("#btnReply").click();
 		}
 	});
-
-	function listReply() {
+	function listReply(page) {
 		$.ajax({
 			type : "get",
-			url : "${path}/review/replylist.do?bno=${dto.bno}",
+			url : "${path}/review/replylist.do?bno=${dto.bno} ",
 			success : function(result) {
 				$("#replyList").html(result);
 			}
 		});
 	}
-
+	
 	function list(page) {
 		location.href = "${path}/review/list.do?curPage=" + page;
 	}
 
-  
 </script>
 
 </head>
@@ -152,27 +149,6 @@
 				</div>
 				<hr>
 
-			<%-- 	<div id="fullName_css">
-					<label for="content">첨부파일</label>
-					<div class="jumbotron jumbotron-fluid">
-						<c:choose>
-							<c:when test="${empty dto.fullName}">
-								<div>
-									<span>-</span>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div>
-									<img id="profileImg"
-										src="${path}/review/displayFile?fullName=${dto.fullName}"
-										class="avatar img-thumbnail" style="height: 200px;">
-								</div>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
- --%>
-
 
 			</div>
 
@@ -181,6 +157,12 @@
 
 
 		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3"></div>
+		
+		
+
+		
+
+
 
 
 

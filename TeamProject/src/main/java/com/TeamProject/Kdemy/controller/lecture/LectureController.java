@@ -392,19 +392,27 @@ public class LectureController {
 				int lecture_idx, LectureDTO dto,
 				HttpSession session,LectureBoxDTO lbDto) {
 			String userid=(String)session.getAttribute("userid");
-			System.err.println("로그인 안하면? : "+session.getAttribute("userid"));
+			
+			int upCount=lectureService.upCount(lbDto);
+			int lectureCount=lectureService.lectureCount(lbDto);
 			
 			int check=-1;
-			
+			String up ="x";
 			if(userid!=null) {
 				lbDto.setUserid(userid);
 				lbDto.setLecture_idx(lecture_idx);
 				check = lectureService.buyCheck(lbDto);
+				up = lectureService.upCheck(lbDto);
+//				System.err.println("up : "+up);
+				if(up==null) up="x";
 			}
 				
 			dto=lectureService.lecture_list_view(lecture_idx);
 
 			ModelAndView mav=new ModelAndView();
+			mav.addObject("upCount", upCount);
+			mav.addObject("lectureCount",lectureCount);
+			mav.addObject("up", up);
 			mav.addObject("check",check);
 			mav.addObject("dto",dto);
 			mav.setViewName("lecture/lecture_list_view");
@@ -483,18 +491,6 @@ public class LectureController {
 			dto.setLecture_idx(lecture_idx);
 			dto=lectureService.lectureList(dto);
 			
-//			System.err.println("cellType: "+dto.getCell_type());
-//			String cell_type=dto.getCell_type();
-//			if(cell_type.equals("1")) {
-//				mav.setViewName("/lecture/lectureUpdate1");
-//			}else if(cell_type.equals("2")) {
-//				mav.setViewName("/lecture/lectureUpdate2");
-//			}else if(cell_type.equals("3")) {
-//				mav.setViewName("/lecture/lectureUpdate3");
-//			}else {
-//				mav.setViewName("redirect:/");
-//			}
-			
 			mav.setViewName("/lecture/lectureUpdate");
 			mav.addObject("dto",dto);
 			return mav;
@@ -523,8 +519,6 @@ public class LectureController {
 		@RequestMapping(value="reviewStar.do", method= {RequestMethod.GET},produces="text/plain;charset=utf-8")
 		@ResponseBody
 		public String reviewStar(HttpSession session, String reviewStar_idx, String num) {
-			System.err.println("reviewStar_idx : "+reviewStar_idx);
-			System.err.println("num : "+num);
 			
 			String userid=(String)session.getAttribute("userid");
 			int lecture_idx=Integer.parseInt(reviewStar_idx);
@@ -554,11 +548,12 @@ public class LectureController {
 			if(dto.getLecture_address()==null) dto.setLecture_address("");
 			if(dto.getLecture_address2()==null) dto.setLecture_address2("");
 			MultipartFile file1=dto.getFile1();
+					
 			String main_img=file1.getOriginalFilename();
 			if(main_img=="") {
 				lectureService.update(dto);
 			}else {
-				System.err.println("else");
+//				System.err.println("else");
 				try {
 					main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 				} catch (Exception e) {
@@ -569,5 +564,17 @@ public class LectureController {
 			}
 			return "redirect:/";
 		}
-
+		@RequestMapping("lectureUp.do")
+		public String lectureUp(HttpSession session, int lecture_idx) {
+			String userid = (String)session.getAttribute("userid");
+			lectureService.upUpdate(userid, lecture_idx);
+			return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
+		}
+		
+		@RequestMapping("lectureDown.do")
+		public String lectureDown(HttpSession session, int lecture_idx) {
+			String userid = (String)session.getAttribute("userid");
+			lectureService.downUpdate(userid, lecture_idx);
+			return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
+		}
 }

@@ -52,4 +52,9 @@ public interface LectureDAO {
 	
 	public void update(LectureDTO dto);
 	public void updateAddImg(LectureDTO dto);
+	public String upCheck(LectureBoxDTO lbDto);
+	public void upUpdate(String userid, int lecture_idx);
+	public void downUpdate(String userid, int lecture_idx);
+	public int upCount(LectureBoxDTO lbDto);
+	public int lectureCount(LectureBoxDTO lbDto);
 }

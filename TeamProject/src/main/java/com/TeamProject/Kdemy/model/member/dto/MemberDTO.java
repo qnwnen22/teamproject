@@ -25,6 +25,10 @@ public class MemberDTO {
 	private String postcode;
 	private String address;
 	private String address2;
+	private String loginsave;
+	private String session_key;
+	private Date session_limit;
+	private boolean useCookie;
 	private Date join_date;
 	private char verify;
     private String thumbnail;

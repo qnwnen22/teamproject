@@ -179,5 +179,31 @@ public class LectureServiceImpl implements LectureService {
 		lectureDao.updateAddImg(dto);
 	}
 
+	@Override
+	public String upCheck(LectureBoxDTO lbDto) {
+		return lectureDao.upCheck(lbDto);
+	}
+
+	@Override
+	public void upUpdate(String userid, int lecture_idx) {
+		lectureDao.upUpdate(userid, lecture_idx);
+	}
+
+	@Override
+	public void downUpdate(String userid, int lecture_idx) {
+		lectureDao.downUpdate(userid, lecture_idx);
+	}
+
+	@Override
+	public int upCount(LectureBoxDTO lbDto) {
+		return lectureDao.upCount(lbDto);
+	}
+
+	@Override
+	public int lectureCount(LectureBoxDTO lbDto) {
+		// TODO Auto-generated method stub
+		return lectureDao.lectureCount(lbDto);
+	}
+
 	
 }
