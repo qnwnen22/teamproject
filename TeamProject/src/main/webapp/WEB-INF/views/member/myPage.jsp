@@ -67,7 +67,6 @@
 </div>
 </div>
 
-
 <script> 
 
  $(document).ready(function(){
@@ -172,7 +171,7 @@ function fileChange(e) {
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" id="passForm" name="passForm" action="${path}/member/check.do" class="form-horizontal">
+        <form method="post" id="passForm" name="passForm" action="${path}/member/check.do" class="form-horizontal" target="param">
 				
 				<div class="form-group form-group-lg pt-2 pb-1">
 				<!-- <label for="userid">아이디</label> -->
@@ -185,17 +184,19 @@ function fileChange(e) {
 				<div class="form-group form-group-lg pt-2 pb-1" style="text-align:center;">
 					<button type="submit" id="submit" class="btn btn-outline-danger">확인</button>
                     <button type="button" class="btn btn-outline-dark" data-dismiss="modal">취소</button>
-				</div>
-				<div class="textBox"><p id="text" style="color:red;"></p></div>
-
+                    <p class="m-2" style="text-align:center; color:red;">${message}</p>
+				</div>	
+				 
        </form>
-      </div>
-      <div class="modal-footer">
+           </div>
+        <div class="modal-footer">
         
       </div>
     </div>
   </div>
 </div>
+
+
 
  
 

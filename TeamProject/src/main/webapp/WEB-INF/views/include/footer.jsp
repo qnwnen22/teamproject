@@ -282,7 +282,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <a href="${path}/member/logOut.do" type="button" class="btn btn-outline-danger">로그아웃</a>
+      <a href="${path}/member/logout.do" type="button" class="btn btn-outline-danger">로그아웃</a>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
       </div>
 

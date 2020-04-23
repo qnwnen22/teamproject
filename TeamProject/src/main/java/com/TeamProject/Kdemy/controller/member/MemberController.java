@@ -118,7 +118,7 @@ public class MemberController {
 			mav.setViewName("member/myPage1");
 		}else {
 			mav.addObject("message","비밀번호가 틀렸습니다.");
-			mav.setViewName("member/myPage");
+			mav.setViewName("member/myPage"); 
 		}
 		return mav;
 	}
