@@ -47,6 +47,8 @@
 }
 </style>
 <script type="text/javascript">
+function lectureDelete(){
+}
 function lectureView_success(){
 	document.viewForm.submit();
 }
@@ -71,7 +73,11 @@ $('#star1 a').click(function(){
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
 			<li><a href="#">${dto.main_category}</a></li>
-			<li><a href="#">${dto.sub_category}</a></li>
+			<li><a href="#">${dto.sub_category}</a>
+			<c:if test="${sessionScope.admin_id != null}">
+			&nbsp;<span class="btn btn-outline-danger" data-toggle="modal" data-target="#lectureDelete">삭제</span>
+			</c:if>
+			</li>
 		</ul>
 	</div>
 	
@@ -238,6 +244,29 @@ $('#star1 a').click(function(){
 			</c:choose>
 		</div>
 	</div>
+</div>
+<!-- logOut Modal -->
+<div class="modal" id="lectureDelete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">강의삭제</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h6>해당 강의를 정말 삭제하시겠습니까?</h6>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <a href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}" type="button" class="btn btn-outline-danger">삭제</a>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 <%@ include file="../include/footer.jsp"%>
 <script type="text/javascript">

@@ -53,7 +53,7 @@ function list(page) {
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${map.list}">
-						<tr>
+						<tr onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
 							<td><a
 								href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
 									<img src="../upload/${dto.main_img}"

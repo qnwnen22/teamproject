@@ -52,4 +52,8 @@ public class AdminServiceImpl implements AdminService {
 	public AdminDTO adminLogin(MemberDTO dto) {
 		return adminDao.adminLogin(dto);
 	}
+	@Override
+	public int idCheck(String admin_id) {
+		return adminDao.idCheck(admin_id);
+	}
 }

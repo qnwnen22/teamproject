@@ -16,4 +16,5 @@ public interface AdminDAO {
 	public void mainChange(MainDTO dto);
 	public String resoucelist1(String column);
 	public AdminDTO adminLogin(MemberDTO dto);
+	public int idCheck(String admin_id);
 }

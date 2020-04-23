@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateAdmin">
 		update admin 
-		set admin_passwd=#{admin_passwd}, admin_name=#{admin_name}, admin_email=#{admin_email}, 
+		set admin_name=#{admin_name}, admin_email=#{admin_email}, 
 		admin_hp=#{admin_hp}, admin_level=#{admin_level}
 		 where admin_id=#{admin_id}        
 	</update>
@@ -58,5 +58,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="adminLogin" resultType="com.TeamProject.Kdemy.model.admin.dto.AdminDTO">
 	    select * from admin
 	    where admin_id=#{userid}
+	</select>
+	
+	<select id="idCheck" resultType="int">
+		select COUNT(*) from admin
+		WHERE admin_id=#{admin_id}
 	</select>
 </mapper>

@@ -48,12 +48,9 @@
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${map.list}">
-						<tr>
-							<td><a
-								href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
-									<img src="../upload/${dto.main_img}"
-									class="align-self-center mr-3" style="width: 60px">
-							</a></td>
+						<tr onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
+							<td><img src="../upload/${dto.main_img}" class="align-self-center mr-3" style="width: 60px">
+							</td>
 							<td>${dto.subject}</td>
 							<td>${dto.userid}</td>
 							<td>${dto.price}</td>

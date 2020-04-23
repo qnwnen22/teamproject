@@ -420,17 +420,18 @@ public class MemberController {
 //}
 	
 
-	 @RequestMapping("logout.do") public ModelAndView logOut(HttpSession session, ModelAndView mav, HttpServletResponse response) { 
+	 @RequestMapping("logout.do") 
+	 public ModelAndView logOut(HttpSession session, ModelAndView mav, HttpServletResponse response) { 
 		 //세션 초기화 
 	  memberService.logout(session); 
 	  //login.jsp로 이동
-	  mav.setViewName("redirect:/"); 
 	  mav.addObject("message", "logout"); 
 	  CookieGenerator c = new CookieGenerator();
 		c.setCookieName("loginCookie");
 		c.setCookieMaxAge(0);
 		c.setCookiePath("/kdemy");
 		c.removeCookie(response);
+		mav.setViewName("redirect:/"); 
 	  return mav; 
 	  }
 

@@ -470,8 +470,12 @@ public class LectureController {
 		}
 		
 		lectureService.lectureDelete(lecture_idx);
+		if(session.getAttribute("admin_id")!=null) {
+			return "redirect:/lecture/online_list.do?admin=admin";	
+		}else {
 		String userid=(String)session.getAttribute("userid");
 		return "redirect:/lecture/myLecturePage.do?userid="+userid;
+		}
 	}
 	
 	@RequestMapping("lectureUpdatePage.do")
