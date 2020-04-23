@@ -114,7 +114,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="searchCount_all"
 	resultType="int">
-		select count(*) from lecture
+		select count(*) from lecture where
 		<include refid="search" /> 
 	</select>
 	
@@ -134,9 +134,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="searchList_all"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
-		select * from ( select rownum as rn, A.* from ( select * from lecture where 
-		<include refid="search"/>
-		order by lecture_idx desc ) A ) where rn between #{start} and #{end} 
+		select * from (
+			select rownum as rn, A.* from 
+			(
+				select * from lecture
+				where 
+				<include refid="search" />
+				order by lecture_idx desc
+			) A
+		) where rn between #{start} and #{end}
 	</select>
 	
 	<sql id="search">

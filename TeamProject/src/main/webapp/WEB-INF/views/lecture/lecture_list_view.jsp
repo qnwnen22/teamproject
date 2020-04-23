@@ -45,6 +45,10 @@
 	width: 400px;
 	margin-left: 800px;	
 }
+
+#lectureText img{
+	max-width: 700px;
+}
 </style>
 <script type="text/javascript">
 function lectureView_success(){
@@ -82,7 +86,7 @@ $('#star1 a').click(function(){
 				<div class="col-xl-6" style="text-align: center;">
 					<%-- <img src="../upload/${dto.main_img}" class="img-thumbnail shadow bg-white rounded my-1"> --%>
 					<div class="card-image mx-0">
-						<img class="img-fluid mx-auto d-block" style="height:150px;"src="../upload/${dto.main_img}">
+						<img class="img-fluid mx-auto my-2 d-block" style="max-height: 300px;" src="../upload/${dto.main_img}">
 					</div>
 				</div>
 				
@@ -111,10 +115,7 @@ $('#star1 a').click(function(){
 				</ul>
 			</div>
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
-				내용 : ${dto.content}
-				<%for(int i=0; i<30; i++){ %>
-					<p>test</p>
-				<%} %>
+				<p class="col-12">${dto.content}</p>
 			</div>
 			
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureTime" style="display: none;">
@@ -264,6 +265,7 @@ $('#star1 a').click(function(){
 		
 		text.style.display ='none';
 		time.style.display ='none';
+		addr.style.display ='block';
 	}
 
 	function up(){
