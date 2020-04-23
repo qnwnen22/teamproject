@@ -9,19 +9,24 @@ import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.service.admin.AdminService;
+import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 /**
@@ -53,6 +58,29 @@ public class HomeController {
 		model.addAttribute("list", list);
 		return "home";
 	}
+	
+	@Inject
+	MemberService memberService;
+
+	 @RequestMapping("cookie.do")
+		public String testCookie( MemberDTO dto, @CookieValue(value = "loginCookie") Cookie cookieValue, Model model,HttpSession session) throws Exception {	  
+		 String userid =  cookieValue.getValue();
+		 dto.setUserid(userid);
+		 System.out.println(cookieValue.getValue());
+		  if(cookieValue != null) {	
+				MemberDTO dto2=memberService.kdemyLogin(dto);
+				session.setAttribute("userid", dto2.getUserid());
+				session.setAttribute("nickname", dto2.getNickname());
+				session.setAttribute("username", dto2.getUsername());
+				session.setAttribute("useremail", dto2.getUseremail());
+				session.setAttribute("passwd", dto2.getPasswd());
+				session.setAttribute("teacher", dto2.getTeacher());
+				model.addAttribute("dto", dto2);	
+
+	  }
+		  return "redirect:/";
+	}
+
 	@RequestMapping(value = "main/change.do", method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 	public String mainChange(MainDTO dto, Model model, @RequestParam(defaultValue ="-") String background_img0,@RequestParam(defaultValue ="-") String background_img1){

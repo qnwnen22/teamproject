@@ -55,6 +55,13 @@
 					$("#replytext").val("");
 				}
 			});
+			if (socket.readyState !== 1) return;
+					let replyer = $('input#replyer').val();
+					let gbwriter = $('input#gbwriter').val();
+					let gbno = $('input#gbno').val();
+					// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+					socket.send("reply,"+replyer+","+gbwriter+","+gbno);
+					
 			if (socket.readyState !== 1)
 				return;
 			console.log(socket);
@@ -111,6 +118,29 @@
 		location.href = "${path}/review/list.do?curPage=" + page;
 	}
 
+
+		function replyConectWS() {
+			var ws = new WebSocket("ws://localhost:80/Kdemy/reviewReply");
+			replySocket = ws;
+			
+		    ws.onopen = function () {
+		        console.log('Info: connection opened.');
+		    };
+
+
+		    ws.onmessage = function (event) {
+		        console.log(event.data+'\n');
+		    };
+		    
+		    ws.onclose = function (event) {
+		         console.log('Info: connection closed.');  // retry connection!! 
+		    };
+		    ws.onerror = function (err) {
+		         console.log('Error : ');
+		     };
+		}
+
+
 </script>
 
 </head>
@@ -161,7 +191,6 @@
 		
 
 		
-
 
 
 

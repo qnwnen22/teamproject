@@ -21,7 +21,7 @@ public class LectureBoxDTO {
 	private Date buy_date;
 	private String onlineChat;
 	private String up;
-	
+
 //	조인용 추가 칼럼(lecture)
 	private String main_category; //메인 카테고리
 	private String sub_category; //서브 카테고리
@@ -38,5 +38,6 @@ public class LectureBoxDTO {
 	private String lecture_time; //강의 총 시간
 	private String lecture_address; //강의장 도로명 주소
 	private String lecture_address2; //상세 주소
+	
 	
 }

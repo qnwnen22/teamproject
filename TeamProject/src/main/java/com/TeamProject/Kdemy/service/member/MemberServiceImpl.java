@@ -85,7 +85,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int countMember(String keyword, String location) throws Exception {
+	public int countMember(String keyword, String location){
 		return memberDao.countMember(keyword, location);
 	}
 	

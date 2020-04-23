@@ -12,8 +12,6 @@ public class ChatRoomDTO {
 	
 	private String userid;
 	
-	
-	
 	public String getUserid() {
 		return userid;
 	}

@@ -18,10 +18,10 @@
 	<div class="row">
 		<div class="video-contianer col-xl-9 col-lg-8">
 			<video autoplay="autoplay" muted="muted" loop="loop" height="100%" width="100%">
-				<source src="../upload${map.ldto.videofile}" type="video/mp4">
+				<source src="../upload${ldto.videofile}" type="video/mp4">
 			</video>
 			<div class="d-none d-xl-block d-lg-block">
-					<h2 class="text-center">${map.ldto.subject}</h2>		
+					<h2 class="text-center">${ldto.subject}</h2>		
 			</div>
 		</div>
 		<div id="chat-page" class="col-xl-3 col-lg-4 col-sm-12 col-md-12">
@@ -39,7 +39,7 @@
 					<input type="hidden" id="nickname" value="${sessionScope.nickname}"
 						autocomplete="off" /> <input type="hidden" id="userid"
 						value="${sessionScope.userid}" autocomplete="off" />
-				<input type="hidden" id="lecture_idx" value="${map.ldto.lecture_idx}" autocomplete="off" />
+				<input type="hidden" id="lecture_idx" value="${ldto.lecture_idx}" autocomplete="off" />
 						<table class="table table-sm table-bordered">
 						<thead class="thead-dark">
 						  <tr class="text-center">

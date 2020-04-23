@@ -75,16 +75,21 @@ public class CouponController {
 			
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[kdemy에서 쿠폰을 받으세요!]");
-		sendMail.setText(new StringBuffer().append("<h1>10000포인트 쿠폰 발급</h1>")
-				.append("<b>쿠폰 번호 : " + key1+"-"+key2+"-"+key3+"-"+key4+ "</b><br>")
+		sendMail.setText(new StringBuffer().append("<table><tbody>")
+				
+				.append("<tr style='text-align: center;'><img src='https://modo-phinf.pstatic.net/20200422_270/1587551759244eC2Jq_PNG/mosaSIqsDO.png'></tr>")
+				.append("<tr class='coupon' style='text-align: center;font-size:1.5rem; color:red'>쿠폰 번호 </tr>")
+				.append("<tr style='text-align: center;'><span style='padding:5px; font-size:1.5rem;'>"+key1)
+				.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key2+"</span>-<span style='padding:5px; font-size:1.5rem;'>"+key3)
+				.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key4+"</span><br>")
 				.append("<a href='http://localhost/Kdemy/")
-				.append("' target='_blenk'>KDEMY에서 로그인 하기</a>").toString());
+				.append("' target='_blenk'>KDEMY에서 로그인 하기</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto2.getUseremail());
 		sendMail.send();
 		return "member/coupon";
 	}
-	
+
 	@RequestMapping("couponDetail.do")
 	public ModelAndView couponDetail(HttpSession session, CouponDTO dto) {
 		ModelAndView mav = new ModelAndView();

@@ -9,12 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.cart.dto.CartDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
-import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.service.cart.CartService;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 
@@ -44,6 +42,7 @@ public class CartController {
 		mav.setViewName("cart/cart");
 		return mav;
 	}
+	   
 	
 //	결제를 위한 장바구니 추가
 	@RequestMapping("insertCart.do")
@@ -58,7 +57,8 @@ public class CartController {
 		}
 		return "redirect:/cart/cartPage.do";
 	}
-	
+  
+  
 	@RequestMapping("insertCart2.do")
 	public String insertCart2(CartDTO dto, HttpSession session) {
 		String userid=(String)session.getAttribute("userid");
@@ -79,17 +79,13 @@ public class CartController {
 		String nickname=(String)session.getAttribute("nickname");
 		System.err.println("닉네임은? "+nickname);
 //		멤버 테이블에서 포인트 차감
+
 		cartService.buyLecture(userid,price);
 //		장바구니 테이블에서 레코드 삭제 & LectureBox 테이블에 레코드 추가
-//		LectureReviewDTO dto = new LectureReviewDTO();
 		LectureReviewDTO dto = new LectureReviewDTO();
 		for(int i=0; i<count; i++) {
 			cartService.buyCart(userid,lecture_idx[i]); 
 			cartService.insertLectureBox(userid, nickname, cell_type[i], lecture_idx[i]);
-//			dto.setUserid(userid);
-//			dto.setLecture_idx(Integer.parseInt(lecture_idx[i]));
-//			dto.setStar(0);
-//			lectureService.reviewStar(dto);
 			dto.setUserid(userid);
 			dto.setLecture_idx(Integer.parseInt(lecture_idx[i]));
 			dto.setStar(0);
@@ -99,26 +95,27 @@ public class CartController {
 	}
 	
 
-	@RequestMapping("deleteAll.do")
-	public String deleteAll(HttpSession session) {
-		//세션변수 조회(로그인 여부 검사)
-		String userid = (String)session.getAttribute("userid");
-			cartService.deleteAll(userid);
-		//장바구니 목록으로 이동
-		return "redirect:/cart/cartPage.do";
-	}
-	
-	@RequestMapping("delete.do")
-	public String delete(@RequestParam String cart_idx, 
-			HttpSession session) {
-			cartService.delete(cart_idx);
-			return "redirect:/cart/cartPage.do";
-	}
-	
-	@RequestMapping("pointCharge.do")
-	public String pointCharge(HttpSession session) {
-		String userid=(String)session.getAttribute("userid");
-		cartService.pointCharge(userid);
-		return "redirect:/cart/cartPage.do"; 
-	}
+
+   @RequestMapping("deleteAll.do")
+   public String deleteAll(HttpSession session) {
+      //세션변수 조회(로그인 여부 검사)
+      String userid = (String)session.getAttribute("userid");
+         cartService.deleteAll(userid);
+      //장바구니 목록으로 이동
+      return "redirect:/cart/cartPage.do";
+   }
+   
+   @RequestMapping("delete.do")
+   public String delete(@RequestParam String cart_idx, 
+         HttpSession session) {
+         cartService.delete(cart_idx);
+         return "redirect:/cart/cartPage.do";
+   }
+   
+   @RequestMapping("pointCharge.do")
+   public String pointCharge(HttpSession session) {
+      String userid=(String)session.getAttribute("userid");
+      cartService.pointCharge(userid);
+      return "redirect:/cart/cartPage.do"; 
+   }
 }

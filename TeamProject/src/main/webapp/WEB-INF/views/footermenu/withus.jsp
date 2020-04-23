@@ -6,16 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@include file="../include/header.jsp" %>
-<style type="text/css">
-body {
-      position: relative; 
-  }
-</style>
 </head>
 <%@include file="../include/fixed-topbar.jsp" %>
-<body data-spy="scroll" data-target=".navbar" data-offset="0">
-<div class="container">
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style="margin-top: 140px;">  
+<body data-spy="scroll" data-target=".navbar" data-offset-top="0" style="margin-top: 160px;">
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style="margin-top: 140px;">
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="#section1">COMPANY</a>
@@ -38,7 +33,7 @@ body {
   </ul>
 </nav>
 
-<div id="section1" class="container-fluid bg-success" style="padding-top:70px;padding-bottom:70px">
+<div id="section1" class="container-fluid bg-success" style="padding-top:70px;padding-bottom:70px;">
   <h1>COMPANY</h1>
   <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
   <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>

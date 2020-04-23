@@ -20,10 +20,7 @@
 					<div class="form-group">
 						<label for="admin_id">아이디</label> <input type="text"
 							class="form-control mb-1" id="mdadmin_id" name="admin_id"
-							value="${dto.admin_id}"><br> <label
-							for="admin_passwd">비밀번호</label> <input type="password"
-							class="form-control mb-1" id="mdadmin_passwd" name="admin_passwd"
-							value="${dto.admin_passwd}"><br> <label
+							value="${dto.admin_id}" readonly><br><label
 							for="admin_name">이름</label> <input type="text"
 							class="form-control mb-1" id="mdadmin_name" name="admin_name"
 							value="${dto.admin_name}"><br> <label for="admin_hp">연락처</label>

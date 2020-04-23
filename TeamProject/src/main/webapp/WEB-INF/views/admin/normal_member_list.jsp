@@ -13,12 +13,16 @@ function list(page){
 </script>
 </head>
 <body>
-<<<<<<< HEAD
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12" style="margin-top: 170px;">
-=======
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="container">
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+	<div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><b><a href="${path}/admin/managementMenu.do">관리메뉴</a></b></li>
+				<li><b><a href="${path}/member/list.do">회원관리</a></b></li>
+				<li><b><a href="${path}/member/list.do?location=normal" style="color:blue;">일반회원</a></b></li>
+			</ul>
+		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link" href="${path}/member/list.do">전체회원</a></li>
 			<li class="nav-item"><a class="nav-link active" href="${path}/member/list.do?location=normal">일반회원</a></li>
@@ -95,7 +99,8 @@ function list(page){
 				</ul>
 			</nav>
 		</div>
-		</div>
+	</div>
+	
 	<br>
 	<%@ include file="../include/footer.jsp"%>
 </body>

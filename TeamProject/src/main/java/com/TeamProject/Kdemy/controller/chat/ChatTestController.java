@@ -11,6 +11,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
+import com.TeamProject.Kdemy.model.chat.dto.AdminChatDTO;
 import com.TeamProject.Kdemy.model.chat.dto.ChatMessage;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
@@ -43,4 +44,17 @@ public class ChatTestController {
 		messagingTemplate.convertAndSend("/topic/public/"+chatMessage.getLecture_idx(),chatMessage);
 	}
 	
+	
+	@MessageMapping("/app/chatAdmin")
+	public void adminChatUser(@Payload AdminChatDTO adminChat, SimpMessageHeaderAccessor headerAccessor)
+			throws Exception {
+		headerAccessor.getSessionAttributes().put("sender", adminChat.getSender());
+		headerAccessor.getSessionAttributes().put("num", adminChat.getNum());
+		messagingTemplate.convertAndSend("/topic/admin/"+adminChat.getNum(),adminChat);	
+	}
+	
+	@MessageMapping("/chat.adminMessage")
+	public void sendMessage(@Payload AdminChatDTO adminChat) throws Exception  {
+		messagingTemplate.convertAndSend("/topic/admin/"+adminChat.getNum(),adminChat);
+	}
 }

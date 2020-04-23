@@ -45,8 +45,14 @@
 	width: 400px;
 	margin-left: 800px;	
 }
+
+#lectureText img{
+	max-width: 700px;
+}
 </style>
 <script type="text/javascript">
+function lectureDelete(){
+}
 function lectureView_success(){
 	document.viewForm.submit();
 }
@@ -71,7 +77,11 @@ $('#star1 a').click(function(){
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
 			<li><a href="#">${dto.main_category}</a></li>
-			<li><a href="#">${dto.sub_category}</a></li>
+			<li><a href="#">${dto.sub_category}</a>
+			<c:if test="${sessionScope.admin_id != null}">
+			&nbsp;<span class="btn btn-outline-danger" data-toggle="modal" data-target="#lectureDelete">삭제</span>
+			</c:if>
+			</li>
 		</ul>
 	</div>
 	
@@ -80,16 +90,18 @@ $('#star1 a').click(function(){
 		<div class="col-xl-12 col-lg-12">
 			<div class="row">
 				<div class="col-xl-6" style="text-align: center;">
-					<img src="../upload/${dto.main_img}" class="img-thumbnail shadow bg-white rounded my-1">
+					<%-- <img src="../upload/${dto.main_img}" class="img-thumbnail shadow bg-white rounded my-1"> --%>
+					<div class="card-image mx-0">
+						<img class="img-fluid mx-auto my-2 d-block" style="max-height: 300px;" src="../upload/${dto.main_img}">
+					</div>
 				</div>
 				
 				<div class="col-xl-5 p-2 m-2" style="background-color: white; text-align: justify;">
 					<h2>${dto.subject}</h2>
 					<p>강사 아이디 : ${dto.userid}</p>
 					<p>등록일 : <fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" /></p>
-					<p>수강중인 학생 수 : ${lectureCount}</p>
+					<p>학생수 : <fmt:formatNumber value="${lectureCount}" pattern="#,###" /></p>
 					<p>좋아요 갯수 : ${upCount}</p>
-				
 				</div>
 			</div>
 			
@@ -109,10 +121,7 @@ $('#star1 a').click(function(){
 				</ul>
 			</div>
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
-				내용 : ${dto.content}
-				<%for(int i=0; i<30; i++){ %>
-					<p>test</p>
-				<%} %>
+				<p class="col-12">${dto.content}</p>
 			</div>
 			
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureTime" style="display: none;">
@@ -191,7 +200,7 @@ $('#star1 a').click(function(){
 							<c:when test="${up == 'up'}">
 								<form method="post" id="lectureDownForm" name="lectureDownForm"
 								 action="${path}/lecture/lectureDown.do?lecture_idx=${dto.lecture_idx}">
-									<button style="background-color: #006680" type="button" class="btn btn-primary btn-sm col-12" onclick="down()" >
+									<button type="button" class="btn btn-primary btn-sm col-12" onclick="down()" >
 										<i class="fas fa-check">&nbsp;&nbsp;추천</i>
 									</button>
 								</form>
@@ -234,6 +243,29 @@ $('#star1 a').click(function(){
 		</div>
 	</div>
 </div>
+<!-- logOut Modal -->
+<div class="modal" id="lectureDelete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">강의삭제</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h6>해당 강의를 정말 삭제하시겠습니까?</h6>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <a href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}" type="button" class="btn btn-outline-danger">삭제</a>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <%@ include file="../include/footer.jsp"%>
 <script type="text/javascript">
 	function lecturetext(){
@@ -263,18 +295,17 @@ $('#star1 a').click(function(){
 		
 		text.style.display ='none';
 		time.style.display ='none';
+		addr.style.display ='block';
 	}
 
 	function up(){
-		alert("up")
+		alert("감사합니다 :b");
 		document.lectureUpForm.submit();
 		/* location.reload(); */
 	}
 
 	function down(){
-		alert("down");
 		document.lectureDownForm.submit();
-		/* location.reload(); */
 	}
 	function cartAdd(){
 		alert("장바구니에 등록 되었습니다.");
