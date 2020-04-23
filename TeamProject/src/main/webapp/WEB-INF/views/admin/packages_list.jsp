@@ -38,10 +38,7 @@ function listview(){
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
-<<<<<<< HEAD
 	<div id="list"></div>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
-=======
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
 	<div>
 			<ul class="upper_shift">
@@ -50,7 +47,6 @@ function listview(){
 				<li><b><a href="${path}/packages/adminlist.do" style="color:blue;">패키지 관리</a></b></li>
 			</ul>
 		</div>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<div class="table-responsive">
 			<br>
 			<div class="modal" id="addModal">
