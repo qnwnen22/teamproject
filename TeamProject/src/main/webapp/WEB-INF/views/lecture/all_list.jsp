@@ -45,12 +45,13 @@
 				</div>
 				
 				<div class="input-group mb-3 my-auto">
-				  <form name="form_search" class="input-group">
-					<input type="text" class="form-control" placeholder="Search" name="keyword" id="keyword">
-				      <div class="input-group-append">
-				        <button class="btn btn-outline-primary" type="button" onclick="search()">조회</button>
-				      </div>
-				  </form>
+					<form name="form_search" class="input-group">
+						<input type="text" class="form-control" placeholder="Search" name="keyword" id="keyword">
+						
+						<div class="input-group-append">
+							<button class="btn btn-outline-primary" type="button" onclick="search()">조회</button>
+						</div>
+					</form>
 				</div>
 			</div>
 	
@@ -103,7 +104,6 @@
 								<b>추천수</b><br>
 								<fmt:formatNumber value="${dto.upCount}" pattern="#,###" />	
 							</div>
-							
 						</div>
 						<hr>
 						<div class="col-12 mb-1 text-right">

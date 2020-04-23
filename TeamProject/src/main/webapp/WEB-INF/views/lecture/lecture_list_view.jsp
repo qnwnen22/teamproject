@@ -6,50 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="${path}/include/css/lecture.css">
 <%@ include file="../include/fixed-topbar.jsp" %>
-<style type="text/css">
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
-
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-}
-#reviewStar a{ 
-	text-decoration: none;
-	color: gray; 
-} 
-#reviewStar a.on{
-	color: yellow; 
-}
-#asideDiv {
-	position: fixed;
-	width: 400px;
-	margin-left: 800px;	
-}
-
-#lectureText img{
-	max-width: 700px;
-}
-</style>
 <script type="text/javascript">
 function lectureDelete(){
 }
@@ -65,47 +23,73 @@ $('#star1 a').click(function(){
 </head>
 <body>
 <div class="row col-xl-8 offset-xl-2 col-lg-12 mb-3">
-	<div class="col-12">
-		<div class="col-xl-12">
-			<c:choose>
-				<c:when test="${dto.cell_type == 1}"><h2>동영상 강의</h2></c:when>
-				<c:when test="${dto.cell_type == 2}"><h2>실시간 강의</h2></c:when>
-				<c:when test="${dto.cell_type == 3}"><h2>현장 강의</h2></c:when>
-			</c:choose>
-		</div>
-		
-		<ul class="upper_shift">
-			<li><a href="${path}">KDEMY</a></li>
-			<li><a href="#">${dto.main_category}</a></li>
-			<li><a href="#">${dto.sub_category}</a>
-			<c:if test="${sessionScope.admin_id != null}">
-			&nbsp;<span class="btn btn-outline-danger" data-toggle="modal" data-target="#lectureDelete">삭제</span>
-			</c:if>
-			</li>
-		</ul>
-	</div>
-	
-	<div class="row col-xl-8" style="background-color: #eeeeee; color: black;">
-	<!-- shadow p-3 mb-5 rounded --> 
-		<div class="col-xl-12 col-lg-12">
-			<div class="row">
-				<div class="col-xl-6" style="text-align: center;">
-					<%-- <img src="../upload/${dto.main_img}" class="img-thumbnail shadow bg-white rounded my-1"> --%>
-					<div class="card-image mx-0">
-						<img class="img-fluid mx-auto my-2 d-block" style="max-height: 300px;" src="../upload/${dto.main_img}">
-					</div>
-				</div>
-				
-				<div class="col-xl-5 p-2 m-2" style="background-color: white; text-align: justify;">
-					<h2>${dto.subject}</h2>
-					<p>강사 아이디 : ${dto.userid}</p>
-					<p>등록일 : <fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" /></p>
-					<p>학생수 : <fmt:formatNumber value="${lectureCount}" pattern="#,###" /></p>
-					<p>좋아요 갯수 : ${upCount}</p>
-				</div>
+	<div class="col-8">
+		<div class="col-12">
+			<div class="col-xl-12">
+				<c:choose>
+					<c:when test="${dto.cell_type == 1}"><h2>동영상 강의</h2></c:when>
+					<c:when test="${dto.cell_type == 2}"><h2>실시간 강의</h2></c:when>
+					<c:when test="${dto.cell_type == 3}"><h2>현장 강의</h2></c:when>
+				</c:choose>
 			</div>
 			
-			<div class="col-12 m">
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><a href="#">${dto.main_category}</a></li>
+				<li><a href="#">${dto.sub_category}</a>
+				<c:if test="${sessionScope.admin_id != null}">
+				&nbsp;<span class="btn btn-outline-danger" data-toggle="modal" data-target="#lectureDelete">삭제</span>
+				</c:if>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="row col-xl-12" style="background-color: #eeeeee; color: black;">
+		<!-- shadow p-3 mb-5 rounded --> 
+			<div class="col-xl-12 col-lg-12">
+				<div class="col-12 d-flex mb-3">
+					<div class="col-xl-5 m-2 h-auto d-inline-block ">
+						<img class="img-fluid lectureImg" src="../upload/${dto.main_img}">
+					</div>
+					
+					<div class="col-xl-7 m-2 px-0 h-auto d-inline-block " style="background-color: white;">
+						<c:choose>
+							<c:when test="${dto.cell_type==1}">
+								<div class="col-12 mx-0 p-0 text-center" style="background-color: #804000;">
+									<b style="color: white;">동영상 강의</b>
+								</div>
+							</c:when>
+							
+							<c:when test="${dto.cell_type==2}">
+								<div class="col-12 mx-0 p-0 text-center" style="background-color: #339933;">							
+									<b style="color: white">실시간 강의</b>
+								</div>
+							</c:when>	
+							
+							<c:when test="${dto.cell_type==3}">
+								<div class="col-12 mx-0 p-0 text-center" style="background-color: #3366cc;">
+									<b style="color: white">현장 강의</b>
+								</div>
+							</c:when>
+						</c:choose>
+						<div class="col-12 mt-3 h1">
+							<b>${dto.subject}</b>
+						</div>
+						
+						<div class="col-12 d-flex flex-row mx-0 px-0 h6">
+							<div class="col-6">
+								<b class='m-auto'><fmt:formatNumber value="${lectureCount}" pattern="#,###" />명의 학생이 수강중</b>
+							</div>
+							
+							<div class="col-6">
+								<b class='m-auto'>추천 수 : ${upCount}</b>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<div class="col-12">
 				<ul class="nav nav-tabs">
 		  			<li class="nav-item">
 		    			<a class="nav-link active" onclick="lecturetext()" data-toggle="tab" href="#">강의 소개</a>
@@ -120,10 +104,16 @@ $('#star1 a').click(function(){
 		  			</li>
 				</ul>
 			</div>
+				
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
-				<p class="col-12">${dto.content}</p>
+				<p class="col-12">
+					${dto.content}
+					<% for( int i=0; i<=100; i++){ %>
+						<p>dasd<p>
+					<%} %>
+				</p>
 			</div>
-			
+				
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureTime" style="display: none;">
 				<c:choose>
 					<c:when test="${dto.cell_type > 1}">
@@ -141,6 +131,7 @@ $('#star1 a').click(function(){
 					</c:otherwise>
 				</c:choose>
 			</div>
+			
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureAddr" style="display: none;">
 				<c:choose>
 					<c:when test="${dto.cell_type > 2}">
@@ -154,93 +145,102 @@ $('#star1 a').click(function(){
 			</div>
 		</div>
 	</div>
-
-	<div class="col-4 mb-2 bt-2" id="asideDiv" style="background-color: whitet">
-		<div class="col-12 mb-2 bt-2">
-			<div class="col-xl-12 mt-3">
+	
+	<div class="col-4 my-2" id="asideDiv">
+		<div class="col-12 m-2 p-2" style="background-color: #eeeeee">
+			<div class="col-12" style="background-color: white;">
 				<h3>구매가격 : </h3>
-				
 				<h4>${dto.price} 원</h4>
 			</div>
-		</div>
-
-		<div class="col-12 mb-2 bt-2">
-			<div class="col-xl-12">
-			<c:choose>
-				<c:when test="${check==0}">
-					<form method="post" action="${path}/cart/insertCart.do">
-					<input type="hidden" name="cell_type" value="${dto.cell_type}">
-					<input type="hidden" name="price" value="${dto.price}">
-					<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
-					<input type="hidden" name="main_category" value="${dto.main_category}">
-					<input type="hidden" name="sub_category" value="${dto.sub_category}">
-					<input type="hidden" name="subject" value="${dto.subject}">
-					<input class="btn btn-danger col-12" type="submit" value="구매하기">
-					</form>
-				</c:when>
-				
-				<c:when test="${check==1}">
-					<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
-						<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
-						<input class="btn btn-success col-12" type="button" value="시청하기" onclick="lectureView_success()">
-					</form>
-				</c:when>
-				
-				<c:otherwise>
-					<a class="btn btn-danger btn-block" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" style="color: white;"><b>구매하기</b></a>
-				</c:otherwise>
-			</c:choose>
+	
+			<div class="col-12 mb-2 bt-2 px-0">
+				<div class="col-xl-12 px-0 mx-0" >
+				<c:choose>
+					<c:when test="${check==0}">
+						<form method="post" action="${path}/cart/insertCart.do">
+						<input type="hidden" name="cell_type" value="${dto.cell_type}">
+						<input type="hidden" name="price" value="${dto.price}">
+						<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+						<input type="hidden" name="main_category" value="${dto.main_category}">
+						<input type="hidden" name="sub_category" value="${dto.sub_category}">
+						<input type="hidden" name="subject" value="${dto.subject}">
+						<input class="btn btn-danger col-12" type="submit" value="구매하기">
+						</form>
+					</c:when>
+					
+					<c:when test="${check==1}">
+						<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
+							<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
+							<input class="btn btn-success col-12" type="button" value="시청하기" onclick="lectureView_success()">
+						</form>
+					</c:when>
+					
+					<c:otherwise>
+						<a class="btn btn-danger btn-block" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" style="color: white;"><b>구매하기</b></a>
+					</c:otherwise>
+				</c:choose>
+				</div>
+			</div>
+			<div class="input-group col-xl-12">
+				<c:choose>
+					<c:when test="${check==1}">
+						<div class="col-xl-12">
+							<c:choose>
+								<c:when test="${up == 'up'}">
+									<form method="post" id="lectureDownForm" name="lectureDownForm"
+									 action="${path}/lecture/lectureDown.do?lecture_idx=${dto.lecture_idx}">
+										<button type="button" class="btn btn-primary btn-sm col-12" onclick="down()" >
+											<i class="fas fa-check">&nbsp;&nbsp;추천</i>
+										</button>
+									</form>
+								</c:when>
+								<c:when test="${up == 'down'}">
+									<form method="post" id="lectureUpForm" name="lectureUpForm"
+									 action="${path}/lecture/lectureUp.do?lecture_idx=${dto.lecture_idx}">
+										<button type="button" class="btn btn-outline-primary btn-sm col-12" onclick="up()">
+											<i class="fas fa-thumbs-up">&nbsp;&nbsp;추천</i>
+										</button>
+									</form>
+								</c:when>
+							</c:choose>
+						</div>
+					</c:when>
+					
+					<c:when test="${check==0}">
+						<div class="col-xl-12">
+						<c:choose>
+							<c:when test="${sessionScope.userid != null}">
+								<form method="post" id="cartInsert" name="cartInsert" action="${path}/cart/insertCart2.do">
+									<input type="hidden" name="cell_type" value="${dto.cell_type}">
+									<input type="hidden" name="price" value="${dto.price}">
+									<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+									<input type="hidden" name="main_category" value="${dto.main_category}">
+									<input type="hidden" name="sub_category" value="${dto.sub_category}">
+									<input type="hidden" name="subject" value="${dto.subject}">
+									<button type="button" class="btn btn-secondary btn-sm col-12" onclick="cartAdd()">장바구니 담기</button>
+								</form>
+							</c:when>
+			
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary btn-sm col-12" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal">장바구니 담기</button>
+							</c:otherwise>
+						</c:choose>	
+						</div>
+					</c:when>
+				</c:choose>
 			</div>
 		</div>
-		<div class="input-group col-xl-12">
-			<c:choose>
-				<c:when test="${check==1}">
-					<div class="col-xl-12">
-						<c:choose>
-							<c:when test="${up == 'up'}">
-								<form method="post" id="lectureDownForm" name="lectureDownForm"
-								 action="${path}/lecture/lectureDown.do?lecture_idx=${dto.lecture_idx}">
-									<button type="button" class="btn btn-primary btn-sm col-12" onclick="down()" >
-										<i class="fas fa-check">&nbsp;&nbsp;추천</i>
-									</button>
-								</form>
-							</c:when>
-							<c:when test="${up == 'down'}">
-								<form method="post" id="lectureUpForm" name="lectureUpForm"
-								 action="${path}/lecture/lectureUp.do?lecture_idx=${dto.lecture_idx}">
-									<button type="button" class="btn btn-outline-primary btn-sm col-12" onclick="up()">
-										<i class="fas fa-thumbs-up">&nbsp;&nbsp;추천</i>
-									</button>
-								</form>
-							</c:when>
-						</c:choose>
-					</div>
-				</c:when>
-				
-				<c:when test="${check==0}">
-					<div class="col-xl-12">
-					<c:choose>
-						<c:when test="${sessionScope.userid != null}">
-							<form method="post" id="cartInsert" name="cartInsert" action="${path}/cart/insertCart2.do">
-								<input type="hidden" name="cell_type" value="${dto.cell_type}">
-								<input type="hidden" name="price" value="${dto.price}">
-								<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
-								<input type="hidden" name="main_category" value="${dto.main_category}">
-								<input type="hidden" name="sub_category" value="${dto.sub_category}">
-								<input type="hidden" name="subject" value="${dto.subject}">
-								<button type="button" class="btn btn-secondary btn-sm col-12" onclick="cartAdd()">장바구니 담기</button>
-							</form>
-						</c:when>
 		
-						<c:otherwise>
-							<button type="button" class="btn btn-secondary btn-sm col-12" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal">장바구니 담기</button>
-						</c:otherwise>
-					</c:choose>	
-					</div>
-				</c:when>
-			</c:choose>
+		<div class="col-12 m-2 p-2" style="background-color: #eeeeee">
+			<div class="col-12" style="background-color: white;">
+				<div class="col-12">
+					<img class="img-fluid" alt="광고" src="../upload/test/광고.png">
+				</div>
+			</div>
 		</div>
 	</div>
+	
+	
 </div>
 <!-- logOut Modal -->
 <div class="modal" id="lectureDelete">
@@ -265,6 +265,7 @@ $('#star1 a').click(function(){
     </div>
   </div>
 </div>
+
 <%@ include file="../include/footer.jsp"%>
 <script type="text/javascript">
 	function lecturetext(){
