@@ -35,7 +35,7 @@ label{width:20%;}
          <!--     </li> -->
             </ul>
             <input type="hidden" value="${dto.coupon}" id="coupon" name="coupon">
-            <button data-toggle="modal" data-target="#emailModal" type="button" class="btn btn-block btn-primary text-uppercase">쿠폰 보내기</button>
+            <button data-toggle="modal" data-target="#emailModal" type="button" class="btn btn-block btn-primary text-uppercase text-center">쿠폰 보내기</button>
 
 <!--         </form>     -->     
           </div>
@@ -61,12 +61,17 @@ label{width:20%;}
       <div class="modal-body">
         <h6>쿠폰을 보낼 이메일을 입력하세요.</h6>
         <form name="form" id="form" action="makeCoupon.do" method="post">
+        <div class="from-group">
         <input type="hidden" value="${dto.coupon}" id="coupon" name="coupon">
         <input type="text" class="form-control mb-3" id="useremail" name="useremail" placeholder="이메일">
-        <button type="submit" type="button" class="btn btn-outline-primary pull-right">쿠폰 보내기</button>
-        <button type="button" class="btn btn-outline-secondary pull-right" data-dismiss="modal">취소</button>
+        </div>
+        <div class="from-group text-center">
+        <button type="submit" type="button" class="btn btn-outline-primary">쿠폰 보내기</button>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
         <p class="m-2" style="text-align:center; color:red;">${message}</p>
+        </div>
          </form>  
+         
       </div>
 
       <!-- Modal footer -->
