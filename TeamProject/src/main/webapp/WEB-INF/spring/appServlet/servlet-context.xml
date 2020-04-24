@@ -61,22 +61,22 @@
 	
 	<beans:bean id="packagesuploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="C:/Users/mr02-06/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/coupon" />
+			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/coupon" />
 	</beans:bean>
 	
 	<beans:bean id="teacheruploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="C:/Users/mr02-06/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/teacher" />
+			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/teacher" />
 	</beans:bean>
 	
 	<beans:bean id="reviewuploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="C:/Users/mr02-06/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/review" />
+			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/review" />
 	</beans:bean>
 		
 	<beans:bean id="memberUploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="C:/Users/mr02-06/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/member/img/member" />
+			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/member/img/member" />
 	</beans:bean>
 	
 	<beans:bean id="mainResoucePath" class="java.lang.String">
