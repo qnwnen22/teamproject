@@ -1241,8 +1241,7 @@
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
 					<a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
-					<br> <b>카테고리1</b> <a href="${path}/lecture/video_list.do">동영상
-						리스트 페이지</a>
+					<br> <a href="${path}/lecture/video_list.do">동영상 강의에서 인기있어요!</a>
 				</h5>
 				<br>
 			</div>
@@ -1283,8 +1282,7 @@
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-					<b>카테고리2</b> <a href="${path}/lecture/online_list.do">실시간 강의
-						리스트 페이지</a>
+			<a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
 				</h5>
 				<br>
 			</div>
@@ -1323,8 +1321,7 @@
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-					<b>카테고리3</b> <a href="${path}/lecture/offline_list.do">현장 강의
-						리스트 페이지</a>
+				 <a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
 				</h5>
 				<br>
 			</div>
