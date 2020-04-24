@@ -27,7 +27,7 @@
 	  <c:forEach var="dto" items="${list2}">
 			<div class="row lecture" style="border-radius:10px;">
 			<div class="col-sm-5" ><a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
-			    <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="img-responsive"></a></div>
+			    <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="img-responsive" style="height:200px; width:100%"></a></div>
 				<div class="col-sm-7" >
 				<div class="short-div m-5"><strong>${dto.subject}</strong></div>
 				<div class="short-div">${dto.lecture_idx}</div>
