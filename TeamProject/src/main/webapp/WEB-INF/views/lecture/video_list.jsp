@@ -123,14 +123,13 @@
 								<div class="col-12 d-flex flex-row mx-0 px-0">
 									<div class="col-6">
 										<b>학생수</b><br>
-										<fmt:formatNumber value="40000" pattern="#,###" />
+										<fmt:formatNumber value="${dto.cellCount}" pattern="#,###" />
 									</div>
 									
 									<div class="col-6">
 										<b>추천수</b><br>
-										<fmt:formatNumber value="40000" pattern="#,###" />	
+										<fmt:formatNumber value="${dto.upCount}" pattern="#,###" />	
 									</div>
-									
 								</div>
 								<hr>
 								<div class="col-12 mb-1 text-right">

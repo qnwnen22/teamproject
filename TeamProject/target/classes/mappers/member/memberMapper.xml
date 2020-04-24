@@ -17,8 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="orderDetail" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
 		select * from lecture,lectureBox
-		where lecture.lecture_idx = lectureBox.lecture_idx and lectureBox.userid=#{userid}
+		where
+		lecture.lecture_idx = lectureBox.lecture_idx and
+		lectureBox.userid=#{userid}
 		order by lecture.lecture_idx desc
+		
 	</select>
 	 
 	 <select id="couponDetail" resultType="com.TeamProject.Kdemy.model.member.dto.CouponDTO">

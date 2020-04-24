@@ -39,5 +39,6 @@ public class LectureBoxDTO {
 	private String lecture_address; //강의장 도로명 주소
 	private String lecture_address2; //상세 주소
 	
-	
+	private int cellCount;
+	private int upCount;
 }
