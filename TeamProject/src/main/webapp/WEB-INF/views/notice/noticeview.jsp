@@ -144,10 +144,11 @@
 									</div>
 								</div>
 							</div>
-
+							
 							<img src="${path}/include/images/review/notice.jpg"
-								class="img-fluid mb-4" alt="Responsive image">
-
+								class="img-fluid mb-4 " alt="Responsive image">
+								
+								
 							<div id="content_css" class="mb-4">
 								<div class="jumbotron jumbotron-fluid">
 									<div class="container">

@@ -66,11 +66,11 @@
 			</thead>
 			<tbody>
 				<c:forEach var="rows" items="${map.reviewlist}">
-						<tr>
+						<tr  style="cursor: pointer;" onclick="location.href='${path}/review/view.do?bno=${rows.bno}'">
 							<td class="d-none  d-lg-block">${rows.bno}</td>
 							<td>${rows.subject}</td>
 							<td class="d-none d-lg-block">${rows.teacher}</td>
-							<td><a href="${path}/review/view.do?bno=${rows.bno}">${rows.title}</a>
+							<td><a>${rows.title}</a>
 								<c:if test="${rows.cnt>0}">
 									<span style="color: white;" class="badge badge-pill badge-dark">${rows.cnt}</span>
 								</c:if></td>
