@@ -70,7 +70,7 @@
 				     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
 						 		</c:when>
 						 		<c:otherwise>
-			    					<div><img id ="profileImg" src = "../upload${dto.main_img}" class="avatar img-circle"  style = "height:100px;"></div>
+			    					<div><img id ="profileImg" src = "../upload${dto.main_img}" style="max-width: 350px; max-height: 197px;" class="avatar img-circle"></div>
 								</c:otherwise>
 							</c:choose>
 						</div>

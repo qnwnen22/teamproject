@@ -11,11 +11,5 @@ coupon_text varchar2(200)
 create_date date default sysdate
 );
 
-insert into coupon (coupon_idx,coupon_name,coupon,point,coupon_text)
-values ('a','쿠폰','8G8g',10000,'10000포인트 증정 쿠폰');
-insert into coupon (coupon_idx,coupon_name,coupon,point,coupon_text)
-values ('b','쿠폰','BDyC',30000,'30000포인트 증정 쿠폰');
-insert into coupon (coupon_idx,coupon_name,coupon,point,coupon_text)
-values ('c','쿠폰','aOnu',50000,'50000포인트 증정 쿠폰');
 
 select * from coupon;

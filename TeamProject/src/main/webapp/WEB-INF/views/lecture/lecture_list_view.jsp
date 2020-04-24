@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="${path}/include/css/lecture.css">
 <%@ include file="../include/fixed-topbar.jsp" %>
 <script type="text/javascript">
-function lectureDelete(){
+function lectureView_video(){
+	document.viewVideoForm.submit();
 }
 function lectureView_success(){
 	document.viewForm.submit();
@@ -49,7 +50,7 @@ $('#star1 a').click(function(){
 			<div class="col-xl-12 col-lg-12">
 				<div class="col-12 d-flex mb-3">
 					<div class="col-xl-5 m-2 h-auto d-inline-block ">
-						<img class="img-fluid lectureImg" src="../upload/${dto.main_img}">
+						<img class="img-fluid lectureImg" src="${path}/lecture/displayFile?fileName=${dto.main_img}">
 					</div>
 					
 					<div class="col-xl-7 m-2 px-0 h-auto d-inline-block " style="background-color: white;">
@@ -108,9 +109,6 @@ $('#star1 a').click(function(){
 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
 				<p class="col-12">
 					${dto.content}
-					<% for( int i=0; i<=100; i++){ %>
-						<p>dasd<p>
-					<%} %>
 				</p>
 			</div>
 				
@@ -158,6 +156,7 @@ $('#star1 a').click(function(){
 				<c:choose>
 					<c:when test="${check==0}">
 						<form method="post" action="${path}/cart/insertCart.do">
+						<input type="hidden" name="main_img" value="${dto.main_img}">
 						<input type="hidden" name="cell_type" value="${dto.cell_type}">
 						<input type="hidden" name="price" value="${dto.price}">
 						<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
@@ -169,10 +168,26 @@ $('#star1 a').click(function(){
 					</c:when>
 					
 					<c:when test="${check==1}">
-						<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
-							<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
-							<input class="btn btn-success col-12" type="button" value="시청하기" onclick="lectureView_success()">
-						</form>
+						<c:choose>
+							<c:when test="${dto.cell_type == '3'}">
+								강의주소 : ${dto.lecture_address}<br>
+								강의 상세주소 : ${dto.lecture_address2}<br>
+							</c:when>
+							
+							<c:when test="${dto.cell_type == '1'}">
+								<form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
+									<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
+									<input class="btn btn-success col-12" type="button" value="시청하기" onclick="lectureView_video()">
+								</form>
+							</c:when>
+							
+							<c:otherwise>
+								<form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
+									<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}"><br>
+									<input class="btn btn-success col-12" type="button" value="시청하기" onclick="lectureView_success()">
+								</form>
+							</c:otherwise>
+						</c:choose>
 					</c:when>
 					
 					<c:otherwise>
@@ -181,10 +196,11 @@ $('#star1 a').click(function(){
 				</c:choose>
 				</div>
 			</div>
-			<div class="input-group col-xl-12">
+			
+			<div class="col-12 mb-2 bt-2 px-0">
 				<c:choose>
 					<c:when test="${check==1}">
-						<div class="col-xl-12">
+						<div class="col-xl-12 px-0 mx-0" >
 							<c:choose>
 								<c:when test="${up == 'up'}">
 									<form method="post" id="lectureDownForm" name="lectureDownForm"
@@ -207,10 +223,11 @@ $('#star1 a').click(function(){
 					</c:when>
 					
 					<c:when test="${check==0}">
-						<div class="col-xl-12">
+						<div class="col-xl-12 px-0 mx-0" >
 						<c:choose>
 							<c:when test="${sessionScope.userid != null}">
 								<form method="post" id="cartInsert" name="cartInsert" action="${path}/cart/insertCart2.do">
+								<input type="hidden" name="main_img" value="${dto.main_img}">
 									<input type="hidden" name="cell_type" value="${dto.cell_type}">
 									<input type="hidden" name="price" value="${dto.price}">
 									<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">

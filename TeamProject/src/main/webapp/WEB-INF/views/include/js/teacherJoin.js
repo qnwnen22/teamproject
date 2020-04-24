@@ -172,34 +172,35 @@ function addSpec(){
 	var str = "";
 	
 	if(count<5){
-		str += "<label for=spec"+(count+1)+" class='control-label'> 자격증("+(count+1)+") 이름 : </label>";
-		str += "<input type='text' name='spec"+(count+1)+"' id='spec"+(count+1)+"'>"
-		str += "<input type='button' value='자격증 검색(기능 미구현)'><br>";
 		
-		str += "<label for='spec"+(count+1)+"_date' class='control-label'> 취득일자 : </label>";
-		str += "<select name='spec"+(count+1)+"_y' id='spec"+(count+1)+"_y'>";
-		str += "<option value='-'>--</option>";
+		str += "<div class='row mt-4'><label for=spec"+(count+1)+" class='control-label col-4 text-left'><h6>자&nbsp;격&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;증&nbsp;명"+(count+1)+"</h6> </label>";//&nbsp;&nbsp;&nbsp; 
+		str += "<span class='col-8 '><div class=' input-group'><input class='  form-control '  placeholder='(기능 미구현)' type='text' name='spec"+(count+1)+"' id='spec"+(count+1)+"'>"
+		str += "<span class='input-group-addon' id='basic-addon3'><input type='button' value='검색' class='btn btn-outline-dark ml-1'><span></span></div></div>";
+		
+		str += "<div class='row mt-3'><label for='spec"+(count+1)+"_date' class='control-label col-4 text-left'><h6>취&nbsp;득&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;자</h6> </label>";
+		str += "<span class='col-8 '><div class='row'><select class='col-3 form-control ml-3 input-sm' name='spec"+(count+1)+"_y' id='spec"+(count+1)+"_y'></span>";
+		str += "<option  value='-'>--</option>";
 		for(var i=2020; i>=1900; i--){
 			str += "<option value='"+i+"'>"+i+"</option>";
 		}
-		str += "</select>년";
+		str += "</select><h6 class='mt-3 '>년</h6>";
 		
-		str += "<select name='spec"+(count+1)+"_m' id='spec"+(count+1)+"_m'>";
+		str += "<select class='col-3 form-control ml-3 input-sm' name='spec"+(count+1)+"_m' id='spec"+(count+1)+"_m'>";
 		str += "<option value='-'>--</option>";
 		for(var i=1; i<=12; i++){
 			str += "<option value='"+i+"'>"+i+"</option>";
 		}
-		str += "</select>월";
+		str += "</select><h6 class='mt-3 '>월</h6>";
 		
-		str += "<select name='spec"+(count+1)+"_d' id='spec"+(count+1)+"_d'>";
+		str += "<select class='col-3 form-control ml-3 input-sm' name='spec"+(count+1)+"_d' id='spec"+(count+1)+"_d'>";
 		str += "<option value='-'>--</option>";
 		for(var i=1; i<=30; i++){
 			str += "<option value='"+i+"'>"+i+"</option>";
 		}
-		str += "</select>일<br>";
+		str += "</select><h6 class='mt-3 '>일</h6></div></div>";
 		
-		str += "<label for='spec"+(count+1)+"File'>자격증 이미지 : </label>";
-		str += "<input type='file' name='spec"+(count+1)+"File' id='spec"+(count+1)+"File'><br>";
+		str += "<div class='row mt-3'><label class='col-4 text-left' for='spec"+(count+1)+"File'><h6>자&nbsp;격&nbsp;&nbsp;증&nbsp;&nbsp;사&nbsp;진</h6></label>";		
+		str += "<div class='col-8 '><input class='text-secondary' type='file' name='spec"+(count+1)+"File' id='spec"+(count+1)+"File'></div></div>";
 		str += "<hr>";
 		
 		var addedDiv = document.createElement("div");

@@ -119,11 +119,10 @@
 											<div class="dropdown-menu">
 												<a class="dropdown-item"
 													href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
-												<a class="dropdown-item"
-													href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a
-													class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
-												<a class="dropdown-item"
-													href="${path}/member/updatePointPage.do">쿠폰등록</a>
+													<a class="dropdown-item" href="${path}/member/orderDetail1.do">내강의목록</a>
+													<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
+												    <a class="dropdown-item" href="${path}/teacher/teacherPage.do">강사 페이지이동</a> 
+											    	<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 											</div>
 										</div>
 
@@ -149,12 +148,10 @@
 											<div class="dropdown-menu">
 												<a class="dropdown-item"
 													href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
-												<a class="dropdown-item"
-													href="${path}/lecture/myLectureListPage.do">구입한 강의 목록</a> <a
-													class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
-												<a class="dropdown-item" href="#">관심상품</a> <a
-													class="dropdown-item"
-													href="${path}/member/updatePointPage.do">쿠폰등록</a>
+												<a class="dropdown-item" href="${path}/member/orderDetail1.do">내강의목록</a>
+												<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
+												<a class="dropdown-item" href="#">관심상품</a> 
+												<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 											</div>
 										</div>
 										<a><b>${sessionScope.username}님</b></a>
