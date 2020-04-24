@@ -9,6 +9,42 @@
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<style>
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #6ca0bd;
+  cursor: pointer;
+  border: 1px solid #b3d5e8;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+  background-color: #b3d5e8;
+}
+
+.filebox label:active {
+  background-color: #6ca0bd;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+</style>
 </head>
 <body>
 
@@ -30,7 +66,10 @@
 		</c:otherwise>
 </c:choose>
         <form name="form1" method="post" enctype="multipart/form-data" class="text-center m-2">
-        <input type="file" class="text-center center-block file-upload" id="input_img">
+        <div class="filebox text-center center-block file-upload">
+          <label for="input_img">사진 업로드</label>
+          <input type="file" id="input_img">
+          </div>
         </form>
          <div class="panel panel-default text-center">
           <div class="panel-heading m-2"></div>
@@ -66,7 +105,6 @@
     </div>
 </div>
 </div>
-
 
 <script> 
 
@@ -172,7 +210,7 @@ function fileChange(e) {
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" id="passForm" name="passForm" action="${path}/member/check.do" class="form-horizontal">
+        <form method="post" id="passForm" name="passForm" action="${path}/member/check.do" class="form-horizontal" target="param">
 				
 				<div class="form-group form-group-lg pt-2 pb-1">
 				<!-- <label for="userid">아이디</label> -->
@@ -185,17 +223,19 @@ function fileChange(e) {
 				<div class="form-group form-group-lg pt-2 pb-1" style="text-align:center;">
 					<button type="submit" id="submit" class="btn btn-outline-danger">확인</button>
                     <button type="button" class="btn btn-outline-dark" data-dismiss="modal">취소</button>
-				</div>
-				<div class="textBox"><p id="text" style="color:red;"></p></div>
-
+                    <p class="m-2" style="text-align:center; color:red;">${message}</p>
+				</div>	
+				 
        </form>
-      </div>
-      <div class="modal-footer">
+           </div>
+        <div class="modal-footer">
         
       </div>
     </div>
   </div>
 </div>
+
+
 
  
 

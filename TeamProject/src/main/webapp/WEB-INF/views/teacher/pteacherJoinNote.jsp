@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 .img-circle {
 	border-radius: 50%;
@@ -41,31 +42,33 @@
 	background-color: #ece9df;
 } */
 </style>
-<%@ include file="../include/header.jsp" %>
-<%@ include file="../include/fixed-topbar.jsp" %>
+<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/fixed-topbar.jsp"%>
 <script src="${path}/include/js/teacherJoin.js"></script>
 <script type="text/javascript">
-function nicknameC(){
-	var nickname = $("#nickname").val();
-	
-	$.ajax({
-		url : "${path}/teacher/nicknameC.do?nickname="+nickname,
-		type : "get",
-		success : function(data){
-			if(data=='1'){
-				$("#nicknameC").html("<a style='color: red;'>중복된 아이디 입니다</a>");
-				$("#nicknameC_result").val('1');
-			}else {
-				$("#nicknameC").html("<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
-				$("#nicknameC_result").val('0');
+	function nicknameC() {
+		var nickname = $("#nickname").val();
+
+		$.ajax({
+			url : "${path}/teacher/nicknameC.do?nickname=" + nickname,
+			type : "get",
+			success : function(data) {
+				if (data == '1') {
+					$("#nicknameC").html(
+							"<a style='color: red;'>중복된 아이디 입니다</a>");
+					$("#nicknameC_result").val('1');
+				} else {
+					$("#nicknameC").html(
+							"<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
+					$("#nicknameC_result").val('0');
+				}
 			}
-		}
-	});
-}
+		});
+	}
 </script>
 </head>
 <body>
-<div class="col-xl-8 offset-xl-2 col-lg-12">
+	<div class="col-xl-8 offset-xl-2 col-lg-12">
 		<!-- 큰외곽  -->
 		<div class="row teacherJoinBox">
 			<!-- 작은 외곽 -->
@@ -194,10 +197,10 @@ function nicknameC(){
 																<h6>닉 네 임 :</h6>
 															</div>
 															<div class="col-md-8">
-																<span id="nicknameC" name="nicknameC"></span> 
-																<!-- <input class="form-control" type="text" name="nicknameC_result" id="nicknameC_result" placeholder="nickname"> -->
-																<input class="form-control" type="text" name="nickname" id="nickname" onchange="nicknameC()" placeholder="nickname">
-																<input type="hidden" name="nicknameC_result" id="nicknameC_result" value="1">
+																<span id="nicknameC" name="nicknameC"></span> <input
+																	class="form-control" type="text"
+																	name="nicknameC_result" id="nicknameC_result"
+																	placeholder="nickname">
 															</div>
 														</div>
 													</div>
@@ -318,14 +321,6 @@ function nicknameC(){
 														<input type="file" name="spec1File" id="spec1File">
 														<!-- 추가할 div영역 -->
 														<div id="addSpecDiv" style="height: auto"></div>
-													</div>
-													<div class="col-12 d-flex">
-														<div class="col-6">
-															<input type="button" value="추가" onclick="addSpec()">
-														</div>
-														<div class="col-6">
-															<input type="button" value="삭제" onclick="deleteSpec()">
-														 </div>
 													</div>
 												</div>
 

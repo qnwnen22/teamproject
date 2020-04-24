@@ -14,10 +14,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertCart">
 		insert into cart
-		(main_img,cart_idx, cell_type, userid, lecture_idx, main_category, sub_category, subject, price)
+		(main_img, cart_idx, cell_type, userid, lecture_idx, main_category, sub_category, subject, price)
 		values
-		( #{main_img}, 
-		(select nvl(max(cart_idx)+1, 1) from cart where userid=#{userid}),
+		( #{main_img, jdbcType=VARCHAR},(select nvl(max(cart_idx)+1, 1) from cart where userid=#{userid}),
 		#{cell_type}, #{userid}, #{lecture_idx}, #{main_category}, #{sub_category}, #{subject}, #{price}
 		)
 	</insert>
@@ -36,9 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertLectureBox">
 		insert into lectureBox
-		(box_idx, cell_type, userid, lecture_idx)
+		(main_img, box_idx, cell_type, userid, lecture_idx)
 		values
-		(
+		(#{main_img, jdbcType=VARCHAR},
 		(select nvl(max(box_idx)+1, 1) from lectureBox ), 
 		#{cell_type}, #{userid}, #{lecture_idx}
 		)
@@ -50,6 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select count(*) from cart
       where userid=#{userid} and lecture_idx=#{lecture_idx}
    </select>
+   
    <delete id="deleteAll">
     delete from cart
     where userid=#{userid}

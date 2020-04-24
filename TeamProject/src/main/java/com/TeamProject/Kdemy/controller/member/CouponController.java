@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,8 +56,8 @@ public class CouponController {
 	}
 	
 
-	@RequestMapping(value = "/makeCoupon.do", method = RequestMethod.POST)
-	public String makeCoupon(CouponDTO dto, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+	@RequestMapping("/makeCoupon.do")
+	public ModelAndView makeCoupon(CouponDTO dto, HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException {
 		String useremail = request.getParameter("useremail");
 		String coupon = request.getParameter("coupon");
 		String key1 = new TempKey().getKey(4,false); 
@@ -70,15 +71,14 @@ public class CouponController {
 	   	dto2.setKey2(key2); 
 	   	dto2.setKey3(key3);
 	   	dto2.setCoupon(key4);
-		
+		ModelAndView mav=new ModelAndView();			
 		memberService.updateCoupon(dto2);
-			
+
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[kdemy에서 쿠폰을 받으세요!]");
-		sendMail.setText(new StringBuffer().append("<table><tbody>")
-				
-				.append("<tr style='text-align: center;'><img src='https://modo-phinf.pstatic.net/20200422_270/1587551759244eC2Jq_PNG/mosaSIqsDO.png'></tr>")
-				.append("<tr class='coupon' style='text-align: center;font-size:1.5rem; color:red'>쿠폰 번호 </tr>")
+		sendMail.setText(new StringBuffer().append("<table style='border:3px solid #9e7eab; border-radius:10px;'><tbody>")
+				.append("<tr style='text-align: center;'><img src='https://modo-phinf.pstatic.net/20200423_57/1587601762341AwFLH_JPEG/mosajn1t3W.jpeg'></tr>")
+				.append("<tr class='coupon' style='text-align: center;font-size:1.5rem; color:#422e4a;'>쿠폰 번호 </tr>")
 				.append("<tr style='text-align: center;'><span style='padding:5px; font-size:1.5rem;'>"+key1)
 				.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key2+"</span>-<span style='padding:5px; font-size:1.5rem;'>"+key3)
 				.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key4+"</span><br>")
@@ -87,7 +87,10 @@ public class CouponController {
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto2.getUseremail());
 		sendMail.send();
-		return "member/coupon";
+		
+		mav.addObject("message","이메일이 전송되었습니다.");
+		mav.setViewName("member/coupon"); 
+		return mav;
 	}
 
 	@RequestMapping("couponDetail.do")

@@ -53,17 +53,17 @@ public class LectureController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String uploadAjax(MultipartFile file, String str, HttpSession session,
+	public String uploadAjax(MultipartFile file1, String str, HttpSession session,
 			HttpServletRequest request, Model model) throws Exception {
 			ResponseEntity<String> img_path = new ResponseEntity<>(
-					UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
+					UploadFileUtils.uploadFile(uploadPath, file1.getOriginalFilename(), file1.getBytes()),
 					HttpStatus.CREATED);
 			String main_img = (String) img_path.getBody();
 			LectureDTO dto = new LectureDTO();
 			dto.setMain_img(main_img);
-		    String userid = (String) session.getAttribute("userid");
-			dto.setUserid(userid);
-//			lectureService.update_main_img(dto);
+		    int lecture_idx = (int) session.getAttribute("lecture_idx");
+			dto.setLecture_idx(lecture_idx);
+			lectureService.update_main_img(dto);
 			return main_img;
 	}
 	
@@ -117,7 +117,7 @@ public class LectureController {
 	//동영상 리스트 페이지 이동
 	@RequestMapping("video_list.do")
 	public ModelAndView typeAList(@RequestParam(defaultValue="1")int curPage,
-			@RequestParam(defaultValue="") String admin) throws Exception {
+			@RequestParam(defaultValue="") String admin, LectureDTO dto) throws Exception {
 		String cell_type="1";
 		int count=lectureService.countList(cell_type);
 		LecturePager pager=new LecturePager(count, curPage);
@@ -131,6 +131,7 @@ public class LectureController {
 		map.put("list", list); //map에 자료 저장
 		map.put("count", count);
 		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
+		
 	    //이동 경로 
 		if(admin.equals("admin")) {
 			mav.setViewName("admin/video_lecture_list");
@@ -138,6 +139,7 @@ public class LectureController {
 			mav.setViewName("lecture/video_list");
 		}
 		mav.addObject("map", map); //ModelAndView에 map을 저장
+
 		return mav;
 	}
 
@@ -145,7 +147,7 @@ public class LectureController {
 	@RequestMapping("all_list_search.do")
 	public ModelAndView all_list(
 			@RequestParam(defaultValue="") String keyword,
-			@RequestParam(defaultValue="1") int curPage
+			@RequestParam(defaultValue="1") int curPage, LectureDTO dto
 			) throws Exception {
 		int count = lectureService.searchCount(keyword);
 		LecturePager pager=new LecturePager(count, curPage);
@@ -168,7 +170,7 @@ public class LectureController {
 	@RequestMapping("all_list.do")
 	public ModelAndView all_list(
 			@RequestParam(defaultValue="1")int curPage,	
-			@RequestParam(defaultValue="") String admin) throws Exception {
+			@RequestParam(defaultValue="") String admin, LectureDTO dto) throws Exception {
 		int count=lectureService.countList();
 		LecturePager pager=new LecturePager(count, curPage);
 		int start=pager.getPageBegin();
@@ -184,7 +186,9 @@ public class LectureController {
 		map.put("count", count);
 		map.put("pager", pager); //페이지 네비게이션을 위한 변수 
 		
+		
 		mav.addObject("map",map);
+
 		if(admin.equals("admin")) {
 			mav.setViewName("admin/all_list");
 		}else {
@@ -408,12 +412,14 @@ public class LectureController {
 		}
 			
 		dto=lectureService.lecture_list_view(lecture_idx);
+	
 
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("upCount", upCount);
 		mav.addObject("lectureCount",lectureCount);
 		mav.addObject("up", up);
 		mav.addObject("check",check);
+		mav.addObject("main_img",dto.getMain_img());
 		mav.addObject("dto",dto);
 		mav.setViewName("lecture/lecture_list_view");
 		return mav;

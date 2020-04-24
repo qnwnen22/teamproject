@@ -23,26 +23,26 @@
            <h4 class="mx-3 mt-3">쿠폰생성</h4>
            <div class="card mb-5 mb-lg-0 shadow mb-3 bg-white mx-auto col-10">
             <img class="card-img-top" src="${path}/include/images/coupon/쿠폰박스.png" alt="Card image">
-            <div class="card-img-overlay col-12 ml-3"  style="margin-top: 160px;">
+            <div class="card-img-overlay col-12 ml-3"  style="margin-top: 120px;">
               <form name="form" id="form" action="insertCoupon.do" method="post" class="form-horizontal">
-	           <div class="form-group form-inline mb-4">
+	           <div class="form-group form-inline mb-2">
 					<label for="coupon_name">쿠폰 이름</label>
-					<input class="form-control col-4"  name="coupon_name" id="coupon_name" placeholder="쿠폰이름을 입력하세요.">
+					<input class="form-control col-8"  name="coupon_name" id="coupon_name" placeholder="쿠폰이름을 입력하세요.">
 				</div>
-				  <div class="form-group form-inline mb-4">
+				  <div class="form-group form-inline mb-2">
 					<label for="coupon_name">쿠폰번호</label>
-					<input class="form-control col-4"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()">
+					<input class="form-control col-8"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()">
 					<span id="CheckM"></span><span id="couponM"></span>				
 				</div>
-				<div class="form-group form-inline mb-4">
+				<div class="form-group form-inline mb-2">
 					<label for="coupon_name">포인트</label>
-					<input class="form-control col-4" name="point"  id="point" placeholder="포인트를 입력하세요.">				
+					<input class="form-control col-8" name="point"  id="point" placeholder="포인트를 입력하세요.">				
 				</div>
-				<div class="form-group form-inline mb-4">
+				<div class="form-group form-inline mb-2">
 					<label for="coupon_name">쿠폰설명</label>
-					<input class="form-control col-4"  name="coupon_text"  id="coupon_text" placeholder="쿠폰에 대한 설명을 입력하세요.">
+					<input class="form-control col-8"  name="coupon_text"  id="coupon_text" placeholder="쿠폰에 대한 설명을 입력하세요.">
 				</div>
-				<div class="mx-auto col-4 mt-5">
+				<div class="mx-auto col-4 mt-2">
 				<button type="submit" class="btn-sm btn-block btn-danger text-uppercase text-center" id="listButton">쿠폰 만들기</button>
 				</div>
            </form>
@@ -60,6 +60,8 @@
    <div id="memberlistDiv"></div>
 
  <script>
+
+
 $(function(){
 		  $.ajax({
 		          type: 'post'

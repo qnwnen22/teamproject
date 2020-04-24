@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
-<div class="container-fluid" id="footer-body">
+<div class="container align-items-end" id="footer-body">
 	<div id="footertoggle" class="d-flex py-1 ">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
