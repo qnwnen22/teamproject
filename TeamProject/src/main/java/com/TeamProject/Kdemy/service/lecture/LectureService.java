@@ -59,5 +59,9 @@ public interface LectureService {
 	   public List<LectureBoxDTO> chartCountMoney();
 	   public int totalMoney();
 	public void reviewStar(LectureReviewDTO dto);
+	public List<LectureDTO> lecture_listV();
+	public List<LectureDTO> lecture_listOn();
+	public List<LectureDTO> lecture_listOff();
+	
 
 }

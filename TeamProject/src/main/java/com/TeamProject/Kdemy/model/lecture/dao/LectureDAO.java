@@ -59,5 +59,8 @@ public interface LectureDAO {
 	   public void upCount(int lecture_idx);
 	   public void downCount(int lecture_idx);
 	   public void cellCount(String lecture_idx);
+	   public List<LectureDTO> lecture_listV();
+	   public List<LectureDTO> lecture_listOn();
+	   public List<LectureDTO> lecture_listOff();
 
 }

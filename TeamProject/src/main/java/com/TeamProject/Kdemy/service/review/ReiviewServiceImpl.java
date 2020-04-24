@@ -95,6 +95,11 @@ public class ReiviewServiceImpl implements ReviewService {
 		
 	}
 
+	@Override
+	public List<ReviewDTO> listAll() {
+		return reviewDao.listAll();
+	}
+
 
 
 }

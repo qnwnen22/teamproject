@@ -21,4 +21,5 @@ public interface ReviewDAO {
 	public ReviewDTO read(int bno) throws Exception;//레코드 조회
 	public ReviewDTO  detailReview(int bno);
 	public void update_fullName(ReviewDTO dto);
+	public List<ReviewDTO> listAll();
 }
