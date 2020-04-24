@@ -23,9 +23,6 @@ $('#star1 a').click(function(){
 	console.log($(this).attr("value"));
 });
 </script>
-<style>
- /*   div{border:1px solid black;}  */
-</style>
 </head>
 <body>
 <div class="row">
@@ -214,9 +211,9 @@ $('#star1 a').click(function(){
 		    			<a class="nav-link" onclick="lecturetime()" data-toggle="tab" href="#">강의 시간</a>
 		  			</li>
 		  			
-		  			<li class="nav-item">
+<!-- 		  			<li class="nav-item">
 		    			<a class="nav-link" onclick="lectureaddr()" data-toggle="tab" href="#">강의 장소</a>
-		  			</li>
+		  			</li> -->
 				</ul>
 			</div>
 				
@@ -247,7 +244,7 @@ $('#star1 a').click(function(){
 				</c:choose>
 			</div>
 			
-			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureAddr" style="display: none;">
+<%-- 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureAddr" style="display: none;">
 				<c:choose>
 					<c:when test="${dto.cell_type > 2}">
 						강의주소 : ${dto.lecture_address}<br>
@@ -257,7 +254,7 @@ $('#star1 a').click(function(){
 						<h2>내용이 없습니다</h2>
 					</c:otherwise>
 				</c:choose>
-			</div>
+			</div> --%>
 		</div>
 	</div>
 	</div>		

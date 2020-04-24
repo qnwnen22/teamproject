@@ -13,13 +13,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
 .lecture:hover {
+  transition: all 0.7s; 
+  transition-timing-function: ease;
   background-color: #edeff2;
 }
 
 .lecture:active {
   background-color: #eeeeee;
   }
-
+.lectureList{
+  border:1px solid black;
+  width: 100px;
+  height: 100px;
+}
+.lectureList:hover {
+  transition: all 0.7s; 
+  transition-timing-function: ease;
+  background-color: black;
+}
 </style>
 </head>
 <body>
@@ -34,21 +45,29 @@
 				<div class="short-div m-5"><strong>${dto.subject}</strong></div>
 				<div class="short-div">${dto.userid}</div>
 				<div class="short-div">&nbsp;&nbsp;<span>${dto.buy_date}</span></div>
+				<div class="short-div">
+		
+					
+					</div>
 				</div>
 				
 				</div>
-				
-				<%-- ${dto.box_idx}</td> align="center" --%>
-				<%-- <td class="col-2">${dto.buy_date}</td> --%>
          	<br><br>
          </c:forEach>
 		</div>
+	</div>
+	
+	<div style="position:fixed; top: 30%; right: 10%;">
+	 <div class="lectureList">
+	   <a href="http://localhost/Kdemy/lecture/all_list.do"><img class="img" src="img/icon.png" style="width:100%; height:100%;"></a>
+	 </div>
 	</div>
 	
 	
 				
 	<script>
 	function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+page;}
+
 	</script>
 	
 	</body>
