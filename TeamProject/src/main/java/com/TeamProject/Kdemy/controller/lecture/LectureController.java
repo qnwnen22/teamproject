@@ -178,7 +178,6 @@ public class LectureController {
 		
 		List<LectureDTO> list=lectureService.lecture_list(start, end);
 		
-		System.err.println("list :"+list);
 		ModelAndView mav=new ModelAndView();
 		
 		HashMap<String, Object> map=new HashMap<>();
@@ -407,7 +406,6 @@ public class LectureController {
 			lbDto.setLecture_idx(lecture_idx);
 			check = lectureService.buyCheck(lbDto);
 			up = lectureService.upCheck(lbDto);
-//				System.err.println("up : "+up);
 			if(up==null) up="x";
 		}
 			
@@ -537,7 +535,6 @@ public class LectureController {
 		dto.setLecture_idx(lecture_idx);
 		
 		int check=lectureService.lectureViewCheck(dto);
-		System.err.println("check : "+check);
 		if(check==1) {
 			LectureDTO ldto=new LectureDTO();
 			ldto=lectureService.lectureView_success(lecture_idx);
@@ -564,7 +561,6 @@ public class LectureController {
 		if(main_img=="") {
 			lectureService.update(dto);
 		}else {
-//				System.err.println("else");
 			try {
 				main_img=UploadFileUtils.uploadFile(uploadPath, main_img, file1.getBytes());
 			} catch (Exception e) {
@@ -588,4 +584,42 @@ public class LectureController {
 		lectureService.downUpdate(userid, lecture_idx);
 		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
 	}
+	
+	@RequestMapping("lectureUp2.do")
+	public String lectureUp2(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+		
+		System.err.println("userid="+userid);
+		System.err.println("lecture_idx="+lecture_idx);
+		
+		lectureService.upUpdate(userid, lecture_idx);
+		return "redirect:/member/orderDetail1.do";
+	}
+	
+	@RequestMapping("lectureDown2.do")
+	public String lectureDown2(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+
+		System.err.println("userid="+userid);
+		System.err.println("lecture_idx="+lecture_idx);
+		
+		lectureService.downUpdate(userid, lecture_idx);
+		return "redirect:/member/orderDetail1.do";
+	}
+	
+	@RequestMapping("lectureView_video.do")
+	public ModelAndView lectureView_video(LectureDTO dto) {
+		int lecture_idx = dto.getLecture_idx();
+		dto=lectureService.lecture_list_view(lecture_idx);
+		
+		ModelAndView mav= new ModelAndView();
+		
+		mav.addObject("dto",dto);
+		mav.setViewName("lecture/video_view");
+		return mav;
+	}
+	
+
 }
+
+	

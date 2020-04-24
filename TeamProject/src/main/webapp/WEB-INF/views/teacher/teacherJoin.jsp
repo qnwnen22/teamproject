@@ -1,13 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.input-group {
+	position: relative;
+	display: table;
+	border-collapse: separate;
+}
+.profileImgBox{
+ box-sizing:inherit ;
+width: auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
 .img-circle {
-	border-radius: 50%;
+ box-sizing:inherit ;
+	 width: 100%;
+    object-fit: cover;
 }
 
 .TJoinForm {
@@ -17,8 +32,13 @@
 	/*  background: #adebeb; */
 }
 
-.mt-5 {
-	text:
+.TJoinFormCertificate {
+	border-style: solid;
+	border-width: 0px 0px 2px 0px;
+	border-color: #00111a;
+}
+.TJoinBox1{
+
 }
 
 .TJoinFormImg {
@@ -33,6 +53,31 @@
 	background-color: #ebebe0;
 }
 
+.filebox label {
+	display: inline-block;
+	padding: .5em .75em;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
 /* .form-group {
 	background-color: #ebebe0;
 }
@@ -41,38 +86,40 @@
 	background-color: #ece9df;
 } */
 </style>
-<%@ include file="../include/header.jsp" %>
-<%@ include file="../include/fixed-topbar.jsp" %>
+<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/fixed-topbar.jsp"%>
 <script src="${path}/include/js/teacherJoin.js"></script>
 <script type="text/javascript">
-function nicknameC(){
-	var nickname = $("#nickname").val();
-	
-	$.ajax({
-		url : "${path}/teacher/nicknameC.do?nickname="+nickname,
-		type : "get",
-		success : function(data){
-			if(data=='1'){
-				$("#nicknameC").html("<a style='color: red;'>중복된 아이디 입니다</a>");
-				$("#nicknameC_result").val('1');
-			}else {
-				$("#nicknameC").html("<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
-				$("#nicknameC_result").val('0');
+	function nicknameC() {
+		var nickname = $("#nickname").val();
+
+		$.ajax({
+			url : "${path}/teacher/nicknameC.do?nickname=" + nickname,
+			type : "get",
+			success : function(data) {
+				if (data == '1') {
+					$("#nicknameC").html(
+							"<a style='color: red;'>중복된 아이디 입니다</a>");
+					$("#nicknameC_result").val('1');
+				} else {
+					$("#nicknameC").html(
+							"<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
+					$("#nicknameC_result").val('0');
+				}
 			}
-		}
-	});
-}
+		});
+	}
 </script>
 </head>
 <body>
-<div class="col-xl-8 offset-xl-2 col-lg-12">
+	<div class="col-xl-8 offset-xl-2 col-lg-12">
 		<!-- 큰외곽  -->
 		<div class="row teacherJoinBox">
 			<!-- 작은 외곽 -->
 
 
 
-			<div class="col-md-2  mt-5">
+			<div class="teacherJoinBox col-md-2  mt-5">
 				<!-- 옆에 버튼 -->
 				<div class="mt-10 TJoinForm">
 					<img class="TJoinFormImg teacherJoinBoxIn mt-10" alt="광고 이미지"
@@ -123,10 +170,10 @@ function nicknameC(){
 
 
 
-			<div class="col-md-9 col-md-offset-1">
+			<div class="col-md-9 col-md-offset-2">
 				<!-- main page -->
 
-				<div>
+				<div class="ml-3 TJoinBox1">
 					<div class="mt-4 TJoinForm">
 						<h3 class="font-weight-bold ">전문가 등록페이지</h3>
 					</div>
@@ -147,23 +194,29 @@ function nicknameC(){
 										<div class="row">
 											<div class="col-md-6 mt-3 text-center">
 												<!-- 프로필 사진 -->
+												<div class="row">
+												<div class="col-md-3"></div>
+												<div class="col-md-6 col-md-offset-3 text-center">
 												<c:choose>
 													<c:when test="${empty dto.main_img}">
-														<div>
+														<div class="profileImgBox">
 															<img id="profileImg"
 																src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-																class="avatar img-circle img-thumbnail">
+																class="avatar img-circle img-thumbnail" id="img-circle">
 														</div>
 													</c:when>
 												</c:choose>
-												<div class="text-center ml-5 mt-1">
-													<input class=" ml-5 text-center  file-upload" type="file"
+												</div>
+												</div>
+												<div class="filebox text-center  mt-1">
+													<label for="input_img">+ 이미지를 등록하세요 +</label> <input
+														class=" ml-5 text-center  file-upload" type="file"
 														name="thumbnailFile" id="input_img"><i
 														class="glyphicon glyphicon-plus"></i>
 												</div>
 
 											</div>
-											<div class="col-md-6 mt-5">
+											<div class="col-md-6 mt-2">
 												<!-- 아이디 입력 -->
 												<div class="mt-5 " onsubmit="return beforeSubmit()">
 													<div class="form-group">
@@ -194,10 +247,13 @@ function nicknameC(){
 																<h6>닉 네 임 :</h6>
 															</div>
 															<div class="col-md-8">
-																<span id="nicknameC" name="nicknameC"></span> 
+																<span id="nicknameC" name="nicknameC"></span>
 																<!-- <input class="form-control" type="text" name="nicknameC_result" id="nicknameC_result" placeholder="nickname"> -->
-																<input class="form-control" type="text" name="nickname" id="nickname" onchange="nicknameC()" placeholder="nickname">
-																<input type="hidden" name="nicknameC_result" id="nicknameC_result" value="1">
+																<input class="form-control input-group-sm col-5"
+																	type="text" name="nickname" id="nickname"
+																	onchange="nicknameC()" placeholder="nickname">
+																<input type="hidden" name="nicknameC_result"
+																	id="nicknameC_result" value="1">
 															</div>
 														</div>
 													</div>
@@ -206,23 +262,24 @@ function nicknameC(){
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-md-6 mt-3">
-											<!-- 학력 -->
-											<div class="TJoinForm">
-												<h4 class="ml-4">학력</h4>
-											</div>
 
-											<div class=" offset-md-1">
-												<div class="mt-3">
-
-													<div class="row">
-														<div class="col-md-4">
-
-															<label for="finalEducation"><h6>최종 학력</h6></label>
-														</div>
-														<div class="col-md-8">
-															<select id="finalEducation" name="finalEducation">
+	
+									<div class="mt-3 ">
+										<!-- 학력 -->
+										<div class="TJoinForm">
+											<h4 class="ml-4">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;력</h4>
+										</div>
+										<div class="row mt-3 TJoinCertificate">
+											<div class="col-md-2"></div>
+											<div class="col-md-8 col-md-offset-3">
+												<div class="row">
+													<div class="col-md-4">
+														<label for="finalEducation"><h6>최&nbsp;종&nbsp;&nbsp;&nbsp;학&nbsp;력</h6></label>
+													</div>
+													<div class="col-md-8">
+														<div class="form-group">
+															<select id="finalEducation" class="form-control"
+																name="finalEducation">
 
 																<option value="" selected>-학력 선택-</option>
 																<option value="고등학교 졸업">고등학교 졸업</option>
@@ -231,106 +288,144 @@ function nicknameC(){
 															</select>
 														</div>
 													</div>
-													<div class="mt-2 row">
-														<div class="col-md-4">
-															<label for="schoolName"><h6>학교 이름</h6></label>
-														</div>
-														<div class="col-md-8">
-															<input type="text" name="schoolName"
-																placeholder="학교 검색(미구현)"> <input
-																class="btn btn-outline-dark btn-sm" type="button"
-																value="검색"><br>
-														</div>
+												</div>
+												<div class="mt-2 row">
+													<div class="col-md-4">
+														<label for="schoolName"><h6>학&nbsp;교&nbsp;&nbsp;&nbsp;&nbsp;이&nbsp;름</h6></label>
 													</div>
-													<div class="mt-3 row">
-														<div class="col-md-4"></div>
-														<div class="col-md-8 ">
-															<input type="text" name="department" placeholder="(세부)전공">
-															<label for="department"></label>
-														</div>
+													<div class="col-md-8 input-group">
+														<input class="form-control" type="text" name="schoolName"
+															placeholder="학교 검색(미구현)" aria-describedby="basic-addon2">
+														<span class="input-group-addon" id="basic-addon2">
+															<input class="btn btn-outline-dark " type="button"
+															value="검색">
+														</span>
 													</div>
+												</div>
 
+
+
+
+												<div class="mt-3 row">
+													<div class="col-md-4"></div>
+													<div class="col-md-8 mb-4">
+														<input class="form-control" type="text" name="department"
+															placeholder="(세부)전공"> <label for="department"></label>
+													</div>
 												</div>
 											</div>
 
 										</div>
-										<div class=" col-md-6 mt-3">
-											<!-- 자격증 -->
-											<div class="TJoinForm">
-												<h4 class="ml-4">자격증</h4>
-											</div>
-											<div class=" offset-md-1">
+									</div>
+									<!-- 학력 -->
+
+									<div class="mt-3 ">
+										<!-- 자격증 -->
+										<div class="TJoinForm">
+											<h4 class="ml-4">자&nbsp;&nbsp;격&nbsp;&nbsp;증</h4>
+										</div>
+
+										<div class="row mt-3">
+											<div class="col-md-2"></div>
+											<div class="col-md-8 col-offset-md-2">
 												<div class="row mt-3">
-													<div class="col-md-3 ">
-														<label for="spec1" class="control-label">자격증명 </label>
+													<div class="col-md-4 ">
+														<label for="spec1" class="control-label"><h6>
+																자&nbsp;격&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;증&nbsp;명</h6> </label>
 													</div>
-													<div class="col-md-9">
-														<input type="text" class="from-control" name="spec1"
-															id="spec1" placeholder="(기능 미구현)"> <input
-															class="btn btn-outline-dark btn-sm" type="button"
-															value="검색"><br>
+													<div class="col-md-8 input-group">
+														<input type="text" class="form-control" name="spec1"
+															id="spec1" placeholder="(기능 미구현)"
+															aria-describedby="basic-addon3"> <span
+															class="input-group-addon" id="basic-addon3"><input
+															class="btn btn-outline-dark" type="button" value="검색"></span>
 													</div>
 												</div>
+
+
 												<div class="mt-3">
 													<div class="row mt-2">
-														<div class="col-md-3">
+														<div class="col-md-4">
 															<label for="spec1_date" class="control-label">
-																취득일자</label>
+																<h6>취&nbsp;득&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;자</h6>
+															</label>
 														</div>
 
-														<span id="spec1_date" class="col-md-9"> <select
-															name="spec1_y" id="spec1_y">
-																<option value="">--</option>
-																<%
-																	for (int i = 2020; i >= 1900; i--) {
-																%>
-																<option value="<%=i%>"><%=i%></option>
-																<%
-																	}
-																%>
-														</select>년 <select name="spec1_m" id="spec1_m">
-																<option value="">--</option>
-																<%
-																	for (int i = 1; i <= 12; i++) {
-																%>
-																<option value="<%=i%>"><%=i%></option>
-																<%
-																	}
-																%>
-														</select>월 <select name="spec1_d" id="spec1_d">
-																<option value="">--</option>
-																<%
-																	for (int i = 1; i <= 30; i++) {
-																%>
-																<option value="<%=i%>"><%=i%></option>
-																<%
-																	}
-																%>
-														</select>일
+														<span id="spec1_date" class="col-md-8 text-right">
+															<div class="row">
+																<select name="spec1_y" id="spec1_y"
+																	class="col-3 form-control ml-3 input-sm">
+																	<option value="">--</option>
+																	<%
+																		for (int i = 2020; i >= 1900; i--) {
+																	%>
+																	<option value="<%=i%>"><%=i%></option>
+																	<%
+																		}
+																	%>
+																</select>
+																<h6 class="mt-3 ml-1">년</h6>
+																<select name="spec1_m" id="spec1_m"
+																	class="ml-2 col-3 form-control">
+																	<option value="">--</option>
+																	<%
+																		for (int i = 1; i <= 12; i++) {
+																	%>
+																	<option value="<%=i%>"><%=i%></option>
+																	<%
+																		}
+																	%>
+																</select>
+																<h6 class="mt-3 ml-1">월</h6>
+																<select name="spec1_d" id="spec1_d"
+																	class="ml-2 col-3 form-control">
+																	<option value="">--</option>
+																	<%
+																		for (int i = 1; i <= 30; i++) {
+																	%>
+																	<option value="<%=i%>"><%=i%></option>
+																	<%
+																		}
+																	%>
+																</select>
+																<h6 class="mt-3 ml-1">일</h6>
+															</div>
 														</span>
 													</div>
 												</div>
 												<div class="row mt-2">
-													<div class="col-md-3">
-														<label for="spec1File">자격증사진</label>
+													<div class="col-md-4">
+														<label for="spec1File"><h6>자&nbsp;격&nbsp;증&nbsp;&nbsp;&nbsp;사&nbsp;진</h6></label>
+														<span class="spec1_imgJI"></span>
 													</div>
-													<div class="col-md-9">
-														<input type="file" name="spec1File" id="spec1File">
+													<div class="col-md-8">
+														<input class="text-secondary  text-center" type="file"
+															name="spec1File" id="spec1File">
 														<!-- 추가할 div영역 -->
-														<div id="addSpecDiv" style="height: auto"></div>
-													</div>
-													<div class="col-12 d-flex">
-														<div class="col-6">
-															<input type="button" value="추가" onclick="addSpec()">
-														</div>
-														<div class="col-6">
-															<input type="button" value="삭제" onclick="deleteSpec()">
-														 </div>
+
 													</div>
 												</div>
-
-
-
+												<hr>
+												<div class="row">
+													<div class="col-md-12 " id="addSpecDiv"
+														style="height: auto"></div>
+													<!-- class="ml-5" -->
+												</div>
+												<div class="row">
+													<div class="col-md-8"></div>
+													<div class="col-md-4 col-md-offset-8">
+														<div class="row text-right mt-3">
+															<div class="col-md-8">
+																<input class="btn btn-outline-primary btn-sm text-right"
+																	type="button" value="추가" onclick="addSpec()">
+															</div>
+															<div class="col-md-4">
+																<input class="btn btn-outline-danger btn-sm"
+																	type="button" value="삭제" onclick="deleteSpec()">
+															</div>
+														</div>
+													</div>
+												</div>
 
 												<div class="offset-md-3">
 													<div class="mt-3" name="specTable" id="specTable"></div>
@@ -338,12 +433,13 @@ function nicknameC(){
 											</div>
 										</div>
 									</div>
+									<!-- 자격증 -->
 
 
 									<div class="mt-3 ">
 										<!-- 경력사항 -->
 										<div class="TJoinForm">
-											<h4 class="ml-4">경력사항</h4>
+											<h4 class="ml-4">경&nbsp;력&nbsp;&nbsp;&nbsp;사&nbsp;항</h4>
 										</div>
 
 										<div class="">
@@ -359,7 +455,8 @@ function nicknameC(){
 									<div class="mt-3 ">
 										<!-- 경력사항 -->
 										<div class="TJoinForm">
-											<h4 class="ml-2">이용약관 동의</h4>
+											<h4 class="ml-2">이&nbsp;용&nbsp;약&nbsp;관
+												&nbsp;&nbsp;&nbsp;동&nbsp;의</h4>
 										</div>
 
 										<div class="">
