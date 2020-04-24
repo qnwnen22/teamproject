@@ -74,9 +74,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert">
-		insert into kdemyreview (bno,subject,teacher,title,content,writer,fullName) values
+		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
 		(
-		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer}, #{fullName, jdbcType=VARCHAR})
+		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer})
 	</insert>
 	
 	 <update id="update_fullName">

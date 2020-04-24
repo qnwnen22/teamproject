@@ -84,6 +84,9 @@
 					    } 
 			    });
 
+	$('input:checkbox[name="chk"]').each(function() {
+		if($(".chk").prop("checked")) {
+			 
 	});
 
 </script>
@@ -125,7 +128,7 @@
 
 							<div
 								class="align-self-center align-middle h4 d-inline-block d-flex col-lg-1 col-xl-1 col-md-1 align-self-start ">
-								<input type="checkbox" name="chk" id="check${dto.cart_idx }" class="chk" checked="checked" value="${dto.price}">
+								<input type="checkbox" name="chk" id="check${dto.cart_idx }" class="chk" checked="checked" value="${dto.price}" >
 							</div>
 
 							<div class="col-lg-3 col-xl-3 col-md-3 mr-3 d-none d-xl-block d-lg-block d-md-block d-sm-block">
@@ -154,7 +157,7 @@
 									</a>
 								</div>
 
-								<div class="mt-5 row align-items-end ">
+								<div class="mt-5 row align-items-end price">
 									<span
 										class="d-flex justify-content-end h3 align-self-end mt-5 align-bottom col loat-lg-right float-xl-right float-md-right float-sm-right mr-0 mb-0 pr-0"
 										style="color: red;"> <fmt:formatNumber

@@ -28,6 +28,7 @@ public class CartController {
 	
 	@RequestMapping("cartPage.do")
 	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
+	
 		ModelAndView mav = new ModelAndView();
 		String userid=(String)session.getAttribute("userid");
 		int point=cartService.pointCheck(userid);
@@ -35,7 +36,6 @@ public class CartController {
 		dto.setUserid(userid);
 		List<CartDTO> list=new ArrayList<>();
 		list=cartService.cartList(dto);
-		
 		mav.addObject("point",point);
 		mav.addObject("count",list.size());
 		mav.addObject("list",list);

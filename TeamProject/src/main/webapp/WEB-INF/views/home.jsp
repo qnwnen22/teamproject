@@ -1097,6 +1097,8 @@ $(document).ready(function(){
 		</a>
 	</div>
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+		
+		
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1106,40 +1108,50 @@ $(document).ready(function(){
 				</h5>
 				<br>
 			</div>
+			
+			
+			<!-- 슬라이드 버튼 -->
 			<div class="pt-4 col-auto">
-				<a class="btn btn-xs btn-light">&lt;</a> <a
-					class="btn btn-xs btn-light">&gt;</a>
+				<a class="btn btn-xs btn-light slide_btn_prev">&lt;</a> <a
+					class="btn btn-xs btn-light slide_btn_next">&gt;</a>
 			</div>
 		</div>
-		<div class="row">
-			<div class="card col-2 px-0 m-auto">
+		<div class="slide_wrap">
+		<div class="row slide_box">
+		<div class="slide_list clearfix ">
+			<div class="card col-2 px-0 m-auto slide01 slide_content">
 				<img
 					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
 					class="card-img-top" alt="...">
 			</div>
-			<div class="card col-2 px-0 m-auto">
+			<div class="card col-2 px-0 m-auto slide02 slide_content">
 				<img
 					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
 					class="card-img-top" alt="...">
 			</div>
-			<div class="card col-2 px-0 m-auto">
+			<div class="card col-2 px-0 m-auto slide03 slide_content">
 				<img
 					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
 					class="card-img-top" alt="...">
 			</div>
-			<div class="card col-2 px-0 m-auto">
+			<div class="card col-2 px-0 m-auto slide04 slide_content">
 				<img
 					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
 					class="card-img-top" alt="...">
 			</div>
-			<div class="card col-2 px-0 m-auto">
+			<div class="card col-2 px-0 m-auto slide05 slide_content">
 				<img
 					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
 					class="card-img-top" alt="...">
 			</div>
 
-		</div>
-
+		</div><!-- slideList end  -->
+		</div><!-- slidebox end -->
+	
+	</div><!-- slidewrap end -->
+	
+	
+	
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
