@@ -86,8 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="read"
 		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
 		select bno,title,regdate,content,viewcnt,writer
-		from kdemynotice b
-		where bno=#{bno}
+		from kdemynotice where bno=#{bno}
 	</select>
 
 	<select id="detail_notice"

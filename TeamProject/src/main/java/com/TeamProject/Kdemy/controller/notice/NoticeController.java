@@ -54,6 +54,8 @@ public class NoticeController {
 	@RequestMapping("view.do")
 	public ModelAndView view(@ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
 		noticeService.increateViewcnt(bno, session);
+		String writer=(String)session.getAttribute("admin_id");
+		dto.setWriter(writer);
 		List<NoticeDTO> list = noticeService.listAll2();
 		ModelAndView mav=new ModelAndView();
 		HashMap<String, Object> map=new HashMap<>();
