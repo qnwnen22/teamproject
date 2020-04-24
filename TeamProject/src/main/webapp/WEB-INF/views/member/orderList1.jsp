@@ -19,6 +19,7 @@
 .lecture:active {
   background-color: #eeeeee;
   }
+
 </style>
 </head>
 <body>
@@ -26,7 +27,6 @@
 	<div class="col-xl-12 col-lg-12">
 		<div class="col-12 d-flex mb-3">
 			<div class="col-xl-12 m-2 h-auto d-inline-block">
-				<br>
   				<c:forEach var="dto" items="${list2}">
 					<div class="row lecture" style="border-radius:10px;">
 						<div class="col-sm-4">
