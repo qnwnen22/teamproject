@@ -505,6 +505,29 @@ public class LectureController {
 		return mav;
 	}
 	
+	@RequestMapping("lectureView_offline.do")
+	public ModelAndView lectureView_offline(HttpSession session, int lecture_idx) {
+		ModelAndView mav=new ModelAndView();
+		LectureBoxDTO dto=new LectureBoxDTO();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		dto.setLecture_idx(lecture_idx);
+		
+		int check=lectureService.lectureViewCheck(dto);
+		System.err.println("check : "+check);
+		if(check==1) {
+			LectureDTO dto2=new LectureDTO();
+			dto2=lectureService.lectureView_success(lecture_idx);
+			mav.addObject("dto", dto2);
+			mav.setViewName("lecture/lectureView_offline");
+			return mav;
+		}else {
+			mav.setViewName("redirect:/");
+		}
+		return mav;
+	}
+	
+	
 	@RequestMapping("lectureView_success.do")
 	public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
 		ModelAndView mav=new ModelAndView();
