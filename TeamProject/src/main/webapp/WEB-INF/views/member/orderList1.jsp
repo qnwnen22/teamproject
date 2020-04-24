@@ -23,9 +23,7 @@
 </style>
 </head>
 <body>
-	<div class="container" style="width:40%; float:none; margin:0 auto">
-				<div class="col-xl-12 col-lg-12">
-				<div class="col-12 d-flex mb-3">
+	<div class="container" style="width:60%; float:none; margin:0 auto">
 			<div class="col-xl-12 m-2 h-auto d-inline-block">
 	<br>
 	  <c:forEach var="dto" items="${list2}">
@@ -45,7 +43,6 @@
          	<br><br>
          </c:forEach>
 		</div>
-			</div></div>
 	</div>
 	
 	

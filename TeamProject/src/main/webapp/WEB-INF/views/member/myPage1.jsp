@@ -93,7 +93,7 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">내 정보수정</a></li>
                 <li><a id="listButton1" data-toggle="tab" href="#order">구매목록</a></li>
-                <li><a id="listButton2" data-toggle="tab" href="#cart">장바구니</a></li>
+                <!-- <li><a id="listButton2" data-toggle="tab" href="#cart">장바구니</a></li> -->
              </ul>
 
               
@@ -174,9 +174,9 @@
                   <div id="listDiv"></div>
 
              </div><!--/tab-content-->
-                  <div class="tab-pane" id="cart">
+                <!--   <div class="tab-pane" id="cart">
                   <div id="list2Div"></div>
-            </div><!--/tab-content-->
+            </div>/tab-content -->
 
         </div><!--/col-9-->
     </div><!--/row-->
@@ -202,7 +202,7 @@ $(function(){
 	})		
 }) 
 
-$(function(){
+/* $(function(){
 	$("#listButton2").click(function(){
 		  $.ajax({
 		          type: 'post'
@@ -214,7 +214,7 @@ $(function(){
 		  });	
 	})		
 })
-
+ */
 
 
 
