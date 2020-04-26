@@ -10,15 +10,10 @@
 </head>
 <body>
 <%@ include file="../include/fixed-topbar.jsp" %>
-<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+<div class="container col-xl-8 col-lg-12 col-md-12 col-sm-12 mx-auto">
 	<div class="row col-12">
-		<div class="col-2 d-none d-lg-block">
+		<%-- <div class="col-lg-2 d-none d-lg-block">
 			<div class="col-12 border border-dark m-0 p-0 asideDiv">
-				<div class="col-12"><h5><a href="${path}/lecture/all_list.do">ALL</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/video_list.do">동영상 강의</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/online_list.do">실시간 강의</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/offline_list.do">현장 강의</a></h5></div>
-				<hr>
 				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=디자인">디자인</a></h5></div>
 				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">IT,프로그래밍</a></h5></div>
 				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">콘텐츠 제작</a></h5></div>
@@ -31,20 +26,34 @@
 				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=주문제작">주문제작</a></h5></div>
 				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">간판,인쇄</a></h5></div>
 			</div>
-		</div>
-		
-		<div class="col-10">
-		
-			<div class="col-12 d-flex p-0">
-				<div class="col-8">
-					<ul class="upper_shift">
-						<li><a href="${path}">KDEMY</a></li>
-						<li>강의</li>
-						<li><a href="#" style="color:blue;">전체</a></li>
+		</div> --%>
+		<div class="col-12">
+			<div class="col-12">
+				<ul class="upper_shift">
+					<li><a href="${path}">KDEMY</a></li>
+					<li><a href="#" style="color:blue;">전체 강의</a></li>
+				</ul>	
+			</div>
+			
+			<div class="col-lg-12 d-lg-flex d-md-block px-0 mb-2">
+				<div class="col-lg-8 ml-0 px-0 d-none d-lg-block">
+					<ul class="nav nav-tabs ml-0 pl-0">
+						<li class="nav-item">
+							<a class="nav-link active" style="color: blue" href="${path}/lecture/all_list.do">전체 강의</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${path}/lecture/online_list.do">실시간 강의</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${path}/lecture/offline_list.do">현장 강의</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${path}/lecture/video_list.do">동영상 강의</a>
+						</li>
 					</ul>	
-				</div>
+				</div>	
 				
-				<div class="input-group mb-3 my-auto">
+				<div class="col-lg-4 col-md-12 input-group mb-3">
 					<form name="form_search" class="input-group">
 						<input type="text" class="form-control" placeholder="Search" name="keyword" id="keyword">
 						
@@ -53,13 +62,11 @@
 						</div>
 					</form>
 				</div>
-			</div>
-	
-			<hr>
 			
+			</div>
 			<div class="row">
 				<c:forEach var="dto" items="${map.list}">
-				<div class="col-12 col-sm-4 col-lg-3 mb-3">
+				<div class="col-12 col-sm-4 col-lg-4 col-xl-3 mb-3">
 				<a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
 					<div class="card mb-3 mx-.5 shadow bg-white rounded border border-secondary">
 						<c:choose>
@@ -83,7 +90,7 @@
 						</c:choose>
 						
 						<div class="card-image mx-0">
-							<img class="img-fluid mx-auto d-block" style="height:150px;"src="${path}/lecture/displayFile?fileName=${dto.main_img}">
+							<img class="img-fluid mx-auto d-block" style="max-height:170px;"src="${path}/lecture/displayFile?fileName=${dto.main_img}">
 						</div>
 
 						<div class="col-12 mt-3">

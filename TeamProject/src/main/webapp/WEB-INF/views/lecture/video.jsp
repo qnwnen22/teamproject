@@ -16,72 +16,6 @@
    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-
-<style type="text/css">
-.menu_add_div .text_cotent {
-	padding: 0 !important;
-}
-
-.menu_add_div .btn-dark {
-	background-color: #333 !important;
-	color: white !important;
-}
-
-.menu_add_div .btn-primary {
-	background-color: #333 !important;
-	color: white !important;
-	border-color: #333 !important;
-}
-
-.menu_add_div .color_form {
-	margin-bottom: 0;
-}
-
-.menu_add_div .color_input {
-	padding-right: 0;
-	display: inline-block;
-}
-
-.menu_add_div .modelsize_input {
-	padding-right: 0;
-	display: inline-block;
-}
-
-.menu_add_div .color_padding {
-	padding-right: 2%;
-}
-
-.menu_add_div .modelsize_padding {
-	padding-right: 2%;
-}
-
-@media ( max-width : 800px) {
-}
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
-
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-</style>
 <!-- 이원혁 추가 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
@@ -89,8 +23,9 @@
 <script src="${path}/include/js/lectureInsert.js"></script>
 </head>
 <body>
-<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
-	<div class="col-10 mx-auto">
+<!-- <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12"> -->
+<div class="container col-12 col-xl-8 mx-auto">
+	<div class="col-12 mx-auto">
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
 			<li>강사 페이지</li>
@@ -98,7 +33,7 @@
 		</ul>
 	</div>
 
-	<div class="row col-10 card mx-auto">
+	<div class="row col-12 card mx-auto">
 		<div class="col-12">
 			<!-- input 코드 -->
 			<form method="post"
