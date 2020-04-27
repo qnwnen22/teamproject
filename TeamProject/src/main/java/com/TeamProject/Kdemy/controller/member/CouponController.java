@@ -39,7 +39,7 @@ public class CouponController {
 		return "member/coupon";	
 	}
 	
-
+	@ResponseBody
 	@RequestMapping("/makeCoupon.do")
 	public ModelAndView makeCoupon(CouponDTO dto, HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException {
 		String useremail = request.getParameter("useremail");
@@ -76,7 +76,8 @@ public class CouponController {
 		mav.setViewName("member/coupon"); 
 		return mav;
 	}
-
+	
+	@ResponseBody
 	@RequestMapping("couponDetail.do")
 	public ModelAndView couponDetail(HttpSession session, CouponDTO dto) {
 		ModelAndView mav = new ModelAndView();
@@ -100,7 +101,6 @@ public class CouponController {
 		}
 	}
 	
-	@ResponseBody
 	@RequestMapping("selectCoupon.do")
 	public ModelAndView selectCoupon(ModelAndView mav, CouponDTO dto) {
 		dto.setCoupon(dto.getCoupon());
@@ -108,7 +108,6 @@ public class CouponController {
 		dto.setCoupon_text(dto.getCoupon_text());
 		dto.setPoint(dto.getPoint());
 		mav.addObject("select", dto);
-		System.out.println(dto);
 		mav.setViewName("member/coupon");
 		return mav;
 	}
