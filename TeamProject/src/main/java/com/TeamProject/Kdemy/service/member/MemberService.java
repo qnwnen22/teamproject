@@ -64,6 +64,8 @@ public interface MemberService {
 
 	public int couponCheck(CouponDTO dto);
 
+	public int emailCheck(MemberDTO dto);
+
 
 
 }
