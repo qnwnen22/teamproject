@@ -62,14 +62,6 @@
 					// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
 					socket.send("reply,"+replyer+","+gbwriter+","+gbno);
 					
-			if (socket.readyState !== 1)
-				return;
-			console.log(socket);
-			let replyer = $('input#replyer').val();
-			let gbwriter = $('input#gbwriter').val();
-			let gbno = $('input#gbno').val();
-			// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
-			socket.send("reply," + replyer + "," + gbwriter + "," + gbno);
 
 		});
 
@@ -104,7 +96,17 @@
 			$("#btnReply").click();
 		}
 	});
-	function listReply(page) {
+
+	function listreply(page) {
+		$.ajax({
+			type : "get",
+			url : "${path}/review/replylist.do?bno=${dto.bno} &curPage="+page,
+			success : function(result) {
+				$("#replyList").html(result);
+			}
+		});
+	}
+	function listReply() {
 		$.ajax({
 			type : "get",
 			url : "${path}/review/replylist.do?bno=${dto.bno} ",
@@ -140,6 +142,7 @@
 		     };
 		}
 
+		
 
 </script>
 
@@ -179,20 +182,13 @@
 				</div>
 				<hr>
 
-
 			</div>
 
-
 		</form>
-
 
 		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3"></div>
 		
 		
-
-		
-
-
 
 
 		<c:choose>

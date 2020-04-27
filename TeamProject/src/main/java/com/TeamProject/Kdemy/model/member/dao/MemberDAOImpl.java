@@ -190,6 +190,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<CouponDTO> couponDetail(CouponDTO dto) {
 		return sqlSession.selectList("member.couponDetail");
 	}
+
+	@Override
+	public int emailCheck(MemberDTO dto) {
+		return sqlSession.selectOne("member.emailCheck",dto);
+	}
 	
 }
 	

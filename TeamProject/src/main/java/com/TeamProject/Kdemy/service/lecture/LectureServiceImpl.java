@@ -77,6 +77,22 @@ public class LectureServiceImpl implements LectureService {
 	      return lectureDao.lecture_list(start, end);
 	   }
 	   
+
+		@Override
+		public List<LectureDTO> lecture_listV() {
+			return lectureDao.lecture_listV();
+		}
+		
+		@Override
+		public List<LectureDTO> lecture_listOn() {
+			return lectureDao.lecture_listOn();
+		}
+		
+		@Override
+		public List<LectureDTO> lecture_listOff() {
+			return lectureDao.lecture_listOff();
+		}
+	   
 	   
 	   @Override
 	   public int countList() {
@@ -214,6 +230,7 @@ public class LectureServiceImpl implements LectureService {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 }

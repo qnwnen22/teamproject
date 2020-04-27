@@ -11,7 +11,7 @@
 	function buyList() {
 		var point = Number(document.getElementById("point").value);
 		var price = Number(document.getElementById("price").value);
-
+		
 		if (point < price) {
 			alert("포인트가 모자랍니다.");
 			return false;
@@ -24,6 +24,12 @@
 			}
 		}
 	}
+
+	function Godeletecart(){
+		if(confirm("삭제하시겠습니까?")==true){
+			alert("삭제되었습니다");
+			}
+		}
 
 	$(function() {
 		$("#btnDeleteAll").click(function() {
@@ -84,7 +90,12 @@
 					    } 
 			    });
 
+
+			 
 	});
+
+
+	
 
 </script>
 </head>
@@ -101,7 +112,8 @@
 
 		<h4 class="mb-3 col-12">${sessionScope.username}님의보유중인 포인트</h4>
 		<div class="mb-5 d-flex col-12">
-			<input type="text" name="point" id="point"
+			<input type="hidden" name="point" id="point" value="${point }">
+			<input type="text"
 				value="<fmt:formatNumber pattern="###,###,###원" value="${point}" />"
 				readonly
 				class="bg-dark text-white mr-xl-2 form-control form-control-lg col-lg-3 col-sm-5 col-md-5 text-center">
@@ -125,7 +137,7 @@
 
 							<div
 								class="align-self-center align-middle h4 d-inline-block d-flex col-lg-1 col-xl-1 col-md-1 align-self-start ">
-								<input type="checkbox" name="chk" id="check${dto.cart_idx }" class="chk" checked="checked" value="${dto.price}">
+								<input type="checkbox" name="chk" id="check${dto.cart_idx }" class="chk" checked="checked" value="${dto.price}" >
 							</div>
 
 							<div class="col-lg-3 col-xl-3 col-md-3 mr-3 d-none d-xl-block d-lg-block d-md-block d-sm-block">
@@ -143,7 +155,7 @@
 							<div class="col-lg-3 col-xl-3 col-md-3">
 								<div
 									class="float-lg-right float-xl-right float-md-right float-sm-right h6 mr-0 d-none d-xl-block d-lg-block d-md-block d-sm-block">
-									<a href="${path}/cart/delete.do?cart_idx=${dto.cart_idx}">
+									<a href="${path}/cart/delete.do?cart_idx=${dto.cart_idx}" onclick="Godeletecart()">
 										<svg class="bi bi-trash-fill" width="1em" height="1em"
 											viewBox="0 0 16 16" fill="currentColor"
 											xmlns="http://www.w3.org/2000/svg">
@@ -154,7 +166,7 @@
 									</a>
 								</div>
 
-								<div class="mt-5 row align-items-end ">
+								<div class="mt-5 row align-items-end price">
 									<span
 										class="d-flex justify-content-end h3 align-self-end mt-5 align-bottom col loat-lg-right float-xl-right float-md-right float-sm-right mr-0 mb-0 pr-0"
 										style="color: red;"> <fmt:formatNumber
@@ -217,62 +229,13 @@
 							총가격 :
 							<fmt:formatNumber pattern="###,###,###원" value="${sum}" />
 						</div>
-						<button type="submit"
+						<button type="button"
 							class="btn btn-primary btn-lg btn-block text-center h6 "
-							onsubmit="buyList()">일괄 구매</button>
+							onclick="buyList()">일괄 구매</button>
 					</form>
 					<br>
 				</div>
 					
-					
-					<div id="AllList2"
-					class=" col-lg-3 col-xl-3 col-md-3 h6 table-responsive mt-4 d-block d-xl-none d-lg-none d-md-none d-sm-none">
-					<div class="h6 table-responsive">
-						<table class="table text-center">
-							<thead>
-								<tr>
-									<th class="">강의명</th>
-									<th class="">가격</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="dto" items="${list}">
-									<tr class="">
-										<td class="">${dto.subject}</td>
-										<td class="">${dto.price}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-
-					<c:set var="sum" value="0" />
-					<c:forEach var="dto" items="${list}" begin="0" end="${list.size()}">
-						<c:set var="sum" value="${sum + dto.price}" />
-					</c:forEach>
-
-
-					<form method="post" name="form1" id="form1" action="${path}/cart/buyList.do">
-						<input type="hidden" name="count" value="${count}" readonly>
-
-						<c:forEach var="dto" items="${list}" begin="0" end="${count}">
-						    <input type="hidden" name="userid" value="${dto.userid}">
-					    	<%-- <input type="hidden" name="nickname" value="${dto.nickname}"> --%>
-						    <input type="hidden" name="main_img" value="${dto.main_img}">
-							<input type="hidden" name="cell_type" value="${dto.cell_type}">
-							<input type="hidden" name="lecture_idx"
-								value="${dto.lecture_idx}">
-						</c:forEach>
-						<input type="hidden" name="price" id="price" value="${sum}">
-						<div class="p-3 mb-2  text-center h5 bg-dark text-white ">
-							총가격 :
-							<fmt:formatNumber pattern="###,###,###원" value="${sum}" />
-						</div>
-						<button type="submit" class="btn btn-primary btn-lg btn-block text-center h6 "
-							onsubmit="buyList()">일괄 구매</button>
-					</form>
-					<br>
-				</div>
 			</div>
 		</div>
 

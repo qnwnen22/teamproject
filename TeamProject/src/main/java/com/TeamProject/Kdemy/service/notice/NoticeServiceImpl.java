@@ -101,4 +101,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.detailNotice(bno);
 	}
 
+	@Override
+	public List<NoticeDTO> listAll() {
+		return noticeDao.listAll();
+	}
+
 }

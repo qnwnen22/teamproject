@@ -46,24 +46,36 @@ function checkId() {
     });
     
 }
+ var emailCheck = 0;
+ function checkEmail() {
+	    var inputed = $('#useremail').val();
+	    console.log(inputed);
+	    $.ajax({
+	        data : {
+	            useremail : inputed
+	        },
+	        url : "${path}/member/checkEmail.do",
+	        success : function(data) {
+	            if (data == '0') {
+	                emailCheck = 1;
+	                if(emailCheck==1) { $(".useremail").css("border", "2px solid #71c9ce");
+                    $("#useremailM").html("<b style='color:#71c9ce'>사용할 수 있는 이메일 입니다.</b>");
+                    return false
+	                }
+                } else if (data == '1') {
+                    $(".useremail").css("border", "2px solid red");
+                    $("#useremailM").html("<b style='color:red'>중복된 이메일입니다.</b>");
+                    emailCheck = 0;
+                    return false
+                } else if(data == '2') {
+        			$("#useremailM").html("");
+        			return false
+                    }
+            }
+        });
+        
+	    }
 
-$('#useremail').change(function(e){
-	//이메일 체크
-	var email=document.getElementById("useremail");
-	var exp3= /^[a-z0-9]{2,}@[a-z0-9]{2,}\.[a-z]{2,}$/;
-	if(!exp3.test(email.value)) {
-		$("#useremail").css("border", "2px solid red");
-		$("#useremailM").html("<b style='color:red'>이메일 형식이 잘못 되었습니다. ex) abc@abc.com</b>");
-		email.val("");
-		email.focus();
-		return false;
-	}else {
-		var input="<input id='useremailConfirm' type='hidden' value='y'>";
-		$("#useremail").css("border", "2px solid #71c9ce");
-		$("#useremailM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
-	}
-	
- });
 
  
 </script>
@@ -106,7 +118,7 @@ $('#useremail').change(function(e){
 				<div class="form-group">
 					<label for="email">이메일 주소</label> &nbsp; <span id="useremailM"></span>
 					<input class="form-control"
-						id="useremail" name="useremail" placeholder="이메일 주소를 입력해주세요">
+						id="useremail" name="useremail" oninput="checkEmail()" placeholder="이메일 주소를 입력해주세요">
 				</div>
 				<div class="labelname">
 					<label for="phonename">핸드폰</label> &nbsp; <span id="phoneM"></span><br> 

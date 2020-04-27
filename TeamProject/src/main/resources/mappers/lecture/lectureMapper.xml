@@ -91,6 +91,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) where rn between #{start} and #{end}
 	</select>
 	
+	<select id="lecture_list_home_video"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+				select * from lecture
+				where cell_type=1
+				order by upcount desc, lecture_idx desc
+	</select>
+	
+	<select id="lecture_list_home_online"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+				select * from lecture
+				where cell_type=2
+				order by upcount desc, lecture_idx desc
+	</select>
+	
+	<select id="lecture_list_home_offline"
+	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+				select * from lecture
+				where cell_type=3
+				order by upcount desc, lecture_idx desc
+	</select>
+	
 	<!-- 모든 리스트 -->
 	<select id="lecture_list_all"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">

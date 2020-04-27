@@ -17,7 +17,6 @@ function listreply(page) {
 		}
 	});
 }
-}
 </script>
 </head>
 <body>

@@ -102,6 +102,20 @@ public class LectureDAOImpl implements LectureDAO {
 	      map.put("end",end);
 	      return sqlSession.selectList("lecture.lecture_list_all",map);
 	   }
+		@Override
+		public List<LectureDTO> lecture_listV() {
+			return sqlSession.selectList("lecture.lecture_list_home_video");
+		}
+		
+		@Override
+		public List<LectureDTO> lecture_listOn() {
+			return sqlSession.selectList("lecture.lecture_list_home_online");
+		}
+		
+		@Override
+		public List<LectureDTO> lecture_listOff() {
+			return sqlSession.selectList("lecture.lecture_list_home_offline");
+		}
 
 	   @Override
 	   public List<LectureDTO> myLectureList(String userid) {
@@ -251,5 +265,7 @@ public class LectureDAOImpl implements LectureDAO {
 		public void cellCount(String lecture_idx) {
 			sqlSession.update("lecture.cellCount",lecture_idx);
 		}
+
+
 
 }

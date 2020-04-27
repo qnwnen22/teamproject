@@ -73,9 +73,9 @@ public class ReviewController {
 		mav.addObject("map", map);
 		return mav;
 	}//end list
+	
 	@RequestMapping("replylist.do")
 	public ModelAndView replylist(@RequestParam(defaultValue="1") int curPage, int bno, ModelAndView mav) throws Exception {
-		System.out.println(curPage);
 		int countReply =replyService.countReply();
 		Review_Pager2 pager2=new Review_Pager2(countReply, curPage);
 		int start2=pager2.getPageBegin();
@@ -129,17 +129,8 @@ public class ReviewController {
 	@RequestMapping(value="insert.do", method= {RequestMethod.POST},
 	         consumes=MediaType.MULTIPART_FORM_DATA_VALUE, produces="text/plain;charset=utf-8")
 	public String insert(ReviewDTO dto, HttpSession session) throws Exception{
-		String fullName=null;
-		MultipartFile file1=dto.getFile1();
-		fullName=file1.getOriginalFilename();
-		try {
-			fullName=UploadFileUtils.uploadFile(reviewuploadPath, fullName, file1.getBytes());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
-		dto.setFullName(fullName);
 		reviewService.create(dto);
 		return ("redirect:/review/list.do");
 	}//end insert

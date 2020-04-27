@@ -63,6 +63,7 @@
 	transform:scale(1.2);
 }
 
+div{border:1px solid black;}
 /* div{border:1px solid black;} */
 </style>
 <script type="text/javascript">
@@ -70,8 +71,8 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
 </script>
 </head>
 <body>
-<div class="col-sm-8 offset-sm-2 col-xs-12">
-   <div class="col-xs-12">
+<div class="col-xs-12 col-md-8 offset-md-2">
+   <div class="col-xs-12 col-sm-12">
       <div class="col-12 d-flex mb-3">
          <div class="col-xl-12 m-2 h-auto d-inline-block">
               <c:forEach var="dto" items="${list2}">
@@ -94,18 +95,18 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
                      <c:choose>
                         <c:when test="${dto.up =='up'}">
                             <form method="post" id="lectureDownForm${dto.lecture_idx}" name="lectureDownForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureDown2.do?lecture_idx=${dto.lecture_idx}" class="m-3 text-center">
+                            action="${path}/lecture/lectureDown2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-center">
                               <button type="submit" class="btn btn-primary btn-sm col-12">
-                                 <i class="fas fa-thumbs-up"><span class="hidden_md">추천</span></i>
+                                 <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">추천</span></i>
                               </button>
                            </form>
                         </c:when>
                         
                         <c:when test="${dto.up =='down'}">
                            <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-3 text-center">
+                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-center">
                               <button type="submit" class="btn btn-outline-primary btn-sm col-12">
-                                 <i class="fas fa-thumbs-up"><span class="hidden_md">&nbsp;&nbsp;추천</span></i>
+                                 <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
                               </button>
                            </form>
                         </c:when>

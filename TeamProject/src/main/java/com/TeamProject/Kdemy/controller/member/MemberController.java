@@ -329,6 +329,19 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/checkEmail.do")
+	public int emailCheck(MemberDTO dto) throws Exception {	
+		String exp3= "^[a-z0-9]{2,}@[a-z0-9]{2,}.[a-z]{2,}$";
+		if(dto.getUseremail().matches(exp3)) {
+			int result = memberService.emailCheck(dto);
+			 System.out.println("result:"+result);
+			return result;			  
+		}else {
+			return 2;
+		}
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/searchID.do", method = RequestMethod.POST)
 	public String searchID(HttpServletRequest request) {
 		String username = request.getParameter("username");

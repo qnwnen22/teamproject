@@ -112,5 +112,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 	}
 
+	@Override
+	public List<ReviewDTO> listAll() {
+		return sqlSession.selectList("review.listAll_home");
+	}
+
 
 }

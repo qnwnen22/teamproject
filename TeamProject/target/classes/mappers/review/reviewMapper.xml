@@ -16,6 +16,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		desc
 		<include refid="paging_footer" />
 	</select>
+	
+	<select id="listAll_home"
+		resultType="com.TeamProject.Kdemy.model.review.dto.ReviewDTO">
+		select bno, subject, teacher, title, writer, regdate, viewcnt, show,
+		(select count(*) from kdemyreview_reply where bno=b.bno) cnt
+		from kdemyreview b where show='Y'
+		order by viewcnt desc, bno desc
+	</select>
 
 	<select id="countArticle" resultType="int">
 		select count(*) from
@@ -74,9 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert">
-		insert into kdemyreview (bno,subject,teacher,title,content,writer,fullName) values
+		insert into kdemyreview (bno,subject,teacher,title,content,writer) values
 		(
-		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer}, #{fullName, jdbcType=VARCHAR})
+		seq_kdemyreview.nextval, #{subject}, #{teacher}, #{title}, #{content}, #{writer})
 	</insert>
 	
 	 <update id="update_fullName">
