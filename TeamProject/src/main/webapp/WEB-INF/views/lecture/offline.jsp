@@ -53,7 +53,7 @@
 				<div class="card-body">
 					<c:choose>
 				 		<c:when test="${empty dto.main_img}">
-		     	 			<img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-flid avatar img-circle img-thumbnail" style="max-height: 250px">
+		     	 			<img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-flid avatar img-circle img-thumbnail" style="max-height: 200px">
 				 		</c:when>
 					</c:choose>
         		</div>
@@ -100,9 +100,7 @@
 					<label for="price">가격(원)</label>
 					<input type="number" class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
 				</div>
-				
         	</div>
-        	
 		</div>
 		<hr>
 	
