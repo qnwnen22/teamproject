@@ -25,10 +25,10 @@
 	</div>
 	<div
 		class="table-responsive col-11 mx-auto">
-		<table class="table table-bordered table-hover">
+		<table class="table table-bordered table-hover" id="userInfo">
 			<thead class="thead-dark">
 				<tr class="text-center">
-					<th><input type="checkbox"></th>
+					<th><input type="checkbox" id="checkAll" onclick="selectAll()"></th>
 					<th>아이디</th>
 					<th>이름</th>
 					<th>연락처</th>
@@ -39,8 +39,8 @@
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${map.list}">
-					<tr class="text-center" style="cursor:pointer;">
-						<td><input type="checkbox"></td>
+					<tr class="text-center" style="cursor:pointer;" id="userEmail">
+						<td><input type="checkbox" name="userCheckBox" id=userCheckBox value="${row.useremail}"></td>
 						<td>${row.userid}</td>
 						<td><a href="#"> ${row.username}</a></td>
 						<td>${row.phone}</td>
@@ -90,5 +90,28 @@
 		</div>
 	</div>
 	<br>
+	<script type="text/javascript">
+$(function(){
+	$("#userInfo tr").click(function() {
+	    //alert("customerlisttablebody tr click");
+	     var tr = $(this);
+	     var td = tr.children();     
+	    var email = td.eq(0).children().val();
+	   $("input:checked[name=customerListBox]").each(function() {
+	    if (email != $(this).val()) {
+	     $(this).attr("checked", false); // uncheck all checkboxes
+	     //alert("checked checkbox false");
+	    }
+	   });
+	     td.eq(0).children().attr("checked", "true");
+	     var emailAdd = "<div class='userEmail rounded-lg text-center m-1'style='background-color: #c6e8f2; line-height:15px;' id='"+email+"'>"+ email +"&nbsp;<a href='javascript:void(0);'><i class='fas fa-times'></i></a></div>"
+	     $("#useremailBox").append(emailAdd);
+	    });
+});
+$(".userEmail").on("click", "a", function(event) {
+	var that = $(this);
+	that.parent("div").remove();
+});	
+	</script>
 </body>
 </html>

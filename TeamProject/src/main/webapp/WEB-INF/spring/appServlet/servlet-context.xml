@@ -71,7 +71,7 @@
 	
 	<beans:bean id="reviewuploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/review" />
+			value="D:/work/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
 	</beans:bean>
 		
 	<beans:bean id="memberUploadPath" class="java.lang.String">

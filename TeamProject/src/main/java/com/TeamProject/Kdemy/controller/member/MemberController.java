@@ -140,7 +140,8 @@ public class MemberController {
 	public String myPageUpdate() {
 		return "member/mypageUpdate";
 	}
- 
+    
+	
 	@RequestMapping("couponMaker.do")
 	public String couponMaker() {
 		return "member/coupon";
