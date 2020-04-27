@@ -59,4 +59,6 @@ public interface MemberDAO {
 	public List<CouponDTO> couponDetail(CouponDTO dto);
 
 	public int couponCheck(CouponDTO dto);
+
+	public int emailCheck(MemberDTO dto);
 }

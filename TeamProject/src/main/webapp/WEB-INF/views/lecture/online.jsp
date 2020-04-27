@@ -21,9 +21,8 @@
 <script src="${path}/include/js/lectureInsert.js"></script>
 </head>
 <body>
-
-<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
-   	<div class="col-10 mx-auto">
+<div class="container col-12 col-xl-8 mx-auto">
+   	<div class="col-12 mx-auto">
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
 			<li>강사 페이지</li>
@@ -31,46 +30,42 @@
 		</ul>
 	</div>
    	
-   	<div class="row col-10 card mx-auto">
-		<div class="col-12">
-			<form method="post"
-				name="form1"
-				id="form1"
-				enctype="multipart/form-data"
-	            class="form-horizontal"
-	            action="${path}/lecture/teacher_type2_insert.do">
-           	<input type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
-	    <!-- 메인 카테고리 -->
-		
-		<div class="col-12 d-flex">
-			<div class="col-6 border border-dark text-center px-0">
-				<div class="col-12 mx-0 px-0 text-center">
-					<h4 class="bg-dark text-white mx-0">메인 이미지를 등록해주세요.</h4>
+	<div class="col-12">
+		<form method="post"
+			name="form1"
+			id="form1"
+			enctype="multipart/form-data"
+            class="form-horizontal"
+            action="${path}/lecture/teacher_type2_insert.do">
+          	<input type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
+    <!-- 메인 카테고리 -->
+	
+		<div class="col-12 d-block d-lg-flex">
+			<div class="col-12 col-lg-5 card p-0 m-0 mb-2 text-center">
+				<div class="card-header">
+					<h5 class="card-title">메인 이미지를 등록해주세요.</h5>
 				</div>
 				
-				<div class="mx-auto mt-5">
-					<div class="col-12">
-						<c:choose>
-					 		<c:when test="${empty dto.main_img}">
-			     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
-					 		</c:when>
-						</c:choose>
-					</div>
+				<div class="card-body">
+					<c:choose>
+				 		<c:when test="${empty dto.main_img}">
+		     	 			<img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-flid avatar img-circle img-thumbnail" style="max-height: 250px">
+				 		</c:when>
+					</c:choose>
         		</div>
-        		
-        		<div class="col-12 mt-5">
+	       		
+	       		<div class="card-footer">
 					<div class="col-12"><input type="file" name="file1" class="text-center center-block file-upload" id="input_img"></div>
-	        		<div class="col-12"><b>썸네일 이미지는 220 * 150 사이즈를 권장합니다.</b></div>
         		</div>
-        	</div>
-        	
-        	<div class="col-6" id="video_add">
-				<div class="col-12 form-group">
+	       	</div>
+       	
+	       	<div class="col-12 col-lg-7 p-0 m-0" id="video_add">
+				<div class="col-12 form-group mx-0 px-0 px-lg-3">
 					<label for="subject">강의 제목</label>
 					<input class="form-control" id="subject" name="subject" placeholder="강의 제목을 입력해 주세요">
 				</div>
-
-				<div class="col-12 form-group">
+	
+				<div class="col-12 form-group mx-0 px-0 px-lg-3">
 					<label for="category">메인 카테고리 선택</label>
 					<select name="main_category" id="main_category" class="form-control"
 					onChange="category()">
@@ -90,69 +85,68 @@
 				</div>
 					
 				<!-- 서브 카테고리 -->
-				<div class="col-12 form-group">
+				<div class="col-12 form-group mx-0 px-0 px-lg-3">
 					<label for="category">서브 카테고리 선택</label>
 					<select name="sub_category" id="sub_category" class="form-control">
 						<option style="color: red;" value="">-메인 카테고리를 선택해주세요-</option>
 					</select>
 				</div>
 				
-				<div class="col-12 form-group">
+				<div class="col-12 form-group mx-0 px-0 px-lg-3">
 					<label for="price">가격(원)</label>
 					<input type="number" class="form-control" id="price" name="price" value="" placeholder="가격을 입력해주세요">
 				</div>
 				
 				<!--  -->
-				<div class="col-12 form-group">
+				<div class="col-12 form-group mx-0 px-0 px-lg-3">
 					<label for="file2"><b>판매하실 강의를 등록해주세요.</b></label><br>
 					<input class="file2" type="file" name="file2" id="file2">
 					<p style="color: blue; font-size: 12px;">선택한 파일을 초기화방법 = 파일 선택 → 취소</p>
 				</div>
-        	</div>
-        	
+	       	</div>
+       	
 		</div>
 		<hr>
 		
-		<div class="form-group">
-			<h4><label for="content_label">영상에 대한 설명을 입력해주세요.</label></h4>
-			<textarea class="form-control text_cotent" name="content" id="content" rows="10" cols="10"></textarea>
-		</div>
-	
-		<!-- 강의 시작날짜 -->
-		<div class="col-12 d-flex">
-			<div class="col-4 form-group">
-				<label for="lecture_date_label">강의 시작 날짜</label>
-				<input class="form-control" type="date" name="lecture_date" id="lecture_date">	
-			</div>
-			
-			<div class="col-4 form-group">
-				<label for="lecture_start">강의 시작 시간</label>
-				<input type="time" class="form-control"	name="lecture_start" id="lecture_start">
-			</div>
-			
-			<div class="col-4 form-group">
-				<label for="lecture_time">강의 시간</label>
-				<select class="form-control" name="lecture_time" id="lecture_time">
-					<option value="1">1시간</option>
-					<option value="2">2시간</option>
-					<option value="3">3시간</option>
-					<option value="4">4시간</option>
-					<option value="5">5시간</option>
-					<option value="6">6시간</option>
-				</select>
+		<div class="col-12">
+			<div class="form-group">
+				<h4><label for="content_label">영상에 대한 설명을 입력해주세요.</label></h4>
+				<textarea class="form-control text_cotent" name="content" id="content" rows="10" cols="10"></textarea>
 			</div>
 		
-		</div>
-					      
-		<!-- 등록 버튼 -->
-		<div class="form-group text-center">
-			<input type="button" onclick="insert2()" class="btn btn-primary" value="강의 등록">
-			<input type="button" class="btn btn-warning" onclick="history.back()" value="뒤로 가기">
-			<a href="${path}/lecture/offline_list.do" class="btn btn-dark pull-left">목록</a>
+			<!-- 강의 시작날짜 -->
+			<div class="d-block d-md-flex mx-0 px-0">
+				<div class="col-12 col-md-4 form-group mx-0 px-0">
+					<label for="lecture_date_label">강의 시작 날짜</label>
+					<input class="form-control" type="date" name="lecture_date" id="lecture_date">	
+				</div>
+				
+				<div class="col-12 col-md-4 form-group mx-0 px-0 px-md-3">
+					<label for="lecture_start">강의 시작 시간</label>
+					<input type="time" class="form-control"	name="lecture_start" id="lecture_start">
+				</div>
+				
+				<div class="col-12 col-md-4 form-group mx-0 px-0 ">
+					<label for="lecture_time">강의 시간</label>
+					<select class="form-control" name="lecture_time" id="lecture_time">
+						<option value="1">1시간</option>
+						<option value="2">2시간</option>
+						<option value="3">3시간</option>
+						<option value="4">4시간</option>
+						<option value="5">5시간</option>
+						<option value="6">6시간</option>
+					</select>
+				</div>
+			</div>
+						      
+			<!-- 등록 버튼 -->
+			<div class="form-group text-center">
+				<input type="button" onclick="insert2()" class="btn btn-primary" value="강의 등록">
+				<input type="button" class="btn btn-warning" onclick="history.back()" value="뒤로 가기">
+				<a href="${path}/lecture/offline_list.do" class="btn btn-dark pull-left">목록</a>
+			</div>
 		</div>
 		</form>
-	</div>
-	<!--  -->
 	</div>
 </div>
 <%@ include file="../include/footer.jsp"%>

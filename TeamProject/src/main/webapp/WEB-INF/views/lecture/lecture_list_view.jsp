@@ -24,9 +24,6 @@ $('#star1 a').click(function(){
 	console.log($(this).attr("value"));
 });
 </script>
-<style>
- /*   div{border:1px solid black;}  */
-</style>
 </head>
 <body>
 <div class="row">
@@ -84,11 +81,127 @@ $('#star1 a').click(function(){
 					<div class="card-body">
 						<h2 class="card-title">${dto.subject}</h2>
 						
+<<<<<<< HEAD
+						<!-- <div class="col-12 d-flex flex-row mx-0 px-0 h6"> -->
+							<div class="col-12 p-5">
+								
+							</div>
+							
+							<div class="col-12 p-5">
+								<b class='m-auto'><fmt:formatNumber value="${lectureCount}" pattern="#,###" />명의 학생이 수강중</b>
+								<br><b class='m-auto'>추천 수 : ${upCount}</b>	
+							</div>
+						<!-- </div> -->
+		<!-- 여기 -->
+			<div class="col-12 m-0 p-0">
+			<div class="col-12" style="background-color: white; text-align:right;">
+				<h5 style="color:gray">월
+				<span style="color:#d90f74">${dto.price} 원</span></h5>
+			</div>
+	
+			<!-- 아래로! -->
+             <div class="col-12 d-flex flex-row mx-0 px-0 h6" style="bottom:0px;"> 
+			     <div class="col-6 px-0 mx-0" >
+				<c:choose>
+					<c:when test="${check==1}">
+							<c:choose>
+								<c:when test="${up == 'up'}">
+									<form method="post" id="lectureDownForm" name="lectureDownForm"
+									 action="${path}/lecture/lectureDown.do?lecture_idx=${dto.lecture_idx}">
+										<button type="button" class="btn btn-outline-primary col-12" onclick="down()" >
+											<i class="fas fa-thumbs-up">&nbsp;&nbsp;추천</i>
+										</button>
+									</form>
+								</c:when>
+								<c:when test="${up == 'down'}">
+									<form method="post" id="lectureUpForm" name="lectureUpForm"
+									 action="${path}/lecture/lectureUp.do?lecture_idx=${dto.lecture_idx}">
+										<button type="button" class="btn btn-outline-primary col-12" onclick="up()">
+											<i class="fas fa-thumbs-up">&nbsp;&nbsp;추천</i>
+										</button>
+									</form>
+								</c:when>
+							</c:choose>
+					</c:when>
+					
+					<c:when test="${check==0}">
+						<c:choose>
+							<c:when test="${sessionScope.userid != null}">
+								<form method="post" id="cartInsert" name="cartInsert" action="${path}/cart/insertCart2.do">
+								<input type="hidden" name="main_img" value="${dto.main_img}">
+									<input type="hidden" name="cell_type" value="${dto.cell_type}">
+									<input type="hidden" name="price" value="${dto.price}">
+									<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+									<input type="hidden" name="main_category" value="${dto.main_category}">
+									<input type="hidden" name="sub_category" value="${dto.sub_category}">
+									<input type="hidden" name="subject" value="${dto.subject}">
+									<button type="button" class="btn btn-secondary col-12" onclick="cartAdd()">장바구니 담기</button>
+								</form>
+							</c:when>
+			
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary col-12" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal">장바구니 담기</button>
+							</c:otherwise>
+						</c:choose>		
+					</c:when>
+				</c:choose>
+				</div>
+				
+				<div class="col-6 px-0 mx-0" >
+				<c:choose>
+					<c:when test="${check==0}">
+						<form method="post" action="${path}/cart/insertCart.do">
+						<input type="hidden" name="main_img" value="${dto.main_img}">
+						<input type="hidden" name="cell_type" value="${dto.cell_type}">
+						<input type="hidden" name="price" value="${dto.price}">
+						<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+						<input type="hidden" name="main_category" value="${dto.main_category}">
+						<input type="hidden" name="sub_category" value="${dto.sub_category}">
+						<input type="hidden" name="subject" value="${dto.subject}">
+						<input class="btn btn-danger col-12" type="submit" value="구매하기">
+						</form>
+					</c:when>
+					
+					<c:when test="${check==1}">
+                  <c:choose>
+                     <c:when test="${dto.cell_type == '3'}">
+              		    <form method="post" name="viewoffForm" id="viewoffForm" action="${path}/lecture/lectureView_offline.do?">
+                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+                           <input class="btn btn-dark col-12" type="submit" value="장소확인" onclick="lectureView_offline()">
+                        </form>
+                     </c:when>
+                     
+                     <c:when test="${dto.cell_type == '1'}">
+                        <form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
+                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_video()">
+                        </form>
+                     </c:when>
+                     
+                     <c:otherwise>
+                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
+                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
+                        </form>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+					
+					<c:otherwise>
+						<a class="btn btn-danger btn-block" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" style="color: white;"><b>구매하기</b></a>
+					</c:otherwise>
+				</c:choose>
+				</div>
+				
+				
+			</div>
+=======
 						<p class="card-text">
 							<b class='m-auto'><fmt:formatNumber value="${lectureCount}" pattern="#,###" />명의 학생이 수강중</b><br>
 							<b class='m-auto'>추천 수 : ${upCount}</b>
 						</p>	
 					</div>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
 					<div class="card-footer m-0 p-1">
 						<div class="col-12" style="background-color: white; text-align:right;">
@@ -193,6 +306,49 @@ $('#star1 a').click(function(){
 			</div>
 		</div>
 		
+<<<<<<< HEAD
+<!--  -->		
+	<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<ul class="nav nav-tabs">
+		  			<li class="nav-item">
+		    			<a class="nav-link active" onclick="lecturetext()" data-toggle="tab" href="#">강의 소개</a>
+		  			</li>
+		  			
+		  			<li class="nav-item">
+		    			<a class="nav-link" onclick="lecturetime()" data-toggle="tab" href="#">강의 시간</a>
+		  			</li>
+		  			
+<!-- 		  			<li class="nav-item">
+		    			<a class="nav-link" onclick="lectureaddr()" data-toggle="tab" href="#">강의 장소</a>
+		  			</li> -->
+				</ul>
+			</div>
+				
+			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
+				<p class="col-12">
+					${dto.content}
+				</p>
+			</div>
+				
+			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureTime" style="display: none;">
+				<c:choose>
+					<c:when test="${dto.cell_type > 1}">
+						<div class="col-12">
+							<label class="label" for="lectureDate">강의 날짜 : </label>
+							<p name="lectureDate" id="lectureDate">${dto.lecture_date}</p>
+							
+							강의 시작시간 : ${dto.lecture_start}
+							강의 시간 : ${dto.lecture_time}
+						</div>
+					</c:when>
+				
+					<c:otherwise>
+						<h2>동영상 강의 입니다.</h2>
+					</c:otherwise>
+				</c:choose>
+			</div>
+=======
 		<div class="col-12">
 			<ul class="nav nav-tabs">
 	  			<li class="nav-item">
@@ -208,7 +364,21 @@ $('#star1 a').click(function(){
 	  			</li>
 			</ul>
 		</div>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			
+<<<<<<< HEAD
+<%-- 			<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureAddr" style="display: none;">
+				<c:choose>
+					<c:when test="${dto.cell_type > 2}">
+						강의주소 : ${dto.lecture_address}<br>
+						강의 상세주소 : ${dto.lecture_address2}<br>
+					</c:when>
+					<c:otherwise>
+						<h2>내용이 없습니다</h2>
+					</c:otherwise>
+				</c:choose>
+			</div> --%>
+=======
 		<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
 			<p class="col-12">
 				${dto.content}
@@ -243,6 +413,7 @@ $('#star1 a').click(function(){
 					<h2>내용이 없습니다</h2>
 				</c:otherwise>
 			</c:choose>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		</div>
 	</div>
 </div>

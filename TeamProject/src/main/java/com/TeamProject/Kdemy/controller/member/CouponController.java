@@ -60,7 +60,7 @@ public class CouponController {
 
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[kdemy에서 쿠폰을 받으세요!]");
-		sendMail.setText(new StringBuffer().append("<table style='border:3px solid #9e7eab; border-radius:10px;'><tbody>")
+		sendMail.setText(new StringBuffer().append("<table style='border:1px solid black; border-radius:10px;'><tbody>")
 				.append("<tr style='text-align: center;'><img src='https://modo-phinf.pstatic.net/20200423_57/1587601762341AwFLH_JPEG/mosajn1t3W.jpeg'></tr>")
 				.append("<tr class='coupon' style='text-align: center;font-size:1.5rem; color:#422e4a;'>쿠폰 번호 </tr>")
 				.append("<tr style='text-align: center;'><span style='padding:5px; font-size:1.5rem;'>"+key1)
