@@ -315,8 +315,16 @@ function ConectWS() {
        var msg=strs[3];
        var num=strs[4];
        if(cmd=="chat") {
-        var url="${path}/chat/popup?sender="+sender+"&target="+target+"&num="+num+"&msg="+msg;
-        window.open(url,"","width=330,height=610,left=100");
+    	   var w = window.open("about:blank",sender,"width=330,height=610,left=100");
+    	   $.ajax({
+    			url:"${path}/chat/popup?sender="+sender+"&target="+target+"&num="+num+"&msg="+msg ,
+    			method : "POST" ,
+    			success: eventSuccess(),
+    			error: function(xhr, status, error) {alert(error);}
+    	   });
+    	   function eventSuccess(){
+    		   w.location.href = "${path}/chat/popup?sender="+sender+"&target="+target+"&num="+num+"&msg="+msg;
+    	   }
        }else if(cmd=="usersend") {
     	   $("#messageAdmin").append(msg);
     	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);

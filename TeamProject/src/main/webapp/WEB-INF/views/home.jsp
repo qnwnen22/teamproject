@@ -1241,8 +1241,7 @@
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
 					<a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
-					<br> <b>카테고리1</b> <a href="${path}/lecture/video_list.do">동영상
-						리스트 페이지</a>
+					<br> <a href="${path}/lecture/video_list.do">동영상 강의에서 인기있어요!</a>
 				</h5>
 				<br>
 			</div>
@@ -1283,8 +1282,7 @@
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-					<b>카테고리2</b> <a href="${path}/lecture/online_list.do">실시간 강의
-						리스트 페이지</a>
+			<a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
 				</h5>
 				<br>
 			</div>
@@ -1323,8 +1321,7 @@
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-					<b>카테고리3</b> <a href="${path}/lecture/offline_list.do">현장 강의
-						리스트 페이지</a>
+				 <a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
 				</h5>
 				<br>
 			</div>
@@ -1435,6 +1432,29 @@
 			<ul id="messageAdmin" class="overflow-auto">
 
 			</ul>
+	  	 </div>
+	  	 <div class="input-group p-4 mini-chat-send">
+	   	   <input type="text" class="form-control" id="chatMsg" placeholder="Type a message...">
+	   	   <input type="hidden" id="admin_id" value="admin">
+     	   	   <input type="hidden" id="userid" value="${sessionScope.userid}"> 
+     	   	   <input type="hidden" id="chatNum" value="${sessionScope.usernum}">
+     	   	   <input type="hidden" id="sender" value="${sessionScope.userid}">
+     	   	    <input type="hidden" id="num" value="${sessionScope.usernum}">
+  				<div class="input-group-append">
+    				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+ 				 </div>
+	  	 </div>
+	 </div>
+<script>
+$(function () {
+	$('#btnMiniChatJoin').on('click', function(evt) {
+		evt.preventDefault();
+	  if (socket.readyState !== 1) return;
+	    	   let target=$("#admin_id").val();
+	    	   let chatNum=$("#chatNum").val();
+	    	   let sender=$("#userid").val();
+	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
+	    });
 		</div>
 		<div class="input-group p-4 mini-chat-send">
 			<input type="text" class="form-control" id="chatMsg"

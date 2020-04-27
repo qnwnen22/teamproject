@@ -61,27 +61,47 @@
 	
 	<beans:bean id="packagesuploadPath" class="java.lang.String">
 		<beans:constructor-arg
+<<<<<<< HEAD
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/coupon" />
+=======
+			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/coupon" />
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</beans:bean>
-	
+
 	<beans:bean id="teacheruploadPath" class="java.lang.String">
 		<beans:constructor-arg
+<<<<<<< HEAD
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/teacher" />
+=======
+			value="D:/work/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</beans:bean>
 	
 	<beans:bean id="reviewuploadPath" class="java.lang.String">
 		<beans:constructor-arg
+<<<<<<< HEAD
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/review" />
+=======
+			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/review" />
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</beans:bean>
 		
 	<beans:bean id="memberUploadPath" class="java.lang.String">
 		<beans:constructor-arg
+<<<<<<< HEAD
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/member/img/member" />
+=======
+			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/member/img/member" />
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</beans:bean>
 	
 	<beans:bean id="mainResoucePath" class="java.lang.String">
 		<beans:constructor-arg
+<<<<<<< HEAD
 			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/main" />
+=======
+			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/main" />
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	</beans:bean>
 	
 	<!-- aop의 설정으로 Proxy 객체를 자동으로 생성 -->

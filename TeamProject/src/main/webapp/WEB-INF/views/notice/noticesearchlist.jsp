@@ -60,10 +60,9 @@
 			</thead>
 			<tbody>
 				<c:forEach var="rows" items="${map.list}">
-						<tr >
+						<tr style="cursor: pointer;" onclick="location.href='${path}/notice/view.do?bno=${rows.bno}'">
 					<td class="d-none d-xl-block d-lg-block">${rows.bno}</td>
-						<td><a
-							href="${path}/notice/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
+						<td><a>${rows.title}</a> <c:if
 								test="${rows.cnt>0}">
 							</c:if></td>
 						<td>${rows.writer}</td>

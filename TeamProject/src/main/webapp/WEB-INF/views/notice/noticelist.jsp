@@ -61,10 +61,9 @@
 				</thead >
 				<tbody>
 				<c:forEach var="rows" items="${map.list}">
-					<tr>
+					<tr  style="cursor: pointer;" onclick="location.href='${path}/notice/view.do?bno=${rows.bno}'">
 					<td class="d-none d-xl-block d-lg-block">${rows.bno}</td>
-						<td><a
-							href="${path}/notice/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
+						<td><a>${rows.title}</a> <c:if
 								test="${rows.cnt>0}">
 							</c:if></td>
 						<td>${rows.writer}</td>
@@ -76,14 +75,24 @@
 				</tbody>
 		</table>
 		</div>
+<<<<<<< HEAD
+			<c:if test="${sessionScope.admin_id != null }">
+					<!-- 관리자로 로그인했을때 아이디 바꾸기-->
+=======
 
 	 <c:if test="${sessionScope.admin_id != null }">
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 					<div class="d-flex justify-content-end mt-3">
 						<a class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
 							href="${path}/notice/write.do" data-ga-category="header"> 글쓰기
 						</a>
 						</div>
+<<<<<<< HEAD
+						</c:if>
+	
+=======
 			</c:if>	
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 	<br>
 	<div class="d-flex justify-content-center">
 			<nav aria-label="Page navigation example center-block">

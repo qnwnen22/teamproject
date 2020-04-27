@@ -8,32 +8,6 @@
 <!-- 헤더 제거 -->
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
-<style type="text/css">
-.upper_shift {
-	padding: 10px 16px;
-	list-style: none;
-}
-
-.upper_shift li {
-	display: inline;
-	font-size: 1.5em;
-}
-
-.upper_shift li+li:before {
-	padding: 8px;
-	color: black;
-	content: ">\00a0";
-}
-
-.upper_shift li a {
-	color: black;
-	text-decoration: none;
-}
-
-.upper_shift li a:hover {
-	font-size: 1.1em;
-	color: #01447e;
-</style>
 <!-- 썸머 노트 -->
 <link
    href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
