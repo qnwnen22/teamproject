@@ -9,24 +9,19 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.member.dto.CouponDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
-import com.TeamProject.Kdemy.service.member.BCrypt;
 import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.util.MailHandler;
 import com.TeamProject.Kdemy.util.TempKey;
-import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 @Controller
 @RequestMapping("member/*")
@@ -40,18 +35,7 @@ public class CouponController {
 	
 	@RequestMapping(value="insertCoupon.do",method=RequestMethod.POST)
 	public String insertCoupon(CouponDTO dto) throws Exception {
-			
-		String coupon_name=dto.getCoupon();
-		String coupon=dto.getCoupon();
-		int point = dto.getPoint();
-		String coupon_text = dto.getCoupon_text();
-	
-    	dto.setCoupon_name(coupon_name);
-		dto.setCoupon(coupon);
-		dto.setPoint(point);
-		dto.setCoupon_text(coupon_text);
 		memberService.insertCoupon(dto);
-
 		return "member/coupon";	
 	}
 	
@@ -115,5 +99,18 @@ public class CouponController {
 			return 2;
 		}
 	}
-}
 	
+	@ResponseBody
+	@RequestMapping("selectCoupon.do")
+	public ModelAndView selectCoupon(ModelAndView mav, CouponDTO dto) {
+		dto.setCoupon(dto.getCoupon());
+		dto.setCoupon_name(dto.getCoupon_name());
+		dto.setCoupon_text(dto.getCoupon_text());
+		dto.setPoint(dto.getPoint());
+		mav.addObject("select", dto);
+		System.out.println(dto);
+		mav.setViewName("member/coupon");
+		return mav;
+	}
+	
+}
