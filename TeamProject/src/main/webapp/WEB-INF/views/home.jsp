@@ -1029,16 +1029,15 @@
 																<div class="search-group text-center cursor">
 																	<div style="">
 																		<div class="index-search-bar">
-																			<span class="typed-element">웹사이트 개발</span> <span
-																				class="typed-cursor typed-cursor--blink"></span>
-																			<div class="index-search-bar-input"></div>
-																			<a id="searchBtnNone" class="index-search-btn"
-																				type="submit"> <img class="width-30px"
-																				src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
-																			</a>
+																				<input class="pl-5 search-input kdemi" name="keyword" id="keyword" placeholder="보고싶은 강의를 검색해주세요."
+																				name="keyword" style="width: 100%; height: 100%; font-size: 1.5rem;">
+																			<!--  -->
+ 																			<button id="searchBtnNoneTest" class="index-search-btn" onclick="search()" type="submit" style="border: none; background-color: white; outline: 0;"> 
+																				<img class="width-30px" src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
+																			</button>
+																			<!--  -->
 																		</div>
 																	</div>
-
 																</div>
 															</form>
 														</div>

@@ -19,9 +19,9 @@
 									onsubmit="return false;">
 									<div class="search-group text-center cursor">
 										<div class="index-search-bar">
-											<input class="search-input kdemi" placeholder="키워드를 입력해주세요."
-												name="keyword" maxlength="20">
-											<button class="search-btn" style="border: none; background: white;">
+											<input class="search-input kdemi" placeholder="키워드를 입력해주세요." 
+												name="keyword" id="keyword" maxlength="20">
+											<button class="search-btn" style="border: none; background: white;" onclick="search()">
 												<img class="width-20px cursor search-input-glass"
 													style="vertical-align: inherit;"
 													src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
@@ -550,3 +550,9 @@
 		</div>
 	</nav>
 </header>
+<script type="text/javascript">
+function search(){
+	var keyword=document.getElementById("keyword").value;
+	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword;
+}
+</script>
