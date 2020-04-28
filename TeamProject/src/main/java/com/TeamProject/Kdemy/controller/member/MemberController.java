@@ -531,6 +531,6 @@ public class MemberController {
 		map.put("keyword", keyword);
 		mav.addObject("map", map); //ModelAndView에 map을 저장
 		mav.setViewName("admin/couponMember_list");
-		return mav; //board/list.jsp로 이동
-	}//list()
+		return mav;
+	}
 }
