@@ -222,7 +222,7 @@
    
 </script>
 </head>
-<body>
+<body class="m-0 p-0">
 
    <div id="socketAlert" class="alert alert-primary" role="alert"
       style="display: none;"></div>
@@ -1298,7 +1298,7 @@
       <div class="slide_box">
         <div class="slide_list1 clearfix">
 
-          <c:forEach var="dtoon" items="${listv}">
+          <c:forEach var="dtoon" items="${liston}">
          <div class="card col-2 px-0 mr-3 slide02 slide_content1 d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
             <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
@@ -1341,7 +1341,7 @@
         <div class="slide_list2 clearfix">
           
 
-          <c:forEach var="dtooff" items="${listv}">
+          <c:forEach var="dtooff" items="${listoff}">
          <div class="card col-2 px-0 mr-3 slide02 slide_content2 d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
             <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>

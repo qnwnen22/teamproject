@@ -292,7 +292,6 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 	top: 100%;
 	left: 0;
 	z-index: 1000;
-	display: none;
 	float: left;
 	padding: 5px 0;
 	margin-top: 0px;
