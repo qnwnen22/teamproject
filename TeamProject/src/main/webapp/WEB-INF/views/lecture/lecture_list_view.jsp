@@ -380,9 +380,7 @@ $('#star1 a').click(function(){
 			</div> --%>
 =======
 		<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureText">
-			<p class="col-12">
-				${dto.content}
-			</p>
+			<p class="col-12 mx-2">${dto.content}</p>
 		</div>
 			
 		<div class="col-12 shadow p-3 mb-5 bg-white rounded" id="lectureTime" style="display: none;">

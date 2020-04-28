@@ -66,58 +66,58 @@
 			</div>
 			<div class="row">
 				<c:forEach var="dto" items="${map.list}">
-				<div class="col-12 col-sm-4 col-lg-4 col-xl-3 mb-3">
-				<a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
-					<div class="card mb-3 mx-.5 shadow bg-white rounded border border-secondary">
-						<c:choose>
-							<c:when test="${dto.cell_type==1}">
-								<div class="col-12 mx-0 p-0 text-center" style="background-color: #804000;">
-									<b style="color: white;">동영상 강의</b>
+					<div class="col-12 col-sm-4 col-lg-3 mb-3">
+						<a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
+							<div class="card mb-3 mx-.5 shadow bg-white rounded border border-secondary">
+								<c:choose>
+									<c:when test="${dto.cell_type==1}">
+										<div class="col-12 mx-0 p-0 text-center" style="background-color: #804000;">
+											<b style="color: white;">동영상 강의</b>
+										</div>
+									</c:when>
+									
+									<c:when test="${dto.cell_type==2}">
+										<div class="col-12 mx-0 p-0 text-center" style="background-color: #339933;">							
+											<b style="color: white">실시간 강의</b>
+										</div>
+									</c:when>	
+									
+									<c:when test="${dto.cell_type==3}">
+										<div class="col-12 mx-0 p-0 text-center" style="background-color: #3366cc;">
+											<b style="color: white">현장 강의</b>
+										</div>
+									</c:when>
+								</c:choose>
+								
+								<div class="card-image mx-0">
+									<img class="img-fluid mx-auto d-block" style="height:170px;"src="${path}/lecture/displayFile?fileName=${dto.main_img}">
 								</div>
-							</c:when>
-							
-							<c:when test="${dto.cell_type==2}">
-								<div class="col-12 mx-0 p-0 text-center" style="background-color: #339933;">							
-									<b style="color: white">실시간 강의</b>
+		
+								<div class="col-12 mt-3">
+									<h5><b>${dto.subject}</b></h5>
 								</div>
-							</c:when>	
-							
-							<c:when test="${dto.cell_type==3}">
-								<div class="col-12 mx-0 p-0 text-center" style="background-color: #3366cc;">
-									<b style="color: white">현장 강의</b>
+								
+								<div class="col-12 mb-2">
+									${dto.userid}
 								</div>
-							</c:when>
-						</c:choose>
-						
-						<div class="card-image mx-0">
-							<img class="img-fluid mx-auto d-block" style="max-height:170px;"src="${path}/lecture/displayFile?fileName=${dto.main_img}">
-						</div>
-
-						<div class="col-12 mt-3">
-							<h5><b>${dto.subject}</b></h5>
-						</div>
-						
-						<div class="col-12 mb-2">
-							${dto.userid}
-						</div>
-						
-						<div class="col-12 d-flex flex-row mx-0 px-0">
-							<div class="col-6">
-								<b>학생수</b><br>
-								<fmt:formatNumber value="${dto.cellCount}" pattern="#,###" />
+								
+								<div class="col-12 d-flex flex-row mx-0 px-0">
+									<div class="col-6">
+										<b>학생수</b><br>
+										<fmt:formatNumber value="${dto.cellCount}" pattern="#,###" />
+									</div>
+									
+									<div class="col-6">
+										<b>추천수</b><br>
+										<fmt:formatNumber value="${dto.upCount}" pattern="#,###" />	
+									</div>
+								</div>
+								<hr>
+								<div class="col-12 mb-1 text-right">
+									<h5><b style="color:blue;">￦<fmt:formatNumber value="${dto.price}" pattern="#,###" /></b></h5>
+								</div>
 							</div>
-							
-							<div class="col-6">
-								<b>추천수</b><br>
-								<fmt:formatNumber value="${dto.upCount}" pattern="#,###" />	
-							</div>
-						</div>
-						<hr>
-						<div class="col-12 mb-1 text-right">
-							<h5><b style="color:blue;">￦<fmt:formatNumber value="${dto.price}" pattern="#,###" /></b></h5>
-						</div>
-					</div>
-					</a>
+						</a>
 					</div>
 				</c:forEach>		
 			</div>

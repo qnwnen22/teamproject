@@ -25,8 +25,8 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 </head>
 <body>
-<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
-	<div class="col-10 mx-auto">
+<div class="container col-12 col-xl-8 mx-auto">
+	<div class="col-12 mx-auto">
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
 			<li>강의 관리</li>
@@ -48,7 +48,8 @@
 			<li><a href="#" style="color:blue;">강의 수정</a></li>
 		</ul>
 	</div>
-	<div class="row col-10 card mx-auto">
+	
+	<div class="col-12">
 		<form method="post"
 			name="form1"
 			id="form1"
@@ -57,38 +58,37 @@
 	        action="${path}/lecture/lectureUpdate.do">
 			<input type="hidden" id="lecture_idx" name="lecture_idx" value="${dto.lecture_idx}">
 			<input type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
-			<div class="col-12 d-flex">
-				<div class="col-6 border border-dark text-center px-0">
-					<div class="col-12 mx-0 px-0 text-center">
-						<h4 class="bg-dark text-white mx-0">메인 이미지를 등록해주세요.</h4>
+			
+			<div class="col-12 d-block d-lg-flex">
+				<div class="col-12 col-lg-5 card p-0 m-0 mb-2 text-center">
+					<div class="card-header">
+						<h5 class="card-title">메인 이미지를 등록해주세요.</h5>
 					</div>
 					
-					<div class="mx-auto mt-5">
-						<div class="col-12">
-							<c:choose>
-						 		<c:when test="${empty dto.main_img}">
-				     	 			<div><img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"></div>
-						 		</c:when>
-						 		<c:otherwise>
-			    					<div><img id ="profileImg" src = "../upload${dto.main_img}" style="max-width: 350px; max-height: 197px;" class="avatar img-circle"></div>
-								</c:otherwise>
-							</c:choose>
-						</div>
-	        		</div>
+					<div class="card-body">
+						<c:choose>
+					 		<c:when test="${empty dto.main_img}">
+			     	 			<img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-flid avatar img-circle img-thumbnail">
+					 		</c:when>
+					 		<c:otherwise>
+		    					<img id ="profileImg" src = "../upload${dto.main_img}" class="img-flid avatar img-circle" style="max-height: 200px;">
+		    					<!-- <img id ="profileImg" src ="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-flid avatar img-circle img-thumbnail" style="max-height: 250px"> -->
+							</c:otherwise>
+						</c:choose>
+					</div>
 					
-					<div class="col-12 mt-5">
+					<div class="card-footer">
 						<div class="col-12"><input type="file" name="file1" class="text-center center-block file-upload" id="input_img"></div>
-		        		<div class="col-12"><b>썸네일 이미지는 220 * 150 사이즈를 권장합니다.</b></div>
 	        		</div>
 	        	</div>
 			
-				<div class="col-6" id="video_add">
-					<div class="col-12 form-group">
+				<div class="col-12 col-lg-7 p-0 m-0" id="video_add">
+					<div class="col-12 form-group mx-0 px-0 px-lg-3">		
 						<label for="subject">강의 제목</label>
 						<input class="form-control" id="subject" name="subject" value="${dto.subject}">
 					</div>
 					
-					<div class="col-12 form-group">
+					<div class="col-12 form-group mx-0 px-0 px-lg-3">
 						<label for="category">메인 카테고리 선택</label>
 						<select name="main_category" id="main_category" class="form-control"
 						onChange="category()">
@@ -107,22 +107,19 @@
 						</select>
 					</div>
 					
-					<div class="col-12 form-group">
+					<div class="col-12 form-group mx-0 px-0 px-lg-3">
 						<label for="category">서브 카테고리 선택</label>
 						<select name="sub_category" id="sub_category" class="form-control">
 							<option style="color: red;" value="">-메인 카테고리를 선택해주세요-</option>
 						</select>
 					</div>
 					
-					<div class="col-12 form-group">
+					<div class="col-12 form-group mx-0 px-0 px-lg-3">
 						<label for="price">가격(원)</label>
 						<input type="number" class="form-control" id="price" name="price" value="${dto.price}">
 					</div>
-				
 				</div>
-			
 			</div>
-
 			<hr>
 
 			<div class="form-group">
@@ -132,18 +129,20 @@
 			
 			<c:if test="${dto.cell_type>1}">		
 			
-			<div class="col-12 px-1 d-flex">						
-				<div class="col-4 mx-0 form-group">
+			<div class="d-block d-md-flex mx-0 px-0">						
+				<div class="col-12 col-md-4 form-group mx-0 px-0">
 					<label for="lecture_date_label">강의 시작 날짜</label>
 					<input class="form-control" type="date" name="lecture_date" id="lecture_date" value="${dto.lecture_date}">
 				</div>
+				
 				<!-- 강의장 시작 날짜 -->
-				<div class="col-4 mx-0 form-group">
-					<label for="lecture_start">강의 시작 시간</label><br>
+				<div class="col-12 col-md-4 form-group mx-0 px-0 px-md-3">
+					<label for="lecture_start">강의 시작 시간</label>
 					<input type="time" class="form-control"	name="lecture_start" id="lecture_start" value="${dto.lecture_start}">
 				</div>
 				<!-- 강의 시간 -->
-				<div class="col-4 mx-0 form-group">
+				
+				<div class="col-12 col-md-4 form-group mx-0 px-0 ">
 					<label for="lecture_time">강의 시간</label>
 					<select class="form-control" name="lecture_time" id="lecture_time">
 						<option value="1">1시간</option>
@@ -155,23 +154,24 @@
 					</select>
 				</div>
 			</div>
-		
+			
+			<hr>
 			</c:if>
 			
 			<c:if test="${dto.cell_type>2}">
-				<hr>
-				<h3>강의장 주소</h3>
-				<%@ include file="kakaoMap.jsp" %>
 				<div class="form-group">
-					<label for="lecture_road_address">도로명 주소</label>
-					<input type="text" class="form-control" name="lecture_address" id="lecture_address" value="${dto.lecture_address}">
+					<h4><label for="content_label">강의장 주소를 입력해주세요.</label></h4>
+					<%@ include file="kakaoMap.jsp" %>
+					<div class="col-12 form-group mx-0 px-0 ">
+						<label for="lecture_road_address">도로명 주소</label>
+						<input type="text" class="form-control" name="lecture_address" id="lecture_address" value="${dto.lecture_address}">
+					</div>
+					<!-- 강의장 상세 주소 -->
+					<div class="col-12 form-group mx-0 px-0 ">
+						<label for="lecture_address2">상세 주소</label>
+						<input type="text" class="form-control" name="lecture_address2" id="lecture_address2" value="${dto.lecture_address2}">
+					</div>
 				</div>
-				<!-- 강의장 상세 주소 -->
-				<div class="form-group">
-					<label for="lecture_address2">상세 주소</label>
-					<input type="text" class="form-control" name="lecture_address2" id="lecture_address2" value="${dto.lecture_address2}">
-				</div>
-				
 			</c:if>
 		      
 			<!-- 등록 버튼 -->
