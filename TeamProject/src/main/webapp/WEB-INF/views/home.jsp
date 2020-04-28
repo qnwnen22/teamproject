@@ -6,11 +6,61 @@
 <title>Home</title>
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
-<link rel="stylesheet" href="${path}/include/css/carousel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
- <script src="${path}/include/js/carousel.js"></script>
+<style type="text/css">
+.mySlides0-1,.mySlides1-1,.mySlides2-1 {
+display:  none;
+}
+</style>
 <script>
+	$(document).ready(function() {
+		$.ajax({
+			type : 'post',
+			url : 'cookie.do',
+			dataType : 'text',
+			success : function(data) {
+
+			}
+		});
+	})
+
 	$(function() {
+		$('.slide_content').slick({
+			slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+			infinite : true, 	//무한 반복 옵션	 
+			slidesToShow : 5,		// 한 화면에 보여질 컨텐츠 개수
+			slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+			speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+			arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+			dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+			autoplay : true,			// 자동 스크롤 사용 여부
+			autoplaySpeed : 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+			pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+			vertical : false,		// 세로 방향 슬라이드 옵션
+			dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+			draggable : true, 	//드래그 가능 여부 
+			
+			responsive: [ // 반응형 웹 구현 옵션
+				{  
+					breakpoint: 960, //화면 사이즈 960px
+					settings: {
+						//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+						slidesToShow:3 
+					} 
+				},
+				{ 
+					breakpoint: 768, //화면 사이즈 768px
+					settings: {	
+						//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+						slidesToShow:2 
+					} 
+				}
+			]
+
+		});
 		//마지막 스크롤 값을 저장할 lastScroll 변수
 		var lastScroll = 0;
 		$(window).scroll(
@@ -34,11 +84,8 @@
 		new KellyColorPicker({
 			place : 'picker',
 			input : 'color'
-				 
 		});
-		 $("#myBtn").click(function(){
-			    $('.toast').toast('show');
-			  });
+
 		//드래그 기본 효과를 막음 .은 클래스 class=fileDrop, #은 id
 		$(".fileDrop, .fileDrop1").on("dragenter dragover", function(event) {
 			event.preventDefault();
@@ -217,6 +264,10 @@
 			return fileName.match(pattern); //규칙에 맞으면 true가 리턴
 		}
 	});
+
+
+	
+
 
 	
 </script>
@@ -851,8 +902,6 @@
 
 																<!-- 관리자 로그인 -->
 																<c:if test="${sessionScope.admin_id != null}">
-																
-																
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
@@ -1226,6 +1275,10 @@
 			</marquee>
 		</a>
 		
+		<a href="${path}/review/write2.do"> <marquee scrollamount="5">
+				<h4 style="color: red;">★test★</h4>
+			</marquee>
+		</a>
 	</div>
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 
@@ -1241,41 +1294,127 @@
 				</h5>
 				<br>
 			</div>
-		</div>
+
 
 
 			<!-- 슬라이드 버튼 -->
+			<div class="pt-4 col-auto">
+				<a class="btn btn-xs btn-light slide_btn_prev"  onclick="plusSlides(-1, 0)">&lt;</a> <a
+					class="btn btn-xs btn-light slide_btn_next"  onclick="plusSlides(1, 0)">&gt;</a>
+			</div>
+		</div>
+		<div class="slide_wrap">
+			<div class="slide_box mySlides0">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dto" items="${listv}"  begin="0" end="4">
+						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100" style="list-style: none;">
+						<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+								<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
+								class="card-img-top" >
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dto.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<!-- slideList end  -->
+			</div>
 			
-			   <!--  캐러셀   일단 테스트 -->            
-   <div id="container">
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
-               
-                 </div>  
-    
-      <div class="slide_box">
-        <div class="slide_list clearfix">
-          
-
-          <c:forEach var="dto" items="${listv}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
-            </div>
-       </c:forEach>
-        </div>
-      </div>
-      <ul class="slide_pagination"></ul>
-    </div>
-  </div>
-
-   <!-- 끝 -->
-   
+				<div class="slide_box mySlides0-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dto" items="${listv}"  begin="1" end="5">
+						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100" style="list-style: none;">
+						<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+								<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
+								class="card-img-top" >
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dto.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides0-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dto" items="${listv}"  begin="2" end="6">
+						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100" style="list-style: none;">
+						<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+								<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
+								class="card-img-top" >
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dto.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides0-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dto" items="${listv}"  begin="3" end="7">
+						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100" style="list-style: none;">
+						<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+								<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
+								class="card-img-top" >
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dto.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides0-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dto" items="${listv}"  begin="4" end="8">
+						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100" style="list-style: none;">
+						<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+								<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
+								class="card-img-top" >
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dto.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides0-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dto" items="${listv}"  begin="5" end="9">
+						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100" style="list-style: none;">
+						<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+								<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
+								class="card-img-top" >
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dto.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<!-- slideList end  -->
+			</div>
 			
 
+		</div>
+		<!-- slidewrap end -->
 
 
 
@@ -1286,38 +1425,135 @@
 				</h5>
 				<br>
 			</div>
+			<div class="pt-4 col-auto">
+				<a class="btn btn-xs btn-light slick-prev"  type="button">&lt;</a> <a
+					class="btn btn-xs btn-light slick-next"  type="button">&gt;</a>
+			</div>
 		</div>
-		
-		   <!--  실시간 -->            
-   <div id="container">
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
-                 </div>  
-      <div class="slide_box">
-        <div class="slide_list clearfix">
+		<div class="slide_wrap">
+			<div class="slide_box mySlides1">
+				<div class="slide_list clearfix row">
+					<c:forEach var="dtoon" items="${liston}" begin="0" end="10">
+						<div class="card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dtoon.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
 
-          <c:forEach var="dtoon" items="${liston}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtoon.subject }</p>
-            
-            </div>
-       </c:forEach>
-          
-         
-        </div>
-      </div>
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+			<div class="slide_box mySlides1-1">
+				<div class="slide_list clearfix row">
+					<c:forEach var="dtoon" items="${liston}" begin="1" end="5">
+						<div class="card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dtoon.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
 
-      <ul class="slide_pagination"></ul>
-    </div>
-  </div>
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+			<div class="slide_box mySlides1-1">
+				<div class="slide_list clearfix row">
+					<c:forEach var="dtoon" items="${liston}" begin="2" end="6">
+						<div class="card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dtoon.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
 
-   <!-- 끝 -->
-   
-		
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+			<div class="slide_box mySlides1-1">
+				<div class="slide_list clearfix row">
+					<c:forEach var="dtoon" items="${liston}" begin="3" end="7">
+						<div class="card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dtoon.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+			<div class="slide_box mySlides1-1">
+				<div class="slide_list clearfix row">
+					<c:forEach var="dtoon" items="${liston}" begin="4" end="8">
+						<div class="card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dtoon.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+
+				</div>
+				<!-- slideList end  -->
+			</div>
+			
+			<div class="slide_box mySlides1-1">
+				<div class="slide_list clearfix row">
+					<c:forEach var="dtoon" items="${liston}" begin="5" end="9">
+						<div class="card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text font-weight-bold text-center h5">${dtoon.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+
+				</div>
+				<!-- slideList end  -->
+			</div>
+
+		</div>
+		<!-- slidewrap end -->
+
 
 
 		<div class="row">
@@ -1327,39 +1563,142 @@
 				</h5>
 				<br>
 			</div>
+			<div class="pt-4 col-auto">
+				<a class="btn btn-xs btn-light" onclick="plusSlides(-1, 2)">&lt;</a> <a
+					class="btn btn-xs btn-light" onclick="plusSlides(1, 2)">&gt;</a>
+			</div>
 		</div>
-			   <!--  현장강의 -->            
-   <div id="container">
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
-               
-                 </div>  
-    
-      <div class="slide_box">
-        <div class="slide_list clearfix">
-          
+		<div class="slide_wrap ">
+			<div class="slide_box mySlides2">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dtooff" items="${listoff}" begin="0" end="4">
+						<div class=" card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class=" card-text font-weight-bold text-center h5">${dtooff.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+					
+				</div>
+			<!-- slideList end  -->
+			</div>
+			<!-- slidebox end -->
+			
+			<div class="slide_box mySlides2-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dtooff" items="${listoff}" begin="1" end="5">
+						<div class=" card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class=" card-text font-weight-bold text-center h5">${dtooff.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+					
+				</div>
+			<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides2-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dtooff" items="${listoff}" begin="2" end="6">
+						<div class=" card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class=" card-text font-weight-bold text-center h5">${dtooff.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+					
+				</div>
+			<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides2-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dtooff" items="${listoff}" begin="3" end="7">
+						<div class=" card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class=" card-text font-weight-bold text-center h5">${dtooff.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+					
+				</div>
+			<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides2-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dtooff" items="${listoff}" begin="4" end="8">
+						<div class=" card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class=" card-text font-weight-bold text-center h5">${dtooff.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+					
+				</div>
+			<!-- slideList end  -->
+			</div>
+			
+				<div class="slide_box mySlides2-1">
+				<div class="slide_list clearfix row ">
+					<c:forEach var="dtooff" items="${listoff}" begin="5" end="9">
+						<div class=" card col-2 px-0 m-auto slide02 slide_content" style="list-style: none;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+								class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class=" card-text font-weight-bold text-center h5">${dtooff.subject }</p>
+							</div>
+						</div>
+					</c:forEach>
+					
+				</div>
+			<!-- slideList end  -->
+			</div>
+			
+			
+			
+			
+				
 
-          <c:forEach var="dtooff" items="${listoff}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtooff.subject }</p>
-            
-            </div>
-       </c:forEach>
-          
-         
-        </div>
-      </div>
 
-      <ul class="slide_pagination"></ul>
-    </div>
-  </div>
-  
-   <!-- 끝 -->
-   
+
+		</div>
+		<!-- slidewrap end -->
 
 
 		<hr>
@@ -1439,30 +1778,34 @@
 			<ul id="messageAdmin" class="overflow-auto">
 
 			</ul>
-	  	 </div>
-	  	 <div class="input-group p-4 mini-chat-send">
-	   	   <input type="text" class="form-control" id="chatMsg" placeholder="Type a message...">
-	   	   <input type="hidden" id="admin_id" value="admin">
-     	   	   <input type="hidden" id="userid" value="${sessionScope.userid}"> 
-     	   	   <input type="hidden" id="chatNum" value="${sessionScope.usernum}">
-     	   	   <input type="hidden" id="sender" value="${sessionScope.userid}">
-     	   	    <input type="hidden" id="num" value="${sessionScope.usernum}">
-  				<div class="input-group-append">
-    				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
- 				 </div>
-	  	 </div>
-	 </div>
-	 
-<script>
-$(function () {
-	$('#btnMiniChatJoin').on('click', function(evt) {
-		evt.preventDefault();
-	  if (socket.readyState !== 1) return;
-	    	   let target=$("#admin_id").val();
-	    	   let chatNum=$("#chatNum").val();
-	    	   let sender=$("#userid").val();
-	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
-	    });
+		</div>
+		<div class="input-group p-4 mini-chat-send">
+			<input type="text" class="form-control" id="chatMsg"
+				placeholder="Type a message..."> <input type="hidden"
+				id="admin_id" value="admin"> <input type="hidden"
+				id="userid" value="${sessionScope.userid}"> <input
+				type="hidden" id="chatNum" value="${sessionScope.usernum}">
+			<input type="hidden" id="sender" value="${sessionScope.userid}">
+			<input type="hidden" id="num" value="${sessionScope.usernum}">
+			<div class="input-group-append">
+				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function() {
+			$('#btnMiniChatJoin').on(
+					'click',
+					function(evt) {
+						evt.preventDefault();
+						if (socket.readyState !== 1)
+							return;
+						let target = $("#admin_id").val();
+						let chatNum = $("#chatNum").val();
+						let sender = $("#userid").val();
+						socket.send("chat," + sender + "," + target + ","
+								+ chatNum + ",대화신청");
+					});
 
 			$("#chatMsg").keypress(function(e) {
 				if (e.which == 13) {
@@ -1522,7 +1865,7 @@ $(function () {
 			$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 		}
 	</script>
-	
+
 	<%@ include file="include/footer.jsp"%>
 </body>
 </html>
