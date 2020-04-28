@@ -10,4 +10,14 @@ public interface ChatRoomDAO {
 	public List<ChatRoomDTO> chatRoomListAll() throws Exception;
 
 	public ChatRoomDTO chatRoomView(int chatroom_id) throws Exception;
+
+	public int checkRoom(ChatRoomDTO dto) throws Exception;
+
+	public void insertMessage(int chatroom_id, String chatmsg);
+
+	public List<ChatRoomDTO> messageList(ChatRoomDTO dto);
+
+	public void roomUpdate(ChatRoomDTO dto) throws Exception;
+
+	public void clickRoom(int chatroom_id) throws Exception;
 }

@@ -10,9 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     insert into CHATROOM
        (chatroom_id,chatroom_name,create_user_id)
        values (
-       (select nvl(max(chatroom_id)+1,1) from CHATROOM)
+       #{chatroom_id}
        ,#{chatroom_name}
-       ,#{create_user_id})
+       ,#{chatroom_name})
   </insert>
 	<select id="chatRoomListAll" resultType="com.TeamProject.Kdemy.model.chat.dto.ChatRoomDTO">
 	  select * from CHATROOM
@@ -21,6 +21,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="chatRoomView" resultType="com.TeamProject.Kdemy.model.chat.dto.ChatRoomDTO">
 	  select * from CHATROOM where chatroom_id=#{chatroom_id}
 	</select>
+	
+	<select id="checkRoom" resultType="int">
+	  select COUNT(*) from CHATROOM 
+	  where chatroom_id=#{chatroom_id} and chatroom_name=#{chatroom_name}
+	</select>
+	
+	<insert id="insertMessage">
+	   insert into chatmessage
+       (chatroom_id,chatmsg)
+       values (
+       #{chatroom_id},
+       #{chatmsg})
+	</insert>
+	
+	<select id="messageList" resultType="com.TeamProject.Kdemy.model.chat.dto.ChatRoomDTO">
+	  select * from chatmessage where chatroom_id=#{chatroom_id} order by chatdate
+	</select>
+	
+	<update id="roomUpdate">
+	  update CHATROOM set chatalarm='n' where chatroom_id=#{chatroom_id} and chatroom_name=#{chatroom_name}
+	</update>
+	
+	<update id="clickRoom">
+	  update CHATROOM set chatalarm='y' where chatroom_id=#{chatroom_id}
+	</update>
 </mapper>
 
 

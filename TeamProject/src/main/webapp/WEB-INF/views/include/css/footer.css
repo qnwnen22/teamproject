@@ -55,3 +55,25 @@
 .tail_body .bsns_wrap .sns {margin:10px 0;}
 .tail_body .bsns_wrap .sns li {display:inline-block; margin:0 6px 0 0}
 .tail_body .bsns_wrap .sns li img {height:36px}
+
+
+#kdemyAlert {
+	display: none;
+	bottom: 0;
+	rigth:0;
+	width: 100%;
+	padding: 0;
+	z-index: 999;
+	margin-bottom: 0;
+}
+.kdemyAlertDiv {
+	position: relative;
+}
+
+.alert-header {
+	background-color: silver;
+	padding: 16px 20px;
+}
+.alert-body {
+	padding: 16px 20px;
+}

@@ -205,7 +205,7 @@
 </head>
 <body>
 
-<div id="socketAlert" class="alert alert-primary" role="alert" style="display: none;"></div>
+
 	<%@ include file="include/topbar.jsp"%>
 	<div class ="global-body">
 		<div class="master-body">
@@ -768,6 +768,7 @@
 															
 															<!-- 관리자 로그인 -->
 															<c:if test="${sessionScope.admin_id != null}">
+															<i class="far fa-bell btn"></i>
 															<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
@@ -783,6 +784,8 @@
 																		<a class="dropdown-item" href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
 						    											<a class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
 						    											<a class="dropdown-item" href="${path}/member/couponMaker.do">쿠폰관리</a>
+						    											<a class="dropdown-item" href="#" 
+						    											onclick="window.open('${path}/chatroom/chatRoomList.do','문의리스트','width=330,height=610,left=500')">문의관리</a>
 																	</div>
 																</div>
 																<div
@@ -946,12 +949,6 @@
 										</div>
 									</div>
 
-									<div class="index-header-left d-none d-xl-block mx-auto">
-									<img class="img-fluid" src="${path}/include/images/main/${row.background_img0}" onerror="this.style.display='none'">
-									</div>
-									<div class="index-header-right d-none d-xl-block mx-auto">
-									<img class="img-fluid" src="${path}/include/images/main/${row.background_img1}" onerror="this.style.display='none'">
-									</div>
 								</div>
 							</div>
 
@@ -1277,50 +1274,7 @@
 		</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 
-	<div class="card">
-		<h5 class="card-header">Featured</h5>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural
-				lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
-		</div>
-	</div>
-	<div class="card mb-3">
-		<img src="..." class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text
-				below as a natural lead-in to additional content. This content is a
-				little bit longer.</p>
-			<p class="card-text">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</p>
-		</div>
-	</div>
-	<div class="card mb-3" style="max-width: 540px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img
-					src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png"
-					class="card-img" alt="...">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a wider card with supporting text
-						below as a natural lead-in to additional content. This content is
-						a little bit longer.</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
 	<c:if test="${sessionScope.userid != null}">
 	<div class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block" id="adminChat">
 	   <a href="#miniChat" data-toggle="collapse" id="btnMiniChatJoin"><img src="${path}/include/images/main/chaticon.png" class="mx-auto d-block mt-3 mb-3"></a>
@@ -1337,7 +1291,7 @@
 	     </div>
 	   	 <div class="p-3 shadow bg-silver mx-auto mt-2 mini-chat-screen overflow-auto" id="admin_chat">
 	   	   <ul id="messageAdmin" class="overflow-auto">
-
+	   	     <li class="col-12" style="width: 100%;">KDEMY 상담 시간은 (월요일~금요일) 10:00~18:00까지 입니다.</li>
 			</ul>
 	  	 </div>
 	  	 <div class="input-group p-4 mini-chat-send">
@@ -1360,8 +1314,19 @@ $(function () {
 	    	   let target=$("#admin_id").val();
 	    	   let chatNum=$("#chatNum").val();
 	    	   let sender=$("#userid").val();
-	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
-	    });
+	    	   let chat="chat"+chatNum;
+	    	   
+	    	   socket.send(chat+","+sender+","+target+","+chatNum+",대화신청");
+	 var chatroom_name= $('#userid').val();
+	 var chatroom_id = $('#chatNum').val();
+	 $.ajax({
+	        data : {
+	        	chatroom_name : chatroom_name,
+	            chatroom_id : chatroom_id               
+	        },
+	        url : "${path}/chatroom/createRoomInsert.do"
+	 });
+});
 
 	$("#chatMsg").keypress(function (e) {
         if (e.which == 13){
@@ -1382,9 +1347,9 @@ $(function () {
 		    	   let chatNum=$("#chatNum").val();
 		    	   let sender=$("#userid").val();
 		    	   let chatMsg=$("#chatMsg").val();
-		    	   socket.send("adminsend,"+sender+","+target+","+chatNum+","+chatMsg);
+		    	   socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
 		    	   $("#chatMsg").val("");
-		    	   var mymessage="<li class='bg-warning text-right ml-auto mb-1'>"+chatMsg+"</li>"
+		    	   var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
 		    	   $("#messageAdmin").append(mymessage);
 		    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 	 });
@@ -1402,17 +1367,15 @@ function chatEnter() {
 	    	   let chatNum=$("#chatNum").val();
 	    	   let sender=$("#userid").val();
 	    	   let chatMsg=$("#chatMsg").val();
-	    	   socket.send("adminsend,"+sender+","+target+","+chatNum+","+chatMsg);
+	    	   
+	    	   socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
 	    	   $("#chatMsg").val("");
-	    	   var mymessage="<li class='bg-warning text-right ml-auto mb-1'>"+chatMsg+"</li>"
+	    	   var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
 	    	   $("#messageAdmin").append(mymessage);
 	    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
-
 </script>
 	
-=======
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 <%@ include file="include/footer.jsp"%>
 </body>
 </html>

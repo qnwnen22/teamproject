@@ -177,8 +177,8 @@ function nicknameC(){
 $(document).ready(function(){
 	$("#profileImg").click(function(){
 		$("#input_img").click() ;
-		})			
-	}) 
+		});			
+	}); 
 
 var sel_file;
 

@@ -17,7 +17,6 @@ body {
 	font-size: 13px;
 	font-family: MetroSans;
 	font-weight: 400;
-}
 
 .vw {
 	font-size: 4vw;
@@ -218,7 +217,12 @@ a, a:hover, a:focus {
 	#kdemiNavBar .header-list-renewal .hover-trigger a.plain, #kdemiNavBar .header-list-renewal .hover-trigger .selling-panels>.events-more-btn>a
 	{
 	color: #303441;
-	font-size: 17px;
+	font-size: 0.9rem;
+	
+}
+
+.hover-trigger {
+	text-align: center;
 }
 
 a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,

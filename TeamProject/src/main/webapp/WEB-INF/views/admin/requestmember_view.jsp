@@ -34,7 +34,7 @@
 				</div>
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-success" onclick="location.href='${path}/member/approval.do?userid=${dto.userid}'">승인</button>
+					<button type="button" class="btn btn-outline-success" onclick="">승인</button>
 					<button type="submit" class="btn btn-outline-danger" onclick="location.href='${path}/member/reject.do?userid=${dto.userid}'">거절</button>
 					<button type="button" class="btn btn-outline-secondary"
 						data-dismiss="modal">취소</button>
@@ -43,3 +43,17 @@
 		</div>
 	</div>
 </div>
+
+<script>
+function teacherSuccess() {
+	if (socket.readyState !== 1)
+		return;
+	console.log(socket);
+	let amdin = 'admin';
+	let target = $('input#userid').val();
+	// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+	socket.send("teacherSuccess," + amdin + "," + target);
+	
+	location.href='${path}/member/approval.do?userid=${dto.userid}';
+}
+</script>
