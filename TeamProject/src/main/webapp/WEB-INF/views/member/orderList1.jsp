@@ -75,7 +75,7 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
          <div class="col-xl-12 m-2 h-auto d-inline-block">
               <c:forEach var="dto" items="${list2}">
                <div class="row lecture" style="border-radius:10px;">
-                  <div class="col-sm-4" style="max-height:15em;">
+                  <div class="col-sm-4" style="height:15em;">
                      <a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
                         <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="lectureImg" style="width:100%; height:100%;">
                       </a>
