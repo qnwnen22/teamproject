@@ -29,12 +29,12 @@ import org.springframework.web.multipart.MultipartFile;
 //github.com/qnwnen22/teamproject.git
 import org.springframework.web.servlet.ModelAndView;
 
-import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReplyDTO;
 import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 import com.TeamProject.Kdemy.service.review.ReplyService;
 import com.TeamProject.Kdemy.service.review.ReviewService;
 import com.TeamProject.Kdemy.service.review.Review_Pager;
+import com.TeamProject.Kdemy.service.review.Review_Pager2;
 import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
@@ -72,11 +72,29 @@ public class ReviewController {
 		mav.setViewName("review/reviewlist");//포워딩
 		mav.addObject("map", map);
 		return mav;
-		
 	}//end list
 	
+	@RequestMapping("replylist.do")
+	public ModelAndView replylist(@RequestParam(defaultValue="1") int curPage, int bno, ModelAndView mav) throws Exception {
+		int countReply =replyService.countReply();
+		System.out.println(countReply);
+		Review_Pager2 pager2=new Review_Pager2(countReply, curPage);
+		int start2=pager2.getPageBegin();
+		int end2=pager2.getPageEnd();
+		List<ReplyDTO> list=replyService.list(bno,start2, end2);
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("replylist", list);
+		map.put("count2",  countReply);
+		map.put("pager2", pager2);
+		map.put("bno", bno);
+		mav.setViewName("review/reply_list");
+		mav.addObject("map", map);
+		return mav;
+	}
+	
+	@ResponseBody
 	@RequestMapping("view.do")
-	public ModelAndView view(	@RequestParam(defaultValue="1") int curPage, @ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
+	public ModelAndView view(@RequestParam(defaultValue="1") int curPage, @ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
 		int count =reviewService.countArticle();
 		//페이지 처리
 		Review_Pager pager=new Review_Pager(count, curPage);
@@ -98,6 +116,11 @@ public class ReviewController {
 		mav.addObject("dto", reviewService.read(bno));
 		return mav;
 	}
+	
+
+	
+	
+
 	
 
 	@RequestMapping("searchlist.do")
@@ -132,21 +155,18 @@ public class ReviewController {
 		return "review/reviewwrite";
 	}// end write()
 	
+	@RequestMapping("write2.do")
+	public String write2() {
+		//글쓰기 폼 페이지로 이동
+		return "review/test";
+	}// end write()
+	
 	
 	@RequestMapping(value="insert.do", method= {RequestMethod.POST},
 	         consumes=MediaType.MULTIPART_FORM_DATA_VALUE, produces="text/plain;charset=utf-8")
 	public String insert(ReviewDTO dto, HttpSession session) throws Exception{
-		String fullName=null;
-		MultipartFile file1=dto.getFile1();
-		fullName=file1.getOriginalFilename();
-		try {
-			fullName=UploadFileUtils.uploadFile(reviewuploadPath, fullName, file1.getBytes());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
-		dto.setFullName(fullName);
 		reviewService.create(dto);
 		return ("redirect:/review/list.do");
 	}//end insert
@@ -261,13 +281,7 @@ public class ReviewController {
 		replyService.create(dto);
 	}
 	
-	@RequestMapping("replylist.do")
-	public ModelAndView replylist(int bno, ModelAndView mav) {
-		List<ReplyDTO> list=replyService.list(bno);
-		mav.setViewName("review/reply_list");
-		mav.addObject("replylist", list);
-		return mav;
-	}
+
 	
 	@RequestMapping("replydelete/{rno}+{bno}")
 	public String delete(@PathVariable("rno") int rno,@PathVariable("bno") int bno,   

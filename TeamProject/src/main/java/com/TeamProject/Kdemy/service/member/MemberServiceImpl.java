@@ -151,4 +151,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.couponCheck(dto);
 	}
 
+	@Override
+	public int emailCheck(MemberDTO dto) {
+		return memberDao.emailCheck(dto);
+	}
+
 }

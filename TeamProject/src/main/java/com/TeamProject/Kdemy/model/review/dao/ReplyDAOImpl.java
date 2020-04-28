@@ -1,6 +1,8 @@
 package com.TeamProject.Kdemy.model.review.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -15,8 +17,12 @@ public class ReplyDAOImpl implements ReplyDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public List<ReplyDTO> list(int bno) {
-		return sqlSession.selectList("review.listReply",bno);
+	public List<ReplyDTO> list(int bno,int start2, int end2) {
+		Map<String, Object> map=new HashMap<>();
+		map.put("bno", bno);
+		map.put("start2", start2);
+		map.put("end2", end2);
+		return sqlSession.selectList("review.listReply",map);
 	}
 
 	@Override
@@ -41,5 +47,12 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public void delete(int rno) throws Exception {
 		sqlSession.delete("review.replydelete", rno);
 	}
+
+	@Override
+	public int countReply() throws Exception {
+		Map<String, String> map=new HashMap<>();
+		return sqlSession.selectOne("review.countReply");
+	}
+
 
 }

@@ -10,6 +10,7 @@
 	function list(page) {
 		location.href = "${path}/notice/list.do?curPage=" + page;
 	}
+
 </script>
 </head>
 <body>
@@ -18,7 +19,7 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li>공지사항</li>
+				<li><b style="color: blue;">공지사항</b></li>
 			</ul>
 		</div>
 		
@@ -47,8 +48,8 @@
 		</div>
 		</form>
 
-		<div id="table_css" class="table-responsive">
-		<table class="table text-center table-hover" >
+		<div id="table_css" class="table-responsive col-12">
+		<table class="table text-center table-hover table-bordered" >
 		<thead>
 				<tr>
 					<th class="d-none d-xl-block d-lg-block"> 번호</th>
@@ -57,13 +58,12 @@
 					<th class="d-none d-xl-block d-lg-block">날짜</th>
 					<th>조회수</th>
 				</tr>
-				</thead>
+				</thead >
 				<tbody>
 				<c:forEach var="rows" items="${map.list}">
-					<tr>
+					<tr  style="cursor: pointer;" onclick="location.href='${path}/notice/view.do?bno=${rows.bno}'">
 					<td class="d-none d-xl-block d-lg-block">${rows.bno}</td>
-						<td><a
-							href="${path}/notice/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
+						<td><a>${rows.title}</a> <c:if
 								test="${rows.cnt>0}">
 							</c:if></td>
 						<td>${rows.writer}</td>
@@ -75,16 +75,15 @@
 				</tbody>
 		</table>
 		</div>
-		<%-- 	<c:choose>
-				<c:when test="${sessionScope.userid != null }">
-					<!-- 관리자로 로그인했을때 아이디 바꾸기--> --%>
+			<c:if test="${sessionScope.admin_id != null }">
+					<!-- 관리자로 로그인했을때 아이디 바꾸기-->
+
 					<div class="d-flex justify-content-end mt-3">
 						<a class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
 							href="${path}/notice/write.do" data-ga-category="header"> 글쓰기
 						</a>
 						</div>
-				<%-- </c:when>
-			</c:choose> --%>
+						</c:if>
 	
 	<br>
 	<div class="d-flex justify-content-center">
@@ -120,8 +119,7 @@
 					</c:if>
 				</ul>
 			</nav>
-	</div>
-	</div>
+	</div>	</div>
 	<br><br>
 
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

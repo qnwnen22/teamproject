@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,13 +17,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.TeamProject.Kdemy.model.admin.dto.MainDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
+import com.TeamProject.Kdemy.model.notice.dto.NoticeDTO;
+import com.TeamProject.Kdemy.model.review.dto.ReviewDTO;
 import com.TeamProject.Kdemy.service.admin.AdminService;
+import com.TeamProject.Kdemy.service.lecture.LectureService;
+import com.TeamProject.Kdemy.service.member.MemberService;
+import com.TeamProject.Kdemy.service.notice.NoticeService;
+import com.TeamProject.Kdemy.service.review.ReviewService;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
 /**
@@ -33,27 +44,71 @@ public class HomeController {
 	@Inject
 	AdminService adminService;
 
+	@Inject
+	LectureService lectureService;
+
+	@Inject
+	NoticeService noticeService;
+	
+	@Inject
+	ReviewService reviewService;
+	
 	@Resource(name="mainResoucePath")
 	String mainResoucePath;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, LectureDTO dto) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
+
 		model.addAttribute("serverTime", formattedDate );
 		List<MainDTO> list=adminService.resoucelist();
+		List<LectureDTO> listv=lectureService.lecture_listV();
+		List<LectureDTO> liston=lectureService.lecture_listOn();
+		List<LectureDTO> listoff=lectureService.lecture_listOff();
+		List<NoticeDTO> listnotice = noticeService.listAll();
+	List<ReviewDTO> listreview = reviewService.listAll();
+		
 		model.addAttribute("list", list);
+		model.addAttribute("listv", listv);
+		model.addAttribute("liston", liston);
+		model.addAttribute("listoff", listoff);
+		model.addAttribute("listnotice", listnotice);
+		model.addAttribute("listreview", listreview);
 		return "home";
 	}
+	
+
+	@Inject
+	MemberService memberService;
+
+	@RequestMapping("cookie.do")
+	public String testCookie( MemberDTO dto, @CookieValue(value = "loginCookie") Cookie cookieValue, Model model,HttpSession session) throws Exception {	  
+		String userid =  cookieValue.getValue();
+		dto.setUserid(userid);
+		System.out.println(cookieValue.getValue());
+		if(cookieValue != null) {	
+			MemberDTO dto2=memberService.kdemyLogin(dto);
+			session.setAttribute("userid", dto2.getUserid());
+			session.setAttribute("nickname", dto2.getNickname());
+			session.setAttribute("username", dto2.getUsername());
+			session.setAttribute("useremail", dto2.getUseremail());
+			session.setAttribute("passwd", dto2.getPasswd());
+			session.setAttribute("teacher", dto2.getTeacher());
+			model.addAttribute("dto", dto2);	
+
+		}
+		return "redirect:/";
+	}
+
 	@RequestMapping(value = "main/change.do", method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 	public String mainChange(MainDTO dto, Model model, @RequestParam(defaultValue ="-") String background_img0,@RequestParam(defaultValue ="-") String background_img1){
@@ -92,21 +147,21 @@ public class HomeController {
 		map.put("icon_img8",icon_img8);
 		map.put("icon_img9",icon_img9);
 		map.put("icon_img10",icon_img10);
-		
+
 		try {
 			Iterator<String> keys = map.keySet().iterator();
 			while (keys.hasNext()) {
-			    String key = keys.next();
-			    if(map.get(key).equals("")) {
+				String key = keys.next();
+				if(map.get(key).equals("")) {
 					/* String column = key.substring(0, 9); */
-			    	String icon_img = adminService.resoucelist1(key);
-			    	System.out.println(key);
-			    	map.put(key, icon_img);
-			    	System.out.println(icon_img);
+					String icon_img = adminService.resoucelist1(key);
+					System.out.println(key);
+					map.put(key, icon_img);
+					System.out.println(icon_img);
 				}else {
 					String icon_img = UploadFileUtils.uploadFile(mainResoucePath,map.get(key), map1.get(key).getBytes());
 					map.put(key, icon_img);
-			}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

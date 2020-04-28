@@ -18,7 +18,7 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li>공지사항</li>
+				<li><b style="color: blue;">공지사항</b></li>
 			</ul>
 		</div>
 		
@@ -48,7 +48,7 @@
 		</form>
 		
 		<div class="table-responsive">
-		<table class="table table-hover text-center">
+		<table class="table table-hover text-center table-bordered">
 			<thead>
 				<tr>
 					<th class="d-none d-xl-block d-lg-block"> 번호</th>
@@ -60,10 +60,9 @@
 			</thead>
 			<tbody>
 				<c:forEach var="rows" items="${map.list}">
-						<tr >
+						<tr style="cursor: pointer;" onclick="location.href='${path}/notice/view.do?bno=${rows.bno}'">
 					<td class="d-none d-xl-block d-lg-block">${rows.bno}</td>
-						<td><a
-							href="${path}/notice/view.do?bno=${rows.bno}">${rows.title}</a> <c:if
+						<td><a>${rows.title}</a> <c:if
 								test="${rows.cnt>0}">
 							</c:if></td>
 						<td>${rows.writer}</td>

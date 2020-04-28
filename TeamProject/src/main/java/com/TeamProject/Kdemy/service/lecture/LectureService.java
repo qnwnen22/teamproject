@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 
 public interface LectureService {
 
@@ -57,5 +58,10 @@ public interface LectureService {
 	   public int lectureCount(LectureBoxDTO lbDto);
 	   public List<LectureBoxDTO> chartCountMoney();
 	   public int totalMoney();
+	public void reviewStar(LectureReviewDTO dto);
+	public List<LectureDTO> lecture_listV();
+	public List<LectureDTO> lecture_listOn();
+	public List<LectureDTO> lecture_listOff();
+	
 
 }

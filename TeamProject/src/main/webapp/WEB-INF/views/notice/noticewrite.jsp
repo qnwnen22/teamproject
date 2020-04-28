@@ -62,7 +62,7 @@
 				<div class="mb-2">
 					<ul class="upper_shift">
 						<li><a href="${path}">KDEMY</a></li>
-						<li><a href="${path}/notice/list.do">공지사항</a></li>
+						<li><b><a href="${path}/notice/list.do" style="color: blue;">공지사항</a></b></li>
 					</ul>
 				</div>
 
@@ -75,7 +75,7 @@
 				<div class="form-group mb-4">
 					<label for="title">작성자</label> <input type="text"
 						class="form-control" id="userid" name="userid"
-						value="${sessionScope.userid }" disabled="disabled">
+						value="${sessionScope.admin_id }" disabled="disabled">
 				</div>
 
 				<div class="mb-3 was-validated mb-4">

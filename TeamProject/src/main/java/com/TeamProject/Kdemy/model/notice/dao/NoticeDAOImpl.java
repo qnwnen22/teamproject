@@ -110,4 +110,9 @@ public class NoticeDAOImpl implements NoticeDAO {
 				
 	}
 
+	@Override
+	public List<NoticeDTO> listAll() {
+		return sqlSession.selectList("notice.listAll2");
+	}
+
 }

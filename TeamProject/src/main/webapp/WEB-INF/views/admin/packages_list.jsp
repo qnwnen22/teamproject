@@ -38,10 +38,6 @@ function listview(){
 </head>
 <body>
 	<%@include file="../include/fixed-topbar.jsp"%>
-<<<<<<< HEAD
-	<div id="list"></div>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
-=======
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
 	<div>
 			<ul class="upper_shift">
@@ -50,7 +46,6 @@ function listview(){
 				<li><b><a href="${path}/packages/adminlist.do" style="color:blue;">패키지 관리</a></b></li>
 			</ul>
 		</div>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 		<div class="table-responsive">
 			<br>
 			<div class="modal" id="addModal">
@@ -96,7 +91,7 @@ function listview(){
 			</div>
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
-				<tr>
+				<tr class="text-center">
 					<th>이미지</th>
 					<th>이름</th>
 					<th>내용</th>
@@ -106,9 +101,9 @@ function listview(){
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${list}">
-					<tr onclick="packagesView('${row.packages_name}')" style="cursor:pointer;" data-toggle="modal" data-target="#updateModal">
+					<tr class="text-center" onclick="packagesView('${row.packages_name}')" style="cursor:pointer;" data-toggle="modal" data-target="#updateModal">
 						<td><img src="../include/images/coupon/${row.packages_image}"
-							class="align-self-center" style="width: 200px"></td>
+							class="align-self-center mx-auto d-block" style="width: 200px"></td>
 						<td>${row.packages_name}</td>
 						<td>${row.packages_text}</td>
 						<td><fmt:formatNumber value="${row.packages_price}"

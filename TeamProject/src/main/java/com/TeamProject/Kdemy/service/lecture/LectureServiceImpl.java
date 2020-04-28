@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
+import com.TeamProject.Kdemy.model.lecture.dto.LectureReviewDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 
 import oracle.net.aso.l;
@@ -38,6 +39,7 @@ public class LectureServiceImpl implements LectureService {
 	   @Override
 	   public LectureDTO lecture_list_view(int lecture_idx) {
 	      return lectureDao.lecture_list_view(lecture_idx);
+	      
 	   }
 	   @Override
 	   public int searchCount(String cell_type, String keyword) {
@@ -74,6 +76,22 @@ public class LectureServiceImpl implements LectureService {
 	   public List<LectureDTO> lecture_list(int start, int end) {
 	      return lectureDao.lecture_list(start, end);
 	   }
+	   
+
+		@Override
+		public List<LectureDTO> lecture_listV() {
+			return lectureDao.lecture_listV();
+		}
+		
+		@Override
+		public List<LectureDTO> lecture_listOn() {
+			return lectureDao.lecture_listOn();
+		}
+		
+		@Override
+		public List<LectureDTO> lecture_listOff() {
+			return lectureDao.lecture_listOff();
+		}
 	   
 	   
 	   @Override
@@ -178,11 +196,13 @@ public class LectureServiceImpl implements LectureService {
 	   @Override
 	   public void upUpdate(String userid, int lecture_idx) {
 	      lectureDao.upUpdate(userid, lecture_idx);
+	      lectureDao.upCount(lecture_idx);
 	   }
 
 	   @Override
 	   public void downUpdate(String userid, int lecture_idx) {
 	      lectureDao.downUpdate(userid, lecture_idx);
+	      lectureDao.downCount(lecture_idx);
 	   }
 
 	   @Override
@@ -204,6 +224,13 @@ public class LectureServiceImpl implements LectureService {
 	   public int totalMoney() {
 	      return lectureDao.totalMoney();
 	   }
+
+	@Override
+	public void reviewStar(LectureReviewDTO dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

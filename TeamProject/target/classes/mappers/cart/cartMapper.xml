@@ -5,44 +5,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="cart">
-   <select id="cartList"
-   resultType="com.TeamProject.Kdemy.model.cart.dto.CartDTO">
-      select * from cart
-      where userid=#{userid}
-      order by cart_idx desc
-   </select>
-   
-   <insert id="insertCart">
-      insert into cart
-      (cart_idx, cell_type, userid, lecture_idx, main_category, sub_category, subject, price)
-      values
-      ( 
-      (select nvl(max(cart_idx)+1, 1) from cart where userid=#{userid}),
-      #{cell_type}, #{userid}, #{lecture_idx}, #{main_category}, #{sub_category}, #{subject}, #{price}
-      )
-   </insert>
-   <select id="pointCheck"
-   resultType="int">
-      select point from kdemymember
-      where userid=#{userid}
-   </select>
-   
-   <update id="buyLecture">
-      update kdemymember
-      set point=( 
-      (select point from kdemymember where userid=#{userid}) - #{price}
-      ) where userid=#{userid} 
-   </update>
-   
-   <insert id="insertLectureBox">
-      insert into lectureBox
-      (box_idx, cell_type, userid, lecture_idx, price)
-      values
-      (
-      (select nvl(max(box_idx)+1, 1) from lectureBox ), 
-      #{cell_type}, #{userid}, #{lecture_idx}, (select price from lecture where lecture_idx=#{lecture_idx})
-      )
-   </insert>
+	<select id="cartList"
+	resultType="com.TeamProject.Kdemy.model.cart.dto.CartDTO">
+		select * from cart
+		where userid=#{userid}
+		order by cart_idx desc
+	</select>
+	
+	<insert id="insertCart">
+		insert into cart
+		(main_img, cart_idx, cell_type, userid, lecture_idx, main_category, sub_category, subject, price)
+		values
+		( #{main_img, jdbcType=VARCHAR},(select nvl(max(cart_idx)+1, 1) from cart where userid=#{userid}),
+		#{cell_type}, #{userid}, #{lecture_idx}, #{main_category}, #{sub_category}, #{subject}, #{price}
+		)
+	</insert>
+	<select id="pointCheck"
+	resultType="int">
+		select point from kdemymember
+		where userid=#{userid}
+	</select>
+	
+	<update id="buyLecture">
+		update kdemymember
+		set point=( 
+		(select point from kdemymember where userid=#{userid}) - #{price}
+		) where userid=#{userid} 
+	</update>
+	
+	<insert id="insertLectureBox">
+		insert into lectureBox
+		(box_idx, cell_type, userid, lecture_idx)
+		values
+		(
+		(select nvl(max(box_idx)+1, 1) from lectureBox ), 
+		#{cell_type}, #{userid}, #{lecture_idx}
+		)
+	</insert>
 
    
    <select id="cartCheck"
@@ -50,6 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select count(*) from cart
       where userid=#{userid} and lecture_idx=#{lecture_idx}
    </select>
+   
    <delete id="deleteAll">
     delete from cart
     where userid=#{userid}

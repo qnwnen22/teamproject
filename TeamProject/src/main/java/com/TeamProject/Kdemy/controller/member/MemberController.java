@@ -92,6 +92,18 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping("orderDetail1.do")
+	public ModelAndView orderDetail1(HttpSession session, LectureBoxDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		String userid=(String)session.getAttribute("userid");
+		dto.setUserid(userid);
+		List<LectureBoxDTO> list2=new ArrayList<>();
+		list2= memberService.orderDetail(dto);
+		mav.addObject("list2",list2);
+		mav.setViewName("member/orderList1");
+		return mav;
+	}
+	
 	@RequestMapping("cartPage.do")
 	public ModelAndView cartPage(HttpSession session, CartDTO dto) {
 		ModelAndView mav = new ModelAndView();
@@ -118,7 +130,7 @@ public class MemberController {
 			mav.setViewName("member/myPage1");
 		}else {
 			mav.addObject("message","비밀번호가 틀렸습니다.");
-			mav.setViewName("member/myPage");
+			mav.setViewName("member/myPage"); 
 		}
 		return mav;
 	}
@@ -128,7 +140,8 @@ public class MemberController {
 	public String myPageUpdate() {
 		return "member/mypageUpdate";
 	}
- 
+    
+	
 	@RequestMapping("couponMaker.do")
 	public String couponMaker() {
 		return "member/coupon";
@@ -286,7 +299,7 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[이메일 인증]");
 		sendMail.setText(new StringBuffer().append("<table><tbody>")
-				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg'></tr>")
 				.append("<tr style='text-align: center;'><a href='http://localhost/Kdemy/member/verify.do?useremail=" + dto.getUseremail())
 				.append("' target='_blenk'>이메일 인증 확인</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
@@ -311,6 +324,19 @@ public class MemberController {
 		if(dto.getUserid().matches(exp1)) {
 			int result = memberService.idCheck(dto);
 			return result;			
+		}else {
+			return 2;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/checkEmail.do")
+	public int emailCheck(MemberDTO dto) throws Exception {	
+		String exp3= "^[a-z0-9]{2,}@[a-z0-9]{2,}.[a-z]{2,}$";
+		if(dto.getUseremail().matches(exp3)) {
+			int result = memberService.emailCheck(dto);
+			 System.out.println("result:"+result);
+			return result;			  
 		}else {
 			return 2;
 		}
@@ -351,15 +377,15 @@ public class MemberController {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[비밀번호 찾기]");
 		sendMail.setText(new StringBuffer().append("<table><tbody>")
-				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200420_80/15873661719207AG6k_JPEG/mosa1H3VkB.jpeg?type=w556'></tr>")		
+				.append("<tr><img class='card-img-top' src='https://modo-phinf.pstatic.net/20200422_163/1587551759907xdqhe_PNG/mosaHfUWxc.png'></tr>")		
 				.append("<tr style='text-align: center;'><b>임시 비밀번호 발급 : " + key+ "</b><br>")
 				.append("<a href='http://localhost/Kdemy/")
 				.append("' target='_blenk'>KDEMY에서 로그인 하기</a></tr></tbody></table>").toString());
 		sendMail.setFrom("kdemy11@gmail.com", "kdemy");
 		sendMail.setTo(dto.getUseremail());
 		sendMail.send();
-		
-		return "member/signConfirm";
+	
+		return "member/passChange";
 	}
 
 	@RequestMapping("login.do")
@@ -378,6 +404,7 @@ public class MemberController {
 			session.setAttribute("userid", dto2.getUserid());
 			session.setAttribute("nickname", dto2.getNickname());
 			session.setAttribute("username", dto2.getUsername());
+			session.setAttribute("useremail", dto2.getUseremail());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
 		
@@ -385,12 +412,11 @@ public class MemberController {
 			CookieGenerator c = new CookieGenerator();
 			c.setCookieName("loginCookie");
 			c.setCookieMaxAge(60*60*24*7);
-			c.setCookiePath("/kdemy");
+			c.setCookiePath("/Kdemy");
 			c.addCookie(response, dto.getUserid());
 			mav.addObject("loginCookie", dto.getUserid());
 			}
 
-			
 			mav.setViewName("redirect:/");
 		}else if(result.equals("관리자로그인")){
 			AdminDTO dtoa=adminService.adminLogin(dto);
@@ -401,38 +427,25 @@ public class MemberController {
 			mav.setViewName("redirect:/");
 		}else {
 			mav.addObject("message","로그인실패");
-			mav.setViewName("redirect:/");
+			mav.setViewName("redirect:/");	
 		}
 		return mav;
 	}
 	
-//	@RequestMapping(value="/kdemy", method=RequestMethod.GET)
-//
-//	public void testCookie(HttpServletRequest request){
-//	Cookie[] getCookie = request.getCookies(); // 모든 쿠키 가져오기
-//	if(getCookie != null){ // 만약 쿠키가 없으면 쿠키 생성
-//	for(int i=0; i<getCookie.length; i++){
-//	Cookie c = getCookie[i]; // 객체 생성
-//	String name = c.getName(); // 쿠키 이름 가져오기
-//	String value = c.getValue(); // 쿠키 값 가져오기
-//	System.out.println(name);
-//	System.out.println(value);
-//}
-//}
-//}
 	
 
-	 @RequestMapping("logout.do") public ModelAndView logOut(HttpSession session, ModelAndView mav, HttpServletResponse response) { 
+	 @RequestMapping("logout.do") 
+	 public ModelAndView logOut(HttpSession session, ModelAndView mav, HttpServletResponse response) { 
 		 //세션 초기화 
 	  memberService.logout(session); 
 	  //login.jsp로 이동
-	  mav.setViewName("redirect:/"); 
 	  mav.addObject("message", "logout"); 
 	  CookieGenerator c = new CookieGenerator();
 		c.setCookieName("loginCookie");
 		c.setCookieMaxAge(0);
-		c.setCookiePath("/kdemy");
+		c.setCookiePath("/Kdemy");
 		c.removeCookie(response);
+		mav.setViewName("redirect:/"); 
 	  return mav; 
 	  }
 
@@ -497,5 +510,27 @@ public class MemberController {
 		return "admin/teacher_request_list";
 	}
 	
-
+	@RequestMapping("couponMemberlist.do")
+	public ModelAndView couponMemberlist(
+			@RequestParam(defaultValue ="") String keyword,
+			@RequestParam(defaultValue ="") String location,
+			@RequestParam(defaultValue="1") int curPage) 
+					throws Exception {
+		//레코드 갯수 계산
+		int count=memberService.countMember(keyword,location);
+		//페이지 관련 설정
+		member_Pager pager=new member_Pager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<MemberDTO> list=memberService.listAll(location,keyword, start, end); //게시물 목록
+		ModelAndView mav=new ModelAndView();
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("list", list); //map에 자료 저장
+		map.put("count", count);
+		map.put("pager", pager); //페이지 네비게이션을 위한 변수
+		map.put("keyword", keyword);
+		mav.addObject("map", map); //ModelAndView에 map을 저장
+		mav.setViewName("admin/couponMember_list");
+		return mav; //board/list.jsp로 이동
+	}//list()
 }

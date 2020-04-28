@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
-<div class="container-fluid" id="footer-body">
-	<div id="footertoggle" class="d-flex py-1 ">
+<div class="container align-items-end p-1" id="footer-body">
+	<div id="footertoggle" class="d-flex py-1">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
 			<i class="fa fa-bars" style="font-size: 50px;"></i>
@@ -28,8 +28,9 @@
 			<i class="fas fa-angle-right" style="font-size: 50px;"></i>
 		</button>
 	</div>
+	<hr>
 	<div class="tail_body collapse show" id="tail_body">
-		<div class="tail_item col-sm-2">
+		<div class="tail_item col-sm-2 p-0">
 			<div class="title_tail">CS CENTER</div>
 			<div class="tel">1688-0000</div>
 			<div class="time">
@@ -37,36 +38,36 @@
 				13:00
 			</div>
 			<div class="time_info">
-				주말, 공휴일은 휴무입니다.<br> 통화량 폭주로 전화연결이 안 될 경우,<br> 게시판에 문의
+				주말,공휴일은 휴무입니다.<br>통화량 폭주로 전화연결이 안 될 경우,<br>게시판에 문의
 				남겨주시면 <br> 빠른 처리 해드리겠습니다.<br>
 			</div>
 		</div>
 
-		<div class="tail_item col-sm-2">
+		<div class="tail_item col-sm-2 p-0">
 			<div class="title_tail">ACCOUNT INFO</div>
 			<ul class="bank_info">
-				<li><span>농협</span>010-000-9999-111</li>
-				<li><span>국민</span>0000-123456-123</li>
-				<li><span>우체국</span>00123-02-987654</li>
-				<li><span>우리</span>1000-001-99999</li>
+				<li>농협 010-000-9999-111</li>
+				<li>국민 0000-123456-123</li>
+				<li>우체국 00123-02-987654</li>
+				<li>우리 1000-001-99999</li>
 				<li>예금주: KDEMY</li>
 			</ul>
 			<a href="https://pgweb.uplus.co.kr/" target="_blank"><img
 				src="${path}/include/images/footer/lgup.png" alt=""></a>
 		</div>
 
-		<div class="tail_item col-sm-2">
+		<div class="tail_item col-sm-2 p-0">
 			<div class="title_tail">RETURN</div>
-			<div class="return_txt">
+			<div class="return_txt p-1">
 				<a href="#">교환/반품 정책 확인</a><br> <br> 서울 강동구 천호동 000<br>
 				우체국 물류센터<br> KDEMY<br>
 			</div>
 		</div>
 
-		<div class="tail_item col-sm-3">
+		<div class="tail_item col-sm-3 p-0">
 			<div class="title_tail">WITH US</div>
 			<ul class="shop_info">
-				<li><a href="${path}/footermenu/withus.do"><span>COMPANY</span> <small> 회사소개</small></a></li>
+				<li><a href="${path}/footermenu/withus.do"><span>COMPANY</span><small> 회사소개</small></a></li>
 				<li><a href="#"><span>AGREEMENT</span> <small> 이용약관</small></a></li>
 				<li><a href="#"><span>PRIVACYPOLICY</span> <small>
 							개인정보처리방침</small></a></li>
@@ -87,7 +88,7 @@
 			</div>
 		</div>
 
-		<div class="tail_item col-sm-2">
+		<div class="tail_item col-sm-2.8 p-1">
 			<div class="title_tail">COMPANY INFO</div>
 			<div class="com_info">
 				상호명: KDEMY | 대표 : 홍길동<br> 주소 : 서울시 강동구 천호동 어딘가<br>

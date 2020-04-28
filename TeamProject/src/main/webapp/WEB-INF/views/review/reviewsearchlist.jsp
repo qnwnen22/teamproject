@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/upper.css">
 <script type="text/javascript">
 	function list(page) {
 		location.href = "${path}/review/searchlist.do?curPage=" + page+"&search_option=${map.search_option}"+"&keyword=${map.keyword}";
@@ -18,7 +17,7 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li>수강후기</li>
+				<li><b style="color:blue;">수강후기</b></li>
 			</ul>
 		</div>
 		
@@ -53,7 +52,7 @@
 		</form>
 
 		<div id="table_css" class="table-responsive">
-		<table class="table text-center table-hover">
+		<table class="table text-center table-hover table-bordered">
 			<thead>
 				<tr>
 						<th class="d-none d-lg-block">번호</th>
@@ -66,11 +65,11 @@
 			</thead>
 			<tbody>
 				<c:forEach var="rows" items="${map.reviewlist}">
-						<tr>
+						<tr  style="cursor: pointer;" onclick="location.href='${path}/review/view.do?bno=${rows.bno}'">
 							<td class="d-none  d-lg-block">${rows.bno}</td>
 							<td>${rows.subject}</td>
 							<td class="d-none d-lg-block">${rows.teacher}</td>
-							<td><a href="${path}/review/view.do?bno=${rows.bno}">${rows.title}</a>
+							<td><a>${rows.title}</a>
 								<c:if test="${rows.cnt>0}">
 									<span style="color: white;" class="badge badge-pill badge-dark">${rows.cnt}</span>
 								</c:if></td>

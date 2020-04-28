@@ -1,6 +1,7 @@
 package com.TeamProject.Kdemy.model.member.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -60,7 +61,7 @@ public class MemberDTO {
 	private String birthday2;
 	private String birthday3;
 	//
-	
+	private List<String> list;
 }
 
 

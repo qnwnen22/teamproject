@@ -199,7 +199,7 @@ a, a:hover, a:focus {
 }
 
 .list-inline>li {
-	display: inline-block;
+	display: auto;/* inline-block */
 	list-style: none;
 }
 
@@ -218,10 +218,10 @@ a, a:hover, a:focus {
 	{
 	color: #303441;
 	font-size: 0.9rem;
-	
 }
 
-.hover-trigger {
+
+.hover-trigger{
 	text-align: center;
 }
 
@@ -273,17 +273,19 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 
 #kdemiAboutNavBar .header-list-renewal .border-top-category,
 	#kdemiNavBar .header-list-renewal .border-top-category {
-	padding: 24px 28px;
+/* 	padding: 5px 5px; */
 	border-radius: 0;
 	float: inherit;
 	box-shadow: 6px 5px 17px -2px rgba(0, 0, 0, 0.04);
 	background-clip: inherit;
 	font-size: inherit;
 	text-align: inherit;
-	margin: 1px 0 0 0;
-	border-left: 1px solid #e4e5ed;
+	/* margin: 1px 0 0 0; */
+/* 	border-left: 1px solid #e4e5ed;
 	border-right: 1px solid #e4e5ed;
-	border-bottom: 1px solid #e4e5ed;
+	border-bottom: 1px solid #e4e5ed; */
+	/* text-align: center; */
+	text-align: left;
 }
 
 .dropdown-menu, .border-top-category, .alarm-dropdown-menu,
@@ -316,13 +318,14 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 #kdemiAboutNavBar .header-list-renewal .border-top-category .category-wrapper,
 	#kdemiNavBar .header-list-renewal .border-top-category .category-wrapper
 	{
-	display: flex;
+	/* display: flex; */ 
+	
 }
 
 #kdemiAboutNavBar .header-list-renewal .border-top-category .category-wrapper .sub-category-chunk-wrapper .sub-category-wrapper:not
 , #kdemiNavBar .header-list-renewal .border-top-category .category-wrapper .sub-category-chunk-wrapper .sub-category-wrapper:not
 	  {
-	margin-top: 14px;
+	margin-top: 16px;
 }
 
 
@@ -335,7 +338,8 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 }
 
 #kdemiNavBar .sub-category-wrapper {
-	padding: 8px 15px;
+	 padding: 8px 15px;
+	 text-align: center; /* 탑바 wrapper 왼쪽 정렬 */
 }
 
 @media (max-width: 768px) { 
@@ -368,3 +372,19 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 	font-size: 1.1em;
 	color: #01447e;
 }
+ a.TopBarMenuList:hover {
+   text-decoration: underline;
+} 
+
+
+  a.TopBarMenuTitle:hover {
+    border-bottom: 3px solid #333;
+     font-weight:bold;
+} 
+
+ a.TopBarMenuTitleBox {
+  text-align: center; 
+  }
+  
+  
+  

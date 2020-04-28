@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/upper.css">
 <style type="text/css">
 .input-group {
 	width: auto !important;
@@ -32,13 +31,12 @@
 #fullName_css .jumbotron {
 	background-color: white !important;
 }
+
 </style>
 <%@ include file="../include/header.jsp"%>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		listReply();
-
 		$("#btnReply").click(function(evt) {
 			evt.preventDefault();
 			var replytext = $("#replytext").val(); //댓글 내용
@@ -56,17 +54,13 @@
 					$("#replytext").val("");
 				}
 			});				
-			if (socket.readyState !== 1)
-				return;
-			console.log(socket);
-			let replyer = $('input#replyer').val();
-			let gbwriter = $('input#gbwriter').val();
-			let gbno = $('input#gbno').val();
-			// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
-			socket.send("reply," + replyer + "," + gbwriter + "," + gbno);
-
+			if (socket.readyState !== 1) return;
+					let replyer = $('input#replyer').val();
+					let gbwriter = $('input#gbwriter').val();
+					let gbno = $('input#gbno').val();
+					// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+					socket.send("reply,"+replyer+","+gbwriter+","+gbno);
 		});
-
 		$(document).keydown(function(event) {
 			if (event.keyCode == 13) {
 				$("#btnReply").click();
@@ -93,20 +87,19 @@
 		}
 	}
 
+
 	function listReply() {
 		$.ajax({
-			type : "get",
-			url : "${path}/review/replylist.do?bno=${dto.bno}",
+			type : "post",
+			url : "${path}/review/replylist.do?bno=${dto.bno}"+"&curPage="+replypage,
 			success : function(result) {
 				$("#replyList").html(result);
 			}
 		});
 	}
-
 	function list(page) {
 		location.href = "${path}/review/list.do?curPage=" + page;
 	}
-
 </script>
 
 </head>
@@ -116,10 +109,10 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li><a href="${path}/review/list.do">수강후기</a></li>
+				<li><b><a href="${path}/review/list.do" style="color: blue;">수강후기</a></b></li>
 			</ul>
 		</div>
-
+		
 		<form id="form1" name="form1" method="post">
 			<div class="col-sm-12 col-xl-12 col-lg-12">
 				<div id="title_css" class="mb-2">
@@ -144,15 +137,14 @@
 					</div>
 				</div>
 				<hr>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			</div>
 
-
 		</form>
-
-
 		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3"></div>
-
 
 
 		<c:choose>

@@ -1,10 +1,3 @@
-/**
- * 
- */
-/**
- * 
- */
-
 $(function(){
 	// 회원 가입 처리	 
 
@@ -27,6 +20,7 @@ $(function(){
 			$("#usernameM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}	
 	 });
+	 
 	 $('#userid').change(function(e){
 		//아이디 체크
 		var userid =document.getElementById("userid");
@@ -47,7 +41,6 @@ $(function(){
 			return false;
 		} else {
 			var input="<input id='useridConfirm' type='hidden' value='y'>";
-			$("#userid").css("border", "2px solid #71c9ce");
 			$("#CheckM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 			//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
 			//아이디 체크하여 가입버튼 비활성화, 중복확인.
@@ -88,13 +81,18 @@ $(function(){
 	 
 	 $('#useremail').change(function(e){
 		//이메일 체크
-		var email=document.getElementById("useremail");
+		var useremail=document.getElementById("useremail");
+		if(useremail.value=="") {
+			alert("이메일은 필수 입력입니다.");
+			useremail.focus();
+			return false;
+		}
 		var exp3= /^[a-z0-9]{2,}@[a-z0-9]{2,}\.[a-z]{2,}$/;
-		if(!exp3.test(email.value)) {
+		if(!exp3.test(useremail.value)) {
 			$("#useremail").css("border", "2px solid red");
 			$("#useremailM").html("<b style='color:red'>이메일 형식이 잘못 되었습니다. ex) abc@abc.com</b>");
-			email.val("");
-			email.focus();
+			useremail.val("");
+			useremail.focus();
 			return false;
 		}else {
 			var input="<input id='useremailConfirm' type='hidden' value='y'>";
@@ -103,6 +101,9 @@ $(function(){
 		}
 		
 	 });
+	 
+	 
+	 
 	 $('#phone1').change(function(e){
 		 $("#phone1").css("border", "2px solid #71c9ce");
 	 });
@@ -202,19 +203,14 @@ $(function(){
 	 });
 	 
 	$('#join-submit').click(function(e){
-/*		if(!$('#file').val()){
-			alert("메인 이미지로 사용할 파일을 첨부해주세요.");
-			return false;
-		}		*/
-		
 		if($('#usernameConfirm').val()!="y") {
 			$('#username').focus();
-			alert("1");
+			alert("이름을 입력하세요");
 			return false;
 		}
 		if($('#useridConfirm').val()!="y") {
 			$('#userid').focus();
-			alert("2");
+			alert("아이디를 입력하세요");
 			return false;
 		}
 		if($('#bpasswdConfirm').val()!="y") {
@@ -374,6 +370,3 @@ function offDaumZipAddress() {
 	jQuery("#wrap").slideUp();
 
 }
-
-
-

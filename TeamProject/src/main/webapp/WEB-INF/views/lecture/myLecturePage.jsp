@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/fixed-topbar.jsp" %>
+<link rel="stylesheet" href="${path}/include/css/lecture.css">
 <script type="text/javascript">
 /* function list(page) {
 	location.href = "${path}/lecture/all_list.do?curPage="+page;
@@ -16,87 +17,145 @@ function search(){
 	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword;
 } */
 </script>
+<!-- <style type="text/css">
+div { border: 1px solid;}
+
+</style> -->
 </head>
 <body>
-<div class="container-lg joinDiv" style="margin-top: 170px; width: 100%;">
-<h2>현장 강의 판매 리스트</h2>
-<hr>
-	<form name="form_search">
-		<div style="float: right; width: 100%;">
-			<span style="float: left;">
-				<a href="${path}/lecture/myLectureList.do">모든 강의</a> | <a href="#">동영상 강의</a> | <a href="#">실시간 강의</a> | <a href="#">현장 강의</a>
-			</span>
-			<span style="float: right;">
-				<input name="keyword" id="keyword">
-				<input type="button" value="조회" onclick="search()">
-			</span>
-		</div>
-	</form>
-	<table style="width: 100%; border: 1px solid">
-		<tr>
-			<th>번호</th>
-			<th>썸네일</th>
-			<th>제목</th>
-			<th>제작자</th>
-			<th>가격</th>
-			<th>관리</th>
-		</tr>
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 px-0">
+	<div class="col-12 mx-auto">
+		<ul class="upper_shift">
+			<li><a href="${path}">KDEMY</a></li>
+			<li>강사 페이지</li>
+			<li><a href="#" style="color:blue;">등록한 강의 목록</a></li>
+		</ul>
+	</div>
+	<div class="col-12 d-none d-md-block m-0 p-0 ">	
+		<table class="table table-bordered table-hover m-0 p-0" style="width: 100%">
+			<thead id="thead" class="thead-dark" style="font-size: 1.2em">
+				<tr>
+					<th scope="col">영상 번호</th>
+					<th scope="col">이미지</th>
+					<th scope="col">판매타입</th>
+					<th scope="col">영상 제목</th>
+					<th scope="col">등록일</th>
+					<th scope="col">관리</th>
+				</tr>
+			</thead>
+			<tbody id="tbody" class="text-justify">
+				<c:forEach var="dto" items="${list}">
+					<tr>
+						<th scope="row">${dto.lecture_idx}</th>
+						<td class="text-center">
+							<a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
+							<img class="img-fluid" style="max-height:170px" src="../upload/${dto.main_img}"></a>
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${dto.cell_type=='1'}">동영상 강의</c:when>					
+								<c:when test="${dto.cell_type=='2'}">실시간 강의</c:when>
+								<c:when test="${dto.cell_type=='3'}">현장 강의</c:when>
+								<c:otherwise><a style="color: red;">판매타입이 지정되어있지 않습니다.</a></c:otherwise>
+							</c:choose>
+						</td>
+						<td>${dto.subject}</td>
+						<td><fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" /></td>
+						<td>
+							<button type="button" class="btn btn-warning" onclick="location.href='${path}/lecture/lectureUpdatePage.do?lecture_idx=${dto.lecture_idx}'">수정</button>
+							<button type="button" class="btn btn-danger" onclick="location.href='${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}'">삭제</button>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="col-12 d-block d-md-none m-0 p-0">
 		<c:forEach var="dto" items="${list}">
-		<tr>
-			<td>${dto.lecture_idx}</td>
-			<!-- 썸네일 -->
-			<td><a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
-				<img width="300px" height="100px" src="../upload/${dto.main_img}"></a>
-			</td>
-			<!-- 제목 -->
-			<td>${dto.subject}</td>
-			<!-- 사용자 아이디 -->
-			<td>${dto.userid}</td>
-			<!-- 가격 -->
-			<td>${dto.price}</td>
-			<!-- 관리 -->
-			<td><a href="${path}/lecture/lectureUpdatePage.do?lecture_idx=${dto.lecture_idx}">수정</a> | <a href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}">삭제</a></td>
-			</tr>
-			</c:forEach>
-	</table>
+		<div class="col-12 d-flex m-0 p-0 border border-dark">
+			<div class="col-7 text-center border border-dark p-0 m-0">
+				<a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
+				<img class="img-fluid" style="max-height:170px" src="../upload/${dto.main_img}"></a>
+			</div>
+			<div class="col-5 m-0 p-0 card">
+				<div class="card-header m-0 p-0">
+					<c:choose>
+						<c:when test="${dto.cell_type==1}">
+							<div class="col-12 mx-0 p-0 text-center" style="background-color: #804000;">
+								<b style="color: white;">동영상 강의</b>
+							</div>
+						</c:when>
+						
+						<c:when test="${dto.cell_type==2}">
+							<div class="col-12 mx-0 p-0 text-center" style="background-color: #339933;">							
+								<b style="color: white">실시간 강의</b>
+							</div>
+						</c:when>	
+						
+						<c:when test="${dto.cell_type==3}">
+							<div class="col-12 mx-0 p-0 text-center" style="background-color: #3366cc;">
+								<b style="color: white">현장 강의</b>
+							</div>
+						</c:when>
+					</c:choose>
+				</div>
+				
+				<div class="card-body">
+					<h5 class="card-title">${dto.subject}</h5>
+					강의 번호 : ${dto.lecture_idx}<br>
+					등록일 : <fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" />
+				</div>
+				
+				<div class="m-0 p-0 card-footer d-flex">
+					<div class="col-6 m-0 p-0 pr-1">
+						<button type="button" class="w-100 btn btn-warning" onclick="location.href='${path}/lecture/lectureUpdatePage.do?lecture_idx=${dto.lecture_idx}'">수정</button>
+					</div>
+					<div class="col-6 m-0 p-0 pl-1">
+						<button type="button" class="w-100 btn btn-danger" onclick="location.href='${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}'">삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</c:forEach>
+	</div>
+	<%-- <div class="row justify-content-center">
+		<nav aria-label="Page navigation example center-block">
+			<ul class="pagination">
+				<c:if test="${map.pager.curBlock>1}">
+					<li class="page-item"><a class="page-link" href="#"
+						onclick="list('1')">&lt;&lt;</a></li>
+				</c:if>
+				<c:if test="${map.pager.curBlock >1}">
+					<li class="page-item"><a class="page-link" href="#"
+						onclick="list('${map.pager.prevPage}')">&lt;</a></li>
+				</c:if>
+				<c:forEach var="num" begin="${map.pager.blockBegin}"
+					end="${map.pager.blockEnd}">
+					<c:choose>
+						<c:when test="${num==map.pager.curPage}">
+							<li class="page-item"><a class="page-link">${num}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" href="#"
+								onclick="list('${num}')">${num}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${map.pager.curBlock < map.pager.totBlock}">
+					<li class="page-item"><a class="page-link" href="#"
+						onclick="list('${map.pager.nextPage}')">&gt;</a></li>
+				</c:if>
+				<c:if test="${map.pager.curPage <map.pager.totPage}">
+					<li class="page-item"><a class="page-link" href="#"
+						onclick="list('${map.pager.totPage}')">&gt;&gt;</a></li>
+				</c:if>
+			</ul>
+		</nav>
+	</div> --%>
 </div>
-<br>
 <!-- 페이징 처리 -->
-		<%-- <div class="row justify-content-center">
-			<nav aria-label="Page navigation example center-block">
-				<ul class="pagination">
-					<c:if test="${map.pager.curBlock>1}">
-						<li class="page-item"><a class="page-link" href="#"
-							onclick="list('1')">&lt;&lt;</a></li>
-					</c:if>
-					<c:if test="${map.pager.curBlock >1}">
-						<li class="page-item"><a class="page-link" href="#"
-							onclick="list('${map.pager.prevPage}')">&lt;</a></li>
-					</c:if>
-					<c:forEach var="num" begin="${map.pager.blockBegin}"
-						end="${map.pager.blockEnd}">
-						<c:choose>
-							<c:when test="${num==map.pager.curPage}">
-								<li class="page-item"><a class="page-link">${num}</a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item"><a class="page-link" href="#"
-									onclick="list('${num}')">${num}</a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${map.pager.curBlock < map.pager.totBlock}">
-						<li class="page-item"><a class="page-link" href="#"
-							onclick="list('${map.pager.nextPage}')">&gt;</a></li>
-					</c:if>
-					<c:if test="${map.pager.curPage <map.pager.totPage}">
-						<li class="page-item"><a class="page-link" href="#"
-							onclick="list('${map.pager.totPage}')">&gt;&gt;</a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</div> --%>
-
+		
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

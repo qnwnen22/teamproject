@@ -13,8 +13,8 @@
     </div>
 </div>
 </div>
-<div class="container-fluid align-items-end" id="footer-body">
-	<div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
+    <div class="container-fluid align-items-end" id="footer-body">
+    <div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
 			data-toggle="collapse" data-target="#tail_body">
 			<i class="fa fa-bars" style="font-size: 50px;"></i>
@@ -248,7 +248,6 @@
 				<div class="input-group input-group-lg text-center pt-2 pb-1">			
 					<button type="submit" class="btn btn-outline-dark btn-lg btn-block" >비밀번호 찾기</button>
 				</div>
-				<div class="textBox"><p id="text" style="color:red;"></p></div>
 
 				
 					<div class="float-left pt-2 pb-1">
@@ -294,7 +293,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <a href="${path}/member/logOut.do" type="button" class="btn btn-outline-danger">로그아웃</a>
+      <a href="${path}/member/logout.do" type="button" class="btn btn-outline-danger">로그아웃</a>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
       </div>
 
@@ -322,7 +321,7 @@ function ConectWS() {
        var msg=strs[3];
        var num=strs[4];
        var cmdNum="chat"+num;
- 		if(cmd==target+num) {
+       if(cmd=="usersend") {
     	   $("#messageAdmin").append(msg);
     	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
        }else{
@@ -368,6 +367,7 @@ $(document).ready(function(){
             }
         });       
     });   
+
     $('#searchPasswdbtn').on('click', function(){
         $.ajax({
             type: 'POST',
@@ -377,7 +377,7 @@ $(document).ready(function(){
                 "useremail" : $('#useremail1').val()
             },
             success: function(data){
-            	$('#text').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            	
             }
         });      
     });    

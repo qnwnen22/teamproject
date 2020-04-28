@@ -17,13 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="orderDetail" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
 		select * from lecture,lectureBox
-		where lecture.lecture_idx = lectureBox.lecture_idx and lectureBox.userid=#{userid}
+		where
+		lecture.lecture_idx = lectureBox.lecture_idx and
+		lectureBox.userid=#{userid}
 		order by lecture.lecture_idx desc
+		
 	</select>
 	 
 	 <select id="couponDetail" resultType="com.TeamProject.Kdemy.model.member.dto.CouponDTO">
 		select * from coupon
-		order by create_date desc
+		 order by create_date
 	</select>
 	
 	<update id="updateCoupon">
@@ -111,6 +114,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select COUNT(*) from kdemymember
 		WHERE userid=#{userid}
 	</select>
+	
+	<select id="emailCheck" resultType="Int">
+		select COUNT(*) from kdemymember
+		WHERE useremail=#{useremail}
+	</select>
+	
 	
     <select id="couponCheck" resultType="Int">
 		select COUNT(*) from coupon
