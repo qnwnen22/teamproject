@@ -1234,18 +1234,26 @@
     <div class="pt-4 col-auto align-items-right">
                     <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
 				    <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
-			        </div>     
+				   
+			        </div>  
+    
       <div class="slide_box">
-        <div class="slide_list clearfix">       
+        <div class="slide_list clearfix">
+          
+
           <c:forEach var="dto" items="${listv}">
 			<div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
 				<a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
 				<img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-				<p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>				
+				<p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
+				
 				</div>
-		 </c:forEach>        
+		 </c:forEach>
+          
+         
         </div>
       </div>
+
       <ul class="slide_pagination"></ul>
     </div>
   </div>
