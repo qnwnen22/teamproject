@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/upper.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
 	rel="stylesheet">
@@ -75,7 +74,7 @@ function subjectchange(item){
 	<div >
 		<ul class="upper_shift">
 			<li><a href="${path}">KDEMY</a></li>
-			<li><a href="${path}/review/list.do">수강후기</a></li>
+			<li><b><a href="${path}/review/list.do" style="color: blue;">수강후기</a></b></li>
 		</ul>
 	</div>
 

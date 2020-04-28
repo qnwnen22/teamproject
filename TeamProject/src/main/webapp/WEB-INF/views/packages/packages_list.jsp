@@ -20,12 +20,14 @@
 <div class="d-flex row col-12">
 <c:forEach var="dto" items="${list}">
 <div class="col-6 col-lg-3 mb-4">
-<div class="card mr-.5 rounded-lg shadow p-4 mb-4 bg-white" style="height:300px;">
-  <a href="#"><img class="img-responsive card-img-top center-block mb-3" width="420" height="130" src="../include/images/coupon/${dto.packages_image}" alt="Card image"></a>
+<div class="card mr-.5 rounded-lg shadow p-4 mb-4 bg-white" style="height:370px;">
+  <img class="img-responsive card-img-top center-block mb-3" width="420" height="130" src="../include/images/coupon/${dto.packages_image}" alt="Card image">
   <div class="kdemycard-body">
     <h4 class="card-title h5">${dto.packages_name}</h4>
     <h5 class="text-danger"><fmt:formatNumber value="${dto.packages_price}" pattern="#,###" /></h5>
     <p class="card-text">${dto.packages_text}</p>
+    <hr>
+    <button class="btn btn-outline-primary mx-auto">구매</button>
   </div>
 </div>
 </div>

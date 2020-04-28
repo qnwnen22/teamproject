@@ -155,6 +155,12 @@ public class ReviewController {
 		return "review/reviewwrite";
 	}// end write()
 	
+	@RequestMapping("write2.do")
+	public String write2() {
+		//글쓰기 폼 페이지로 이동
+		return "review/test";
+	}// end write()
+	
 	
 	@RequestMapping(value="insert.do", method= {RequestMethod.POST},
 	         consumes=MediaType.MULTIPART_FORM_DATA_VALUE, produces="text/plain;charset=utf-8")
