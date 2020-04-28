@@ -8,13 +8,7 @@
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/carousel.css">
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
-<<<<<<< HEAD
-<style>
- 
-</style>
-=======
- <script src="${path}/include/js/carousel.js"></script>
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+
 <script>
 	$(function() {
 		//마지막 스크롤 값을 저장할 lastScroll 변수
@@ -1234,45 +1228,8 @@
 		
 	</div>
 	
-	
-	<!--  캐러셀   일단 테스트 -->	   		
-	<div id="container">
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-				    <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
-				   
-			        </div>  
-    
-      <div class="slide_box">
-        <div class="slide_list clearfix">
-          
-
-          <c:forEach var="dto" items="${listv}">
-			<div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
-				<a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-				<img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-				<p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
-				
-				</div>
-		 </c:forEach>
-          
-         
-        </div>
-      </div>
-
-      <ul class="slide_pagination"></ul>
-    </div>
-  </div>
- <script src="${path}/include/js/carousel.js"></script>
-	<!-- 끝 -->
-	
-	
+		
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-
-
-
-
 
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
@@ -1286,32 +1243,8 @@
 
 
 			<!-- 슬라이드 버튼 -->
-			<div class="pt-4 col-auto">
-				<a class="btn btn-xs btn-light slide_btn_prev">&lt;</a> <a
-					class="btn btn-xs btn-light slide_btn_next">&gt;</a>
-			</div>
-		</div>
-		<div class="slide_wrap">
-			<div class="slide_box">
-				<div class="slide_list clearfix row">
-					<c:forEach var="dto" items="${listv}">
-						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100">
-							<a href="#"
-								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-								<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
-								class="card-img-top" >
-							</a>
-							<div class="card-body">
-								<p class="card-text font-weight-bold text-center h5">${dto.subject }</p>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-				<!-- slideList end  -->
-			</div>
-			<!-- slidebox end -->
-
-			   <!--  캐러셀   일단 테스트 -->            
+			
+ <!--  동영상 리스트 -->            
    <div id="container">
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
@@ -1322,7 +1255,7 @@
     
       <div class="slide_box">
         <div class="slide_list clearfix">
-
+          
 
           <c:forEach var="dto" items="${listv}">
          <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
@@ -1341,7 +1274,10 @@
    
 			
 
-
+</div>
+		
+		   <!--  실시간 -->     
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 
 
 		<div class="row">
@@ -1352,19 +1288,18 @@
 				<br>
 			</div>
 		</div>
-		
-		   <!--  실시간 -->            
+       
    <div id="container">
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
+                    <a class="btn btn-xs float-right slide_btn_next1">&gt;</a>
+                <a class="btn btn-xs float-right slide_btn_prev1">&lt;</a> 
                  </div>  
       <div class="slide_box">
-        <div class="slide_list clearfix">
+        <div class="slide_list1 clearfix">
 
-          <c:forEach var="dtoon" items="${liston}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+          <c:forEach var="dtoon" items="${listv}">
+         <div class="card col-2 px-0 mr-3 slide02 slide_content1 d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
             <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
             <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtoon.subject }</p>
@@ -1376,15 +1311,16 @@
         </div>
       </div>
 
-      <ul class="slide_pagination"></ul>
+      <ul class="slide_pagination1"></ul>
     </div>
   </div>
-
+ <script src="${path}/include/js/carousel.js"></script>
    <!-- 끝 -->
    
-		
+	</div>
 
-
+<!--  현장강의 -->   	
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">	
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1392,22 +1328,21 @@
 				</h5>
 				<br>
 			</div>
-		</div>
-			   <!--  현장강의 -->            
+		</div>         
    <div id="container">
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
+                    <a class="btn btn-xs float-right slide_btn_next2">&gt;</a>
+                <a class="btn btn-xs float-right slide_btn_prev2">&lt;</a> 
                
                  </div>  
     
       <div class="slide_box">
-        <div class="slide_list clearfix">
+        <div class="slide_list2 clearfix">
           
 
-          <c:forEach var="dtooff" items="${listoff}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+          <c:forEach var="dtooff" items="${listv}">
+         <div class="card col-2 px-0 mr-3 slide02 slide_content2 d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
             <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
             <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtooff.subject }</p>
@@ -1418,15 +1353,14 @@
          
         </div>
       </div>
-
-      <ul class="slide_pagination"></ul>
+      <ul class="slide_pagination2"></ul>
     </div>
   </div>
-  
+
    <!-- 끝 -->
-   
-
-
+   </div>
+   <script src="${path}/include/js/carousel.js"></script>
+   <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 		<hr>
 		<div class="d-flex">
 			<div class="col-6 m-0 p-1">
@@ -1473,6 +1407,7 @@
 			</div>
 		</div>
 	</div>
+	 
 
 	<c:if test="${sessionScope.userid != null}">
 		<div
@@ -1586,6 +1521,8 @@ $(function () {
 			$("#messageAdmin").append(mymessage);
 			$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 		}
+
+		
 	</script>
 	
 	<%@ include file="include/footer.jsp"%>
