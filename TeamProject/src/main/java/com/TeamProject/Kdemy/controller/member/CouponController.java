@@ -44,14 +44,11 @@ public class CouponController {
 	@ResponseBody
 	@RequestMapping("/makeCoupon.do")
 	public ModelAndView makeCoupon(String[] useremail, CouponDTO dto, HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException {
-		
-		System.out.println(useremail);
 		String coupon = request.getParameter("coupon");
 		String key1 = new TempKey().getKey(4,false); 
 	   	String key2 = new TempKey().getKey(4,false); 
 	   	String key3 = new TempKey().getKey(4,false); 
 	   	String key4 = coupon;
-	   	
 		MimeMessagePreparator[] preparators = new MimeMessagePreparator[useremail.length];
 		int i =0;
 		for(String str: useremail) {

@@ -218,7 +218,10 @@ a, a:hover, a:focus {
 	#kdemiNavBar .header-list-renewal .hover-trigger a.plain, #kdemiNavBar .header-list-renewal .hover-trigger .selling-panels>.events-more-btn>a
 	{
 	color: #303441;
-	font-size: 17px;
+	font-size: 0.8rem;
+}
+.hover-trigger{
+	text-align: center;
 }
 
 a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
@@ -269,7 +272,7 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 
 #kdemiAboutNavBar .header-list-renewal .border-top-category,
 	#kdemiNavBar .header-list-renewal .border-top-category {
-	padding: 24px 28px;
+	padding: 24px 17px;
 	border-radius: 0;
 	float: inherit;
 	box-shadow: 6px 5px 17px -2px rgba(0, 0, 0, 0.04);
@@ -289,7 +292,6 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 	top: 100%;
 	left: 0;
 	z-index: 1000;
-	display: none;
 	float: left;
 	padding: 5px 0;
 	margin-top: 0px;
@@ -312,7 +314,7 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 #kdemiAboutNavBar .header-list-renewal .border-top-category .category-wrapper,
 	#kdemiNavBar .header-list-renewal .border-top-category .category-wrapper
 	{
-	display: flex;
+	text-align: left;
 }
 
 #kdemiAboutNavBar .header-list-renewal .border-top-category .category-wrapper .sub-category-chunk-wrapper .sub-category-wrapper:not
@@ -327,11 +329,11 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 	#kdemiNavBar .header-list-renewal .border-top-category .category-wrapper .sub-category-chunk-wrapper .heading-hover
 	{
 	color: #303441;
-	font-size: 15px;
+	font-size: 0.8rem;
 }
 
 #kdemiNavBar .sub-category-wrapper {
-	padding: 8px 15px;
+	padding: 7px 3px;
 }
 
 @media (max-width: 768px) { 

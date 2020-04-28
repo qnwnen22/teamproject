@@ -19,9 +19,9 @@
 									onsubmit="return false;">
 									<div class="search-group text-center cursor">
 										<div class="index-search-bar">
-											<input class="search-input kdemi" placeholder="키워드를 입력해주세요."
-												name="keyword" maxlength="20">
-											<button class="search-btn" style="border: none; background: white;">
+											<input class="search-input kdemi" placeholder="키워드를 입력해주세요." 
+												name="keyword" id="keyword" maxlength="20">
+											<button class="search-btn" style="border: none; background: white;" onclick="search()">
 												<img class="width-20px cursor search-input-glass"
 													style="vertical-align: inherit;"
 													src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
@@ -118,13 +118,10 @@
 											style="display: initial !important;">
 											<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 											<div class="dropdown-menu">
-												<a class="dropdown-item"
-													href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
-												<a class="dropdown-item"
-													href="${path}/teacher/teacherPage.do">강사 페이지이동</a> <a
-													class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
-												<a class="dropdown-item"
-													href="${path}/member/updatePointPage.do">쿠폰등록</a>
+												<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+												<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
+												<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
+												<a class="dropdown-item" href="${path}/member/orderDetail1.do">내강의목록</a> 
 											</div>
 										</div>
 
@@ -169,36 +166,137 @@
 				</div>
 			</div>
 			<br>
-			<div class="nav-category-list NavCategoryList col-lg-12">
-				<ul class="list-inline margin-all-0 col-lg-12">
+			<div class="nav-category-list NavCategoryList col-lg-12 TopBarMenuWarpper">
+				<ul class="list-inline margin-all-0 col-lg-12 ">
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=디자인" data-ga-label="1"
+								data-ga-category="header">디자인</a>
+						</div>
+						<div class="border-top-category dropdown-menu" role="menu"
+							aria-labelledby="dLabel">
+							<div class="category-wrapper">
+								<div class="sub-category-chunk-wrapper" style="display: flex; width: 350px;">
+									<div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">로고브랜딩</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">인쇄물</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">제품.패키지</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">공간디자인</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">북.앨범디자인</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">웹&nbsp;.&nbsp;모바일
+												디자인</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">블로그.SNS디자인</a>
+										</div>
+									</div>
+									<div>									
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">게임&nbsp;.&nbsp;VR</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">PPT.인포그래픽</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">일러스트.캐리커쳐</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">블로그.SNS디자인</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">현수막.배너</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">의류디자인</a>
+										</div>
+										<div class="sub-category-wrapper">
+											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+												href="#" data-ga-label="" data-ga-category="header">기타</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li class="header-list-renewal dropdown ">
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍" data-ga-label="1"
+								data-ga-category="header"> IT.프로그래밍 </a>
 						</div>
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
 								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">워드프레스</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">쇼핑몰&nbsp;.&nbsp;커머스</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">웹사이트
+											개발</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">모바일앱&nbsp;.&nbsp;웹</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">프로그램
+											개발</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">게임</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">데이터베이스</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">데이터분석.리포트</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">보안</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">서버 및 기술지원</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -206,33 +304,49 @@
 					</li>
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작" data-ga-label="1"
+								data-ga-category="header"> 콘텐츠제작 </a>
 						</div>
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
 								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">영상촬영&nbsp;.&nbsp;편집</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">유튜브제작</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">애니메이션</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">3D&nbsp;.&nbsp;VR</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">사진촬영</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">더빙&nbsp;.&nbsp;녹음</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">음악&nbsp;.&nbsp;사운드</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">모델&nbsp;.&nbsp;MC</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -240,33 +354,95 @@
 					</li>
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=마케팅" data-ga-label="1"
+								data-ga-category="header"> 마케팅 </a>
 						</div>
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
 								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">종합광고대행</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">블로그.카페</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">영상마케팅</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">SNS마케팅</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">쇼핑몰.스토어</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">유튜브크리에이터</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">블로그체험단</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">앱마케팅</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">오프라인
+											광고</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">마케팅노하우</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="header-list-renewal dropdown col-lg-1">
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=번역,통역" data-ga-label="1"
+								data-ga-category="header">번역.통역</a>
+						</div>
+						<div class="TopBarMenuList border-top-category  dropdown-menu container " role="menu"
+							aria-labelledby="dLabel">
+							<div class="category-wrapper ">
+								<div class="sub-category-chunk-wrapper">
+									<div class="sub-category-wrapper ">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">번역</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">통역</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">영상번역</a>
+									</div>
+									<div class="sub-category-wrapper ">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">감수</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">번역공증</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -274,33 +450,45 @@
 					</li>
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=문서,통역" data-ga-label="1"
+								data-ga-category="header"> 문서.취업</a>
 						</div>
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
 								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">면접.취업코치</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">자소서.이력서</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">글작성.대본</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">카피라이딩</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">노하우.전자책</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">타이핑</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">논문</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -308,33 +496,57 @@
 					</li>
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅" data-ga-label="1"
+								data-ga-category="header"> 컨설팅 </a>
 						</div>
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper">
+								<div class="sub-category-chunk-wrapper" style="width: 200px;">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">투잡.부업</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">세무회계</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">창업.경영컨설팅</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">리서치.서베이</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">HR.인사</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">자산관리.재태크</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">사업계획서.투자제안서</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">해외사업</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">보고서작성.업무지원</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">법율.법무</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -342,33 +554,45 @@
 					</li>
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=운세,상담" data-ga-label="1"
+								data-ga-category="header"> 운세.상담 </a>
 						</div>
-						<div class="border-top-category dropdown-menu" role="menu"
+						<div class="border-top-category dropdown-menu " role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
 								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">신점</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">사주.운세</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">타로</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">작명</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">심리상담</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">연애상담</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">여행.생활</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -376,101 +600,49 @@
 					</li>
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육" data-ga-label="1"
+								data-ga-category="header"> 레슨.실무 </a>
 						</div>
-						<div class="border-top-category dropdown-menu" role="menu"
+						<div class="border-top-category dropdown-menu " role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
 								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">마케팅</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">프로그래밍</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">그래픽디자인</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">데이터분석</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-
-					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
-						</div>
-						<div class="border-top-category dropdown-menu" role="menu"
-							aria-labelledby="dLabel">
-							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper">
-									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">유투브.영상.사진</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">외국어</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">프레젠테이션</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">취미.라이프</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-
-					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
-						</div>
-						<div class="border-top-category dropdown-menu" role="menu"
-							aria-labelledby="dLabel">
-							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper">
-									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
-									</div>
-									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
-									</div>
-									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
-									</div>
-									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
-									</div>
-									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -479,33 +651,49 @@
 
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=주문제작" data-ga-label="1"
+								data-ga-category="header"> 주문제작 </a>
 						</div>
-						<div class="border-top-category dropdown-menu" role="menu"
+						<div class="border-top-category dropdown-menu " role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
 								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">3D프린팅</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">패키지제작</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">가게용품제작</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">굿즈제작</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">모형제작</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">제품제작</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">시스템제작</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">인테리어시공</a>
+									</div>
+									<div class="sub-category-wrapper">
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -513,33 +701,33 @@
 					</li>
 
 					<li class="header-list-renewal dropdown col-lg-1">
-						<div class="hover-trigger">
-							<a class="plain sendGaTriggerClz" href="#" data-ga-label="1"
-								data-ga-category="header"> 메뉴 </a>
+						<div class="hover-trigger TopBarMenuTitleBox">
+							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=간판,인쇄" data-ga-label="1"
+								data-ga-category="header"> 간판.인쇄 </a>
 						</div>
-						<div class="border-top-category dropdown-menu" role="menu"
+						<div class="border-top-category dropdown-menu " role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper">
+								<div class="sub-category-chunk-wrapper" >
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴1</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">간판</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴2</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">인쇄</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴3</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">인쇄물홍보</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴4</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">간판 제작</a>
 									</div>
 									<div class="sub-category-wrapper">
-										<a class="heading-hover sendGaTriggerClz" role="menuitem"
-											href="#" data-ga-label="" data-ga-category="header">서브메뉴5</a>
+										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
+											href="#" data-ga-label="" data-ga-category="header">기타</a>
 									</div>
 								</div>
 							</div>
@@ -550,3 +738,9 @@
 		</div>
 	</nav>
 </header>
+<script type="text/javascript">
+function search(){
+	var keyword=document.getElementById("keyword").value;
+	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword;
+}
+</script>

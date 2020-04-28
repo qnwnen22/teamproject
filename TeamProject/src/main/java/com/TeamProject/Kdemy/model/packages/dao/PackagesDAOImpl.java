@@ -1,5 +1,6 @@
 package com.TeamProject.Kdemy.model.packages.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,8 +15,11 @@ public class PackagesDAOImpl implements PackagesDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<PackagesDTO> list() {
-		return sqlSession.selectList("packages.packagesList");
+	public List<PackagesDTO> list(int start, int end) {
+		  HashMap<String, Object> map=new HashMap<>();
+	      map.put("start", start);
+	      map.put("end", end);
+		return sqlSession.selectList("packages.packagesList", map);
 	}
 	
 	@Override
@@ -34,5 +38,10 @@ public class PackagesDAOImpl implements PackagesDAO {
 	@Override
 	public void deletePackages(String packages_name) {
 		sqlSession.delete("packages.deletePackages", packages_name);
+	}
+
+	@Override
+	public int countPackages() {
+		return sqlSession.selectOne("packages.countPackages");
 	}
 }

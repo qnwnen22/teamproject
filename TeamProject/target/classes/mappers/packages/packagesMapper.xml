@@ -6,8 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="packages">
 	<select id="packagesList" resultType="com.TeamProject.Kdemy.model.packages.dto.PackagesDTO">
-		select * from packages
-		order by packages_date
+		select * from (	
+			select rownum as rn, A.* from 
+			(
+				select * from packages
+				order by packages_date
+			) A
+		) where rn between #{start} and #{end}
 	</select>
 
 	<insert id="insertpackages">
@@ -30,4 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from packages
 		where packages_name=#{packages_name}
 	</delete>
+	
+	<select id="countPackages" resultType="int">
+		select COUNT(*) from packages
+	</select>
 </mapper>

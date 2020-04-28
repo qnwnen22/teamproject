@@ -11,16 +11,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-.lecture:hover {
-  background-color: #edeff2;
-}
-
-.lecture:active {
-  background-color: #eeeeee;
-  }
-  
-  
-  .lecture{
+.fa-heart{color:red;}
+.lecture{
     -webkit-transform:scale(1);
 	-moz-transform:scale(1);
 	-ms-transform:scale(1);	
@@ -36,7 +28,6 @@
 .lecture:hover {
     transition: all 0.7s; 
     transition-timing-function: ease;
-    background-color: #fcf8f7;
    -webkit-transform:scale(1.05);
 	-moz-transform:scale(1.05);
 	-ms-transform:scale(1.05);	
@@ -44,6 +35,14 @@
 	transform:scale(1.05);
 }
 
+.lecture:active {
+  background-color: #eeeeee;
+  }
+  
+.lectureList{
+  width: 100px;
+  height: 100px;
+}
 </style>
 </head>
 <body>
@@ -52,22 +51,49 @@
 	<br>
 	  <c:forEach var="dto" items="${list2}">
 			<div class="row lecture" style="border-radius:10px;">
-			<div class="col-sm-5" ><a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
-			    <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="img-responsive" style="height:200px; width:100%"></a></div>
-				<div class="col-sm-7" >
-				<div class="short-div m-5"><strong>${dto.subject}</strong></div>
-				<div class="short-div">학생 수 : ${dto.cellCount}</div>
-				<div class="short-div">추천 수 : ${dto.upCount}</div>
-				<div class="short-div">담당강사: ${dto.userid}</div>
-			<%-- 	<div class="short-div">&nbsp;&nbsp;<span>${dto.buy_date}</span></div> --%>
-				</div>
-				
-				</div>
-				
-				<%-- ${dto.box_idx}</td> align="center" --%>
-				<%-- <td class="col-2">${dto.buy_date}</td> --%>
-         	<br>
-         </c:forEach>
+			<div class="shadow col-sm-5" ><a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
+			    <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="img-responsive" style="height:200px; width:100%; border-radius:10px;"></a></div>
+				 <div class="col-sm-7">
+                     <div class="short-div m-3 h2"><strong>${dto.subject}</strong></div>
+                     <div class="short-div text-left">담당강사: ${dto.userid} 선생님</div>
+                     <div class="short-div text-left">강의누적판매 : ${dto.cellCount} 회</div>
+                      <div class="short-div text-right"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;${dto.upCount}</div>
+                     <div class="short-div text-right">
+                     <c:choose>
+                        <c:when test="${dto.up =='up'}">
+                            <form method="post" id="lectureDownForm${dto.lecture_idx}" name="lectureDownForm${dto.lecture_idx}"
+                            action="${path}/lecture/lectureDown2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                              <button type="submit" class="btn btn-danger btn-sm col-3">
+                              <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
+                              </button>
+                           </form>
+                        </c:when>
+                        
+                        <c:when test="${dto.up =='down'}">
+                           <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
+                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                              <button type="submit" class="btn btn-outline-dark btn-sm col-3">
+                                 <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;취소</span></i>
+                              </button>
+                           </form>
+                        </c:when>
+                        
+                        <c:otherwise>
+                                                               버그
+                        </c:otherwise>
+                     </c:choose> </div>
+                    
+                     <div class="short-div text-left">                     
+                           <a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
+                           <button type="submit" class="btn btn-outline-dark btn-sm col-12"><b>들어가기</b></button></a>
+                       </div>
+                  </div>
+                  
+            
+
+               </div>
+               <br><br>
+                 </c:forEach>
 		</div>
 			
 	</div>

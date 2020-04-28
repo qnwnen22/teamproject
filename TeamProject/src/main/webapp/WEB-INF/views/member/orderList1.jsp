@@ -90,7 +90,7 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
                      <div class="short-div m-3 h2"><strong>${dto.subject}</strong></div>
                      <div class="short-div text-left">담당강사: ${dto.userid} 선생님</div>
                      <div class="short-div text-left">강의누적판매 : ${dto.cellCount} 회</div>
-                      <div class="short-div text-right"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;${dto.upCount}</div>
+                      <div class="short-div text-right"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;${dto.upCount}&nbsp;&nbsp;</div>
                      <div class="short-div text-right">
                      <c:choose>
                         <c:when test="${dto.up =='up'}">
