@@ -8,9 +8,13 @@
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/carousel.css">
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
+<<<<<<< HEAD
 <style>
  
 </style>
+=======
+ <script src="${path}/include/js/carousel.js"></script>
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 <script>
 	$(function() {
 		//마지막 스크롤 값을 저장할 lastScroll 변수
@@ -1418,7 +1422,7 @@
       <ul class="slide_pagination"></ul>
     </div>
   </div>
-   <script src="${path}/include/js/carousel.js"></script>
+  
    <!-- 끝 -->
    
 

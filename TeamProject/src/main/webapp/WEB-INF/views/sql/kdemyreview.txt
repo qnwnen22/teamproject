@@ -1,0 +1,125 @@
+
+--!!!!!!!!게시판!!!!!!!!!!!--
+
+drop table kdemyreview cascade constraints;
+
+--게시판 테이블
+create table kdemyreview (
+bno number not null, --게시물번호
+subject varchar2(30) not null,
+teacher varchar2(30) not null,
+title varchar2(200) not null, --제목
+content clob, --본문
+writer varchar2(50) not null, --작성자
+regdate date default sysdate, --작성일자
+viewcnt number default 0, --조회수
+show char(1) default 'Y',
+fullName varchar2(150),--첨부파일 이름
+love number default 0,
+primary key(bno)
+);
+
+delete from kdemyreview;
+
+
+
+insert into kdemyreview (bno,title,content,writer) values
+(1,'제목','내용','kim');
+
+select * from kdemyreview order by bno desc;
+
+COMMIT;
+
+
+--댓글 테이블
+drop table kdemyreview_reply cascade constraints;
+create table kdemyreview_reply (
+rno number not null primary key,
+bno number,
+replytext varchar2(1000) not null,
+replyer varchar2(50) not null,
+regdate date default sysdate,
+updatedate date default sysdate
+);
+drop table kdemyreview_reply;
+--foreign key 제약조건 추가
+alter table kdemyreview_reply add constraint fk_review
+foreign key(bno) references kdemyreview(bno);
+
+create sequence seq_kdemyreview
+start with 1001
+increment by 1;
+drop sequence seq_kdemyreview;
+
+--시퀀스 생성
+drop sequence review_reply_seq;
+create sequence review_reply_seq
+start with 1
+increment by 1;
+
+
+
+select * from kdemymember;
+
+
+commit;
+
+
+--페이지 나누기 테스트를 위해 레코드 입력
+declare --선언부
+    i number := 1;
+begin --실행부
+    while i<=1000 loop
+        insert into kdemyreview (bno,subject,teacher,title,content,writer)
+        values
+        ( (select nvl(max(bno)+1,1) from kdemyreview)
+        ,'과목'||i,'선생님'||i,'제목'||i, '내용'||i, '관리자');
+        i := i+1; --조건 변경
+    end loop;
+end;
+/
+
+
+select * from kdemyreview order by bno desc;
+
+--레코드 갯수 확인
+select count(*) from kdemyreview;
+
+commit;
+
+delete from kdemyreview ;
+
+
+
+--글쓰기를 하기 위해
+--시퀀스 삭제
+drop sequence seq_kdemyreview;
+
+--1000번부터 시작하는 시퀀스 생성
+create sequence seq_kdemyreview
+start with 1001
+increment by 1;
+commit;
+
+select*from kdemyreview_reply order by rno;
+
+select count(*) from kdemyreview_reply where bno=1001;
+
+
+select * from ( select rownum as rn, A.* from ( select bno, subject, teacher, title, writer, 
+regdate, viewcnt, show, (select count(*) from kdemyreview_reply where bno=b.bno) cnt from kdemyreview 
+b where show='Y' order by bno desc ) A ) where rn between 1 and 15 ;
+
+create table review_like(
+    likeno NUMBER(20) NOT NULL PRIMARY KEY, 
+    bno number(20) not null,
+    userid varchar(200) not null,
+    like_check NUMBER(20)DEFAULT 0,
+    FOREIGN KEY (userid) REFERENCES kdemymember (userid),
+    FOREIGN KEY (bno) REFERENCES kdemyreview (bno)
+);
+
+
+
+
+
