@@ -28,7 +28,7 @@
 		<table class="table table-bordered table-hover" id="userInfo">
 			<thead class="thead-dark">
 				<tr class="text-center">
-					<th><input type="checkbox" id="checkAll" onclick="selectAll()"></th>
+					<th><input type="checkbox"></th>
 					<th>아이디</th>
 					<th>이름</th>
 					<th>연락처</th>
@@ -40,7 +40,7 @@
 			<tbody>
 				<c:forEach var="row" items="${map.list}">
 					<tr class="text-center" style="cursor:pointer;" id="userEmail">
-						<td><input type="checkbox" name="userCheckBox" id=userCheckBox value="${row.useremail}"></td>
+						<td><input type="checkbox" name="userCheckBox" id="userCheckBox" value="${row.useremail}"></td>
 						<td>${row.userid}</td>
 						<td><a href="#"> ${row.username}</a></td>
 						<td>${row.phone}</td>
@@ -90,28 +90,56 @@
 		</div>
 	</div>
 	<br>
-	<script type="text/javascript">
-$(function(){
-	$("#userInfo tr").click(function() {
-	    //alert("customerlisttablebody tr click");
-	     var tr = $(this);
-	     var td = tr.children();     
-	    var email = td.eq(0).children().val();
-	   $("input:checked[name=customerListBox]").each(function() {
-	    if (email != $(this).val()) {
-	     $(this).attr("checked", false); // uncheck all checkboxes
-	     //alert("checked checkbox false");
-	    }
-	   });
-	     td.eq(0).children().attr("checked", "true");
-	     var emailAdd = "<div class='userEmail rounded-lg text-center m-1'style='background-color: #c6e8f2; line-height:15px;' id='"+email+"'>"+ email +"&nbsp;<a href='javascript:void(0);'><i class='fas fa-times'></i></a></div>"
-	     $("#useremailBox").append(emailAdd);
-	    });
-});
-$(".userEmail").on("click", "a", function(event) {
-	var that = $(this);
-	that.parent("div").remove();
-});	
+	<script>
+	$(document).ready(function(){
+        var tbl = $("#userInfo");
+         
+        // 테이블 헤더에 있는 checkbox 클릭시
+        $(":checkbox:first", tbl).click(function(){
+            // 클릭한 체크박스가 체크상태인지 체크해제상태인지 판단
+            if( $(this).is(":checked") ){
+                $(":checkbox", tbl).attr("checked", "checked");
+            }
+            else{
+                $(":checkbox", tbl).removeAttr("checked");
+            }
+
+            // 모든 체크박스에 change 이벤트 발생시키기               
+            $(":checkbox", tbl).trigger("change");
+        });
+         
+        // 헤더에 있는 체크박스외 다른 체크박스 클릭시
+        $(":checkbox:not(:first)", tbl).click(function(){
+            var allCnt = $(":checkbox:not(:first)", tbl).length;
+            var checkedCnt = $(":checkbox:not(:first)", tbl).filter(":checked").length;
+            // 전체 체크박스 갯수와 현재 체크된 체크박스 갯수를 비교해서 헤더에 있는 체크박스 체크할지 말지 판단
+            if( allCnt==checkedCnt ){
+                $(":checkbox:first", tbl).attr("checked", "checked");
+            }
+            else{
+                $(":checkbox:first", tbl).removeAttr("checked");
+            }
+        }).change(function(){
+            if( $(this).is(":checked") ){
+                $(this).parent().parent().addClass("selected");
+                var email = $(this).val();
+                var emailAdd = "<div class='userEmail rounded-lg text-center m-1'style='background-color: #c6e8f2; line-height:15px;' id='"+email+"'>"+ email +"&nbsp;<a href='javascript:;' onclick='deleteEmail(this);'><i class='fas fa-times'></i></a></div><input type='hidden' name='useremail' value='"+email+"'>"
+			    $("#useremailBox").append(emailAdd);
+            }
+            else{
+                $(this).parent().parent().removeClass("selected");
+                var email = $(this).val();
+                $('#'+$.escapeSelector(email)).remove();
+            }
+        });
+    });
+	function deleteEmail(obj) {
+		var that = $(obj);
+		var email = that.parent().val();
+		console.log(email);
+		$("userEmail").find(email).removeClass("selected");
+		that.parent("div").remove();
+	}
 	</script>
 </body>
 </html>

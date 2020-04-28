@@ -89,7 +89,7 @@
 						<h6>수신자</h6>
 						<div class="col-12 border border-secondary py-3" id="useremailBox" style="min-height:100px;"></div>
 						<hr>
-						<button type="button" class="btn btn-outline-primary btn-lg btn-block text-center" onclick="buyList()">발송</button>
+						<button type="submit" class="btn btn-outline-primary btn-lg btn-block text-center">발송</button>
 					</form>
 					<br>
 				</div>
@@ -174,25 +174,6 @@ function checkCoupon() {
         }
     });
     
-}
-/* function selectUser(email) {
-    var check_count = document.getElementsByName("userCheckBox").length;
-    
-    for (var i=0; i<check_count; i++) {
-        if (document.getElementsByName("userCheckBox)")[i].checked == true) {
-            alert(document.getElementsByName("userCheckBox")[i].value);
-        }
-    }
-} */
-
-function selectAll() { //만약 전체 선택 체크박스가 체크된상태일경우 
-	if ($("#checkAll").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
-		$("input:checkbox[name='userCheckBox']").prop("checked", true); // 전체선택 체크박스가 해제된 경우
-		$("#useremailBox").html("");
-	} else { //해당화면에 모든 checkbox들의 체크를해제시킨다. 
-		$("input:checkbox[name='userCheckBox']").prop("checked", false);
-		$("#useremailBox").html("");
-	}
 }
 </script>
 </body>
