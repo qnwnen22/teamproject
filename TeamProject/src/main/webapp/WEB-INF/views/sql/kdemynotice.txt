@@ -1,0 +1,64 @@
+
+--!!!!!!!!게시판!!!!!!!!!!!--
+
+drop table kdemyboard cascade constraints;
+
+--게시판 테이블
+create table kdemynotice (
+bno number not null, --게시물번호
+title varchar2(200) not null, --제목
+content clob, --본문
+writer varchar2(50) not null, --작성자
+regdate date default sysdate, --작성일자
+viewcnt number default 0, --조회수
+show char(1) default 'Y',
+primary key(bno)
+);
+
+
+
+create sequence seq_kdemynotice
+start with 1001
+increment by 1;
+drop sequence seq_kdemynotice;
+
+--시퀀스 생성
+drop sequence board_reply_seq;
+create sequence notice_reply_seq
+start with 1
+increment by 1;
+
+
+
+
+--페이지 나누기 테스트를 위해 레코드 입력
+declare --선언부
+    i number := 1;
+begin --실행부
+    while i<=991 loop
+        insert into kdemynotice (bno,title,content,writer)
+        values
+        ( (select nvl(max(bno)+1,1) from kdemynotice)
+        ,'제목'||i, '내용'||i, 'kim');
+        i := i+1; --조건 변경
+    end loop;
+end;
+/
+
+
+
+--레코드 갯수 확인
+select count(*) from kdemynotice;
+
+
+
+--글쓰기를 하기 위해
+--시퀀스 삭제
+drop sequence seq_kdemynotice;
+
+--1000번부터 시작하는 시퀀스 생성
+create sequence seq_kdemynotice
+start with 2000
+increment by 1;
+commit;
+

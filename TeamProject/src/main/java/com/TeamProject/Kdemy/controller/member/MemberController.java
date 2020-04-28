@@ -417,7 +417,6 @@ public class MemberController {
 			mav.addObject("loginCookie", dto.getUserid());
 			}
 
-			
 			mav.setViewName("redirect:/");
 		}else if(result.equals("관리자로그인")){
 			AdminDTO dtoa=adminService.adminLogin(dto);
@@ -428,7 +427,7 @@ public class MemberController {
 			mav.setViewName("redirect:/");
 		}else {
 			mav.addObject("message","로그인실패");
-			mav.setViewName("redirect:/");
+			mav.setViewName("redirect:/");	
 		}
 		return mav;
 	}
@@ -532,6 +531,6 @@ public class MemberController {
 		map.put("keyword", keyword);
 		mav.addObject("map", map); //ModelAndView에 map을 저장
 		mav.setViewName("admin/couponMember_list");
-		return mav; //board/list.jsp로 이동
-	}//list()
+		return mav;
+	}
 }

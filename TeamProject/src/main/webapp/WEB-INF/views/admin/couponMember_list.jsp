@@ -8,18 +8,36 @@
 <%@ include file="../include/header.jsp"%>
 <script type="text/javascript">
 	function list(page) {
-		location.href = "${path}/member/list.do?curPage=" + page+"&keyword=${map.keyword}";
+		$.ajax({
+	        type: 'post'
+	      , url: "${path}/member/couponMemberlist.do?curPage="+ page+"&keyword=${map.keyword}"
+	      , dataType : 'text'
+	      , success: function(data) {
+	      	$("#memberlistDiv").html(data);
+	        }
+		});
+	}
+	function serarchMember() {
+		$.ajax({
+	        type: 'post'
+		  , data: $('#keyword').val()
+	      , url: "${path}/member/couponMemberlist.do"
+	      , dataType : 'text'
+	      , success: function(data) {
+	      	$("#memberlistDiv").html(data);
+	        }
+		});
 	}
 </script>
 </head>
 <body>
 <div class="col-11">
-	<form class="input-group" action="${path}/member/list.do">
+	<form class="input-group">
 		<input type="text" class="form-control col-2 ml-5" placeholder="검색어 입력"
 			value="${map.keyword}" id="keyword" name="keyword"> <input
 			type="hidden" id="location" name="location" value="">
 		<div class="input-group-append">
-			<button class="btn btn-outline-primary" type="submit">검색</button>
+			<button class="btn btn-outline-primary" type="button">검색</button>
 		</div>
 	</form>
 	</div>
