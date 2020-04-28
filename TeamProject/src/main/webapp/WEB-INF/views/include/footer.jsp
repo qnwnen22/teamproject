@@ -236,7 +236,6 @@
 				<div class="input-group input-group-lg text-center pt-2 pb-1">			
 					<button type="submit" class="btn btn-outline-dark btn-lg btn-block" >비밀번호 찾기</button>
 				</div>
-				<div class="textBox"><p id="text" style="color:red;"></p></div>
 
 				
 					<div class="float-left pt-2 pb-1">
@@ -377,13 +376,11 @@ $(document).ready(function(){
                 "useremail" : $('#useremail1').val()
             },
             success: function(data){
-            	$('#text').html('이메일이 발송되었습니다. <br>이메일을 확인하세요.');
+            	
             }
         });      
     });    
 });
-
-
 
 
 

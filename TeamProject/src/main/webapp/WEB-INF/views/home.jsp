@@ -6,7 +6,11 @@
 <title>Home</title>
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
+<link rel="stylesheet" href="${path}/include/css/carousel.css">
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
+<style>
+ 
+</style>
 <script>
 	$(function() {
 		//마지막 스크롤 값을 저장할 lastScroll 변수
@@ -1222,6 +1226,33 @@
 			</marquee>
 		</a>
 	</div>
+	
+	
+	<!--  캐러셀   일단 테스트 -->	   		
+	<div id="container">
+    <div class="slide_wrap">
+    <div class="pt-4 col-auto align-items-right">
+                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
+				    <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
+			        </div>     
+      <div class="slide_box">
+        <div class="slide_list clearfix">       
+          <c:forEach var="dto" items="${listv}">
+			<div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+				<a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+				<img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
+				<p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>				
+				</div>
+		 </c:forEach>        
+        </div>
+      </div>
+      <ul class="slide_pagination"></ul>
+    </div>
+  </div>
+ <script src="${path}/include/js/carousel.js"></script>
+	<!-- 끝 -->
+	
+	
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 
 
@@ -1250,8 +1281,8 @@
 		</div>
 		<div class="slide_wrap">
 			<div class="slide_box">
-				<div class="slide_list clearfix row ">
-					<c:forEach var="dto" items="${listv}" begin="0" end="4">
+				<div class="slide_list clearfix row">
+					<c:forEach var="dto" items="${listv}">
 						<div class="card col-2 px-0 m-auto slide02 slide_content d-inline-block h-100">
 							<a href="#"
 								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
