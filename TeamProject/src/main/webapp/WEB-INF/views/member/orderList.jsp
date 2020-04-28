@@ -18,6 +18,32 @@
 .lecture:active {
   background-color: #eeeeee;
   }
+  
+  
+  .lecture{
+    -webkit-transform:scale(1);
+	-moz-transform:scale(1);
+	-ms-transform:scale(1);	
+	-o-transform:scale(1);	
+	transform:scale(1);
+	-webkit-transition:.3s;
+	-moz-transition:.3s;
+	-ms-transition:.3s;
+	-o-transition:.3s;
+	transition:.3s;
+}
+
+.lecture:hover {
+    transition: all 0.7s; 
+    transition-timing-function: ease;
+    background-color: #fcf8f7;
+   -webkit-transform:scale(1.05);
+	-moz-transform:scale(1.05);
+	-ms-transform:scale(1.05);	
+	-o-transform:scale(1.05);
+	transform:scale(1.05);
+}
+
 </style>
 </head>
 <body>
@@ -30,10 +56,10 @@
 			    <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="img-responsive" style="height:200px; width:100%"></a></div>
 				<div class="col-sm-7" >
 				<div class="short-div m-5"><strong>${dto.subject}</strong></div>
-				<div class="short-div">${dto.lecture_idx}</div>
-				<div class="short-div">${dto.userid}</div>
-				<div class="short-div">${dto.userid}</div>
-				<div class="short-div">&nbsp;&nbsp;<span>${dto.buy_date}</span></div>
+				<div class="short-div">학생 수 : ${dto.cellCount}</div>
+				<div class="short-div">추천 수 : ${dto.upCount}</div>
+				<div class="short-div">담당강사: ${dto.userid}</div>
+			<%-- 	<div class="short-div">&nbsp;&nbsp;<span>${dto.buy_date}</span></div> --%>
 				</div>
 				
 				</div>

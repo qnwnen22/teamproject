@@ -63,8 +63,6 @@
 	transform:scale(1.2);
 }
 
-div{border:1px solid black;}
-/* div{border:1px solid black;} */
 </style>
 <script type="text/javascript">
 function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+page;}
@@ -77,7 +75,7 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
          <div class="col-xl-12 m-2 h-auto d-inline-block">
               <c:forEach var="dto" items="${list2}">
                <div class="row lecture" style="border-radius:10px;">
-                  <div class="col-sm-4" style="max-height:15em;">
+                  <div class="col-sm-4" style="height:15em;">
                      <a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
                         <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="lectureImg" style="width:100%; height:100%;">
                       </a>
@@ -104,7 +102,7 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
                         
                         <c:when test="${dto.up =='down'}">
                            <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-center">
+                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 pt-5 text-center">
                               <button type="submit" class="btn btn-outline-primary btn-sm col-12">
                                  <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
                               </button>
@@ -126,9 +124,9 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
 </div>
 
 
-	<div style="position:fixed; top: 30%; right: 10%;">
+	<div style="position:fixed; top: 30%; right: 13%;">
 	 <div class="lectureList">
-	   <a href="http://localhost/Kdemy/lecture/all_list.do"><img class="img" src="img/icon.png" style="width:100%; height:100%; border-radius:50%;"></a>
+	   <a href="http://localhost/Kdemy/lecture/all_list.do"><img class="img" src="img/fixed.png" style="width:100%; height:100%; border-radius:50%;"></a>
 	 </div>
 	</div>
 

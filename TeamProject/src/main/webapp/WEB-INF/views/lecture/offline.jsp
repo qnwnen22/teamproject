@@ -9,20 +9,14 @@
 <%@ include file="../include/header.jsp" %>
 
 <!-- 썸머 노트 -->
-<link
-   href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
-   rel="stylesheet">
-<script
-   src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script
-   src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 <!-- 이원혁 추가 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="${path}/include/css/kakaoMap.css">
 <!-- 강의 등록용 JS -->
 <script src="${path}/include/js/lectureInsert.js"></script>
-
 <%@ include file="../include/fixed-topbar.jsp" %>
 </head>
 <body>
@@ -215,10 +209,10 @@ function fileChange(e) {
 		  type: 'POST',
 		  success: function(data){
 
-			alert("썸네일 이미지가 변경 되었습니다.")
+			alert("썸네일 이미지가 변경 되었습니다.");
 
 		  }
-		})
+		});
 
 
  		function checkImageType(fileName){

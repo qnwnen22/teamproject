@@ -33,12 +33,6 @@ public class TeacherController {
 	@Resource(name="teacheruploadPath")
 	String teacheruploadPath;
 	
-	//강사 페이지로 이동
-	@RequestMapping("teacherPage.do")
-	public String teacherPage() {
-		return "teacher/teacherPage";
-	}
-	
 	@RequestMapping("teacherJoinPage.do")
 	public String teacherJoinPage() {
 		return "teacher/teacherJoin";
