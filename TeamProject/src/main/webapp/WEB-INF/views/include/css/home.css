@@ -1,253 +1,253 @@
 #carouselExampleCaptions {
 	height: 300px;
+	
 }
+
 
 .global-body {
-	margin: 0 !important;
+    margin: 0 !important;
 }
 
-#router-view {
+#router-view{
 	margin-top: 0px;
 }
 
 #mainHeaderContainer {
-	width: 100%;
-	height: 538px;
-	overflow: hidden;
+    width: 100%;
+    height: 538px;
+    overflow: hidden;
 }
 
 .position-relative {
-	position: relative;
+    position: relative;
 }
 
 .MarketIndex .main-header-gradient {
-	width: 100%;
-	height: 100%;
-	position: absolute;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 
 #kdemiMainHeader {
-	padding: 0px !important;
-	margin-right: auto;
-	margin-left: auto;
+    padding: 0px !important;
+    margin-right: auto;
+    margin-left: auto;
 }
-
 .MarketIndex .header {
-	height: 538px;
-}
+    height: 538px;
+}	
 
 .index-opacity-wrap {
-	padding-top: 30px;
+    padding-top: 30px;
 }
 
 .MarketIndex .container {
-	padding: 0 !important;
+    padding: 0 !important;
 }
 
 .width-1170 {
-	width: 1170px !important;
+    width: 1170px !important;
 }
 
 .MarketIndex .hero-title {
-	font-size: 44px;
-	line-height: 45px;
-	color: #333 !important;
-	margin-top: 10px;
-	letter-spacing: -1.3px;
+    font-size: 44px;
+    line-height: 45px;
+    color: #333 !important;
+    margin-top: 10px;
+    letter-spacing: -1.3px;
 }
 
 .NGM, .consulting-section-2 .consulting-app-btn, .NGR {
-	font-weight: 400;
+    font-weight: 400;
 }
-
 .container::before, .container::after {
-	content: " ";
-	display: table;
+    content: " ";
+    display: table;
 }
 
 .margin-top-15 {
-	margin-top: 15px !important;
+    margin-top: 15px !important;
 }
 
 .container::after {
-	clear: both;
+    clear: both;
 }
 
 .MarketIndex .header-wrapper {
-	width: 650px;
-	z-index: 9;
-	text-align: center;
-	position: absolute;
-	left: -999px;
-	right: -999px;
-	margin: 0 auto;
+    width: 650px;
+    z-index: 9;
+    text-align: center;
+    position: absolute;
+    left: -999px;
+    right: -999px;
+    margin: 0 auto;
 }
 
 .padding-side-0 {
-	padding: 0 0px !important;
+    padding: 0 0px !important;
 }
 
 .MarketIndex .market-main-description-text {
-	min-height: 26px;
-	font-size: 17px;
-	letter-spacing: -0.4px;
+    min-height: 26px;
+    font-size: 17px;
+    letter-spacing: -0.4px;
 }
-
 .MarketIndex .market-main-description-text {
-	font-size: 17px;
-	letter-spacing: -0.4px;
-	font-weight: bold;
-	font-family: MetroSans;
+    font-size: 17px;
+    letter-spacing: -0.4px;
+    font-weight: bold;
+    font-family: MetroSans;
 }
-
 .MarketIndex .header-wrapper {
-	text-align: center;
+    text-align: center;
 }
+
 
 .margin-top-35 {
-	margin-top: 35px !important;
+    margin-top: 35px !important;
 }
 
 .margin-bottom-0 {
-	margin-bottom: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 .MarketIndex .search-form-type-main .index-search-bar {
-	display: inline-block;
-	text-align: left;
-	border: none;
-	background-color: white;
-	border-radius: 4px;
-	width: 100%;
-	height: 70px;
-	position: relative;
+    display: inline-block;
+    text-align: left;
+    border: none;
+    background-color: white;
+    border-radius: 4px;
+    width: 100%;
+    height: 70px;
+    position: relative;
 }
 
 .typed-element, .typed-cursor {
-	font-weight: 500;
-	font-size: 26px;
-	opacity: 0.2;
-	line-height: 1.5em;
-	letter-spacing: -0.4px;
-	position: relative;
-	top: 17px;
-	left: 25px;
+    font-weight: 500;
+    font-size: 26px;
+    opacity: 0.2;
+    line-height: 1.5em;
+    letter-spacing: -0.4px;
+    position: relative;
+    top: 17px;
+    left: 25px;
 }
 
 .typed-cursor.typed-cursor--blink {
-	animation: typedjsBlink 0.7s infinite;
+    animation: typedjsBlink 0.7s infinite;
 }
 
 .typed-element.typed-cursor, .typed-cursor.typed-cursor {
-	top: 15px;
-	opacity: 0.2;
+    top: 15px;
+    opacity: 0.2;
 }
 
 .typed-element, .typed-cursor {
-	font-weight: 500;
-	font-size: 26px;
-	opacity: 0.2;
-	line-height: 1.5em;
-	letter-spacing: -0.4px;
-	position: relative;
-	top: 17px;
-	left: 25px;
+    font-weight: 500;
+    font-size: 26px;
+    opacity: 0.2;
+    line-height: 1.5em;
+    letter-spacing: -0.4px;
+    position: relative;
+    top: 17px;
+    left: 25px;
 }
 
 .MarketIndex .search-group div {
-	text-align: left;
+    text-align: left;
 }
 
-.MarketIndex .search-form-type-main .index-search-bar .index-search-btn
-	{
-	padding-right: 0;
-	position: absolute;
-	padding-left: 7px;
-	top: 19px;
-	right: 25px;
+.MarketIndex .search-form-type-main .index-search-bar .index-search-btn {
+    padding-right: 0;
+    position: absolute;
+    padding-left: 7px;
+    top: 19px;
+    right: 25px;
 }
 
 .width-30px {
-	width: 30px !important;
+    width: 30px !important;
 }
 
 img {
-	vertical-align: middle;
-	border: 0;
+    vertical-align: middle;
+    border: 0;
 }
 
 .MarketIndex .index-header-left {
-	position: absolute;
-	width: 400px;
-	height: 300px;
-	bottom: 80px;
-	z-index: 1;
-	opacity: 0.8;
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    bottom: 80px;
+    z-index:1;
+    opacity: 0.8;
 }
 
+
 .MarketIndex .index-header-right {
-	position: absolute;
-	width: 400px;
-	height: 300px;
-	bottom: 80px;
-	right: 10px;
-	z-index: 1;
-	opacity: 0.8;
+     position: absolute;
+    width: 400px;
+    height: 300px;
+    bottom: 80px;
+    right: 10px;
+    z-index: 1;
+    opacity: 0.8;
 }
 
 .padding-top-25 {
-	padding-top: 25px !important;
-	justify-content: center;
-	align-items: center;
+    padding-top: 25px !important;
+    justify-content: center;
+    align-items: center;
 }
 
 .MarketIndex .flex-center-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .margin-top-30 {
-	margin-top: 30px !important;
+    margin-top: 30px !important;
 }
 
 .MarketIndex .market-main-link-text {
-	font-size: 15px;
-	color: #333;
-	text-decoration: none;
+    font-size: 15px;
+    color: #333;
+    text-decoration: none;
 }
 
 .RootDirectoryTheme .items-container {
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	background-color: white;
-	border-radius: 350px;
-	padding: 35px 30px 25px 30px;
-	margin-top: -155px;
-	height: 155px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 350px;
+    padding: 35px 30px 25px 30px;
+    margin-top: -155px;
+    height: 155px;
 }
 
-.RootDirectoryTheme .items-container>div {
-	flex-grow: 1;
-	flex-basis: 100px;
+.RootDirectoryTheme .items-container > div {
+    flex-grow: 1;
+    flex-basis: 100px;
 }
 
 .RootDirectoryThemeItem .icon {
-	width: 45px;
-	height: 45px;
-	position: relative;
-	background-repeat: no-repeat;
-	margin: 0 auto;
+    width: 45px;
+    height: 45px;
+    position: relative;
+    background-repeat: no-repeat;
+    margin: 0 auto;
 }
-
 .iconName {
 	position: relative;
-	padding-top: 10px;
-	text-align: center;
-	font-size: 14px;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 14px;
+<<<<<<< HEAD
 }
+
 
 .icon1 {
 	background: url(../images/main/디자인.png);
@@ -256,27 +256,21 @@ img {
 .icon2 {
 	background: url(../images/main/마케팅.png);
 }
-
 .icon3 {
 	background: url(../images/main/문서-취업.png);
 }
-
 .icon4 {
 	background: url(../images/main/아이콘.png);
 }
-
 .icon5 {
 	background: url(../images/main/아이콘2.png);
 }
-
 .icon6 {
 	background: url(../images/main/안드로이드.png);
 }
-
 .icon7 {
 	background: url(../images/main/어플.png);
 }
-
 .icon8 {
 	background: url(../images/main/콘텐츠제작.png);
 }
@@ -284,11 +278,9 @@ img {
 .icon9 {
 	background: url(../images/main/콘텐츠제작2.png);
 }
-
 .icon10 {
 	background: url(../images/main/IT-프로그래밍.png);
 }
-
 .icon11 {
 	background: url(../images/main/번역-통역.png);
 }
@@ -298,24 +290,18 @@ img {
 	height: 565px;
 	bottom: 40px;
 }
-
 .mini-chat-screen {
 	width: 280px;
 	height: 440px;
 }
-
-.mini-chat-send {
+.mini-chat-send{
 	width: 300px;
 	height: 60px;
 }
 
-.mini-chat-button {
-	width: 80px;
-	height: 80px;
-	border-radius: 40px;
-	right: 0px;
+.mini-chat-button{
+	width: 80px; height: 80px; border-radius: 40px; right: 0px; z-index: 3;
 }
-
 #admin_chat {
 	overflow: scroll;
 }
@@ -325,13 +311,12 @@ img {
 	overflow: scroll;
 }
 
-#admin_chat ul li {
-	line-height: 1.5rem;
-	padding: 10px 20px;
-	margin: 0;
-	border: 1px solid #f4f4f4;
-	border-radius: 15px;
-	list-style: none;
-	width: 70%;
+#admin_chat ul li{
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid #f4f4f4;
+    border-radius: 15px;
+    list-style: none;
+    width: 70%;
 }
-

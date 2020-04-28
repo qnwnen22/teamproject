@@ -41,6 +41,11 @@ public class TeacherController {
 	@RequestMapping(value="teacherInsert.do",method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 	public String teacherInsert(TeacherDTO dto, HttpSession session) throws Exception {
+
+		System.err.println(dto.getSpec1_y());
+		System.err.println(dto.getSpec1_m());
+		System.err.println(dto.getSpec1_d());
+		
 		//개같은 예외처리
 		if(dto.getSpec2()==null || dto.getSpec2().equals("")) {
 			dto.setSpec2("-");
@@ -187,7 +192,7 @@ public class TeacherController {
 		
 		session.setAttribute("teacher", "w");
 		
-		return "home";
+		return "redirect:/";
 	}
 	@RequestMapping(value="/requestMemberView.do",method=RequestMethod.POST,produces="text/plain;charset=utf-8")
 	public ModelAndView view(String userid,ModelAndView mav) {

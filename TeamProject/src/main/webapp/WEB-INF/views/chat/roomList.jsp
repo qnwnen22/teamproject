@@ -10,19 +10,33 @@
 <body>
 <table class="table table-hover">
    <tr align="center">
-     <th>방번호</th>
-     <th>방이름</th>
-     <th>방장아이디</th>
+     <th>문의자</th>
      <th>생성날짜</th>
    </tr>
    <c:forEach var="row" items="${list}">
+   <c:if test="${row.chatalarm == 'n'}">
      <tr align="center">
-        <td>${row.chatroom_id}</td>
-        <td><a href="${path}/chatroom/chatRoomView.do?chatroom_id=${row.chatroom_id}">${row.chatroom_name}</a></td>
-        <td>${row.create_user_id}</td>
-        <td><fmt:formatDate value="${row.room_join_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+        <td><a onclick="chatOpen()">${row.chatroom_name}
+        <span class="badge badge-danger">new</span></a></td>
+        <td><fmt:formatDate value="${row.room_join_date}" pattern="yyyy-MM-dd"/>
+        <input type="hidden" value="${row.admin_id}" id="target">
+        <input type="hidden" value="${row.chatroom_id}" id="num">
+        <input type="hidden" value="${row.chatroom_name}" id="sender">
+        </td>
      </tr>
+   </c:if>
    </c:forEach>
 </table>
+<script>
+function chatOpen() {
+	var num=$("#num").val();
+	var target=$("#target").val();
+	var sender=$("#sender").val();
+	var url="${path}/chat/popup/"+num+"?sender="+sender+"&target="+target+"&num="+num;
+	window.open(url,'_blank','width=310,left=300,height=610');
+	
+}
+
+</script>
 </body>
 </html>

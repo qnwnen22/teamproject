@@ -69,64 +69,15 @@ function insertTeacher() {
 	}
 	
 	if(finalEducation.value==''){
-//		var check=confirm('최종학력을 등록하지 않았습니다.\n이대로 진행하시겠습니까?');
-//		if(!check){
-//			finalEducation.focus();
-//			return false;
-//		}
+		var check=confirm('최종학력을 등록하지 않았습니다.\n이대로 진행하시겠습니까?');
+		if(!check){
+			finalEducation.focus();
+			return false;
+		}
 		finalEducation.focus();
 		alert("최종학력을 입력하세요.");
 		return false;
 	}
-//	if(!(finalEducation.value=='')){
-//		if(finalEducation.value=="고등학교 졸업"){
-//			if(highStart.value==''){
-//				highStart.focus();
-//				alert("입학일자를 입력하세요.");
-//				return false;
-//			}if(hignEnd.value==''){
-//				hignEnd.focus();
-//				alert("졸업일자를 입력하세요.");
-//				return false;
-//			}if(highSchool.value==''){
-//				highSchool.focus();
-//				alert("고등학교를 입력하세요.");
-//				return false;
-//			}
-//		}else if(!(finalEducation.value=="고등학교 졸업")){
-//			if(highStart.value==''){
-//				highStart.focus();
-//				alert("1입학일자를 입력하세요.");
-//				return false;
-//			}if(hignEnd.value==''){
-//				hignEnd.focus();
-//				alert("1졸업일자를 입력하세요.");
-//				return false;
-//			}if(highSchool.value==''){
-//				highSchool.focus();
-//				alert("1고등학교를 입력하세요.");
-//				return false;
-//			}
-//			if(uniStart.value==''){
-//				uniStart.focus();
-//				alert("입학일자를 입력하세요.");
-//				return false;
-//			}if(uniEnd.value==''){
-//				uniEnd.focus();
-//				alert("입학일자를 입력하세요.");
-//				return false;
-//			}if(university.value==''){
-//				university.focus();
-//				alert("대학교를 입력하세요.");
-//				return false;
-//			}if(department.value==''){
-//				department.focus();
-//				alert("학과를 입력하세요.")
-//				return false;
-//			}
-//		}
-//	}
-	//자격증 1
 	if(spec1.value==''){
 		var check=confirm('자격증을 등록하지 않았습니다.\n이대로 진행하시겠습니까?');
 		if(!check){
@@ -162,6 +113,12 @@ function insertTeacher() {
 		}
 	}
 	alert("강사 등록");
+	if (socket.readyState !== 1)return;
+	console.log(socket);
+	let sender= $('input#userid').val();
+	let admin = 'admin';
+	// websocket에 보내기!! (reply,신청자,관리자)
+	socket.send("teaching," + sender + "," + admin);
 	document.form1.submit();
 }
 

@@ -19,5 +19,5 @@ public class AdminChatDTO {
 	private String messageAdmin;//메시지
 	private String sender;//보내는사람
 	private String target;//
-	private String num;//1:1채팅넘버
+	private int num;//1:1채팅넘버
 }
