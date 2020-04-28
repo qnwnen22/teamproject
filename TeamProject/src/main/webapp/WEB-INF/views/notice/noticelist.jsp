@@ -19,7 +19,7 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li>공지사항</li>
+				<li><b style="color: blue;">공지사항</b></li>
 			</ul>
 		</div>
 		

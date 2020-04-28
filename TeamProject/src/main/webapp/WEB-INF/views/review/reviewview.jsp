@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/upper.css">
 <style type="text/css">
 .input-group {
 	width: auto !important;
@@ -32,6 +31,7 @@
 #fullName_css .jumbotron {
 	background-color: white !important;
 }
+
 </style>
 <%@ include file="../include/header.jsp"%>
 <script type="text/javascript">
@@ -153,7 +153,7 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li><a href="${path}/review/list.do">수강후기</a></li>
+				<li><b><a href="${path}/review/list.do" style="color: blue;">수강후기</a></b></li>
 			</ul>
 		</div>
 

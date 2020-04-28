@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/upper.css">
 <script type="text/javascript">
 	function list(page) {
 		location.href = "${path}/review/searchlist.do?curPage=" + page+"&search_option=${map.search_option}"+"&keyword=${map.keyword}";
@@ -18,7 +17,7 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li>수강후기</li>
+				<li><b style="color:blue;">수강후기</b></li>
 			</ul>
 		</div>
 		

@@ -108,7 +108,7 @@
 			<div>
 				<ul class="upper_shift">
 					<li><a href="${path}">KDEMY</a></li>
-					<li><a href="${path}/notice/list.do">공지사항</a></li>
+					<li><b><a href="${path}/notice/list.do" style="color: blue;">공지사항</a></b></li>
 				</ul>
 			</div>
 			
