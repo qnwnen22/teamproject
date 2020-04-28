@@ -77,6 +77,7 @@ public class ReviewController {
 	@RequestMapping("replylist.do")
 	public ModelAndView replylist(@RequestParam(defaultValue="1") int curPage, int bno, ModelAndView mav) throws Exception {
 		int countReply =replyService.countReply();
+		System.out.println(countReply);
 		Review_Pager2 pager2=new Review_Pager2(countReply, curPage);
 		int start2=pager2.getPageBegin();
 		int end2=pager2.getPageEnd();
@@ -85,10 +86,39 @@ public class ReviewController {
 		map.put("replylist", list);
 		map.put("count2",  countReply);
 		map.put("pager2", pager2);
+		map.put("bno", bno);
 		mav.setViewName("review/reply_list");
 		mav.addObject("map", map);
 		return mav;
 	}
+	
+	@ResponseBody
+	@RequestMapping("view.do")
+	public ModelAndView view(@RequestParam(defaultValue="1") int curPage, @ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
+		int count =reviewService.countArticle();
+		//페이지 처리
+		Review_Pager pager=new Review_Pager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		reviewService.increateViewcnt(bno, session);
+		
+		String writer=(String)session.getAttribute("userid");
+		dto.setWriter(writer);
+		
+		List<ReviewDTO> list = reviewService.listAll(start, end);
+		ModelAndView mav=new ModelAndView();
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("reviewlist", list);
+		map.put("count",  count);
+		map.put("pager", pager);
+		mav.setViewName("review/reviewview");
+		mav.addObject("map", map);
+		mav.addObject("dto", reviewService.read(bno));
+		return mav;
+	}
+	
+
+	
 	
 
 	
@@ -250,33 +280,6 @@ public class ReviewController {
 		dto.setReplyer(userid);
 		replyService.create(dto);
 	}
-	
-	@RequestMapping("view.do")
-	public ModelAndView view(	@RequestParam(defaultValue="1") int curPage, @ModelAttribute ReviewDTO dto, int bno, HttpSession session) throws Exception {
-		int count =reviewService.countArticle();
-		//페이지 처리
-		Review_Pager pager=new Review_Pager(count, curPage);
-		int start=pager.getPageBegin();
-		int end=pager.getPageEnd();
-		
-		reviewService.increateViewcnt(bno, session);
-		
-		String writer=(String)session.getAttribute("userid");
-		dto.setWriter(writer);
-		
-		List<ReviewDTO> list = reviewService.listAll(start, end);
-		ModelAndView mav=new ModelAndView();
-		HashMap<String, Object> map=new HashMap<>();
-		map.put("reviewlist", list);
-		map.put("count",  count);
-		map.put("pager", pager);
-		mav.setViewName("review/reviewview");
-		mav.addObject("map", map);
-		mav.addObject("dto", reviewService.read(bno));
-		return mav;
-	}
-	
-
 	
 
 	

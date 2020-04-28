@@ -9,17 +9,6 @@
 <link rel="stylesheet" href="${path}/include/css/carousel.css">
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$.ajax({
-			type : 'post',
-			url : 'cookie.do',
-			dataType : 'text',
-			success : function(data) {
-
-			}
-		});
-	})
-
 	$(function() {
 		//마지막 스크롤 값을 저장할 lastScroll 변수
 		var lastScroll = 0;
@@ -44,8 +33,11 @@
 		new KellyColorPicker({
 			place : 'picker',
 			input : 'color'
+				 
 		});
-
+		 $("#myBtn").click(function(){
+			    $('.toast').toast('show');
+			  });
 		//드래그 기본 효과를 막음 .은 클래스 class=fileDrop, #은 id
 		$(".fileDrop, .fileDrop1").on("dragenter dragover", function(event) {
 			event.preventDefault();
@@ -858,6 +850,8 @@
 
 																<!-- 관리자 로그인 -->
 																<c:if test="${sessionScope.admin_id != null}">
+																
+																
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
@@ -1444,34 +1438,30 @@
 			<ul id="messageAdmin" class="overflow-auto">
 
 			</ul>
-		</div>
-		<div class="input-group p-4 mini-chat-send">
-			<input type="text" class="form-control" id="chatMsg"
-				placeholder="Type a message..."> <input type="hidden"
-				id="admin_id" value="admin"> <input type="hidden"
-				id="userid" value="${sessionScope.userid}"> <input
-				type="hidden" id="chatNum" value="${sessionScope.usernum}">
-			<input type="hidden" id="sender" value="${sessionScope.userid}">
-			<input type="hidden" id="num" value="${sessionScope.usernum}">
-			<div class="input-group-append">
-				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
-			</div>
-		</div>
-	</div>
-	<script>
-		$(function() {
-			$('#btnMiniChatJoin').on(
-					'click',
-					function(evt) {
-						evt.preventDefault();
-						if (socket.readyState !== 1)
-							return;
-						let target = $("#admin_id").val();
-						let chatNum = $("#chatNum").val();
-						let sender = $("#userid").val();
-						socket.send("chat," + sender + "," + target + ","
-								+ chatNum + ",대화신청");
-					});
+	  	 </div>
+	  	 <div class="input-group p-4 mini-chat-send">
+	   	   <input type="text" class="form-control" id="chatMsg" placeholder="Type a message...">
+	   	   <input type="hidden" id="admin_id" value="admin">
+     	   	   <input type="hidden" id="userid" value="${sessionScope.userid}"> 
+     	   	   <input type="hidden" id="chatNum" value="${sessionScope.usernum}">
+     	   	   <input type="hidden" id="sender" value="${sessionScope.userid}">
+     	   	    <input type="hidden" id="num" value="${sessionScope.usernum}">
+  				<div class="input-group-append">
+    				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+ 				 </div>
+	  	 </div>
+	 </div>
+	 
+<script>
+$(function () {
+	$('#btnMiniChatJoin').on('click', function(evt) {
+		evt.preventDefault();
+	  if (socket.readyState !== 1) return;
+	    	   let target=$("#admin_id").val();
+	    	   let chatNum=$("#chatNum").val();
+	    	   let sender=$("#userid").val();
+	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
+	    });
 
 			$("#chatMsg").keypress(function(e) {
 				if (e.which == 13) {
@@ -1531,7 +1521,7 @@
 			$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 		}
 	</script>
-
+	
 	<%@ include file="include/footer.jsp"%>
 </body>
 </html>

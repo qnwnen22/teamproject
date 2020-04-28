@@ -28,7 +28,6 @@ function listreply(page) {
 		<c:set var="str" value="${fn:replace(str,'  ','&nbsp;&nbsp;')}" />
 		<c:set var="str" value="${fn:replace(str,newLineChar,'<br>') }" />
 
-
 		<div>
 			<input type="hidden" name="bno" value="${row.bno}"> <input
 				type="hidden" name="rno" value="${row.rno}"> ${row.replyer}
@@ -44,16 +43,16 @@ function listreply(page) {
 			<hr>
 		</div>
 	</c:forEach>
-		<div class="d-flex justify-content-center mb-4">
+	<div class="d-flex justify-content-center mb-4 paging">
 			<nav aria-label="Page navigation example center-block">
 				<ul class="pagination">
 					<c:if test="${map.pager2.curBlock>1}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="listreply('1')">&lt;&lt;</a></li>
+							onclick="listReply('1')">&lt;&lt;</a></li>
 					</c:if>
 					<c:if test="${map.pager2.curBlock >1}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="listreply('${map.pager2.prevPage}')">&lt;</a></li>
+							onclick="listReply('${map.pager2.prevPage}')">&lt;</a></li>
 					</c:if>
 					<c:forEach var="num" begin="${map.pager2.blockBegin}"
 						end="${map.pager2.blockEnd}">
@@ -63,17 +62,17 @@ function listreply(page) {
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a class="page-link" href="#"
-									onclick="listreply('${num}')">${num}</a></li>
+									onclick="listReply('${num}')">${num}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${map.pager2.curBlock < map.pager2.totBlock}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="listreply('${map.pager2.nextPage}')">&gt;</a></li>
+							onclick="listReply('${map.pager2.nextPage}')">&gt;</a></li>
 					</c:if>
 					<c:if test="${map.pager2.curPage <map.pager2.totPage}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="listreply('${map.pager2.totPage}')">&gt;&gt;</a></li>
+							onclick="listReply('${map.pager2.totPage}')">&gt;&gt;</a></li>
 					</c:if>
 				</ul>
 			</nav>

@@ -182,9 +182,4 @@ public class HomeController {
 		adminService.mainChange(dto);
 		return "redirect:/";
 	}
-
-
-
-
-
 }

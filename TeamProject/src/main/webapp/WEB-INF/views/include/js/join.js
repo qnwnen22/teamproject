@@ -20,6 +20,7 @@ $(function(){
 			$("#usernameM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
 		}	
 	 });
+	 
 	 $('#userid').change(function(e){
 		//아이디 체크
 		var userid =document.getElementById("userid");
@@ -80,13 +81,18 @@ $(function(){
 	 
 	 $('#useremail').change(function(e){
 		//이메일 체크
-		var email=document.getElementById("useremail");
+		var useremail=document.getElementById("useremail");
+		if(useremail.value=="") {
+			alert("이메일은 필수 입력입니다.");
+			useremail.focus();
+			return false;
+		}
 		var exp3= /^[a-z0-9]{2,}@[a-z0-9]{2,}\.[a-z]{2,}$/;
-		if(!exp3.test(email.value)) {
+		if(!exp3.test(useremail.value)) {
 			$("#useremail").css("border", "2px solid red");
 			$("#useremailM").html("<b style='color:red'>이메일 형식이 잘못 되었습니다. ex) abc@abc.com</b>");
-			email.val("");
-			email.focus();
+			useremail.val("");
+			useremail.focus();
 			return false;
 		}else {
 			var input="<input id='useremailConfirm' type='hidden' value='y'>";
@@ -95,6 +101,9 @@ $(function(){
 		}
 		
 	 });
+	 
+	 
+	 
 	 $('#phone1').change(function(e){
 		 $("#phone1").css("border", "2px solid #71c9ce");
 	 });

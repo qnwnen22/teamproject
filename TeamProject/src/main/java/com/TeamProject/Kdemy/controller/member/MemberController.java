@@ -140,7 +140,8 @@ public class MemberController {
 	public String myPageUpdate() {
 		return "member/mypageUpdate";
 	}
- 
+    
+	
 	@RequestMapping("couponMaker.do")
 	public String couponMaker() {
 		return "member/coupon";
@@ -329,6 +330,19 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/checkEmail.do")
+	public int emailCheck(MemberDTO dto) throws Exception {	
+		String exp3= "^[a-z0-9]{2,}@[a-z0-9]{2,}.[a-z]{2,}$";
+		if(dto.getUseremail().matches(exp3)) {
+			int result = memberService.emailCheck(dto);
+			 System.out.println("result:"+result);
+			return result;			  
+		}else {
+			return 2;
+		}
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/searchID.do", method = RequestMethod.POST)
 	public String searchID(HttpServletRequest request) {
 		String username = request.getParameter("username");
@@ -497,5 +511,27 @@ public class MemberController {
 		return "admin/teacher_request_list";
 	}
 	
-
+	@RequestMapping("couponMemberlist.do")
+	public ModelAndView couponMemberlist(
+			@RequestParam(defaultValue ="") String keyword,
+			@RequestParam(defaultValue ="") String location,
+			@RequestParam(defaultValue="1") int curPage) 
+					throws Exception {
+		//레코드 갯수 계산
+		int count=memberService.countMember(keyword,location);
+		//페이지 관련 설정
+		member_Pager pager=new member_Pager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<MemberDTO> list=memberService.listAll(location,keyword, start, end); //게시물 목록
+		ModelAndView mav=new ModelAndView();
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("list", list); //map에 자료 저장
+		map.put("count", count);
+		map.put("pager", pager); //페이지 네비게이션을 위한 변수
+		map.put("keyword", keyword);
+		mav.addObject("map", map); //ModelAndView에 map을 저장
+		mav.setViewName("admin/couponMember_list");
+		return mav; //board/list.jsp로 이동
+	}//list()
 }
