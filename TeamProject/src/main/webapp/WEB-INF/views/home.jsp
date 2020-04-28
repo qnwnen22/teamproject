@@ -7,8 +7,38 @@
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/carousel.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
 
+<style>
+/* div{border:1px solid black;} */
+.slick-initialized .slick-slide
+{
+     display: none; 
+}
+/* .slide-h3 {
+  width:200px;
+} */
+.slider {
+   width: 80%;
+   margin: 100px auto;
+}
+.slick-slide {
+      margin: 0px 20px;
+    }
+
+.slick-slide img {
+      width: 100%;
+      transform: scale(0.9);
+    }
+
+.slick-center img {
+  transform: scale(1.1);
+}
+.slick-list.draggable{float:center;}
+
+</style>
 <script>
 	$(function() {
 		//마지막 스크롤 값을 저장할 lastScroll 변수
@@ -1217,6 +1247,54 @@
 		</div>
 	</div>
 	<!-- content -->
+	<!--  슬라이드 1 -->
+<section class="center slider">
+       <c:forEach var="dto" items="${listv}" begin="1" end="10">
+       <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+       <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+       <img src="${path}/lecture/displayFile?fileName=${dto.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+        <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
+       </div>
+       </c:forEach>
+  <div>
+  </div>
+  </section>
+
+<script>
+
+  $(document).ready(function() {
+   $('.slider').slick({
+	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+	infinite : true, 	//무한 반복 옵션	 
+    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+    index: 1,
+    focusOnSelect:true,
+    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+	vertical : false,		// 세로 방향 슬라이드 옵션
+	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button><button type='button' class='slick-next btn btn-sm' style='float:right; height:300px;'> > </button>",	// 이전 화살표 모양 설정	
+	nextArrow : "<button type='hidden' style='visibility:hidden'></button>",		// 다음 화살표 모양 설정
+	draggable : true, 
+     responsive: [{
+         breakpoint: 960,
+         settings: {
+          
+           slidesToShow: 3
+         }
+       },
+         {
+       breakpoint: 768,
+       settings: {
+        
+         slidesToShow: 2
+       }
+     }]
+   });
+ });
+  </script>
+ <!-- 슬라이드1 끝 -->
 
 	<div style="width: 63%; margin: auto;">
 		<div class="flex-end-center col-auto p-0"></div>
@@ -1227,8 +1305,8 @@
 		</a>
 		
 	</div>
-	
-		
+
+
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 
 		<div class="row">
@@ -1242,9 +1320,10 @@
 		</div>
 
 
-			<!-- 슬라이드 버튼 -->
-			
- <!--  동영상 리스트 -->            
+
+
+<!-- 슬라이드 버튼 -->  
+<!-- 영상강의 -->    
    <div id="container">
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
@@ -1255,10 +1334,8 @@
     
       <div class="slide_box">
         <div class="slide_list clearfix">
-          
-
-          <c:forEach var="dto" items="${listv}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+          <c:forEach var="dto" items="${listv}" begin="0" end="9">
+         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1 center" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
             <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
             <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
@@ -1270,16 +1347,8 @@
     </div>
   </div>
 
-   <!-- 끝 -->
-   
-			
-
-</div>
-		
-		   <!--  실시간 -->     
-<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-
-
+<!-- 끝 -->
+<!--  실시간 --> 
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1288,7 +1357,6 @@
 				<br>
 			</div>
 		</div>
-       
    <div id="container">
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
@@ -1298,7 +1366,7 @@
       <div class="slide_box">
         <div class="slide_list1 clearfix">
 
-          <c:forEach var="dtoon" items="${listv}">
+          <c:forEach var="dtoon" items="${listv}" begin="1" end="8">
          <div class="card col-2 px-0 mr-3 slide02 slide_content1 d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
             <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
@@ -1314,13 +1382,12 @@
       <ul class="slide_pagination1"></ul>
     </div>
   </div>
- <script src="${path}/include/js/carousel.js"></script>
+
    <!-- 끝 -->
    
-	</div>
+		
 
-<!--  현장강의 -->   	
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">	
+
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1328,7 +1395,8 @@
 				</h5>
 				<br>
 			</div>
-		</div>         
+		</div>
+			   <!--  현장강의 -->            
    <div id="container">
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
@@ -1353,15 +1421,19 @@
          
         </div>
       </div>
+
       <ul class="slide_pagination2"></ul>
     </div>
   </div>
-
-   <!-- 끝 -->
-   </div>
    <script src="${path}/include/js/carousel.js"></script>
-   <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+   <!-- 끝 -->
+   
+
+
 		<hr>
+
+<hr>
+
 		<div class="d-flex">
 			<div class="col-6 m-0 p-1">
 				<h4>
