@@ -1,3 +1,18 @@
+drop table chatmessage;
+
+create table chatmessage (
+chatroom_id number,
+chatmsg varchar2(2000),
+chatdate date default sysdate
+);
+
+commit;
+
+desc teacher;
+
+
+drop table teacher;
+
 drop table teacher;
 
 create table teacher(
@@ -10,7 +25,7 @@ finaleducation varchar2(200),
 schoolname varchar2(200),
 department varchar2(200),
 spec1 varchar2(200),
-spec1_getgate varchar2(200),
+spec1_getdate varchar2(200),
 spec1_img clob,     
 spec2 varchar2(200),
 spec2_getdate varchar2(200),
