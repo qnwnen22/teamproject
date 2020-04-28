@@ -106,7 +106,7 @@
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
-				<li>장바구니</li>
+				<li><b style="color: blue;">장바구니</b></li>
 			</ul>
 		</div>
 

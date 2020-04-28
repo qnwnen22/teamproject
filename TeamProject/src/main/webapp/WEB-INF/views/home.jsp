@@ -219,6 +219,8 @@
 			return fileName.match(pattern); //규칙에 맞으면 true가 리턴
 		}
 	});
+
+	
 </script>
 </head>
 <body>
@@ -1225,6 +1227,7 @@
 				<h4 style="color: red;">★수강후기★</h4>
 			</marquee>
 		</a>
+		
 	</div>
 	
 	
@@ -1267,9 +1270,6 @@
 
 
 
-
-
-
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1278,7 +1278,7 @@
 				</h5>
 				<br>
 			</div>
-
+		</div>
 
 
 			<!-- 슬라이드 버튼 -->
@@ -1307,8 +1307,36 @@
 			</div>
 			<!-- slidebox end -->
 
-		</div>
-		<!-- slidewrap end -->
+			   <!--  캐러셀   일단 테스트 -->            
+   <div id="container">
+    <div class="slide_wrap">
+    <div class="pt-4 col-auto align-items-right">
+                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
+                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
+               
+                 </div>  
+    
+      <div class="slide_box">
+        <div class="slide_list clearfix">
+
+
+          <c:forEach var="dto" items="${listv}">
+         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+            <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
+            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
+            </div>
+       </c:forEach>
+        </div>
+      </div>
+      <ul class="slide_pagination"></ul>
+    </div>
+  </div>
+
+   <!-- 끝 -->
+   
+			
+
 
 
 
@@ -1319,36 +1347,38 @@
 				</h5>
 				<br>
 			</div>
-			<div class="pt-4 col-auto">
-				<a class="btn btn-xs btn-light">&lt;</a> <a
-					class="btn btn-xs btn-light">&gt;</a>
-			</div>
 		</div>
-		<div class="slide_wrap">
-			<div class="slide_box">
-				<div class="slide_list clearfix row">
-					<c:forEach var="dtoon" items="${liston}" begin="0" end="4">
-						<div class="card col-2 px-0 m-auto slide02 slide_content">
-							<a href="#"
-								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
-								<img
-								src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
-								class="card-img-top" alt="...">
-							</a>
-							<div class="card-body">
-								<p class="card-text font-weight-bold text-center h5">${dtoon.subject }</p>
-							</div>
-						</div>
+		
+		   <!--  실시간 -->            
+   <div id="container">
+    <div class="slide_wrap">
+    <div class="pt-4 col-auto align-items-right">
+                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
+                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
+                 </div>  
+      <div class="slide_box">
+        <div class="slide_list clearfix">
 
-					</c:forEach>
-				</div>
-				<!-- slideList end  -->
-			</div>
-			<!-- slidebox end -->
+          <c:forEach var="dtoon" items="${liston}">
+         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+            <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
+            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtoon.subject }</p>
+            
+            </div>
+       </c:forEach>
+          
+         
+        </div>
+      </div>
 
-		</div>
-		<!-- slidewrap end -->
+      <ul class="slide_pagination"></ul>
+    </div>
+  </div>
 
+   <!-- 끝 -->
+   
+		
 
 
 		<div class="row">
@@ -1358,34 +1388,39 @@
 				</h5>
 				<br>
 			</div>
-			<div class="pt-4 col-auto">
-				<a class="btn btn-xs btn-light">&lt;</a> <a
-					class="btn btn-xs btn-light">&gt;</a>
-			</div>
 		</div>
-		<div class="slide_wrap">
-			<div class="slide_box">
-				<div class="slide_list clearfix row">
-					<c:forEach var="dtooff" items="${listoff}" begin="0" end="4">
-						<div class="card col-2 px-0 m-auto slide02 slide_content">
-							<a href="#"
-								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
-								<img
-								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
-								class="card-img-top" alt="...">
-							</a>
-							<div class="card-body">
-								<p class="card-text font-weight-bold text-center h5">${dtooff.subject }</p>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-				<!-- slideList end  -->
-			</div>
-			<!-- slidebox end -->
+			   <!--  현장강의 -->            
+   <div id="container">
+    <div class="slide_wrap">
+    <div class="pt-4 col-auto align-items-right">
+                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
+                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
+               
+                 </div>  
+    
+      <div class="slide_box">
+        <div class="slide_list clearfix">
+          
 
-		</div>
-		<!-- slidewrap end -->
+          <c:forEach var="dtooff" items="${listoff}">
+         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+            <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
+            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtooff.subject }</p>
+            
+            </div>
+       </c:forEach>
+          
+         
+        </div>
+      </div>
+
+      <ul class="slide_pagination"></ul>
+    </div>
+  </div>
+   <script src="${path}/include/js/carousel.js"></script>
+   <!-- 끝 -->
+   
 
 
 		<hr>

@@ -41,49 +41,51 @@ public class CouponController {
 		return "member/coupon";	
 	}
 	
-//	@ResponseBody
-//	@RequestMapping("/makeCoupon.do")
-//	public ModelAndView makeCoupon(final MemberDTO dto2, CouponDTO dto, HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException {
-//		List<String> useremail = new ArrayList<>();
-//		useremail.add(request.getParameter("useremail"));
-//		String coupon = request.getParameter("coupon");
-//		String key1 = new TempKey().getKey(4,false); 
-//	   	String key2 = new TempKey().getKey(4,false); 
-//	   	String key3 = new TempKey().getKey(4,false); 
-//	   	String key4 = coupon;
-//	   	
-//		
-//		MimeMessagePreparator[] preparators = new MimeMessagePreparator[useremail.size()];
-//		for(int j=0; j<=useremail.size(); j++) {
-//			dto2.setKey1(key1); 
-//		   	dto2.setKey2(key2); 
-//		   	dto2.setKey3(key3);
-//		   	dto2.setCoupon(key4);
-//		   	dto2.setUseremail(useremail.get(j));
-//		   	memberService.updateCoupon(dto2);
-//			preparators[j] = new MimeMessagePreparator() {
-//				@Override public void prepare(MimeMessage mimeMessage) throws Exception { 
-//					final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-//					helper.setFrom("kdemy11@gmail.com", "kdemy");
-//					helper.setTo(useremail.get(j));
-//					helper.setSubject("[kdemy에서 쿠폰을 받으세요!]"); 
-//					helper.setText(new StringBuffer().append("<table style='border:1px solid black; border-radius:10px;'><tbody>")
-//							.append("<tr style='text-align: center;'><img src='https://modo-phinf.pstatic.net/20200423_57/1587601762341AwFLH_JPEG/mosajn1t3W.jpeg'></tr>")
-//							.append("<tr class='coupon' style='text-align: center;font-size:1.5rem; color:#422e4a;'>쿠폰 번호 </tr>")
-//							.append("<tr style='text-align: center;'><span style='padding:5px; font-size:1.5rem;'>"+key1)
-//							.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key2+"</span>-<span style='padding:5px; font-size:1.5rem;'>"+key3)
-//							.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key4+"</span><br>")
-//							.append("<a href='http://localhost/Kdemy/")
-//							.append("' target='_blenk'>KDEMY에서 로그인 하기</a></tr></tbody></table>").toString());
-//					}
-//				};
-//			}
-//		mailSender.send(preparators);
-//		ModelAndView mav=new ModelAndView();
-//		mav.addObject("message","이메일이 전송되었습니다.");
-//		mav.setViewName("member/coupon"); 
-//		return mav;
-//	}
+	@ResponseBody
+	@RequestMapping("/makeCoupon.do")
+	public ModelAndView makeCoupon(String[] useremail, CouponDTO dto, HttpServletRequest request, Model model) throws MessagingException, UnsupportedEncodingException {
+		
+		System.out.println(useremail);
+		String coupon = request.getParameter("coupon");
+		String key1 = new TempKey().getKey(4,false); 
+	   	String key2 = new TempKey().getKey(4,false); 
+	   	String key3 = new TempKey().getKey(4,false); 
+	   	String key4 = coupon;
+	   	
+		MimeMessagePreparator[] preparators = new MimeMessagePreparator[useremail.length];
+		int i =0;
+		for(String str: useremail) {
+			MemberDTO dto2 = new MemberDTO();
+			dto2.setKey1(key1); 
+			dto2.setKey2(key2); 
+			dto2.setKey3(key3);
+			dto2.setCoupon(key4);
+			dto2.setUseremail(str);
+			memberService.updateCoupon(dto2);
+			System.out.println(dto2.getUseremail());
+			preparators[i++] = new MimeMessagePreparator() {
+				@Override public void prepare(MimeMessage mimeMessage) throws Exception { 
+					final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+					helper.setFrom("kdemy11@gmail.com", "kdemy");
+					helper.setTo(str);
+					helper.setSubject("[kdemy에서 쿠폰을 받으세요!]"); 
+					helper.setText(new StringBuffer().append("<table style='border:1px solid black; border-radius:10px;'><tbody>")
+							//.append("<tr style='text-align: center;'><img src='https://modo-phinf.pstatic.net/20200423_57/1587601762341AwFLH_JPEG/mosajn1t3W.jpeg'></tr>")
+							.append("<tr class='coupon' style='text-align: center;font-size:1.5rem; color:#422e4a;'>쿠폰 번호 </tr>")
+							.append("<tr style='text-align: center;'><span style='padding:5px; font-size:1.5rem;'>"+key1)
+							.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key2+"</span>-<span style='padding:5px; font-size:1.5rem;'>"+key3)
+							.append("</span>-<span style='padding:5px; font-size:1.5rem;'>"+key4+"</span><br>")
+							.append("<a href='http://localhost/Kdemy/")
+							.append("' target='_blenk'>KDEMY에서 로그인 하기</a></tr></tbody></table>").toString(),true);
+					}
+				};
+			}
+		mailSender.send(preparators);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("message","이메일이 전송되었습니다.");
+		mav.setViewName("member/coupon"); 
+		return mav;
+	}
 	
 	@ResponseBody
 	@RequestMapping("couponDetail.do")

@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" href="${path}/include/css/upper.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
 	rel="stylesheet">
@@ -43,7 +42,7 @@
 				<div>
 					<ul class="upper_shift">
 						<li><a href="${path}">KDEMY</a></li>
-						<li><a href="${path}/notice/list.do">공지사항</a></li>
+						<li><b><a href="${path}/notice/list.do" style="color: blue;">공지사항</a></b></li>
 					</ul>
 				</div>
 

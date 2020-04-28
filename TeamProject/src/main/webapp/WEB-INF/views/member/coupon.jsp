@@ -59,7 +59,7 @@
    <div id="memberlistDiv"></div>
       </div>
       <!--  -->
-       <div id="view" class="reounded fixed-top shadow mb-3 mr-3 col-lg-2 col-xl-2 col-md-2 h6 ml-auto d-none d-xl-block d-lg-block d-md-block d-sm-block " style="margin-top: 230px;">
+       <div id="view" class="reounded fixed-top shadow mb-3 mr-3 col-lg-2 col-xl-2 col-md-2 h6 ml-auto d-none d-xl-block d-lg-block d-md-block d-sm-block " style="margin-top: 170px;">
 					<form method="post" name="form1" id="form1" action="makeCoupon.do">
 						<h6 class="mt-3">선택한 쿠폰</h6>
 						<hr>
@@ -87,7 +87,7 @@
       </c:choose>
 						<hr>
 						<h6>수신자</h6>
-						<div class="col-12 border border-secondary py-3" id="useremailBox" style="min-height:100px;"></div>
+						<div class="col-12 border border-secondary py-3" id="useremailBox" style="min-height:100px; max-height:340px; overflow:auto; "></div>
 						<hr>
 						<button type="submit" class="btn btn-outline-primary btn-lg btn-block text-center">발송</button>
 					</form>
