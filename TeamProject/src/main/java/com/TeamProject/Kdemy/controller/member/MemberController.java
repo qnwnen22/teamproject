@@ -417,7 +417,6 @@ public class MemberController {
 			mav.addObject("loginCookie", dto.getUserid());
 			}
 
-			
 			mav.setViewName("redirect:/");
 		}else if(result.equals("관리자로그인")){
 			AdminDTO dtoa=adminService.adminLogin(dto);
@@ -428,7 +427,7 @@ public class MemberController {
 			mav.setViewName("redirect:/");
 		}else {
 			mav.addObject("message","로그인실패");
-			mav.setViewName("redirect:/");
+			mav.setViewName("redirect:/");	
 		}
 		return mav;
 	}

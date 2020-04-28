@@ -1,0 +1,10 @@
+create table kdemyreview_reply (
+rno number not null primary key,
+bno number default 0,
+replytext varchar2(1000) not null,
+replyer varchar2(50) not null,
+regdate date default sysdate,
+updatedate date default sysdate
+);
+
+select*from kdemyreview_reply;
