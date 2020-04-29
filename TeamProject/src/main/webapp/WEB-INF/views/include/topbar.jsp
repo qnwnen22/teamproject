@@ -175,7 +175,7 @@
 						<div class="TopBarMenuList border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper" style="display: flex; width: 350px;">
+								<div class="sub-category-chunk-wrapper">
 								<div>
 									<div class="sub-category-wrapper">
 										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"

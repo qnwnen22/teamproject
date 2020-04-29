@@ -1442,6 +1442,7 @@ function chatEnter() {
              $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
 
+
 $(document).ready(function() {
  $('.slider').slick({
 	slide: 'div',		//슬라이드 되어야 할 태그 
@@ -1473,6 +1474,7 @@ $(document).ready(function() {
    }]
  });
 });
+
 </script>
    
    <%@ include file="include/footer.jsp"%>

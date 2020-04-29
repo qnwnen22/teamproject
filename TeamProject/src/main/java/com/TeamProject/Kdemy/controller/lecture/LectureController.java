@@ -586,8 +586,6 @@ public class LectureController {
 	}
 
 	
-	
-	
 	@RequestMapping("lectureUp2.do")
 	public String lectureUp2(HttpSession session, int lecture_idx) {
 		String userid = (String)session.getAttribute("userid");

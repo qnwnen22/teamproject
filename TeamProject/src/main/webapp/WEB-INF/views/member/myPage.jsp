@@ -95,7 +95,7 @@ $(function(){
 			<tr class="row" align="center">
 			<th class="col-4">이   름</th><td class="col-8">${dto.username}</td>
 			<tr class="row" align="center">
-			<th class="col-4">닉네임</th><td class="col-8">${dto.userid}</td>
+			<th class="col-4">닉네임</th><td class="col-8">${dto.nickname}</td>
 			<tr class="row" align="center">
 			<th class="col-4">전화번호</th><td class="col-8">${dto.phone}</td>
 			<tr class="row" align="center">

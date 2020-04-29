@@ -37,4 +37,9 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public void memberUpdate(String userid) {
 		sqlSession.update("teacher.memberUpdate",userid);
 	}
+
+	@Override
+	public void total(String lectureUserid) {
+		sqlSession.update("teacher.total",lectureUserid);
+	}
 }

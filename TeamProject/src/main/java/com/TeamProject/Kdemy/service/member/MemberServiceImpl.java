@@ -156,4 +156,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.emailCheck(dto);
 	}
 
+	@Override
+	public int checkNick(MemberDTO dto) {
+		return  memberDao.checkNick(dto);
+	}
+
 }
