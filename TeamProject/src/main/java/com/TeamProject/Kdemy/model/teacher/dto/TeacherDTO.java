@@ -17,6 +17,7 @@ public class TeacherDTO {
 	private int teacher_num; //강사 번호(리스트 출력용)
 	private String userid; //멤버 아이디 userid
 	private String username; //멤버 이름 username
+	private String nickname;
 	private String teacher_thumbnail; //강사 등록용 프로필 사진 
 //	--학력 칼럼
 	private String finalEducation; //최종학력
