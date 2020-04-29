@@ -55,7 +55,7 @@ $('#star1 a').click(function(){
 					<img class="img-fluid" src="${path}/lecture/displayFile?fileName=${dto.main_img}" style="max-height: 300px;">
 				</div>
 				 
-				<div class="card col-md-6 col-sm-12" style="border-radius:5px; border: 1px solid gray;">
+				<div class="card col-md-6 col-sm-12 shadow" style="border-radius:5px; border: 1px solid gray;">
  					     <div class="card-body">
   					     <c:choose>
 							<c:when test="${dto.cell_type==1}">
@@ -191,7 +191,7 @@ $('#star1 a').click(function(){
 			</div>
 		</div>
 		
-<!--  -->		
+	
 	<div class="row">
 			<div class="col-sm-12 col-xs-12">
 				<ul class="nav nav-tabs">
@@ -202,10 +202,6 @@ $('#star1 a').click(function(){
 		  			<li class="nav-item">
 		    			<a class="nav-link" onclick="lecturetime()" data-toggle="tab" href="#">강의 시간</a>
 		  			</li>
-		  			
-<!-- 		  			<li class="nav-item">
-		    			<a class="nav-link" onclick="lectureaddr()" data-toggle="tab" href="#">강의 장소</a>
-		  			</li> -->
 				</ul>
 			</div>
 				

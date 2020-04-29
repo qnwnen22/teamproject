@@ -102,13 +102,13 @@ function listview(){
 			<tbody>
 				<c:forEach var="row" items="${list}">
 					<tr class="text-center" onclick="packagesView('${row.packages_name}')" style="cursor:pointer;" data-toggle="modal" data-target="#updateModal">
-						<td><img src="../include/images/coupon/${row.packages_image}"
+						<td class="align-middle"><img src="../include/images/coupon/${row.packages_image}"
 							class="align-self-center mx-auto d-block" style="width: 200px"></td>
-						<td>${row.packages_name}</td>
-						<td>${row.packages_text}</td>
-						<td><fmt:formatNumber value="${row.packages_price}"
+						<td class="align-middle">${row.packages_name}</td>
+						<td class="align-middle">${row.packages_text}</td>
+						<td class="align-middle"><fmt:formatNumber value="${row.packages_price}"
 								pattern="#,###" /></td>
-						<td>${row.packages_date}</td>
+						<td class="align-middle">${row.packages_date}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

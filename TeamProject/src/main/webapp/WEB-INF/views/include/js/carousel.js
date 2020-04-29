@@ -17,7 +17,6 @@
       // Copy first and last slide
       let firstChild = slideList.firstElementChild;
       let clonedFirst = firstChild.cloneNode(true);
-
       // Add copied Slides
       slideList.appendChild(clonedFirst);
 
@@ -100,7 +99,7 @@
 
      let curIndex = startNum; // current slide index (except copied slide)
      let curSlide = slideContents[curIndex]; // current slide dom
-     curSlide.classList.add('slide_active');
+     //curSlide.classList.add('slide_active');
 
      /** Next Button Event */
      slideBtnNext.addEventListener('click', function() {
@@ -115,9 +114,9 @@
          }, slideSpeed);
          curIndex = -1;
        }
-       curSlide.classList.remove('slide_active');
-       curSlide = slideContents[++curIndex];
-       curSlide.classList.add('slide_active');
+     //  curSlide.classList.remove('slide_active');
+     //  curSlide = slideContents[++curIndex];
+     //  curSlide.classList.add('slide_active');
      });
 
      /** Prev Button Event */
@@ -209,3 +208,6 @@
      });
 
    })();
+ 
+ 
+ 

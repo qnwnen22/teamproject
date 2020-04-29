@@ -20,8 +20,8 @@ public class PackagesServiceImpl implements PackagesService {
 	}
 	
 	@Override
-	public List<PackagesDTO> list() {
-		return packagesDao.list();
+	public List<PackagesDTO> list(int start, int end) {
+		return packagesDao.list(start, end);
 	}
 	@Override
 	public PackagesDTO viewPackages(String packages_name) {
@@ -34,5 +34,10 @@ public class PackagesServiceImpl implements PackagesService {
 	@Override
 	public void deletePackages(String packages_name) {
 		packagesDao.deletePackages(packages_name);
+	}
+
+	@Override
+	public int countPackages() {
+		return packagesDao.countPackages();
 	}
 }

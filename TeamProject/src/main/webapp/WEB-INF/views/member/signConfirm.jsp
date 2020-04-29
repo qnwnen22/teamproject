@@ -16,7 +16,7 @@
         <div class="container">
   	   <div class="d-flex">
   	  	<div class="card col-md-8 offset-md-2 col-xl-8 offset-xl-2 text-center d-flex align-items-center">
-				<img class="card-img-top" src="img/passwdsend.jpg" alt="Card image" style="opacity: 0.6">
+				<img class="card-img-top" src="img/email.jpg" alt="Card image" style="opacity: 0.6">
 				<div class="card-img-overlay col-12">
 				 <div class="short-div">
 				 <br class="card-title m-5 d-none d-xs-none d-sm-block d-md-block d-lg-block d-xl-block"></br>

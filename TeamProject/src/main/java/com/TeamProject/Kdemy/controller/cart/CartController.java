@@ -96,6 +96,7 @@ public class CartController {
 		String nickname=(String)session.getAttribute("nickname");
 		String main_img=(String)session.getAttribute("main_img");
 //		멤버 테이블에서 포인트 차감
+		System.err.println("닉 네 임 :"+nickname);
 
 		cartService.buyLecture(userid,price);
 //		장바구니 테이블에서 레코드 삭제 & LectureBox 테이블에 레코드 추가

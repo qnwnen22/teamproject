@@ -7,220 +7,225 @@
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/carousel.css">
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script type="text/javascript"
+	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
 <script>
-	$(function() {
-		//마지막 스크롤 값을 저장할 lastScroll 변수
-		var lastScroll = 0;
-		$(window).scroll(
-				function(event) { //스크롤이 움직일때 마다 이벤트 실행
-					//현재 스크롤의 위치를 저장할 st 변수
-					var st = $(this).scrollTop();
-					//스크롤 상하에 따른 반응 정의
-					if (st > lastScroll) {
-						if ($(window).scrollTop() >= 538) { //스크롤이 아래로 538px 이상 내려갔을때 실행되는 이벤트 정의
-							$('header').attr('class',
-									'nav d-xl-block d-lg-block d-none');
-						}
-					} else {
-						if ($(window).scrollTop() < 538) { //스크롤이 아래로 538px 이상 올라갔을때 실행되는 이벤트 정의
-							$('header').attr('class', 'nav d-none');
-						}
-					}
-					//현재 스크롤 위치(st)를 마지막 위치로 업데이트
-					lastScroll = st;
-				});
-		new KellyColorPicker({
-			place : 'picker',
-			input : 'color'
-				 
-		});
-		 $("#myBtn").click(function(){
-			    $('.toast').toast('show');
-			  });
-		//드래그 기본 효과를 막음 .은 클래스 class=fileDrop, #은 id
-		$(".fileDrop, .fileDrop1").on("dragenter dragover", function(event) {
-			event.preventDefault();
-		});
-		$(".fileDrop")
-				.on(
-						"drop",
-						function(event) {
-							//drop이 될 때 기본 효과를 막음
-							event.preventDefault();
-							//첨부파일 배열(여러개를 동시에 선택해서 드래그 할 수 도 있기때문에 한개만 처리하도록 조치)
-							var files = event.originalEvent.dataTransfer.files;
-							var file = files[0]; //첫번째 첨부파일
-							var formData = new FormData(); //폼 객체
-							formData.append("file", file); //폼에 file 변수 추가
-							//서버에 파일 업로드(백그라운드에서 실행됨)
-							//아래 contentType: false는  multipart/form-data로 처리되는것과 같음
-							$
-									.ajax({
-										type : "post",
-										url : "${path}/upload/uploadBanner",
-										data : formData,
-										dataType : "text",
-										processData : false,
-										contentType : false,
-										success : function(data, status, req) {
-											console.log("data:"
-													+ getOriginalName1(data)); //업로드된 파일 이름
-											console.log("status:" + status); //성공,실패 여부
-											console.log("req:" + req.status);//요청코드값
-											var str = "";
-											if (checkImageType(data)) {//이미지 파일
-												str = "<div><a href='${path}/include/images/main/uploadBanner/displayFile?fileName="
-														+ getImageLink(data)
-														+ "'>";
-												str += "<img src='${path}/upload/displayFile?fileName="
-														+ data
-														+ "'class='mx-auto d-block' style='height: 18rem;''></a>";
-												str1 = "<div class='col-12 border mb-3' id='background_div'><h5>"
-														+ getOriginalName1(data)
-														+ "</h5></div><input type='hidden' name='background_img0' value='"+data+"'>";
-											} else {//이미지가 아닌 경우
-												str = "";
-												str += "<a href='${path}/include/images/main/uploadBanner/displayFile?fileName="
-														+ data
-														+ "'>"
-														+ getOriginalName(data)
-														+ "</a>";
-											}
-											str += "<span data-src="+data+">[삭제]</span></div>";
-											var temp = $("img#preImg").detach();
-											$("img#save").html(temp);
-											$("#image-container").append(str1);
-											$(".uploadedList").append(str);
-										}
-									});
-						});//fileDrop 함수
-		$(".fileDrop1")
-				.on(
-						"drop",
-						function(event) {
-							//drop이 될 때 기본 효과를 막음
-							event.preventDefault();
-							//첨부파일 배열(여러개를 동시에 선택해서 드래그 할 수 도 있기때문에 한개만 처리하도록 조치)
-							var files = event.originalEvent.dataTransfer.files;
-							var file = files[0]; //첫번째 첨부파일
-							var formData = new FormData(); //폼 객체
-							formData.append("file", file); //폼에 file 변수 추가
-							//서버에 파일 업로드(백그라운드에서 실행됨)
-							//아래 contentType: false는  multipart/form-data로 처리되는것과 같음
-							$
-									.ajax({
-										type : "post",
-										url : "${path}/upload/uploadBanner",
-										data : formData,
-										dataType : "text",
-										processData : false,
-										contentType : false,
-										success : function(data, status, req) {
-											console.log("data:" + data); //업로드된 파일 이름
-											console.log("status:" + status); //성공,실패 여부
-											console.log("req:" + req.status);//요청코드값
-											var str = "";
-											if (checkImageType(data)) {//이미지 파일
-												str = "<div><a href='${path}/upload/displayFile?fileName="
-														+ getImageLink(data)
-														+ "'>";
-												str += "<img src='${path}/upload/displayFile?fileName="
-														+ data
-														+ "'class='mx-auto d-block'style='height: 18rem;''></a>";
-												str1 = "<div class='col-12 border mb-3' id='background_div1'><h5>"
-														+ getOriginalName1(data)
-														+ "</h5></div><input type='hidden' name='background_img1' value='"+data+"'>";
-											} else {//이미지가 아닌 경우
-												str = "";
-												str += "<a href='${path}/upload/displayFile?fileName="
-														+ data
-														+ "'>"
-														+ getOriginalName(data)
-														+ "</a>";
-											}
-											str += "<span data-src="+data+">[삭제]</span></div>";
-											var temp = $("img#preImg1")
-													.detach();
-											$("img#save1").html(temp);
-											$("#image-container").append(str1);
-											$(".uploadedList1").append(str);
-										}
-									});
-						});//fileDrop 함수
-		//첨부파일 삭제 함수
-		$(".uploadedList").on("click", "span", function(event) {//내부적으로 span태그가 클릭되면 삭제
-			var that = $(this);//this는 현재 클릭한 태그, 즉 span태그
-			$.ajax({
-				url : "${path}/upload/deleteFile",
-				type : "post",
-				data : {//data: "fileName="+$(this).attr("data-src") 아래와 같음	
-					fileName : $(this).attr("data-src")
-				},
-				dataType : "text",
-				success : function(result) {
-					if (result == "deleted") {
-						that.parent("div").remove();//파일삭제되면 행전체<div>를 삭제처리
-						//that은 span태그를 의미하는데 그 부모인 감싸고 있는 div태그를 지운다는 뜻
-						var temp = $("img#preImg").detach();
-						$("div#imageBanner").html(temp);
-						$("div#background_div").remove();
-					}
-				}
-			});
-		});
-		$(".uploadedList1").on("click", "span", function(event) {//내부적으로 span태그가 클릭되면 삭제
-			var that = $(this);//this는 현재 클릭한 태그, 즉 span태그
-			$.ajax({
-				url : "${path}/upload/deleteFile",
-				type : "post",
-				data : {//data: "fileName="+$(this).attr("data-src") 아래와 같음	
-					fileName : $(this).attr("data-src")
-				},
-				dataType : "text",
-				success : function(result) {
-					if (result == "deleted") {
-						that.parent("div").remove();//파일삭제되면 행전체<div>를 삭제처리
-						//that은 span태그를 의미하는데 그 부모인 감싸고 있는 div태그를 지운다는 뜻
-						var temp = $("img#preImg1").detach();
-						$("div#imageBanner1").html(temp);
-						$("div#background_div1").remove();
-					}
-				}
-			});
-		});
-		function getOriginalName(fileName) {
-			if (checkImageType(fileName)) { //이미지 파일이면 skip
-				return;
-			}
-			var idx = fileName.indexOf("_") + 1; //uuid를 제외한 파일이름만 뽑음
-			return fileName.substr(idx);
-		}
-		function getOriginalName1(fileName) {
-			if (checkImageType(fileName)) { //이미지 파일이면 skip
-				var idx = fileName.lastIndexOf("_") + 1; //uuid를 제외한 파일이름만 뽑음
-				return fileName.substr(idx);
-			}
-		}
-		function getImageLink(fileName) {
-			if (!checkImageType(fileName)) {//이미지 파일이 아니면 skip
-				return;
-			}
-			//2018/08/25/s_f53e623b-24db-42f9-b607-9c04528056a5_apple-bg.jpg
-			var front = fileName.substr(0, 12);//연월일 경로(0~11번째까지 자르고)
-			var end = fileName.substr(14);// 14번째 문자열앞의 s_ 제거
-			return front + end;
-		}
-		function checkImageType(fileName) {
-			var pattern = /jpg|png|jpeg/i; //정규표현식(i는 대소문자 무시)
-			return fileName.match(pattern); //규칙에 맞으면 true가 리턴
-		}
-	});
+   $(function() {
+      //마지막 스크롤 값을 저장할 lastScroll 변수
+      var lastScroll = 0;
+      $(window).scroll(
+            function(event) { //스크롤이 움직일때 마다 이벤트 실행
+               //현재 스크롤의 위치를 저장할 st 변수
+               var st = $(this).scrollTop();
+               //스크롤 상하에 따른 반응 정의
+               if (st > lastScroll) {
+                  if ($(window).scrollTop() >= 538) { //스크롤이 아래로 538px 이상 내려갔을때 실행되는 이벤트 정의
+                     $('header').attr('class',
+                           'nav d-xl-block d-lg-block d-none');
+                  }
+               } else {
+                  if ($(window).scrollTop() < 538) { //스크롤이 아래로 538px 이상 올라갔을때 실행되는 이벤트 정의
+                     $('header').attr('class', 'nav d-none');
+                  }
+               }
+               //현재 스크롤 위치(st)를 마지막 위치로 업데이트
+               lastScroll = st;
+            });
+      new KellyColorPicker({
+         place : 'picker',
+         input : 'color'
+             
+      });
+       $("#myBtn").click(function(){
+             $('.toast').toast('show');
+           });
+      //드래그 기본 효과를 막음 .은 클래스 class=fileDrop, #은 id
+      $(".fileDrop, .fileDrop1").on("dragenter dragover", function(event) {
+         event.preventDefault();
+      });
+      $(".fileDrop")
+            .on(
+                  "drop",
+                  function(event) {
+                     //drop이 될 때 기본 효과를 막음
+                     event.preventDefault();
+                     //첨부파일 배열(여러개를 동시에 선택해서 드래그 할 수 도 있기때문에 한개만 처리하도록 조치)
+                     var files = event.originalEvent.dataTransfer.files;
+                     var file = files[0]; //첫번째 첨부파일
+                     var formData = new FormData(); //폼 객체
+                     formData.append("file", file); //폼에 file 변수 추가
+                     //서버에 파일 업로드(백그라운드에서 실행됨)
+                     //아래 contentType: false는  multipart/form-data로 처리되는것과 같음
+                     $
+                           .ajax({
+                              type : "post",
+                              url : "${path}/upload/uploadBanner",
+                              data : formData,
+                              dataType : "text",
+                              processData : false,
+                              contentType : false,
+                              success : function(data, status, req) {
+                                 console.log("data:"
+                                       + getOriginalName1(data)); //업로드된 파일 이름
+                                 console.log("status:" + status); //성공,실패 여부
+                                 console.log("req:" + req.status);//요청코드값
+                                 var str = "";
+                                 if (checkImageType(data)) {//이미지 파일
+                                    str = "<div><a href='${path}/include/images/main/uploadBanner/displayFile?fileName="
+                                          + getImageLink(data)
+                                          + "'>";
+                                    str += "<img src='${path}/upload/displayFile?fileName="
+                                          + data
+                                          + "'class='mx-auto d-block' style='height: 18rem;''></a>";
+                                    str1 = "<div class='col-12 border mb-3' id='background_div'><h5>"
+                                          + getOriginalName1(data)
+                                          + "</h5></div><input type='hidden' name='background_img0' value='"+data+"'>";
+                                 } else {//이미지가 아닌 경우
+                                    str = "";
+                                    str += "<a href='${path}/include/images/main/uploadBanner/displayFile?fileName="
+                                          + data
+                                          + "'>"
+                                          + getOriginalName(data)
+                                          + "</a>";
+                                 }
+                                 str += "<span data-src="+data+">[삭제]</span></div>";
+                                 var temp = $("img#preImg").detach();
+                                 $("img#save").html(temp);
+                                 $("#image-container").append(str1);
+                                 $(".uploadedList").append(str);
+                              }
+                           });
+                  });//fileDrop 함수
+      $(".fileDrop1")
+            .on(
+                  "drop",
+                  function(event) {
+                     //drop이 될 때 기본 효과를 막음
+                     event.preventDefault();
+                     //첨부파일 배열(여러개를 동시에 선택해서 드래그 할 수 도 있기때문에 한개만 처리하도록 조치)
+                     var files = event.originalEvent.dataTransfer.files;
+                     var file = files[0]; //첫번째 첨부파일
+                     var formData = new FormData(); //폼 객체
+                     formData.append("file", file); //폼에 file 변수 추가
+                     //서버에 파일 업로드(백그라운드에서 실행됨)
+                     //아래 contentType: false는  multipart/form-data로 처리되는것과 같음
+                     $
+                           .ajax({
+                              type : "post",
+                              url : "${path}/upload/uploadBanner",
+                              data : formData,
+                              dataType : "text",
+                              processData : false,
+                              contentType : false,
+                              success : function(data, status, req) {
+                                 console.log("data:" + data); //업로드된 파일 이름
+                                 console.log("status:" + status); //성공,실패 여부
+                                 console.log("req:" + req.status);//요청코드값
+                                 var str = "";
+                                 if (checkImageType(data)) {//이미지 파일
+                                    str = "<div><a href='${path}/upload/displayFile?fileName="
+                                          + getImageLink(data)
+                                          + "'>";
+                                    str += "<img src='${path}/upload/displayFile?fileName="
+                                          + data
+                                          + "'class='mx-auto d-block'style='height: 18rem;''></a>";
+                                    str1 = "<div class='col-12 border mb-3' id='background_div1'><h5>"
+                                          + getOriginalName1(data)
+                                          + "</h5></div><input type='hidden' name='background_img1' value='"+data+"'>";
+                                 } else {//이미지가 아닌 경우
+                                    str = "";
+                                    str += "<a href='${path}/upload/displayFile?fileName="
+                                          + data
+                                          + "'>"
+                                          + getOriginalName(data)
+                                          + "</a>";
+                                 }
+                                 str += "<span data-src="+data+">[삭제]</span></div>";
+                                 var temp = $("img#preImg1")
+                                       .detach();
+                                 $("img#save1").html(temp);
+                                 $("#image-container").append(str1);
+                                 $(".uploadedList1").append(str);
+                              }
+                           });
+                  });//fileDrop 함수
+      //첨부파일 삭제 함수
+      $(".uploadedList").on("click", "span", function(event) {//내부적으로 span태그가 클릭되면 삭제
+         var that = $(this);//this는 현재 클릭한 태그, 즉 span태그
+         $.ajax({
+            url : "${path}/upload/deleteFile",
+            type : "post",
+            data : {//data: "fileName="+$(this).attr("data-src") 아래와 같음   
+               fileName : $(this).attr("data-src")
+            },
+            dataType : "text",
+            success : function(result) {
+               if (result == "deleted") {
+                  that.parent("div").remove();//파일삭제되면 행전체<div>를 삭제처리
+                  //that은 span태그를 의미하는데 그 부모인 감싸고 있는 div태그를 지운다는 뜻
+                  var temp = $("img#preImg").detach();
+                  $("div#imageBanner").html(temp);
+                  $("div#background_div").remove();
+               }
+            }
+         });
+      });
+      $(".uploadedList1").on("click", "span", function(event) {//내부적으로 span태그가 클릭되면 삭제
+         var that = $(this);//this는 현재 클릭한 태그, 즉 span태그
+         $.ajax({
+            url : "${path}/upload/deleteFile",
+            type : "post",
+            data : {//data: "fileName="+$(this).attr("data-src") 아래와 같음   
+               fileName : $(this).attr("data-src")
+            },
+            dataType : "text",
+            success : function(result) {
+               if (result == "deleted") {
+                  that.parent("div").remove();//파일삭제되면 행전체<div>를 삭제처리
+                  //that은 span태그를 의미하는데 그 부모인 감싸고 있는 div태그를 지운다는 뜻
+                  var temp = $("img#preImg1").detach();
+                  $("div#imageBanner1").html(temp);
+                  $("div#background_div1").remove();
+               }
+            }
+         });
+      });
+      function getOriginalName(fileName) {
+         if (checkImageType(fileName)) { //이미지 파일이면 skip
+            return;
+         }
+         var idx = fileName.indexOf("_") + 1; //uuid를 제외한 파일이름만 뽑음
+         return fileName.substr(idx);
+      }
+      function getOriginalName1(fileName) {
+         if (checkImageType(fileName)) { //이미지 파일이면 skip
+            var idx = fileName.lastIndexOf("_") + 1; //uuid를 제외한 파일이름만 뽑음
+            return fileName.substr(idx);
+         }
+      }
+      function getImageLink(fileName) {
+         if (!checkImageType(fileName)) {//이미지 파일이 아니면 skip
+            return;
+         }
+         //2018/08/25/s_f53e623b-24db-42f9-b607-9c04528056a5_apple-bg.jpg
+         var front = fileName.substr(0, 12);//연월일 경로(0~11번째까지 자르고)
+         var end = fileName.substr(14);// 14번째 문자열앞의 s_ 제거
+         return front + end;
+      }
+      function checkImageType(fileName) {
+         var pattern = /jpg|png|jpeg/i; //정규표현식(i는 대소문자 무시)
+         return fileName.match(pattern); //규칙에 맞으면 true가 리턴
+      }
+   });
 
-	
+   
 </script>
 </head>
-<body>
+
+<body class="m-0 p-0">
 
 	<div id="socketAlert" class="alert alert-primary" role="alert"
 		style="display: none;"></div>
@@ -850,8 +855,8 @@
 
 																<!-- 관리자 로그인 -->
 																<c:if test="${sessionScope.admin_id != null}">
-																
-																
+
+
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
@@ -1044,37 +1049,36 @@
 																			</a>
 																		</div>
 																	</div>
-
 																</div>
 															</form>
 														</div>
 													</div>
 
-													<div class="flex padding-top-25">
-														<div class="market-main-or-text">
-															<b>또는</b>
-														</div>
+													<div class="index-header-left d-none d-xl-block mx-auto">
+														<img class="img-fluid"
+															src="${path}/include/images/main/${row.background_img0}"
+															onerror="this.style.display='none'">
 													</div>
-													<div class="margin-top-30 MarketIndex .flex-center-center">
-														<a class="market-main-link-text .flex-center-center"
-															href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
+													<div class="index-header-right d-none d-xl-block mx-auto">
+														<img class="img-fluid"
+															src="${path}/include/images/main/${row.background_img1}"
+															onerror="this.style.display='none'">
 													</div>
 												</div>
 											</div>
-										</div>
-
-										<div class="index-header-left d-none d-xl-block mx-auto">
-											<img class="img-fluid"
-												src="${path}/include/images/main/${row.background_img0}"
-												onerror="this.style.display='none'">
-										</div>
-										<div class="index-header-right d-none d-xl-block mx-auto">
-											<img class="img-fluid"
-												src="${path}/include/images/main/${row.background_img1}"
-												onerror="this.style.display='none'">
+											<div class="flex padding-top-25">
+												<div class="market-main-or-text">
+													<b>또는</b>
+												</div>
+											</div>
+											<div class="margin-top-30 MarketIndex .flex-center-center">
+												<a class="market-main-link-text .flex-center-center"
+													href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
+											</div>
 										</div>
 									</div>
 							</div>
+
 
 							<div class="MainThemes">
 								<section class="ROOT_DIRECTORY" style="margin-top: 70px;"></section>
@@ -1193,6 +1197,7 @@
 													</a>
 												</div>
 
+
 												<div class="RootDirectoryThemeItem">
 													<a class="plain"
 														href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
@@ -1203,20 +1208,19 @@
 														</div>
 													</a>
 												</div>
-												</c:forEach>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 	<!-- content -->
-
 	<div style="width: 63%; margin: auto;">
 		<div class="flex-end-center col-auto p-0"></div>
 		<hr>
@@ -1224,139 +1228,189 @@
 				<h4 style="color: red;">★수강후기★</h4>
 			</marquee>
 		</a>
-		
+
 	</div>
-	
-	
-	
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
 					<a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
-					<br> <a href="${path}/lecture/video_list.do">동영상 강의에서 인기있어요!</a>
+					<br> <a href="${path}/lecture/video_list.do">동영상 강의에서
+						인기있어요!</a>
 				</h5>
 				<br>
 			</div>
 		</div>
 
+		<!-- 슬라이드 버튼 -->
+		<!--  캐러셀   일단 테스트 -->
+		<div class="slide_wrap">
+			<div class="pt-4 col-auto align-items-right">
+				<a class="btn btn-xs float-right slide_btn_next">&gt;</a> <a
+					class="btn btn-xs float-right slide_btn_prev">&lt;</a>
 
-			<!-- 슬라이드 버튼 -->
-			
-			   <!--  캐러셀   일단 테스트 -->            
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
-               
-                 </div>  
-    
-      <div class="slide_box">
-        <div class="slide_list clearfix">
+			</div>
+			<div class="slide_box">
+				<div class="slide_list1 clearfix">
+					<!--  슬라이드 1 -->
+					<section class="center slider">
+						<c:forEach var="dto" items="${listv}" begin="1" end="10">
+							<div
+								class="card col-2 px-0 mr-3 slide_content d-inline-block p-1"
+								style="width: 200px; height: 300px;">
+								<a href="#"
+									onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+									<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
+									class="card-img-top slide-h3"
+									style="width: 100%; height: 200px;">
+								</a>
+								<p class="card-text font-weight-bold text-center h5"
+									style="width: 200px; height: 100px;">${dto.subject }</p>
+							</div>
+						</c:forEach>
+					</section>
+				</div>
+			</div>
+			<ul class="slide_pagination1"></ul>
+		</div>
+		<!-- <button type='button' class='slick-next btn btn-sm' style='float:right; height:300px;'> > </button> -->
+		<script>
+
+  $(document).ready(function() {
+   $('.slider').slick({
+	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+	infinite : true, 	//무한 반복 옵션	 
+    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+    index: 1,
+    focusOnSelect:true,
+    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+	vertical : false,		// 세로 방향 슬라이드 옵션
+	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
+	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
+	draggable : true, 
+     responsive: [{
+         breakpoint: 960,
+         settings: {
           
-
-          <c:forEach var="dto" items="${listv}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
-            </div>
-       </c:forEach>
-        </div>
-      </div>
-      <ul class="slide_pagination"></ul>
-    </div>
-
-   <!-- 끝 -->
-   
-			
+           slidesToShow: 3
+         }
+       },
+         {
+       breakpoint: 768,
+       settings: {
+        
+         slidesToShow: 2
+       }
+     }]
+   });
+ });
+  </script>
+		<!-- 슬라이드1 끝 -->
 
 
 
+
+		<!--  실시간 -->
+		<div class="row">
+			<div class="col-6 mr-auto pt-3">
+				<h5 class="text-left">
+					<a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
+				</h5>
+				<br>
+			</div>
+		</div>
+
+		<!--  실시간 -->
+		<div class="slide_wrap">
+			<div class="pt-4 col-auto align-items-right">
+				<a class="btn btn-xs float-right slide_btn_next1">&gt;</a> <a
+					class="btn btn-xs float-right slide_btn_prev1">&lt;</a>
+			</div>
+			<div class="slide_box">
+				<div class="slide_list1 clearfix">
+
+					<!--  슬라이드 2 :실시간 강의 -->
+					<section class="center slider">
+						<c:forEach var="dtoon" items="${liston}" begin="1" end="10">
+							<div
+								class="card col-2 px-0 mr-3 slide_content d-inline-block p-1"
+								style="width: 200px; height: 300px;">
+								<a href="#"
+									onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+									<img
+									src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
+									class="card-img-top slide-h3"
+									style="width: 100%; height: 200px;">
+								</a>
+								<p class="card-text font-weight-bold text-center h5"
+									style="width: 200px; height: 100px;">${dtoon.subject }</p>
+							</div>
+						</c:forEach>
+					</section>
+
+
+				</div>
+			</div>
+
+			<ul class="slide_pagination1"></ul>
+		</div>
 
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
-			<a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
+					<a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
 				</h5>
 				<br>
 			</div>
 		</div>
-		
-		   <!--  실시간 -->            
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next1">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev1">&lt;</a> 
-                 </div>  
-      <div class="slide_box">
-        <div class="slide_list1 clearfix">
+		<!--  현장강의 -->
+		<div class="slide_wrap">
+			<div class="pt-4 col-auto align-items-right">
+				<a class="btn btn-xs float-right slide_btn_next2">&gt;</a> <a
+					class="btn btn-xs float-right slide_btn_prev2">&lt;</a>
 
-          <c:forEach var="dtoon" items="${liston}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content1 d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtoon.subject }</p>
-            
-            </div>
-       </c:forEach>
-          
-         
-        </div>
-      </div>
-
-      <ul class="slide_pagination1"></ul>
-    </div>
-
-   <!-- 끝 -->
-   
-		
-
-
-		<div class="row">
-			<div class="col-6 mr-auto pt-3">
-				<h5 class="text-left">
-				 <a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
-				</h5>
-				<br>
 			</div>
-		</div>
-			   <!--  현장강의 -->            
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next2">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev2">&lt;</a> 
-               
-                 </div>  
-    
-      <div class="slide_box">
-        <div class="slide_list2 clearfix">
-          
 
-          <c:forEach var="dtooff" items="${listoff}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content2 d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtooff.subject }</p>
-            
-            </div>
-       </c:forEach>
-          
-         
-        </div>
-      </div>
+			<div class="slide_box">
+				<div class="slide_list2 clearfix">
 
-      <ul class="slide_pagination2"></ul>
-    </div>
-   <script src="${path}/include/js/carousel.js"></script>
-   <!-- 끝 -->
+
+					<c:forEach var="dtooff" items="${listoff}">
+						<div
+							class="card col-2 px-0 mr-3 slide02 slide_content2 d-inline-block p-1"
+							style="width: 200px; height: 300px;">
+							<a href="#"
+								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+								<img
+								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+								class="card-img-top" style="width: 200px; height: 200px;">
+							</a>
+							<p class="card-text font-weight-bold text-center h5"
+								style="width: 200px; height: 100px;">${dtooff.subject }</p>
+
+						</div>
+=======
    
+      
+         
+        
+				</div>
+			</div>
+
+			<ul class="slide_pagination2"></ul>
+		</div>
+		<script src="${path}/include/js/carousel.js"></script>
+		<!-- 끝 -->
+
 
 
 		<hr>
 
-<hr>
+		<hr>
 
 		<div class="d-flex">
 			<div class="col-6 m-0 p-1">
@@ -1370,10 +1424,11 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="notice" items="${listnotice}" begin="0" end="3">
-						<tr style="cursor: pointer;" onclick="location.href='${path}/notice/view.do?bno=${notice.bno}'">
-							<td>${notice.title }</td>
-						</tr>
+						<c:forEach var="notice" items="${listnotice}" begin="0" end="3">
+							<tr style="cursor: pointer;"
+								onclick="location.href='${path}/notice/view.do?bno=${notice.bno}'">
+								<td>${notice.title }</td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -1386,24 +1441,25 @@
 					<thead class="thead-dark">
 						<tr>
 							<th>과목 &gt; 강사</th>
-								<th>제목</th>
-								<th>조회수</th>
+							<th>제목</th>
+							<th>조회수</th>
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="review" items="${listreview}" begin="0" end="3">
-						<tr style="cursor: pointer;" onclick="location.href='${path}/review/view.do?bno=${review.bno}'">
-							<td>${review.subject} &gt; ${review.teacher}</td>
+						<c:forEach var="review" items="${listreview}" begin="0" end="3">
+							<tr style="cursor: pointer;"
+								onclick="location.href='${path}/review/view.do?bno=${review.bno}'">
+								<td>${review.subject}&gt; ${review.teacher}</td>
 								<td>${review.title}</td>
-									<td>${review.viewcnt}</td>
-						</tr>
+								<td>${review.viewcnt}</td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	 
+
 
 	<c:if test="${sessionScope.userid != null}">
 		<div
@@ -1435,22 +1491,225 @@
 			<ul id="messageAdmin" class="overflow-auto">
 
 			</ul>
-	  	 </div>
-	  	 <div class="input-group p-4 mini-chat-send">
-	   	   <input type="text" class="form-control" id="chatMsg" placeholder="Type a message...">
-	   	   <input type="hidden" id="admin_id" value="admin">
-     	   	   <input type="hidden" id="userid" value="${sessionScope.userid}"> 
-     	   	   <input type="hidden" id="chatNum" value="${sessionScope.usernum}">
-     	   	   <input type="hidden" id="sender" value="${sessionScope.userid}">
-     	   	    <input type="hidden" id="num" value="${sessionScope.usernum}">
-  				<div class="input-group-append">
-    				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
- 				 </div>
-	  	 </div>
-	 </div>
-	 
-<script>
+		</div>
+		<div class="input-group p-4 mini-chat-send">
+			<input type="text" class="form-control" id="chatMsg"
+				placeholder="Type a message..."> <input type="hidden"
+				id="admin_id" value="admin"> <input type="hidden"
+				id="userid" value="${sessionScope.userid}"> <input
+				type="hidden" id="chatNum" value="${sessionScope.usernum}">
+			<input type="hidden" id="sender" value="${sessionScope.userid}">
+			<input type="hidden" id="num" value="${sessionScope.usernum}">
+			<div class="input-group-append">
+				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+			</div>
+		</div>
+	</div>
+
+	=======
+	</section>
+	<script>
+
+  $(document).ready(function() {
+   $('.slider').slick({
+	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+	infinite : true, 	//무한 반복 옵션	 
+    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+    index: 1,
+    focusOnSelect:true,
+    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+	vertical : false,		// 세로 방향 슬라이드 옵션
+	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
+	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
+	draggable : true, 
+     responsive: [{
+         breakpoint: 960,
+         settings: {
+          
+           slidesToShow: 3
+         }
+       },
+         {
+       breakpoint: 768,
+       settings: {
+        
+         slidesToShow: 2
+       }
+     }]
+   });
+ });
+  </script>
+	<!-- 슬라이드2 끝 -->
+
+	<div class="row">
+		<div class="col-6 mr-auto pt-3">
+			<h5 class="text-left">
+				<a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
+			</h5>
+			<br>
+		</div>
+	</div>
+
+	<!--  현장강의 -->
+
+
+	<!--  슬라이드 2 :실시간 강의 -->
+	<section class="center slider">
+		<c:forEach var="dtooff" items="${listoff}" begin="1" end="10">
+			<div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1"
+				style="width: 200px; height: 300px;">
+				<a href="#"
+					onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+					<img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
+					class="card-img-top slide-h3" style="width: 100%; height: 200px;">
+				</a>
+				<p class="card-text font-weight-bold text-center h5"
+					style="width: 200px; height: 100px;">${dtooff.subject }</p>
+			</div>
+		</c:forEach>
+	</section>
+	<script>
+
+  $(document).ready(function() {
+   $('.slider').slick({
+	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+	infinite : true, 	//무한 반복 옵션	 
+    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+    index: 1,
+    focusOnSelect:true,
+    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+	vertical : false,		// 세로 방향 슬라이드 옵션
+	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
+	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
+	draggable : true, 
+     responsive: [{
+         breakpoint: 960,
+         settings: {
+          
+           slidesToShow: 3
+         }
+       },
+         {
+       breakpoint: 768,
+       settings: {
+        
+         slidesToShow: 2
+       }
+     }]
+   });
+ });
+  </script>
+	<!-- 슬라이드2 끝 -->
+
+
+
+	<hr>
+
+	<div class="d-flex">
+		<div class="col-6 m-0 p-1">
+			<h4>
+				<b>공지사항</b>
+			</h4>
+			<table class="table table-bordered table-hover text-center">
+				<thead class="thead-dark">
+					<tr>
+						<th>제목</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="notice" items="${listnotice}" begin="0" end="3">
+						<tr style="cursor: pointer;"
+							onclick="location.href='${path}/notice/view.do?bno=${notice.bno}'">
+							<td>${notice.title }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-6 m-0 p-1">
+			<h4>
+				<b>베스트 후기</b>
+			</h4>
+			<table class="table table-bordered table-hover text-center">
+				<thead class="thead-dark">
+					<tr>
+						<th>과목 &gt; 강사</th>
+						<th>제목</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="review" items="${listreview}" begin="0" end="3">
+						<tr style="cursor: pointer;"
+							onclick="location.href='${path}/review/view.do?bno=${review.bno}'">
+							<td>${review.subject}&gt; ${review.teacher}</td>
+							<td>${review.title}</td>
+							<td>${review.viewcnt}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
+
+
+	<c:if test="${sessionScope.userid != null}">
+		<div
+			class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block"
+			id="adminChat">
+			<a href="#miniChat" data-toggle="collapse" id="btnMiniChatJoin"><img
+				src="${path}/include/images/main/chaticon.png"
+				class="mx-auto d-block mt-3 mb-3"></a>
+		</div>
+	</c:if>
+	<div
+		class="collapse fixed-bottom ml-auto m-2 shadow bg-white mini-chat"
+		id="miniChat">
+		<div class="miniChat-header d-flex bg-dark">
+			<div class="text-center col-10 mt-2 p-0">
+				<h5 style="color: white;" class="pl-5">
+					<b>실시간 문의</b>
+				</h5>
+			</div>
+			<div class="col-2 p-0">
+				<a href="#miniChat" data-toggle="collapse"><img
+					src="${path}/include/images/main/chatOut.png"
+					class="ml-auto d-block mr-1.5"></a>
+			</div>
+		</div>
+		<div
+			class="p-3 shadow bg-silver mx-auto mt-2 mini-chat-screen overflow-auto"
+			id="admin_chat">
+			<ul id="messageAdmin" class="overflow-auto">
+				<li class="col-12" style="width: 100%;">KDEMY 상담 시간은 (월요일~금요일)
+					10:00~18:00까지 입니다.</li>
+			</ul>
+		</div>
+		<div class="input-group p-4 mini-chat-send">
+			<input type="text" class="form-control" id="chatMsg"
+				placeholder="Type a message..."> <input type="hidden"
+				id="admin_id" value="admin"> <input type="hidden"
+				id="userid" value="${sessionScope.userid}"> <input
+				type="hidden" id="chatNum" value="${sessionScope.usernum}">
+			<input type="hidden" id="sender" value="${sessionScope.userid}">
+			<input type="hidden" id="num" value="${sessionScope.usernum}">
+			<div class="input-group-append">
+				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+			</div>
+		</div>
+	</div>
+
+	>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+	<script>
 $(function () {
+<<<<<<< HEAD
 	$('#btnMiniChatJoin').on('click', function(evt) {
 		evt.preventDefault();
 	  if (socket.readyState !== 1) return;
@@ -1459,13 +1718,43 @@ $(function () {
 	    	   let sender=$("#userid").val();
 	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
 	    });
+=======
+   $('#btnMiniChatJoin').on('click', function(evt) {
+      evt.preventDefault();
+     if (socket.readyState !== 1) return;
+             let target=$("#admin_id").val();
+             let chatNum=$("#chatNum").val();
+             let sender=$("#userid").val();
+             let chat="chat"+chatNum;
+             
+             socket.send(chat+","+sender+","+target+","+chatNum+",대화신청");
+    var chatroom_name= $('#userid').val();
+    var chatroom_id = $('#chatNum').val();
+    $.ajax({
+           data : {
+              chatroom_name : chatroom_name,
+               chatroom_id : chatroom_id               
+           },
+           url : "${path}/chatroom/createRoomInsert.do"
+    });
+});
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
+<<<<<<< HEAD
 			$("#chatMsg").keypress(function(e) {
 				if (e.which == 13) {
 					chatEnter(); // 실행할 이벤트
 				}
 			});
+=======
+   $("#chatMsg").keypress(function (e) {
+        if (e.which == 13){
+           chatEnter();  // 실행할 이벤트
+        }
+    });
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
+<<<<<<< HEAD
 			$('#btnchatSend')
 					.on(
 							'click',
@@ -1517,10 +1806,49 @@ $(function () {
 			$("#messageAdmin").append(mymessage);
 			$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 		}
+=======
+   $('#btnchatSend').on('click', function(evt) {
+      var chatMsgExp =document.getElementById("chatMsg");
+      if(chatMsgExp.value=="") {
+         alert("메시지를 입력해주세요.");
+         chatMsgExp.focus();
+         return false;
+      }
+      evt.preventDefault();
+        if (socket.readyState !== 1) return;
+                let target=$("#admin_id").val();
+                let chatNum=$("#chatNum").val();
+                let sender=$("#userid").val();
+                let chatMsg=$("#chatMsg").val();
+                socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
+                $("#chatMsg").val("");
+                var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
+                $("#messageAdmin").append(mymessage);
+                $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+    });
+});
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
+<<<<<<< HEAD
 		
 	</script>
-	
+
 	<%@ include file="include/footer.jsp"%>
+	======= function chatEnter() { var chatMsgExp
+	=document.getElementById("chatMsg"); if(chatMsgExp.value=="") {
+	alert("메시지를 입력해주세요."); chatMsgExp.focus(); return false; } if
+	(socket.readyState !== 1) return; let target=$("#admin_id").val(); let
+	chatNum=$("#chatNum").val(); let sender=$("#userid").val(); let
+	chatMsg=$("#chatMsg").val();
+
+	socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
+	$("#chatMsg").val(""); var mymessage="
+	<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
+	$("#messageAdmin").append(mymessage);
+	$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight); }
+	</script>
+
+	<%@ include file="include/footer.jsp"%>
+	>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 </body>
 </html>
