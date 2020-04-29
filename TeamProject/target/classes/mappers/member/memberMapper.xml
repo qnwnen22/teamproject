@@ -115,6 +115,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE userid=#{userid}
 	</select>
 	
+	<select id="checkNick" resultType="Int">
+	  select COUNT(*) from kdemymember
+	  WHERE nickname=#{nickname}
+	</select>
+	
 	<select id="emailCheck" resultType="Int">
 		select COUNT(*) from kdemymember
 		WHERE useremail=#{useremail}

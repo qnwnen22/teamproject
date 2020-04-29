@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>강사 신청</title>
 <style type="text/css">
 .input-group {
    position: relative;
@@ -343,7 +343,7 @@ width: auto;
                                                    class="ml-2 col-3 form-control">
                                                    <option value="">--</option>
                                                    <%
-                                                      for (int i = 1; i <= 30; i++) {
+                                                      for (int i = 1; i <= 31; i++) {
                                                    %>
                                                    <option value="<%=i%>"><%=i%></option>
                                                    <%

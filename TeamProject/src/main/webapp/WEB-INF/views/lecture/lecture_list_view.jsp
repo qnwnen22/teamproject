@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Kdemy 강의</title>
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="${path}/include/css/lecture.css">
 <%@ include file="../include/fixed-topbar.jsp" %>
@@ -154,10 +154,11 @@ $('#star1 a').click(function(){
 											<input type="hidden" name="main_img" value="${dto.main_img}">
 											<input type="hidden" name="cell_type" value="${dto.cell_type}">
 											<input type="hidden" name="price" value="${dto.price}">
-											<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+											<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
 											<input type="hidden" name="main_category" value="${dto.main_category}">
 											<input type="hidden" name="sub_category" value="${dto.sub_category}">
 											<input type="hidden" name="subject" value="${dto.subject}">
+											<input type="hidden" name="userid" id="userid" value="${dto.userid}">
 											<input class="btn btn-danger col-12" type="submit" value="구매하기">
 										</form>
 									</c:when>
@@ -256,7 +257,9 @@ $('#star1 a').click(function(){
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <a href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}" type="button" class="btn btn-outline-danger">삭제</a>
+      <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+      <input type="hidden" name="userid" id="userid" value="${dto.userid}">
+      <a href="#" onclick="lectureDelete()" type="button" class="btn btn-outline-danger">삭제</a>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
       </div>
 
@@ -265,6 +268,18 @@ $('#star1 a').click(function(){
 </div>
 <%@ include file="../include/footer.jsp"%>
 <script type="text/javascript">
+
+function lectureDelete() {
+	if (socket.readyState !== 1)
+		return;
+	let amdin = 'admin';
+	let target = $('input#userid').val();
+	let lecture_idx = $('input#lecture_idx').val();
+	// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+	socket.send("lectureDelete," + amdin + "," + target +","+lecture_idx);
+	
+	location.href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}";
+}
 	function lecturetext(){
 		var text = document.getElementById("lectureText");
 		var time = document.getElementById("lectureTime");

@@ -204,6 +204,10 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("point", userPoint);
 		sqlSession.update("member.minusPoint",map);
 	}
+	@Override
+	public int checkNick(MemberDTO dto) {
+		return sqlSession.selectOne("member.checkNick",dto);
+	}
 	
 }
 	

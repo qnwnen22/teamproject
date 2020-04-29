@@ -1,0 +1,12 @@
+drop table chatroom;
+
+create table CHATROOM (
+chatroom_id number primary key,
+chatroom_name varchar2(1000),
+create_user_id varchar2(100),
+admin_id varchar(1000) default 'admin',
+chatalarm varchar(10) default 'n',
+room_join_date date default sysdate
+);
+
+commit;

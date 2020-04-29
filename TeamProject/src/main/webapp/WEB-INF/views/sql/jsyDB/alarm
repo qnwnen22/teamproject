@@ -1,0 +1,12 @@
+drop table alarm;
+
+create table alarm(
+alarm_id number primary key,
+sender varchar2(200),
+target varchar2(200),
+alarmmsg varchar2(2000),
+alarmcheck  varchar(10) default 'n',
+alarmdate date default sysdate
+);
+
+commit;

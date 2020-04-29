@@ -67,5 +67,6 @@ public interface MemberService {
 	public int emailCheck(MemberDTO dto);
 
 	public void minusPoint(int packages_price, MemberDTO dto2);
-
+	
+	public int checkNick(MemberDTO dto);
 }

@@ -1,0 +1,9 @@
+drop table chatmessage;
+
+create table chatmessage (
+chatroom_id number,
+chatmsg varchar2(2000),
+chatdate date default sysdate
+);
+
+commit;

@@ -41,5 +41,8 @@ public class LectureDTO {
 	// 구매한 유저 수&추천수
 	private int cellCount;
 	private int upCount;
+	// 판매 금액
+	private int revenue;
+	
 	
 }

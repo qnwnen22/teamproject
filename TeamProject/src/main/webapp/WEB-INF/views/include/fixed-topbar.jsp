@@ -20,7 +20,7 @@
 									<div class="search-group text-center cursor">
 										<div class="index-search-bar">
 											<input class="search-input kdemi" placeholder="키워드를 입력해주세요." 
-												name="keyword" id="keyword" maxlength="20">
+												name="keyword1" id="keyword1" maxlength="20">
 											<button class="search-btn" style="border: none; background: white;" onclick="search()">
 												<img class="width-20px cursor search-input-glass"
 													style="vertical-align: inherit;"
@@ -166,8 +166,8 @@
 				</div>
 			</div>
 			<br>
-			<div class="nav-category-list NavCategoryList col-lg-12 TopBarMenuWarpper">
-				<ul class="list-inline margin-all-0 col-lg-12 ">
+			<div class="nav-category-list NavCategoryList col-lg-12 TopBarMenuWarpper pl-0 pr-0">
+				<ul class="list-inline margin-all-0 col-lg-12 pl-0 pr-0">
 					<li class="header-list-renewal dropdown col-lg-1">
 						<div class="hover-trigger TopBarMenuTitleBox">
 							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=디자인" data-ga-label="1"
@@ -176,7 +176,7 @@
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper" style="display: flex; width: 350px;">
+								<div class="sub-category-chunk-wrapper">
 									<div>
 										<div class="sub-category-wrapper">
 											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
@@ -740,7 +740,7 @@
 </header>
 <script type="text/javascript">
 function search(){
-	var keyword=document.getElementById("keyword").value;
-	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword;
+	var keyword1=document.getElementById("keyword1").value;
+	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword1;
 }
 </script>

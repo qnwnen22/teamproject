@@ -62,6 +62,9 @@ public interface LectureService {
 	public List<LectureDTO> lecture_listV();
 	public List<LectureDTO> lecture_listOn();
 	public List<LectureDTO> lecture_listOff();
+	public List<LectureBoxDTO> lecturebuyList(int lecture_idx);
+	
+	
 	
 
 }

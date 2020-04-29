@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Kdemy 강의</title>
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="${path}/include/css/lectureList.css">
 </head>
