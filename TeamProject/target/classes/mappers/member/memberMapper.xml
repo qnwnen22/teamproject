@@ -90,16 +90,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
 	<insert id="insertMember">
 		insert into kdemymember
-		(usernum, userid,
+		(usernum, userid,nickname,
 		passwd,
 		username, nickname,
 		birthday, useremail,
 		phone, postcode,
 		address, address2, thumbnail)
-		values
-		(
-		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
-		#{passwd},#{username},#{nickname},
+		values 
+		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},#{nickname},
+		#{passwd},#{username},
 		#{birthday},#{useremail},
 		#{phone},#{postcode},
 		#{address},#{address2},#{thumbnail, jdbcType=VARCHAR}

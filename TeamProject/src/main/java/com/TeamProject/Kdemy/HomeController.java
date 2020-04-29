@@ -75,7 +75,10 @@ public class HomeController {
 		List<LectureDTO> liston=lectureService.lecture_listOn();
 		List<LectureDTO> listoff=lectureService.lecture_listOff();
 		List<NoticeDTO> listnotice = noticeService.listAll();
-	List<ReviewDTO> listreview = reviewService.listAll();
+		
+	
+		
+		List<ReviewDTO> listreview = reviewService.listAll();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("listv", listv);

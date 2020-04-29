@@ -854,7 +854,18 @@
                                                 <!-- 관리자 로그인 -->
                                                 <c:if test="${sessionScope.admin_id != null}">
                                                 
-                                                
+                                                <a href="#adminAlarmList" data-toggle="collapse" onclick="alarmList()"><i class="far fa-bell"></i></a>
+                                                <div class="collapse ml-auto m-2 shadow bg-white adminAlarmList" id="adminAlarmList">
+												     <div class="alarmList-header d-flex bg-dark">
+												      <div class="text-center col-12 mt-2 p-0">
+												        <h5 style="color:white;" class=""><b>알림</b></h5>
+												      </div>
+												      <input type="hidden" id="admin_id" name="admin_id" value="${sessionScope.admin_id}">
+												     </div>
+												     <div class="adminAlarmListBody" id="adminAlarmListBody">
+												       
+												     </div>
+												 </div>
                                                    <div class="item col-xl-4 text-center"
                                                       style="display: initial !important;">
                                                       <a class="plain cursor" data-ga-category="header"
@@ -878,6 +889,8 @@
                                                             href="${path}/packages/adminlist.do">패키지관리</a> <a
                                                             class="dropdown-item"
                                                             href="${path}/member/couponMaker.do">쿠폰관리</a>
+                                                       <a class="dropdown-item" href="#" 
+						    							onclick="window.open('${path}/chatroom/chatRoomList.do','문의리스트','width=330,height=610,left=500')">문의관리</a>
                                                       </div>
                                                    </div>
                                                    <div
@@ -928,6 +941,17 @@
                                                       <c:choose>
                                                          <c:when
                                                             test="${sessionScope.teacher == 'y' && sessionScope.userid !=null}">
+                                                             <a href="#userAlarmList" data-toggle="collapse" onclick="userAlarmList()"><i class="far fa-bell"></i></a>
+				                                                <div class="collapse ml-auto m-2 shadow bg-white userAlarmList" id="userAlarmList">
+																     <div class="alarmList-header d-flex bg-dark">
+																      <div class="text-center col-12 mt-2 p-0">
+																        <h5 style="color:white;" class=""><b>알림</b></h5>
+																      </div>
+																     </div>
+																     <div class="userAlarmListBody" id="userAlarmListBody">
+																       
+																     </div>
+																 </div>
                                                             <div class="item col-xl-4 text-center"
                                                                style="display: initial !important;">
                                                                <a class="plain cursor" data-ga-category="header"
@@ -974,6 +998,17 @@
 
                                                          <c:when
                                                             test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
+                                                            <a href="#userAlarmList" data-toggle="collapse" onclick="userAlarmList()"><i class="far fa-bell"></i></a>
+				                                                <div class="collapse ml-auto m-2 shadow bg-white userAlarmList" id="userAlarmList">
+																     <div class="alarmList-header d-flex bg-dark">
+																      <div class="text-center col-12 mt-2 p-0">
+																        <h5 style="color:white;" class=""><b>알림</b></h5>
+																      </div>
+																     </div>
+																     <div class="userAlarmListBody" id="userAlarmListBody">
+																       
+																     </div>
+																 </div>
                                                             <div class="item col-xl-4 text-center"
                                                                style="display: initial !important;">
                                                                <a class="plain cursor" data-ga-category="header"
@@ -1441,6 +1476,18 @@ function chatEnter() {
              $("#messageAdmin").append(mymessage);
              $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
+function alarmList(){
+    var adminid = $('#admin_id').val();
+    $.ajax({
+           data : {
+        	   userid : adminid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#adminAlarmListBody").html(data);
+           }
+    });
+}
 
 
 $(document).ready(function() {
@@ -1475,8 +1522,22 @@ $(document).ready(function() {
  });
 });
 
+
+function userAlarmList(){
+    var userid = $('#userid').val();
+    $.ajax({
+           data : {
+        	   userid : userid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#adminAlarmListBody").html(data);
+           }
+    });
+}
+
 </script>
-   
+
    <%@ include file="include/footer.jsp"%>
 </body>
 </html>

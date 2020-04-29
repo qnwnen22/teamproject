@@ -29,23 +29,26 @@ public class AlarmController {
 		alarmService.alarmCheck(alarm_id);
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("adminAlarmList.do")
 	public ModelAndView alarmList(ModelAndView mav,HttpSession session,
-			@RequestParam(defaultValue="1") int curPage) throws Exception{
-		String userid=(String)session.getAttribute("userid");
+			@RequestParam(defaultValue="1") int curPage,String userid) throws Exception{
 		List<AlarmDTO> list=new ArrayList<>();
 		int count =alarmService.countalarmList(userid);
 		
+		System.out.println("countcountcountcountcountcountcountcountcountcountcountcountcountcount"+count);
 		AlarmPager pager=new AlarmPager(count,curPage);
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
 		
 		list=alarmService.alarmList(userid,start,end);
+		System.out.println("listlistlistlistlistlistlistlistlistlistlistlistlistlistlist"+list);
 		Map<String, Object> map=new HashMap<>();
-		map.put("list", list); //map에 자료 저장
+		map.put("alarmlist", list); //map에 자료 저장
 		map.put("count", count);
 		map.put("pager", pager);
 		mav.addObject("map",map);
+		mav.setViewName("alarm/alarmList");
 		return mav;
 	}
 	
