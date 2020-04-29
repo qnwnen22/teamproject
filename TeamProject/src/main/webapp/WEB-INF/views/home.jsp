@@ -957,7 +957,7 @@
                                                                      class="dropdown-item"
                                                                      href="${path}/member/updatePointPage.do">쿠폰등록</a>
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/member/orderDetail1.do">내강의목록</a> <a
+                                                                     href="${path}/member/orderDetail1.do">구입한 강의목록</a> <a
                                                                      class="dropdown-item"
                                                                      href="${path}/teacher/teacherPage.do">강사
                                                                      페이지이동</a>
@@ -993,8 +993,8 @@
                                                                   <a class="dropdown-item"
                                                                      href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/member/orderDetail1.do">구입한 강의
-                                                                     목록</a> <a class="dropdown-item"
+                                                                     href="${path}/member/orderDetail1.do">구입한 강의 목록</a>
+                                                                      <a class="dropdown-item"
                                                                      href="${path}/cart/cartPage.do">장바구니</a> <a
                                                                      class="dropdown-item" href="#">관심상품</a> <a
                                                                      class="dropdown-item"
@@ -1241,12 +1241,8 @@
             <br>
          </div>
       </div>
-
-
-
-         <!-- 슬라이드 버튼 -->
          
-         <!--  슬라이드 1 -->
+ <!--  슬라이드 1 : 모든 강의-->
 <section class="center slider">
        <c:forEach var="dto" items="${listv}" begin="1" end="10">
        <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
@@ -1256,14 +1252,7 @@
        </div>
        </c:forEach>
   </section>
- <!-- 슬라이드1 끝 -->
-         
-         
-         
-         
 
- 
-<!--  실시간 --> 
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1272,13 +1261,10 @@
 				<br>
 			</div>
 		</div>
-   <!-- 끝 -->
-   
-
    
  <!--  슬라이드 2 :실시간 강의 -->
 <section class="center slider">
-       <c:forEach var="dtoon" items="${listv}" begin="1" end="10">
+       <c:forEach var="dtoon" items="${liston}" begin="1" end="10">
        <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
        <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
        <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
@@ -1286,8 +1272,6 @@
        </div>
        </c:forEach>
   </section>
-
- <!-- 슬라이드2 끝 -->
 
       <div class="row">
          <div class="col-6 mr-auto pt-3">
@@ -1300,7 +1284,7 @@
    
  <!--  슬라이드 3 : 현장 강의 -->
 <section class="center slider">
-       <c:forEach var="dtooff" items="${listv}" begin="1" end="10">
+       <c:forEach var="dtooff" items="${listoff}" begin="1" end="10">
        <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
        <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
        <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
@@ -1308,10 +1292,6 @@
        </div>
        </c:forEach>
   </section>
-
- <!-- 슬라이드3 끝 -->
-
-
 
 <hr>
 
@@ -1395,38 +1375,6 @@
     </div>
     
 <script>
-$(document).ready(function() {
- $('.slider').slick({
-	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
-	infinite : true, 	//무한 반복 옵션	 
-  slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-  index: 1,
-  focusOnSelect:true,
-  pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-	vertical : false,		// 세로 방향 슬라이드 옵션
-	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
-	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
-	draggable : true, 
-   responsive: [{
-       breakpoint: 960,
-       settings: {
-        
-         slidesToShow: 3
-       }
-     },
-       {
-     breakpoint: 768,
-     settings: {
-      
-       slidesToShow: 2
-     }
-   }]
- });
-});
-
 $(function () {
    $('#btnMiniChatJoin').on('click', function(evt) {
       evt.preventDefault();
@@ -1497,7 +1445,7 @@ function chatEnter() {
 
 $(document).ready(function() {
  $('.slider').slick({
-	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+	slide: 'div',		//슬라이드 되어야 할 태그 
 	infinite : true, 	//무한 반복 옵션	 
   slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
 	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
