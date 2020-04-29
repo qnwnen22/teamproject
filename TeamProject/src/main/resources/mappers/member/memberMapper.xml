@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 수정 -->
   	<update id="updateMember">
        update kdemymember
-       set username = #{username}, passwd=#{passwd}, phone=#{phone}, birthday=#{birthday}, address=#{address}, address2=#{address2}
+       set nickname=#{nickname}, passwd=#{passwd}, phone=#{phone}, birthday=#{birthday}, address=#{address}, address2=#{address2}
        where userid=#{userid}
 	</update>
   
@@ -90,15 +90,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
 	<insert id="insertMember">
 		insert into kdemymember
-		(usernum, userid,
+		(usernum, userid,nickname,
 		passwd,
-		username,
+		username, nickname,
 		birthday, useremail,
 		phone, postcode,
 		address, address2, thumbnail)
-		values
-		(
-		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
+		values 
+		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},#{nickname},
 		#{passwd},#{username},
 		#{birthday},#{useremail},
 		#{phone},#{postcode},

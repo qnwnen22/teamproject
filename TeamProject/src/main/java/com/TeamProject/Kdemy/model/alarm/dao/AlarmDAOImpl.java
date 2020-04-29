@@ -32,7 +32,7 @@ public class AlarmDAOImpl implements AlarmDAO {
 	      map.put("userid", userid);
 	      map.put("start", start);
 	      map.put("end",end);
-		return sqlSession.selectList("alarm.alarmList",userid);
+		return sqlSession.selectList("alarm.alarmList",map);
 	}
 
 	@Override

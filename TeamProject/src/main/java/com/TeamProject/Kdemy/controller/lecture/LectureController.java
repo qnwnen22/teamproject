@@ -3,6 +3,9 @@ package com.TeamProject.Kdemy.controller.lecture;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +76,7 @@ public class LectureController {
 	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
-		
+
 		try {
 			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 			MediaType mType = MediaUtils.getMediaType(formatName);
@@ -410,9 +413,31 @@ public class LectureController {
 		}
 			
 		dto=lectureService.lecture_list_view(lecture_idx);
-	
-
+		
 		ModelAndView mav=new ModelAndView();
+		int todayTime=0;
+		int openTime=0;
+		int playTime=0;
+		int endTime=0;
+		if(dto.getLecture_start()!=null) {
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			SimpleDateFormat fm = new SimpleDateFormat("HHmm");
+			String strDate = fm.format(cal.getTime());
+			String start = dto.getLecture_start();
+			String front=start.substring(0,2);
+			String end=start.substring(3,5);
+			start = front+end;
+			todayTime=Integer.parseInt(strDate);
+			openTime=Integer.parseInt(start);
+			playTime=Integer.parseInt(dto.getLecture_time())*100;
+			endTime = playTime+openTime;
+		}
+		
+		mav.addObject("todayTime",todayTime);
+		mav.addObject("openTime",openTime);
+		mav.addObject("endTime",endTime);
 		mav.addObject("upCount", upCount);
 		mav.addObject("lectureCount",lectureCount);
 		mav.addObject("up", up);
@@ -584,6 +609,29 @@ public class LectureController {
 		lectureService.downUpdate(userid, lecture_idx);
 		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
 	}
+	
+	@RequestMapping("lectureUp1.do")
+	public String lectureUp1(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+		
+		System.err.println("userid="+userid);
+		System.err.println("lecture_idx="+lecture_idx);
+		
+		lectureService.upUpdate(userid, lecture_idx);
+		return "redirect:/member/detail.do#orderDetail";
+	}
+	
+	@RequestMapping("lectureDown1.do")
+	public String lectureDown1(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+
+		System.err.println("userid="+userid);
+		System.err.println("lecture_idx="+lecture_idx);
+		
+		lectureService.downUpdate(userid, lecture_idx);
+		return "redirect:/member/detail.do#orderDetail";
+	}
+
 	
 	@RequestMapping("lectureUp2.do")
 	public String lectureUp2(HttpSession session, int lecture_idx) {
