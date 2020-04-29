@@ -24,9 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(
 				select * from alarm
 				where target=#{userid}
-				order by desc
 			) A
 		) where rn between #{start} and #{end}
+ </select>
+ 
+ <select id="countalarmList" resultType="int">
+   	select COUNT(*) from alarm
+	WHERE target=#{userid}
+ 
  </select>
  
 
