@@ -80,8 +80,8 @@ $('#star1 a').click(function(){
 					
 					<div class="card-body">
 						<h2 class="card-title">${dto.subject}</h2>
-						<input type="text" value="${sessionScope.packages_end}">
-			
+						
+						
 						<p class="card-text">
 							<b class='m-auto'><fmt:formatNumber value="${lectureCount}" pattern="#,###" />명의 학생이 수강중</b><br>
 							<b class='m-auto'>추천 수 : ${upCount}</b>
@@ -96,6 +96,9 @@ $('#star1 a').click(function(){
 						<div class="col-12 d-block d-lg-flex mx-0 px-0 h6">
 							<div class="col-12 col-lg-6 px-0 mr-1" > 
 								<c:choose>
+									<c:when test="${sessionScope.packages_end != null}">
+									</c:when>
+									
 									<c:when test="${check==1}">
 										<c:choose>
 											<c:when test="${up == 'up'}">
@@ -180,10 +183,20 @@ $('#star1 a').click(function(){
 					                     </c:when>
 					                     
 					                     <c:otherwise>
-						                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
-						                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
-						                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
-						                        </form>
+						                        <c:choose>
+													<c:when test="${openTime > todayTime || endTime < todayTime}">
+														<input class="btn btn-dark col-12 " type="button" value="시청가능한 시간이 아닙니다." disabled>
+													
+													</c:when>
+													
+													<c:otherwise>
+								                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
+								                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+								                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
+								                        </form>
+													</c:otherwise>
+												</c:choose>
+						                        
 					                     </c:otherwise>
 					                  </c:choose>
 					               </c:when>
@@ -227,8 +240,9 @@ $('#star1 a').click(function(){
 							<label class="label" for="lectureDate">강의 날짜 : </label>
 							<p name="lectureDate" id="lectureDate">${dto.lecture_date}</p>
 							
-							강의 시작시간 : ${dto.lecture_start}
-							강의 시간 : ${dto.lecture_time}
+							<b>강의 시작 시간 : ${dto.lecture_start}</b><br>
+							
+							<b>총 강의 시간 : ${dto.lecture_time}시간</b>
 						</div>
 					</c:when>
 				
