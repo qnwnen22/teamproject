@@ -184,7 +184,7 @@ $('#star1 a').click(function(){
 									<c:otherwise>
 										<a class="btn btn-danger btn-block" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" style="color: white;"><b>구매하기</b></a>
 									</c:otherwise>
-								</c:choose>
+								</c:choose> 
 							</div>
 						</div>
 					</div>
