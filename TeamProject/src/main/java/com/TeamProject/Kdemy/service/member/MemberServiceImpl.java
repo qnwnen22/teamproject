@@ -156,4 +156,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.emailCheck(dto);
 	}
 
+	@Override
+	public void minusPoint(int packages_price, MemberDTO dto2) {
+		memberDao.minusPoint(packages_price,dto2);
+	}
+
 }

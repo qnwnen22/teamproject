@@ -55,7 +55,7 @@ $('#star1 a').click(function(){
 					<img class="img-fluid" src="${path}/lecture/displayFile?fileName=${dto.main_img}" style="max-height: 300px;">
 				</div>
 				 
-				<div class="card col-md-6 col-sm-12" style="border-radius:5px; border: 1px solid gray;">
+				<div class="card col-md-6 col-sm-12 shadow" style="border-radius:5px; border: 1px solid gray;">
  					     <div class="card-body">
   					     <c:choose>
 							<c:when test="${dto.cell_type==1}">
@@ -80,7 +80,7 @@ $('#star1 a').click(function(){
 					
 					<div class="card-body">
 						<h2 class="card-title">${dto.subject}</h2>
-						
+						<input type="text" value="${sessionScope.packages_end}">
 			
 						<p class="card-text">
 							<b class='m-auto'><fmt:formatNumber value="${lectureCount}" pattern="#,###" />명의 학생이 수강중</b><br>
@@ -142,6 +142,13 @@ $('#star1 a').click(function(){
 			
 							<div class="col-12 col-lg-6 px-0 mx-0" >
 								<c:choose>
+									<c:when test="${sessionScope.packages_end != null}">
+										<form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
+				                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+				                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_video()">
+				                        </form>
+									</c:when>
+									
 									<c:when test="${check==0}">
 										<form method="post" action="${path}/cart/insertCart.do">
 											<input type="hidden" name="main_img" value="${dto.main_img}">
@@ -172,14 +179,15 @@ $('#star1 a').click(function(){
 					                     </c:when>
 					                     
 					                     <c:otherwise>
-					                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
-					                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
-					                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
-					                        </form>
+						                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
+						                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+						                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
+						                        </form>
 					                     </c:otherwise>
 					                  </c:choose>
 					               </c:when>
 									
+																		
 									<c:otherwise>
 										<a class="btn btn-danger btn-block" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" style="color: white;"><b>구매하기</b></a>
 									</c:otherwise>
@@ -191,7 +199,7 @@ $('#star1 a').click(function(){
 			</div>
 		</div>
 		
-<!--  -->		
+	
 	<div class="row">
 			<div class="col-sm-12 col-xs-12">
 				<ul class="nav nav-tabs">
@@ -202,10 +210,6 @@ $('#star1 a').click(function(){
 		  			<li class="nav-item">
 		    			<a class="nav-link" onclick="lecturetime()" data-toggle="tab" href="#">강의 시간</a>
 		  			</li>
-		  			
-<!-- 		  			<li class="nav-item">
-		    			<a class="nav-link" onclick="lectureaddr()" data-toggle="tab" href="#">강의 장소</a>
-		  			</li> -->
 				</ul>
 			</div>
 				

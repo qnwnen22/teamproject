@@ -4,8 +4,6 @@ function insertTeacher() {
 	var thumbnailFile=document.getElementById("input_img");
 	var userid=document.getElementById("userid");
 	var username=document.getElementById("username");
-	var nickname=document.getElementById("nickname");
-	var nicknameC_result=document.getElementById("nicknameC_result");
 	//학력
 	var finalEducation=document.getElementById("finalEducation");
 	//고등학교
@@ -62,12 +60,7 @@ function insertTeacher() {
 	}if(username.value==''){
 		alert("로그인이 되어있지 않습니다\n로그인 후 다시 시도해 주세요.");
 		return false;
-	}if(nicknameC_result.value=='1'){
-		nickname.focus();
-		alert("닉네임 중복체크가 필요합니다.");
-		return false;
-	}
-	
+	}	
 	if(finalEducation.value==''){
 		var check=confirm('최종학력을 등록하지 않았습니다.\n이대로 진행하시겠습니까?');
 		if(!check){
