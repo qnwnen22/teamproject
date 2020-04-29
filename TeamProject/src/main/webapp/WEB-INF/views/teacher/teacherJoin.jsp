@@ -343,7 +343,7 @@ width: auto;
                                                    class="ml-2 col-3 form-control">
                                                    <option value="">--</option>
                                                    <%
-                                                      for (int i = 1; i <= 30; i++) {
+                                                      for (int i = 1; i <= 31; i++) {
                                                    %>
                                                    <option value="<%=i%>"><%=i%></option>
                                                    <%
