@@ -39,4 +39,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countPackages" resultType="int">
 		select COUNT(*) from packages
 	</select>
+	
+	<update id="purchasePackages">
+	    update kdemymember set packages_name=#{packages_name}, packages_end=#{packages_end} where userid=#{orderId}
+	</update>
 </mapper>

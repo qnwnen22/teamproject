@@ -80,7 +80,7 @@ $('#star1 a').click(function(){
 					
 					<div class="card-body">
 						<h2 class="card-title">${dto.subject}</h2>
-						
+						<input type="text" value="${sessionScope.packages_end}">
 			
 						<p class="card-text">
 							<b class='m-auto'><fmt:formatNumber value="${lectureCount}" pattern="#,###" />명의 학생이 수강중</b><br>
@@ -142,6 +142,13 @@ $('#star1 a').click(function(){
 			
 							<div class="col-12 col-lg-6 px-0 mx-0" >
 								<c:choose>
+									<c:when test="${sessionScope.packages_end != null}">
+										<form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
+				                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+				                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_video()">
+				                        </form>
+									</c:when>
+									
 									<c:when test="${check==0}">
 										<form method="post" action="${path}/cart/insertCart.do">
 											<input type="hidden" name="main_img" value="${dto.main_img}">
@@ -173,18 +180,19 @@ $('#star1 a').click(function(){
 					                     </c:when>
 					                     
 					                     <c:otherwise>
-					                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
-					                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
-					                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
-					                        </form>
+						                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
+						                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+						                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
+						                        </form>
 					                     </c:otherwise>
 					                  </c:choose>
 					               </c:when>
 									
+																		
 									<c:otherwise>
 										<a class="btn btn-danger btn-block" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" style="color: white;"><b>구매하기</b></a>
 									</c:otherwise>
-								</c:choose> 
+								</c:choose>
 							</div>
 						</div>
 					</div>
