@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Kdemy 강의</title>
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="${path}/include/css/lectureList.css">
 </head>
@@ -12,21 +12,6 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <div class="container col-xl-8 col-lg-12 col-md-12 col-sm-12 mx-auto">
 	<div class="row col-12">
-		<%-- <div class="col-lg-2 d-none d-lg-block">
-			<div class="col-12 border border-dark m-0 p-0 asideDiv">
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=디자인">디자인</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">IT,프로그래밍</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">콘텐츠 제작</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=마케팅">마케팅</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=번역,통역">번역,통역</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=문서,통역">문서,통역</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">비즈니스컨설팅</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=운세,상담">운세,상담</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">레슨,실무교육</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=주문제작">주문제작</a></h5></div>
-				<div class="col-12"><h5><a href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">간판,인쇄</a></h5></div>
-			</div>
-		</div> --%>
 		<div class="col-12">
 			<div class="col-12">
 				<ul class="upper_shift">

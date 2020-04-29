@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>강사 신청</title>
 <style type="text/css">
 .input-group {
    position: relative;

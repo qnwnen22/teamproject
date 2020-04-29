@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>강의 수정</title>
 <%@ include file="../include/header.jsp" %>
 
 <!-- 썸머 노트 -->
