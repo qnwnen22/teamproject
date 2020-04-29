@@ -40,4 +40,9 @@ public class PackagesServiceImpl implements PackagesService {
 	public int countPackages() {
 		return packagesDao.countPackages();
 	}
+
+	@Override
+	public void purchasePackages(PackagesDTO dto, String orderId) {
+		packagesDao.purchasePackages(dto, orderId);
+	}
 }

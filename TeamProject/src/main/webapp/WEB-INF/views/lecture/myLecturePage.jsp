@@ -37,7 +37,8 @@ div { border: 1px solid;}
 				<tr>
 					<th scope="col">영상 번호</th>
 					<th scope="col">이미지</th>
-					<th scope="col">판매타입</th>
+					<th scope="col">판매 타입</th>
+					<th scope="col">판매 수입</th>
 					<th scope="col">영상 제목</th>
 					<th scope="col">등록일</th>
 					<th scope="col">관리</th>
@@ -58,6 +59,9 @@ div { border: 1px solid;}
 								<c:when test="${dto.cell_type=='3'}">현장 강의</c:when>
 								<c:otherwise><a style="color: red;">판매타입이 지정되어있지 않습니다.</a></c:otherwise>
 							</c:choose>
+						</td>
+						<td>
+							${dto.revenue}
 						</td>
 						<td>${dto.subject}</td>
 						<td><fmt:formatDate value="${dto.upload_date}" pattern="yyyy-MM-dd" /></td>

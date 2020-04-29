@@ -206,6 +206,7 @@ width: auto;
                                              <div class="col-md-8 text-secondary">
                                                 <input type="hidden" value="${sessionScope.userid}"
                                                    readonly name="userid" id="userid">${sessionScope.userid}
+                                                   <input type="hidden" name="nickname" id="nickname" value="${sessionScope.nickname}">
                                              </div>
                                           </div>
                                        </div>

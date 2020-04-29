@@ -11,4 +11,5 @@ public interface PackagesDAO {
 	public void updatePackages(PackagesDTO dto);
 	public void deletePackages(String packages_name);
 	public int countPackages();
+	public void purchasePackages(PackagesDTO dto, String orderId);
 }

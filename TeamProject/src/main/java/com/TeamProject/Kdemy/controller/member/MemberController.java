@@ -418,6 +418,7 @@ public class MemberController {
 			session.setAttribute("useremail", dto2.getUseremail());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
+			session.setAttribute("packages_end", dto2.getPackages_end());
 		
 			if(dto.isUseCookie()) {
 			CookieGenerator c = new CookieGenerator();
