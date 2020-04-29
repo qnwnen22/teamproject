@@ -584,6 +584,28 @@ public class LectureController {
 		lectureService.downUpdate(userid, lecture_idx);
 		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
 	}
+	
+	@RequestMapping("lectureUp1.do")
+	public String lectureUp1(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+		
+		System.err.println("userid="+userid);
+		System.err.println("lecture_idx="+lecture_idx);
+		
+		lectureService.upUpdate(userid, lecture_idx);
+		return "redirect:/member/detail.do#orderDetail";
+	}
+	
+	@RequestMapping("lectureDown1.do")
+	public String lectureDown1(HttpSession session, int lecture_idx) {
+		String userid = (String)session.getAttribute("userid");
+
+		System.err.println("userid="+userid);
+		System.err.println("lecture_idx="+lecture_idx);
+		
+		lectureService.downUpdate(userid, lecture_idx);
+		return "redirect:/member/detail.do#orderDetail";
+	}
 
 	
 	@RequestMapping("lectureUp2.do")

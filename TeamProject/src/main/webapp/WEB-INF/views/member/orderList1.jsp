@@ -95,7 +95,7 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
                      <c:choose>
                         <c:when test="${dto.up =='down'}">
                             <form method="post" id="lectureDownForm${dto.lecture_idx}" name="lectureDownForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureDown2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
                               <button type="submit" class="btn btn-danger btn-sm col-3">
                               <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
                               </button>
@@ -104,7 +104,7 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
                         
                         <c:when test="${dto.up =='up'}">
                            <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureDown2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
                               <button type="submit" class="btn btn-outline-dark btn-sm col-3">
                                  <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;취소</span></i>
                               </button>

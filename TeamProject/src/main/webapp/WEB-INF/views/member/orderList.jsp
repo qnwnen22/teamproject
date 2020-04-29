@@ -64,8 +64,8 @@
                      <c:choose>
                         <c:when test="${dto.up =='down'}">
                             <form method="post" id="lectureDownForm${dto.lecture_idx}" name="lectureDownForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureDown1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
-                              <button type="submit" class="btn btn-danger btn-sm col-3">
+                            action="${path}/lecture/lectureUp1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                              <button type="submit" class="btn btn-primary btn-sm col-3">
                               <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
                               </button>
                            </form>
@@ -73,7 +73,7 @@
                         
                         <c:when test="${dto.up =='up'}">
                            <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureUp1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureDown1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
                               <button type="submit" class="btn btn-outline-dark btn-sm col-3">
                                  <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;취소</span></i>
                               </button>
