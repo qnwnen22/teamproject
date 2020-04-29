@@ -35,6 +35,7 @@ public class MemberDTO {
     private String thumbnail;
     private String thumbnail_path;
 	private MultipartFile file;
+    private String packages_end;
     
     //chart Data
     private int tcount;

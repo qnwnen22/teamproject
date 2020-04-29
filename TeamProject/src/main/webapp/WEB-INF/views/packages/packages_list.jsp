@@ -10,6 +10,13 @@
 	function list(page) {
 		location.href = "${path}/packages/list.do?curPage="+page;
 	}
+	function purchase(){
+		var packages_name = $('#productName').val()
+		location.href = "${path}/packages/purchase.do?packages_name="+packages_name;
+	}
+	function transferData(name){
+		$('#productName').val(name);
+	}
 </script>
 </head>
 <body>
@@ -23,7 +30,7 @@
 			</ul>
 		</div>
 		<hr>
-<div class="d-flex row col-12">
+<div class="row d-flex">
 <c:forEach var="dto" items="${map.list}">
 <div class="col-6 col-lg-3 mb-4">
 <div class="card mr-.5 rounded-lg shadow p-4 mb-4 bg-white" style="height:380px;">
@@ -35,7 +42,7 @@
     <p class="card-text">${dto.packages_text}</p>
     </div>
     <hr class="mb-2">
-    <button class="btn btn-outline-primary mx-auto d-block" data-toggle="modal" data-target="#confirm">구매</button>
+    <button class="btn btn-outline-primary mx-auto d-block" type="button" data-toggle="modal" data-target="#confirm" onclick="transferData('${dto.packages_name}')">구매</button>
   </div>
 </div>
 </div>
@@ -91,12 +98,13 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <h6>해당 상품을 구매 하시겠습니까?</h6>
+      <input type="text" id="productName" class="border-none">
+      <h6>상품을 구매 하시겠습니까?</h6>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" onclick="">구매</button>
+        <button type="button" class="btn btn-outline-primary" onclick="purchase()">구매</button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
       </div>
 
