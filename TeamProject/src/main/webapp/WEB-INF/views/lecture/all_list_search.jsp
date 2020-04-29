@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Kdemy 강의</title>
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="${path}/include/css/lectureList.css">
 </head>
@@ -16,7 +16,7 @@
 			<div class="col-12">
 				<ul class="upper_shift">
 					<li><a href="${path}">KDEMY</a></li>
-					<li><a href="#">전체 강의</a></li>
+					<li><a href="${path}/lecture/all_list.do">전체 강의</a></li>
 					<li><a href="#" style="color:blue;">${map.keyword}</a></li>
 				</ul>	
 			</div>

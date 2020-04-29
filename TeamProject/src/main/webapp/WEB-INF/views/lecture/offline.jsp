@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>현장 강의 등록</title>
 <!-- 헤더 제거 -->
 <%@ include file="../include/header.jsp" %>
 

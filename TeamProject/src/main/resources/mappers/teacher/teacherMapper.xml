@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into teacher
 			(
 			teacher_num,
-			userid,username,nickname,teacher_thumbnail,
+			userid,username,teacher_thumbnail,
 			finalEducation,schoolName,department,
 			spec1,spec1_getDate,spec1_img,
 			spec2,spec2_getDate,spec2_img,
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 			values(
 			(select nvl(max(teacher_num)+1,1) from teacher),
-			#{userid},#{username},#{nickname},
+			#{userid},#{username},
 			#{teacher_thumbnail},#{finalEducation},
 			#{schoolName},#{department},
 			#{spec1},#{spec1_getDate},#{spec1_img},
@@ -46,4 +46,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from teacher
 		where userid=#{userid}
 	</select>
+	
+	<update id="total">
+		update teacher set total=(select sum(revenue) from lecture where userid=#{lectureUserid}) where userid=#{lectureUserid}
+	</update> 
 </mapper>

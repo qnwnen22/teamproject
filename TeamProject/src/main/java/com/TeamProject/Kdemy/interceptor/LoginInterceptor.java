@@ -19,7 +19,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 		HttpSession session = request.getSession();
 		// 세션이 없으면 (로그인이되지 않은 상태)
 		if (session.getAttribute("userid") == null) {
-			response.sendRedirect(request.getContextPath() + "/member/login.do?message=nologin");
+			response.sendRedirect(request.getContextPath());
 			return false; // 메인 액션으로 가지 않음
 		} else {// 로그인인 상태이면
 			return true; // 메인 액션으로 이동

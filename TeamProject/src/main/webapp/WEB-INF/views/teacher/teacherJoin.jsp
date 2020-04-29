@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>강사 신청</title>
 <style type="text/css">
 .input-group {
    position: relative;
@@ -89,27 +89,6 @@ width: auto;
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/fixed-topbar.jsp"%>
 <script src="${path}/include/js/teacherJoin.js"></script>
-<script type="text/javascript">
-   function nicknameC() {
-      var nickname = $("#nickname").val();
-
-      $.ajax({
-         url : "${path}/teacher/nicknameC.do?nickname=" + nickname,
-         type : "get",
-         success : function(data) {
-            if (data == '1') {
-               $("#nicknameC").html(
-                     "<a style='color: red;'>중복된 아이디 입니다</a>");
-               $("#nicknameC_result").val('1');
-            } else {
-               $("#nicknameC").html(
-                     "<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
-               $("#nicknameC_result").val('0');
-            }
-         }
-      });
-   }
-</script>
 </head>
 <body>
    <div class="col-xl-8 offset-xl-2 col-lg-12">
@@ -241,23 +220,6 @@ width: auto;
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="form-group">
-                                          <div class="row">
-                                             <div class="col-md-4">
-                                                <h6>닉 네 임 :</h6>
-                                             </div>
-                                             <div class="col-md-8">
-                                                <span id="nicknameC" name="nicknameC"></span>
-                                                <!-- <input class="form-control" type="text" name="nicknameC_result" id="nicknameC_result" placeholder="nickname"> -->
-                                                <input class="form-control input-group-sm col-5"
-                                                   type="text" name="nickname" id="nickname"
-                                                   onchange="nicknameC()" placeholder="nickname">
-                                                <input type="hidden" name="nicknameC_result"
-                                                   id="nicknameC_result" value="1">
-                                             </div>
-                                          </div>
-                                       </div>
-
                                     </div>
                                  </div>
                               </div>
@@ -381,7 +343,7 @@ width: auto;
                                                    class="ml-2 col-3 form-control">
                                                    <option value="">--</option>
                                                    <%
-                                                      for (int i = 1; i <= 30; i++) {
+                                                      for (int i = 1; i <= 31; i++) {
                                                    %>
                                                    <option value="<%=i%>"><%=i%></option>
                                                    <%

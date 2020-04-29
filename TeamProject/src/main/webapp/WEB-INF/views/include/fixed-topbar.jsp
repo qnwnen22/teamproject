@@ -20,7 +20,7 @@
 									<div class="search-group text-center cursor">
 										<div class="index-search-bar">
 											<input class="search-input kdemi" placeholder="키워드를 입력해주세요." 
-												name="keyword" id="keyword" maxlength="20">
+												name="keyword1" id="keyword1" maxlength="20">
 											<button class="search-btn" style="border: none; background: white;" onclick="search()">
 												<img class="width-20px cursor search-input-glass"
 													style="vertical-align: inherit;"
@@ -740,7 +740,7 @@
 </header>
 <script type="text/javascript">
 function search(){
-	var keyword=document.getElementById("keyword").value;
-	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword;
+	var keyword1=document.getElementById("keyword1").value;
+	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword1;
 }
 </script>

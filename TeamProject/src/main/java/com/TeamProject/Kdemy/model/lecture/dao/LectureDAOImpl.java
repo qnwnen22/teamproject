@@ -268,7 +268,15 @@ public class LectureDAOImpl implements LectureDAO {
 
 		@Override
 		public List<LectureBoxDTO> lecturebuyList(int lecture_idx) {
-			return sqlSession.selectList("lectureBox.lecturebuyList",lecture_idx);
+			return sqlSession.selectList("lectureBox.lecturebuyList",lecture_idx);			
+		}
+		public void revenue(String lecture_idx) {
+			sqlSession.update("lecture.revenue",lecture_idx);
+		}
+
+		@Override
+		public String selectId(String lecture_idx) {
+			return sqlSession.selectOne("lecture.selectId",lecture_idx);
 		}
 
 

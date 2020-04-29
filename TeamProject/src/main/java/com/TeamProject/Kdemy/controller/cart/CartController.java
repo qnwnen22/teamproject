@@ -88,7 +88,7 @@ public class CartController {
 		
 		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
 	}
-	
+
 	@RequestMapping("buyList.do")
 	public String buyList(HttpSession session, String[] lecture_idx, 
 			String[] cell_type, int count, int price){

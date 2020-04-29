@@ -7,9 +7,10 @@
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/carousel.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
-<style>
-</style>
+
 <script>
    $(function() {
       //마지막 스크롤 값을 저장할 lastScroll 변수
@@ -877,8 +878,6 @@
                                                             href="${path}/packages/adminlist.do">패키지관리</a> <a
                                                             class="dropdown-item"
                                                             href="${path}/member/couponMaker.do">쿠폰관리</a>
-                                                            <a class="dropdown-item" href="#" 
-						    											onclick="window.open('${path}/chatroom/chatRoomList.do','문의리스트','width=330,height=610,left=500')">문의관리</a>
                                                       </div>
                                                    </div>
                                                    <div
@@ -1038,15 +1037,14 @@
                                                 method="get" onsubmit="return false">
                                                 <div class="search-group text-center cursor">
                                                    <div style="">
+                                                      <!-- 0429 9:46 이원혁 추가 -->
                                                       <div class="index-search-bar">
-                                                         <span class="typed-element">웹사이트 개발</span> <span
-                                                            class="typed-cursor typed-cursor--blink"></span>
-                                                         <div class="index-search-bar-input"></div>
-                                                         <a id="searchBtnNone" class="index-search-btn"
-                                                            type="submit"> <img class="width-30px"
-                                                            src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
-                                                         </a>
-                                                      </div>
+															<input class="pl-5 search-input kdemi" name="keyword" id="keyword" placeholder="보고싶은 강의를 검색해주세요." name="keyword" style="width: 100%; height: 100%; font-size: 1.5rem;">
+															<button id="searchBtnNoneTest" class="index-search-btn" onclick="search()" type="submit" style="border: none; background-color: white; outline: 0;"> 
+															<img class="width-30px" src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
+														</button>
+														<!--  -->
+													</div>
                                                    </div>
 
                                                 </div>
@@ -1197,44 +1195,42 @@
                                        </a>
                                     </div>
 
-                                    <div class="RootDirectoryThemeItem">
-                                       <a class="plain"
-                                          href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
-                                          <div class="icon"
-                                             style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
-                                          <div class="iconName">
-                                             <span><b>간판,인쇄</b></span>
-                                          </div>
-                                       </a>
-                                    </div>
-                                    </c:forEach>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- content -->
 
-   <div style="width: 63%; margin: auto;">
-      <div class="flex-end-center col-auto p-0"></div>
-      <hr>
-      <a href="${path}/review/list.do"> <marquee scrollamount="5">
-            <h4 style="color: red;">★수강후기★</h4>
-         </marquee>
-      </a>
-      
-   </div>
-   
-   
-   
-   <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+												<div class="RootDirectoryThemeItem">
+													<a class="plain"
+														href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
+														<div class="icon"
+															style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
+														<div class="iconName">
+															<span><b>간판,인쇄</b></span>
+														</div>
+													</a>
+												</div>
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- content -->
+    <div style="width: 63%; margin: auto;">
+		<div class="flex-end-center col-auto p-0"></div>
+		<hr>
+		<a href="${path}/review/list.do"> <marquee scrollamount="5">
+				<h4 style="color: red;">★수강후기★</h4>
+			</marquee>
+		</a>
+		
+	</div>
 
+
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
       <div class="row">
          <div class="col-6 mr-auto pt-3">
             <h5 class="text-left">
@@ -1246,81 +1242,51 @@
       </div>
 
 
+
          <!-- 슬라이드 버튼 -->
          
-            <!--  캐러셀   일단 테스트 -->            
-   <div id="container">
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
-               
-                 </div>  
-    
-      <div class="slide_box">
-        <div class="slide_list clearfix">
-          
-
-          <c:forEach var="dto" items="${listv}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dto.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
-            </div>
+         <!--  슬라이드 1 -->
+<section class="center slider">
+       <c:forEach var="dto" items="${listv}" begin="1" end="10">
+       <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+       <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+       <img src="${path}/lecture/displayFile?fileName=${dto.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+        <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
+       </div>
        </c:forEach>
-        </div>
-      </div>
-      <ul class="slide_pagination"></ul>
-    </div>
-  </div>
-
-   <!-- 끝 -->
-   
+  </section>
+ <!-- 슬라이드1 끝 -->
+         
+         
+         
          
 
-
-
-
-      <div class="row">
-         <div class="col-6 mr-auto pt-3">
-            <h5 class="text-left">
-         <a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
-            </h5>
-            <br>
-         </div>
-      </div>
-      
-         <!--  실시간 -->            
-   <div id="container">
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next1">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev1">&lt;</a> 
-                 </div>  
-      <div class="slide_box">
-        <div class="slide_list1 clearfix">
-
-          <c:forEach var="dtoon" items="${liston}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content1 d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtoon.subject }</p>
-            
-            </div>
-       </c:forEach>
-          
-         
-        </div>
-      </div>
-
-      <ul class="slide_pagination1"></ul>
-    </div>
-  </div>
-
+ 
+<!--  실시간 --> 
+		<div class="row">
+			<div class="col-6 mr-auto pt-3">
+				<h5 class="text-left">
+			<a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
+				</h5>
+				<br>
+			</div>
+		</div>
    <!-- 끝 -->
    
-      
 
+   
+ <!--  슬라이드 2 :실시간 강의 -->
+<section class="center slider">
+       <c:forEach var="dtoon" items="${listv}" begin="1" end="10">
+       <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+       <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+       <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+        <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtoon.subject }</p>
+       </div>
+       </c:forEach>
+  </section>
+
+ <!-- 슬라이드2 끝 -->
 
       <div class="row">
          <div class="col-6 mr-auto pt-3">
@@ -1330,41 +1296,21 @@
             <br>
          </div>
       </div>
-            <!--  현장강의 -->            
-   <div id="container">
-    <div class="slide_wrap">
-    <div class="pt-4 col-auto align-items-right">
-                    <a class="btn btn-xs float-right slide_btn_next2">&gt;</a>
-                <a class="btn btn-xs float-right slide_btn_prev2">&lt;</a> 
-               
-                 </div>  
-    
-      <div class="slide_box">
-        <div class="slide_list2 clearfix">
-          
-
-          <c:forEach var="dtooff" items="${listoff}">
-         <div class="card col-2 px-0 mr-3 slide02 slide_content2 d-inline-block p-1" style="width:200px; height:300px;">
-            <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
-            <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
-            <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtooff.subject }</p>
-            
-            </div>
-       </c:forEach>
-          
-         
-        </div>
-      </div>
-
-      <ul class="slide_pagination2"></ul>
-    </div>
-  </div>
-   <script src="${path}/include/js/carousel.js"></script>
-   <!-- 끝 -->
    
+ <!--  슬라이드 3 : 현장 강의 -->
+<section class="center slider">
+       <c:forEach var="dtooff" items="${listv}" begin="1" end="10">
+       <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+       <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+       <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+        <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtooff.subject }</p>
+       </div>
+       </c:forEach>
+  </section>
+
+ <!-- 슬라이드3 끝 -->
 
 
-      <hr>
 
 <hr>
 
@@ -1448,73 +1394,106 @@
     </div>
     
 <script>
-$(function () {
-	$('#btnMiniChatJoin').on('click', function(evt) {
-		evt.preventDefault();
-	  if (socket.readyState !== 1) return;
-	    	   let target=$("#admin_id").val();
-	    	   let chatNum=$("#chatNum").val();
-	    	   let sender=$("#userid").val();
-	    	   let chat="chat"+chatNum;
-	    	   
-	    	   socket.send(chat+","+sender+","+target+","+chatNum+",대화신청");
-	 var chatroom_name= $('#userid').val();
-	 var chatroom_id = $('#chatNum').val();
-	 $.ajax({
-	        data : {
-	        	chatroom_name : chatroom_name,
-	            chatroom_id : chatroom_id               
-	        },
-	        url : "${path}/chatroom/createRoomInsert.do"
-	 });
+$(document).ready(function() {
+ $('.slider').slick({
+	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+	infinite : true, 	//무한 반복 옵션	 
+  slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+  index: 1,
+  focusOnSelect:true,
+  pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+	vertical : false,		// 세로 방향 슬라이드 옵션
+	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
+	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
+	draggable : true, 
+   responsive: [{
+       breakpoint: 960,
+       settings: {
+        
+         slidesToShow: 3
+       }
+     },
+       {
+     breakpoint: 768,
+     settings: {
+      
+       slidesToShow: 2
+     }
+   }]
+ });
 });
 
-	$("#chatMsg").keypress(function (e) {
+$(function () {
+   $('#btnMiniChatJoin').on('click', function(evt) {
+      evt.preventDefault();
+     if (socket.readyState !== 1) return;
+             let target=$("#admin_id").val();
+             let chatNum=$("#chatNum").val();
+             let sender=$("#userid").val();
+             let chat="chat"+chatNum;
+             
+             socket.send(chat+","+sender+","+target+","+chatNum+",대화신청");
+    var chatroom_name= $('#userid').val();
+    var chatroom_id = $('#chatNum').val();
+    $.ajax({
+           data : {
+              chatroom_name : chatroom_name,
+               chatroom_id : chatroom_id               
+           },
+           url : "${path}/chatroom/createRoomInsert.do"
+    });
+});
+
+   $("#chatMsg").keypress(function (e) {
         if (e.which == 13){
-        	chatEnter();  // 실행할 이벤트
+           chatEnter();  // 실행할 이벤트
         }
     });
 
-	$('#btnchatSend').on('click', function(evt) {
-		var chatMsgExp =document.getElementById("chatMsg");
-		if(chatMsgExp.value=="") {
-			alert("메시지를 입력해주세요.");
-			chatMsgExp.focus();
-			return false;
-		}
-		evt.preventDefault();
-		  if (socket.readyState !== 1) return;
-		    	   let target=$("#admin_id").val();
-		    	   let chatNum=$("#chatNum").val();
-		    	   let sender=$("#userid").val();
-		    	   let chatMsg=$("#chatMsg").val();
-		    	   socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
-		    	   $("#chatMsg").val("");
-		    	   var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
-		    	   $("#messageAdmin").append(mymessage);
-		    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
-	 });
+   $('#btnchatSend').on('click', function(evt) {
+      var chatMsgExp =document.getElementById("chatMsg");
+      if(chatMsgExp.value=="") {
+         alert("메시지를 입력해주세요.");
+         chatMsgExp.focus();
+         return false;
+      }
+      evt.preventDefault();
+        if (socket.readyState !== 1) return;
+                let target=$("#admin_id").val();
+                let chatNum=$("#chatNum").val();
+                let sender=$("#userid").val();
+                let chatMsg=$("#chatMsg").val();
+                socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
+                $("#chatMsg").val("");
+                var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
+                $("#messageAdmin").append(mymessage);
+                $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+    });
 });
 
 function chatEnter() {
-	var chatMsgExp =document.getElementById("chatMsg");
-	if(chatMsgExp.value=="") {
-		alert("메시지를 입력해주세요.");
-		chatMsgExp.focus();
-		return false;
-	}
-	  if (socket.readyState !== 1) return;
-	    	   let target=$("#admin_id").val();
-	    	   let chatNum=$("#chatNum").val();
-	    	   let sender=$("#userid").val();
-	    	   let chatMsg=$("#chatMsg").val();
-	    	   
-	    	   socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
-	    	   $("#chatMsg").val("");
-	    	   var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
-	    	   $("#messageAdmin").append(mymessage);
-	    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+   var chatMsgExp =document.getElementById("chatMsg");
+   if(chatMsgExp.value=="") {
+      alert("메시지를 입력해주세요.");
+      chatMsgExp.focus();
+      return false;
+   }
+     if (socket.readyState !== 1) return;
+             let target=$("#admin_id").val();
+             let chatNum=$("#chatNum").val();
+             let sender=$("#userid").val();
+             let chatMsg=$("#chatMsg").val();
+             
+             socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
+             $("#chatMsg").val("");
+             var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
+             $("#messageAdmin").append(mymessage);
+             $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
+
 </script>
    
    <%@ include file="include/footer.jsp"%>
