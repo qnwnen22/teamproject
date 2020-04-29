@@ -609,6 +609,7 @@ public class LectureController {
 		lectureService.downUpdate(userid, lecture_idx);
 		return "redirect:/lecture/lecture_list_view.do?lecture_idx="+lecture_idx;
 	}
+
 	
 	@RequestMapping("lectureUp2.do")
 	public String lectureUp2(HttpSession session, int lecture_idx) {

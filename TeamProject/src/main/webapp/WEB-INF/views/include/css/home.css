@@ -321,3 +321,14 @@ img {
     list-style: none;
     width: 70%;
 }
+
+.adminAlarmList, .userAlarmList{
+	position: absolute;
+	z-index: 999;
+	width: 200px;
+	height: auto;
+	right:310;
+}
+.adminAlarmListBody a, .userAlarmListBody a{
+	font-size: 0.8rem;
+}

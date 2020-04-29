@@ -65,12 +65,12 @@ $(function(){
  <c:choose>
 		<c:when test="${empty dto.thumbnail}">
 	<div>
-	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" style = "height:200px;">
+	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail" style = "height:200px;">
 	</div>
 		</c:when>
 		<c:otherwise>
 	<div>
-	<img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar img-circle img-thumbnail" style = "height:200px;">
+	<img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar rounded-circle img-thumbnail" style = "height:200px;">
 	</div>
 		</c:otherwise>
 </c:choose>
@@ -95,7 +95,7 @@ $(function(){
 			<tr class="row" align="center">
 			<th class="col-4">이   름</th><td class="col-8">${dto.username}</td>
 			<tr class="row" align="center">
-			<th class="col-4">닉네임</th><td class="col-8">${dto.userid}</td>
+			<th class="col-4">닉네임</th><td class="col-8">${dto.nickname}</td>
 			<tr class="row" align="center">
 			<th class="col-4">전화번호</th><td class="col-8">${dto.phone}</td>
 			<tr class="row" align="center">
