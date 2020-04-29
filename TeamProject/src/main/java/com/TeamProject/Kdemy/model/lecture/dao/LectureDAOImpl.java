@@ -266,6 +266,11 @@ public class LectureDAOImpl implements LectureDAO {
 			sqlSession.update("lecture.cellCount",lecture_idx);
 		}
 
+		@Override
+		public List<LectureBoxDTO> lecturebuyList(int lecture_idx) {
+			return sqlSession.selectList("lectureBox.lecturebuyList",lecture_idx);
+		}
+
 
 
 }

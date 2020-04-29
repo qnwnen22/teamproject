@@ -66,6 +66,7 @@ public interface MemberService {
 
 	public int emailCheck(MemberDTO dto);
 
+	public int checkNick(MemberDTO dto);
 
 
 }

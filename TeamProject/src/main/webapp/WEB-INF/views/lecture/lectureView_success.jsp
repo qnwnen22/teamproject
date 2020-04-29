@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/chating.css">
-
-
 </head>
 
 <body>

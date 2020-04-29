@@ -330,12 +330,19 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/checkNick.do")
+	public int checkNick(MemberDTO dto) throws Exception {
+		int result = memberService.checkNick(dto);
+		
+		return result;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="/checkEmail.do")
 	public int emailCheck(MemberDTO dto) throws Exception {	
 		String exp3= "^[a-z0-9]{2,}@[a-z0-9]{2,}.[a-z]{2,}$";
 		if(dto.getUseremail().matches(exp3)) {
 			int result = memberService.emailCheck(dto);
-			 System.out.println("result:"+result);
 			return result;			  
 		}else {
 			return 2;

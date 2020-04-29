@@ -46,6 +46,29 @@ $(function(){
 			//아이디 체크하여 가입버튼 비활성화, 중복확인.
 		}			
 	 });
+	 $('#nickname').change(function(e){
+			//아이디 체크
+			var nickname =document.getElementById("nickname");
+			if(nickname.value=="") {
+				alert("닉에임은 필수 입력입니다.");
+				nickname.focus();
+				return false;
+			}
+			
+			var exp2=/^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;//정규표현식
+			if(!exp2.test(nickname.value)) {
+				$("#nickname").css("border", "2px solid red");
+				$("#CheckNickM").html("<b style='color:red'>닉네임은 글자 2~20자리로 입력하세요.</b>");
+				nickname.val("");
+				nickname.focus();
+				return false;
+			} else {
+				var input="<input id='nicknameConfirm' type='hidden' value='y'>";
+				$("#CheckNickM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'></i></b>"+input);
+				//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
+				//아이디 체크하여 가입버튼 비활성화, 중복확인.
+			}			
+		 });
 	 $('#bpasswd').change(function(e){
 		//비밀번호 체크
 		var bpasswd =document.getElementById("bpasswd");
@@ -213,43 +236,49 @@ $(function(){
 			alert("아이디를 입력하세요");
 			return false;
 		}
+		if($("#nicknameConfirm").val()!='y'){
+			$('#nickname').focus();
+			alert("닉네임을 입력하세요");
+			return false;
+		}
 		if($('#bpasswdConfirm').val()!="y") {
 			$('#bpasswd').focus();
-			alert("3");
+			alert("비밀번호를 입력하세요.");
 			return false;
 		}
 		if($('#passwdCheckConfirm').val()!="y") {
 			$('#passwdCheck').focus();
-			alert("4");
+			alert("비밀번호확인을 입력하세요.");
 			return false;
 		}
 		if($('#useremailConfirm').val()!="y") {
 			$('#useremail').focus();
-			alert("5");
+			alert("이메일을 입력하세요.");
 			return false;
 		}
 		if($('#phone3Confirm').val()!="y") {
 			$('#phone3').focus();
-			alert("6");
+			alert("핸드폰번호를 입력하세요.");
 			return false;
 		}
 		if($('#birthday3Confirm').val()!="y") {
 			$('birthday3').focus();
-			alert("7");
+			alert("생년월일을 입력하세요.");
 			return false;
 		}
 		if($('#postcodeConfirm').val()!="y") {
 			$('postcode').focus();
-			alert("8");
+			alert("우편번호를 입력하세요.");
 			return false;
 		}
 		if($('#addressConfirm').val()!="y") {
 			$('address').focus();
-			alert("9");
+			alert("주소를 입력하세요.");
 			return false;
 		}
 		if($('#address2Confirm').val()!="y") {
 			$('address2').focus();
+			alert("상세주소를  입력하세요.");
 			return false;
 		}
 		

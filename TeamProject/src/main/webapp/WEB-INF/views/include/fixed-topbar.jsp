@@ -166,8 +166,8 @@
 				</div>
 			</div>
 			<br>
-			<div class="nav-category-list NavCategoryList col-lg-12 TopBarMenuWarpper">
-				<ul class="list-inline margin-all-0 col-lg-12 ">
+			<div class="nav-category-list NavCategoryList col-lg-12 TopBarMenuWarpper pl-0 pr-0">
+				<ul class="list-inline margin-all-0 col-lg-12 pl-0 pr-0">
 					<li class="header-list-renewal dropdown col-lg-1">
 						<div class="hover-trigger TopBarMenuTitleBox">
 							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=디자인" data-ga-label="1"
@@ -176,7 +176,7 @@
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper" style="display: flex; width: 350px;">
+								<div class="sub-category-chunk-wrapper">
 									<div>
 										<div class="sub-category-wrapper">
 											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"

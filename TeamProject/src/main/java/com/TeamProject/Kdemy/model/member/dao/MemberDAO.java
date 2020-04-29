@@ -61,4 +61,6 @@ public interface MemberDAO {
 	public int couponCheck(CouponDTO dto);
 
 	public int emailCheck(MemberDTO dto);
+
+	public int checkNick(MemberDTO dto);
 }

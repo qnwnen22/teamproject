@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-    *, *:before, *:after { box-sizing: inherit; }
+/*     *, *:before, *:after { box-sizing: inherit; } */
     .clearfix:after { content: ''; display: block; clear: both; float: none; }
     .title { margin-bottom: 0; text-align: center; font-size: 30px; color: #333; }
     /* container - body */
