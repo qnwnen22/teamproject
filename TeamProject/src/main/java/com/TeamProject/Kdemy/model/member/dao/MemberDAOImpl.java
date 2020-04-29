@@ -195,6 +195,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public int emailCheck(MemberDTO dto) {
 		return sqlSession.selectOne("member.emailCheck",dto);
 	}
+
+	@Override
+	public int checkNick(MemberDTO dto) {
+		return sqlSession.selectOne("member.checkNick",dto);
+	}
 	
 }
 	

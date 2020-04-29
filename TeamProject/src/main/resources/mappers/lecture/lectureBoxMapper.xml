@@ -64,4 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="totalMoney" resultType="int">
       select sum(price) from lectureBox
    </select>
+   
+   <select id="lecturebuyList" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
+     select userid from lectureBox where lecture_idx=#{lecture_idx}
+   </select>
 </mapper>
