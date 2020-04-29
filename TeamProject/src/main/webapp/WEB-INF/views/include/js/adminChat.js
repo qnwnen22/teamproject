@@ -1,5 +1,6 @@
 $(function() {
 	ConectWS();
+	messageList();
 	$("#chatMsg").keypress(function (e) {
         if (e.which == 13){
         	chatEnter();  // 실행할 이벤트
@@ -19,8 +20,8 @@ $(function() {
 			let chatNum=$("#chatNum").val();
 			let sender=$("#sender").val();
 			let chatMsg=$("#chatMsg").val();
-			socket.send("usersend,"+sender+","+target+","+chatNum+","+chatMsg);
-			var mymessage="<li class='bg-warning text-right ml-auto mb-1'>"+chatMsg+"</li>"
+			socket.send(target+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
+			var mymessage="<li class='bg-warning text-left ml-auto mb-1'><b>관리자<b><br>"+chatMsg+"</li>"
 			$("#messageAdmin").append(mymessage);
 			$("#chatMsg").val("");
 			$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
@@ -44,14 +45,19 @@ $(function() {
  	       var target=strs[2];
  	       var msg=strs[3];
  	       var num=strs[4];
- 	        if(cmd=="adminsend") {
- 	         $("#messageAdmin").append(msg);
- 	        $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+ 	       console.log(cmd);
+ 	       var user=$("#target").val();
+ 	        if(sender==user) {
+ 	        		$("#messageAdmin").append(msg);
+ 	        		$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
  	       }
  	    };
  	    
  	   ws.onclose = function (event) {
- 	         console.log('Info: connection closed.');  // retry connection!! 
+ 	         console.log('Info: connection closed.');
+ 	        setTimeout( function(){
+ 	        	 ConectWS(); 
+ 	       }, 1000); // retry connection!! 
  	    };
  	   ws.onerror = function (err) {
  	         console.log('Error : ');
@@ -69,9 +75,27 @@ $(function() {
 				let chatNum=$("#chatNum").val();
 				let sender=$("#sender").val();
 				let chatMsg=$("#chatMsg").val();
-				socket.send("usersend,"+sender+","+target+","+chatNum+","+chatMsg);
-				var mymessage="<li class='bg-warning text-right ml-auto mb-1'>"+chatMsg+"</li>"
+				socket.send(target+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
+				var mymessage="<li class='bg-warning text-left ml-auto mb-1'><b>관리자<b><br>"+chatMsg+"</li>"
 				$("#messageAdmin").append(mymessage);
 				$("#chatMsg").val("");
 				$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 	}
+	
+	function chatList(){
+		location.href="${path}/chatroom/chatRoomList.do";
+	}
+
+function messageList() {
+	 var chatroom_id = $('#chatNum').val();
+	$.ajax({
+        data : {
+            chatroom_id : chatroom_id               
+        },
+        url : "${path}/chat/messageList.do",
+        success : function(result) {
+            $("#messageAdmin").html(result);
+    	}
+ });
+	$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+}	

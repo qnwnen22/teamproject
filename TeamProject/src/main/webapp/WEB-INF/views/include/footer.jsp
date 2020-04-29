@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
+<div id="kdemyAlert" class="alert alert-light rounded mt-1 col-2 offset-10 fixed-bottom" role="alert">
+ <div class="kdemyAlertDiv">
+    <div class="alert-header">
+      <strong class="mr-auto">KDEMY [알림]</strong>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="alert-body" id="socketAlert">
+    </div>
+</div>
+</div>
     <div class="container-fluid align-items-end" id="footer-body">
     <div id="footertoggle" class="d-flex py-1 d-none d-md-block d-sm-block">
 		<button id="ToggleBottom" class="btn btn-link rounded-circle col-2"
@@ -288,14 +300,9 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- End of Footer -->
-
-
-
 <script>
+
+var w = null;
 var socket = null;
 function ConectWS() {
 	var ws = new WebSocket("ws://localhost:80/Kdemy/socket");
@@ -313,32 +320,26 @@ function ConectWS() {
        var target=strs[2];
        var msg=strs[3];
        var num=strs[4];
-       if(cmd=="chat") {
-    	   var w = window.open("about:blank",sender,"width=330,height=610,left=100");
-    	   $.ajax({
-    			url:"${path}/chat/popup?sender="+sender+"&target="+target+"&num="+num+"&msg="+msg ,
-    			method : "POST" ,
-    			success: eventSuccess(),
-    			error: function(xhr, status, error) {alert(error);}
-    	   });
-    	   function eventSuccess(){
-    		   w.location.href = "${path}/chat/popup?sender="+sender+"&target="+target+"&num="+num+"&msg="+msg;
-    	   }
-       }else if(cmd=="usersend") {
+       var cmdNum="chat"+num;
+       if(cmd=="usersend") {
     	   $("#messageAdmin").append(msg);
     	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
        }else{
+           let $kdemyAlert=$("div#kdemyAlert")
            let $socketAlert =$('div#socketAlert');
            $socketAlert.html(event.data);
-           $socketAlert.css("display",'block');
+           $kdemyAlert.css("display","block");
            setTimeout(function(){
-           	  $socketAlert.css("display",'none');
-            },5000);
+        	   $kdemyAlert.css("display","none");
+            },100000);
           }
     };
     
     ws.onclose = function (event) {
-         console.log('Info: connection closed.');  // retry connection!! 
+         console.log('Info: connection closed.');
+         setTimeout( function(){
+        	 ConectWS(); 
+       }, 1000); 
     };
     ws.onerror = function (err) {
          console.log('Error : ');
@@ -383,5 +384,7 @@ $(document).ready(function(){
 });
 
 
-
 </script>
+
+
+<!-- End of Footer -->

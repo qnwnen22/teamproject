@@ -162,6 +162,12 @@ function insertTeacher() {
 		}
 	}
 	alert("강사 등록");
+	if (socket.readyState !== 1)return;
+	console.log(socket);
+	let sender= $('input#userid').val();
+	let admin = 'admin';
+	// websocket에 보내기!! (reply,신청자,관리자)
+	socket.send("teaching," + sender + "," + admin);
 	document.form1.submit();
 }
 

@@ -6,20 +6,10 @@
 <title>Home</title>
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
+<link rel="stylesheet" href="${path}/include/css/carousel.css">
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
-<script src="${path}/include/js/carousel.js"></script>
 <script>
-	$(document).ready(function() {
-		$.ajax({
-			type : 'post',
-			url : 'cookie.do',
-			dataType : 'text',
-			success : function(data) {
-
-			}
-		});
-	})
-
+	$(function() {
 		//마지막 스크롤 값을 저장할 lastScroll 변수
 		var lastScroll = 0;
 		$(window).scroll(
@@ -43,8 +33,11 @@
 		new KellyColorPicker({
 			place : 'picker',
 			input : 'color'
+				 
 		});
-
+		 $("#myBtn").click(function(){
+			    $('.toast').toast('show');
+			  });
 		//드래그 기본 효과를 막음 .은 클래스 class=fileDrop, #은 id
 		$(".fileDrop, .fileDrop1").on("dragenter dragover", function(event) {
 			event.preventDefault();
@@ -223,8 +216,6 @@
 			return fileName.match(pattern); //규칙에 맞으면 true가 리턴
 		}
 	});
-
-
 
 	
 </script>
@@ -859,6 +850,8 @@
 
 																<!-- 관리자 로그인 -->
 																<c:if test="${sessionScope.admin_id != null}">
+																
+																
 																	<div class="item col-xl-4 text-center"
 																		style="display: initial !important;">
 																		<a class="plain cursor" data-ga-category="header"
@@ -961,7 +954,10 @@
 																							class="dropdown-item"
 																							href="${path}/member/updatePointPage.do">쿠폰등록</a>
 																						<a class="dropdown-item"
-																							href="${path}/member/orderDetail1.do">내강의목록</a>
+																							href="${path}/member/orderDetail1.do">내강의목록</a> <a
+																							class="dropdown-item"
+																							href="${path}/teacher/teacherPage.do">강사
+																							페이지이동</a>
 																					</div>
 																				</div>
 
@@ -1039,15 +1035,16 @@
 																<div class="search-group text-center cursor">
 																	<div style="">
 																		<div class="index-search-bar">
-																				<input class="pl-5 search-input kdemi" name="keyword" id="keyword" placeholder="보고싶은 강의를 검색해주세요."
-																				name="keyword" style="width: 100%; height: 100%; font-size: 1.5rem;">
-																			<!--  -->
- 																			<button id="searchBtnNoneTest" class="index-search-btn" onclick="search()" type="submit" style="border: none; background-color: white; outline: 0;"> 
-																				<img class="width-30px" src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
-																			</button>
-																			<!--  -->
+																			<span class="typed-element">웹사이트 개발</span> <span
+																				class="typed-cursor typed-cursor--blink"></span>
+																			<div class="index-search-bar-input"></div>
+																			<a id="searchBtnNone" class="index-search-btn"
+																				type="submit"> <img class="width-30px"
+																				src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
+																			</a>
 																		</div>
 																	</div>
+
 																</div>
 															</form>
 														</div>
@@ -1230,7 +1227,8 @@
 		
 	</div>
 	
-		
+	
+	
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
 
 		<div class="row">
@@ -1241,18 +1239,23 @@
 				</h5>
 				<br>
 			</div>
-			</div>
+		</div>
 
 
- <!--  동영상 리스트 -->            
-   <div id="container">
+			<!-- 슬라이드 버튼 -->
+			
+			   <!--  캐러셀   일단 테스트 -->            
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
                     <a class="btn btn-xs float-right slide_btn_next">&gt;</a>
                 <a class="btn btn-xs float-right slide_btn_prev">&lt;</a> 
+               
                  </div>  
+    
       <div class="slide_box">
         <div class="slide_list clearfix">
+          
+
           <c:forEach var="dto" items="${listv}">
          <div class="card col-2 px-0 mr-3 slide02 slide_content d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
@@ -1264,14 +1267,12 @@
       </div>
       <ul class="slide_pagination"></ul>
     </div>
-  </div>
- 
 
    <!-- 끝 -->
    
 			
 
-		
+
 
 
 		<div class="row">
@@ -1282,8 +1283,8 @@
 				<br>
 			</div>
 		</div>
-       
-   <div id="container">
+		
+		   <!--  실시간 -->            
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
                     <a class="btn btn-xs float-right slide_btn_next1">&gt;</a>
@@ -1291,7 +1292,7 @@
                  </div>  
       <div class="slide_box">
         <div class="slide_list1 clearfix">
-			
+
           <c:forEach var="dtoon" items="${liston}">
          <div class="card col-2 px-0 mr-3 slide02 slide_content1 d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
@@ -1300,18 +1301,19 @@
             
             </div>
        </c:forEach>
-         </div>
-            </div>
-         <ul class="slide_pagination1"></ul>
-           </div>
+          
+         
         </div>
-   
+      </div>
 
- <script src="${path}/include/js/carousel.js"></script>
+      <ul class="slide_pagination1"></ul>
+    </div>
+
    <!-- 끝 -->
    
+		
 
-<!--  현장강의 -->   	
+
 		<div class="row">
 			<div class="col-6 mr-auto pt-3">
 				<h5 class="text-left">
@@ -1320,9 +1322,7 @@
 				<br>
 			</div>
 		</div>
-			
-			
-   <div id="container">
+			   <!--  현장강의 -->            
     <div class="slide_wrap">
     <div class="pt-4 col-auto align-items-right">
                     <a class="btn btn-xs float-right slide_btn_next2">&gt;</a>
@@ -1334,7 +1334,7 @@
         <div class="slide_list2 clearfix">
           
 
-   <c:forEach var="dtooff" items="${listoff}">
+          <c:forEach var="dtooff" items="${listoff}">
          <div class="card col-2 px-0 mr-3 slide02 slide_content2 d-inline-block p-1" style="width:200px; height:300px;">
             <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
             <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}" class="card-img-top" style="width:200px; height:200px;"></a>
@@ -1342,19 +1342,22 @@
             
             </div>
        </c:forEach>
-         </div>
-            </div>
-         <ul class="slide_pagination2"></ul>
-           </div>
+          
+         
         </div>
       </div>
 
-   <!-- 끝 -->
+      <ul class="slide_pagination2"></ul>
+    </div>
    <script src="${path}/include/js/carousel.js"></script>
+   <!-- 끝 -->
    
-   
-   <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+
+
 		<hr>
+
+<hr>
+
 		<div class="d-flex">
 			<div class="col-6 m-0 p-1">
 				<h4>
@@ -1432,34 +1435,30 @@
 			<ul id="messageAdmin" class="overflow-auto">
 
 			</ul>
-		</div>
-		<div class="input-group p-4 mini-chat-send">
-			<input type="text" class="form-control" id="chatMsg"
-				placeholder="Type a message..."> <input type="hidden"
-				id="admin_id" value="admin"> <input type="hidden"
-				id="userid" value="${sessionScope.userid}"> <input
-				type="hidden" id="chatNum" value="${sessionScope.usernum}">
-			<input type="hidden" id="sender" value="${sessionScope.userid}">
-			<input type="hidden" id="num" value="${sessionScope.usernum}">
-			<div class="input-group-append">
-				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
-			</div>
-		</div>
-	</div>
-	<script>
-		$(function() {
-			$('#btnMiniChatJoin').on(
-					'click',
-					function(evt) {
-						evt.preventDefault();
-						if (socket.readyState !== 1)
-							return;
-						let target = $("#admin_id").val();
-						let chatNum = $("#chatNum").val();
-						let sender = $("#userid").val();
-						socket.send("chat," + sender + "," + target + ","
-								+ chatNum + ",대화신청");
-					});
+	  	 </div>
+	  	 <div class="input-group p-4 mini-chat-send">
+	   	   <input type="text" class="form-control" id="chatMsg" placeholder="Type a message...">
+	   	   <input type="hidden" id="admin_id" value="admin">
+     	   	   <input type="hidden" id="userid" value="${sessionScope.userid}"> 
+     	   	   <input type="hidden" id="chatNum" value="${sessionScope.usernum}">
+     	   	   <input type="hidden" id="sender" value="${sessionScope.userid}">
+     	   	    <input type="hidden" id="num" value="${sessionScope.usernum}">
+  				<div class="input-group-append">
+    				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+ 				 </div>
+	  	 </div>
+	 </div>
+	 
+<script>
+$(function () {
+	$('#btnMiniChatJoin').on('click', function(evt) {
+		evt.preventDefault();
+	  if (socket.readyState !== 1) return;
+	    	   let target=$("#admin_id").val();
+	    	   let chatNum=$("#chatNum").val();
+	    	   let sender=$("#userid").val();
+	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
+	    });
 
 			$("#chatMsg").keypress(function(e) {
 				if (e.which == 13) {
@@ -1521,7 +1520,7 @@
 
 		
 	</script>
-
+	
 	<%@ include file="include/footer.jsp"%>
 </body>
 </html>

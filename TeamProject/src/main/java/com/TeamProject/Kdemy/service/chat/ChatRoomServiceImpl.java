@@ -33,4 +33,40 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 		return chatRoomDao.chatRoomView(chatroom_id);
 	}
 
+
+	@Override
+	public int checkRoom(ChatRoomDTO dto) throws Exception {
+		return chatRoomDao.checkRoom(dto);
+	}
+
+
+	@Override
+	public void insertMessage(int chatroom_id, String chatmsg) {
+		chatRoomDao.insertMessage(chatroom_id,chatmsg);
+	}
+
+
+	@Override
+	public List<ChatRoomDTO> messageList(ChatRoomDTO dto) {
+		return chatRoomDao.messageList(dto);
+	}
+
+
+	@Override
+	public void roomUpdate(ChatRoomDTO dto) throws Exception {
+		chatRoomDao.roomUpdate(dto);
+	}
+
+
+	@Override
+	public void clickRoom(int chatroom_id) throws Exception {
+			chatRoomDao.clickRoom(chatroom_id);
+	}
+
+
+	
+
+
+	
+
 }

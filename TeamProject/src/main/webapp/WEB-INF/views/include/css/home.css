@@ -309,12 +309,10 @@ img {
 	height: 60px;
 }
 
-.mini-chat-button {
-	width: 80px;
-	height: 80px;
-	border-radius: 40px;
-	right: 0px;
+.mini-chat-button{
+	width: 80px; height: 80px; border-radius: 40px; right: 0px; z-index: 3;
 }
+
 
 #admin_chat {
 	overflow: scroll;
@@ -325,13 +323,13 @@ img {
 	overflow: scroll;
 }
 
-#admin_chat ul li {
-	line-height: 1.5rem;
-	padding: 10px 20px;
-	margin: 0;
-	border: 1px solid #f4f4f4;
-	border-radius: 15px;
-	list-style: none;
-	width: 70%;
+#admin_chat ul li{
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid #f4f4f4;
+    border-radius: 15px;
+    list-style: none;
+    width: 70%;
 }
 

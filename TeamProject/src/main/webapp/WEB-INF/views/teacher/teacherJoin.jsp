@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 <style type="text/css">
 .input-group {
-	position: relative;
-	display: table;
-	border-collapse: separate;
+   position: relative;
+   display: table;
+   border-collapse: separate;
 }
 .profileImgBox{
  box-sizing:inherit ;
@@ -21,451 +21,451 @@ width: auto;
 
 .img-circle {
  box-sizing:inherit ;
-	 width: 100%;
+    width: 100%;
     object-fit: cover;
 }
 
 .TJoinForm {
-	border-style: solid;
-	border-width: 0px 0px 2px 0px;
-	border-color: #00111a;
-	/*  background: #adebeb; */
+   border-style: solid;
+   border-width: 0px 0px 2px 0px;
+   border-color: #00111a;
+   /*  background: #adebeb; */
 }
 
 .TJoinFormCertificate {
-	border-style: solid;
-	border-width: 0px 0px 2px 0px;
-	border-color: #00111a;
+   border-style: solid;
+   border-width: 0px 0px 2px 0px;
+   border-color: #00111a;
 }
 .TJoinBox1{
 
 }
 
 .TJoinFormImg {
-	width: 100%;
+   width: 100%;
 }
 
 .teacherJoinBox {
-	background-color: #e6f2ff;
+   background-color: #e6f2ff;
 }
 
 .teacherJoinBoxIn {
-	background-color: #ebebe0;
+   background-color: #ebebe0;
 }
 
 .filebox label {
-	display: inline-block;
-	padding: .5em .75em;
-	color: #999;
-	font-size: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #fdfdfd;
-	cursor: pointer;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
+   display: inline-block;
+   padding: .5em .75em;
+   color: #999;
+   font-size: inherit;
+   line-height: normal;
+   vertical-align: middle;
+   background-color: #fdfdfd;
+   cursor: pointer;
+   border: 1px solid #ebebeb;
+   border-bottom-color: #e2e2e2;
+   border-radius: .25em;
 }
 
 .filebox input[type="file"] { /* 파일 필드 숨기기 */
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   margin: -1px;
+   overflow: hidden;
+   clip: rect(0, 0, 0, 0);
+   border: 0;
 }
 
 /* .form-group {
-	background-color: #ebebe0;
+   background-color: #ebebe0;
 }
 
 .form-control {
-	background-color: #ece9df;
+   background-color: #ece9df;
 } */
 </style>
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/fixed-topbar.jsp"%>
 <script src="${path}/include/js/teacherJoin.js"></script>
 <script type="text/javascript">
-	function nicknameC() {
-		var nickname = $("#nickname").val();
+   function nicknameC() {
+      var nickname = $("#nickname").val();
 
-		$.ajax({
-			url : "${path}/teacher/nicknameC.do?nickname=" + nickname,
-			type : "get",
-			success : function(data) {
-				if (data == '1') {
-					$("#nicknameC").html(
-							"<a style='color: red;'>중복된 아이디 입니다</a>");
-					$("#nicknameC_result").val('1');
-				} else {
-					$("#nicknameC").html(
-							"<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
-					$("#nicknameC_result").val('0');
-				}
-			}
-		});
-	}
+      $.ajax({
+         url : "${path}/teacher/nicknameC.do?nickname=" + nickname,
+         type : "get",
+         success : function(data) {
+            if (data == '1') {
+               $("#nicknameC").html(
+                     "<a style='color: red;'>중복된 아이디 입니다</a>");
+               $("#nicknameC_result").val('1');
+            } else {
+               $("#nicknameC").html(
+                     "<a style='color: blue;'>사용 가능한 아이디 입니다</a>");
+               $("#nicknameC_result").val('0');
+            }
+         }
+      });
+   }
 </script>
 </head>
 <body>
-	<div class="col-xl-8 offset-xl-2 col-lg-12">
-		<!-- 큰외곽  -->
-		<div class="row teacherJoinBox">
-			<!-- 작은 외곽 -->
+   <div class="col-xl-8 offset-xl-2 col-lg-12">
+      <!-- 큰외곽  -->
+      <div class="row teacherJoinBox">
+         <!-- 작은 외곽 -->
 
 
 
-			<div class="teacherJoinBox col-md-2  mt-5">
-				<!-- 옆에 버튼 -->
-				<div class="mt-10 TJoinForm">
-					<img class="TJoinFormImg teacherJoinBoxIn mt-10" alt="광고 이미지"
-						src="${path}/include/images/teacher/실시간강의.png">
-					<h6 class="text-center">광고이미지 (기능 미구현)</h6>
-				</div>
+         <div class="teacherJoinBox col-md-2  mt-5">
+            <!-- 옆에 버튼 -->
+            <div class="mt-10 TJoinForm">
+               <img class="TJoinFormImg teacherJoinBoxIn mt-10" alt="광고 이미지"
+                  src="${path}/include/images/teacher/실시간강의.png">
+               <h6 class="text-center">광고이미지 (기능 미구현)</h6>
+            </div>
 
-				<div class="mt-10 TJoinForm">
-					<div class="teacherJoinBoxIn">
-						<div>
-							<img class="TJoinFormImg text-center" alt="" src="">
-							<!-- ${path}/include/images/review/notice.jpg -->
-							<h4 class="text-center">공지 사항</h4>
-						</div>
-						<div class="mt-5">
-							<div class="img-circle">
-								<a type="button" href="#"><img class="TJoinFormImg" alt=""
-									src="">-회원가입시 2000포인트 지급</a>
-								<!-- ${path}/include/images/slide/slide.jpg -->
-							</div>
-						</div>
+            <div class="mt-10 TJoinForm">
+               <div class="teacherJoinBoxIn">
+                  <div>
+                     <img class="TJoinFormImg text-center" alt="" src="">
+                     <!-- ${path}/include/images/review/notice.jpg -->
+                     <h4 class="text-center">공지 사항</h4>
+                  </div>
+                  <div class="mt-5">
+                     <div class="img-circle">
+                        <a type="button" href="#"><img class="TJoinFormImg" alt=""
+                           src="">-회원가입시 2000포인트 지급</a>
+                        <!-- ${path}/include/images/slide/slide.jpg -->
+                     </div>
+                  </div>
 
-						<div class="mt-5">
-							<div class="img-circle">
-								<a type="button" href="#"><img class="TJoinFormImg" alt=""
-									src="">-5월 3일 페이지 정비</a>
-								<!-- ${path}/include/images/chart/강의.jpg -->
-							</div>
-						</div>
+                  <div class="mt-5">
+                     <div class="img-circle">
+                        <a type="button" href="#"><img class="TJoinFormImg" alt=""
+                           src="">-5월 3일 페이지 정비</a>
+                        <!-- ${path}/include/images/chart/강의.jpg -->
+                     </div>
+                  </div>
 
-						<div class="mt-5">
-							<div class="img-circle">
-								<a type="button" href="#"><img alt="" src="">-자격증 도용
-									적발시 퇴출</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-			</div>
+                  <div class="mt-5">
+                     <div class="img-circle">
+                        <a type="button" href="#"><img alt="" src="">-자격증 도용
+                           적발시 퇴출</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
 
 
-
-
+         </div>
 
 
 
 
 
-			<div class="col-md-9 col-md-offset-2">
-				<!-- main page -->
-
-				<div class="ml-3 TJoinBox1">
-					<div class="mt-4 TJoinForm">
-						<h3 class="font-weight-bold ">전문가 등록페이지</h3>
-					</div>
-
-					<c:choose>
-						<c:when test="${sessionScope.teacher == 'n'}">
-							<form method="post" name="form1" id="form1"
-								enctype="multipart/form-data"
-								action="${path}/teacher/teacherInsert.do">
-
-								<div class="mt-3">
-									<div>
-										<!-- 개인정보 -->
-										<div class="TJoinForm">
-											<h4 class="ml-4">개인정보</h4>
-
-										</div>
-										<div class="row">
-											<div class="col-md-6 mt-3 text-center">
-												<!-- 프로필 사진 -->
-												<div class="row">
-												<div class="col-md-3"></div>
-												<div class="col-md-6 col-md-offset-3 text-center">
-												<c:choose>
-													<c:when test="${empty dto.main_img}">
-														<div class="profileImgBox">
-															<img id="profileImg"
-																src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-																class="avatar img-circle img-thumbnail" id="img-circle">
-														</div>
-													</c:when>
-												</c:choose>
-												</div>
-												</div>
-												<div class="filebox text-center  mt-1">
-													<label for="input_img">+ 이미지를 등록하세요 +</label> <input
-														class=" ml-5 text-center  file-upload" type="file"
-														name="thumbnailFile" id="input_img"><i
-														class="glyphicon glyphicon-plus"></i>
-												</div>
-
-											</div>
-											<div class="col-md-6 mt-2">
-												<!-- 아이디 입력 -->
-												<div class="mt-5 " onsubmit="return beforeSubmit()">
-													<div class="form-group">
-														<div class="row">
-															<div class="col-md-4">
-																<h6>아 이 디 :</h6>
-															</div>
-															<div class="col-md-8 text-secondary">
-																<input type="hidden" value="${sessionScope.userid}"
-																	readonly name="userid" id="userid">${sessionScope.userid}
-															</div>
-														</div>
-													</div>
-													<div class="form-group">
-														<div class="row">
-															<div class="col-md-4 ">
-																<h6>이 &nbsp;&nbsp;&nbsp;&nbsp; 름 :</h6>
-															</div>
-															<div class="col-md-8 text-secondary">
-																<input type="hidden" value="${sessionScope.username}"
-																	readonly name="username" id="username">${sessionScope.username}
-															</div>
-														</div>
-													</div>
-													<div class="form-group">
-														<div class="row">
-															<div class="col-md-4">
-																<h6>닉 네 임 :</h6>
-															</div>
-															<div class="col-md-8">
-																<span id="nicknameC" name="nicknameC"></span>
-																<!-- <input class="form-control" type="text" name="nicknameC_result" id="nicknameC_result" placeholder="nickname"> -->
-																<input class="form-control input-group-sm col-5"
-																	type="text" name="nickname" id="nickname"
-																	onchange="nicknameC()" placeholder="nickname">
-																<input type="hidden" name="nicknameC_result"
-																	id="nicknameC_result" value="1">
-															</div>
-														</div>
-													</div>
-
-												</div>
-											</div>
-										</div>
-									</div>
-
-	
-									<div class="mt-3 ">
-										<!-- 학력 -->
-										<div class="TJoinForm">
-											<h4 class="ml-4">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;력</h4>
-										</div>
-										<div class="row mt-3 TJoinCertificate">
-											<div class="col-md-2"></div>
-											<div class="col-md-8 col-md-offset-3">
-												<div class="row">
-													<div class="col-md-4">
-														<label for="finalEducation"><h6>최&nbsp;종&nbsp;&nbsp;&nbsp;학&nbsp;력</h6></label>
-													</div>
-													<div class="col-md-8">
-														<div class="form-group">
-															<select id="finalEducation" class="form-control"
-																name="finalEducation">
-
-																<option value="" selected>-학력 선택-</option>
-																<option value="고등학교 졸업">고등학교 졸업</option>
-																<option value="대학교(2,3년) 졸업">대학교(2,3년제) 졸업</option>
-																<option value="대학교 졸업">대학교(4년제) 졸업</option>
-															</select>
-														</div>
-													</div>
-												</div>
-												<div class="mt-2 row">
-													<div class="col-md-4">
-														<label for="schoolName"><h6>학&nbsp;교&nbsp;&nbsp;&nbsp;&nbsp;이&nbsp;름</h6></label>
-													</div>
-													<div class="col-md-8 input-group">
-														<input class="form-control" type="text" name="schoolName"
-															placeholder="학교 검색(미구현)" aria-describedby="basic-addon2">
-														<span class="input-group-addon" id="basic-addon2">
-															<input class="btn btn-outline-dark " type="button"
-															value="검색">
-														</span>
-													</div>
-												</div>
 
 
 
 
-												<div class="mt-3 row">
-													<div class="col-md-4"></div>
-													<div class="col-md-8 mb-4">
-														<input class="form-control" type="text" name="department"
-															placeholder="(세부)전공"> <label for="department"></label>
-													</div>
-												</div>
-											</div>
+         <div class="col-md-9 col-md-offset-2">
+            <!-- main page -->
 
-										</div>
-									</div>
-									<!-- 학력 -->
+            <div class="ml-3 TJoinBox1">
+               <div class="mt-4 TJoinForm">
+                  <h3 class="font-weight-bold ">전문가 등록페이지</h3>
+               </div>
 
-									<div class="mt-3 ">
-										<!-- 자격증 -->
-										<div class="TJoinForm">
-											<h4 class="ml-4">자&nbsp;&nbsp;격&nbsp;&nbsp;증</h4>
-										</div>
+               <c:choose>
+                  <c:when test="${sessionScope.teacher == 'n'}">
+                     <form method="post" name="form1" id="form1"
+                        enctype="multipart/form-data"
+                        action="${path}/teacher/teacherInsert.do">
 
-										<div class="row mt-3">
-											<div class="col-md-2"></div>
-											<div class="col-md-8 col-offset-md-2">
-												<div class="row mt-3">
-													<div class="col-md-4 ">
-														<label for="spec1" class="control-label"><h6>
-																자&nbsp;격&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;증&nbsp;명</h6> </label>
-													</div>
-													<div class="col-md-8 input-group">
-														<input type="text" class="form-control" name="spec1"
-															id="spec1" placeholder="(기능 미구현)"
-															aria-describedby="basic-addon3"> <span
-															class="input-group-addon" id="basic-addon3"><input
-															class="btn btn-outline-dark" type="button" value="검색"></span>
-													</div>
-												</div>
+                        <div class="mt-3">
+                           <div>
+                              <!-- 개인정보 -->
+                              <div class="TJoinForm">
+                                 <h4 class="ml-4">개인정보</h4>
 
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-6 mt-3 text-center">
+                                    <!-- 프로필 사진 -->
+                                    <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6 col-md-offset-3 text-center">
+                                    <c:choose>
+                                       <c:when test="${empty dto.main_img}">
+                                          <div class="profileImgBox">
+                                             <img id="profileImg"
+                                                src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                                class="avatar img-circle img-thumbnail" id="img-circle">
+                                          </div>
+                                       </c:when>
+                                    </c:choose>
+                                    </div>
+                                    </div>
+                                    <div class="filebox text-center  mt-1">
+                                       <label for="input_img">+ 이미지를 등록하세요 +</label> <input
+                                          class=" ml-5 text-center  file-upload" type="file"
+                                          name="thumbnailFile" id="input_img"><i
+                                          class="glyphicon glyphicon-plus"></i>
+                                    </div>
 
-												<div class="mt-3">
-													<div class="row mt-2">
-														<div class="col-md-4">
-															<label for="spec1_date" class="control-label">
-																<h6>취&nbsp;득&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;자</h6>
-															</label>
-														</div>
+                                 </div>
+                                 <div class="col-md-6 mt-2">
+                                    <!-- 아이디 입력 -->
+                                    <div class="mt-5 " onsubmit="return beforeSubmit()">
+                                       <div class="form-group">
+                                          <div class="row">
+                                             <div class="col-md-4">
+                                                <h6>아 이 디 :</h6>
+                                             </div>
+                                             <div class="col-md-8 text-secondary">
+                                                <input type="hidden" value="${sessionScope.userid}"
+                                                   readonly name="userid" id="userid">${sessionScope.userid}
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="form-group">
+                                          <div class="row">
+                                             <div class="col-md-4 ">
+                                                <h6>이 &nbsp;&nbsp;&nbsp;&nbsp; 름 :</h6>
+                                             </div>
+                                             <div class="col-md-8 text-secondary">
+                                                <input type="hidden" value="${sessionScope.username}"
+                                                   readonly name="username" id="username">${sessionScope.username}
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="form-group">
+                                          <div class="row">
+                                             <div class="col-md-4">
+                                                <h6>닉 네 임 :</h6>
+                                             </div>
+                                             <div class="col-md-8">
+                                                <span id="nicknameC" name="nicknameC"></span>
+                                                <!-- <input class="form-control" type="text" name="nicknameC_result" id="nicknameC_result" placeholder="nickname"> -->
+                                                <input class="form-control input-group-sm col-5"
+                                                   type="text" name="nickname" id="nickname"
+                                                   onchange="nicknameC()" placeholder="nickname">
+                                                <input type="hidden" name="nicknameC_result"
+                                                   id="nicknameC_result" value="1">
+                                             </div>
+                                          </div>
+                                       </div>
 
-														<span id="spec1_date" class="col-md-8 text-right">
-															<div class="row">
-																<select name="spec1_y" id="spec1_y"
-																	class="col-3 form-control ml-3 input-sm">
-																	<option value="">--</option>
-																	<%
-																		for (int i = 2020; i >= 1900; i--) {
-																	%>
-																	<option value="<%=i%>"><%=i%></option>
-																	<%
-																		}
-																	%>
-																</select>
-																<h6 class="mt-3 ml-1">년</h6>
-																<select name="spec1_m" id="spec1_m"
-																	class="ml-2 col-3 form-control">
-																	<option value="">--</option>
-																	<%
-																		for (int i = 1; i <= 12; i++) {
-																	%>
-																	<option value="<%=i%>"><%=i%></option>
-																	<%
-																		}
-																	%>
-																</select>
-																<h6 class="mt-3 ml-1">월</h6>
-																<select name="spec1_d" id="spec1_d"
-																	class="ml-2 col-3 form-control">
-																	<option value="">--</option>
-																	<%
-																		for (int i = 1; i <= 30; i++) {
-																	%>
-																	<option value="<%=i%>"><%=i%></option>
-																	<%
-																		}
-																	%>
-																</select>
-																<h6 class="mt-3 ml-1">일</h6>
-															</div>
-														</span>
-													</div>
-												</div>
-												<div class="row mt-2">
-													<div class="col-md-4">
-														<label for="spec1File"><h6>자&nbsp;격&nbsp;증&nbsp;&nbsp;&nbsp;사&nbsp;진</h6></label>
-														<span class="spec1_imgJI"></span>
-													</div>
-													<div class="col-md-8">
-														<input class="text-secondary  text-center" type="file"
-															name="spec1File" id="spec1File">
-														<!-- 추가할 div영역 -->
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
 
-													</div>
-												</div>
-												<hr>
-												<div class="row">
-													<div class="col-md-12 " id="addSpecDiv"
-														style="height: auto"></div>
-													<!-- class="ml-5" -->
-												</div>
-												<div class="row">
-													<div class="col-md-8"></div>
-													<div class="col-md-4 col-md-offset-8">
-														<div class="row text-right mt-3">
-															<div class="col-md-8">
-																<input class="btn btn-outline-primary btn-sm text-right"
-																	type="button" value="추가" onclick="addSpec()">
-															</div>
-															<div class="col-md-4">
-																<input class="btn btn-outline-danger btn-sm"
-																	type="button" value="삭제" onclick="deleteSpec()">
-															</div>
-														</div>
-													</div>
-												</div>
+   
+                           <div class="mt-3 ">
+                              <!-- 학력 -->
+                              <div class="TJoinForm">
+                                 <h4 class="ml-4">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;력</h4>
+                              </div>
+                              <div class="row mt-3 TJoinCertificate">
+                                 <div class="col-md-2"></div>
+                                 <div class="col-md-8 col-md-offset-3">
+                                    <div class="row">
+                                       <div class="col-md-4">
+                                          <label for="finalEducation"><h6>최&nbsp;종&nbsp;&nbsp;&nbsp;학&nbsp;력</h6></label>
+                                       </div>
+                                       <div class="col-md-8">
+                                          <div class="form-group">
+                                             <select id="finalEducation" class="form-control"
+                                                name="finalEducation">
 
-												<div class="offset-md-3">
-													<div class="mt-3" name="specTable" id="specTable"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- 자격증 -->
-
-
-									<div class="mt-3 ">
-										<!-- 경력사항 -->
-										<div class="TJoinForm">
-											<h4 class="ml-4">경&nbsp;력&nbsp;&nbsp;&nbsp;사&nbsp;항</h4>
-										</div>
-
-										<div class="">
-											<div class="mt-3">
-												<textarea name="career" id="career"
-													placeholder="기타 경력사항을 적어주세요." rows="" cols=""
-													style="width: 100%; height: 200px;"></textarea>
-												<a class="text-secondary">ex) ##회사 n년근무 등</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="mt-3 ">
-										<!-- 경력사항 -->
-										<div class="TJoinForm">
-											<h4 class="ml-2">이&nbsp;용&nbsp;약&nbsp;관
-												&nbsp;&nbsp;&nbsp;동&nbsp;의</h4>
-										</div>
-
-										<div class="">
-											<!-- offset-md-1 -->
-											<div class="mt-3">
+                                                <option value="" selected>-학력 선택-</option>
+                                                <option value="고등학교 졸업">고등학교 졸업</option>
+                                                <option value="대학교(2,3년) 졸업">대학교(2,3년제) 졸업</option>
+                                                <option value="대학교 졸업">대학교(4년제) 졸업</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="mt-2 row">
+                                       <div class="col-md-4">
+                                          <label for="schoolName"><h6>학&nbsp;교&nbsp;&nbsp;&nbsp;&nbsp;이&nbsp;름</h6></label>
+                                       </div>
+                                       <div class="col-md-8 input-group">
+                                          <input class="form-control" type="text" name="schoolName"
+                                             placeholder="학교 검색(미구현)" aria-describedby="basic-addon2">
+                                          <span class="input-group-addon" id="basic-addon2">
+                                             <input class="btn btn-outline-dark " type="button"
+                                             value="검색">
+                                          </span>
+                                       </div>
+                                    </div>
 
 
-												<div class="form-group" id="provision">
-													<textarea class="form-control" rows="10" cols="23">
+
+
+                                    <div class="mt-3 row">
+                                       <div class="col-md-4"></div>
+                                       <div class="col-md-8 mb-4">
+                                          <input class="form-control" type="text" name="department"
+                                             placeholder="(세부)전공"> <label for="department"></label>
+                                       </div>
+                                    </div>
+                                 </div>
+
+                              </div>
+                           </div>
+                           <!-- 학력 -->
+
+                           <div class="mt-3 ">
+                              <!-- 자격증 -->
+                              <div class="TJoinForm">
+                                 <h4 class="ml-4">자&nbsp;&nbsp;격&nbsp;&nbsp;증</h4>
+                              </div>
+
+                              <div class="row mt-3">
+                                 <div class="col-md-2"></div>
+                                 <div class="col-md-8 col-offset-md-2">
+                                    <div class="row mt-3">
+                                       <div class="col-md-4 ">
+                                          <label for="spec1" class="control-label"><h6>
+                                                자&nbsp;격&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;증&nbsp;명</h6> </label>
+                                       </div>
+                                       <div class="col-md-8 input-group">
+                                          <input type="text" class="form-control" name="spec1"
+                                             id="spec1" placeholder="(기능 미구현)"
+                                             aria-describedby="basic-addon3"> <span
+                                             class="input-group-addon" id="basic-addon3"><input
+                                             class="btn btn-outline-dark" type="button" value="검색"></span>
+                                       </div>
+                                    </div>
+
+
+                                    <div class="mt-3">
+                                       <div class="row mt-2">
+                                          <div class="col-md-4">
+                                             <label for="spec1_date" class="control-label">
+                                                <h6>취&nbsp;득&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;자</h6>
+                                             </label>
+                                          </div>
+
+                                          <span id="spec1_date" class="col-md-8 text-right">
+                                             <div class="row">
+                                                <select name="spec1_y" id="spec1_y"
+                                                   class="col-3 form-control ml-3 input-sm">
+                                                   <option value="">--</option>
+                                                   <%
+                                                      for (int i = 2020; i >= 1900; i--) {
+                                                   %>
+                                                   <option value="<%=i%>"><%=i%></option>
+                                                   <%
+                                                      }
+                                                   %>
+                                                </select>
+                                                <h6 class="mt-3 ml-1">년</h6>
+                                                <select name="spec1_m" id="spec1_m"
+                                                   class="ml-2 col-3 form-control">
+                                                   <option value="">--</option>
+                                                   <%
+                                                      for (int i = 1; i <= 12; i++) {
+                                                   %>
+                                                   <option value="<%=i%>"><%=i%></option>
+                                                   <%
+                                                      }
+                                                   %>
+                                                </select>
+                                                <h6 class="mt-3 ml-1">월</h6>
+                                                <select name="spec1_d" id="spec1_d"
+                                                   class="ml-2 col-3 form-control">
+                                                   <option value="">--</option>
+                                                   <%
+                                                      for (int i = 1; i <= 30; i++) {
+                                                   %>
+                                                   <option value="<%=i%>"><%=i%></option>
+                                                   <%
+                                                      }
+                                                   %>
+                                                </select>
+                                                <h6 class="mt-3 ml-1">일</h6>
+                                             </div>
+                                          </span>
+                                       </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                       <div class="col-md-4">
+                                          <label for="spec1File"><h6>자&nbsp;격&nbsp;증&nbsp;&nbsp;&nbsp;사&nbsp;진</h6></label>
+                                          <span class="spec1_imgJI"></span>
+                                       </div>
+                                       <div class="col-md-8">
+                                          <input class="text-secondary  text-center" type="file"
+                                             name="spec1File" id="spec1File">
+                                          <!-- 추가할 div영역 -->
+
+                                       </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                       <div class="col-md-12 " id="addSpecDiv"
+                                          style="height: auto"></div>
+                                       <!-- class="ml-5" -->
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-8"></div>
+                                       <div class="col-md-4 col-md-offset-8">
+                                          <div class="row text-right mt-3">
+                                             <div class="col-md-8">
+                                                <input class="btn btn-outline-primary btn-sm text-right"
+                                                   type="button" value="추가" onclick="addSpec()">
+                                             </div>
+                                             <div class="col-md-4">
+                                                <input class="btn btn-outline-danger btn-sm"
+                                                   type="button" value="삭제" onclick="deleteSpec()">
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="offset-md-3">
+                                       <div class="mt-3" name="specTable" id="specTable"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- 자격증 -->
+
+
+                           <div class="mt-3 ">
+                              <!-- 경력사항 -->
+                              <div class="TJoinForm">
+                                 <h4 class="ml-4">경&nbsp;력&nbsp;&nbsp;&nbsp;사&nbsp;항</h4>
+                              </div>
+
+                              <div class="">
+                                 <div class="mt-3">
+                                    <textarea name="career" id="career"
+                                       placeholder="기타 경력사항을 적어주세요." rows="" cols=""
+                                       style="width: 100%; height: 200px;"></textarea>
+                                    <a class="text-secondary">ex) ##회사 n년근무 등</a>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="mt-3 ">
+                              <!-- 경력사항 -->
+                              <div class="TJoinForm">
+                                 <h4 class="ml-2">이&nbsp;용&nbsp;약&nbsp;관
+                                    &nbsp;&nbsp;&nbsp;동&nbsp;의</h4>
+                              </div>
+
+                              <div class="">
+                                 <!-- offset-md-1 -->
+                                 <div class="mt-3">
+
+
+                                    <div class="form-group" id="provision">
+                                       <textarea class="form-control" rows="10" cols="23">
 [약관 동의 및 서명]
 
 크몽 판매/홍보대행 약관
@@ -582,163 +582,163 @@ width: auto;
 1. 이 약관은 2018년 1월 29일 부터 시행합니다.
 
 .
-					</textarea>
-													<div class="form-check form-check-inline">
-														<div class="radio">
-															<label> <input type="radio" id="provisionYn"
-																name="provisionYn" value="Y" autofocus="autofocus"
-																checked> 동의합니다.
-															</label>
-														</div>
-														<div class="radio">
-															<label> <input type="radio" id="provisionYn"
-																name="provisionYn" value="N"> 동의하지 않습니다.
-															</label>
-														</div>
-													</div>
-												</div>
+               </textarea>
+                                       <div class="form-check form-check-inline">
+                                          <div class="radio">
+                                             <label> <input type="radio" id="provisionYn"
+                                                name="provisionYn" value="Y" autofocus="autofocus"
+                                                checked> 동의합니다.
+                                             </label>
+                                          </div>
+                                          <div class="radio">
+                                             <label> <input type="radio" id="provisionYn"
+                                                name="provisionYn" value="N"> 동의하지 않습니다.
+                                             </label>
+                                          </div>
+                                       </div>
+                                    </div>
 
 
 
 
-											</div>
-										</div>
-									</div>
-
-
-
-
-
-
-									<div class="col-md-3 offset-md-9 ">
-										<div class="row">
-											<div class="col-md-7 ">
-												<h5>
-													<input class="btn btn-outline-primary" type="button"
-														onclick="insertTeacher()" value="강사 신청">
-												</h5>
-											</div>
-											<div class="col-md-5">
-												<h5>
-													<input class="btn btn-outline-danger" type="button"
-														value="취소" onclick="history.back()">
-												</h5>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-						</c:when>
-
-						<c:when test="${sessionScope.teacher == 'w'}">
-							<h1>신청 대기중 입니다...</h1>
-
-						</c:when>
-
-						<c:when test="${sessionScope.teacher == 'y'}">
-							<h1>이미 강사 회원입니다.</h1>
-						</c:when>
-						<c:otherwise>
-							<h2>세션이 없습니다. 다시 로그인 해주세요.</h2>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
-
-		</div>
-		<!-- 작은 와곽  -->
-
-	</div>
+                                 </div>
+                              </div>
+                           </div>
 
 
 
 
 
 
+                           <div class="col-md-3 offset-md-9 ">
+                              <div class="row">
+                                 <div class="col-md-7 ">
+                                    <h5>
+                                       <input class="btn btn-outline-primary" type="button"
+                                          onclick="insertTeacher()" value="강사 신청">
+                                    </h5>
+                                 </div>
+                                 <div class="col-md-5">
+                                    <h5>
+                                       <input class="btn btn-outline-danger" type="button"
+                                          value="취소" onclick="history.back()">
+                                    </h5>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </c:when>
+
+                  <c:when test="${sessionScope.teacher == 'w'}">
+                     <h1>신청 대기중 입니다...</h1>
+
+                  </c:when>
+
+                  <c:when test="${sessionScope.teacher == 'y'}">
+                     <h1>이미 강사 회원입니다.</h1>
+                  </c:when>
+                  <c:otherwise>
+                     <h2>세션이 없습니다. 다시 로그인 해주세요.</h2>
+                  </c:otherwise>
+               </c:choose>
+            </div>
+         </div>
+
+      </div>
+      <!-- 작은 와곽  -->
+
+   </div>
 
 
-	<%@ include file="../include/footer.jsp"%>
-	<!-- 부스 스트랩 4.4.1 -->
-	<script>
-		$(document).ready(function() {
-			$("#profileImg").click(function() {
-				$("#input_img").click();
-			})
-		})
 
-		var sel_file;
 
-		$(document).ready(function() {
-			$("#input_img").on("change", fileChange);
-		});
 
-		function fileChange(e) {
-			e.preventDefault();
 
-			var files = e.target.files;
-			var filesArr = Array.prototype.slice.call(files);
 
-			filesArr.forEach(function(f) {
-				if (!f.type.match("image.*")) {
-					alert("확장자는 이미지 확장자만 가능합니다.");
-					return;
-				}
 
-				sel_file = f;
+   <%@ include file="../include/footer.jsp"%>
+   <!-- 부스 스트랩 4.4.1 -->
+   <script>
+      $(document).ready(function() {
+         $("#profileImg").click(function() {
+            $("#input_img").click();
+         })
+      })
 
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$(".avatar").attr("src", e.target.result);
-					$(".avatar").css("height", "200px")
-				}
-				reader.readAsDataURL(f);
-			});
+      var sel_file;
 
-			var file = files[0]
-			console.log(file)
-			var formData = new FormData();
+      $(document).ready(function() {
+         $("#input_img").on("change", fileChange);
+      });
 
-			formData.append("file", file);
+      function fileChange(e) {
+         e.preventDefault();
 
-			$.ajax({
-				url : '${path}/lecture/uploadAjax.do',
-				enctype : 'multipart/form-data',
-				data : formData,
-				dataType : 'text',
-				processData : false,
-				contentType : false,
-				type : 'POST',
-				success : function(data) {
-					alert("프로필 이미지가 변경 되었습니다.")
-				}
-			})
+         var files = e.target.files;
+         var filesArr = Array.prototype.slice.call(files);
 
-			function checkImageType(fileName) {
-				var pattern = /jpg$|gif$|png$|jpeg$/i;
-				return fileName.match(pattern);
-			}
+         filesArr.forEach(function(f) {
+            if (!f.type.match("image.*")) {
+               alert("확장자는 이미지 확장자만 가능합니다.");
+               return;
+            }
 
-			function getOriginalName(fileName) {
-				if (checkImageType(fileName)) {
-					return;
-				}
+            sel_file = f;
 
-				var idx = fileName.indexOf("_") + 1;
-				return fileName.substr(idx);
+            var reader = new FileReader();
+            reader.onload = function(e) {
+               $(".avatar").attr("src", e.target.result);
+               $(".avatar").css("height", "200px")
+            }
+            reader.readAsDataURL(f);
+         });
 
-			}
+         var file = files[0]
+         console.log(file)
+         var formData = new FormData();
 
-			function getImageLink(fileName) {
+         formData.append("file", file);
 
-				if (!checkImageType(fileName)) {
-					return;
-				}
-				var front = fileName.substr(0, 12);
-				var end = fileName.substr(14);
+         $.ajax({
+            url : '${path}/lecture/uploadAjax.do',
+            enctype : 'multipart/form-data',
+            data : formData,
+            dataType : 'text',
+            processData : false,
+            contentType : false,
+            type : 'POST',
+            success : function(data) {
+               alert("프로필 이미지가 변경 되었습니다.")
+            }
+         })
 
-				return front + end;
-			}
-		}
-	</script>
+         function checkImageType(fileName) {
+            var pattern = /jpg$|gif$|png$|jpeg$/i;
+            return fileName.match(pattern);
+         }
+
+         function getOriginalName(fileName) {
+            if (checkImageType(fileName)) {
+               return;
+            }
+
+            var idx = fileName.indexOf("_") + 1;
+            return fileName.substr(idx);
+
+         }
+
+         function getImageLink(fileName) {
+
+            if (!checkImageType(fileName)) {
+               return;
+            }
+            var front = fileName.substr(0, 12);
+            var end = fileName.substr(14);
+
+            return front + end;
+         }
+      }
+   </script>
 </body>
 </html>
