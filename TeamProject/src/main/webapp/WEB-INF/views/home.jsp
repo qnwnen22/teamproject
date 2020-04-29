@@ -951,7 +951,7 @@
                                                                <a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
                                                                <div class="dropdown-menu">
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+                                                                     href="${path}/member/mypage.do">나의정보</a>
                                                                   <a class="dropdown-item"
                                                                      href="${path}/cart/cartPage.do">장바구니</a> <a
                                                                      class="dropdown-item"
@@ -991,7 +991,7 @@
                                                                <a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
                                                                <div class="dropdown-menu">
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+                                                                     href="${path}/member/mypage.do">나의정보</a>
                                                                   <a class="dropdown-item"
                                                                      href="${path}/member/orderDetail1.do">구입한 강의 목록</a>
                                                                       <a class="dropdown-item"
@@ -1241,7 +1241,7 @@
          </div>
       </div>
          
- <!--  슬라이드 1 : 모든 강의-->
+ <!--  슬라이드 1 : 동영상 강의-->
 <section class="center slider">
        <c:forEach var="dto" items="${listv}" begin="1" end="10">
        <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">

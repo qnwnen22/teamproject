@@ -218,9 +218,12 @@ public class MemberController {
 		mav.addObject("list", memberService.listMember());
 		return mav;
 	}//list()
+	
 
-	@RequestMapping("mypage/{userid}")
-	public ModelAndView mypage(@PathVariable String userid, ModelAndView mav) {
+
+	@RequestMapping("mypage.do")
+	public ModelAndView mypage(HttpSession session, ModelAndView mav) {
+		String userid= (String)session.getAttribute("userid");
 		MemberDTO dto=memberService.detailMember(userid);
 		mav.addObject("dto",dto);
 		mav.setViewName("member/myPage");

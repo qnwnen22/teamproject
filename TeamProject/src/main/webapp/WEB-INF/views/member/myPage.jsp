@@ -65,12 +65,12 @@ $(function(){
  <c:choose>
 		<c:when test="${empty dto.thumbnail}">
 	<div>
-	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" style = "height:200px;">
+	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail" style = "height:200px;">
 	</div>
 		</c:when>
 		<c:otherwise>
 	<div>
-	<img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar img-circle img-thumbnail" style = "height:200px;">
+	<img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar rounded-circle img-thumbnail" style = "height:200px;">
 	</div>
 		</c:otherwise>
 </c:choose>
