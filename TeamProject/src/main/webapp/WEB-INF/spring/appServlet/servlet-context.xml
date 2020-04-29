@@ -56,8 +56,7 @@
 	<!-- String uploadPath=new String("d:/upload"); -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/upload" />
-			
+			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
 	</beans:bean>
 	
 	<beans:bean id="packagesuploadPath" class="java.lang.String">
@@ -100,4 +99,24 @@
 	 	</websocket:handshake-interceptors>
 	</websocket:handlers>
 
+	<!-- 인터셉터 처리 -->
+	<beans:bean id="loginInterceptor"
+		class="com.TeamProject.Kdemy.interceptor.LoginInterceptor">
+	</beans:bean>
+	
+	<interceptors>
+		<!-- 로그인 인터셉터 -->
+		<interceptor>
+			<mapping path="/lecture/lectureView_video.do"/>
+			<mapping path="/cart/cartPage.do"/>
+			<mapping path="/member/orderDetail1.do"/>
+			<mapping path="/member/check.do"/>
+			<mapping path="/member/updateMember.do"/>
+			
+			
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+	</interceptors>
+	
 </beans:beans>

@@ -8,8 +8,7 @@ nickname varchar2(200),
 lecture_idx number,
 buy_date date default sysdate,
 up varchar2(10) default 'down',
-onlinechat varchar2(10),
-price number
+onlinechat varchar2(10)
 );
 
 commit;

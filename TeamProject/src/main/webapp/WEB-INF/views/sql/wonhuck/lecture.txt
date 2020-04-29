@@ -18,7 +18,8 @@ lecture_time varchar2(200),
 lecture_address varchar2(200),
 lecture_address2 varchar2(200),
 cellcount number default 0,
-upcount number default 0   
+upcount number default 0,
+revenue number default 0
 );
 
 commit;

@@ -13,4 +13,6 @@ public interface TeacherDAO {
 	public int nicknameC(String nickname);
 
 	public void memberUpdate(String userid);
+
+	public void total(String lectureUserid);
 }

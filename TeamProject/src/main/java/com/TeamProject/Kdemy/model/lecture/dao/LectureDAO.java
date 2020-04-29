@@ -62,5 +62,7 @@ public interface LectureDAO {
 	   public List<LectureDTO> lecture_listV();
 	   public List<LectureDTO> lecture_listOn();
 	   public List<LectureDTO> lecture_listOff();
+	   public void revenue(String lecture_idx);
+	public String selectId(String lecture_idx);
 
 }
