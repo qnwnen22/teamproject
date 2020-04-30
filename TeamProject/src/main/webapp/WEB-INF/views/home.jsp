@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
-
 <script>
    $(function() {
       //마지막 스크롤 값을 저장할 lastScroll 변수
@@ -1281,7 +1280,7 @@
        <c:forEach var="dto" items="${listv}" begin="1" end="10">
        <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
        <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-       <img src="${path}/lecture/displayFile?fileName=${dto.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+       <img src="${path}/lecture/displayFile?fileName=${dto.main_img}"class="card-img-top slide-h3" style="width:200px; height:200px;"></a>
         <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
        </div>
        </c:forEach>
@@ -1409,6 +1408,38 @@
     </div>
     
 <script>
+
+$(document).ready(function() {
+ $('.slider').slick({
+	slide: 'div',		//슬라이드 되어야 할 태그 
+	infinite : true, 	//무한 반복 옵션	 
+    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+    index: 1,
+    focusOnSelect:true,
+    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+	vertical : false,		// 세로 방향 슬라이드 옵션
+	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
+	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
+	draggable : true, 
+    responsive: [{
+       breakpoint: 960,
+       settings: {        
+         slidesToShow: 3
+       }
+     },
+       {
+     breakpoint: 768,
+     settings: {
+      
+       slidesToShow: 2
+     }
+   }]
+ });
+});
+
 $(function () {
    $('#btnMiniChatJoin').on('click', function(evt) {
       evt.preventDefault();
@@ -1488,39 +1519,6 @@ function alarmList(){
            }
     });
 }
-
-
-$(document).ready(function() {
- $('.slider').slick({
-	slide: 'div',		//슬라이드 되어야 할 태그 
-	infinite : true, 	//무한 반복 옵션	 
-  slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-  index: 1,
-  focusOnSelect:true,
-  pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-	vertical : false,		// 세로 방향 슬라이드 옵션
-	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
-	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
-	draggable : true, 
-   responsive: [{
-       breakpoint: 960,
-       settings: {
-        
-         slidesToShow: 3
-       }
-     },
-       {
-     breakpoint: 768,
-     settings: {
-      
-       slidesToShow: 2
-     }
-   }]
- });
-});
 
 
 function userAlarmList(){

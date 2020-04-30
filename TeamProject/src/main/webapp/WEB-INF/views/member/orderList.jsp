@@ -6,12 +6,8 @@
 <head>
   <title>구매목록</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1">   
 <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
-<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <style>
 .fa-heart{color:red;}
 .lecture{
@@ -46,6 +42,14 @@
   height: 100px;
 }
 </style>
+<script>
+function beforeup(){
+	alert("추천되었습니다!" );
+}
+function beforedown(){
+	alert("추천이 취소되었습니다!");
+}
+</script>
 </head>
 <body>
 	<div class="container" >
@@ -64,8 +68,8 @@
                      <c:choose>
                         <c:when test="${dto.up =='down'}">
                             <form method="post" id="lectureDownForm${dto.lecture_idx}" name="lectureDownForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureDown1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
-                              <button type="submit" class="btn btn-danger btn-sm col-3">
+                            action="${path}/lecture/lectureUp1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right" onsubmit="beforeup()">
+                              <button type="submit" class="btn btn-primary btn-sm col-3">
                               <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
                               </button>
                            </form>
@@ -73,7 +77,7 @@
                         
                         <c:when test="${dto.up =='up'}">
                            <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureUp1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureDown1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right" onsubmit="beforedown()">
                               <button type="submit" class="btn btn-outline-dark btn-sm col-3">
                                  <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;취소</span></i>
                               </button>

@@ -52,7 +52,7 @@ $('#star1 a').click(function(){
 		
 			<div class="col-12 d-block d-md-flex">
 				<div class="pr-1 col-md-6 col-sm-12 text-center">
-					<img class="img-fluid" src="${path}/lecture/displayFile?fileName=${dto.main_img}" style="max-height: 300px;">
+					<img class="img-fluid" src="${path}/lecture/displayFile?fileName=${dto.main_img}" style="height: 300px;">
 				</div>
 				 
 				<div class="card col-md-6 col-sm-12 shadow" style="border-radius:5px; border: 1px solid gray;">
