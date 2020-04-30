@@ -618,7 +618,7 @@ public class LectureController {
 		System.err.println("lecture_idx="+lecture_idx);
 		
 		lectureService.upUpdate(userid, lecture_idx);
-		return "redirect:/member/detail.do#orderDetail";
+		return "redirect:/member/orderDetail1.do";
 	}
 	
 	@RequestMapping("lectureDown1.do")
@@ -629,7 +629,7 @@ public class LectureController {
 		System.err.println("lecture_idx="+lecture_idx);
 		
 		lectureService.downUpdate(userid, lecture_idx);
-		return "redirect:/member/detail.do#orderDetail";
+		return "redirect:/member/orderDetail1.do";
 	}
 
 	

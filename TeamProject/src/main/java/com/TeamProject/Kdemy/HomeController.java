@@ -52,6 +52,9 @@ public class HomeController {
 	
 	@Inject
 	ReviewService reviewService;
+		
+	@Inject
+	MemberService memberService;
 	
 	@Resource(name="mainResoucePath")
 	String mainResoucePath;
@@ -62,7 +65,22 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, LectureDTO dto) {
+	public String home(Locale locale, Model model, LectureDTO dto,
+			MemberDTO dto2, @CookieValue(value = "loginCookie") Cookie cookieValue,HttpSession session) throws Exception {
+	    String userid =  cookieValue.getValue();
+		dto2.setUserid(userid);
+		System.out.println(cookieValue.getValue());
+		if(cookieValue != null) {	
+			MemberDTO dto3=memberService.kdemyLogin(dto2);
+			session.setAttribute("userid", dto3.getUserid());
+			session.setAttribute("nickname", dto3.getNickname());
+			session.setAttribute("username", dto3.getUsername());
+			session.setAttribute("useremail", dto3.getUseremail());
+			session.setAttribute("passwd", dto3.getPasswd());
+			session.setAttribute("teacher", dto3.getTeacher());
+			model.addAttribute("dto", dto3);	
+		
+		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -80,37 +98,19 @@ public class HomeController {
 		
 		List<ReviewDTO> listreview = reviewService.listAll();
 		
+		
 		model.addAttribute("list", list);
 		model.addAttribute("listv", listv);
 		model.addAttribute("liston", liston);
 		model.addAttribute("listoff", listoff);
 		model.addAttribute("listnotice", listnotice);
 		model.addAttribute("listreview", listreview);
+		
+	}
 		return "home";
 	}
 	
 
-	@Inject
-	MemberService memberService;
-
-	@RequestMapping("cookie.do")
-	public String testCookie( MemberDTO dto, @CookieValue(value = "loginCookie") Cookie cookieValue, Model model,HttpSession session) throws Exception {	  
-		String userid =  cookieValue.getValue();
-		dto.setUserid(userid);
-		System.out.println(cookieValue.getValue());
-		if(cookieValue != null) {	
-			MemberDTO dto2=memberService.kdemyLogin(dto);
-			session.setAttribute("userid", dto2.getUserid());
-			session.setAttribute("nickname", dto2.getNickname());
-			session.setAttribute("username", dto2.getUsername());
-			session.setAttribute("useremail", dto2.getUseremail());
-			session.setAttribute("passwd", dto2.getPasswd());
-			session.setAttribute("teacher", dto2.getTeacher());
-			model.addAttribute("dto", dto2);	
-
-		}
-		return "redirect:/";
-	}
 
 	@RequestMapping(value = "main/change.do", method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")

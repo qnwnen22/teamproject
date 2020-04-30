@@ -127,7 +127,7 @@ public class MemberController {
 		MemberDTO dto2=memberService.detailMember(userid);
 		session.setAttribute("dto", dto2);	
 		if(result.equals("로그인성공")) {
-			mav.setViewName("member/myPage1");
+			mav.setViewName("redirect:/member/detail.do");
 		}else {
 			mav.addObject("message","비밀번호가 틀렸습니다.");
 			mav.setViewName("member/myPage"); 
@@ -259,7 +259,7 @@ public class MemberController {
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updateMember(dto);
-        return "member/myPage";  
+		return "redirect:/member/mypage.do";  
 	}
    
 	@ResponseBody

@@ -74,7 +74,7 @@ $(function(){
 	</div>
 		</c:otherwise>
 </c:choose>
-        <form name="form1" method="post" enctype="multipart/form-data" class="text-center m-2">
+        <form name="form1" method="post" enctype="multipart/form-data" class="text-center m-1">
         <div class="filebox text-center center-block file-upload">
           <label for="input_img">사진 업로드</label>
           <input type="file" id="input_img">

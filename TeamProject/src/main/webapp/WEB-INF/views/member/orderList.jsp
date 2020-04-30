@@ -46,6 +46,14 @@
   height: 100px;
 }
 </style>
+<script>
+function beforeup(){
+	alert("추천되었습니다!" );
+}
+function beforedown(){
+	alert("추천이 취소되었습니다!");
+}
+</script>
 </head>
 <body>
 	<div class="container" >
@@ -64,7 +72,7 @@
                      <c:choose>
                         <c:when test="${dto.up =='down'}">
                             <form method="post" id="lectureDownForm${dto.lecture_idx}" name="lectureDownForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureUp1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureUp1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right" onsubmit="beforeup()">
                               <button type="submit" class="btn btn-primary btn-sm col-3">
                               <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
                               </button>
@@ -73,7 +81,7 @@
                         
                         <c:when test="${dto.up =='up'}">
                            <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureDown1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureDown1.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right" onsubmit="beforedown()">
                               <button type="submit" class="btn btn-outline-dark btn-sm col-3">
                                  <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;취소</span></i>
                               </button>
