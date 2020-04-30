@@ -66,11 +66,12 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, LectureDTO dto,
-			MemberDTO dto2, @CookieValue(value = "loginCookie") Cookie cookieValue,HttpSession session) throws Exception {
-	    String userid =  cookieValue.getValue();
-		dto2.setUserid(userid);
-		System.out.println(cookieValue.getValue());
+			MemberDTO dto2, @CookieValue(value = "loginCookie", required=false) Cookie cookieValue,HttpSession session) throws Exception {
+	  
 		if(cookieValue != null) {	
+		    String userid =  cookieValue.getValue();
+		    dto2.setUserid(userid);
+			System.out.println(cookieValue.getValue());
 			MemberDTO dto3=memberService.kdemyLogin(dto2);
 			session.setAttribute("userid", dto3.getUserid());
 			session.setAttribute("nickname", dto3.getNickname());
@@ -80,7 +81,7 @@ public class HomeController {
 			session.setAttribute("teacher", dto3.getTeacher());
 			model.addAttribute("dto", dto3);	
 		
-		
+		}
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -106,7 +107,6 @@ public class HomeController {
 		model.addAttribute("listnotice", listnotice);
 		model.addAttribute("listreview", listreview);
 		
-	}
 		return "home";
 	}
 	

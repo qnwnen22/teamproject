@@ -160,6 +160,7 @@ public class MemberController {
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updatePoint(dto);
+		System.out.println("성공");
 	}
 
 	
