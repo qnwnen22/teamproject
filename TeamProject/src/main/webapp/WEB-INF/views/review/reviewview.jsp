@@ -91,7 +91,7 @@
 	function listReply() {
 		$.ajax({
 			type : "post",
-			url : "${path}/review/replylist.do?bno=${dto.bno}"+"&curPage="+replypage,
+			url : "${path}/review/replylist.do?bno=${dto.bno}",
 			success : function(result) {
 				$("#replyList").html(result);
 			}
