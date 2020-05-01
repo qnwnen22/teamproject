@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -113,13 +114,22 @@ public class PackagesController {
 		return ("redirect:/packages/adminlist.do");
 	}
 	@RequestMapping("purchase.do")
-	public String purchase(@RequestParam String packages_name, HttpSession session) {
+	public ModelAndView purchase(@RequestParam String packages_name, HttpSession session,ModelAndView mav) {
 		PackagesDTO dto=packagesService.viewPackages(packages_name);
 		int packages_price=dto.getPackages_price();
 		String orderId = (String)session.getAttribute("userid");
-		packagesService.purchasePackages(dto, orderId);
 		MemberDTO dto2 =memberService.detailMember(orderId);
+		int userPoint = Integer.parseInt(dto2.getPoint());
+		mav.setViewName("redirect:/packages/list.do");
+		if(userPoint < packages_price) {
+		String msg="포인트가 부족합니다.";
+		mav.addObject("msg", msg);
+		}else {
+		packagesService.purchasePackages(dto, orderId);
 		memberService.minusPoint(packages_price, dto2);
-		return "redirect:/packages/list.do";
+		String msg="구매완료";
+		mav.addObject("msg", msg);
+		}
+		return mav;
 	}
 }

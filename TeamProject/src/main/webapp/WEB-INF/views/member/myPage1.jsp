@@ -6,14 +6,9 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <head>
 <title>나의 정보 수정</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
-  
-<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
   <style>
 .filebox label {
   display: inline-block;
@@ -22,9 +17,9 @@
   font-size: inherit;
   line-height: normal;
   vertical-align: middle;
-  background-color: #6ca0bd;
+  background-color: #e89b9b;
   cursor: pointer;
-  border: 1px solid #b3d5e8;
+  border: 1px solid black;
   border-radius: .25em;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
@@ -52,151 +47,17 @@
 </style>
 </head>
 <body>
-<hr>
-<%-- <div class="container bootstrap snippet">
-    <div class="row">
-  		<div class="col-sm-3 col-sm-offset-9"><h4>${dto.username} 님 환영합니다. </h4></div>
-    </div>
-    <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-      <div class="text-center">    
-       <c:choose>
-		<c:when test="${empty dto.thumbnail}">
-	   <div>
-     	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail">
-	   </div>
-		</c:when>
-		<c:otherwise>
-	  <div>
-	  <img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar img-circle img-thumbnail"  style = "height:200px;">
-	  </div>
-		</c:otherwise>
-        </c:choose>
-        <form name="form1" method="post" enctype="multipart/form-data" class="m-5">
-        <div class="filebox">
-          <label for="input_img">사진 업로드</label>
-          <input type="file" class="text-center center-block file-upload" id="input_img">
-          </div>
-        </form>
-      </div>
-
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">사용가능한 포인트<i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><h6>현재 사용가능 포인트는<span style="color:blue;"> ${dto.point} </span>입니다.</h6>
-            <hr>
-            <h6><strong>아이디</strong> ${dto.userid}</h6>
-            <h6><strong>이메일</strong> ${dto.useremail}</h6>
-
-           </div>
-          </div>
-
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">내 정보수정</a></li>
-                <li><a id="listButton1" data-toggle="tab" href="#order">구매목록</a></li>
-                <!-- <li><a id="listButton2" data-toggle="tab" href="#cart">장바구니</a></li> -->
-             </ul>
-
-              
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                  <form class="form" action="${path}/member/updateMember.do" method="post" onsubmit="return beforeSubmit()">
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="name"><h6>이름</h6></label>
-                              <input type="text" class="form-control" name="username" id="username" placeholder="name" value="${dto.username}">
-                          </div>
-                      </div>
-                      
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                            <label for="nickname"><h6>닉네임</h6></label>
-                              <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h6>비밀번호</h6></label>
-                              <input type="password" class="form-control" name="bpasswd" id="bpasswd" placeholder="password" required="true">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h6>비밀번호 확인</h6></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" required="true">
-                              <span id="passwdCheckM"></span> 
-                          </div>
-                      </div>
-                          
-                          <div class="col-xs-12">
-                              <label for="phone"><h6>전화번호</h6></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="000-0000-0000" value="${dto.phone}">
-                              <span id="phoneM"></span> 
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-12">
-                              <label for="birthday"><h6>생년월일</h6></label>
-                              <input type="text" class="form-control" id="birthday" name="birthday" placeholder="0000년 00월 00일" value="${dto.birthday}">
-                              <span id="birthdayM"></span>
-                          </div>
-                      </div>
-                       <div class="form-group">
-                          <div class="col-xs-6">
-                              <label for="address"><h6>주소</h6></label>
-                               <input type="text" class="form-control" name="address" id="address" value="${dto.address}">
-                               </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="address2"><h6>상세주소</h6></label>
-                              <input type="text" class="form-control" name="address2" id="address2" value="${dto.address2}">
-                          </div>
-                      </div>
-                      
-                    
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-sm btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>&nbsp;저장하기</button>
-                               	</div>
-                      </div>
-              	</form>
-             </div><!--/tab-pane-->
-              <div class="tab-pane" id="order">
-   
-                  <div id="listDiv"></div>
-
-             </div><!--/tab-content-->
-                <!--   <div class="tab-pane" id="cart">
-                  <div id="list2Div"></div>
-            </div>/tab-content -->
-
-        </div><!--/col-9-->
-    </div><!--/row-->
-    </div>
-    </div> --%>
-
 <div class="container">
         <div class="row">
-                <div class="col-md-12 col-xl-6">
+                <div class="col-md-12 col-xl-5">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title mb-4">
-                            <div class="d-flex justify-content-start">
+                            <div class="align-items-center">
                                 <div class="image-container">
                                        <c:choose>
 		<c:when test="${empty dto.thumbnail}">
-	   <div>
+	   <div class="text-center">
      	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail">
 	   </div>
 		</c:when>
@@ -206,14 +67,14 @@
 	  </div>
 		</c:otherwise>
         </c:choose>
-<!--                                 
-      <img src="http://placehold.it/150x150" id="imgProfile" style="width: 50px; height: 50px" class="img-thumbnail" />
-                                    <div class="middle">
-                                        <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />
-                                        <input type="file" style="display: none;" id="profilePicture" name="file" />
-                                    </div> -->
+        <form name="form1" method="post" enctype="multipart/form-data" class="text-center m-1">
+        <div class="filebox text-center center-block file-upload">
+          <label for="input_img">사진 업로드</label>
+          <input type="file" id="input_img">
+          </div></form>
                                 </div>
-                                <div class="userData m-3">
+                          
+                                 <div class="text-center m-5">
                                     <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">${dto.username}</a> 님 환영합니다.</h2>
                                     <h6 class="d-block">회원님의 아이디는 <kbd><span style="color:white;">${dto.userid}</span></kbd>입니다.</h6>
                                     <h6 class="d-block">현재 사용가능 포인트</h6>
@@ -221,22 +82,20 @@
                                      <hr>
                                     <h6 class="d-block" style="font-size: 1rem; font-weight: bold">${dto.useremail}</h6>
            
-           </div>
+                        </div>
                                     
                                     
                                     
                                     
                                 </div>
-                                <div class="m-auto">
-                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
-                                </div>
+                               
                             </div>
                         
                         </div>
                         </div>
                         </div>
 
-                        <div class="col-md-12 col-xl-6">
+                        <div class="col-md-12 col-xl-7">
                             <div class="card">
                                 <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                                     <li class="nav-item">
@@ -323,9 +182,9 @@
                       
                     
                       <div class="form-group">
-                           <div class="col-xs-12">
+                           <div class="col-xs-12 text-center">
                                 <br>
-                              	<button class="btn btn-outline-dark" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>&nbsp;저장하기</button>
+                              	<button class="btn btn-outline-dark col-6" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>&nbsp;저장하기</button>
                                	</div>
                       </div>
               	</form>
@@ -351,7 +210,6 @@
 <%@ include file="../include/footer.jsp"%> 
    
  <script>
- 
 $(function(){
 	$("#listButton").click(function(){
 		  $.ajax({

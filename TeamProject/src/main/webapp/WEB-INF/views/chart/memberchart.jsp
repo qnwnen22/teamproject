@@ -71,7 +71,7 @@
 			</ul>
 		</div>
 		<div class="d-flex">
-			<div class="card col-3 d-flex align-items-center">
+			<div class="card col-3 d-flex align-items-center border-danger">
 				<img class="card-img-top" src="../include/images/chart/회원.jpg"
 					alt="Card image" style="opacity: 0.3">
 				<div class="card-img-overlay text-center">
@@ -94,7 +94,7 @@
 					alt="Card image" style="opacity: 0.3">
 				<div class="card-img-overlay text-center">
 					<h4 class="card-title">매출현황</h4>
-					<p class="card-text">Some example text.</p>
+					<h4 class="card-title" id="counter3"></h4>
 					<a href="${path}/chart/saleschart.do" class="btn btn-primary">차트보기</a>
 				</div>
 			</div>
@@ -139,6 +139,7 @@
 	};
 	new numberCounter("counter1", ${map.countMember});
 	new numberCounter("counter2", ${map.countLecture});
+	new numberCounter("counter3", ${map.totalMoney});
 	</script>
 </body>
 </html>

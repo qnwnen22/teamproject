@@ -73,6 +73,13 @@
 </style>
 <script type="text/javascript">
 function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+page;}
+
+$(function(){
+    var responseMessage = "<c:out value="${message}" />";
+    if (responseMessage != ""){
+        alert(responseMessage)
+    }
+})
 </script>
 </head>
 <body>

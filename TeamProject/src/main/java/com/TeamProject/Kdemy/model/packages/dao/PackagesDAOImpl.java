@@ -56,7 +56,6 @@ public class PackagesDAOImpl implements PackagesDAO {
 		cal.add(Calendar.DATE, dto.getPackages_date());
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = fm.format(cal.getTime());
-		System.out.println(strDate);
 		String packages_name = dto.getPackages_name();
 		map.put("packages_end", strDate);
 		map.put("packages_name",packages_name);

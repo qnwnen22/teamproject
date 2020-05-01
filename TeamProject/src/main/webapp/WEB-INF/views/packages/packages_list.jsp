@@ -1,3 +1,4 @@
+<%@page import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,12 +11,12 @@
 	function list(page) {
 		location.href = "${path}/packages/list.do?curPage="+page;
 	}
-	function purchase(){
-		var packages_name = $('#productName').val()
-		location.href = "${path}/packages/purchase.do?packages_name="+packages_name;
-	}
 	function transferData(name){
 		$('#productName').val(name);
+	}
+	function purchase(){
+		var packages_name = $('#productName').val()
+		location.href="${path}/packages/purchase.do?packages_name="+packages_name;
 	}
 </script>
 </head>
@@ -98,7 +99,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-      <input type="text" id="productName" class="border-none">
+      <h6><input type="text" id="productName" style="border:none" readonly></h6>
       <h6>상품을 구매 하시겠습니까?</h6>
       </div>
 
@@ -107,11 +108,15 @@
         <button type="button" class="btn btn-outline-primary" onclick="purchase()">구매</button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
       </div>
-
     </div>
   </div>
 </div>
-
+<%String msg=(String)request.getParameter("msg");%>
+<c:if test="<%=msg != null %>">
+<script>
+alert('<%=msg%>')
+</script>
+</c:if>
 <%@include file="../include/footer.jsp" %>
 </body>
 </html>

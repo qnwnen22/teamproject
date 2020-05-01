@@ -49,7 +49,7 @@
 				href="${path}/member/list.do?location=teacher">강사회원</a></li>
 			<li class="nav-item"><a class="nav-link active"
 				href="${path}/member/list.do?location=request">강사신청</a></li>
-			<li class="input-group col-3 ml-auto mr-0">
+			<li class="input-group col-3 ml-auto mr-0 pr-0">
 				<form class="input-group" action="${path}/member/list.do">
 					<input type="text" class="form-control" placeholder="검색어 입력"
 						value="${map.keyword}" id="keyword" name="keyword"> <input type="hidden"
