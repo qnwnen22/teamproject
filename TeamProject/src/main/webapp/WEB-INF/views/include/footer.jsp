@@ -301,7 +301,47 @@
   </div>
 </div>
 <script>
+function adminAlarmList(){
+    var adminid = $('#admin_id').val();
+    $.ajax({
+           data : {
+        	   userid : adminid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#adminAlarmListBody").html(data);
+           }
+    });
+}
 
+
+function userAlarmList(){
+    var userid = $('#userid').val();
+    $.ajax({
+           data : {
+        	   userid : userid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#userAlarmListBody").html(data);
+           }
+    });
+}
+
+
+function alarmList(page) {
+	   var userid = $('#userid').val();
+	   $.ajax({
+           data : {
+        	   userid : userid,
+        	   curPage : page
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#userAlarmListBody").html(data);
+           }
+    });
+}
 var w = null;
 var socket = null;
 function ConectWS() {
