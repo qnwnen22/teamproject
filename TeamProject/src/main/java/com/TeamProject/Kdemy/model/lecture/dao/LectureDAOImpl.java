@@ -279,6 +279,11 @@ public class LectureDAOImpl implements LectureDAO {
 			return sqlSession.selectOne("lecture.selectId",lecture_idx);
 		}
 
+		@Override
+		public String buyAlarm(int lecture_idx) {
+			return sqlSession.selectOne("lecture.buyAlarm",lecture_idx);
+		}
+
 
 
 }

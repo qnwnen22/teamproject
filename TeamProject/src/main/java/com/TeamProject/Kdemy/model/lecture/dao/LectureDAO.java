@@ -65,5 +65,6 @@ public interface LectureDAO {
 	public List<LectureBoxDTO> lecturebuyList(int lecture_idx);
 	   public void revenue(String lecture_idx);
 	public String selectId(String lecture_idx);
+	public String buyAlarm(int lecture_idx);
 
 }

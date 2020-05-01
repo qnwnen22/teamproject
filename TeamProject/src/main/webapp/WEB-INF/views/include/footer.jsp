@@ -321,9 +321,11 @@ function ConectWS() {
        var msg=strs[3];
        var num=strs[4];
        var cmdNum="chat"+num;
-       if(cmd=="usersend") {
-    	   $("#messageAdmin").append(msg);
-    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+       if(strs != null && strs.length == 5) {
+	       if(cmd==target+num) {
+    	 	  $("#messageAdmin").append(msg);
+    	  	 $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+     		}
        }else{
            let $kdemyAlert=$("div#kdemyAlert")
            let $socketAlert =$('div#socketAlert');

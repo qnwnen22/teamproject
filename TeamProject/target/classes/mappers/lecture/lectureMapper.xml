@@ -271,5 +271,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select userid from lecture where lecture_idx=#{lecture_idx}
 	</select>
 	
+	<select id="buyAlarm" resultType="String">
+	  select userid from lecture where lecture_idx=#{lecture_idx}
+	</select>
 </mapper>
 

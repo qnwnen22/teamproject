@@ -236,6 +236,11 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.lecturebuyList(lecture_idx);
 	}
 
+	@Override
+	public String buyAlarm(int lecture_idx) {
+		return lectureDao.buyAlarm(lecture_idx);
+	}
+
 
 
 }

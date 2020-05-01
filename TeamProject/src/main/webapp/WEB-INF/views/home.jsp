@@ -853,7 +853,7 @@
                                                 <!-- 관리자 로그인 -->
                                                 <c:if test="${sessionScope.admin_id != null}">
                                                 
-                                                <a href="#adminAlarmList" data-toggle="collapse" onclick="alarmList()"><i class="far fa-bell"></i></a>
+                                                <a href="#adminAlarmList" data-toggle="collapse" onclick="adminAlarmList()"><i class="far fa-bell"></i></a>
                                                 <div class="collapse ml-auto m-2 shadow bg-white adminAlarmList" id="adminAlarmList">
 												     <div class="alarmList-header d-flex bg-dark">
 												      <div class="text-center col-12 mt-2 p-0">
@@ -1509,7 +1509,7 @@ function chatEnter() {
              $("#messageAdmin").append(mymessage);
              $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
-function alarmList(){
+function adminAlarmList(){
     var adminid = $('#admin_id').val();
     $.ajax({
            data : {
@@ -1531,11 +1531,25 @@ function userAlarmList(){
            },
            url : "${path}/alarm/adminAlarmList.do",
            success : function(data) {
-               $("#adminAlarmListBody").html(data);
+               $("#userAlarmListBody").html(data);
            }
     });
 }
 
+
+function alarmList(page) {
+	   var userid = $('#userid').val();
+	   $.ajax({
+           data : {
+        	   userid : userid,
+        	   curPage : page
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#userAlarmListBody").html(data);
+           }
+    });
+}
 </script>
 
    <%@ include file="include/footer.jsp"%>
