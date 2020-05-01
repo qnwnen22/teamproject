@@ -79,8 +79,7 @@ public class HomeController {
 			session.setAttribute("useremail", dto3.getUseremail());
 			session.setAttribute("passwd", dto3.getPasswd());
 			session.setAttribute("teacher", dto3.getTeacher());
-			model.addAttribute("dto", dto3);	
-		
+			model.addAttribute("dto", dto3);			
 		}
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();

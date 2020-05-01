@@ -31,7 +31,7 @@
 				href="${path}/member/list.do?location=teacher">강사회원</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="${path}/member/list.do?location=request">강사신청</a></li>
-			<li class="input-group col-3 ml-auto mr-0">
+			<li class="input-group col-3 ml-auto mr-0 pr-0">
 				<form class="input-group" action="${path}/member/list.do">
 					<input type="text" class="form-control" placeholder="검색어 입력"
 						value="${map.keyword}" id="keyword" name="keyword"> <input type="hidden"
@@ -43,7 +43,6 @@
 			</li>
 		</ul>
 	</div>
-
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
@@ -67,7 +66,6 @@
 						</tr>
 					</c:forEach>
 				</tbody>
-				<!-- 페이지 네비게이션 출력 -->
 			</table>
 			<!-- 페이징 처리 -->
 		<div class="row justify-content-center">

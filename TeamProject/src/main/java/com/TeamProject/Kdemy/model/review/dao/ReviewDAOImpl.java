@@ -93,7 +93,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		Map<String, String> map=new HashMap<>();
 		map.put("search_option", search_option);
 		map.put("keyword", "%"+keyword+"%");
-		return sqlSession.selectOne("review.searchcountArticle",map);// TODO Auto-generated method stub
+		return sqlSession.selectOne("review.searchcountArticle",map);
 	}
 
 	@Override

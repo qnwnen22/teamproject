@@ -122,19 +122,15 @@
 			<input type="text"
 				value="<fmt:formatNumber pattern="###,###,###원" value="${point}" />"
 				readonly
-				class="bg-dark text-white mr-xl-2 form-control form-control-lg col-lg-3 col-sm-5 col-md-5 text-center">
-			<input type="button"
-				class="form-control form-control-lg col-lg-3 col-md-3"
-				onclick="location.href='${path}/cart/pointCharge.do'"
-				value="10,000포인트 충전 (작업용)"><br>
+				class="bg-dark text-white mr-xl-2 form-control form-control-lg col-lg-3 col-sm-5 col-md-5 text-center" onclick="location.href='${path}/cart/pointCharge.do'">
 		</div>
 		
 		
 		<div class="col-12">
 		
-		<div class="col-12">
+	<!-- 	<div class="col-12">
 				<input type="checkbox" id="chkALL" class="mb-3 ml-3 chk" checked="checked">
-				</div>
+				</div> -->
 			<div class="row ml-0">
 				<div class="col-lg-9 col-xl-9 col-md-9 border-right">
 					<c:forEach var="dto" items="${list}">
@@ -143,7 +139,7 @@
 
 							<div
 								class="align-self-center align-middle h4 d-inline-block d-flex col-lg-1 col-xl-1 col-md-1 align-self-start ">
-								<input type="checkbox" name="chk" id="check${dto.cart_idx }" class="chk" checked="checked" value="${dto.price}" >
+								${dto.cart_idx }
 							</div>
 
 							<div class="col-lg-3 col-xl-3 col-md-3 mr-3 d-none d-xl-block d-lg-block d-md-block d-sm-block">

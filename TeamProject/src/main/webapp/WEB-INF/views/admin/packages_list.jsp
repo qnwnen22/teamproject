@@ -34,6 +34,9 @@ function listview(){
 		});
 
 	}
+	function list(page) {
+		location.href = "${path}/packages/adminlist.do?curPage="+page;
+	}
 </script>
 </head>
 <body>
@@ -100,7 +103,7 @@ function listview(){
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="row" items="${list}">
+				<c:forEach var="row" items="${map.list}">
 					<tr class="text-center" onclick="packagesView('${row.packages_name}')" style="cursor:pointer;" data-toggle="modal" data-target="#updateModal">
 						<td class="align-middle"><img src="../include/images/coupon/${row.packages_image}"
 							class="align-self-center mx-auto d-block" style="width: 200px"></td>
