@@ -76,7 +76,7 @@
 		
 	<beans:bean id="memberUploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="C:/Users/Administrator/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/img/profile" />
+			value="C:/Users/Administrator/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/profile" />
 	</beans:bean>
 	
 	<beans:bean id="mainResoucePath" class="java.lang.String">
