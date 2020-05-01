@@ -1280,7 +1280,7 @@
        <c:forEach var="dto" items="${listv}" begin="1" end="10">
        <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
        <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-       <img src="${path}/lecture/displayFile?fileName=${dto.main_img}"class="card-img-top slide-h3" style="width:200px; height:200px;"></a>
+       <img src="${path}/lecture/displayFile?fileName=${dto.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
         <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
        </div>
        </c:forEach>
