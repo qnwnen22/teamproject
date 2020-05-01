@@ -88,28 +88,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where userid=#{userid}
   </select>
     
-   <insert id="insertMember">
-      insert into kdemymember
-      (usernum, userid,nickname,
-      passwd,
-      username,
-      birthday, useremail,
-      phone, postcode,
-      address, address2, thumbnail)
-      values
-      (
-      (select nvl(max(usernum)+1,1) from kdemymember),#{userid},#{nickname},
-      #{passwd},#{username},
-      #{birthday},#{useremail},
-      #{phone},#{postcode},
-      #{address},#{address2},#{thumbnail, jdbcType=VARCHAR}
-      )
-   </insert>
-   
-   <update id="verifyMember">
-      update kdemymember set verify='y' where useremail=#{useremail}
-   </update>
-   
+	<insert id="insertMember">
+		insert into kdemymember
+		(usernum,userid,nickname,passwd,username,birthday,useremail,phone,postcode,address,address2,thumbnail)
+		values 
+		((select nvl(max(usernum)+1,1) from kdemymember),#{userid},#{nickname},#{passwd},#{username},#{birthday},#{useremail},#{phone},#{postcode},
+		#{address},#{address2},#{thumbnail, jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="verifyMember">
+		update kdemymember set verify='y' where useremail=#{useremail}
+	</update>
+	
     <select id="idCheck" resultType="Int">
       select COUNT(*) from kdemymember
       WHERE userid=#{userid}

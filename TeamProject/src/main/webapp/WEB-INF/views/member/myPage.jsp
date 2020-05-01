@@ -43,7 +43,6 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-
 </style>
 <script>
 $(function(){
@@ -77,7 +76,7 @@ $(function(){
         <form name="form1" method="post" enctype="multipart/form-data" class="text-center m-1">
         <div class="filebox text-center center-block file-upload">
           <label for="input_img">사진 업로드</label>
-          <input type="file" id="input_img">
+          <input type="file" name="input_img" id="input_img">
           </div>
         </form>
          <div class="panel panel-default text-center">
@@ -117,11 +116,11 @@ $(function(){
 
 <script> 
 
- $(document).ready(function(){
+$(document).ready(function(){
 	$("#profileImg").click(function(){
-		$("#input_img").click() ;
-		})			
-	}) 
+		$("#input_img").click();
+		});			
+	}); 
 
 
 var sel_file;

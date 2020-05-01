@@ -1265,6 +1265,8 @@
 
 
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+	
+	
       <div class="row">
          <div class="col-6 mr-auto pt-3">
             <h5 class="text-left">
@@ -1415,7 +1417,7 @@ $(document).ready(function() {
 	infinite : true, 	//무한 반복 옵션	 
     slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
 	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	speed : 1500,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
 	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
     index: 1,
     focusOnSelect:true,

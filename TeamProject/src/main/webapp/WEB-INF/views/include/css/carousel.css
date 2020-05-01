@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+<<<<<<< HEAD
+    *, *:before, *:after { box-sizing: inherit; }
+    .clearfix:after { content: ''; display: block; clear: both; float: none; }
+    .title { margin-bottom: 0; text-align: center; font-size: 30px; color: #333; }
+    /* container - body */
+    #container { width: 100%; margin: auto; }
+    .slide_wrap { position: relative; width: 100%; margin: auto; padding-bottom: 30px; }
+    .slide_box { width: 100%; margin: auto; overflow-x: hidden; }
+    .slide_content { display: table; float: left; width: 200px; height: 300px; z-index:10;}
+    .slide_content1 { display: table; float: left; width: 200px; height: 300px; z-index:10;}
+    .slide_content2 { display: table; float: left; width: 200px; height: 300px; z-index:10;}
+    
+=======
 .slick-initialized .slick-slide
 {
   display: none; 
@@ -23,3 +36,4 @@
   transform: scale(1.1);
 }
 
+>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
