@@ -73,11 +73,39 @@ function checkId() {
                     }
             }
         });
-        
-	    }
+	}
 
+//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
+ var nickCheck = 0;
+ //아이디 체크하여 가입버튼 비활성화, 중복확인.
+ function checkNick() {
+     var nickname = $('#nickname').val();
+     $.ajax({
+         data : {
+        	 nickname : nickname
+         },
+         url : "${path}/member/checkNick.do",
+         success : function(data) {
+             if (data == '0') {
+            	 nickCheck = 1;
+                 if(nickCheck==1) {
+                     $(".nickname").css("border", "2px solid #71c9ce");
+                     $("#nicknameM").html("<b style='color:#71c9ce'>사용할 수 있는 닉네임 입니다.</b>");
+                     return false
+                 } 
+             } else if(data == '1'){
+                 $(".nickname").css("border", "2px solid red");
+                 $("#nicknameM").html("<b style='color:red'>중복된 닉네임 입니다.</b>");
+                 nickCheck = 0;
+                 return false
+             } else if(data == '2') {
+     			$("#nicknameM").html("");
+    			return false
+                }     
+         }
+     });
+ }
 
- 
 </script>
 </head>
 <body>
@@ -106,6 +134,13 @@ function checkId() {
 							placeholder="아이디를 입력해주세요">
 				</div>
 				<div class="form-group">
+					<label for="nickname">닉네임</label>&nbsp;
+					<span id="CheckNickM"></span>
+					<span id="nicknameM"></span>
+					<input class="form-control nickname" id="nickname" name="nickname" oninput="checkNick()"
+							placeholder="닉네임을 입력해주세요">
+				</div>
+				<div class="form-group">
 					<label for="passwd">비밀번호</label>&nbsp; <span id="bpasswdM"></span>
 					 <input type="password"
 						class="form-control" id="bpasswd" name="bpasswd"
@@ -117,7 +152,7 @@ function checkId() {
 				</div>
 				<div class="form-group">
 					<label for="email">이메일 주소</label> &nbsp; <span id="useremailM"></span>
-					<input class="form-control"
+					<input class="form-control useremail"
 						id="useremail" name="useremail" oninput="checkEmail()" placeholder="이메일 주소를 입력해주세요">
 				</div>
 				<div class="labelname">

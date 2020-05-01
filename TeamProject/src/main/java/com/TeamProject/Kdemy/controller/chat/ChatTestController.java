@@ -45,16 +45,4 @@ public class ChatTestController {
 	}
 	
 	
-	@MessageMapping("/app/chatAdmin")
-	public void adminChatUser(@Payload AdminChatDTO adminChat, SimpMessageHeaderAccessor headerAccessor)
-			throws Exception {
-		headerAccessor.getSessionAttributes().put("sender", adminChat.getSender());
-		headerAccessor.getSessionAttributes().put("num", adminChat.getNum());
-		messagingTemplate.convertAndSend("/topic/admin/"+adminChat.getNum(),adminChat);	
-	}
-	
-	@MessageMapping("/chat.adminMessage")
-	public void sendMessage(@Payload AdminChatDTO adminChat) throws Exception  {
-		messagingTemplate.convertAndSend("/topic/admin/"+adminChat.getNum(),adminChat);
-	}
 }

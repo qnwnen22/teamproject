@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
-<%@ include file="../include/header.jsp"%>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<%@ include file="../include/header.jsp" %>
 <style type="text/css">
 .input-group {
 	width: auto !important;
@@ -33,7 +34,6 @@
 }
 
 </style>
-<%@ include file="../include/header.jsp"%>
 <script type="text/javascript">
 	$(document).ready(function() {
 		listReply();
@@ -50,7 +50,7 @@
 				url : "${path}/review/replyinsert.do",
 				data : param,
 				success : function() {
-					listReply();
+					listReplyLoad();
 					$("#replytext").val("");
 				}
 			});				
@@ -67,18 +67,6 @@
 			}
 		});
 	});
-
-	//댓글 목록 출력 함수
-	function listReply(){
-		$.ajax({
-			type: "get",
-			url: "${path}/review/replylist.do?bno=${dto.bno}",
-			success: function(result){
-				//result : responseText 응답텍스트(html)
-				$("#replyList").html(result);
-			}
-		});
-	}
 
 	function GoList() {
 		location.href = "${path}/review/list.do";
@@ -100,9 +88,30 @@
 	}
 
 
-	function list(page) {
-		location.href = "${path}/review/list.do?curPage=" + page;
+	function listReply() {
+		var replyCurPage=$("#replyCurPage").val();
+		$.ajax({
+			type : "post",
+			url : "${path}/review/replylist.do?bno=${dto.bno}&replyCurPage="+replyCurPage,
+			success : function(result) {
+				$("#replyList").html(result);
+			}
+		});
 	}
+
+	function listReplyLoad() {
+		$.ajax({
+			type : "post",
+			url : "${path}/review/replylist.do?bno=${dto.bno}&replyCurPage=1",
+			success : function(result) {
+				$("#replyList").html(result);
+			}
+		});
+	}
+	function list(page) {
+		location.href = "${path}/review/list.do?curPage="+page;
+	}
+
 </script>
 
 </head>
@@ -143,7 +152,13 @@
 			</div>
 
 		</form>
-		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3"></div>
+		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3">
+		
+		
+		
+		
+		
+		</div>
 
 
 		<c:choose>
@@ -155,7 +170,7 @@
 					<div class="input-group-append">
 						<button type="button"
 							class="justify-content-end btn-outline-secondary btn btn-sm btn-primary font-color-fff btn-normal-silver"
-							data-toggle="button" aria-pressed="false" id="btnReply">
+							data-toggle="button" id="btnReply">
 							입력</button>
 					</div>
 				</div>
@@ -179,6 +194,7 @@
 
 
 		<!-- 수정,삭제에 필요한 글번호를 hidden 태그에 저장 -->
+		<input type="hidden" name="replyCurPage" id="replyCurPage" value="${map.replyCurPage}">
 		<input type="hidden" name="bno" value="${dto.bno}"> <input
 			type="hidden" name="bno" value="${dto.writer}">
 		<div class="btn-group float-right mb-5 mt-3" role="group"

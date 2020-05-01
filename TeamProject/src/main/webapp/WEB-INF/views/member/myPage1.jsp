@@ -6,11 +6,9 @@
 <%@ include file="../include/fixed-topbar.jsp" %>
 <head>
 <title>나의 정보 수정</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
   <style>
 .filebox label {
   display: inline-block;
@@ -19,9 +17,9 @@
   font-size: inherit;
   line-height: normal;
   vertical-align: middle;
-  background-color: #6ca0bd;
+  background-color: #e89b9b;
   cursor: pointer;
-  border: 1px solid #b3d5e8;
+  border: 1px solid black;
   border-radius: .25em;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
@@ -49,70 +47,92 @@
 </style>
 </head>
 <body>
-<hr>
-<div class="container bootstrap snippet">
-    <div class="row">
-  		<div class="col-sm-3 col-sm-offset-9"><h4>${dto.username} 님 환영합니다. </h4></div>
-    </div>
-    <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-      <div class="text-center">    
-       <c:choose>
+<div class="container">
+        <div class="row">
+                <div class="col-md-12 col-xl-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="align-items-center">
+                                <div class="image-container">
+                                       <c:choose>
 		<c:when test="${empty dto.thumbnail}">
-	   <div>
-     	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail">
+	   <div class="text-center">
+     	<img id ="profileImg" src = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail">
 	   </div>
 		</c:when>
 		<c:otherwise>
-	  <div>
-	  <img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar img-circle img-thumbnail"  style = "height:200px;">
+	  <div class="text-center">
+	  <img id ="profileImg" src = "${path}/member/displayFile?fileName=${dto.thumbnail}" class="avatar rounded-circle img-thumbnail"  style = "height:200px;">
 	  </div>
 		</c:otherwise>
         </c:choose>
-        <form name="form1" method="post" enctype="multipart/form-data" class="m-5">
-        <div class="filebox">
+         <form name="form1" method="post" enctype="multipart/form-data" class="text-center m-1">
+        <div class="filebox text-center center-block file-upload">
           <label for="input_img">사진 업로드</label>
-          <input type="file" class="text-center center-block file-upload" id="input_img">
+          <input type="file" id="input_img" name="file1">
           </div>
-        </form>
-      </div>
+       </form> 
+                                </div>
+                          
+                                 <div class="text-center m-5">
+                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">${dto.username}</a> 님 환영합니다.</h2>
+                                    <h6 class="d-block">회원님의 아이디는 <kbd><span style="color:white;">${dto.userid}</span></kbd>입니다.</h6>
+                                    <h6 class="d-block">현재 사용가능 포인트</h6>
+                                    <h6 class="d-block"><a href="javascript:void(0);">${dto.point}</a> Points</h6>
+                                     <hr>
+                                    <h6 class="d-block" style="font-size: 1rem; font-weight: bold">${dto.useremail}</h6>
+           
+                        </div>
+                                    
+                                    
+                                    
+                                    
+                                </div>
+                               
+                            </div>
+                        
+                        </div>
+                        </div>
+                        </div>
 
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">사용가능한 포인트<i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><h6>현재 사용가능 포인트는<span style="color:blue;"> ${dto.point} </span>입니다.</h6>
-            <hr>
-            <h6><strong>아이디</strong> ${dto.userid}</h6>
-            <h6><strong>이메일</strong> ${dto.useremail}</h6>
+                        <div class="col-md-12 col-xl-7">
+                            <div class="card">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">내 정보수정</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="listButton" data-toggle="tab" href="#orderDetail" role="tab" aria-controls="orderDetail" aria-selected="false">강의 목록</a>
+                                    </li>
+                                </ul>
+                                
+                                
+                  <div class="tab-content ml-1" id="myTabContent">
+                     <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                    
+                          <form class="form" action="${path}/member/updateMember.do" method="post" onsubmit="return beforeSubmit()">
+                           <div class="form-group">
 
-           </div>
-          </div>
-
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">내 정보수정</a></li>
-                <li><a id="listButton1" data-toggle="tab" href="#order">구매목록</a></li>
-                <!-- <li><a id="listButton2" data-toggle="tab" href="#cart">장바구니</a></li> -->
-             </ul>
-
-              
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                  <form class="form" action="${path}/member/updateMember.do" method="post" onsubmit="return beforeSubmit()">
+                             <div class="col-xs-6">
+                              <label for="name"><h6>이름</h6></label>
+                              <input type="text" class="form-control" name="username" id="username" placeholder="name" value="${dto.username}" disabled />
+                          </div>
+                      </div>
+                      
                       <div class="form-group">
 
-                          <div class="col-xs-6">
-                              <label for="name"><h6>이름</h6></label>
-                              <input type="text" class="form-control" name="username" id="username" placeholder="name" value="${dto.username}">
+                             <div class="col-xs-6">
+                              <label for="email"><h6>이름</h6></label>
+                              <input type="email" class="form-control" name="useremail" id="useremail" placeholder="email" value="${dto.useremail}" disabled />
                           </div>
                       </div>
                       
                       <div class="form-group">
                           <div class="col-xs-6">
                             <label for="nickname"><h6>닉네임</h6></label>
-                              <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
+                              <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname" value="${dto.nickname}" oninput="checkNick()">
+                              <span id="CheckNickM"></span>
                           </div>
                       </div>
                       <div class="form-group">
@@ -121,6 +141,7 @@
                           <div class="col-xs-6">
                               <label for="password"><h6>비밀번호</h6></label>
                               <input type="password" class="form-control" name="bpasswd" id="bpasswd" placeholder="password" required="true">
+                               <span id="bpasswdM"></span> 
                           </div>
                       </div>
                       <div class="form-group">
@@ -162,35 +183,36 @@
                       
                     
                       <div class="form-group">
-                           <div class="col-xs-12">
+                           <div class="col-xs-12 text-center">
                                 <br>
-                              	<button class="btn btn-sm btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>&nbsp;저장하기</button>
+                              	<button class="btn btn-outline-dark col-6" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>&nbsp;저장하기</button>
                                	</div>
                       </div>
               	</form>
-             </div><!--/tab-pane-->
-              <div class="tab-pane" id="order">
+            
+                    </div><!-- 내정보 -->
+
+                   <div class="tab-pane fade" id="orderDetail" role="tabpanel" aria-labelledby="orderDetail-tab">
+                                        <div id="listDiv" class="col-12"></div>
+                                    </div>
+                
+                </div>
+                
+                
+                
+            </div>
+        </div><!--  -->
+        </div>
+        </div>
    
-                  <div id="listDiv"></div>
-
-             </div><!--/tab-content-->
-                <!--   <div class="tab-pane" id="cart">
-                  <div id="list2Div"></div>
-            </div>/tab-content -->
-
-        </div><!--/col-9-->
-    </div><!--/row-->
-    </div>
-    </div>
-<br><br><br><br><br>         
 </body>
 
- <%@ include file="footer1.jsp"%> 
+  
+<%@ include file="../include/footer.jsp"%> 
    
  <script>
- 
 $(function(){
-	$("#listButton1").click(function(){
+	$("#listButton").click(function(){
 		  $.ajax({
 		          type: 'post'
 		        , url: 'orderDetail.do'
@@ -201,20 +223,6 @@ $(function(){
 		  });	
 	})		
 }) 
-
-/* $(function(){
-	$("#listButton2").click(function(){
-		  $.ajax({
-		          type: 'post'
-		        , url: 'cartPage.do'
-		        , dataType : 'text'
-		        , success: function(data) {
-		        	$("#list2Div").html(data);
-		          }
-		  });	
-	})		
-})
- */
 
 
 
@@ -229,7 +237,6 @@ var sel_file;
 $(document).ready(function() {
     $("#input_img").on("change", fileChange);
 });
-
 
 
 function fileChange(e) {
@@ -261,7 +268,7 @@ function fileChange(e) {
     formData.append("file", file);
 
 		$.ajax({
-    	url: '${path}/member/uploadAjax.do',
+    	  url: '${path}/member/uploadAjax.do',
 		  data: formData,
 		  dataType:'text',
 		  processData: false,
@@ -307,8 +314,95 @@ function fileChange(e) {
 }
 
 
+//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
+var nickCheck = 0;
+//아이디 체크하여 가입버튼 비활성화, 중복확인.
+function checkNick() {
+    var nickname = $('#nickname').val();
+    $.ajax({
+        data : {
+       	 nickname : nickname
+        },
+        url : "${path}/member/checkNick.do",
+        success : function(data) {
+            if (data == '0') {
+           	 nickCheck = 1;
+                if(nickCheck==1) {
+                    $(".nickname").css("border", "2px solid #71c9ce");
+                    $("#nicknameM").html("<b style='color:#71c9ce'>사용할 수 있는 닉네임 입니다.</b>");
+                    return false
+                } 
+            } else if(data == '1'){
+                $(".nickname").css("border", "2px solid red");
+                $("#nicknameM").html("<b style='color:red'>중복된 닉네임 입니다.</b>");
+                nickCheck = 0;
+                return false
+            } else if(data == '2') {
+    			$("#nicknameM").html("");
+   			return false
+               }     
+        }
+    });
+}
+
 
 $(function(){
+	 $('#nickname').change(function(e){
+			//아이디 체크
+			var nickname =document.getElementById("nickname");
+			if(nickname.value=="") {
+				alert("닉에임은 필수 입력입니다.");
+				nickname.focus();
+				return false;
+			}
+			
+			var exp2=/^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;//정규표현식
+			if(!exp2.test(nickname.value)) {
+				$("#nickname").css("border", "2px solid red");
+				$("#CheckNickM").html("<b style='color:red'>닉네임은 글자 2~20자리로 입력하세요.</b>");
+				nickname.val("");
+				nickname.focus();
+				return false;
+			} else {
+				var input="<input id='nicknameConfirm' type='hidden' value='y'>";
+				$("#nickname").css("border", "2px solid gray");
+				$("#CheckNickM").html("<b style='color:gray'><i class='fa fa-check spaceLeft'></i>사용할 수 있는 닉네임입니다</b>"+input);
+				//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
+				//아이디 체크하여 가입버튼 비활성화, 중복확인.
+			}			
+		 });
+	 $('#bpasswd').change(function(e){
+		//비밀번호 체크
+		var bpasswd =document.getElementById("bpasswd");
+		var exppwd=/^(?=.*[a-zA-Z]{1,16})(?=.*[!@#$%^*+=-]{1,16})(?=.*[0-9]{1,16}).{8,16}$/;
+		if(!exppwd.test(bpasswd.value)){
+			$("#bpasswd").css("border", "2px solid red");
+			$("#bpasswdM").html("<b style='color:red'>숫자, 영문자, 특수문자 조합으로 8~16자리를 사용해야 합니다.</b>");
+			password.value="";
+			password.focus();
+			return false;
+		}else {
+			var input="<input id='bpasswdConfirm' type='hidden' value='y'>";
+			$("#bpasswd").css("border", "2px solid gray");
+			$("#bpasswdM").html("<b style='color:gray'><i class='fa fa-check spaceLeft'></i>사용할 수 있는 비밀번호입니다</b>"+input);
+		}
+	 });
+	 
+	 $(function() {
+			$('#bpasswd').keyup(function() {
+				$('#passwdCheckM').text('');
+			}); //#user_pass.keyup
+
+			$('#password2').keyup(function() {
+				if ($('#bpasswd').val() != $('#password2').val()) {
+					$("#password2").css("border", "2px solid red");
+					$('#passwdCheckM').html("<b style='color:red'>암호가 일치하지 않습니다.</b>");
+				} else {
+					$("#password2").css("border", "2px solid gray");
+					$('#passwdCheckM').html("<b style='color:gray'><i class='fa fa-check spaceLeft'>암호가 일치합니다</i></b>");
+				}
+			}); 
+		});
 
          $('#phone').change(function(e){
 	 		var phone = document.getElementById("phone");
@@ -319,8 +413,8 @@ $(function(){
 	 			phone.focus();
 	 			return false;
 	 		}else {
-	 			$("#phone").css("border", "2px solid #71c9ce");
-	 			$("#phoneM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'>입력되었습니다.</i></b>");
+	 			$("#phone").css("border", "2px solid gray");
+	 			$("#phoneM").html("<b style='color:gray'><i class='fa fa-check spaceLeft'>입력되었습니다.</i></b>");
 	 		}	
 	 	 });	
 	 	 
@@ -333,8 +427,8 @@ $(function(){
 	 			birthday.focus();
 	 			return false;
 	 		}else {
-	 			$("#birthday").css("border", "2px solid #71c9ce");
-	 			$("#birthdayM").html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'>입력되었습니다.</i></b>");
+	 			$("#birthday").css("border", "2px solid gray");
+	 			$("#birthdayM").html("<b style='color:gray'><i class='fa fa-check spaceLeft'>입력되었습니다.</i></b>");
 	 		}
 	 	 });
 });
@@ -348,22 +442,11 @@ function beforeSubmit() {
 		return false;
 	}
 
-}
-$(function() {
-	$('#bpasswd').keyup(function() {
-		$('#passwdCheckM').text('');
-	}); //#user_pass.keyup
 
-	$('#password2').keyup(function() {
-		if ($('#bpasswd').val() != $('#password2').val()) {
-			$("#password2").css("border", "2px solid red");
-			$('#passwdCheckM').html("<b style='color:red'>암호가 일치하지 않습니다.</b>");
-		} else {
-			$("#password2").css("border", "2px solid #71c9ce");
-			$('#passwdCheckM').html("<b style='color:#71c9ce'><i class='fa fa-check spaceLeft'>암호가 일치합니다</i></b>");
-		}
-	}); 
-});
+	
+
+}
+
 
 </script>
                   

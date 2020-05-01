@@ -231,6 +231,11 @@ public class LectureServiceImpl implements LectureService {
 		
 	}
 
+	@Override
+	public List<LectureBoxDTO> lecturebuyList(int lecture_idx) {
+		return lectureDao.lecturebuyList(lecture_idx);
+	}
+
 
 
 }

@@ -127,7 +127,7 @@ public class MemberController {
 		MemberDTO dto2=memberService.detailMember(userid);
 		session.setAttribute("dto", dto2);	
 		if(result.equals("로그인성공")) {
-			mav.setViewName("member/myPage1");
+			mav.setViewName("redirect:/member/detail.do");
 		}else {
 			mav.addObject("message","비밀번호가 틀렸습니다.");
 			mav.setViewName("member/myPage"); 
@@ -153,13 +153,17 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/updatePoint.do", method = RequestMethod.POST)
-	public void updatePoint(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
+	public ModelAndView updatePoint(HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		String coupon = request.getParameter("coupon");	
 		MemberDTO dto = new MemberDTO();
 	   	dto.setCoupon(coupon);
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updatePoint(dto);
+		mav.addObject("message", "쿠폰이 적용되었습니다. 나의 정보에서 포인트를 확인하세요.");
+		mav.setViewName("member/couponCheck");
+		return mav;
 	}
 
 	
@@ -218,17 +222,21 @@ public class MemberController {
 		mav.addObject("list", memberService.listMember());
 		return mav;
 	}//list()
+	
 
-	@RequestMapping("mypage/{userid}")
-	public ModelAndView mypage(@PathVariable String userid, ModelAndView mav) {
+
+	@RequestMapping("mypage.do")
+	public ModelAndView mypage(HttpSession session, ModelAndView mav) {
+		String userid= (String)session.getAttribute("userid");
 		MemberDTO dto=memberService.detailMember(userid);
 		mav.addObject("dto",dto);
 		mav.setViewName("member/myPage");
 		return mav;
 	}
 
-	@RequestMapping("detail/{userid}")
-	public ModelAndView detail(@PathVariable String userid, ModelAndView mav) {
+	@RequestMapping("detail.do")
+	public ModelAndView detail(HttpSession session, ModelAndView mav) {
+		String userid= (String)session.getAttribute("userid");
 		MemberDTO dto=memberService.detailMember(userid);
 		mav.addObject("dto",dto);
 		mav.setViewName("member/myPage1");
@@ -236,33 +244,32 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/updateMember.do", method = RequestMethod.POST)
-	public String updateMember(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
-		String username = request.getParameter("username");	
+	public String updateMember(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {	
+		String nickname = request.getParameter("nickname");	
 		String bpasswd = request.getParameter("bpasswd");
 		String phone = request.getParameter("phone");
 		String birthday = request.getParameter("birthday");
 		String address = request.getParameter("address");
 		String address2 = request.getParameter("address2");
 		MemberDTO dto = new MemberDTO();
-	   	dto.setUsername(username);
+		dto.setNickname(nickname);
 	   	dto.setBpasswd(bpasswd);
-	   	dto.setPhone(phone);
 	   	String passwd=BCrypt.hashpw(dto.getBpasswd(), BCrypt.gensalt());
 	   	dto.setPasswd(passwd);
+	   	dto.setPhone(phone);
 	   	dto.setBirthday(birthday);
 	   	dto.setAddress(address);
 	   	dto.setAddress2(address2);
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updateMember(dto);
-        return "member/myPage";  
+		return "redirect:/member/mypage.do";  
 	}
    
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String uploadAjax(MultipartFile file, String str, HttpSession session,
 			HttpServletRequest request, Model model) throws Exception {
-            //logger.info("originalName: " + file.getOriginalFilename());
 			ResponseEntity<String> img_path = new ResponseEntity<>(
 					UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
 					HttpStatus.CREATED);
@@ -279,7 +286,8 @@ public class MemberController {
 	@RequestMapping(value="insertMember.do",method= {RequestMethod.POST},
 			consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces="text/plain;charset=utf-8")
 	public String insertMember(MemberDTO dto, HttpSession session) throws Exception {
-		MultipartFile file=dto.getFile();				
+		MultipartFile file=dto.getFile();
+		String nickname = dto.getNickname();
 		String thumbnail=null;
 		String birthday=dto.getBirthday1()+"-"+dto.getBirthday2()+"-"+dto.getBirthday3();
 		String phone=dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3();
@@ -289,6 +297,7 @@ public class MemberController {
      	} catch (Exception e) {
 			e.printStackTrace();
 		}
+    	dto.setNickname(nickname);
     	dto.setThumbnail(thumbnail);
 		dto.setPasswd(passwd);
 		dto.setBirthday(birthday);
@@ -330,12 +339,18 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/checkNick.do")
+	public int checkNick(MemberDTO dto) throws Exception {
+		int result = memberService.checkNick(dto);
+		return result;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="/checkEmail.do")
 	public int emailCheck(MemberDTO dto) throws Exception {	
 		String exp3= "^[a-z0-9]{2,}@[a-z0-9]{2,}.[a-z]{2,}$";
 		if(dto.getUseremail().matches(exp3)) {
 			int result = memberService.emailCheck(dto);
-			 System.out.println("result:"+result);
 			return result;			  
 		}else {
 			return 2;
@@ -407,6 +422,7 @@ public class MemberController {
 			session.setAttribute("useremail", dto2.getUseremail());
 			session.setAttribute("passwd", dto2.getPasswd());
 			session.setAttribute("teacher", dto2.getTeacher());
+			session.setAttribute("packages_end", dto2.getPackages_end());
 		
 			if(dto.isUseCookie()) {
 			CookieGenerator c = new CookieGenerator();

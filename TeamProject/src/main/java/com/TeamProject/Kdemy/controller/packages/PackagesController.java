@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
 import com.TeamProject.Kdemy.model.packages.dto.PackagesDTO;
+import com.TeamProject.Kdemy.service.member.MemberService;
 import com.TeamProject.Kdemy.service.packages.PackagesService;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
@@ -27,7 +30,9 @@ public class PackagesController {
 
 	@Inject
 	PackagesService packagesService;
-
+	@Inject
+	MemberService memberService;
+	
 	@Resource(name="packagesuploadPath")
 	String packagesuploadPath;
 
@@ -106,5 +111,15 @@ public class PackagesController {
 	public String delete(@RequestParam String packages_name,ModelAndView mav) {
 		packagesService.deletePackages(packages_name);
 		return ("redirect:/packages/adminlist.do");
+	}
+	@RequestMapping("purchase.do")
+	public String purchase(@RequestParam String packages_name, HttpSession session) {
+		PackagesDTO dto=packagesService.viewPackages(packages_name);
+		int packages_price=dto.getPackages_price();
+		String orderId = (String)session.getAttribute("userid");
+		packagesService.purchasePackages(dto, orderId);
+		MemberDTO dto2 =memberService.detailMember(orderId);
+		memberService.minusPoint(packages_price, dto2);
+		return "redirect:/packages/list.do";
 	}
 }

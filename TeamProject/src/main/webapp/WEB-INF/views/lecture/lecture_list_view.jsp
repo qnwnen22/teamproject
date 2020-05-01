@@ -52,7 +52,7 @@ $('#star1 a').click(function(){
 		
 			<div class="col-12 d-block d-md-flex">
 				<div class="pr-1 col-md-6 col-sm-12 text-center">
-					<img class="img-fluid" src="${path}/lecture/displayFile?fileName=${dto.main_img}" style="max-height: 300px;">
+					<img class="img-fluid" src="${path}/lecture/displayFile?fileName=${dto.main_img}" style="height: 300px;">
 				</div>
 				 
 				<div class="card col-md-6 col-sm-12 shadow" style="border-radius:5px; border: 1px solid gray;">
@@ -81,7 +81,7 @@ $('#star1 a').click(function(){
 					<div class="card-body">
 						<h2 class="card-title">${dto.subject}</h2>
 						
-			
+						
 						<p class="card-text">
 							<b class='m-auto'><fmt:formatNumber value="${lectureCount}" pattern="#,###" />명의 학생이 수강중</b><br>
 							<b class='m-auto'>추천 수 : ${upCount}</b>
@@ -96,6 +96,9 @@ $('#star1 a').click(function(){
 						<div class="col-12 d-block d-lg-flex mx-0 px-0 h6">
 							<div class="col-12 col-lg-6 px-0 mr-1" > 
 								<c:choose>
+									<c:when test="${sessionScope.packages_end != null}">
+									</c:when>
+									
 									<c:when test="${check==1}">
 										<c:choose>
 											<c:when test="${up == 'up'}">
@@ -142,15 +145,23 @@ $('#star1 a').click(function(){
 			
 							<div class="col-12 col-lg-6 px-0 mx-0" >
 								<c:choose>
+									<c:when test="${sessionScope.packages_end != null}">
+										<form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
+				                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+				                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_video()">
+				                        </form>
+									</c:when>
+									
 									<c:when test="${check==0}">
 										<form method="post" action="${path}/cart/insertCart.do">
 											<input type="hidden" name="main_img" value="${dto.main_img}">
 											<input type="hidden" name="cell_type" value="${dto.cell_type}">
 											<input type="hidden" name="price" value="${dto.price}">
-											<input type="hidden" name="lecture_idx" value="${dto.lecture_idx}">
+											<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
 											<input type="hidden" name="main_category" value="${dto.main_category}">
 											<input type="hidden" name="sub_category" value="${dto.sub_category}">
 											<input type="hidden" name="subject" value="${dto.subject}">
+											<input type="hidden" name="userid" id="userid" value="${dto.userid}">
 											<input class="btn btn-danger col-12" type="submit" value="구매하기">
 										</form>
 									</c:when>
@@ -172,14 +183,25 @@ $('#star1 a').click(function(){
 					                     </c:when>
 					                     
 					                     <c:otherwise>
-					                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
-					                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
-					                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
-					                        </form>
+						                        <c:choose>
+													<c:when test="${openTime > todayTime || endTime < todayTime}">
+														<input class="btn btn-dark col-12 " type="button" value="시청가능한 시간이 아닙니다." disabled>
+													
+													</c:when>
+													
+													<c:otherwise>
+								                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?">
+								                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+								                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_success()">
+								                        </form>
+													</c:otherwise>
+												</c:choose>
+						                        
 					                     </c:otherwise>
 					                  </c:choose>
 					               </c:when>
 									
+																		
 									<c:otherwise>
 										<a class="btn btn-danger btn-block" data-ga-category="header" data-toggle="modal" data-target="#kdemyLoginModal" style="color: white;"><b>구매하기</b></a>
 									</c:otherwise>
@@ -218,8 +240,9 @@ $('#star1 a').click(function(){
 							<label class="label" for="lectureDate">강의 날짜 : </label>
 							<p name="lectureDate" id="lectureDate">${dto.lecture_date}</p>
 							
-							강의 시작시간 : ${dto.lecture_start}
-							강의 시간 : ${dto.lecture_time}
+							<b>강의 시작 시간 : ${dto.lecture_start}</b><br>
+							
+							<b>총 강의 시간 : ${dto.lecture_time}시간</b>
 						</div>
 					</c:when>
 				
@@ -248,7 +271,9 @@ $('#star1 a').click(function(){
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <a href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}" type="button" class="btn btn-outline-danger">삭제</a>
+      <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+      <input type="hidden" name="userid" id="userid" value="${dto.userid}">
+      <a href="#" onclick="lectureDelete()" type="button" class="btn btn-outline-danger">삭제</a>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
       </div>
 
@@ -257,6 +282,18 @@ $('#star1 a').click(function(){
 </div>
 <%@ include file="../include/footer.jsp"%>
 <script type="text/javascript">
+
+function lectureDelete() {
+	if (socket.readyState !== 1)
+		return;
+	let amdin = 'admin';
+	let target = $('input#userid').val();
+	let lecture_idx = $('input#lecture_idx').val();
+	// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+	socket.send("lectureDelete," + amdin + "," + target +","+lecture_idx);
+	
+	location.href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}";
+}
 	function lecturetext(){
 		var text = document.getElementById("lectureText");
 		var time = document.getElementById("lectureTime");

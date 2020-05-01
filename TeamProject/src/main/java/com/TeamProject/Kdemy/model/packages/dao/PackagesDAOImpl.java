@@ -1,5 +1,8 @@
 package com.TeamProject.Kdemy.model.packages.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,5 +46,21 @@ public class PackagesDAOImpl implements PackagesDAO {
 	@Override
 	public int countPackages() {
 		return sqlSession.selectOne("packages.countPackages");
+	}
+
+	@Override
+	public void purchasePackages(PackagesDTO dto, String orderId) {
+		HashMap<String, Object> map=new HashMap<>();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, dto.getPackages_date());
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+		String strDate = fm.format(cal.getTime());
+		System.out.println(strDate);
+		String packages_name = dto.getPackages_name();
+		map.put("packages_end", strDate);
+		map.put("packages_name",packages_name);
+		map.put("orderId",orderId);
+		sqlSession.update("packages.purchasePackages", map);
 	}
 }

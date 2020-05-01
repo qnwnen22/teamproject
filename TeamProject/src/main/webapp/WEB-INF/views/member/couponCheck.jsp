@@ -15,7 +15,14 @@ document.addEventListener('keydown', function(event) {
     }
 }, true);
 
- $(function(){
+$(function(){
+    var responseMessage = "<c:out value="${message}" />";
+    if (responseMessage != ""){
+        alert(responseMessage)
+    }
+})
+
+/*  $(function(){
     $('#btn').on('click', function(){
         $.ajax({
             type: 'POST',
@@ -28,7 +35,7 @@ document.addEventListener('keydown', function(event) {
             	}
         });    //end ajax    
     });    //end on   
-});
+}); */
  
 
 </script>
@@ -41,7 +48,7 @@ document.addEventListener('keydown', function(event) {
 				<div class="card-img-overlay"  style="margin-top: 140px;">
 				    <h4 class="card-title"></h4>
 					<h6 class="card-title ">쿠폰 번호를 입력해 주세요</h6>
-<%--  <form method="post" id="form1" name="form1" action="${path}/member/updatePoint.do" class="form-horizontal"> --%>
+ <form method="post" id="form1" name="form1" action="${path}/member/updatePoint.do" class="form-horizontal"> 
 	<div class="input-group input-group-sm m-3 col-sm-11 align-items-center">
       <input type="text" class="form-control" id="key1" maxlength="4"><span class="input-group-addon">-</span>
       <input type="text" class="form-control" id="key2" maxlength="4"><span class="input-group-addon">-</span>
@@ -51,8 +58,9 @@ document.addEventListener('keydown', function(event) {
           <div id="keyM"></div>
      <input class=""  type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
     <button class="btn btn-primary" type="submit" id="btn">쿠폰 생성</button>
-    	<div class="TextBox">
-			<p id="successText" style="color:blue;"></p>
+<!--     	<div class="TextBox">
+			<p id="successText" style="color:blue;"></p> -->
+			</form>
 			</div>
 
      </div>

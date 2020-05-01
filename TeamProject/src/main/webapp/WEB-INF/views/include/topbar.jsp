@@ -118,10 +118,10 @@
 											<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 											<div class="dropdown-menu">
 												<a class="dropdown-item"
-													href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+													href="${path}/member/mypage.do">나의정보</a>
 													<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 											    	<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
-													<a class="dropdown-item" href="${path}/member/orderDetail1.do">내강의목록</a>
+													<a class="dropdown-item" href="${path}/member/orderList1.do">내강의목록</a>
 											</div>
 										</div>
 
@@ -146,8 +146,8 @@
 											<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 											<div class="dropdown-menu">
 												<a class="dropdown-item"
-													href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
-												<a class="dropdown-item" href="${path}/member/orderDetail1.do">내강의목록</a>
+													href="${path}/member/mypage.do">나의정보</a>
+												<a class="dropdown-item" href="${path}/member/orderList1.do">내강의목록</a>
 												<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 												<a class="dropdown-item" href="#">관심상품</a> 
 												<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
@@ -175,7 +175,7 @@
 						<div class="TopBarMenuList border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper" style="display: flex; width: 350px;">
+								<div class="sub-category-chunk-wrapper">
 								<div>
 									<div class="sub-category-wrapper">
 										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"

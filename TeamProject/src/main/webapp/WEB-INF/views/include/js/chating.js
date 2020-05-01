@@ -81,7 +81,7 @@ function onMessageReceived(payload) {
         message.content = message.sender +"("+message.userid+")"  + '님이 입장하였습니다.';
         $("#userListTbody").empty();
         $.each(message.userList, function (index,item) {
-        	var userListTd ='<tr><td>일반</td>';
+        	var userListTd ='<tr><td>학생</td>';
         	userListTd +='<td>'+item.nickname+'</td>';
         	userListTd +='<td>'+item.userid+'</td>';
         	$("#userListTbody").append(userListTd);
@@ -92,7 +92,7 @@ function onMessageReceived(payload) {
         message.content = message.sender +"("+message.userid+")" + '님이 퇴장하였습니다.';
         $("#userListTbody").empty();
         $.each(message.userList, function (index,item) {
-        	var userListTd ='<tr><td>일반</td>';
+        	var userListTd ='<tr><td>학생</td>';
         	userListTd +='<td>'+item.nickname+'</td>';
         	userListTd +='<td>'+item.userid+'</td>';
         	$("#userListTbody").append(userListTd);

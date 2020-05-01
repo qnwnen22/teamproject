@@ -206,6 +206,7 @@ width: auto;
                                              <div class="col-md-8 text-secondary">
                                                 <input type="hidden" value="${sessionScope.userid}"
                                                    readonly name="userid" id="userid">${sessionScope.userid}
+                                                   <input type="hidden" name="nickname" id="nickname" value="${sessionScope.nickname}">
                                              </div>
                                           </div>
                                        </div>
@@ -343,7 +344,7 @@ width: auto;
                                                    class="ml-2 col-3 form-control">
                                                    <option value="">--</option>
                                                    <%
-                                                      for (int i = 1; i <= 30; i++) {
+                                                      for (int i = 1; i <= 31; i++) {
                                                    %>
                                                    <option value="<%=i%>"><%=i%></option>
                                                    <%

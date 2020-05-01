@@ -118,7 +118,7 @@
 											style="display: initial !important;">
 											<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 											<div class="dropdown-menu">
-												<a class="dropdown-item" href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+												<a class="dropdown-item" href="${path}/member/mypage.do">나의정보</a>
 												<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 												<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 												<a class="dropdown-item" href="${path}/member/orderDetail1.do">내강의목록</a> 
@@ -146,7 +146,7 @@
 											<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
 											<div class="dropdown-menu">
 												<a class="dropdown-item"
-													href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+													href="${path}/member/mypage.do">나의정보</a>
 												<a class="dropdown-item"
 													href="${path}/lecture/myLectureListPage.do">구입한 강의 목록</a> <a
 													class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
@@ -166,8 +166,8 @@
 				</div>
 			</div>
 			<br>
-			<div class="nav-category-list NavCategoryList col-lg-12 TopBarMenuWarpper">
-				<ul class="list-inline margin-all-0 col-lg-12 ">
+			<div class="nav-category-list NavCategoryList col-lg-12 TopBarMenuWarpper pl-0 pr-0">
+				<ul class="list-inline margin-all-0 col-lg-12 pl-0 pr-0">
 					<li class="header-list-renewal dropdown col-lg-1">
 						<div class="hover-trigger TopBarMenuTitleBox">
 							<a class="TopBarMenuTitle plain sendGaTriggerClz" href="${path}/lecture/all_list_search.do?keyword=디자인" data-ga-label="1"
@@ -176,7 +176,7 @@
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper" style="display: flex; width: 350px;">
+								<div class="sub-category-chunk-wrapper">
 									<div>
 										<div class="sub-category-wrapper">
 											<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"

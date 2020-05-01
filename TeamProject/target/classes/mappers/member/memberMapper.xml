@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 수정 -->
   	<update id="updateMember">
        update kdemymember
-       set username = #{username}, passwd=#{passwd}, phone=#{phone}, birthday=#{birthday}, address=#{address}, address2=#{address2}
+       set nickname=#{nickname}, passwd=#{passwd}, phone=#{phone}, birthday=#{birthday}, address=#{address}, address2=#{address2}
        where userid=#{userid}
 	</update>
   
@@ -90,20 +90,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
 	<insert id="insertMember">
 		insert into kdemymember
-		(usernum, userid,
-		passwd,
-		username,
-		birthday, useremail,
-		phone, postcode,
-		address, address2, thumbnail)
-		values
-		(
-		(select nvl(max(usernum)+1,1) from kdemymember),#{userid},
-		#{passwd},#{username},
-		#{birthday},#{useremail},
-		#{phone},#{postcode},
-		#{address},#{address2},#{thumbnail, jdbcType=VARCHAR}
-		)
+		(usernum,userid,nickname,passwd,username,birthday,useremail,phone,postcode,address,address2,thumbnail)
+		values 
+		((select nvl(max(usernum)+1,1) from kdemymember),#{userid},#{nickname},#{passwd},#{username},#{birthday},#{useremail},#{phone},#{postcode},
+		#{address},#{address2},#{thumbnail, jdbcType=VARCHAR})
 	</insert>
 	
 	<update id="verifyMember">
@@ -113,6 +103,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="idCheck" resultType="Int">
 		select COUNT(*) from kdemymember
 		WHERE userid=#{userid}
+	</select>
+	
+	<select id="checkNick" resultType="Int">
+	  select COUNT(*) from kdemymember
+	  WHERE nickname=#{nickname}
 	</select>
 	
 	<select id="emailCheck" resultType="Int">
@@ -236,5 +231,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM') order by join_month
 	</select>
-
+	
+	<update id="minusPoint">
+		update kdemymember set point=#{point} where userid=#{userid}
+	</update>
 </mapper>

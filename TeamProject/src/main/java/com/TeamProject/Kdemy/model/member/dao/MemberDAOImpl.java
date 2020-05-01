@@ -195,6 +195,19 @@ public class MemberDAOImpl implements MemberDAO {
 	public int emailCheck(MemberDTO dto) {
 		return sqlSession.selectOne("member.emailCheck",dto);
 	}
+
+	@Override
+	public void minusPoint(int packages_price, MemberDTO dto2) {
+		HashMap <String, Object> map = new HashMap<>();
+		Object userPoint = (Integer.parseInt(dto2.getPoint())-packages_price);
+		map.put("userid", dto2.getUserid());
+		map.put("point", userPoint);
+		sqlSession.update("member.minusPoint",map);
+	}
+	@Override
+	public int checkNick(MemberDTO dto) {
+		return sqlSession.selectOne("member.checkNick",dto);
+	}
 	
 }
 	

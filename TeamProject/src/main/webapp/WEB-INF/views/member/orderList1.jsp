@@ -73,6 +73,13 @@
 </style>
 <script type="text/javascript">
 function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+page;}
+
+$(function(){
+    var responseMessage = "<c:out value="${message}" />";
+    if (responseMessage != ""){
+        alert(responseMessage)
+    }
+})
 </script>
 </head>
 <body>
@@ -93,18 +100,18 @@ function click(page) {location.href = "${path}/lecture/all_list.do?curPage="+pag
                       <div class="short-div text-right"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;${dto.upCount}&nbsp;&nbsp;</div>
                      <div class="short-div text-right">
                      <c:choose>
-                        <c:when test="${dto.up =='up'}">
+                        <c:when test="${dto.up =='down'}">
                             <form method="post" id="lectureDownForm${dto.lecture_idx}" name="lectureDownForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureDown2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
                               <button type="submit" class="btn btn-danger btn-sm col-3">
                               <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;추천</span></i>
                               </button>
                            </form>
                         </c:when>
                         
-                        <c:when test="${dto.up =='down'}">
+                        <c:when test="${dto.up =='up'}">
                            <form method="post" id="lectureUpForm${dto.lecture_idx}" name="lectureUpForm${dto.lecture_idx}"
-                            action="${path}/lecture/lectureUp2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
+                            action="${path}/lecture/lectureDown2.do?lecture_idx=${dto.lecture_idx}" class="m-1 text-right">
                               <button type="submit" class="btn btn-outline-dark btn-sm col-3">
                                  <i class="fas fa-thumbs-up"><span class="d-md-none d-sm-none d-xl-inline">&nbsp;&nbsp;취소</span></i>
                               </button>
