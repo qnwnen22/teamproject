@@ -66,6 +66,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <select id="lecturebuyList" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
-     select userid from lectureBox where lecture_idx=#{lecture_idx}
+     select userid from lectureBox where lecture_idx=#{lecture_idx} order by buy_date desc
    </select>
 </mapper>

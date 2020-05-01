@@ -46,14 +46,13 @@
 						    <th>아이디</th>
 						  </tr>
 						</thead>
+							<tr class="text-center">
+								<td>강사</td>
+							    <td>${makeUserid}</td>
+							    <td>${sessionScope.nickname}</td>
+							</tr>
 						<tbody id="userListTbody">
-						  <c:if test="${makeUserid == sessionScope.userid}">
-						  <tr>
-						    <td>강사</td>
-						    <td>${sessionScope.userid}</td>
-						    <td>${sessionScope.nickname}</td>
-						  <tr>
-						  </c:if>
+						
 						</tbody>
 					</table>	
 				</div>

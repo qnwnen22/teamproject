@@ -284,6 +284,11 @@ public class LectureDAOImpl implements LectureDAO {
 			return sqlSession.selectOne("lecture.buyAlarm",lecture_idx);
 		}
 
+		@Override
+		public String findNickname(String makeUserid) {
+			return sqlSession.selectOne("lecture.findNickname",makeUserid);
+		}
+
 
 
 }

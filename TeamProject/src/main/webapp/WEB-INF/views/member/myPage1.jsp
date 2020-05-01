@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
   <style>
+  a{color:black;}
 .filebox label {
   display: inline-block;
   padding: .5em .75em;

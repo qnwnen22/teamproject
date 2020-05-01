@@ -1,12 +1,11 @@
-select * from kdemymember;
-
 drop table kdemymember;
 
 create table kdemymember(
 usernum number not null,
 userid varchar2(200) primary key, 
 passwd varchar2(200) not null, 
-username varchar2(200) not null, 
+username varchar2(200) not null,
+nickname varchar2(200) not null,
 useremail varchar2(200) not null, 
 phone varchar2(200), 
 birthday varchar2(200), 
@@ -20,9 +19,6 @@ point number default 0,
 coupon varchar2(200),
 coupon_point number default 0,
 teacher varchar2(200),
-bpasswd varchar2(200),
-session_key varchar2(200),
-session_limit timestamp,
 packages_name varchar2(50),
 packages_end varchar2(50)
 );

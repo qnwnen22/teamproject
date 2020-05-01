@@ -36,6 +36,7 @@ import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 
 @Controller
@@ -558,7 +559,7 @@ public class LectureController {
 	
 	
 	@RequestMapping("lectureView_success.do")
-	public ModelAndView lectureView_success(HttpSession session, int lecture_idx, int my) {
+	public ModelAndView lectureView_success(HttpSession session, int lecture_idx, @RequestParam(defaultValue = "0") String my) {
 		ModelAndView mav=new ModelAndView();
 		LectureBoxDTO dto=new LectureBoxDTO();
 		String userid=(String)session.getAttribute("userid");
@@ -569,12 +570,20 @@ public class LectureController {
 		if(check==1) {
 			LectureDTO ldto=new LectureDTO();
 			ldto=lectureService.lectureView_success(lecture_idx);
+			String makeUserid=lectureService.buyAlarm(lecture_idx);
+			String makeUsernick=lectureService.findNickname(makeUserid);
+			mav.addObject("makeUserid", makeUserid);
+			mav.addObject("makeUsernick", makeUsernick);
 			mav.addObject("ldto", ldto);
 			mav.setViewName("lecture/lectureView_success");
 		}else {
-			if(my==1) {
+			if(my=="1") {
 				LectureDTO ldto=new LectureDTO();
 				ldto=lectureService.lectureView_success(lecture_idx);
+				String makeUserid=lectureService.buyAlarm(lecture_idx);
+				String makeUsernick=lectureService.findNickname(makeUserid);
+				mav.addObject("makeUserid", makeUserid);
+				mav.addObject("makeUsernick", makeUsernick);
 				mav.addObject("ldto", ldto);
 				mav.setViewName("lecture/lectureView_success");
 			}else {

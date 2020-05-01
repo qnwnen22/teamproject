@@ -26,24 +26,24 @@
             <img class="card-img-top" src="${path}/include/images/coupon/쿠폰박스.png" alt="Card image">
             <div class="card-img-overlay col-12 ml-3"  style="margin-top: 170px;">
               <form name="form" id="form" action="insertCoupon.do" method="post" class="form-horizontal">
-	           <div class="form-group form-inline mb-4">
+	           <div class="form-group form-inline ml-4">
 					<label for="coupon_name">쿠폰 이름</label>
-					<input class="form-control col-4"  name="coupon_name" id="coupon_name" placeholder="쿠폰이름을 입력하세요.">
+					<input class="form-control col-6"  name="coupon_name" id="coupon_name" placeholder="쿠폰이름을 입력하세요.">
 				</div>
-				  <div class="form-group form-inline mb-4">
+				  <div class="form-group form-inline ml-4">
 					<label for="coupon">쿠폰번호</label>
-					<input class="form-control col-4"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()">
+					<input class="form-control col-64"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()">
 					<span id="CheckM"></span><span id="couponM"></span>				
 				</div>
-				<div class="form-group form-inline mb-4">
+				<div class="form-group form-inline ml-4">
 					<label for="point">포인트</label>
-					<input class="form-control col-4" name="point"  id="point" placeholder="포인트를 입력하세요.">				
+					<input class="form-control col-6" name="point"  id="point" placeholder="포인트를 입력하세요.">				
 				</div>
-				<div class="form-group form-inline mb-4">
+				<div class="form-group form-inline ml-4">
 					<label for="coupon_text">쿠폰설명</label>
-					<input class="form-control col-4"  name="coupon_text"  id="coupon_text" placeholder="쿠폰에 대한 설명을 입력하세요.">
+					<input class="form-control col-6"  name="coupon_text"  id="coupon_text" placeholder="쿠폰에 대한 설명을 입력하세요.">
 				</div>
-				<div class="mx-auto col-4 mt-5">
+				<div class="mx-auto col-4 ml-5">
 				<button type="submit" class="btn-sm btn-block btn-danger text-uppercase text-center" id="listButton">쿠폰 만들기</button>
 				</div>
            </form>

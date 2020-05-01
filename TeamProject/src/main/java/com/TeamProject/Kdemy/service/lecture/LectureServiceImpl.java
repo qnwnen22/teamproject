@@ -241,6 +241,11 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.buyAlarm(lecture_idx);
 	}
 
+	@Override
+	public String findNickname(String makeUserid) {
+		return lectureDao.findNickname(makeUserid);
+	}
+
 
 
 }
