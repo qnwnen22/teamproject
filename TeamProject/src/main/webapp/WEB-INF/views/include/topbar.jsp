@@ -38,6 +38,18 @@
 					<div class="header-right-info flex-center NavRight col-xl-12">
 						<!-- 관리자 로그인 -->
 						<c:if test="${sessionScope.admin_id != null}">
+						<a href="#tadminAlarmList" data-toggle="collapse" onclick="tadminAlarmList()"><i class="far fa-bell"></i></a>
+                                                <div class="collapse ml-auto m-2 shadow bg-white adminAlarmList" id="tadminAlarmList">
+												     <div class="alarmList-header d-flex bg-dark">
+												      <div class="text-center col-12 mt-2 p-0">
+												        <h5 style="color:white;" class=""><b>알림</b></h5>
+												      </div>
+												      <input type="hidden" id="admin_id" name="admin_id" value="${sessionScope.admin_id}">
+												     </div>
+												     <div class="adminAlarmListBody" id="tadminAlarmListBody">
+												       
+												     </div>
+												 </div>
 							<div class="item col-xl-4 text-center"
 								style="display: initial !important;">
 								<a class="plain cursor" data-ga-category="header"
@@ -54,6 +66,8 @@
 										href="${path}/lecture/online_list.do?admin=admin">강의관리</a> <a
 										class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
 									<a class="dropdown-item" href="${path}/member/couponMaker.do">쿠폰관리</a>
+									 <a class="dropdown-item" href="#" 
+						    							onclick="window.open('${path}/chatroom/chatRoomList.do','문의리스트','width=330,height=610,left=500')">문의관리</a>
 								</div>
 							</div>
 							<div class="item dropdown col-xl-4 text-center dropdown-toggle"
@@ -95,6 +109,17 @@
 								<c:choose>
 									<c:when
 										test="${sessionScope.teacher == 'y' && sessionScope.userid !=null}">
+										  <a href="#tuserAlarmList" data-toggle="collapse" onclick="tuserAlarmList()"><i class="far fa-bell"></i></a>
+				                                                <div class="collapse ml-auto m-2 shadow bg-white userAlarmList" id="tuserAlarmList">
+																     <div class="alarmList-header d-flex bg-dark">
+																      <div class="text-center col-12 mt-2 p-0">
+																        <h5 style="color:white;" class=""><b>알림</b></h5>
+																      </div>
+																     </div>
+																     <div class="userAlarmListBody" id="tuserAlarmListBody">
+																       <input type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
+																     </div>
+																 </div>
 										<div class="item col-xl-4 text-center"
 											style="display: initial !important;">
 											<a class="plain cursor" data-ga-category="header"
@@ -130,6 +155,18 @@
 
 									<c:when
 										test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
+										  <a href="#tuserAlarmList" data-toggle="collapse" onclick="tuserAlarmList()"><i class="far fa-bell"></i></a>
+				                                                <div class="collapse ml-auto m-2 shadow bg-white userAlarmList" id="tuserAlarmList">
+																     <div class="alarmList-header d-flex bg-dark">
+																      <div class="text-center col-12 mt-2 p-0">
+																        <h5 style="color:white;" class=""><b>알림</b></h5>
+																      </div>
+																     </div>
+																     <div class="userAlarmListBody" id="tuserAlarmListBody">
+																       <input type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
+																     </div>
+																 </div>
+										
 										<div class="item col-xl-4 text-center"
 											style="display: initial !important;">
 											<a class="plain cursor" data-ga-category="header"
@@ -740,4 +777,47 @@ function search(){
 	var keyword1=document.getElementById("keyword1").value;
 	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword1;
 }
+
+function tadminAlarmList(){
+    var adminid = $('#admin_id').val();
+    $.ajax({
+           data : {
+        	   userid : adminid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#tadminAlarmListBody").html(data);
+           }
+    });
+}
+
+
+function tuserAlarmList(){
+    var userid = $('#userid').val();
+    $.ajax({
+           data : {
+        	   userid : userid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#tuserAlarmListBody").html(data);
+           }
+    });
+}
+
+
+function talarmList(page) {
+	   var userid = $('#userid').val();
+	   $.ajax({
+           data : {
+        	   userid : userid,
+        	   curPage : page
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#tuserAlarmListBody").html(data);
+           }
+    });
+}
+
 </script>

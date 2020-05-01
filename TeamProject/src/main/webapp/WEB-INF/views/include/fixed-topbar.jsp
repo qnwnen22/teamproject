@@ -38,6 +38,19 @@
 					<div class="header-right-info flex-center NavRight col-xl-12">
 					<!-- 관리자 로그인 -->
 						<c:if test="${sessionScope.admin_id != null}">
+						
+						<a href="#adminAlarmList" data-toggle="collapse" onclick="adminAlarmList()"><i class="far fa-bell"></i></a>
+                                                <div class="collapse ml-auto m-2 shadow bg-white adminAlarmList" id="adminAlarmList">
+												     <div class="alarmList-header d-flex bg-dark">
+												      <div class="text-center col-12 mt-2 p-0">
+												        <h5 style="color:white;" class=""><b>알림</b></h5>
+												      </div>
+												      <input type="hidden" id="admin_id" name="admin_id" value="${sessionScope.admin_id}">
+												     </div>
+												     <div class="adminAlarmListBody" id="adminAlarmListBody">
+												       
+												     </div>
+												 </div>
 							<div class="item col-xl-4 text-center"
 								style="display: initial !important;">
 								<a class="plain cursor" data-ga-category="header"
@@ -54,6 +67,8 @@
 										href="${path}/lecture/online_list.do?admin=admin">강의관리</a> <a
 										class="dropdown-item" href="${path}/packages/adminlist.do">패키지관리</a>
 									<a class="dropdown-item" href="${path}/member/couponMaker.do">쿠폰관리</a>
+									 <a class="dropdown-item" href="#" 
+						    							onclick="window.open('${path}/chatroom/chatRoomList.do','문의리스트','width=330,height=610,left=500')">문의관리</a>
 								</div>
 							</div>
 							<div class="item dropdown col-xl-4 text-center dropdown-toggle"
@@ -96,6 +111,18 @@
 								<c:choose>
 									<c:when
 										test="${sessionScope.teacher == 'y' && sessionScope.userid !=null}">
+										  <a href="#userAlarmList" data-toggle="collapse" onclick="userAlarmList()"><i class="far fa-bell"></i></a>
+				                                                <div class="collapse ml-auto m-2 shadow bg-white userAlarmList" id="userAlarmList">
+																     <div class="alarmList-header d-flex bg-dark">
+																      <div class="text-center col-12 mt-2 p-0">
+																        <h5 style="color:white;" class=""><b>알림</b></h5>
+																      </div>
+																     </div>
+																     <div class="userAlarmListBody" id="userAlarmListBody">
+																       <input type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
+																     </div>
+																 </div>
+										
 										<div class="item col-xl-4 text-center"
 											style="display: initial !important;">
 											<a class="plain cursor" data-ga-category="header"
@@ -130,6 +157,18 @@
 
 									<c:when
 										test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
+										
+										  <a href="#userAlarmList" data-toggle="collapse" onclick="userAlarmList()"><i class="far fa-bell"></i></a>
+				                                                <div class="collapse ml-auto m-2 shadow bg-white userAlarmList" id="userAlarmList">
+																     <div class="alarmList-header d-flex bg-dark">
+																      <div class="text-center col-12 mt-2 p-0">
+																        <h5 style="color:white;" class=""><b>알림</b></h5>
+																      </div>
+																     </div>
+																     <div class="userAlarmListBody" id="userAlarmListBody">
+																       <input type="hidden" id="userid" name="userid" value="${sessionScope.userid}">
+																     </div>
+																 </div>
 										<div class="item col-xl-4 text-center"
 											style="display: initial !important;">
 											<a class="plain cursor" data-ga-category="header"
@@ -501,7 +540,7 @@
 						<div class="border-top-category dropdown-menu" role="menu"
 							aria-labelledby="dLabel">
 							<div class="category-wrapper">
-								<div class="sub-category-chunk-wrapper" style="width: 200px;">
+								<div class="sub-category-chunk-wrapper">
 									<div class="sub-category-wrapper">
 										<a class="heading-hover sendGaTriggerClz TopBarMenuList" role="menuitem"
 											href="${path}/lecture/all_list_search.do?keyword=투잡,부업" data-ga-label="" data-ga-category="header">투잡.부업</a>
@@ -741,4 +780,6 @@ function search(){
 	var keyword1=document.getElementById("keyword1").value;
 	location.href = "${path}/lecture/all_list_search.do?keyword="+keyword1;
 }
+
+
 </script>

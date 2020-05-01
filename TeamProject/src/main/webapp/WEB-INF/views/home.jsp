@@ -1509,47 +1509,6 @@ function chatEnter() {
              $("#messageAdmin").append(mymessage);
              $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
-function adminAlarmList(){
-    var adminid = $('#admin_id').val();
-    $.ajax({
-           data : {
-        	   userid : adminid
-           },
-           url : "${path}/alarm/adminAlarmList.do",
-           success : function(data) {
-               $("#adminAlarmListBody").html(data);
-           }
-    });
-}
-
-
-function userAlarmList(){
-    var userid = $('#userid').val();
-    $.ajax({
-           data : {
-        	   userid : userid
-           },
-           url : "${path}/alarm/adminAlarmList.do",
-           success : function(data) {
-               $("#userAlarmListBody").html(data);
-           }
-    });
-}
-
-
-function alarmList(page) {
-	   var userid = $('#userid').val();
-	   $.ajax({
-           data : {
-        	   userid : userid,
-        	   curPage : page
-           },
-           url : "${path}/alarm/adminAlarmList.do",
-           success : function(data) {
-               $("#userAlarmListBody").html(data);
-           }
-    });
-}
 </script>
 
    <%@ include file="include/footer.jsp"%>

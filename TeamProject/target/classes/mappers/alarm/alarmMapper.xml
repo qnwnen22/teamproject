@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(
 				select * from alarm
 				where target=#{userid}
+				order by alarmdate desc
 			) A
 		) where rn between #{start} and #{end}
  </select>
