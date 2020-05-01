@@ -153,14 +153,17 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/updatePoint.do", method = RequestMethod.POST)
-	public void updatePoint(HttpServletRequest request, HttpSession session) throws MessagingException, UnsupportedEncodingException {
+	public ModelAndView updatePoint(HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		String coupon = request.getParameter("coupon");	
 		MemberDTO dto = new MemberDTO();
 	   	dto.setCoupon(coupon);
 	   	String userid = (String) session.getAttribute("userid");
 		dto.setUserid(userid);
 		memberService.updatePoint(dto);
-		System.out.println("성공");
+		mav.addObject("message", "쿠폰이 적용되었습니다. 나의 정보에서 포인트를 확인하세요.");
+		mav.setViewName("member/couponCheck");
+		return mav;
 	}
 
 	
