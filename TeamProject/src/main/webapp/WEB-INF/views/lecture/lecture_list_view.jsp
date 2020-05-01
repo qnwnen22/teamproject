@@ -145,25 +145,55 @@ $('#star1 a').click(function(){
 			
 							<div class="col-12 col-lg-6 px-0 mx-0" >
 								<c:choose>
-									<c:when test="${sessionScope.packages_end != null}">
-										<form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
-				                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
-				                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_video()">
-				                        </form>
+									<c:when test="${sessionScope.userid == dto.userid}">
+										<c:choose>
+					                     <c:when test="${dto.cell_type == '3'}">
+					              		    <form method="post" name="viewoffForm" id="viewoffForm" action="${path}/lecture/lectureView_offline.do?my=1">
+					                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+					                           <input class="btn btn-dark col-12" type="button" value="장소확인" onclick="lectureView_offline()">
+					                        </form>
+					                     </c:when>
+					                     
+					                     <c:when test="${dto.cell_type == '1'}">
+					                        <form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
+					                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+					                           <input class="btn btn-dark col-12" type="button" value="내 영상 시청하기" onclick="lectureView_video()">
+					                        </form>
+					                     </c:when>
+					                     
+					                     <c:otherwise>
+					                        <form method="post" name="viewForm" id="viewForm" action="${path}/lecture/lectureView_success.do?my=1">
+					                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+					                           <input class="btn btn-dark col-12" type="button" value="강의하기" onclick="lectureView_success()">
+					                        </form>	
+					                     </c:otherwise>
+					                  </c:choose>
 									</c:when>
 									
 									<c:when test="${check==0}">
-										<form method="post" action="${path}/cart/insertCart.do">
-											<input type="hidden" name="main_img" value="${dto.main_img}">
-											<input type="hidden" name="cell_type" value="${dto.cell_type}">
-											<input type="hidden" name="price" value="${dto.price}">
-											<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
-											<input type="hidden" name="main_category" value="${dto.main_category}">
-											<input type="hidden" name="sub_category" value="${dto.sub_category}">
-											<input type="hidden" name="subject" value="${dto.subject}">
-											<input type="hidden" name="userid" id="userid" value="${dto.userid}">
-											<input class="btn btn-danger col-12" type="submit" value="구매하기">
-										</form>
+		
+										<c:choose>	
+											<c:when test="${sessionScope.packages_end != null && dto.cell_type=='1' }">
+						                        <form method="post" name="viewVideoForm" id="viewVideoForm" action="${path}/lecture/lectureView_video.do?">
+						                           <input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+						                           <input class="btn btn-dark col-12" type="button" value="시청하기" onclick="lectureView_video()">
+						                        </form>
+											</c:when>
+											
+											<c:otherwise>
+												<form method="post" action="${path}/cart/insertCart.do">
+													<input type="hidden" name="main_img" value="${dto.main_img}">
+													<input type="hidden" name="cell_type" value="${dto.cell_type}">
+													<input type="hidden" name="price" value="${dto.price}">
+													<input type="hidden" name="lecture_idx" id="lecture_idx" value="${dto.lecture_idx}">
+													<input type="hidden" name="main_category" value="${dto.main_category}">
+													<input type="hidden" name="sub_category" value="${dto.sub_category}">
+													<input type="hidden" name="subject" value="${dto.subject}">
+													<input type="hidden" name="userid" id="userid" value="${dto.userid}">
+													<input class="btn btn-danger col-12" type="submit" value="구매하기">
+												</form>
+											</c:otherwise>
+										</c:choose>
 									</c:when>
 									
 									<c:when test="${check==1}">

@@ -47,7 +47,13 @@
 						  </tr>
 						</thead>
 						<tbody id="userListTbody">
-						  
+						  <c:if test="${makeUserid == sessionScope.userid}">
+						  <tr>
+						    <td>강사</td>
+						    <td>${sessionScope.userid}</td>
+						    <td>${sessionScope.nickname}</td>
+						  <tr>
+						  </c:if>
 						</tbody>
 					</table>	
 				</div>

@@ -529,7 +529,7 @@ public class LectureController {
 	}
 	
 	@RequestMapping("lectureView_offline.do")
-	public ModelAndView lectureView_offline(HttpSession session, int lecture_idx) {
+	public ModelAndView lectureView_offline(HttpSession session, int lecture_idx, int my) {
 		ModelAndView mav=new ModelAndView();
 		LectureBoxDTO dto=new LectureBoxDTO();
 		String userid=(String)session.getAttribute("userid");
@@ -537,7 +537,6 @@ public class LectureController {
 		dto.setLecture_idx(lecture_idx);
 		
 		int check=lectureService.lectureViewCheck(dto);
-		System.err.println("check : "+check);
 		if(check==1) {
 			LectureDTO dto2=new LectureDTO();
 			dto2=lectureService.lectureView_success(lecture_idx);
@@ -545,14 +544,22 @@ public class LectureController {
 			mav.setViewName("lecture/lectureView_offline");
 			return mav;
 		}else {
-			mav.setViewName("redirect:/");
+			if(my==1) {
+				LectureDTO dto2=new LectureDTO();
+				dto2=lectureService.lectureView_success(lecture_idx);
+				mav.addObject("dto", dto2);
+				mav.setViewName("lecture/lectureView_offline");
+			}
+			else {
+				mav.setViewName("redirect:/");
+			}
 		}
 		return mav;
 	}
 	
 	
 	@RequestMapping("lectureView_success.do")
-	public ModelAndView lectureView_success(HttpSession session, int lecture_idx) {
+	public ModelAndView lectureView_success(HttpSession session, int lecture_idx, int my) {
 		ModelAndView mav=new ModelAndView();
 		LectureBoxDTO dto=new LectureBoxDTO();
 		String userid=(String)session.getAttribute("userid");
@@ -565,9 +572,15 @@ public class LectureController {
 			ldto=lectureService.lectureView_success(lecture_idx);
 			mav.addObject("ldto", ldto);
 			mav.setViewName("lecture/lectureView_success");
-			return mav;
 		}else {
-			mav.setViewName("redirect:/");
+			if(my==1) {
+				LectureDTO ldto=new LectureDTO();
+				ldto=lectureService.lectureView_success(lecture_idx);
+				mav.addObject("ldto", ldto);
+				mav.setViewName("lecture/lectureView_success");
+			}else {
+				mav.setViewName("redirect:/");
+			}
 		}
 		return mav;
 	}

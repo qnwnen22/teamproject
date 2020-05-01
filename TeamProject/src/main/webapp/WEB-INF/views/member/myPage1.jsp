@@ -123,7 +123,7 @@
                       <div class="form-group">
 
                              <div class="col-xs-6">
-                              <label for="email"><h6>이름</h6></label>
+                              <label for="email"><h6>이메일</h6></label>
                               <input type="email" class="form-control" name="useremail" id="useremail" placeholder="email" value="${dto.useremail}" disabled />
                           </div>
                       </div>
