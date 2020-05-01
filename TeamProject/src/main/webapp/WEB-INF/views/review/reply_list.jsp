@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 	<% pageContext.setAttribute("newLineChar","\n"); %>
 	<c:forEach var="row" items="${map.replylist}">
@@ -13,7 +13,7 @@
 		<c:set var="str" value="${fn:replace(str,newLineChar,'<br>') }" />
 
 		<div>
-			<input type="hidden" name="bno" value="${row.bno}"> <input
+			<input type="hidden" name="bno" id="bno" value="${row.bno}"> <input
 				type="hidden" name="rno" value="${row.rno}"> ${row.replyer}
 			(
 			<fmt:formatDate value="${row.regdate}"
@@ -62,13 +62,10 @@
 			</nav>
 		</div>
 <script type="text/javascript">
+
 function listreplyPage(page) {
-	$.ajax({
-		type : "post",
-		url : "${path}/review/replylist.do?bno=${dto.bno}&curPage="+page;,
-		success : function(result) {
-			$("#replyList").html(result);
-		}
-	});
+	var bno =$("#bno").val();
+	location.href ="${path}/review/view.do?bno="+bno+"&replyCurPage="+page
 }
+
 </script>

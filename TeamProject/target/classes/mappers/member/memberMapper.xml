@@ -241,8 +241,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="chartCountMonth" resultType="com.TeamProject.Kdemy.model.member.dto.MemberDTO">
 		SELECT TO_CHAR(join_date,'MM') join_month , COUNT(*) tcount FROM kdemymember GROUP BY TO_CHAR(join_date,'MM') order by join_month
 	</select>
-	
-	<update id="minusPoint">
-		update kdemymember set point=#{point} where userid=#{userid}
-	</update>
+
 </mapper>

@@ -1,20 +1,16 @@
 
---!!!!!!!!°Ô½ÃÆÇ!!!!!!!!!!!--
-
 drop table kdemyreview cascade constraints;
 
---°Ô½ÃÆÇ Å×ÀÌºí
 create table kdemyreview (
-bno number not null, --°Ô½Ã¹°¹øÈ£
+bno number not null, 
 subject varchar2(30) not null,
-teacher varchar2(30) not null,
-title varchar2(200) not null, --Á¦¸ñ
-content clob, --º»¹®
-writer varchar2(50) not null, --ÀÛ¼ºÀÚ
-regdate date default sysdate, --ÀÛ¼ºÀÏÀÚ
-viewcnt number default 0, --Á¶È¸¼ö
+teacher varchar2(30) not null,--ï¿½ï¿½ï¿½ï¿½
+content clob, 
+writer varchar2(50) not null,
+regdate date default sysdate, 
+viewcnt number default 0, 
 show char(1) default 'Y',
-fullName varchar2(150),--Ã·ºÎÆÄÀÏ ÀÌ¸§
+fullName varchar2(150),
 love number default 0,
 primary key(bno)
 );
@@ -24,14 +20,14 @@ delete from kdemyreview;
 
 
 insert into kdemyreview (bno,title,content,writer) values
-(1,'Á¦¸ñ','³»¿ë','kim');
+(1,'ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½','kim');
 
 select * from kdemyreview order by bno desc;
 
 COMMIT;
 
 
---´ñ±Û Å×ÀÌºí
+--ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
 drop table kdemyreview_reply cascade constraints;
 create table kdemyreview_reply (
 rno number not null primary key,
@@ -42,7 +38,7 @@ regdate date default sysdate,
 updatedate date default sysdate
 );
 drop table kdemyreview_reply;
---foreign key Á¦¾àÁ¶°Ç Ãß°¡
+--foreign key ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 alter table kdemyreview_reply add constraint fk_review
 foreign key(bno) references kdemyreview(bno);
 
@@ -51,7 +47,7 @@ start with 1001
 increment by 1;
 drop sequence seq_kdemyreview;
 
---½ÃÄö½º »ý¼º
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 drop sequence review_reply_seq;
 create sequence review_reply_seq
 start with 1
@@ -65,16 +61,16 @@ select * from kdemymember;
 commit;
 
 
---ÆäÀÌÁö ³ª´©±â Å×½ºÆ®¸¦ À§ÇØ ·¹ÄÚµå ÀÔ·Â
-declare --¼±¾ðºÎ
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½Ô·ï¿½
+declare --ï¿½ï¿½ï¿½ï¿½ï¿½
     i number := 1;
-begin --½ÇÇàºÎ
+begin --ï¿½ï¿½ï¿½ï¿½ï¿½
     while i<=1000 loop
         insert into kdemyreview (bno,subject,teacher,title,content,writer)
         values
         ( (select nvl(max(bno)+1,1) from kdemyreview)
-        ,'°ú¸ñ'||i,'¼±»ý´Ô'||i,'Á¦¸ñ'||i, '³»¿ë'||i, '°ü¸®ÀÚ');
-        i := i+1; --Á¶°Ç º¯°æ
+        ,'ï¿½ï¿½ï¿½ï¿½'||i,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'||i,'ï¿½ï¿½ï¿½ï¿½'||i, 'ï¿½ï¿½ï¿½ï¿½'||i, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+        i := i+1; --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     end loop;
 end;
 /
@@ -82,7 +78,7 @@ end;
 
 select * from kdemyreview order by bno desc;
 
---·¹ÄÚµå °¹¼ö È®ÀÎ
+--ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 select count(*) from kdemyreview;
 
 commit;
@@ -91,11 +87,11 @@ delete from kdemyreview ;
 
 
 
---±Û¾²±â¸¦ ÇÏ±â À§ÇØ
---½ÃÄö½º »èÁ¦
+--ï¿½Û¾ï¿½ï¿½â¸¦ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 drop sequence seq_kdemyreview;
 
---1000¹øºÎÅÍ ½ÃÀÛÇÏ´Â ½ÃÄö½º »ý¼º
+--1000ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 create sequence seq_kdemyreview
 start with 1001
 increment by 1;

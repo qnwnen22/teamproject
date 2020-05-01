@@ -50,7 +50,7 @@
 				url : "${path}/review/replyinsert.do",
 				data : param,
 				success : function() {
-					listReply();
+					listReplyLoad();
 					$("#replytext").val("");
 				}
 			});				
@@ -89,9 +89,20 @@
 
 
 	function listReply() {
+		var replyCurPage=$("#replyCurPage").val();
 		$.ajax({
 			type : "post",
-			url : "${path}/review/replylist.do?bno=${dto.bno}",
+			url : "${path}/review/replylist.do?bno=${dto.bno}&replyCurPage="+replyCurPage,
+			success : function(result) {
+				$("#replyList").html(result);
+			}
+		});
+	}
+
+	function listReplyLoad() {
+		$.ajax({
+			type : "post",
+			url : "${path}/review/replylist.do?bno=${dto.bno}&replyCurPage=1",
 			success : function(result) {
 				$("#replyList").html(result);
 			}
@@ -183,6 +194,7 @@
 
 
 		<!-- 수정,삭제에 필요한 글번호를 hidden 태그에 저장 -->
+		<input type="hidden" name="replyCurPage" id="replyCurPage" value="${map.replyCurPage}">
 		<input type="hidden" name="bno" value="${dto.bno}"> <input
 			type="hidden" name="bno" value="${dto.writer}">
 		<div class="btn-group float-right mb-5 mt-3" role="group"

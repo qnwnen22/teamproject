@@ -95,6 +95,13 @@
 				</div>
  <script>
 
+ $(function(){
+     var responseMessage = "<c:out value="${message}" />";
+     if (responseMessage != ""){
+         alert(responseMessage)
+     }
+ })
+ 
 $(function(){
 	couponDetail();
 	couponMemberList();

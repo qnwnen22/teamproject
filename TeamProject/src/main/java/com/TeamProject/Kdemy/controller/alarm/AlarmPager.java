@@ -2,7 +2,7 @@ package com.TeamProject.Kdemy.controller.alarm;
 
 public class AlarmPager {
 	public static final int PAGE_SCALE=5; //페이지당 게시물수
-	public static final int BLOCK_SCALE=5;//화면당 페이지수
+	public static final int BLOCK_SCALE=3;//화면당 페이지수
 	
 	private int curPage; //현재 페이지
 	private int prevPage; //이전 페이지

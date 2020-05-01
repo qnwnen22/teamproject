@@ -19,6 +19,11 @@
 			if (confirm("구매하시겠습니까?") == true) {
 				alert("구매가 완료되었습니다.");
 				document.form1.submit();
+				if (socket.readyState !== 1) return;
+				let replyer = $('input#buyuserid').val();
+				let lecture_idx = $('input#lecture_idx').val();
+				// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
+				socket.send("buyAlarm,"+replyer+","+lecture_idx);
 			} else {
 				alert("구매를 취소하셨습니다.");
 			}
@@ -101,6 +106,7 @@
 </head>
 <body>
 	<%@ include file="../include/fixed-topbar.jsp"%>
+	<input type="hidden" name="buyuserid" id="buyuserid" value="${sessionScope.userid}">
 	<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
 
 		<div>
@@ -217,12 +223,13 @@
 						<input type="hidden" name="count" value="${count}" readonly>
 
 						<c:forEach var="dto" items="${list}" begin="0" end="${count}">
-					    	<input type="hidden" name="userid" value="${dto.userid}">
+					    	<input type="hidden" name="userid" id="userid" value="${dto.userid}">
 					     	<%-- <input type="hidden" name="nickname" value="${dto.nickname}"> --%>
 						    <input type="hidden" name="main_img" value="${dto.main_img}">
 							<input type="hidden" name="cell_type" value="${dto.cell_type}">
-							<input type="hidden" name="lecture_idx"
+							<input type="hidden" name="lecture_idx" id="lecture_idx"
 								value="${dto.lecture_idx}">
+								<input type="hidden" name="">
 						</c:forEach>
 						<input type="hidden" name="price" id="price" value="${sum}">
 						<div class="p-3 mb-2  text-center h5 bg-dark text-white ">

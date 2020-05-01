@@ -97,6 +97,25 @@ public class KdemyWebSocketHandler extends TextWebSocketHandler{
     					dto.setAlarmmsg(alarmmsg);
     					alarmService.insertAlarm(dto);
     				}
+    			}else if("buyAlarm".equals(cmd)) {
+    				int lecture_idx=Integer.parseInt(target);
+    				String makeUserid=lectureService.buyAlarm(lecture_idx);
+    				WebSocketSession makeUseridSession= userSessions.get(makeUserid);
+    				System.out.println("makeUseridmakeUseridmakeUseridmakeUseridmakeUseridmakeUseridmakeUserid"+makeUserid);
+    				if(makeUseridSession != null) {
+    					alarmmsg=sender+"님이"+lecture_idx+"번의 강의를 구매하였습니다.";
+    					TextMessage tmpMsg = new TextMessage(alarmmsg);
+    					makeUseridSession.sendMessage(tmpMsg);
+    					dto.setTarget(makeUserid);
+    					dto.setAlarmmsg(alarmmsg);
+    					alarmService.insertAlarm(dto);
+    				}else {
+    					alarmmsg=sender+"님이"+lecture_idx+"번의 강의를 구매하였습니다.";
+    					dto.setTarget(makeUserid);
+    					dto.setAlarmmsg(alarmmsg);
+    					alarmService.insertAlarm(dto);
+    				}
+    				
     			}
     		 }
     		 if(strs != null && strs.length == 4) {
@@ -177,7 +196,6 @@ public class KdemyWebSocketHandler extends TextWebSocketHandler{
      				if(chatWTargetSession != null) {
      					TextMessage adminSendMsg = new TextMessage(sender+"님이 문의를 하였습니다.");
      					chatWTargetSession.sendMessage(adminSendMsg);
-     					chatroomNum.put("chatroomNum", num);
      				}else {
      					
      				}
