@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
-<%@ include file="../include/header.jsp"%>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<%@ include file="../include/header.jsp" %>
 <style type="text/css">
 .input-group {
 	width: auto !important;
@@ -33,7 +34,6 @@
 }
 
 </style>
-<%@ include file="../include/header.jsp"%>
 <script type="text/javascript">
 	$(document).ready(function() {
 		listReply();
@@ -91,15 +91,16 @@
 	function listReply() {
 		$.ajax({
 			type : "post",
-			url : "${path}/review/replylist.do?bno=${dto.bno}"+"&curPage="+replypage,
+			url : "${path}/review/replylist.do?bno=${dto.bno}",
 			success : function(result) {
 				$("#replyList").html(result);
 			}
 		});
 	}
 	function list(page) {
-		location.href = "${path}/review/list.do?curPage=" + page;
+		location.href = "${path}/review/list.do?curPage="+page;
 	}
+
 </script>
 
 </head>
@@ -137,14 +138,16 @@
 					</div>
 				</div>
 				<hr>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 			</div>
 
 		</form>
-		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3"></div>
+		<div id="replyList" style="border: 1px solid lightgray;" class="mb-3">
+		
+		
+		
+		
+		
+		</div>
 
 
 		<c:choose>
@@ -156,7 +159,7 @@
 					<div class="input-group-append">
 						<button type="button"
 							class="justify-content-end btn-outline-secondary btn btn-sm btn-primary font-color-fff btn-normal-silver"
-							data-toggle="button" aria-pressed="false" id="btnReply">
+							data-toggle="button" id="btnReply">
 							입력</button>
 					</div>
 				</div>

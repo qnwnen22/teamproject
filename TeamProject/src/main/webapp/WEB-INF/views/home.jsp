@@ -1549,7 +1549,7 @@ function userAlarmList(){
            },
            url : "${path}/alarm/adminAlarmList.do",
            success : function(data) {
-               $("#adminAlarmListBody").html(data);
+               $("#userAlarmListBody").html(data);
            }
     });
 }

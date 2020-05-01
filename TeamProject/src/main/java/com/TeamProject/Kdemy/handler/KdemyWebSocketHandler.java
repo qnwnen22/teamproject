@@ -58,9 +58,9 @@ public class KdemyWebSocketHandler extends TextWebSocketHandler{
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	 System.out.println("hadelText Message : " +session+ message);
     	 String msg=message.getPayload();
+    	 String alarmmsg=null;
     	 if(StringUtils.isNotEmpty(msg)) {
     		 String[] strs = msg.split(",");
-    		 System.out.println("asldk;fjasd;lkfjsal;dkjfl;ksdaj"+strs);
     		 if(strs != null && strs.length == 3) {
     			String cmd= strs[0];
      			String sender=strs[1];
@@ -70,12 +70,14 @@ public class KdemyWebSocketHandler extends TextWebSocketHandler{
      			AlarmDTO dto=new AlarmDTO();
      			dto.setSender(sender);
      			dto.setTarget(target);
-     			String alarmmsg=null;
      			if("teaching".equals(cmd)) {
     				if(adminTargetSession != null) {
-    					TextMessage tmpMsg = new TextMessage(sender + "님이"
-    							+"<a type='external' href=\'/Kdemy/member/list.do?keyword="+sender+"&location=request\'> 강사 신청을 하였습니다.</a>");
-    					adminTargetSession.sendMessage(tmpMsg);   					
+    					alarmmsg=sender + "님이"
+    							+"<a type='external' href=\'/Kdemy/member/list.do?keyword="+sender+"&location=request\'> 강사 신청을 하였습니다.</a>";
+    					TextMessage tmpMsg = new TextMessage(alarmmsg);
+    					adminTargetSession.sendMessage(tmpMsg);
+    					dto.setAlarmmsg(alarmmsg);
+    					alarmService.insertAlarm(dto);
     				}else {
     					alarmmsg=sender + "님이"
 						+"<a href='/Kdemy/member/list.do?keyword="+sender+"&location=request'> 강사 신청을 하였습니다.</a>";
@@ -84,8 +86,12 @@ public class KdemyWebSocketHandler extends TextWebSocketHandler{
     				}
     			}else if("teacherSuccess".equals(cmd)) {
     				if(teacherTargetSession != null) {
-    					TextMessage tmpMsg = new TextMessage("강사 승인이 완료되었습니다. 다시 로그인해주세요.");
-    					teacherTargetSession.sendMessage(tmpMsg);   					
+    					alarmmsg="강사 승인이 완료되었습니다.";
+    					TextMessage tmpMsg = new TextMessage(alarmmsg);
+    					teacherTargetSession.sendMessage(tmpMsg);
+    					System.out.println("asfasdfasdfasdfasdfasdfasdfasdfasdf"+dto);
+    					dto.setAlarmmsg(alarmmsg);
+    					alarmService.insertAlarm(dto);
     				}else {
     					alarmmsg="강사 승인이 완료되었습니다.";
     					dto.setAlarmmsg(alarmmsg);
@@ -101,23 +107,29 @@ public class KdemyWebSocketHandler extends TextWebSocketHandler{
     			AlarmDTO dto=new AlarmDTO();
      			dto.setSender(sender);
      			dto.setTarget(target);
-     			System.out.println("adskjlfjasldkjfjl;kasdjfkl;dsajf;lksadjf;lksajfdkl;sadjfkl;sadj"+cmd);
+     			
     			WebSocketSession boardWriterSession = userSessions.get(target);
     			if("reply".equals(cmd)) {
     				if(boardWriterSession != null) {
-    					TextMessage tmpMsg = new TextMessage(sender + "님이"
-    							+"<a href='/Kdemy/review/view.do?bno="+num+"'>"+ num +"번 게시글에 댓글을 달았습니다.");
-    					boardWriterSession.sendMessage(tmpMsg);   					
+    					alarmmsg=sender + "님이"
+    							+"<a href='/Kdemy/review/view.do?bno="+num+"'>"+ num +"번 게시글에 댓글을 달았습니다.";
+    					TextMessage tmpMsg = new TextMessage(alarmmsg);
+    					boardWriterSession.sendMessage(tmpMsg);
+    					dto.setAlarmmsg(alarmmsg);
+    					alarmService.insertAlarm(dto);
     				}else {
-    					String alarmmsg=sender + "님이"
+    					alarmmsg=sender + "님이"
     							+"<a href='/Kdemy/review/view.do?bno="+num+"'>"+ num +"번 게시글에 댓글을 달았습니다.";
     					dto.setAlarmmsg(alarmmsg);
     					alarmService.insertAlarm(dto);
     				}
     			}else if("lectureDelete".equals(cmd)) {
     				if(boardWriterSession!=null) {
-    					TextMessage tmpMsg = new TextMessage(num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.");
-    					boardWriterSession.sendMessage(tmpMsg);   
+    					alarmmsg=num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.";
+    					TextMessage tmpMsg = new TextMessage(alarmmsg);
+    					boardWriterSession.sendMessage(tmpMsg);
+    					dto.setAlarmmsg(alarmmsg);
+    					alarmService.insertAlarm(dto);
     					List<LectureBoxDTO> lecturebuyList=new ArrayList<>();
     					int lecture_idx=Integer.parseInt(num);
     					lecturebuyList=lectureService.lecturebuyList(lecture_idx);
@@ -128,17 +140,20 @@ public class KdemyWebSocketHandler extends TextWebSocketHandler{
     							WebSocketSession buysession=userSessions.get(userid);
     							System.out.println("buysession"+buysession);
     							if(buysession != null) {
-    								TextMessage deleteMsg = new TextMessage(num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.<br>컨텐츠를 구매하신 금액은 환불되었습니다.");
-    								buysession.sendMessage(deleteMsg);    								
+    								alarmmsg=num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.<br>컨텐츠를 구매하신 금액은 환불되었습니다.";
+    								TextMessage deleteMsg = new TextMessage(alarmmsg);
+    								buysession.sendMessage(deleteMsg);
+    								dto.setAlarmmsg(alarmmsg);
+    								alarmService.insertAlarm(dto);
     							}else {
-    								String alarmmsg=num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.<br>컨텐츠를 구매하신 금액은 환불되었습니다.";
+    								alarmmsg=num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.<br>컨텐츠를 구매하신 금액은 환불되었습니다.";
     								dto.setAlarmmsg(alarmmsg);
     								alarmService.insertAlarm(dto);
     							}
     						}
     					}
     				}else {
-    					String alarmmsg=num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.";
+    					alarmmsg=num+"번 강의글이 부적절한 컨텐츠로 판단되어 관리자의 권한으로 삭제되었습니다.";
     					dto.setAlarmmsg(alarmmsg);
     					alarmService.insertAlarm(dto);
     				}
