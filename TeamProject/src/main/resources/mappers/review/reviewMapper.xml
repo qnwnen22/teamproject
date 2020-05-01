@@ -149,6 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     select rno,bno,replyer,regdate,updatedate,r.replytext
 		from kdemyreview_reply r, kdemymember m
 		where r.replyer=m.userid and bno=#{bno}
+		order by rno desc
   </select>
   
   <delete id="replydelete">

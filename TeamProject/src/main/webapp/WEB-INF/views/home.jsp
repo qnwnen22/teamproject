@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,11 +7,10 @@
 <%@ include file="include/header.jsp"%>
 <link rel="stylesheet" href="${path}/include/css/home.css">
 <link rel="stylesheet" href="${path}/include/css/carousel.css">
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-<script type="text/javascript"
-	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="${path}/include/js/html5kellycolorpicker.min.js"></script>
+
 <script>
    $(function() {
       //마지막 스크롤 값을 저장할 lastScroll 변수
@@ -224,978 +223,977 @@
    
 </script>
 </head>
-
 <body class="m-0 p-0">
 
-	<div id="socketAlert" class="alert alert-primary" role="alert"
-		style="display: none;"></div>
-	<%@ include file="include/topbar.jsp"%>
-	<div class="global-body">
-		<div class="master-body">
-			<div class="MasterBodyDestTop">
-				<div class="kdemimobile d-lg-none d-xl-none d-md-block d-sm-block">
-					<div class="container-md col-md-12 pt-3">
-						<div class="flex-between-center height-80px row">
-							<div class="text-center col-md-12 col-sm-12">
-								<div class="NavLogo nav-logo-wrapper">
-									<a class="cursor logofont" data-ga-category="header"
-										href="${path}"><b>KDEMY</b></a>
-								</div>
-							</div>
-						</div>
-						<br>
-						<div id="carouselExampleCaptions" class="carousel slide"
-							data-ride="carousel" style="height: 300px;">
-							<ol class="carousel-indicators">
-								<li data-target="#carouselExampleCaptions" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-							</ol>
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="${path}/include/images/slide/slide.jpg"
-										class="d-block w-100" style="height: 300px;" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>First slide label</h5>
-										<p>Nulla vitae elit libero, a pharetra augue mollis
-											interdum.</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="${path}/include/images/slide/slide2.jpg"
-										class="d-block w-100" style="height: 300px;" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>Second slide label</h5>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit.</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="${path}/include/images/slide/slide3.jpg"
-										class="d-block w-100" style="height: 300px;" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>Third slide label</h5>
-										<p>Praesent commodo cursus magna, vel scelerisque nisl
-											consectetur.</p>
-									</div>
-								</div>
-							</div>
-							<a class="carousel-control-prev" href="#carouselExampleCaptions"
-								role="button" data-slide="prev"> <span
-								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-								class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
-								role="button" data-slide="next"> <span
-								class="carousel-control-next-icon" aria-hidden="true"></span> <span
-								class="sr-only">Next</span>
-							</a>
-						</div>
-						<br>
-						<div class="col-md-12 col-sm-12 pt-3">
-							<div class="items-container row">
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=디자인">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
-										<div class="iconName">
-											<span><b>디자인</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
-										<div class="iconName">
-											<span><b>IT,프로그래밍</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-										<div class="iconName">
-											<span><b>콘텐츠 제작</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=마케팅">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-										<div class="iconName">
-											<span><b>마케팅</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=번역,통역">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
-										<div class="iconName">
-											<span><b>번역,통역</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=문서,통역">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
-										<div class="iconName">
-											<span><b>문서,통역</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
-										<div class="iconName">
-											<span><b>비즈니스컨설팅</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=운세,상담">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
-										<div class="iconName">
-											<span><b>운세,상담</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
-										<div class="iconName">
-											<span><b>레슨,실무교육</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=주문제작">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
-										<div class="iconName">
-											<span><b>주문제작</b></span>
-										</div>
-									</a>
-								</div>
-								<div class="RootDirectoryThemeItem col-3">
-									<a class="plain"
-										href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
-										<div class="icon"
-											style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
-										<div class="iconName">
-											<span><b>간판,인쇄</b></span>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="router-view" class="d-none d-lg-block d-xl-block">
-					<div class="home">
-						<div class="MarketHome">
-							<div class="MarketIndex">
-								<c:forEach var="row" items="${list}">
-									<div id="mainHeaderContainer"
-										class="position-relative col-xl-12"
-										style="background-color: ${row.color}" id="color1">
+   <div id="socketAlert" class="alert alert-primary" role="alert"
+      style="display: none;"></div>
+   <%@ include file="include/topbar.jsp"%>
+   <div class="global-body">
+      <div class="master-body">
+         <div class="MasterBodyDestTop">
+            <div class="kdemimobile d-lg-none d-xl-none d-md-block d-sm-block">
+               <div class="container-md col-md-12 pt-3">
+                  <div class="flex-between-center height-80px row">
+                     <div class="text-center col-md-12 col-sm-12">
+                        <div class="NavLogo nav-logo-wrapper">
+                           <a class="cursor logofont" data-ga-category="header"
+                              href="${path}"><b>KDEMY</b></a>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <div id="carouselExampleCaptions" class="carousel slide"
+                     data-ride="carousel" style="height: 300px;">
+                     <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0"
+                           class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                     </ol>
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <img src="${path}/include/images/slide/slide.jpg"
+                              class="d-block w-100" style="height: 300px;" alt="...">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5>First slide label</h5>
+                              <p>Nulla vitae elit libero, a pharetra augue mollis
+                                 interdum.</p>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img src="${path}/include/images/slide/slide2.jpg"
+                              class="d-block w-100" style="height: 300px;" alt="...">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5>Second slide label</h5>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                 elit.</p>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img src="${path}/include/images/slide/slide3.jpg"
+                              class="d-block w-100" style="height: 300px;" alt="...">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5>Third slide label</h5>
+                              <p>Praesent commodo cursus magna, vel scelerisque nisl
+                                 consectetur.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="carousel-control-prev" href="#carouselExampleCaptions"
+                        role="button" data-slide="prev"> <span
+                        class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+                        class="sr-only">Previous</span>
+                     </a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+                        role="button" data-slide="next"> <span
+                        class="carousel-control-next-icon" aria-hidden="true"></span> <span
+                        class="sr-only">Next</span>
+                     </a>
+                  </div>
+                  <br>
+                  <div class="col-md-12 col-sm-12 pt-3">
+                     <div class="items-container row">
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=디자인">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
+                              <div class="iconName">
+                                 <span><b>디자인</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+                              <div class="iconName">
+                                 <span><b>IT,프로그래밍</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+                              <div class="iconName">
+                                 <span><b>콘텐츠 제작</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=마케팅">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
+                              <div class="iconName">
+                                 <span><b>마케팅</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=번역,통역">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
+                              <div class="iconName">
+                                 <span><b>번역,통역</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=문서,통역">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
+                              <div class="iconName">
+                                 <span><b>문서,통역</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
+                              <div class="iconName">
+                                 <span><b>비즈니스컨설팅</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=운세,상담">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
+                              <div class="iconName">
+                                 <span><b>운세,상담</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
+                              <div class="iconName">
+                                 <span><b>레슨,실무교육</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=주문제작">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
+                              <div class="iconName">
+                                 <span><b>주문제작</b></span>
+                              </div>
+                           </a>
+                        </div>
+                        <div class="RootDirectoryThemeItem col-3">
+                           <a class="plain"
+                              href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
+                              <div class="icon"
+                                 style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
+                              <div class="iconName">
+                                 <span><b>간판,인쇄</b></span>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="router-view" class="d-none d-lg-block d-xl-block">
+               <div class="home">
+                  <div class="MarketHome">
+                     <div class="MarketIndex">
+                        <c:forEach var="row" items="${list}">
+                           <div id="mainHeaderContainer"
+                              class="position-relative col-xl-12"
+                              style="background-color: ${row.color}" id="color1">
 
-										<c:if
-											test="${sessionScope.admin_id != null && sessionScope.admin_level == 3}">
-											<!-- 관리자 메인배너 변경 코드 -->
-											<button class="btn" data-toggle="modal"
-												data-target="#mainChange">
-												<i class="fas fa-cog" data-toggle="Modal"
-													data-target="#mainChange"></i>
-											</button>
-											<div class="modal" id="mainChange">
-												<div class="modal-dialog modal-xl">
-													<div class="modal-content">
+                              <c:if
+                                 test="${sessionScope.admin_id != null && sessionScope.admin_level == 3}">
+                                 <!-- 관리자 메인배너 변경 코드 -->
+                                 <button class="btn" data-toggle="modal"
+                                    data-target="#mainChange">
+                                    <i class="fas fa-cog" data-toggle="Modal"
+                                       data-target="#mainChange"></i>
+                                 </button>
+                                 <div class="modal" id="mainChange">
+                                    <div class="modal-dialog modal-xl">
+                                       <div class="modal-content">
 
-														<!-- Modal Header -->
-														<div class="modal-header">
-															<h4 class="modal-title">메인배너 변경</h4>
-															<button type="button" class="close" data-dismiss="modal">&times;</button>
-														</div>
+                                          <!-- Modal Header -->
+                                          <div class="modal-header">
+                                             <h4 class="modal-title">메인배너 변경</h4>
+                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                          </div>
 
-														<!-- Modal body -->
-														<div class="modal-body">
-															<div class="form-group">
-																<label for="now">현재 디자인</label>
-																<div class="global-body">
-																	<div class="MasterBodyDestTop">
-																		<div class="col-md-12 col-sm-12 pt-3"
-																			style="background-color:${row.color}">
+                                          <!-- Modal body -->
+                                          <div class="modal-body">
+                                             <div class="form-group">
+                                                <label for="now">현재 디자인</label>
+                                                <div class="global-body">
+                                                   <div class="MasterBodyDestTop">
+                                                      <div class="col-md-12 col-sm-12 pt-3"
+                                                         style="background-color:${row.color}">
 
-																			<div class="header position-relative"
-																				id="kdemiMainHeader">
-																				<div class="index-opacity-wrap">
-																					<div
-																						class="container-xl col-xl-8 offset-xl-2 col-lg-12">
-																						<div class="flex-between-center height-80px row">
-																							<div class="flex-left-center col-3 mr-auto">
-																								<div class="NavLogo nav-logo-wrapper">
-																									<a class="cursor logofont"
-																										data-ga-category="header" href="${path}"><b>KDEMY</b></a>
-																								</div>
-																							</div>
-																							<div class="flex-end-center col-auto p-0">
-																								<div
-																									class="header-right-info NavRight col-xl-12">
-																									<c:if test="${sessionScope.admin_id != 'null'}">
-																										<div
-																											class="item dropdown col-xl-4 text-center dropdown-toggle"
-																											style="display: initial !important;">
-																											<a class="plain cursor"
-																												data-ga-category="header"><b>관리메뉴</b></a>
-																											<div class="dropdown-menu">
-																												<a class="dropdown-item"
-																													href="${path}/admin/list.do">관리자계정</a> <a
-																													class="dropdown-item" href="#">회원관리</a> <a
-																													class="dropdown-item" href="#">강의관리</a> <a
-																													class="dropdown-item" href="#">패키지관리</a>
-																											</div>
-																										</div>
-																									</c:if>
-																									<div class="item col-xl-4 text-center"
-																										style="display: initial !important;">
-																										<a class="plain cursor"
-																											data-ga-category="header"><b>전문가 등록</b></a>
-																									</div>
-																									<div class="item col-xl-4 text-center"
-																										style="display: initial !important;">
-																										<a class="plain cursor"
-																											data-ga-category="header" data-toggle="modal"
-																											data-target="#kdemyLoginModal"><b>로그인</b></a>
-																									</div>
-																									<div id=""
-																										class="item position-relative col-xl-4"
-																										style="display: initial !important;">
-																										<a
-																											class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-																											href="${path}/member/write.do"
-																											data-ga-category="header"> 무료회원가입 </a>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-																						<br>
-																					</div>
-																					<div class="d-flex margin-top-15">
-																						<div
-																							class="col-4 fileDrop uploadedList justify-content-center"
-																							id="fileDropDiv">
-																							<div class="col-12" id="imageBanner">
-																								<img id="preImg"
-																									src="${path}/include/images/main/uploadImage.png"
-																									class="mx-auto d-block">
-																							</div>
-																						</div>
-																						<div class="col-4 text-align-center"
-																							style="text-align: center;">
-																							<div>
-																								<div class="market-main-description-text">
-																									<span>136</span> <span>만건의 거래</span> <span>98.2</span>
-																									<span>%의 만족도</span>
-																								</div>
-																								<div class="hero-title NGM">프리랜서 마켓, KDEMY</div>
-																							</div>
+                                                         <div class="header position-relative"
+                                                            id="kdemiMainHeader">
+                                                            <div class="index-opacity-wrap">
+                                                               <div
+                                                                  class="container-xl col-xl-8 offset-xl-2 col-lg-12">
+                                                                  <div class="flex-between-center height-80px row">
+                                                                     <div class="flex-left-center col-3 mr-auto">
+                                                                        <div class="NavLogo nav-logo-wrapper">
+                                                                           <a class="cursor logofont"
+                                                                              data-ga-category="header" href="${path}"><b>KDEMY</b></a>
+                                                                        </div>
+                                                                     </div>
+                                                                     <div class="flex-end-center col-auto p-0">
+                                                                        <div
+                                                                           class="header-right-info NavRight col-xl-12">
+                                                                           <c:if test="${sessionScope.admin_id != 'null'}">
+                                                                              <div
+                                                                                 class="item dropdown col-xl-4 text-center dropdown-toggle"
+                                                                                 style="display: initial !important;">
+                                                                                 <a class="plain cursor"
+                                                                                    data-ga-category="header"><b>관리메뉴</b></a>
+                                                                                 <div class="dropdown-menu">
+                                                                                    <a class="dropdown-item"
+                                                                                       href="${path}/admin/list.do">관리자계정</a> <a
+                                                                                       class="dropdown-item" href="#">회원관리</a> <a
+                                                                                       class="dropdown-item" href="#">강의관리</a> <a
+                                                                                       class="dropdown-item" href="#">패키지관리</a>
+                                                                                 </div>
+                                                                              </div>
+                                                                           </c:if>
+                                                                           <div class="item col-xl-4 text-center"
+                                                                              style="display: initial !important;">
+                                                                              <a class="plain cursor"
+                                                                                 data-ga-category="header"><b>전문가 등록</b></a>
+                                                                           </div>
+                                                                           <div class="item col-xl-4 text-center"
+                                                                              style="display: initial !important;">
+                                                                              <a class="plain cursor"
+                                                                                 data-ga-category="header" data-toggle="modal"
+                                                                                 data-target="#kdemyLoginModal"><b>로그인</b></a>
+                                                                           </div>
+                                                                           <div id=""
+                                                                              class="item position-relative col-xl-4"
+                                                                              style="display: initial !important;">
+                                                                              <a
+                                                                                 class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
+                                                                                 href="${path}/member/write.do"
+                                                                                 data-ga-category="header"> 무료회원가입 </a>
+                                                                           </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                                  <br>
+                                                               </div>
+                                                               <div class="d-flex margin-top-15">
+                                                                  <div
+                                                                     class="col-4 fileDrop uploadedList justify-content-center"
+                                                                     id="fileDropDiv">
+                                                                     <div class="col-12" id="imageBanner">
+                                                                        <img id="preImg"
+                                                                           src="${path}/include/images/main/uploadImage.png"
+                                                                           class="mx-auto d-block">
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="col-4 text-align-center"
+                                                                     style="text-align: center;">
+                                                                     <div>
+                                                                        <div class="market-main-description-text">
+                                                                           <span>136</span> <span>만건의 거래</span> <span>98.2</span>
+                                                                           <span>%의 만족도</span>
+                                                                        </div>
+                                                                        <div class="hero-title NGM">프리랜서 마켓, KDEMY</div>
+                                                                     </div>
 
-																							<div class="margin-top-35">
-																								<div class="SearchForm search-form-type-main">
-																								</div>
-																							</div>
+                                                                     <div class="margin-top-35">
+                                                                        <div class="SearchForm search-form-type-main">
+                                                                        </div>
+                                                                     </div>
 
-																							<div class="flex padding-top-25">
-																								<div class="market-main-or-text">
-																									<b>또는</b>
-																								</div>
-																							</div>
-																							<div
-																								class="margin-top-30 MarketIndex .flex-center-center">
-																								<a
-																									class="market-main-link-text .flex-center-center"
-																									href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
-																							</div>
+                                                                     <div class="flex padding-top-25">
+                                                                        <div class="market-main-or-text">
+                                                                           <b>또는</b>
+                                                                        </div>
+                                                                     </div>
+                                                                     <div
+                                                                        class="margin-top-30 MarketIndex .flex-center-center">
+                                                                        <a
+                                                                           class="market-main-link-text .flex-center-center"
+                                                                           href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
+                                                                     </div>
 
-																						</div>
-																						<div
-																							class="col-4 fileDrop1 uploadedList1 justify-content-center">
-																							<div class="col-12" id="imageBanner1">
-																								<img id="preImg1"
-																									src="${path}/include/images/main/uploadImage.png"
-																									class="mx-auto d-block" id="preImg">
-																							</div>
-																						</div>
-																						<img id="save"> <img id="save1">
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																		<div class="MainThemes">
-																			<section class="ROOT_DIRECTORY"
-																				style="margin-top: 70px;"></section>
-																			<div class="RootDirectoryTheme">
-																				<div class="background">
-																					<div style="margin-right: auto; margin-left: auto;"
-																						class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
-																						<div class="items-container">
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=디자인">
-																									<div class="icon"
-																										style="background: url('include/images/main/${row.icon_img0}');"></div>
-																									<div class="iconName">
-																										<span><b>디자인</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                  </div>
+                                                                  <div
+                                                                     class="col-4 fileDrop1 uploadedList1 justify-content-center">
+                                                                     <div class="col-12" id="imageBanner1">
+                                                                        <img id="preImg1"
+                                                                           src="${path}/include/images/main/uploadImage.png"
+                                                                           class="mx-auto d-block" id="preImg">
+                                                                     </div>
+                                                                  </div>
+                                                                  <img id="save"> <img id="save1">
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      <div class="MainThemes">
+                                                         <section class="ROOT_DIRECTORY"
+                                                            style="margin-top: 70px;"></section>
+                                                         <div class="RootDirectoryTheme">
+                                                            <div class="background">
+                                                               <div style="margin-right: auto; margin-left: auto;"
+                                                                  class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
+                                                                  <div class="items-container">
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=디자인">
+                                                                           <div class="icon"
+                                                                              style="background: url('include/images/main/${row.icon_img0}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>디자인</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍"">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
-																									<div class="iconName">
-																										<span><b>IT,프로그래밍</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍"">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>IT,프로그래밍</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-																									<div class="iconName">
-																										<span><b>콘텐츠 제작</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>콘텐츠 제작</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=마케팅">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-																									<div class="iconName">
-																										<span><b>마케팅</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=마케팅">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>마케팅</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=번역,통역">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
-																									<div class="iconName">
-																										<span><b>번역,통역</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=번역,통역">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>번역,통역</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=문서,통역">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
-																									<div class="iconName">
-																										<span><b>문서,통역</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=문서,통역">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>문서,통역</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
-																									<div class="iconName">
-																										<span><b>비즈니스컨설팅</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>비즈니스컨설팅</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=운세,상담">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
-																									<div class="iconName">
-																										<span><b>운세,상담</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=운세,상담">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>운세,상담</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
-																									<div class="iconName">
-																										<span><b>레슨,실무교육</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>레슨,실무교육</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
-																									<div class="iconName">
-																										<span><b>주문제작</b></span>
-																									</div>
-																								</a>
-																							</div>
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>주문제작</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
 
-																							<div class="RootDirectoryThemeItem">
-																								<a class="plain"
-																									href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
-																									<div class="icon"
-																										style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
-																									<div class="iconName">
-																										<span><b>간판,인쇄</b></span>
-																									</div>
-																								</a>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<hr>
-																<form id="mainChange" name="mainChange"
-																	action="${path}/main/change.do" method="post"
-																	enctype="multipart/form-data">
-																	<div class="d-flex col-12 flex-wrap">
-																		<div class="setting-items col-4 mb-3">
-																			<h5>배경색</h5>
-																			<div id="color-container"
-																				class="d-flex flex-wrap justify-content-center col-12">
-																				<canvas id="picker"></canvas>
-																				<div
-																					class="col-12 px-auto d-flex justify-content-center mb-3">
-																					<input id="color" name="color" value="${row.color}">
-																				</div>
-																			</div>
-																			<h5>이미지</h5>
-																			<div id="image-container"></div>
-																		</div>
-																		<div class="setting-items col-8 mb-3">
-																			<h5>아이콘</h5>
-																			<div id="icon-container" class="d-flex col-12">
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div
-																						class="d-flex justify-content-center form-group">
-																						<input type="file" id="file0" name="file0">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file1" name="file1">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file2" name="file2">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file3" name="file3">
-																					</div>
-																				</div>
-																			</div>
-																			<div id="icon-container" class="d-flex col-12">
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file4" name="file4">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file5" name="file5">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file6" name="file6">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file7" name="file7">
-																					</div>
-																				</div>
-																			</div>
-																			<div id="icon-container" class="d-flex col-12">
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file8" name="file8">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file9" name="file9">
-																					</div>
-																				</div>
-																				<div class="RootDirectoryThemeItem col-3">
-																					<div class="icon"
-																						style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
-																					<div class="iconName">
-																						<span><b>번역,통역</b></span>
-																					</div>
-																					<div class="d-flex justify-content-center">
-																						<input type="file" id="file10" name="file10">
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="submit" class="btn btn-outline-primary">변경</button>
-																		<button type="button"
-																			class="btn btn-outline-secondary"
-																			data-dismiss="modal">취소</button>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- 메인 변경 끝 -->
-										</c:if>
-										<div class="main-header-gradient"
-											style="opacity: 0.3
+                                                                     <div class="RootDirectoryThemeItem">
+                                                                        <a class="plain"
+                                                                           href="${path}/lecture/all_list_search.do?keyword=간판,인쇄">
+                                                                           <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>간판,인쇄</b></span>
+                                                                           </div>
+                                                                        </a>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <hr>
+                                                <form id="mainChange" name="mainChange"
+                                                   action="${path}/main/change.do" method="post"
+                                                   enctype="multipart/form-data">
+                                                   <div class="d-flex col-12 flex-wrap">
+                                                      <div class="setting-items col-4 mb-3">
+                                                         <h5>배경색</h5>
+                                                         <div id="color-container"
+                                                            class="d-flex flex-wrap justify-content-center col-12">
+                                                            <canvas id="picker"></canvas>
+                                                            <div
+                                                               class="col-12 px-auto d-flex justify-content-center mb-3">
+                                                               <input id="color" name="color" value="${row.color}">
+                                                            </div>
+                                                         </div>
+                                                         <h5>이미지</h5>
+                                                         <div id="image-container"></div>
+                                                      </div>
+                                                      <div class="setting-items col-8 mb-3">
+                                                         <h5>아이콘</h5>
+                                                         <div id="icon-container" class="d-flex col-12">
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div
+                                                                  class="d-flex justify-content-center form-group">
+                                                                  <input type="file" id="file0" name="file0">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file1" name="file1">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file2" name="file2">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file3" name="file3">
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                         <div id="icon-container" class="d-flex col-12">
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file4" name="file4">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file5" name="file5">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file6" name="file6">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file7" name="file7">
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                         <div id="icon-container" class="d-flex col-12">
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file8" name="file8">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file9" name="file9">
+                                                               </div>
+                                                            </div>
+                                                            <div class="RootDirectoryThemeItem col-3">
+                                                               <div class="icon"
+                                                                  style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
+                                                               <div class="iconName">
+                                                                  <span><b>번역,통역</b></span>
+                                                               </div>
+                                                               <div class="d-flex justify-content-center">
+                                                                  <input type="file" id="file10" name="file10">
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="modal-footer">
+                                                      <button type="submit" class="btn btn-outline-primary">변경</button>
+                                                      <button type="button"
+                                                         class="btn btn-outline-secondary"
+                                                         data-dismiss="modal">취소</button>
+                                                   </div>
+                                                </form>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- 메인 변경 끝 -->
+                              </c:if>
+                              <div class="main-header-gradient"
+                                 style="opacity: 0.3
     background-image: linear-gradient(to bottom, ${row.color}, ${row.color})"></div>
-										<div class="header position-relative" id="kdemiMainHeader">
-											<div class="index-opacity-wrap" style="padding-top: 30px;">
-												<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
-													<div class="flex-between-center height-80px row">
-														<div class="flex-left-center col-3 mr-auto">
-															<div class="NavLogo nav-logo-wrapper">
-																<a class="cursor logofont" data-ga-category="header"
-																	href="${path}"><b>KDEMY</b></a>
-															</div>
-														</div>
-														<div class="flex-end-center col-auto p-0">
-															<div class="header-right-info NavRight col-xl-12">
+                              <div class="header position-relative" id="kdemiMainHeader">
+                                 <div class="index-opacity-wrap" style="padding-top: 30px;">
+                                    <div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
+                                       <div class="flex-between-center height-80px row">
+                                          <div class="flex-left-center col-3 mr-auto">
+                                             <div class="NavLogo nav-logo-wrapper">
+                                                <a class="cursor logofont" data-ga-category="header"
+                                                   href="${path}"><b>KDEMY</b></a>
+                                             </div>
+                                          </div>
+                                          <div class="flex-end-center col-auto p-0">
+                                             <div class="header-right-info NavRight col-xl-12">
 
-																<!-- 관리자 로그인 -->
-																<c:if test="${sessionScope.admin_id != null}">
+                                                <!-- 관리자 로그인 -->
+                                                <c:if test="${sessionScope.admin_id != null}">
+                                                
+                                                
+                                                   <div class="item col-xl-4 text-center"
+                                                      style="display: initial !important;">
+                                                      <a class="plain cursor" data-ga-category="header"
+                                                         href="${path}/packages/list.do"><b>패키지 구매</b></a>
+                                                   </div>
+                                                   <div
+                                                      class="item dropdown col-xl-4 text-center dropdown-toggle"
+                                                      style="display: initial !important;">
+                                                      <a class="plain cursor" data-ga-category="header"
+                                                         href="${path}/admin/managementMenu.do"><b>관리메뉴</b></a>
+                                                      <div class="dropdown-menu">
+                                                         <c:if test="${sessionScope.admin_level == 3}">
+                                                            <a class="dropdown-item"
+                                                               href="${path}/admin/list.do">관리자계정</a>
+                                                         </c:if>
+                                                         <a class="dropdown-item"
+                                                            href="${path}/member/list.do">회원관리</a> <a
+                                                            class="dropdown-item"
+                                                            href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
+                                                         <a class="dropdown-item"
+                                                            href="${path}/packages/adminlist.do">패키지관리</a> <a
+                                                            class="dropdown-item"
+                                                            href="${path}/member/couponMaker.do">쿠폰관리</a>
+                                                      </div>
+                                                   </div>
+                                                   <div
+                                                      class="item dropdown col-xl-4 text-center dropdown-toggle"
+                                                      style="display: initial !important;">
+                                                      <a class="plain" data-ga-category="header"
+                                                         href="${path}/chart/statistics.do"><b>통계</b></a>
+                                                      <div class="dropdown-menu">
+                                                         <a class="dropdown-item"
+                                                            href="${path}/chart/memberchart.do">회원통계</a> <a
+                                                            class="dropdown-item"
+                                                            href="${path}/chart/lecturechart.do">강의통계</a> <a
+                                                            class="dropdown-item" href="#">매출통계</a> <a
+                                                            class="dropdown-item" href="#">방문자</a>
+                                                      </div>
+                                                   </div>
+                                                   <a><b>${sessionScope.admin_id}님</b></a>
+                                                   <button data-toggle="modal" data-target="#logOutModal"
+                                                      class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
+                                                      <b>로그아웃</b>
+                                                   </button>
+                                                </c:if>
+                                                <!-- 관리자 로그인 끝 -->
 
+                                                <c:choose>
+                                                   <c:when
+                                                      test="${sessionScope.userid == null && sessionScope.admin_id == null}">
+                                                      <div class="item col-xl-4 text-center"
+                                                         style="display: initial !important;">
+                                                         <a class="plain cursor" data-ga-category="header"
+                                                            href="${path}/packages/list.do"><b>패키지 구매</b></a>
+                                                      </div>
+                                                      <div class="item col-xl-4 text-center"
+                                                         style="display: initial !important;">
+                                                         <a class="plain cursor" data-ga-category="header"
+                                                            data-toggle="modal" data-target="#kdemyLoginModal"><b>로그인</b></a>
+                                                      </div>
+                                                      <div id="" class="item position-relative col-xl-4"
+                                                         style="display: initial !important;">
+                                                         <a
+                                                            class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
+                                                            href="${path}/member/join.do"
+                                                            data-ga-category="header"> 무료회원가입 </a>
+                                                      </div>
+                                                   </c:when>
 
-																	<div class="item col-xl-4 text-center"
-																		style="display: initial !important;">
-																		<a class="plain cursor" data-ga-category="header"
-																			href="${path}/packages/list.do"><b>패키지 구매</b></a>
-																	</div>
-																	<div
-																		class="item dropdown col-xl-4 text-center dropdown-toggle"
-																		style="display: initial !important;">
-																		<a class="plain cursor" data-ga-category="header"
-																			href="${path}/admin/managementMenu.do"><b>관리메뉴</b></a>
-																		<div class="dropdown-menu">
-																			<c:if test="${sessionScope.admin_level == 3}">
-																				<a class="dropdown-item"
-																					href="${path}/admin/list.do">관리자계정</a>
-																			</c:if>
-																			<a class="dropdown-item"
-																				href="${path}/member/list.do">회원관리</a> <a
-																				class="dropdown-item"
-																				href="${path}/lecture/online_list.do?admin=admin">강의관리</a>
-																			<a class="dropdown-item"
-																				href="${path}/packages/adminlist.do">패키지관리</a> <a
-																				class="dropdown-item"
-																				href="${path}/member/couponMaker.do">쿠폰관리</a>
-																		</div>
-																	</div>
-																	<div
-																		class="item dropdown col-xl-4 text-center dropdown-toggle"
-																		style="display: initial !important;">
-																		<a class="plain" data-ga-category="header"
-																			href="${path}/chart/statistics.do"><b>통계</b></a>
-																		<div class="dropdown-menu">
-																			<a class="dropdown-item"
-																				href="${path}/chart/memberchart.do">회원통계</a> <a
-																				class="dropdown-item"
-																				href="${path}/chart/lecturechart.do">강의통계</a> <a
-																				class="dropdown-item" href="#">매출통계</a> <a
-																				class="dropdown-item" href="#">방문자</a>
-																		</div>
-																	</div>
-																	<a><b>${sessionScope.admin_id}님</b></a>
-																	<button data-toggle="modal" data-target="#logOutModal"
-																		class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
-																		<b>로그아웃</b>
-																	</button>
-																</c:if>
-																<!-- 관리자 로그인 끝 -->
+                                                   <c:otherwise>
+                                                      <c:choose>
+                                                         <c:when
+                                                            test="${sessionScope.teacher == 'y' && sessionScope.userid !=null}">
+                                                            <div class="item col-xl-4 text-center"
+                                                               style="display: initial !important;">
+                                                               <a class="plain cursor" data-ga-category="header"
+                                                                  href="${path}/packages/list.do"><b>패키지 구매</b></a>
+                                                            </div>
+                                                            <div
+                                                               class="item dropdown col-xl-4 text-center dropdown-toggle"
+                                                               style="display: initial !important;">
+                                                               <a class="plain cursor" data-ga-category="header"><b>강의관리</b></a>
+                                                               <div class="dropdown-menu">
+                                                                  <a class="dropdown-item"
+                                                                     href="${path}/lecture/addLecturePage.do">강의등록</a>
+                                                                  <a class="dropdown-item"
+                                                                     href="${path}/lecture/myLecturePage.do?userid=${sessionScope.userid}">등록한
+                                                                     강의</a>
+                                                               </div>
+                                                            </div>
+                                                            <div
+                                                               class="item dropdown col-xl-4 text-center dropdown-toggle"
+                                                               style="display: initial !important;">
+                                                               <a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
+                                                               <div class="dropdown-menu">
+                                                                  <a class="dropdown-item"
+                                                                     href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+                                                                  <a class="dropdown-item"
+                                                                     href="${path}/cart/cartPage.do">장바구니</a> <a
+                                                                     class="dropdown-item"
+                                                                     href="${path}/member/updatePointPage.do">쿠폰등록</a>
+                                                                  <a class="dropdown-item"
+                                                                     href="${path}/member/orderDetail1.do">내강의목록</a> <a
+                                                                     class="dropdown-item"
+                                                                     href="${path}/teacher/teacherPage.do">강사
+                                                                     페이지이동</a>
+                                                               </div>
+                                                            </div>
 
-																<c:choose>
-																	<c:when
-																		test="${sessionScope.userid == null && sessionScope.admin_id == null}">
-																		<div class="item col-xl-4 text-center"
-																			style="display: initial !important;">
-																			<a class="plain cursor" data-ga-category="header"
-																				href="${path}/packages/list.do"><b>패키지 구매</b></a>
-																		</div>
-																		<div class="item col-xl-4 text-center"
-																			style="display: initial !important;">
-																			<a class="plain cursor" data-ga-category="header"
-																				data-toggle="modal" data-target="#kdemyLoginModal"><b>로그인</b></a>
-																		</div>
-																		<div id="" class="item position-relative col-xl-4"
-																			style="display: initial !important;">
-																			<a
-																				class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
-																				href="${path}/member/join.do"
-																				data-ga-category="header"> 무료회원가입 </a>
-																		</div>
-																	</c:when>
+                                                            <a><b>${sessionScope.username}님</b></a>
+                                                            <button data-toggle="modal"
+                                                               data-target="#logOutModal"
+                                                               class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
+                                                               <b>로그아웃</b>
+                                                            </button>
+                                                         </c:when>
 
-																	<c:otherwise>
-																		<c:choose>
-																			<c:when
-																				test="${sessionScope.teacher == 'y' && sessionScope.userid !=null}">
-																				<div class="item col-xl-4 text-center"
-																					style="display: initial !important;">
-																					<a class="plain cursor" data-ga-category="header"
-																						href="${path}/packages/list.do"><b>패키지 구매</b></a>
-																				</div>
-																				<div
-																					class="item dropdown col-xl-4 text-center dropdown-toggle"
-																					style="display: initial !important;">
-																					<a class="plain cursor" data-ga-category="header"><b>강의관리</b></a>
-																					<div class="dropdown-menu">
-																						<a class="dropdown-item"
-																							href="${path}/lecture/addLecturePage.do">강의등록</a>
-																						<a class="dropdown-item"
-																							href="${path}/lecture/myLecturePage.do?userid=${sessionScope.userid}">등록한
-																							강의</a>
-																					</div>
-																				</div>
-																				<div
-																					class="item dropdown col-xl-4 text-center dropdown-toggle"
-																					style="display: initial !important;">
-																					<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
-																					<div class="dropdown-menu">
-																						<a class="dropdown-item"
-																							href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
-																						<a class="dropdown-item"
-																							href="${path}/cart/cartPage.do">장바구니</a> <a
-																							class="dropdown-item"
-																							href="${path}/member/updatePointPage.do">쿠폰등록</a>
-																						<a class="dropdown-item"
-																							href="${path}/member/orderDetail1.do">내강의목록</a> <a
-																							class="dropdown-item"
-																							href="${path}/teacher/teacherPage.do">강사
-																							페이지이동</a>
-																					</div>
-																				</div>
+                                                         <c:when
+                                                            test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
+                                                            <div class="item col-xl-4 text-center"
+                                                               style="display: initial !important;">
+                                                               <a class="plain cursor" data-ga-category="header"
+                                                                  href="${path}/packages/list.do"><b>패키지 구매</b></a>
+                                                            </div>
+                                                            <div class="item col-xl-4 text-center"
+                                                               style="display: initial !important;">
+                                                               <a class="plain cursor" data-ga-category="header"
+                                                                  href="${path}/teacher/teacherJoinPage.do"><b>전문가
+                                                                     등록</b></a>
+                                                            </div>
+                                                            <div
+                                                               class="item dropdown col-xl-4 text-center dropdown-toggle"
+                                                               style="display: initial !important;">
+                                                               <a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
+                                                               <div class="dropdown-menu">
+                                                                  <a class="dropdown-item"
+                                                                     href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
+                                                                  <a class="dropdown-item"
+                                                                     href="${path}/member/orderDetail1.do">구입한 강의
+                                                                     목록</a> <a class="dropdown-item"
+                                                                     href="${path}/cart/cartPage.do">장바구니</a> <a
+                                                                     class="dropdown-item" href="#">관심상품</a> <a
+                                                                     class="dropdown-item"
+                                                                     href="${path}/member/updatePointPage.do">쿠폰등록</a>
+                                                               </div>
+                                                            </div>
+                                                            <a><b>${sessionScope.username}님 </b></a>
+                                                            <button data-toggle="modal"
+                                                               data-target="#logOutModal"
+                                                               class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
+                                                               <b>로그아웃</b>
+                                                            </button>
 
-																				<a><b>${sessionScope.username}님</b></a>
-																				<button data-toggle="modal"
-																					data-target="#logOutModal"
-																					class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
-																					<b>로그아웃</b>
-																				</button>
-																			</c:when>
+                                                         </c:when>
 
-																			<c:when
-																				test="${sessionScope.teacher != 'y' && sessionScope.userid !=null}">
-																				<div class="item col-xl-4 text-center"
-																					style="display: initial !important;">
-																					<a class="plain cursor" data-ga-category="header"
-																						href="${path}/packages/list.do"><b>패키지 구매</b></a>
-																				</div>
-																				<div class="item col-xl-4 text-center"
-																					style="display: initial !important;">
-																					<a class="plain cursor" data-ga-category="header"
-																						href="${path}/teacher/teacherJoinPage.do"><b>전문가
-																							등록</b></a>
-																				</div>
-																				<div
-																					class="item dropdown col-xl-4 text-center dropdown-toggle"
-																					style="display: initial !important;">
-																					<a class="plain cursor" data-ga-category="header"><b>나의정보</b></a>
-																					<div class="dropdown-menu">
-																						<a class="dropdown-item"
-																							href="${path}/member/mypage/${sessionScope.userid}">나의정보</a>
-																						<a class="dropdown-item"
-																							href="${path}/member/orderDetail1.do">구입한 강의
-																							목록</a> <a class="dropdown-item"
-																							href="${path}/cart/cartPage.do">장바구니</a> <a
-																							class="dropdown-item" href="#">관심상품</a> <a
-																							class="dropdown-item"
-																							href="${path}/member/updatePointPage.do">쿠폰등록</a>
-																					</div>
-																				</div>
-																				<a><b>${sessionScope.username}님 </b></a>
-																				<button data-toggle="modal"
-																					data-target="#logOutModal"
-																					class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
-																					<b>로그아웃</b>
-																				</button>
+                                                      </c:choose>
 
-																			</c:when>
+                                                   </c:otherwise>
+                                                </c:choose>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <br>
+                                 </div>
+                                 <div class="margin-top-15">
+                                    <div
+                                       class="header-wrapper pading-side-0 col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
+                                       <div>
+                                          <div class="market-main-description-text">
+                                             <span>136</span> <span>만건의 거래</span> <span>98.2</span> <span>%의
+                                                만족도</span>
+                                          </div>
+                                          <div class="hero-title NGM">프리랜서 마켓, KDEMY</div>
+                                       </div>
 
-																		</c:choose>
-
-																	</c:otherwise>
-																</c:choose>
-															</div>
-														</div>
+                                       <div class="margin-top-35">
+                                          <div class="SearchForm search-form-type-main">
+                                             <form action="" id="" class="margin-bottom-0"
+                                                method="get" onsubmit="return false">
+                                                <div class="search-group text-center cursor">
+                                                   <div style="">
+                                                      <!-- 0429 9:46 이원혁 추가 -->
+                                                      <div class="index-search-bar">
+															<input class="pl-5 search-input kdemi" name="keyword" id="keyword" placeholder="보고싶은 강의를 검색해주세요." name="keyword" style="width: 100%; height: 100%; font-size: 1.5rem;">
+															<button id="searchBtnNoneTest" class="index-search-btn" onclick="search()" type="submit" style="border: none; background-color: white; outline: 0;"> 
+															<img class="width-30px" src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
+														</button>
+														<!--  -->
 													</div>
-												</div>
-												<br>
-											</div>
-											<div class="margin-top-15">
-												<div
-													class="header-wrapper pading-side-0 col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
-													<div>
-														<div class="market-main-description-text">
-															<span>136</span> <span>만건의 거래</span> <span>98.2</span> <span>%의
-																만족도</span>
-														</div>
-														<div class="hero-title NGM">프리랜서 마켓, KDEMY</div>
-													</div>
+                                                   </div>
 
-													<div class="margin-top-35">
-														<div class="SearchForm search-form-type-main">
-															<form action="" id="" class="margin-bottom-0"
-																method="get" onsubmit="return false">
-																<div class="search-group text-center cursor">
-																	<div style="">
-																		<div class="index-search-bar">
-																			<span class="typed-element">웹사이트 개발</span> <span
-																				class="typed-cursor typed-cursor--blink"></span>
-																			<div class="index-search-bar-input"></div>
-																			<a id="searchBtnNone" class="index-search-btn"
-																				type="submit"> <img class="width-30px"
-																				src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_search.png">
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</form>
-														</div>
-													</div>
+                                                </div>
+                                             </form>
+                                          </div>
+                                       </div>
 
-													<div class="index-header-left d-none d-xl-block mx-auto">
-														<img class="img-fluid"
-															src="${path}/include/images/main/${row.background_img0}"
-															onerror="this.style.display='none'">
-													</div>
-													<div class="index-header-right d-none d-xl-block mx-auto">
-														<img class="img-fluid"
-															src="${path}/include/images/main/${row.background_img1}"
-															onerror="this.style.display='none'">
-													</div>
-												</div>
-											</div>
-											<div class="flex padding-top-25">
-												<div class="market-main-or-text">
-													<b>또는</b>
-												</div>
-											</div>
-											<div class="margin-top-30 MarketIndex .flex-center-center">
-												<a class="market-main-link-text .flex-center-center"
-													href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
-											</div>
-										</div>
-									</div>
-							</div>
+                                       <div class="flex padding-top-25">
+                                          <div class="market-main-or-text">
+                                             <b>또는</b>
+                                          </div>
+                                       </div>
+                                       <div class="margin-top-30 MarketIndex .flex-center-center">
+                                          <a class="market-main-link-text .flex-center-center"
+                                             href="#"> <b>필요한 업무 등록하고 맞춤 견적 받기</b></a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
 
+                              <div class="index-header-left d-none d-xl-block mx-auto">
+                                 <img class="img-fluid"
+                                    src="${path}/include/images/main/${row.background_img0}"
+                                    onerror="this.style.display='none'">
+                              </div>
+                              <div class="index-header-right d-none d-xl-block mx-auto">
+                                 <img class="img-fluid"
+                                    src="${path}/include/images/main/${row.background_img1}"
+                                    onerror="this.style.display='none'">
+                              </div>
+                           </div>
+                     </div>
 
-							<div class="MainThemes">
-								<section class="ROOT_DIRECTORY" style="margin-top: 70px;"></section>
-								<div class="RootDirectoryTheme">
-									<div class="background">
-										<div style="margin-right: auto; margin-left: auto;"
-											class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
-											<div class="items-container">
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=디자인">
-														<div class="icon"
-															style="background: url('include/images/main/${row.icon_img0}');"></div>
-														<div class="iconName">
-															<span><b>디자인</b></span>
-														</div>
-													</a>
-												</div>
+                     <div class="MainThemes">
+                        <section class="ROOT_DIRECTORY" style="margin-top: 70px;"></section>
+                        <div class="RootDirectoryTheme">
+                           <div class="background">
+                              <div style="margin-right: auto; margin-left: auto;"
+                                 class="col-xl-8 offset-xl-2 col-lg-12 d-none d-xl-block d-lg-block ">
+                                 <div class="items-container">
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=디자인">
+                                          <div class="icon"
+                                             style="background: url('include/images/main/${row.icon_img0}');"></div>
+                                          <div class="iconName">
+                                             <span><b>디자인</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
-														<div class="iconName">
-															<span><b>IT,프로그래밍</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=IT,프로그래밍">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+                                          <div class="iconName">
+                                             <span><b>IT,프로그래밍</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-														<div class="iconName">
-															<span><b>콘텐츠 제작</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=콘텐츠 제작">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+                                          <div class="iconName">
+                                             <span><b>콘텐츠 제작</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=마케팅">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-														<div class="iconName">
-															<span><b>마케팅</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=마케팅">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
+                                          <div class="iconName">
+                                             <span><b>마케팅</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=번역,통역">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
-														<div class="iconName">
-															<span><b>번역,통역</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=번역,통역">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img4}');"></div>
+                                          <div class="iconName">
+                                             <span><b>번역,통역</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=문서,통역">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
-														<div class="iconName">
-															<span><b>문서,통역</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=문서,통역">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
+                                          <div class="iconName">
+                                             <span><b>문서,통역</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
-														<div class="iconName">
-															<span><b>비즈니스컨설팅</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=비즈니스컨설팅">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
+                                          <div class="iconName">
+                                             <span><b>비즈니스컨설팅</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=운세,상담">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
-														<div class="iconName">
-															<span><b>운세,상담</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=운세,상담">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
+                                          <div class="iconName">
+                                             <span><b>운세,상담</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
-														<div class="iconName">
-															<span><b>레슨,실무교육</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=레슨,실무교육">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
+                                          <div class="iconName">
+                                             <span><b>레슨,실무교육</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
-												<div class="RootDirectoryThemeItem">
-													<a class="plain"
-														href="${path}/lecture/all_list_search.do?keyword=주문제작">
-														<div class="icon"
-															style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
-														<div class="iconName">
-															<span><b>주문제작</b></span>
-														</div>
-													</a>
-												</div>
+                                    <div class="RootDirectoryThemeItem">
+                                       <a class="plain"
+                                          href="${path}/lecture/all_list_search.do?keyword=주문제작">
+                                          <div class="icon"
+                                             style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
+                                          <div class="iconName">
+                                             <span><b>주문제작</b></span>
+                                          </div>
+                                       </a>
+                                    </div>
 
 
 												<div class="RootDirectoryThemeItem">
@@ -1208,517 +1206,229 @@
 														</div>
 													</a>
 												</div>
-							</c:forEach>
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
 	<!-- content -->
-	<div style="width: 63%; margin: auto;">
+    <div style="width: 63%; margin: auto;">
 		<div class="flex-end-center col-auto p-0"></div>
 		<hr>
 		<a href="${path}/review/list.do"> <marquee scrollamount="5">
 				<h4 style="color: red;">★수강후기★</h4>
 			</marquee>
 		</a>
-
+		
 	</div>
+
+
 	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
-
-		<div class="row">
-			<div class="col-6 mr-auto pt-3">
-				<h5 class="text-left">
-					<a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
-					<br> <a href="${path}/lecture/video_list.do">동영상 강의에서
-						인기있어요!</a>
-				</h5>
-				<br>
-			</div>
-		</div>
-
-		<!-- 슬라이드 버튼 -->
-		<!--  캐러셀   일단 테스트 -->
-		<div class="slide_wrap">
-			<div class="pt-4 col-auto align-items-right">
-				<a class="btn btn-xs float-right slide_btn_next">&gt;</a> <a
-					class="btn btn-xs float-right slide_btn_prev">&lt;</a>
-
-			</div>
-			<div class="slide_box">
-				<div class="slide_list1 clearfix">
-					<!--  슬라이드 1 -->
-					<section class="center slider">
-						<c:forEach var="dto" items="${listv}" begin="1" end="10">
-							<div
-								class="card col-2 px-0 mr-3 slide_content d-inline-block p-1"
-								style="width: 200px; height: 300px;">
-								<a href="#"
-									onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
-									<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
-									class="card-img-top slide-h3"
-									style="width: 100%; height: 200px;">
-								</a>
-								<p class="card-text font-weight-bold text-center h5"
-									style="width: 200px; height: 100px;">${dto.subject }</p>
-							</div>
-						</c:forEach>
-					</section>
-				</div>
-			</div>
-			<ul class="slide_pagination1"></ul>
-		</div>
-		<!-- <button type='button' class='slick-next btn btn-sm' style='float:right; height:300px;'> > </button> -->
-		<script>
-
-  $(document).ready(function() {
-   $('.slider').slick({
-	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
-	infinite : true, 	//무한 반복 옵션	 
-    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-    index: 1,
-    focusOnSelect:true,
-    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-	vertical : false,		// 세로 방향 슬라이드 옵션
-	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
-	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
-	draggable : true, 
-     responsive: [{
-         breakpoint: 960,
-         settings: {
-          
-           slidesToShow: 3
-         }
-       },
-         {
-       breakpoint: 768,
-       settings: {
-        
-         slidesToShow: 2
-       }
-     }]
-   });
- });
-  </script>
-		<!-- 슬라이드1 끝 -->
+	
+	
+      <div class="row">
+         <div class="col-6 mr-auto pt-3">
+            <h5 class="text-left">
+               <a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
+               <br> <a href="${path}/lecture/video_list.do">동영상 강의에서 인기있어요!</a>
+            </h5>
+            <br>
+         </div>
+      </div>
 
 
 
-
-		<!--  실시간 -->
-		<div class="row">
-			<div class="col-6 mr-auto pt-3">
-				<h5 class="text-left">
-					<a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
-				</h5>
-				<br>
-			</div>
-		</div>
-
-		<!--  실시간 -->
-		<div class="slide_wrap">
-			<div class="pt-4 col-auto align-items-right">
-				<a class="btn btn-xs float-right slide_btn_next1">&gt;</a> <a
-					class="btn btn-xs float-right slide_btn_prev1">&lt;</a>
-			</div>
-			<div class="slide_box">
-				<div class="slide_list1 clearfix">
-
-					<!--  슬라이드 2 :실시간 강의 -->
-					<section class="center slider">
-						<c:forEach var="dtoon" items="${liston}" begin="1" end="10">
-							<div
-								class="card col-2 px-0 mr-3 slide_content d-inline-block p-1"
-								style="width: 200px; height: 300px;">
-								<a href="#"
-									onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
-									<img
-									src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"
-									class="card-img-top slide-h3"
-									style="width: 100%; height: 200px;">
-								</a>
-								<p class="card-text font-weight-bold text-center h5"
-									style="width: 200px; height: 100px;">${dtoon.subject }</p>
-							</div>
-						</c:forEach>
-					</section>
-
-
-				</div>
-			</div>
-
-			<ul class="slide_pagination1"></ul>
-		</div>
-
-		<div class="row">
-			<div class="col-6 mr-auto pt-3">
-				<h5 class="text-left">
-					<a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
-				</h5>
-				<br>
-			</div>
-		</div>
-		<!--  현장강의 -->
-		<div class="slide_wrap">
-			<div class="pt-4 col-auto align-items-right">
-				<a class="btn btn-xs float-right slide_btn_next2">&gt;</a> <a
-					class="btn btn-xs float-right slide_btn_prev2">&lt;</a>
-
-			</div>
-
-			<div class="slide_box">
-				<div class="slide_list2 clearfix">
-
-
-					<c:forEach var="dtooff" items="${listoff}">
-						<div
-							class="card col-2 px-0 mr-3 slide02 slide_content2 d-inline-block p-1"
-							style="width: 200px; height: 300px;">
-							<a href="#"
-								onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
-								<img
-								src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
-								class="card-img-top" style="width: 200px; height: 200px;">
-							</a>
-							<p class="card-text font-weight-bold text-center h5"
-								style="width: 200px; height: 100px;">${dtooff.subject }</p>
-
-						</div>
-=======
-   
-      
+         <!-- 슬라이드 버튼 -->
          
-        
-				</div>
-			</div>
+         <!--  슬라이드 1 -->
+<section class="center slider">
+       <c:forEach var="dto" items="${listv}" begin="1" end="10">
+       <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+       <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'">
+       <img src="${path}/lecture/displayFile?fileName=${dto.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+        <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dto.subject }</p>
+       </div>
+       </c:forEach>
+  </section>
+ <!-- 슬라이드1 끝 -->
+         
+         
+         
+         
 
-			<ul class="slide_pagination2"></ul>
-		</div>
-		<script src="${path}/include/js/carousel.js"></script>
-		<!-- 끝 -->
-
-
-
-		<hr>
-
-		<hr>
-
-		<div class="d-flex">
-			<div class="col-6 m-0 p-1">
-				<h4>
-					<b>공지사항</b>
-				</h4>
-				<table class="table table-bordered table-hover text-center">
-					<thead class="thead-dark">
-						<tr>
-							<th>제목</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="notice" items="${listnotice}" begin="0" end="3">
-							<tr style="cursor: pointer;"
-								onclick="location.href='${path}/notice/view.do?bno=${notice.bno}'">
-								<td>${notice.title }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-6 m-0 p-1">
-				<h4>
-					<b>베스트 후기</b>
-				</h4>
-				<table class="table table-bordered table-hover text-center">
-					<thead class="thead-dark">
-						<tr>
-							<th>과목 &gt; 강사</th>
-							<th>제목</th>
-							<th>조회수</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="review" items="${listreview}" begin="0" end="3">
-							<tr style="cursor: pointer;"
-								onclick="location.href='${path}/review/view.do?bno=${review.bno}'">
-								<td>${review.subject}&gt; ${review.teacher}</td>
-								<td>${review.title}</td>
-								<td>${review.viewcnt}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-
-	<c:if test="${sessionScope.userid != null}">
-		<div
-			class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block"
-			id="adminChat">
-			<a href="#miniChat" data-toggle="collapse" id="btnMiniChatJoin"><img
-				src="${path}/include/images/main/chaticon.png"
-				class="mx-auto d-block mt-3 mb-3"></a>
-		</div>
-	</c:if>
-	<div
-		class="collapse fixed-bottom ml-auto m-2 shadow bg-white mini-chat"
-		id="miniChat">
-		<div class="miniChat-header d-flex bg-dark">
-			<div class="text-center col-10 mt-2 p-0">
-				<h5 style="color: white;" class="pl-5">
-					<b>실시간 문의</b>
+ 
+<!--  실시간 --> 
+		<div class="row">
+			<div class="col-6 mr-auto pt-3">
+				<h5 class="text-left">
+			<a href="${path}/lecture/online_list.do">실시간 강의에서 인기있어요!</a>
 				</h5>
-			</div>
-			<div class="col-2 p-0">
-				<a href="#miniChat" data-toggle="collapse"><img
-					src="${path}/include/images/main/chatOut.png"
-					class="ml-auto d-block mr-1.5"></a>
+				<br>
 			</div>
 		</div>
-		<div
-			class="p-3 shadow bg-silver mx-auto mt-2 mini-chat-screen overflow-auto"
-			id="admin_chat">
-			<ul id="messageAdmin" class="overflow-auto">
+   <!-- 끝 -->
+   
 
-			</ul>
-		</div>
-		<div class="input-group p-4 mini-chat-send">
-			<input type="text" class="form-control" id="chatMsg"
-				placeholder="Type a message..."> <input type="hidden"
-				id="admin_id" value="admin"> <input type="hidden"
-				id="userid" value="${sessionScope.userid}"> <input
-				type="hidden" id="chatNum" value="${sessionScope.usernum}">
-			<input type="hidden" id="sender" value="${sessionScope.userid}">
-			<input type="hidden" id="num" value="${sessionScope.usernum}">
-			<div class="input-group-append">
-				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
-			</div>
-		</div>
-	</div>
+   
+ <!--  슬라이드 2 :실시간 강의 -->
+<section class="center slider">
+       <c:forEach var="dtoon" items="${liston}" begin="1" end="10">
+       <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+       <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtoon.lecture_idx}'">
+       <img src="${path}/lecture/displayFile?fileName=${dtoon.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+        <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtoon.subject }</p>
+       </div>
+       </c:forEach>
+  </section>
 
-	=======
-	</section>
-	<script>
+ <!-- 슬라이드2 끝 -->
 
-  $(document).ready(function() {
-   $('.slider').slick({
+      <div class="row">
+         <div class="col-6 mr-auto pt-3">
+            <h5 class="text-left">
+             <a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
+            </h5>
+            <br>
+         </div>
+      </div>
+   
+ <!--  슬라이드 3 : 현장 강의 -->
+<section class="center slider">
+       <c:forEach var="dtooff" items="${listoff}" begin="1" end="10">
+       <div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1" style="width:200px; height:300px;">
+       <a href="#" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
+       <img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"class="card-img-top slide-h3" style="width:100%; height:200px;"></a>
+        <p class="card-text font-weight-bold text-center h5" style="width:200px; height:100px;">${dtooff.subject }</p>
+       </div>
+       </c:forEach>
+  </section>
+
+ <!-- 슬라이드3 끝 -->
+
+
+
+<hr>
+
+      <div class="d-flex">
+         <div class="col-6 m-0 p-1">
+            <h4>
+               <b>공지사항</b>
+            </h4>
+            <table class="table table-bordered table-hover text-center">
+               <thead class="thead-dark">
+                  <tr>
+                     <th>제목</th>
+                  </tr>
+               </thead>
+               <tbody>
+               <c:forEach var="notice" items="${listnotice}" begin="0" end="3">
+                  <tr style="cursor: pointer;" onclick="location.href='${path}/notice/view.do?bno=${notice.bno}'">
+                     <td>${notice.title }</td>
+                  </tr>
+                  </c:forEach>
+               </tbody>
+            </table>
+         </div>
+         <div class="col-6 m-0 p-1">
+            <h4>
+               <b>베스트 후기</b>
+            </h4>
+            <table class="table table-bordered table-hover text-center">
+               <thead class="thead-dark">
+                  <tr>
+                     <th>과목 &gt; 강사</th>
+                        <th>제목</th>
+                        <th>조회수</th>
+                  </tr>
+               </thead>
+               <tbody>
+               <c:forEach var="review" items="${listreview}" begin="0" end="3">
+                  <tr style="cursor: pointer;" onclick="location.href='${path}/review/view.do?bno=${review.bno}'">
+                     <td>${review.subject} &gt; ${review.teacher}</td>
+                        <td>${review.title}</td>
+                           <td>${review.viewcnt}</td>
+                  </tr>
+                  </c:forEach>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+    
+
+<c:if test="${sessionScope.userid != null}">
+   <div class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block" id="adminChat">
+      <a href="#miniChat" data-toggle="collapse" id="btnMiniChatJoin"><img src="${path}/include/images/main/chaticon.png" class="mx-auto d-block mt-3 mb-3"></a>
+   </div>
+   </c:if>
+   <div class="collapse fixed-bottom ml-auto m-2 shadow bg-white mini-chat" id="miniChat">
+        <div class="miniChat-header d-flex bg-dark">
+         <div class="text-center col-10 mt-2 p-0">
+           <h5 style="color:white;" class="pl-5"><b>실시간 문의</b></h5>
+         </div>
+        <div class="col-2 p-0">
+          <a href="#miniChat" data-toggle="collapse"><img src="${path}/include/images/main/chatOut.png" class="ml-auto d-block mr-1.5"></a>
+        </div>
+        </div>
+          <div class="p-3 shadow bg-silver mx-auto mt-2 mini-chat-screen overflow-auto" id="admin_chat">
+            <ul id="messageAdmin" class="overflow-auto">
+              <li class="col-12" style="width: 100%;">KDEMY 상담 시간은 (월요일~금요일) 10:00~18:00까지 입니다.</li>
+         </ul>
+         </div>
+         <div class="input-group p-4 mini-chat-send">
+            <input type="text" class="form-control" id="chatMsg" placeholder="Type a message...">
+            <input type="hidden" id="admin_id" value="admin">
+                 <input type="hidden" id="userid" value="${sessionScope.userid}"> 
+                 <input type="hidden" id="chatNum" value="${sessionScope.usernum}">
+                 <input type="hidden" id="sender" value="${sessionScope.userid}">
+                  <input type="hidden" id="num" value="${sessionScope.usernum}">
+              <div class="input-group-append">
+                <button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
+              </div>
+         </div>
+    </div>
+    
+<script>
+$(document).ready(function() {
+ $('.slider').slick({
 	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
 	infinite : true, 	//무한 반복 옵션	 
-    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+  slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
 	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	speed : 1500,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
 	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-    index: 1,
-    focusOnSelect:true,
-    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+  index: 1,
+  focusOnSelect:true,
+  pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 	vertical : false,		// 세로 방향 슬라이드 옵션
 	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
 	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
 	draggable : true, 
-     responsive: [{
-         breakpoint: 960,
-         settings: {
-          
-           slidesToShow: 3
-         }
-       },
-         {
-       breakpoint: 768,
+   responsive: [{
+       breakpoint: 960,
        settings: {
         
-         slidesToShow: 2
+         slidesToShow: 3
        }
-     }]
-   });
+     },
+       {
+     breakpoint: 768,
+     settings: {
+      
+       slidesToShow: 2
+     }
+   }]
  });
-  </script>
-	<!-- 슬라이드2 끝 -->
+});
 
-	<div class="row">
-		<div class="col-6 mr-auto pt-3">
-			<h5 class="text-left">
-				<a href="${path}/lecture/offline_list.do">현장 강의에서 인기있어요!</a>
-			</h5>
-			<br>
-		</div>
-	</div>
-
-	<!--  현장강의 -->
-
-
-	<!--  슬라이드 2 :실시간 강의 -->
-	<section class="center slider">
-		<c:forEach var="dtooff" items="${listoff}" begin="1" end="10">
-			<div class="card col-2 px-0 mr-3 slide_content d-inline-block p-1"
-				style="width: 200px; height: 300px;">
-				<a href="#"
-					onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dtooff.lecture_idx}'">
-					<img src="${path}/lecture/displayFile?fileName=${dtooff.main_img}"
-					class="card-img-top slide-h3" style="width: 100%; height: 200px;">
-				</a>
-				<p class="card-text font-weight-bold text-center h5"
-					style="width: 200px; height: 100px;">${dtooff.subject }</p>
-			</div>
-		</c:forEach>
-	</section>
-	<script>
-
-  $(document).ready(function() {
-   $('.slider').slick({
-	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
-	infinite : true, 	//무한 반복 옵션	 
-    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-    index: 1,
-    focusOnSelect:true,
-    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-	vertical : false,		// 세로 방향 슬라이드 옵션
-	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
-	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
-	draggable : true, 
-     responsive: [{
-         breakpoint: 960,
-         settings: {
-          
-           slidesToShow: 3
-         }
-       },
-         {
-       breakpoint: 768,
-       settings: {
-        
-         slidesToShow: 2
-       }
-     }]
-   });
- });
-  </script>
-	<!-- 슬라이드2 끝 -->
-
-
-
-	<hr>
-
-	<div class="d-flex">
-		<div class="col-6 m-0 p-1">
-			<h4>
-				<b>공지사항</b>
-			</h4>
-			<table class="table table-bordered table-hover text-center">
-				<thead class="thead-dark">
-					<tr>
-						<th>제목</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="notice" items="${listnotice}" begin="0" end="3">
-						<tr style="cursor: pointer;"
-							onclick="location.href='${path}/notice/view.do?bno=${notice.bno}'">
-							<td>${notice.title }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<div class="col-6 m-0 p-1">
-			<h4>
-				<b>베스트 후기</b>
-			</h4>
-			<table class="table table-bordered table-hover text-center">
-				<thead class="thead-dark">
-					<tr>
-						<th>과목 &gt; 강사</th>
-						<th>제목</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="review" items="${listreview}" begin="0" end="3">
-						<tr style="cursor: pointer;"
-							onclick="location.href='${path}/review/view.do?bno=${review.bno}'">
-							<td>${review.subject}&gt; ${review.teacher}</td>
-							<td>${review.title}</td>
-							<td>${review.viewcnt}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	</div>
-
-
-	<c:if test="${sessionScope.userid != null}">
-		<div
-			class="mini-chat-button panel-group fixed-bottom ml-auto mr-5 mb-5 shadow bg-white d-none d-xl-block"
-			id="adminChat">
-			<a href="#miniChat" data-toggle="collapse" id="btnMiniChatJoin"><img
-				src="${path}/include/images/main/chaticon.png"
-				class="mx-auto d-block mt-3 mb-3"></a>
-		</div>
-	</c:if>
-	<div
-		class="collapse fixed-bottom ml-auto m-2 shadow bg-white mini-chat"
-		id="miniChat">
-		<div class="miniChat-header d-flex bg-dark">
-			<div class="text-center col-10 mt-2 p-0">
-				<h5 style="color: white;" class="pl-5">
-					<b>실시간 문의</b>
-				</h5>
-			</div>
-			<div class="col-2 p-0">
-				<a href="#miniChat" data-toggle="collapse"><img
-					src="${path}/include/images/main/chatOut.png"
-					class="ml-auto d-block mr-1.5"></a>
-			</div>
-		</div>
-		<div
-			class="p-3 shadow bg-silver mx-auto mt-2 mini-chat-screen overflow-auto"
-			id="admin_chat">
-			<ul id="messageAdmin" class="overflow-auto">
-				<li class="col-12" style="width: 100%;">KDEMY 상담 시간은 (월요일~금요일)
-					10:00~18:00까지 입니다.</li>
-			</ul>
-		</div>
-		<div class="input-group p-4 mini-chat-send">
-			<input type="text" class="form-control" id="chatMsg"
-				placeholder="Type a message..."> <input type="hidden"
-				id="admin_id" value="admin"> <input type="hidden"
-				id="userid" value="${sessionScope.userid}"> <input
-				type="hidden" id="chatNum" value="${sessionScope.usernum}">
-			<input type="hidden" id="sender" value="${sessionScope.userid}">
-			<input type="hidden" id="num" value="${sessionScope.usernum}">
-			<div class="input-group-append">
-				<button class="btn btn-success" id="btnchatSend" type="submit">SEND</button>
-			</div>
-		</div>
-	</div>
-
-	>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
-	<script>
 $(function () {
-<<<<<<< HEAD
-	$('#btnMiniChatJoin').on('click', function(evt) {
-		evt.preventDefault();
-	  if (socket.readyState !== 1) return;
-	    	   let target=$("#admin_id").val();
-	    	   let chatNum=$("#chatNum").val();
-	    	   let sender=$("#userid").val();
-	    	   socket.send("chat,"+sender+","+target+","+chatNum+",대화신청");
-	    });
-=======
    $('#btnMiniChatJoin').on('click', function(evt) {
       evt.preventDefault();
      if (socket.readyState !== 1) return;
@@ -1738,75 +1448,13 @@ $(function () {
            url : "${path}/chatroom/createRoomInsert.do"
     });
 });
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
-<<<<<<< HEAD
-			$("#chatMsg").keypress(function(e) {
-				if (e.which == 13) {
-					chatEnter(); // 실행할 이벤트
-				}
-			});
-=======
    $("#chatMsg").keypress(function (e) {
         if (e.which == 13){
            chatEnter();  // 실행할 이벤트
         }
     });
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
-<<<<<<< HEAD
-			$('#btnchatSend')
-					.on(
-							'click',
-							function(evt) {
-								var chatMsgExp = document
-										.getElementById("chatMsg");
-								if (chatMsgExp.value == "") {
-									alert("메시지를 입력해주세요.");
-									chatMsgExp.focus();
-									return false;
-								}
-								evt.preventDefault();
-								if (socket.readyState !== 1)
-									return;
-								let target = $("#admin_id").val();
-								let chatNum = $("#chatNum").val();
-								let sender = $("#userid").val();
-								let chatMsg = $("#chatMsg").val();
-								socket.send("adminsend," + sender + ","
-										+ target + "," + chatNum + ","
-										+ chatMsg);
-								$("#chatMsg").val("");
-								var mymessage = "<li class='bg-warning text-right ml-auto mb-1'>"
-										+ chatMsg + "</li>"
-								$("#messageAdmin").append(mymessage);
-								$("#admin_chat").scrollTop(
-										$("#admin_chat")[0].scrollHeight);
-							});
-		});
-
-		function chatEnter() {
-			var chatMsgExp = document.getElementById("chatMsg");
-			if (chatMsgExp.value == "") {
-				alert("메시지를 입력해주세요.");
-				chatMsgExp.focus();
-				return false;
-			}
-			if (socket.readyState !== 1)
-				return;
-			let target = $("#admin_id").val();
-			let chatNum = $("#chatNum").val();
-			let sender = $("#userid").val();
-			let chatMsg = $("#chatMsg").val();
-			socket.send("adminsend," + sender + "," + target + "," + chatNum
-					+ "," + chatMsg);
-			$("#chatMsg").val("");
-			var mymessage = "<li class='bg-warning text-right ml-auto mb-1'>"
-					+ chatMsg + "</li>"
-			$("#messageAdmin").append(mymessage);
-			$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
-		}
-=======
    $('#btnchatSend').on('click', function(evt) {
       var chatMsgExp =document.getElementById("chatMsg");
       if(chatMsgExp.value=="") {
@@ -1827,28 +1475,60 @@ $(function () {
                 $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
     });
 });
->>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
 
-<<<<<<< HEAD
-		
-	</script>
+function chatEnter() {
+   var chatMsgExp =document.getElementById("chatMsg");
+   if(chatMsgExp.value=="") {
+      alert("메시지를 입력해주세요.");
+      chatMsgExp.focus();
+      return false;
+   }
+     if (socket.readyState !== 1) return;
+             let target=$("#admin_id").val();
+             let chatNum=$("#chatNum").val();
+             let sender=$("#userid").val();
+             let chatMsg=$("#chatMsg").val();
+             
+             socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
+             $("#chatMsg").val("");
+             var mymessage="<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
+             $("#messageAdmin").append(mymessage);
+             $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+}
 
-	<%@ include file="include/footer.jsp"%>
-	======= function chatEnter() { var chatMsgExp
-	=document.getElementById("chatMsg"); if(chatMsgExp.value=="") {
-	alert("메시지를 입력해주세요."); chatMsgExp.focus(); return false; } if
-	(socket.readyState !== 1) return; let target=$("#admin_id").val(); let
-	chatNum=$("#chatNum").val(); let sender=$("#userid").val(); let
-	chatMsg=$("#chatMsg").val();
-
-	socket.send(sender+chatNum+","+sender+","+target+","+chatNum+","+chatMsg);
-	$("#chatMsg").val(""); var mymessage="
-	<li class='bg-light text-left mr-auto mb-1'><b>"+sender+" :</b><br>"+chatMsg+"</li>";
-	$("#messageAdmin").append(mymessage);
-	$("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight); }
-	</script>
-
-	<%@ include file="include/footer.jsp"%>
-	>>>>>>> branch 'master' of https://github.com/qnwnen22/teamproject.git
+$(document).ready(function() {
+ $('.slider').slick({
+	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+	infinite : true, 	//무한 반복 옵션	 
+  slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+	slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+	speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+	arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+  index: 1,
+  focusOnSelect:true,
+  pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+	vertical : false,		// 세로 방향 슬라이드 옵션
+	prevArrow : "<button type='button' class='slick-prev btn btn-sm' style='float:left; height:300px;'> < </button>",	// 이전 화살표 모양 설정	
+	nextArrow : "<button type='button' class='slick-next btn btn-sm' style='position:absolute; top:0; left:100%; height:300px;'> > </button>",		// 다음 화살표 모양 설정
+	draggable : true, 
+   responsive: [{
+       breakpoint: 960,
+       settings: {
+        
+         slidesToShow: 3
+       }
+     },
+       {
+     breakpoint: 768,
+     settings: {
+      
+       slidesToShow: 2
+     }
+   }]
+ });
+});
+</script>
+   
+   <%@ include file="include/footer.jsp"%>
 </body>
 </html>
