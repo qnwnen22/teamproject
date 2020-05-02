@@ -104,10 +104,10 @@
 
 </script>
 </head>
-<body>
+<body class="Kdemy">
 	<%@ include file="../include/fixed-topbar.jsp"%>
 	<input type="hidden" name="buyuserid" id="buyuserid" value="${sessionScope.userid}">
-	<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
+	<div class="container-xl col-xl-8 offset-xl-2 col-lg-12 Kdemy-content">
 
 		<div>
 			<ul class="upper_shift">

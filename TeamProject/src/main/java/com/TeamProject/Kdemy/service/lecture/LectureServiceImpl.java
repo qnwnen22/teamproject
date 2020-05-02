@@ -216,7 +216,7 @@ public class LectureServiceImpl implements LectureService {
 	   }
 
 	   @Override
-	   public List<LectureBoxDTO> chartCountMoney() {
+	   public List<LectureDTO> chartCountMoney() {
 	      return lectureDao.lectureCountMoney();
 	   }
 

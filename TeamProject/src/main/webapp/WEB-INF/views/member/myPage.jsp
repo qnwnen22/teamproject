@@ -54,10 +54,8 @@ $(function(){
 </script>
 
 </head>
-<body>
-
-
-<div class="container bootstrap snippet">
+<body class="Kdemy">
+<div class="container bootstrap snippet Kdemy-content">
     <div class="row">
   		<div class="col-sm-11 offset-sm-1 text-left"><h4>${dto.username} 님 환영합니다. </h4></div>
       <div class="text-center col-sm-6"><br><br>    

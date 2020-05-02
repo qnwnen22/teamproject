@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 <%@include file="../include/header.jsp"%>
 </head>
-<body>
+<body class="Kdemy">
 	<%@include file="../include/fixed-topbar.jsp"%>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 Kdemy-content">
 	<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -21,9 +21,9 @@
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active" href="${path}/lecture/online_list.do?admin=admin">실시간
 					강의</a></li>
-			<li class="nav-item"><a class="nav-link" href="${path}/lecture/video_List.do?admin=admin">동영상 강의</a></li>
+			<li class="nav-item"><a class="nav-link" href="${path}/lecture/video_list.do?admin=admin">동영상 강의</a></li>
 			<li class="nav-item"><a class="nav-link" href="${path}/lecture/offline_list.do?admin=admin">오프라인 강의</a></li>
-			<li class="input-group col-3 ml-auto mr-0">
+			<li class="input-group col-3 ml-auto mr-0 pr-0">
 				<form class="input-group" action="#">
 					<input type="text" class="form-control" placeholder="검색어 입력"
 						value="" id="keyword" name="keyword"> <input type="hidden"

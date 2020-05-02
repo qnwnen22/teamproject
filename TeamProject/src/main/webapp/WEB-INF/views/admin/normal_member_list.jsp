@@ -12,9 +12,9 @@ function list(page){
 } 
 </script>
 </head>
-<body>
+<body class="Kdemy">
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 Kdemy-content">
 	<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -38,9 +38,6 @@ function list(page){
 					</form>
 				</li>
 		</ul>
-	</div>
-
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
 					<tr>
@@ -98,9 +95,8 @@ function list(page){
 					</c:if>
 				</ul>
 			</nav>
-		</div>
 	</div>
-	
+	</div>
 	<br>
 	<%@ include file="../include/footer.jsp"%>
 </body>

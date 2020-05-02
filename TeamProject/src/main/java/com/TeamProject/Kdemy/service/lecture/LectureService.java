@@ -56,7 +56,7 @@ public interface LectureService {
 	   public void downUpdate(String userid, int lecture_idx);
 	   public int upCount(LectureBoxDTO lbDto);
 	   public int lectureCount(LectureBoxDTO lbDto);
-	   public List<LectureBoxDTO> chartCountMoney();
+	   public List<LectureDTO> chartCountMoney();
 	   public int totalMoney();
 	public void reviewStar(LectureReviewDTO dto);
 	public List<LectureDTO> lecture_listV();

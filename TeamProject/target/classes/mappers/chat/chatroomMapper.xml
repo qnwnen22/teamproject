@@ -47,17 +47,3 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  update CHATROOM set chatalarm='y' where chatroom_id=#{chatroom_id}
 	</update>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

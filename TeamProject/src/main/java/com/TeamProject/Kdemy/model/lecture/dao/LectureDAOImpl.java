@@ -246,8 +246,8 @@ public class LectureDAOImpl implements LectureDAO {
 	   }
 
 	   @Override
-	   public List<LectureBoxDTO> lectureCountMoney() {
-	      return sqlSession.selectList("lectureBox.lectureCountMoney");
+	   public List<LectureDTO> lectureCountMoney() {
+	      return sqlSession.selectList("lecture.lectureCountMoney");
 	   }
 
 	   @Override

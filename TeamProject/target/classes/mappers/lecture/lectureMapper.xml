@@ -282,6 +282,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="lectureUserid" resultType="String">
 		select userid from lecture where lecture_idx=#{lecture_idx}
 	</select>
-	
+
+	<select id="lectureCountMoney" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+      select cell_type, (sum(revenue)) revenue  from lecture group by cell_type order by cell_type
+   </select>
+   
 </mapper>
 
