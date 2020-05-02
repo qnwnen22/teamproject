@@ -37,4 +37,9 @@ public class TeacherServiceImpl implements TeacherService {
 	public void memberUpdate(String userid) {
 		teacherDao.memberUpdate(userid);
 	}
+
+	@Override
+	public int myRevenue(String userid) {
+		return teacherDao.myRevenue(userid);
+	}
 }

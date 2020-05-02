@@ -186,7 +186,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select * from lecture
 		where userid=#{userid}
-		order by lecture_idx desc
+		order by #{orderType, jdbcType=VARCHAR} desc
 	</select>
 	
 	<delete id="lectureDelete">
@@ -277,6 +277,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findNickname" resultType="String">
 		select nickname from kdemymember where userid=#{makeUserid}
+	</select>
+	
+	<select id="lectureUserid" resultType="String">
+		select userid from lecture where lecture_idx=#{lecture_idx}
 	</select>
 	
 </mapper>

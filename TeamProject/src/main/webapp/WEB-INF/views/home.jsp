@@ -964,8 +964,7 @@
                                                                   <a class="dropdown-item"
                                                                      href="${path}/lecture/addLecturePage.do">강의등록</a>
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/lecture/myLecturePage.do?userid=${sessionScope.userid}">등록한
-                                                                     강의</a>
+                                                                     href="${path}/lecture/myLecturePage.do">등록한 강의</a>
                                                                </div>
                                                             </div>
                                                             <div

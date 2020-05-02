@@ -13,4 +13,6 @@ public interface TeacherService {
 	public int nicknameC(String nickname);
 
 	public void memberUpdate(String userid);
+
+	public int myRevenue(String attribute);
 }

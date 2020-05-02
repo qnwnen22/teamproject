@@ -118,8 +118,11 @@ public class LectureDAOImpl implements LectureDAO {
 		}
 
 	   @Override
-	   public List<LectureDTO> myLectureList(String userid) {
-	      return sqlSession.selectList("lecture.myLectureList",userid);
+	   public List<LectureDTO> myLectureList(String userid, String orderType) {
+	      Map<String,Object> map=new HashMap<String, Object>();
+		  map.put("userid", userid);
+		  map.put("orderType", orderType);
+	      return sqlSession.selectList("lecture.myLectureList",map);
 	   }
 
 	   @Override
@@ -287,6 +290,11 @@ public class LectureDAOImpl implements LectureDAO {
 		@Override
 		public String findNickname(String makeUserid) {
 			return sqlSession.selectOne("lecture.findNickname",makeUserid);
+		}
+
+		@Override
+		public String lectureUserid(int lecture_idx) {
+			return sqlSession.selectOne("lecture.lectureUserid",lecture_idx);
 		}
 
 

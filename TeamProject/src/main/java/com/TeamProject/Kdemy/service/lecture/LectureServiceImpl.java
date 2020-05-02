@@ -101,8 +101,8 @@ public class LectureServiceImpl implements LectureService {
 
 	   //강사 페이지
 	   @Override
-	   public List<LectureDTO> myLectureList(String userid) {
-	      return lectureDao.myLectureList(userid);
+	   public List<LectureDTO> myLectureList(String userid, String orderType) {
+	      return lectureDao.myLectureList(userid, orderType);
 	   }
 
 	   @Override
@@ -246,6 +246,8 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.findNickname(makeUserid);
 	}
 
-
-
+	@Override
+	public String lectureUserid(int lecture_idx) {
+		return lectureDao.lectureUserid(lecture_idx);	
+	}
 }

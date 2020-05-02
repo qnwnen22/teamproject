@@ -15,4 +15,6 @@ public interface TeacherDAO {
 	public void memberUpdate(String userid);
 
 	public void total(String lectureUserid);
+
+	public int myRevenue(String userid);
 }

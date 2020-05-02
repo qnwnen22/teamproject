@@ -46,6 +46,7 @@ public class TeacherDTO {
 //	-- 경력 칼럼
 	private String career; //
 	private Date request_date; //신청 날짜
+	private int total;
 	
 //	파일 업로드 처리용 변수
 	 //썸네일용 파일
