@@ -50,4 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="total">
 		update teacher set total=(select sum(revenue) from lecture where userid=#{lectureUserid}) where userid=#{lectureUserid}
 	</update> 
+	
+	<select id="myRevenue" resultType="int">
+		select total from teacher where userid=#{userid}
+	</select>
 </mapper>

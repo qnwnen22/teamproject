@@ -28,7 +28,7 @@ public interface LectureDAO {
 
 	   public int searchCount(String keyword);
 	   public List<LectureDTO> searchList(String keyword, int start, int end);
-	   public List<LectureDTO> myLectureList(String userid);
+	   public List<LectureDTO> myLectureList(String userid, String orderType);
 	   public void lectureDelete(int lecture_idx);
 	   public LectureDTO selectFile(int lecture_idx);
 	   
@@ -54,7 +54,7 @@ public interface LectureDAO {
 	   public void downUpdate(String userid, int lecture_idx);
 	   public int upCount(LectureBoxDTO lbDto);
 	   public int lectureCount(LectureBoxDTO lbDto);
-	   public List<LectureBoxDTO> lectureCountMoney();
+	   public List<LectureDTO> lectureCountMoney();
 	   public int totalMoney();
 	   public void upCount(int lecture_idx);
 	   public void downCount(int lecture_idx);
@@ -67,5 +67,6 @@ public interface LectureDAO {
 	public String selectId(String lecture_idx);
 	public String buyAlarm(int lecture_idx);
 	public String findNickname(String makeUserid);
+	public String lectureUserid(int lecture_idx);
 
 }

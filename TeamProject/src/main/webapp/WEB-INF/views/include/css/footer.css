@@ -80,12 +80,12 @@
 /* #KdemyBody {
     min-height: calc(100vh - 450px);
 } */
-.Site {
+.Kdemy {
   display: flex;
-  min-height: 100vh;
+  min-height: 98vh;
   flex-direction: column;
 }
 
-.Site-content {
+.Kdemy-content {
   flex: 1;
 }

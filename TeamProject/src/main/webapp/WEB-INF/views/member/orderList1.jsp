@@ -82,8 +82,8 @@ $(function(){
 })
 </script>
 </head>
-<body>
-<div class="col-xs-12 col-md-8 offset-md-2">
+<body class="Kdemy">
+<div class="col-xs-12 col-md-8 offset-md-2 Kdemy-content">
    <div class="col-xs-12 col-sm-12">
       <div class="col-12 d-flex mb-3">
          <div class="col-xl-12 m-5 h-auto d-inline-block">

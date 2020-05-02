@@ -13,9 +13,9 @@
 
 </script>
 </head>
-<body>
+<body class="Kdemy">
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
+	<div class="container-xl col-xl-8 offset-xl-2 col-lg-12 Kdemy-content">
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>

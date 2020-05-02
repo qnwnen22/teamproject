@@ -154,7 +154,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 	}
 	@Override
 	public JSONObject getChartDatamoney() {
-		List<LectureBoxDTO> items=lectureService.chartCountMoney();
+		List<LectureDTO> items=lectureService.chartCountMoney();
 		//리턴할 최종 json객체
 		JSONObject data=new JSONObject();
 		//컬럼을 정의할 json 객체
@@ -172,7 +172,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 		data.put("cols", title);
 		//json의 rows 객체구성(바디,내용구성)
 		JSONArray body=new JSONArray();
-		for(LectureBoxDTO dto : items) {
+		for(LectureDTO dto : items) {
 			JSONObject cell_type=new JSONObject();//JSONObject는 HashMap과 같음
 			if(dto.getCell_type().equals("1")) {
 				dto.setCell_type("동영상 강의");
@@ -183,7 +183,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 			}
 			cell_type.put("v", dto.getCell_type());
 			JSONObject money=new JSONObject();
-			money.put("v", dto.getPrice());
+			money.put("v", dto.getRevenue());
 			JSONArray row=new JSONArray();
 			row.add(cell_type);
 			row.add(money);

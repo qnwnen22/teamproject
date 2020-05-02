@@ -8,9 +8,9 @@
 <%@ include file="../include/header.jsp"%>
 
 </head>
-<body>
+<body class="Kdemy">
 <%@ include file="../include/fixed-topbar.jsp" %>
-  <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+  <div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 Kdemy-content">
   <div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -20,8 +20,7 @@
 		</div>
 		<hr>
              <!-- 만들기 포인트 -->
-           <h4 class="mx-3 mt-3">쿠폰생성</h4>
-           <div class="card mb-lg-0 shadow mb-3 bg-white mx-auto col-10">
+           <div class="card mb-lg-0 shadow mb-3 bg-white mx-auto col-12">
            <div class="mb-3">
             <img class="card-img-top" src="${path}/include/images/coupon/쿠폰박스.png" alt="Card image">
             <div class="card-img-overlay col-12 ml-3"  style="margin-top: 170px;">
@@ -57,8 +56,10 @@
    <div id="listDiv"></div>
    <hr>
    <div id="memberlistDiv"></div>
+   
       </div>
-      <!--  -->
+   <%@ include file="../include/footer.jsp"%>
+      <!-- 123 -->
        <div id="view" class="reounded fixed-top shadow mb-3 mr-3 col-lg-2 col-xl-2 col-md-2 h6 ml-auto d-none d-xl-block d-lg-block d-md-block d-sm-block " style="margin-top: 170px;">
 					<form method="post" name="form1" id="form1" action="makeCoupon.do">
 						<h6 class="mt-3">선택한 쿠폰</h6>
