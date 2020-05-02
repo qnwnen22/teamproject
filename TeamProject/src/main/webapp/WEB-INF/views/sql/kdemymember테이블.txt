@@ -18,7 +18,7 @@ thumbnail clob,
 point number default 0,
 coupon varchar2(200),
 coupon_point number default 0,
-teacher varchar2(200),
+teacher varchar2(200) default 'n',
 packages_name varchar2(50),
 packages_end varchar2(50)
 );
