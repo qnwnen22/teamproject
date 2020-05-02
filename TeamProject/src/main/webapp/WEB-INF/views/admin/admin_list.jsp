@@ -57,9 +57,9 @@ function checkId() {
 	}
 </script>
 </head>
-<body>
+<body class="Site">
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 Site-content" id="KdemyBody">
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>

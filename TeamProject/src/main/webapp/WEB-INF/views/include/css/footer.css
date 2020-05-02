@@ -77,3 +77,15 @@
 .alert-body {
 	padding: 16px 20px;
 }
+/* #KdemyBody {
+    min-height: calc(100vh - 450px);
+} */
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}

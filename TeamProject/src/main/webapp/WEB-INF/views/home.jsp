@@ -834,9 +834,8 @@
                                  </div>
                                  <!-- 메인 변경 끝 -->
                               </c:if>
-                              <div class="main-header-gradient"
-                                 style="opacity: 0.3
-    background-image: linear-gradient(to bottom, ${row.color}, ${row.color})"></div>
+                              <div class="main-header-gradient" style="opacity: 0.3
+    						  	background-image: linear-gradient(to bottom, ${row.color}, ${row.color})"></div>
                               <div class="header position-relative" id="kdemiMainHeader">
                                  <div class="index-opacity-wrap" style="padding-top: 30px;">
                                     <div class="container-xl col-xl-8 offset-xl-2 col-lg-12">
@@ -1510,7 +1509,6 @@ function chatEnter() {
              $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
 </script>
-
    <%@ include file="include/footer.jsp"%>
 </body>
 </html>
