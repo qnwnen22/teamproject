@@ -31,7 +31,7 @@
 				</div>
 				  <div class="form-group form-inline ml-4">
 					<label for="coupon">쿠폰번호</label>
-					<input class="form-control col-64"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()">
+					<input class="form-control col-6"  name="coupon" id="coupon"  placeholder="4자리의 유니크한 쿠폰을 만들어주세요." oninput="checkCoupon()">
 					<span id="CheckM"></span><span id="couponM"></span>				
 				</div>
 				<div class="form-group form-inline ml-4">
