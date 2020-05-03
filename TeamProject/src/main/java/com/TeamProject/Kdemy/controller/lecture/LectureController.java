@@ -413,12 +413,13 @@ public class LectureController {
 			check = lectureService.buyCheck(lbDto);
 			up = lectureService.upCheck(lbDto);
 			if(up==null) up="x";
+			
+			String lectureUserid=lectureService.lectureUserid(lecture_idx);
+			if(userid.equals(lectureUserid)) {
+				check = 2;
+			}
 		}
 		
-		String lectureUserid=lectureService.lectureUserid(lecture_idx);
-		if(userid.equals(lectureUserid)) {
-			check = 2;
-		}
 			
 		dto=lectureService.lecture_list_view(lecture_idx);
 		
@@ -441,11 +442,11 @@ public class LectureController {
 			openTime=Integer.parseInt(start);
 			playTime=Integer.parseInt(dto.getLecture_time())*100;
 			endTime = playTime+openTime;
+			mav.addObject("todayTime",todayTime);
+			mav.addObject("openTime",openTime);
+			mav.addObject("endTime",endTime);
 		}
 		
-		mav.addObject("todayTime",todayTime);
-		mav.addObject("openTime",openTime);
-		mav.addObject("endTime",endTime);
 		mav.addObject("upCount", upCount);
 		mav.addObject("lectureCount",lectureCount);
 		mav.addObject("up", up);

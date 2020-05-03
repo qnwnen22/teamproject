@@ -140,6 +140,10 @@ $('#star1 a').click(function(){
 									<c:when test="${check==2}">
 										<input class="btn btn-dark col-12 " type="button" value="본인 강의 입니다." disabled>
 									</c:when>
+									
+									<c:otherwise>
+										<h2>tets</h2>
+									</c:otherwise>
 								</c:choose>
 							</div>
 			
