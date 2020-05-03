@@ -142,7 +142,7 @@ $('#star1 a').click(function(){
 									</c:when>
 									
 									<c:otherwise>
-										<h2>tets</h2>
+									
 									</c:otherwise>
 								</c:choose>
 							</div>
