@@ -1256,10 +1256,6 @@
     <div style="width: 63%; margin: auto;">
 		<div class="flex-end-center col-auto p-0"></div>
 		<hr>
-		<a href="${path}/review/list.do"> <marquee scrollamount="5">
-				<h4 style="color: red;">★수강후기★</h4>
-			</marquee>
-		</a>
 		
 	</div>
 
@@ -1332,9 +1328,12 @@
 
       <div class="d-flex">
          <div class="col-6 m-0 p-1">
-            <h4>
+           <div class="col-12 justify-content-between">
+            <div class="h4 float-left ">
                <b>공지사항</b>
-            </h4>
+           </div>
+            <div class="h6 float-right hoverplus"><a href="${path}/notice/list.do"><더보기></a></div>
+            </div>
             <table class="table table-bordered table-hover text-center">
                <thead class="thead-dark">
                   <tr>
@@ -1351,9 +1350,12 @@
             </table>
          </div>
          <div class="col-6 m-0 p-1">
-            <h4>
+            <div class="col-12 justify-content-between">
+            <div class="h4 float-left ">
                <b>베스트 후기</b>
-            </h4>
+            </div>
+            <div class="h6 float-right hoverplus"><a href="${path}/review/list.do"><더보기></a></div>
+            </div>
             <table class="table table-bordered table-hover text-center">
                <thead class="thead-dark">
                   <tr>

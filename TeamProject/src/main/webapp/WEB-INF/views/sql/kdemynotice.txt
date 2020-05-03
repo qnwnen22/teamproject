@@ -1,16 +1,16 @@
 
---!!!!!!!!°Ô½ÃÆÇ!!!!!!!!!!!--
+--!!!!!!!!ï¿½Ô½ï¿½ï¿½ï¿½!!!!!!!!!!!--
 
 drop table kdemyboard cascade constraints;
 
---°Ô½ÃÆÇ Å×ÀÌºí
+--ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
 create table kdemynotice (
-bno number not null, --°Ô½Ã¹°¹øÈ£
-title varchar2(200) not null, --Á¦¸ñ
-content clob, --º»¹®
-writer varchar2(50) not null, --ÀÛ¼ºÀÚ
-regdate date default sysdate, --ÀÛ¼ºÀÏÀÚ
-viewcnt number default 0, --Á¶È¸¼ö
+bno number not null, --ï¿½Ô½Ã¹ï¿½ï¿½ï¿½È£
+title varchar2(200) not null, --ï¿½ï¿½ï¿½ï¿½
+content clob, --ï¿½ï¿½ï¿½ï¿½
+writer varchar2(50) not null, --ï¿½Û¼ï¿½ï¿½ï¿½
+regdate date default sysdate, --ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½
+viewcnt number default 0, --ï¿½ï¿½È¸ï¿½ï¿½
 show char(1) default 'Y',
 primary key(bno)
 );
@@ -22,7 +22,7 @@ start with 1001
 increment by 1;
 drop sequence seq_kdemynotice;
 
---½ÃÄö½º »ý¼º
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 drop sequence board_reply_seq;
 create sequence notice_reply_seq
 start with 1
@@ -31,32 +31,32 @@ increment by 1;
 
 
 
---ÆäÀÌÁö ³ª´©±â Å×½ºÆ®¸¦ À§ÇØ ·¹ÄÚµå ÀÔ·Â
-declare --¼±¾ðºÎ
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½Ô·ï¿½
+declare --ï¿½ï¿½ï¿½ï¿½ï¿½
     i number := 1;
-begin --½ÇÇàºÎ
+begin --ï¿½ï¿½ï¿½ï¿½ï¿½
     while i<=991 loop
         insert into kdemynotice (bno,title,content,writer)
         values
         ( (select nvl(max(bno)+1,1) from kdemynotice)
-        ,'Á¦¸ñ'||i, '³»¿ë'||i, 'kim');
-        i := i+1; --Á¶°Ç º¯°æ
+        ,'ì œëª©'||i, 'ë‚´ìš©'||i, 'kim');
+        i := i+1; 
     end loop;
 end;
 /
 
 
 
---·¹ÄÚµå °¹¼ö È®ÀÎ
+--ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 select count(*) from kdemynotice;
 
 
 
---±Û¾²±â¸¦ ÇÏ±â À§ÇØ
---½ÃÄö½º »èÁ¦
+--ï¿½Û¾ï¿½ï¿½â¸¦ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 drop sequence seq_kdemynotice;
 
---1000¹øºÎÅÍ ½ÃÀÛÇÏ´Â ½ÃÄö½º »ý¼º
+--1000ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 create sequence seq_kdemynotice
 start with 2000
 increment by 1;
