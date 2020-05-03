@@ -332,3 +332,7 @@ img {
 .adminAlarmListBody a, .userAlarmListBody a{
 	font-size: 0.8rem;
 }
+
+.hoverplus:hover {
+	text-decoration: underline;
+}

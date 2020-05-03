@@ -10,8 +10,6 @@ writer varchar2(50) not null,
 regdate date default sysdate, 
 viewcnt number default 0, 
 show char(1) default 'Y',
-fullName varchar2(150),
-love number default 0,
 primary key(bno)
 );
 
@@ -69,7 +67,7 @@ begin --�����
         insert into kdemyreview (bno,subject,teacher,title,content,writer)
         values
         ( (select nvl(max(bno)+1,1) from kdemyreview)
-        ,'����'||i,'������'||i,'����'||i, '����'||i, '������');
+        ,'과목'||i,'강사'||i,'제목'||i, '내용'||i, 'moon');
         i := i+1; --���� ����
     end loop;
 end;

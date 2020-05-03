@@ -56,32 +56,32 @@
 	<!-- String uploadPath=new String("d:/upload"); -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="C:/Users/chanho/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
+			value="C:/Users/82105/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
 	</beans:bean>
 	
 	<beans:bean id="packagesuploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/coupon" />
+			value="C:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/coupon" />
 	</beans:bean>
 
 	<beans:bean id="teacheruploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/teacher" />
+			value="C:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/teacher" />
 	</beans:bean>
 	
 	<beans:bean id="reviewuploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/review" />
+			value="C:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/review" />
 	</beans:bean>
 		
 	<beans:bean id="memberUploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/profile" />
+			value="C:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/profile" />
 	</beans:bean>
 	
 	<beans:bean id="mainResoucePath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/main" />
+			value="C:/work/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject/WEB-INF/views/include/images/main" />
 	</beans:bean>
 	
 	<!-- aop의 설정으로 Proxy 객체를 자동으로 생성 -->
