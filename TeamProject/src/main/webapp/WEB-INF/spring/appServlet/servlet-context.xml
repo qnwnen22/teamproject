@@ -48,7 +48,7 @@
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 파일업로드 최대 용량(byte) -->
-		<beans:property name="maxUploadSize" value="120990749" />
+		<beans:property name="maxUploadSize" value="1209907490000" />
 		<beans:property name="maxInMemorySize"
 			value="120990749" />
 	</beans:bean>
@@ -56,7 +56,7 @@
 	<!-- String uploadPath=new String("d:/upload"); -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg
-			value="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
+			value="D:/work/teamproject/TeamProject/src/main/webapp/WEB-INF/views/upload" />
 	</beans:bean>
 	
 	<beans:bean id="packagesuploadPath" class="java.lang.String">
