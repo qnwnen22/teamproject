@@ -626,7 +626,7 @@
                                                                            <div class="icon"
                                                                               style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
                                                                            <div class="iconName">
-                                                                              <span><b>비즈니스컨설팅</b></span>
+                                                                              <span><b>컨설팅</b></span>
                                                                            </div>
                                                                         </a>
                                                                      </div>
@@ -648,7 +648,7 @@
                                                                            <div class="icon"
                                                                               style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
                                                                            <div class="iconName">
-                                                                              <span><b>레슨,실무교육</b></span>
+                                                                              <span><b>실무교육</b></span>
                                                                            </div>
                                                                         </a>
                                                                      </div>
@@ -812,6 +812,7 @@
                                                                               style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
                                                                            <div class="iconName">
                                                                               <span><b>간판,인쇄</b></span>
+                                                                              
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file10" name="file10">

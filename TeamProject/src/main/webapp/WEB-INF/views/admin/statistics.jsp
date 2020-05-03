@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@include file="../include/fixed-topbar.jsp" %>
-<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 mb-3" style="margin-top: 170px;">
+<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3 mb-3">
 <div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -38,11 +38,6 @@
     <a href="${path}/chart/saleschart.do">
   <img class="card-img-top" src="../include/images/chart/매출.jpg" alt="Card image">
   </a>
-</div>
-<div class="card col d-flex align-items-center shadow mb-4 bg-white border border-secondary mx-1 pt-3">
-    <h4 class="card-title">방문자</h4>
-    <p class="card-text">Some example text.</p>
-  <img class="card-img-top" src="../include/images/chart/방문자.jpg" alt="Card image">
 </div>
 </div>
 </div>

@@ -297,6 +297,11 @@ public class LectureDAOImpl implements LectureDAO {
 			return sqlSession.selectOne("lecture.lectureUserid",lecture_idx);
 		}
 
+		@Override
+		public List<LectureDTO> lectureRanking() {
+			return sqlSession.selectList("lecture.lectureRanking");
+		}
+
 
 
 }

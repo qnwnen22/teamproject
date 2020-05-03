@@ -287,5 +287,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select cell_type, (sum(revenue)) revenue  from lecture group by cell_type order by cell_type
    </select>
    
+   <select id="lectureRanking" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+   	  select lecture_Idx, userid, subject, cellcount, revenue, rank() over (order by revenue desc) as rank from lecture 
+   </select>
 </mapper>
 

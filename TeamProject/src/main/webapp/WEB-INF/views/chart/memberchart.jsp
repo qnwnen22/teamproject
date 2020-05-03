@@ -71,44 +71,31 @@
 			</ul>
 		</div>
 		<div class="d-flex">
-			<div class="card col-3 d-flex align-items-center border-danger">
-				<img class="card-img-top" src="../include/images/chart/회원.jpg"
-					alt="Card image" style="opacity: 0.3">
-				<div class="card-img-overlay text-center">
+			<div class="card col-4 d-flex align-items-center border-danger my-1">
+				<div class="text-center my-1">
 					<h4 class="card-title">가입자수</h4>
 					     <h4 class="card-title" id="counter1"></h4>
 					<a href="${path}/chart/memberchart.do" class="btn btn-primary">차트보기</a>
 				</div>
 			</div>
-			<div class="card col-3 d-flex align-items-center">
-				<img class="card-img-top" src="../include/images/chart/강의.jpg"
-					alt="Card image" style="opacity: 0.3">
-				<div class="card-img-overlay text-center">
+			<div class="card col-4 d-flex align-items-center my-1">
+				<div class="text-center my-1">
 					<h4 class="card-title">등록된 강의</h4>
 					<h4 class="card-title" id="counter2"></h4>
 					<a href="${path}/chart/lecturechart.do" class="btn btn-primary">차트보기</a>
 				</div>
 			</div>
-			<div class="card col-3">
-				<img class="card-img-top" src="../include/images/chart/매출.jpg"
-					alt="Card image" style="opacity: 0.3">
-				<div class="card-img-overlay text-center">
+			<div class="card col-4 d-flex align-items-center my-1">
+				<div class="text-center my-1">
 					<h4 class="card-title">매출현황</h4>
 					<h4 class="card-title" id="counter3"></h4>
 					<a href="${path}/chart/saleschart.do" class="btn btn-primary">차트보기</a>
 				</div>
 			</div>
-			<div class="card col-3">
-				<img class="card-img-top" src="../include/images/chart/방문자.jpg" style="opacity: 0.3" alt="Card image">
-				<div class="card-img-overlay text-center">
-					<h4 class="card-title">방문자</h4>
-					<p class="card-text">Some example text.</p>
-				</div>
-			</div>
 		</div>
-		<div id="chart_div" class="d-flex">
-			<div id="membercount_div" class="col-6 border m-0"></div>
-			<div id="month_div" class="col-6 border m-0"></div>
+		<div id="chart_div" class="d-flex row">
+			<div id="membercount_div" class="col-6 m-0"></div>
+			<div id="month_div" class="col-6 m-0"></div>
 		</div>
 	</div>
 	<%@include file="../include/footer.jsp"%>

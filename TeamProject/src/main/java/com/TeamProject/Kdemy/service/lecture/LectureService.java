@@ -66,8 +66,5 @@ public interface LectureService {
 	public String buyAlarm(int lecture_idx);
 	public String findNickname(String makeUserid);
 	public String lectureUserid(int lecture_idx);
-	
-	
-	
 
 }

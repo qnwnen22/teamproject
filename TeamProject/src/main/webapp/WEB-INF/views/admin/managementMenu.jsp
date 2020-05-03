@@ -17,7 +17,6 @@
 				<li><b><a href="${path}/admin/managementMenu.do" style="color:blue;">관리메뉴</a></b></li>
 			</ul>
 		</div>
-	<div>
 	<hr>
 <div class="d-flex mb-3">
 	<div class="col rounded-lg shadow p-4 mb-4 bg-white border border-secondary mx-1">
@@ -41,6 +40,25 @@
 		<a href="${path}/member/couponMaker.do"><img class="mx-auto d-block" src="${path}/include/images/main/쿠폰관리.png"></a><br>
 	</div>
 </div>
+<div>
+			<ul class="upper_shift">
+				<li><a href="${path}">KDEMY</a></li>
+				<li><b><a href="${path}/admin/lectureMenu.do" style="color:blue;">강의관리</a></b></li>
+			</ul>
+		</div>
+<div class="d-flex mb-3">
+	<div class="col-2 rounded-lg shadow p-4 mb-4 bg-white border border-secondary mx-1">
+		<h3 class="text-center">실시간강의</h3>
+		<a href="${path}/lecture/online_list.do?admin=admin"><img class="img-fluid d-block" src="${path}/include/images/teacher/실시간강의.png"></a>
+	</div>
+	<div class="col-2 rounded-lg shadow p-4 mb-4 bg-white border border-secondary mx-1">
+		<h3 class="text-center">동영상강의</h3><br>
+		<a href="${path}/lecture/video_list.do?admin=admin"><img class="img-fluid d-block" src="${path}/include/images/teacher/동영상강의.jpeg"></a>
+	</div>
+	<div class="col-2 rounded-lg shadow p-4 mb-4 bg-white border border-secondary mx-1">
+		<h3 class="text-center">현장강의</h3>
+		<a href="${path}/lecture/offline_list.do?admin=admin"><img class="img-fluid d-block"class="img-fluid d-block" src="${path}/include/images/teacher/현장강의.jpg"></a>
+	</div>
 </div>
 </div>
 <%@include file="../include/footer.jsp" %>

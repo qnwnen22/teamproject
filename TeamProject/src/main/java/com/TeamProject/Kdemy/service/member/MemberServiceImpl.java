@@ -165,4 +165,9 @@ public class MemberServiceImpl implements MemberService {
 		return  memberDao.checkNick(dto);
 	}
 
+	@Override
+	public void deleteCoupon(String coupon) {
+		memberDao.deleteCoupon(coupon);
+	}
+
 }

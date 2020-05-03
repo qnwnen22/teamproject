@@ -37,10 +37,10 @@
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
-					<tr>
+					<tr class="text-center vertical-middle">
 						<th></th>
-						<th>작성자</th>
 						<th>제목</th>
+						<th>작성자</th>
 						<th>가격</th>
 						<th>등록일</th>
 						<th>강의일</th>
@@ -48,14 +48,14 @@
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${map.list}">
-						<tr onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
+						<tr class="text-center" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
 							<td><img src="../upload/${dto.main_img}" class="align-self-center mr-3" style="width: 60px">
 							</td>
-							<td>${dto.subject}</td>
-							<td>${dto.userid}</td>
-							<td>${dto.price}</td>
-							<td>${dto.upload_date}</td>
-							<td>${dto.lecture_start}</td>
+							<td class="align-middle">${dto.subject}</td>
+							<td class="align-middle">${dto.userid}</td>
+							<td class="align-middle"><fmt:formatNumber value="${dto.price}" pattern="#,###" /></td>
+							<td class="align-middle">${dto.upload_date}</td>
+							<td class="align-middle">${dto.lecture_start}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -70,7 +70,7 @@ function checkId() {
 		<br>
 		<table class="table table-bordered table-hover text-center">
 			<thead class="thead-dark">
-				<tr>
+				<tr class="text-center">
 					<th>아이디</th>
 					<th>이름</th>
 					<th>이메일</th>
@@ -81,7 +81,7 @@ function checkId() {
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${list}">
-					<tr style="cursor:pointer;" onclick="adminView('${row.admin_id}')"
+					<tr class="text-center" style="cursor:pointer;" onclick="adminView('${row.admin_id}')"
 							data-toggle="modal" data-target="#updateModal">
 						<td>${row.admin_id}</td>
 						<td>${row.admin_name}</td>

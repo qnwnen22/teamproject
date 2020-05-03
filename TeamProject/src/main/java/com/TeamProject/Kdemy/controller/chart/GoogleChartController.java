@@ -1,5 +1,6 @@
 package com.TeamProject.Kdemy.controller.chart;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.service.chart.GoogleChartService;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
 import com.TeamProject.Kdemy.service.member.MemberService;
@@ -45,14 +47,18 @@ public class GoogleChartController {
 	@RequestMapping("lecturechart.do")
 	public ModelAndView lecturechart(ModelAndView mav) {
 		Map<String, Object>map=googleChartService.countItems();
+		List<LectureDTO> list = googleChartService.lectureRanking();
 		mav.addObject("map",map);
+		mav.addObject("list",list);
 		mav.setViewName("chart/lecturechart");
 		return mav;
 	}
 	@RequestMapping("saleschart.do")
 	public ModelAndView saleschart(ModelAndView mav) {
 		Map<String, Object>map=googleChartService.countItems();
+		List<LectureDTO> list = googleChartService.lectureRanking();
 		mav.addObject("map",map);
+		mav.addObject("list",list);
 		mav.setViewName("chart/saleschart");
 		return mav;
 	}

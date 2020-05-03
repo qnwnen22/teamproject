@@ -44,7 +44,7 @@
 		</ul>
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
-					<tr>
+					<tr class="text-center">
 						<th>아이디</th>
 						<th>이름</th>
 						<th>연락처</th>
@@ -54,7 +54,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="row" items="${map.list}">
-						<tr>
+						<tr class="text-center">
 							<td>${row.userid}</td>
 							<td><a href="#"> ${row.username}</a></td>
 							<td>${row.phone}</td>
