@@ -1100,8 +1100,7 @@
 
                               <div class="index-header-left d-none d-xl-block mx-auto">
                                  <img class="img-fluid"
-                                    src="${path}/include/images/main/${row.background_img0}"
-                                    onerror="this.style.display='none'">
+                                    src="${path}/include/images/main/${row.background_img0}" onerror="this.style.display='none'">
                               </div>
                               <div class="index-header-right d-none d-xl-block mx-auto">
                                  <img class="img-fluid"

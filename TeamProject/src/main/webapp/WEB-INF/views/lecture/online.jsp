@@ -194,51 +194,6 @@ function fileChange(e) {
 
     formData.append("file", file);
 
-		$.ajax({
-    	url: '${path}/lecture/uploadAjax.do',
-    	  enctype:'multipart/form-data',
-		  data: formData,
-		  dataType:'text',
-		  processData: false,
-		  contentType: false,
-		  type: 'POST',
-		  success: function(data){
-
-		  	alert("썸네일 이미지가 변경 되었습니다.")	
-
-		  }
-		})
-
-
- 		function checkImageType(fileName){
- 			var pattern = /jpg$|gif$|png$|jpeg$/i;
- 			return fileName.match(pattern);
- 		}
-
-
- 		function getOriginalName(fileName){
- 			if(checkImageType(fileName)){
- 				return;
- 			}
-
- 			var idx = fileName.indexOf("_") + 1 ;
- 			return fileName.substr(idx);
-
- 		}
-
-
- 		function getImageLink(fileName){
-
- 			if(!checkImageType(fileName)){
- 				return;
- 			}
- 			var front = fileName.substr(0,12);
- 			var end = fileName.substr(14);
-
- 			return front + end;
-
- 		}
-
 }
 
 </script>
