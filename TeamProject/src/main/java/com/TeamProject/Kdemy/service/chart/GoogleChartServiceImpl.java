@@ -202,4 +202,9 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 	public List<LectureDTO> lectureRanking() {
 		return lectureDao.lectureRanking();
 	}
+
+	@Override
+	public List<LectureDTO> lectureUpRanking() {
+		return lectureDao.lectureUpRanking();
+	}
 }

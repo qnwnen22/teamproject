@@ -903,11 +903,10 @@
                                                             href="${path}/chart/memberchart.do">회원통계</a> <a
                                                             class="dropdown-item"
                                                             href="${path}/chart/lecturechart.do">강의통계</a> <a
-                                                            class="dropdown-item" href="#">매출통계</a> <a
-                                                            class="dropdown-item" href="#">방문자</a>
+                                                            class="dropdown-item" href="${path}/chart/saleschart.do"">매출통계</a>
                                                       </div>
                                                    </div>
-                                                   <a><b>${sessionScope.admin_id}님</b></a>
+                                                   <a id="userInfo"><b>${sessionScope.admin_id}님</b></a>
                                                    <button data-toggle="modal" data-target="#logOutModal"
                                                       class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
                                                       <b>로그아웃</b>
@@ -1101,8 +1100,7 @@
 
                               <div class="index-header-left d-none d-xl-block mx-auto">
                                  <img class="img-fluid"
-                                    src="${path}/include/images/main/${row.background_img0}"
-                                    onerror="this.style.display='none'">
+                                    src="${path}/include/images/main/${row.background_img0}" onerror="this.style.display='none'">
                               </div>
                               <div class="index-header-right d-none d-xl-block mx-auto">
                                  <img class="img-fluid"
