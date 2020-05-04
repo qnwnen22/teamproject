@@ -9,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
@@ -22,6 +23,8 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 	MemberService memberService;
 	@Inject
 	LectureService lectureService;
+	@Inject
+	LectureDAO lectureDao;
 	
 	@Override
 	public Map<String, Object> countItems() {
@@ -154,7 +157,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 	}
 	@Override
 	public JSONObject getChartDatamoney() {
-		List<LectureBoxDTO> items=lectureService.chartCountMoney();
+		List<LectureDTO> items=lectureService.chartCountMoney();
 		//리턴할 최종 json객체
 		JSONObject data=new JSONObject();
 		//컬럼을 정의할 json 객체
@@ -172,7 +175,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 		data.put("cols", title);
 		//json의 rows 객체구성(바디,내용구성)
 		JSONArray body=new JSONArray();
-		for(LectureBoxDTO dto : items) {
+		for(LectureDTO dto : items) {
 			JSONObject cell_type=new JSONObject();//JSONObject는 HashMap과 같음
 			if(dto.getCell_type().equals("1")) {
 				dto.setCell_type("동영상 강의");
@@ -183,7 +186,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 			}
 			cell_type.put("v", dto.getCell_type());
 			JSONObject money=new JSONObject();
-			money.put("v", dto.getPrice());
+			money.put("v", dto.getRevenue());
 			JSONArray row=new JSONArray();
 			row.add(cell_type);
 			row.add(money);
@@ -193,5 +196,15 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 		}
 		data.put("rows", body);
 		return data;
+	}
+
+	@Override
+	public List<LectureDTO> lectureRanking() {
+		return lectureDao.lectureRanking();
+	}
+
+	@Override
+	public List<LectureDTO> lectureUpRanking() {
+		return lectureDao.lectureUpRanking();
 	}
 }

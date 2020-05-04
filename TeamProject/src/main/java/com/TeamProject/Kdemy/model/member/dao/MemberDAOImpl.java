@@ -208,6 +208,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public int checkNick(MemberDTO dto) {
 		return sqlSession.selectOne("member.checkNick",dto);
 	}
+
+	@Override
+	public void deleteCoupon(String coupon) {
+		sqlSession.delete("member.deleteCoupon",coupon);
+	}
 	
 }
 	

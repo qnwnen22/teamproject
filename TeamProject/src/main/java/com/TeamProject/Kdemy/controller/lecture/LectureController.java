@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.service.lecture.LectureService;
+import com.TeamProject.Kdemy.service.teacher.TeacherService;
 import com.TeamProject.Kdemy.util.MediaUtils;
 import com.TeamProject.Kdemy.util.UploadFileUtils;
 
@@ -46,6 +47,9 @@ public class LectureController {
 	
 	@Inject
 	LectureService lectureService;
+	
+	@Inject
+	TeacherService teacherService;
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
@@ -99,7 +103,6 @@ public class LectureController {
 		}
 		return entity;
 	}
-	
 	
 	//실시간 강의를 등록하는 페이지
 	@RequestMapping("onlinePage.do")
@@ -410,7 +413,13 @@ public class LectureController {
 			check = lectureService.buyCheck(lbDto);
 			up = lectureService.upCheck(lbDto);
 			if(up==null) up="x";
+			
+			String lectureUserid=lectureService.lectureUserid(lecture_idx);
+			if(userid.equals(lectureUserid)) {
+				check = 2;
+			}
 		}
+		
 			
 		dto=lectureService.lecture_list_view(lecture_idx);
 		
@@ -433,11 +442,11 @@ public class LectureController {
 			openTime=Integer.parseInt(start);
 			playTime=Integer.parseInt(dto.getLecture_time())*100;
 			endTime = playTime+openTime;
+			mav.addObject("todayTime",todayTime);
+			mav.addObject("openTime",openTime);
+			mav.addObject("endTime",endTime);
 		}
 		
-		mav.addObject("todayTime",todayTime);
-		mav.addObject("openTime",openTime);
-		mav.addObject("endTime",endTime);
 		mav.addObject("upCount", upCount);
 		mav.addObject("lectureCount",lectureCount);
 		mav.addObject("up", up);
@@ -463,15 +472,19 @@ public class LectureController {
 
 	// 강의 관리 페이지 이동
 	@RequestMapping("myLecturePage.do")
-	public ModelAndView myLecturePage(String userid, HttpSession session) {
+	public ModelAndView myLecturePage(HttpSession session, @RequestParam(defaultValue="lecture_idx") String orderType) {
 		ModelAndView mav=new ModelAndView();
-		if(!((String)session.getAttribute("userid")).equals(userid)) {
-			mav.setViewName("redirect:/");
-			return mav;
-		}
-		List<LectureDTO> list=lectureService.myLectureList(userid);
+		System.err.println((String)session.getAttribute("userid"));
+		System.err.println(orderType);
+		
+		String userid=(String)session.getAttribute("userid");
+
+		List<LectureDTO> list=lectureService.myLectureList(userid, orderType);
+		int total=teacherService.myRevenue(userid);
+		mav.addObject("total",total);
 		mav.addObject("list",list);
 		mav.setViewName("lecture/myLecturePage");
+		
 		return mav;
 	}
 	@RequestMapping("lectureDelete.do")
@@ -537,15 +550,25 @@ public class LectureController {
 		dto.setLecture_idx(lecture_idx);
 		
 		int check=lectureService.lectureViewCheck(dto);
-		System.err.println("check : "+check);
+		
+		String lectureUserid=lectureService.lectureUserid(lecture_idx);
+		if(userid.equals(lectureUserid)) {
+			check = 2;
+		}
+		
 		if(check==1) {
 			LectureDTO dto2=new LectureDTO();
 			dto2=lectureService.lectureView_success(lecture_idx);
 			mav.addObject("dto", dto2);
 			mav.setViewName("lecture/lectureView_offline");
 			return mav;
+		}else if(check==2) {
+			LectureDTO dto2=new LectureDTO();
+			dto2=lectureService.lectureView_success(lecture_idx);
+			mav.addObject("dto", dto2);
+			mav.setViewName("lecture/lectureView_offline");
 		}else {
-			mav.setViewName("redirect:/");
+			mav.setViewName("redirect:/");	
 		}
 		return mav;
 	}
@@ -560,12 +583,30 @@ public class LectureController {
 		dto.setLecture_idx(lecture_idx);
 		
 		int check=lectureService.lectureViewCheck(dto);
+		
+		String lectureUserid=lectureService.lectureUserid(lecture_idx);
+		if(userid.equals(lectureUserid)) {
+			check = 2;
+		}
+		
 		if(check==1) {
 			LectureDTO ldto=new LectureDTO();
 			ldto=lectureService.lectureView_success(lecture_idx);
+			String makeUserid=lectureService.buyAlarm(lecture_idx);
+			String makeUsernick=lectureService.findNickname(makeUserid);
+			mav.addObject("makeUserid", makeUserid);
+			mav.addObject("makeUsernick", makeUsernick);
 			mav.addObject("ldto", ldto);
 			mav.setViewName("lecture/lectureView_success");
-			return mav;
+		}else if(check==2) {
+			LectureDTO ldto=new LectureDTO();
+			ldto=lectureService.lectureView_success(lecture_idx);
+			String makeUserid=lectureService.buyAlarm(lecture_idx);
+			String makeUsernick=lectureService.findNickname(makeUserid);
+			mav.addObject("makeUserid", makeUserid);
+			mav.addObject("makeUsernick", makeUsernick);
+			mav.addObject("ldto", ldto);
+			mav.setViewName("lecture/lectureView_success");
 		}else {
 			mav.setViewName("redirect:/");
 		}

@@ -29,9 +29,9 @@
 	}
 </script>
 </head>
-<body>
+<body class="Kdemy">
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 Kdemy-content">
 	<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -60,12 +60,9 @@
 				</form>
 			</li>
 		</ul>
-	</div>
-
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 table-responsive">
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
-				<tr>
+				<tr class="text-center">
 					<th>아이디</th>
 					<th>이름</th>
 					<th>연락처</th>
@@ -75,7 +72,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${map.list}">
-					<tr onclick="requestMemberView('${row.userid}')" style="cursor:pointer;" data-toggle="modal" data-target="#approvalModal">
+					<tr class="text-center" onclick="requestMemberView('${row.userid}')" style="cursor:pointer;" data-toggle="modal" data-target="#approvalModal">
 						<td>${row.userid}</td>
 						<td>${row.username}</td>
 						<td>${row.phone}</td>

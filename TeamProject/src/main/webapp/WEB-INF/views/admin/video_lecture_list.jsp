@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 <%@include file="../include/header.jsp"%>
 </head>
-<body>
+<body class="Kdemy">
 	<%@include file="../include/fixed-topbar.jsp"%>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 Kdemy-content">
 	<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -23,7 +23,7 @@
 					강의</a></li>
 			<li class="nav-item"><a class="nav-link active" href="${path}/lecture/video_list.do?admin=admin">동영상 강의</a></li>
 			<li class="nav-item"><a class="nav-link" href="${path}/lecture/offline_list.do?admin=admin">오프라인 강의</a></li>
-			<li class="input-group col-3 ml-auto mr-0">
+			<li class="input-group col-3 ml-auto mr-0 pr-0">
 				<form class="input-group" action="#">
 					<input type="text" class="form-control" placeholder="검색어 입력"
 						value="" id="keyword" name="keyword"> <input type="hidden"
@@ -37,10 +37,10 @@
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
-					<tr>
+					<tr class="text-center">
 						<th></th>
-						<th>작성자</th>
 						<th>제목</th>
+						<th>작성자</th>
 						<th>가격</th>
 						<th>등록일</th>
 						<th>강의일</th>
@@ -49,17 +49,17 @@
 				
 				<tbody>
 					<c:forEach var="dto" items="${map.list}">
-						<tr onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
+						<tr class="text-center" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
 							<td><a
 								href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
 									<img src="../upload/${dto.main_img}"
 									class="align-self-center mr-3" style="width: 60px">
 							</a></td>
-							<td>${dto.subject}</td>
-							<td>${dto.userid}</td>
-							<td>${dto.price}</td>
-							<td>${dto.upload_date}</td>
-							<td>${dto.lecture_start}</td>
+							<td class="align-middle">${dto.subject}</td>
+							<td class="align-middle">${dto.userid}</td>
+							<td class="align-middle"><fmt:formatNumber value="${dto.price}" pattern="#,###,###" /></td>
+							<td class="align-middle">${dto.upload_date}</td>
+							<td class="align-middle">${dto.lecture_start}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

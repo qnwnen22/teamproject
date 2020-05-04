@@ -43,6 +43,6 @@ public class LectureDTO {
 	private int upCount;
 	// 판매 금액
 	private int revenue;
-	
+	private String rank;
 	
 }

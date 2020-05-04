@@ -301,7 +301,47 @@
   </div>
 </div>
 <script>
+function adminAlarmList(){
+    var adminid = $('#admin_id').val();
+    $.ajax({
+           data : {
+        	   userid : adminid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#adminAlarmListBody").html(data);
+           }
+    });
+}
 
+
+function userAlarmList(){
+    var userid = $('#userid').val();
+    $.ajax({
+           data : {
+        	   userid : userid
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#userAlarmListBody").html(data);
+           }
+    });
+}
+
+
+function alarmList(page) {
+	   var userid = $('#userid').val();
+	   $.ajax({
+           data : {
+        	   userid : userid,
+        	   curPage : page
+           },
+           url : "${path}/alarm/adminAlarmList.do",
+           success : function(data) {
+               $("#userAlarmListBody").html(data);
+           }
+    });
+}
 var w = null;
 var socket = null;
 function ConectWS() {
@@ -321,9 +361,11 @@ function ConectWS() {
        var msg=strs[3];
        var num=strs[4];
        var cmdNum="chat"+num;
-       if(cmd=="usersend") {
-    	   $("#messageAdmin").append(msg);
-    	   $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+       if(strs != null && strs.length == 5) {
+	       if(cmd==target+num) {
+    	 	  $("#messageAdmin").append(msg);
+    	  	 $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
+     		}
        }else{
            let $kdemyAlert=$("div#kdemyAlert")
            let $socketAlert =$('div#socketAlert');

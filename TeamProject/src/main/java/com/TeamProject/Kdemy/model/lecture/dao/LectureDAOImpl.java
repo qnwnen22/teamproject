@@ -118,8 +118,11 @@ public class LectureDAOImpl implements LectureDAO {
 		}
 
 	   @Override
-	   public List<LectureDTO> myLectureList(String userid) {
-	      return sqlSession.selectList("lecture.myLectureList",userid);
+	   public List<LectureDTO> myLectureList(String userid, String orderType) {
+	      Map<String,Object> map=new HashMap<String, Object>();
+		  map.put("userid", userid);
+		  map.put("orderType", orderType);
+	      return sqlSession.selectList("lecture.myLectureList",map);
 	   }
 
 	   @Override
@@ -243,8 +246,8 @@ public class LectureDAOImpl implements LectureDAO {
 	   }
 
 	   @Override
-	   public List<LectureBoxDTO> lectureCountMoney() {
-	      return sqlSession.selectList("lectureBox.lectureCountMoney");
+	   public List<LectureDTO> lectureCountMoney() {
+	      return sqlSession.selectList("lecture.lectureCountMoney");
 	   }
 
 	   @Override
@@ -277,6 +280,31 @@ public class LectureDAOImpl implements LectureDAO {
 		@Override
 		public String selectId(String lecture_idx) {
 			return sqlSession.selectOne("lecture.selectId",lecture_idx);
+		}
+
+		@Override
+		public String buyAlarm(int lecture_idx) {
+			return sqlSession.selectOne("lecture.buyAlarm",lecture_idx);
+		}
+
+		@Override
+		public String findNickname(String makeUserid) {
+			return sqlSession.selectOne("lecture.findNickname",makeUserid);
+		}
+
+		@Override
+		public String lectureUserid(int lecture_idx) {
+			return sqlSession.selectOne("lecture.lectureUserid",lecture_idx);
+		}
+
+		@Override
+		public List<LectureDTO> lectureRanking() {
+			return sqlSession.selectList("lecture.lectureRanking");
+		}
+
+		@Override
+		public List<LectureDTO> lectureUpRanking() {
+			return sqlSession.selectList("lecture.lectureUpRanking");
 		}
 
 

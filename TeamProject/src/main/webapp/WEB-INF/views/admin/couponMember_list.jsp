@@ -31,9 +31,9 @@
 </script>
 </head>
 <body>
-<div class="col-11">
+<div>
 	<form class="input-group">
-		<input type="text" class="form-control col-2 ml-5" placeholder="검색어 입력"
+		<input type="text" class="form-control col-2" placeholder="검색어 입력"
 			value="${map.keyword}" id="keyword" name="keyword"> <input
 			type="hidden" id="location" name="location" value="">
 		<div class="input-group-append">
@@ -42,7 +42,7 @@
 	</form>
 	</div>
 	<div
-		class="table-responsive col-11 mx-auto">
+		class="mx-auto">
 		<table class="table table-bordered table-hover" id="userInfo">
 			<thead class="thead-dark">
 				<tr class="text-center">

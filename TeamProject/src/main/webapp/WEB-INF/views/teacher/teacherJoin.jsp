@@ -45,9 +45,6 @@ width: auto;
    width: 100%;
 }
 
-.teacherJoinBox {
-   background-color: #e6f2ff;
-}
 
 .teacherJoinBoxIn {
    background-color: #ebebe0;

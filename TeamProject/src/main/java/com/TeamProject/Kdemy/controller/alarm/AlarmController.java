@@ -36,13 +36,11 @@ public class AlarmController {
 		List<AlarmDTO> list=new ArrayList<>();
 		int count =alarmService.countalarmList(userid);
 		
-		System.out.println("countcountcountcountcountcountcountcountcountcountcountcountcountcount"+count);
 		AlarmPager pager=new AlarmPager(count,curPage);
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
 		
 		list=alarmService.alarmList(userid,start,end);
-		System.out.println("listlistlistlistlistlistlistlistlistlistlistlistlistlistlist"+list);
 		Map<String, Object> map=new HashMap<>();
 		map.put("alarmlist", list); //map에 자료 저장
 		map.put("count", count);

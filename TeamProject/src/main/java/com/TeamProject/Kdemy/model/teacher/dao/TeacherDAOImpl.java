@@ -42,4 +42,9 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public void total(String lectureUserid) {
 		sqlSession.update("teacher.total",lectureUserid);
 	}
+
+	@Override
+	public int myRevenue(String userid) {
+		return sqlSession.selectOne("teacher.myRevenue",userid);
+	}
 }

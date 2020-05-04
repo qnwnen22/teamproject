@@ -127,6 +127,9 @@ public class PackagesController {
 		}else {
 		packagesService.purchasePackages(dto, orderId);
 		memberService.minusPoint(packages_price, dto2);
+		MemberDTO dtoa=memberService.detailMember(orderId);
+		session.setAttribute("packages_end", dtoa.getPackages_end());
+		System.err.println("@@@@@@123@@@@@@@@@@@@@@@@@"+(String)session.getAttribute("packages_end"));
 		String msg="구매완료";
 		mav.addObject("msg", msg);
 		}

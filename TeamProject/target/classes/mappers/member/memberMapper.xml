@@ -233,6 +233,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
 	
 	<select id="minusPoint">
-	  update kdemymember set point=#{point} where userid=#{userid}
-	</select>
+     update kdemymember set point=#{point} where userid=#{userid}
+   </select>
+   
+   <delete id="deleteCoupon">
+     delete from coupon where coupon=#{coupon}
+   </delete>
 </mapper>

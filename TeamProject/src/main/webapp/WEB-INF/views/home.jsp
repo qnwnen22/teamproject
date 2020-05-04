@@ -626,7 +626,7 @@
                                                                            <div class="icon"
                                                                               style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
                                                                            <div class="iconName">
-                                                                              <span><b>비즈니스컨설팅</b></span>
+                                                                              <span><b>컨설팅</b></span>
                                                                            </div>
                                                                         </a>
                                                                      </div>
@@ -648,7 +648,7 @@
                                                                            <div class="icon"
                                                                               style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
                                                                            <div class="iconName">
-                                                                              <span><b>레슨,실무교육</b></span>
+                                                                              <span><b>실무교육</b></span>
                                                                            </div>
                                                                         </a>
                                                                      </div>
@@ -704,40 +704,40 @@
                                                          <div id="icon-container" class="d-flex col-12">
                                                             <div class="RootDirectoryThemeItem col-3">
                                                                <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img0}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
-                                                               </div>
+                                                                              style="background: url('include/images/main/${row.icon_img0}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>디자인</b></span>
+                                                                           </div>
                                                                <div
                                                                   class="d-flex justify-content-center form-group">
                                                                   <input type="file" id="file0" name="file0">
                                                                </div>
                                                             </div>
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                              <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img1}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>IT,프로그래밍</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file1" name="file1">
                                                                </div>
                                                             </div>
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img2}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>콘텐츠 제작</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file2" name="file2">
                                                                </div>
                                                             </div>
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img3}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>마케팅</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file3" name="file3">
@@ -756,30 +756,30 @@
                                                                </div>
                                                             </div>
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img5}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>문서,통역</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file5" name="file5">
                                                                </div>
                                                             </div>
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                  <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>비즈니스컨설팅</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file6" name="file6">
                                                                </div>
                                                             </div>
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                 <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img7}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>운세,상담</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file7" name="file7">
@@ -788,10 +788,10 @@
                                                          </div>
                                                          <div id="icon-container" class="d-flex col-12">
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>레슨,실무교육</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file8" name="file8">
@@ -808,10 +808,11 @@
                                                                </div>
                                                             </div>
                                                             <div class="RootDirectoryThemeItem col-3">
-                                                               <div class="icon"
-                                                                  style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
-                                                               <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                              <div class="icon"
+                                                                              style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
+                                                                           <div class="iconName">
+                                                                              <span><b>간판,인쇄</b></span>
+                                                                              
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file10" name="file10">
@@ -853,7 +854,7 @@
                                                 <!-- 관리자 로그인 -->
                                                 <c:if test="${sessionScope.admin_id != null}">
                                                 
-                                                <a href="#adminAlarmList" data-toggle="collapse" onclick="alarmList()"><i class="far fa-bell"></i></a>
+                                                <a href="#adminAlarmList" data-toggle="collapse" onclick="adminAlarmList()"><i class="far fa-bell"></i></a>
                                                 <div class="collapse ml-auto m-2 shadow bg-white adminAlarmList" id="adminAlarmList">
 												     <div class="alarmList-header d-flex bg-dark">
 												      <div class="text-center col-12 mt-2 p-0">
@@ -902,8 +903,7 @@
                                                             href="${path}/chart/memberchart.do">회원통계</a> <a
                                                             class="dropdown-item"
                                                             href="${path}/chart/lecturechart.do">강의통계</a> <a
-                                                            class="dropdown-item" href="#">매출통계</a> <a
-                                                            class="dropdown-item" href="#">방문자</a>
+                                                            class="dropdown-item" href="${path}/chart/saleschart.do"">매출통계</a>
                                                       </div>
                                                    </div>
                                                    <a id="userInfo"><b>${sessionScope.admin_id}님</b></a>
@@ -964,8 +964,7 @@
                                                                   <a class="dropdown-item"
                                                                      href="${path}/lecture/addLecturePage.do">강의등록</a>
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/lecture/myLecturePage.do?userid=${sessionScope.userid}">등록한
-                                                                     강의</a>
+                                                                     href="${path}/lecture/myLecturePage.do">등록한 강의</a>
                                                                </div>
                                                             </div>
                                                             <div
@@ -1256,10 +1255,6 @@
     <div style="width: 63%; margin: auto;">
 		<div class="flex-end-center col-auto p-0"></div>
 		<hr>
-		<a href="${path}/review/list.do"> <marquee scrollamount="5">
-				<h4 style="color: red;">★수강후기★</h4>
-			</marquee>
-		</a>
 		
 	</div>
 
@@ -1332,9 +1327,12 @@
 
       <div class="d-flex">
          <div class="col-6 m-0 p-1">
-            <h4>
+           <div class="col-12 justify-content-between">
+            <div class="h4 float-left ">
                <b>공지사항</b>
-            </h4>
+           </div>
+            <div class="h6 float-right hoverplus"><a href="${path}/notice/list.do"><더보기></a></div>
+            </div>
             <table class="table table-bordered table-hover text-center">
                <thead class="thead-dark">
                   <tr>
@@ -1351,9 +1349,12 @@
             </table>
          </div>
          <div class="col-6 m-0 p-1">
-            <h4>
+            <div class="col-12 justify-content-between">
+            <div class="h4 float-left ">
                <b>베스트 후기</b>
-            </h4>
+            </div>
+            <div class="h6 float-right hoverplus"><a href="${path}/review/list.do"><더보기></a></div>
+            </div>
             <table class="table table-bordered table-hover text-center">
                <thead class="thead-dark">
                   <tr>
@@ -1509,33 +1510,6 @@ function chatEnter() {
              $("#messageAdmin").append(mymessage);
              $("#admin_chat").scrollTop($("#admin_chat")[0].scrollHeight);
 }
-function alarmList(){
-    var adminid = $('#admin_id').val();
-    $.ajax({
-           data : {
-        	   userid : adminid
-           },
-           url : "${path}/alarm/adminAlarmList.do",
-           success : function(data) {
-               $("#adminAlarmListBody").html(data);
-           }
-    });
-}
-
-
-function userAlarmList(){
-    var userid = $('#userid').val();
-    $.ajax({
-           data : {
-        	   userid : userid
-           },
-           url : "${path}/alarm/adminAlarmList.do",
-           success : function(data) {
-               $("#adminAlarmListBody").html(data);
-           }
-    });
-}
-
 </script>
 
    <%@ include file="include/footer.jsp"%>

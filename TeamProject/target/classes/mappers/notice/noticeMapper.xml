@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchlistAll"
 		resultType="com.TeamProject.Kdemy.model.notice.dto.NoticeDTO">
 		<include refid="paging_header" />
-		select bno, title, writer, regdate, viewcnt, show,
+		select bno, title, writer, regdate, viewcnt, show
 		from kdemynotice b
 		<choose>
 			<when test="search_option== 'all'">

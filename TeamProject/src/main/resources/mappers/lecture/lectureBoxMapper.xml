@@ -57,15 +57,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where lecture_idx=#{lecture_idx}
    </select>
    
-   <select id="lectureCountMoney" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
-      select cell_type, (sum(price)) price  from lectureBox group by cell_type order by cell_type
-   </select>
-   
    <select id="totalMoney" resultType="int">
-      select sum(price) from lectureBox
+      select sum(revenue) from lecture
    </select>
    
    <select id="lecturebuyList" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO">
-     select userid from lectureBox where lecture_idx=#{lecture_idx}
+     select userid from lectureBox where lecture_idx=#{lecture_idx} order by buy_date desc
    </select>
 </mapper>

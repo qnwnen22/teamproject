@@ -366,3 +366,24 @@ a.plain, .selling-panels>.events-more-btn>a, a.plain:hover,
 	font-size: 1.1em;
 	color: #01447e;
 }
+
+#admin_chat ul li{
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid #f4f4f4;
+    border-radius: 15px;
+    list-style: none;
+    width: 70%;
+}
+
+.adminAlarmList, .userAlarmList{
+	position: absolute;
+	z-index: 999;
+	width: 300px;
+	height: auto;
+	right:310;
+}
+.adminAlarmListBody a, .userAlarmListBody a{
+	font-size: 0.8rem;
+}

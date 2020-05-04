@@ -1,11 +1,13 @@
+desc lecture;
+
 drop table lecture;
 
 create table lecture(
-lecture_Idx number not null,
+lecture_idx number not null,
 cell_type varchar2(200),
 main_category varchar2(200),
 sub_category varchar2(200),
-userid varchar2(200) not null,
+userid varchar2(200) not null , 
 subject varchar2(200),
 main_img clob,
 videofile clob,

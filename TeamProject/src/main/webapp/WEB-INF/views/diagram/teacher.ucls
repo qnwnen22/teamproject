@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.TeamProject.Kdemy.controller.teacher.TeacherController" project="TeamProject" 
+    file="/TeamProject/src/main/java/com/TeamProject/Kdemy/controller/teacher/TeacherController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="189" x="77" y="145"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.TeamProject.Kdemy.model.teacher.dto.TeacherDTO" project="TeamProject" 
+    file="/TeamProject/src/main/java/com/TeamProject/Kdemy/model/teacher/dto/TeacherDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="192" x="76" y="47"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="com.TeamProject.Kdemy.model.teacher.dao.TeacherDAO" project="TeamProject" 
+    file="/TeamProject/src/main/java/com/TeamProject/Kdemy/model/teacher/dao/TeacherDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="194" x="659" y="149"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="com.TeamProject.Kdemy.model.teacher.dao.TeacherDAOImpl" project="TeamProject" 
+    file="/TeamProject/src/main/java/com/TeamProject/Kdemy/model/teacher/dao/TeacherDAOImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="194" x="659" y="212"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="com.TeamProject.Kdemy.service.teacher.TeacherService" project="TeamProject" 
+    file="/TeamProject/src/main/java/com/TeamProject/Kdemy/service/teacher/TeacherService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="182" x="381" y="146"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="com.TeamProject.Kdemy.service.teacher.TeacherServiceImpl" project="TeamProject" 
+    file="/TeamProject/src/main/java/com/TeamProject/Kdemy/service/teacher/TeacherServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="182" x="381" y="211"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="7">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="8" name="teacherService"/>      
+      <multiplicity id="9" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="10">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="11" name="teacherDao"/>      
+      <multiplicity id="12" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="13">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <realization id="14">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

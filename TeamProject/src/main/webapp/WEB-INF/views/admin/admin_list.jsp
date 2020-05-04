@@ -57,9 +57,9 @@ function checkId() {
 	}
 </script>
 </head>
-<body>
+<body class="Kdemy">
 <%@ include file="../include/fixed-topbar.jsp"%>
-	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 pb-3">
+	<div class="col-xl-8 offset-xl-2 col-lg-12 col-md-12 col-sm-12 Kdemy-content">
 		<div>
 			<ul class="upper_shift">
 				<li><a href="${path}">KDEMY</a></li>
@@ -70,7 +70,7 @@ function checkId() {
 		<br>
 		<table class="table table-bordered table-hover text-center">
 			<thead class="thead-dark">
-				<tr>
+				<tr class="text-center">
 					<th>아이디</th>
 					<th>이름</th>
 					<th>이메일</th>
@@ -81,7 +81,7 @@ function checkId() {
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${list}">
-					<tr style="cursor:pointer;" onclick="adminView('${row.admin_id}')"
+					<tr class="text-center" style="cursor:pointer;" onclick="adminView('${row.admin_id}')"
 							data-toggle="modal" data-target="#updateModal">
 						<td>${row.admin_id}</td>
 						<td>${row.admin_name}</td>

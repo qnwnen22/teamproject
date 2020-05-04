@@ -325,10 +325,14 @@ img {
 .adminAlarmList, .userAlarmList{
 	position: absolute;
 	z-index: 999;
-	width: 200px;
+	width: 300px;
 	height: auto;
 	right:310;
 }
 .adminAlarmListBody a, .userAlarmListBody a{
 	font-size: 0.8rem;
+}
+
+.hoverplus:hover {
+	text-decoration: underline;
 }
