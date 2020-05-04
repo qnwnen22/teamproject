@@ -58,22 +58,8 @@ public class LectureController {
 	public String addLecturePage() {
 		return "lecture/addLecture";
 	}
-	@ResponseBody
-	@RequestMapping(value = "/uploadAjax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String uploadAjax(MultipartFile file1, String str, HttpSession session,
-			HttpServletRequest request, Model model) throws Exception {
-			ResponseEntity<String> img_path = new ResponseEntity<>(
-					UploadFileUtils.uploadFile(uploadPath, file1.getOriginalFilename(), file1.getBytes()),
-					HttpStatus.CREATED);
-			String main_img = (String) img_path.getBody();
-			LectureDTO dto = new LectureDTO();
-			dto.setMain_img(main_img);
-		    int lecture_idx = (int) session.getAttribute("lecture_idx");
-			dto.setLecture_idx(lecture_idx);
-			lectureService.update_main_img(dto);
-			return main_img;
-	}
-	
+
+
 	
 	@ResponseBody
 	@RequestMapping("/displayFile")

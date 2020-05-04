@@ -18,12 +18,12 @@
 		} else {
 			if (confirm("구매하시겠습니까?") == true) {
 				alert("구매가 완료되었습니다.");
-				document.form1.submit();
 				if (socket.readyState !== 1) return;
 				let replyer = $('input#buyuserid').val();
 				let lecture_idx = $('input#lecture_idx').val();
 				// websocket에 보내기!! (reply,댓글작성자,게시글작성자,글번호)
 				socket.send("buyAlarm,"+replyer+","+lecture_idx);
+				document.buyListform.submit();
 			} else {
 				alert("구매를 취소하셨습니다.");
 			}
@@ -214,7 +214,7 @@
 					</c:forEach>
 
 
-					<form method="post" name="form1" id="form1"
+					<form method="post" name="buyListform" id="buyListform"
 						action="${path}/cart/buyList.do">
 						<input type="hidden" name="count" value="${count}" readonly>
 

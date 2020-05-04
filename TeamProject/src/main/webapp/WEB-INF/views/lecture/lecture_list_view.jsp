@@ -324,6 +324,8 @@ function lectureDelete() {
 	
 	location.href="${path}/lecture/lectureDelete.do?lecture_idx=${dto.lecture_idx}";
 }
+
+
 	function lecturetext(){
 		var text = document.getElementById("lectureText");
 		var time = document.getElementById("lectureTime");
