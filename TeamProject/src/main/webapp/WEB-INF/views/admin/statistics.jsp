@@ -63,9 +63,7 @@
 	    if(this.diff > 0) {
 	        self.count += Math.ceil(this.diff / 15);
 	    }
-	     
 	    this.target_frame.innerHTML = this.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	     
 	    if(this.count < this.target_count) {
 	        this.timer = setTimeout(function() { self.counter(); }, 20);
 	    } else {

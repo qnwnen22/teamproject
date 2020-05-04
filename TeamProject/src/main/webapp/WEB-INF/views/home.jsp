@@ -906,7 +906,7 @@
                                                             class="dropdown-item" href="#">방문자</a>
                                                       </div>
                                                    </div>
-                                                   <a><b>${sessionScope.admin_id}님</b></a>
+                                                   <a id="userInfo"><b>${sessionScope.admin_id}님</b></a>
                                                    <button data-toggle="modal" data-target="#logOutModal"
                                                       class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
                                                       <b>로그아웃</b>
