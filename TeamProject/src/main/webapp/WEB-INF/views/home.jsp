@@ -801,7 +801,7 @@
                                                                <div class="icon"
                                                                   style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
                                                                <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                  <span><b>주문,제작</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file9" name="file9">
@@ -903,7 +903,7 @@
                                                             href="${path}/chart/memberchart.do">회원통계</a> <a
                                                             class="dropdown-item"
                                                             href="${path}/chart/lecturechart.do">강의통계</a> <a
-                                                            class="dropdown-item" href="${path}/chart/saleschart.do"">매출통계</a>
+                                                            class="dropdown-item" href="${path}/chart/saleschart.do">매출통계</a>
                                                       </div>
                                                    </div>
                                                    <a id="userInfo"><b>${sessionScope.admin_id}님</b></a>
@@ -979,10 +979,7 @@
                                                                      class="dropdown-item"
                                                                      href="${path}/member/updatePointPage.do">쿠폰등록</a>
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/member/orderDetail1.do">구입한 강의목록</a> <a
-                                                                     class="dropdown-item"
-                                                                     href="${path}/teacher/teacherPage.do">강사
-                                                                     페이지이동</a>
+                                                                     href="${path}/member/orderDetail1.do">내 강의목록</a>
                                                                </div>
                                                             </div>
 
@@ -1253,8 +1250,6 @@
 	<!-- content -->
     <div style="width: 63%; margin: auto;">
 		<div class="flex-end-center col-auto p-0"></div>
-		<hr>
-		
 	</div>
 
 
@@ -1264,7 +1259,6 @@
       <div class="row">
          <div class="col-6 mr-auto pt-3">
             <h5 class="text-left">
-               <a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
                <br> <a href="${path}/lecture/video_list.do">동영상 강의에서 인기있어요!</a>
             </h5>
             <br>

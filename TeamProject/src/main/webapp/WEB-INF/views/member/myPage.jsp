@@ -99,6 +99,10 @@ $(function(){
 			<th class="col-4">생년생일</th><td class="col-8">${dto.birthday}</td>
 			<tr class="row" align="center">
 			<th class="col-4">상세주소</th><td class="col-8">${dto.address} ${dto.address2} </td>
+			<tr class="row" align="center">
+			<th class="col-4">패키지</th><td class="col-8">${dto.packages_name}</td>
+			<tr class="row" align="center">
+			<th class="col-4">만료일</th><td class="col-8">${dto.packages_end}</td>
 		  </tr>
 	      </table>             
     </div>

@@ -42,7 +42,7 @@
 						<th scope="row">${dto.lecture_idx}</th>
 						<td class="text-center">
 							<a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
-							<img class="img-fluid" style="max-height:170px" src="../upload/${dto.main_img}"></a>
+							<img class="img-fluid" style="max-height:170px" src="${path}/lecture/displayFile?fileName=${dto.main_img}"></a>
 						</td>
 						<td>
 							<c:choose>

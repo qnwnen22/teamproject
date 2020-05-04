@@ -73,7 +73,7 @@
 <div id="chart_div" class="d-flex row">
 <div id="money_div" class="col-6 m-0"></div>
 <div id="lectureRanking" class="col-6 m-0 my-auto">
-	<c:forEach var="dto" items="${list}">
+	<c:forEach var="dto" items="${list}" begin="1" end="5">
 	<div class="alert alert-secondary mt-3">
     ${dto.userid}님의 &nbsp;<a href="${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}"><strong>${dto.subject}</strong></a><br>
      누적 판매금액: <fmt:formatNumber value="${dto.revenue}" pattern="#,###,###" /><br>
