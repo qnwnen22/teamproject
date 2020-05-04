@@ -77,13 +77,12 @@ public class ReviewController {
 	@RequestMapping("replylist.do")
 	public ModelAndView replylist(@RequestParam(defaultValue="1") int replyCurPage, int bno, ModelAndView mav) throws Exception {
 		int countReply =replyService.countReply();
-		System.out.println(countReply);
 		Review_Pager2 pager2=new Review_Pager2(countReply, replyCurPage);
 		int start2=pager2.getPageBegin();
 		int end2=pager2.getPageEnd();
-		List<ReplyDTO> list=replyService.list(bno,start2, end2);
+		List<ReplyDTO> replylist=replyService.list(bno,start2, end2);
 		HashMap<String, Object> map=new HashMap<>();
-		map.put("replylist", list);
+		map.put("replylist", replylist);
 		map.put("count2",  countReply);
 		map.put("pager2", pager2);
 		map.put("bno", bno);
@@ -110,7 +109,6 @@ public class ReviewController {
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
 		List<ReplyDTO> replylist=replyService.list(bno,start2, end2);
-		
 		List<ReviewDTO> list = reviewService.listAll(start, end);
 		ModelAndView mav=new ModelAndView();
 		HashMap<String, Object> map=new HashMap<>();
@@ -126,11 +124,6 @@ public class ReviewController {
 		mav.addObject("dto", reviewService.read(bno));
 		return mav;
 	}
-	
-
-	
-	
-
 	
 
 	@RequestMapping("searchlist.do")

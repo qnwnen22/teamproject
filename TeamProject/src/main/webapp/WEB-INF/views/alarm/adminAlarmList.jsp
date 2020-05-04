@@ -12,22 +12,19 @@
 </tr>
 </c:forEach>
 </table>
-<c:if test="${sessionScope.userid != null}">
-	<input type="hidden" id="userid" name="userid" value="${sessionScope.userid}"> 
-</c:if>
 <c:if test="${sessionScope.admin_id != null}">
- 	<input type="hidden" id="userid" name="userid" value="${sessionScope.admin_id}"> 
+ 	<input type="hidden" id="admin_id" name="admin_id" value="${sessionScope.admin_id}"> 
 </c:if>
 <div class="row justify-content-center">
 			<nav aria-label="Page navigation example center-block">
 				<ul class="pagination">
 					<c:if test="${map.pager.curBlock>1}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="alarmList('1')">&lt;&lt;</a></li>
+							onclick="adminAlarmPage('1')">&lt;&lt;</a></li>
 					</c:if>
 					<c:if test="${map.pager.curBlock >1}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="alarmList('${map.pager.prevPage}')">&lt;</a></li>
+							onclick="adminAlarmPage('${map.pager.prevPage}')">&lt;</a></li>
 					</c:if>
 					<c:forEach var="num" begin="${map.pager.blockBegin}"
 						end="${map.pager.blockEnd}">
@@ -37,20 +34,19 @@
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a class="page-link" href="#"
-									onclick="alarmList('${num}')">${num}</a></li>
+									onclick="adminAlarmPage('${num}')">${num}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${map.pager.curBlock < map.pager.totBlock}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="alarmList('${map.pager.nextPage}')">&gt;</a></li>
+							onclick="adminAlarmPage('${map.pager.nextPage}')">&gt;</a></li>
 					</c:if>
 					<c:if test="${map.pager.curPage <map.pager.totPage}">
 						<li class="page-item"><a class="page-link" href="#"
-							onclick="alarmList('${map.pager.totPage}')">&gt;&gt;</a></li>
+							onclick="adminAlarmPage('${map.pager.totPage}')">&gt;&gt;</a></li>
 					</c:if>
 				</ul>
 			</nav>
 	</div>
 </div>
-

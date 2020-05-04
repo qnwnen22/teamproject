@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 
-	<select id="searchcountArticle" resultType="int">	
+	<select id="searchcountArticle" resultType="int">
 		select count(*) from kdemyreview b
 		<choose>
 			<when test="search_option== 'all'">
@@ -78,14 +78,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and (title like #{keyword}
 				or content like #{keyword} )
 			</when>
-			<when test="search_option== 'subject'">
-				where show='Y'
-				and ${search_option} like #{keyword}
-			</when>
-			<when test="search_option== 'teacher'">
-				where show='Y'
-				and ${search_option} like #{keyword} 
-				</when>
 		</choose>
 	</select>
 	
@@ -146,10 +138,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
    <select id="listReply" 
   resultType="com.TeamProject.Kdemy.model.review.dto.ReplyDTO">
+     	<include refid="paging_header" />
     select rno,bno,replyer,regdate,updatedate,r.replytext
 		from kdemyreview_reply r, kdemymember m
 		where r.replyer=m.userid and bno=#{bno}
 		order by rno desc
+		) A
+		) where rn between #{start2} and #{end2}
   </select>
   
   <delete id="replydelete">

@@ -778,12 +778,12 @@ function search(){
 }
 
 function tadminAlarmList(){
-    var adminid = $('#admin_id').val();
+    var admin_id = $('#admin_id').val();
     $.ajax({
            data : {
-        	   userid : adminid
+        	   admin_id : admin_id
            },
-           url : "${path}/alarm/adminAlarmList.do",
+           url : "${path}/alarm/tadminAlarmList.do",
            success : function(data) {
                $("#tadminAlarmListBody").html(data);
            }
@@ -797,7 +797,7 @@ function tuserAlarmList(){
            data : {
         	   userid : userid
            },
-           url : "${path}/alarm/adminAlarmList.do",
+           url : "${path}/alarm/tuserAlarmList.do",
            success : function(data) {
                $("#tuserAlarmListBody").html(data);
            }
@@ -805,18 +805,33 @@ function tuserAlarmList(){
 }
 
 
-function talarmList(page) {
+function tadminAlarmPage(page) {
+	   var admin_id = $('#admin_id').val();
+	   $.ajax({
+        data : {
+        	admin_id : admin_id,
+     	   curPage : page
+        },
+        url : "${path}/alarm/tadminAlarmList.do",
+        success : function(data) {
+            $("#tadminAlarmListBody").html(data);
+        }
+ });
+}
+
+
+function tuserAlarmPage(page) {
 	   var userid = $('#userid').val();
 	   $.ajax({
-           data : {
-        	   userid : userid,
-        	   curPage : page
-           },
-           url : "${path}/alarm/adminAlarmList.do",
-           success : function(data) {
-               $("#tuserAlarmListBody").html(data);
-           }
-    });
+     data : {
+    	 userid : userid,
+  	   curPage : page
+     },
+     url : "${path}/alarm/tuserAlarmList.do",
+     success : function(data) {
+         $("#tuserAlarmListBody").html(data);
+     }
+});
 }
 
 </script>
