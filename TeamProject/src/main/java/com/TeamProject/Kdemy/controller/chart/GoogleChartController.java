@@ -47,7 +47,7 @@ public class GoogleChartController {
 	@RequestMapping("lecturechart.do")
 	public ModelAndView lecturechart(ModelAndView mav) {
 		Map<String, Object>map=googleChartService.countItems();
-		List<LectureDTO> list = googleChartService.lectureRanking();
+		List<LectureDTO> list = googleChartService.lectureUpRanking();
 		mav.addObject("map",map);
 		mav.addObject("list",list);
 		mav.setViewName("chart/lecturechart");

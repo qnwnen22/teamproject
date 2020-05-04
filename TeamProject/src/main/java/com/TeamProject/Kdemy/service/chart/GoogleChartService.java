@@ -14,4 +14,5 @@ public interface GoogleChartService {
 	public Map<String, Object> countItems();
 	public JSONObject getChartDatamoney();
 	public List<LectureDTO> lectureRanking();
+	public List<LectureDTO> lectureUpRanking();
 }

@@ -18,7 +18,6 @@ label {
 </head>
 <body>
 	<div class="row mb-0">
-		<!-- 5만 포인트1 -->
 		<c:forEach var="dto" items="${couponList}">
 			<br>
 			<div class="col-sm-3">
@@ -54,6 +53,5 @@ label {
 			</div>
 		</c:forEach>
 	</div>
-
 </body>
 </html>

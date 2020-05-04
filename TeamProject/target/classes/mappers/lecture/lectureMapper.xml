@@ -290,5 +290,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="lectureRanking" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
    	  select lecture_Idx, userid, subject, cellcount, revenue, rank() over (order by revenue desc) as rank from lecture 
    </select>
+   <select id="lectureUpRanking" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+   	  select lecture_Idx, userid, subject, cellcount, upcount, rank() over (order by upcount desc) as rank from lecture 
+   </select>
 </mapper>
 

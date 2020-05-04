@@ -302,6 +302,11 @@ public class LectureDAOImpl implements LectureDAO {
 			return sqlSession.selectList("lecture.lectureRanking");
 		}
 
+		@Override
+		public List<LectureDTO> lectureUpRanking() {
+			return sqlSession.selectList("lecture.lectureUpRanking");
+		}
+
 
 
 }

@@ -55,7 +55,7 @@ function list(page) {
 						<tr class="text-center vertical-middle" onclick="location.href='${path}/lecture/lecture_list_view.do?lecture_idx=${dto.lecture_idx}'" style="cursor:pointer;">
 							<td><a
 								href="${path}/teacher/lecture_list_view.do?lecture_idx=${dto.lecture_idx}">
-									<img src="${path}/upload/${dto.main_img}"
+									<img src="${path}/lecture/displayFile?fileName=${dto.main_img}"
 									class="align-self-center mr-3" style="width: 60px">
 							</a></td>
 							<td class="align-middle">${dto.subject}</td>
