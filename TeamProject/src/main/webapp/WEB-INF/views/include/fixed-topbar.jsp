@@ -186,11 +186,9 @@
 												<a class="dropdown-item"
 													href="${path}/member/mypage.do">나의정보</a>
 												<a class="dropdown-item"
-													href="${path}/lecture/myLectureListPage.do">구입한 강의 목록</a> <a
+													href="${path}/member/orderDetail1.do">구입한 강의 목록</a> <a
 													class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
-												<a class="dropdown-item" href="#">관심상품</a> <a
-													class="dropdown-item"
-													href="${path}/member/updatePointPage.do">쿠폰등록</a>
+												<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
 											</div>
 										</div>
 										<a><b>${sessionScope.username}님</b></a>

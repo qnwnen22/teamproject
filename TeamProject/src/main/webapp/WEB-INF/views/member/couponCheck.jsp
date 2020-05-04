@@ -65,13 +65,13 @@
 								class="input-group-addon">-</span> <input type="text"
 								class="form-control" id="key3" maxlength="4"><span
 								class="input-group-addon">-</span> <input type="text"
-								class="form-control" id="coupon" name="coupon" minlength="4"
-								maxlength="4">
+								class="form-control" id="coupon" name="coupon" maxlength="4">
 						</div>
-						<div id="keyM"></div>
-						<input class="" type="hidden" id="userid" name="userid"
+						<div class=" mb-1" id="keyM"></div>
+						<input class="mb-3" type="hidden" id="userid" name="userid"
 							value="${sessionScope.userid}">
 						<button class="btn btn-primary" type="submit" id="btn">쿠폰등록</button>
+						
 						<!--     	<div class="TextBox">
 			<p id="successText" style="color:blue;"></p> -->
 					</form>
