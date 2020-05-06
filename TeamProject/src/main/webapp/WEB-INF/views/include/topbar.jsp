@@ -77,8 +77,7 @@
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="${path}/chart/memberchart.do">회원통계</a>
 									<a class="dropdown-item" href="${path}/chart/lecturechart.do">강의통계</a>
-									<a class="dropdown-item" href="#">매출통계</a> <a
-										class="dropdown-item" href="#">방문자</a>
+									<a class="dropdown-item" href="${path}/chart/saleschart.do">매출통계</a>
 								</div>
 							</div>
 							<a><b>${sessionScope.admin_id}님</b></a>
@@ -146,7 +145,7 @@
 													href="${path}/member/mypage.do">나의정보</a>
 													<a class="dropdown-item" href="${path}/cart/cartPage.do">장바구니</a>
 											    	<a class="dropdown-item" href="${path}/member/updatePointPage.do">쿠폰등록</a>
-													<a class="dropdown-item" href="${path}/member/orderList1.do">내강의목록</a>
+													<a class="dropdown-item" href="${path}/member/orderList1.do">내 강의목록</a>
 											</div>
 										</div>
 

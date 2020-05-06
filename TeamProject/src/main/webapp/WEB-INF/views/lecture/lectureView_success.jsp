@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="video-contianer col-xl-9 col-lg-8">
 			<video autoplay="autoplay" muted="muted" loop="loop" height="100%" width="100%">
-				<source src="../upload${ldto.videofile}" type="video/mp4">
+				<source src="../include/images/upload${ldto.videofile}" type="video/mp4">
 			</video>
 			<div class="d-none d-xl-block d-lg-block">
 					<h2 class="text-center">${ldto.subject}</h2>		
