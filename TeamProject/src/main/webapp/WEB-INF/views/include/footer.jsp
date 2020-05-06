@@ -390,7 +390,7 @@ function ConectWS() {
            $kdemyAlert.css("display","block");
            setTimeout(function(){
         	   $kdemyAlert.css("display","none");
-            },100000);
+            },5000);
           }
     };
     
