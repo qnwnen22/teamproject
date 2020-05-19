@@ -41,7 +41,7 @@ C:\oraclexe\app\oracle\product\11.2.0\server\network\ADMIN
 --maxsize 최대사이즈;
 
 SQL>create tablespace teamproject
-datafile 'd:\teamproject.dbf' size 50m
+datafile 'c:\teamproject.dbf' size 50m
 autoextend on
 next 10m
 maxsize unlimited;

@@ -32,8 +32,8 @@ function chatOpen() {
 	var num=$("#num").val();
 	var target=$("#target").val();
 	var sender=$("#sender").val();
-	var url="${path}/chat/popup/"+num+"?sender="+sender+"&target="+target+"&num="+num;
-	window.open(url,'_blank','width=310,left=300,height=610');
+	location.href="${path}/chat/popup/"+num+"?sender="+sender+"&target="+target+"&num="+num;
+	
 	
 }
 

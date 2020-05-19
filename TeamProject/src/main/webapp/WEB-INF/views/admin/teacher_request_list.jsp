@@ -62,7 +62,7 @@
 		</ul>
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
-				<tr>
+				<tr class="text-center">
 					<th>아이디</th>
 					<th>이름</th>
 					<th>연락처</th>
@@ -72,7 +72,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${map.list}">
-					<tr onclick="requestMemberView('${row.userid}')" style="cursor:pointer;" data-toggle="modal" data-target="#approvalModal">
+					<tr class="text-center" onclick="requestMemberView('${row.userid}')" style="cursor:pointer;" data-toggle="modal" data-target="#approvalModal">
 						<td>${row.userid}</td>
 						<td>${row.username}</td>
 						<td>${row.phone}</td>

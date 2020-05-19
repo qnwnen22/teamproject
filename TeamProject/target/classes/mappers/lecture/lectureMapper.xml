@@ -186,7 +186,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
 		select * from lecture
 		where userid=#{userid}
-		order by #{orderType, jdbcType=VARCHAR} desc
+		order by lecture_idx desc
 	</select>
 	
 	<delete id="lectureDelete">
@@ -287,5 +287,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select cell_type, (sum(revenue)) revenue  from lecture group by cell_type order by cell_type
    </select>
    
+   <select id="lectureRanking" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+   	  select lecture_Idx, userid, subject, cellcount, revenue, rank() over (order by revenue desc) as rank from lecture 
+   </select>
+   <select id="lectureUpRanking" resultType="com.TeamProject.Kdemy.model.lecture.dto.LectureDTO">
+   	  select lecture_Idx, userid, subject, cellcount, upcount, rank() over (order by upcount desc) as rank from lecture 
+   </select>
 </mapper>
 

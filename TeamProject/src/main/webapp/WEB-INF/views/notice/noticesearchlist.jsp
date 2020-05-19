@@ -74,16 +74,14 @@
 			</tbody>
 		</table>
 	</div>
-		<%-- 	<c:choose>
-				<c:when test="${sessionScope.userid != null }">
-					<!-- 관리자로 로그인했을때 아이디 바꾸기--> --%>
+				<c:if test="${sessionScope.admin_id != null }">
+					<!-- 관리자로 로그인했을때 아이디 바꾸기--> 
 					<div class="d-flex justify-content-end mt-3">
 						<a class="btn btn-sm btn-primary font-color-fff btn-normal-silver"
 							href="${path}/notice/write.do" data-ga-category="header"> 글쓰기
 						</a>
 						</div>
-				<%-- </c:when>
-			</c:choose> --%>
+				</c:if>
 	
 	<br>
 	<div class="d-flex justify-content-center">

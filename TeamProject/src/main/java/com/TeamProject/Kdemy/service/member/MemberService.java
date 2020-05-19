@@ -69,4 +69,6 @@ public interface MemberService {
 	public void minusPoint(int packages_price, MemberDTO dto2);
 	
 	public int checkNick(MemberDTO dto);
+
+	public void deleteCoupon(String coupon);
 }

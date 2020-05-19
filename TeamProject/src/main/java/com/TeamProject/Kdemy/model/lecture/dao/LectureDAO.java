@@ -68,5 +68,6 @@ public interface LectureDAO {
 	public String buyAlarm(int lecture_idx);
 	public String findNickname(String makeUserid);
 	public String lectureUserid(int lecture_idx);
-
+	public List<LectureDTO> lectureRanking();
+	public List<LectureDTO> lectureUpRanking();
 }

@@ -77,13 +77,12 @@ public class ReviewController {
 	@RequestMapping("replylist.do")
 	public ModelAndView replylist(@RequestParam(defaultValue="1") int replyCurPage, int bno, ModelAndView mav) throws Exception {
 		int countReply =replyService.countReply();
-		System.out.println(countReply);
 		Review_Pager2 pager2=new Review_Pager2(countReply, replyCurPage);
 		int start2=pager2.getPageBegin();
 		int end2=pager2.getPageEnd();
-		List<ReplyDTO> list=replyService.list(bno,start2, end2);
+		List<ReplyDTO> replylist=replyService.list(bno,start2, end2);
 		HashMap<String, Object> map=new HashMap<>();
-		map.put("replylist", list);
+		map.put("replylist", replylist);
 		map.put("count2",  countReply);
 		map.put("pager2", pager2);
 		map.put("bno", bno);
@@ -110,7 +109,6 @@ public class ReviewController {
 		String writer=(String)session.getAttribute("userid");
 		dto.setWriter(writer);
 		List<ReplyDTO> replylist=replyService.list(bno,start2, end2);
-		
 		List<ReviewDTO> list = reviewService.listAll(start, end);
 		ModelAndView mav=new ModelAndView();
 		HashMap<String, Object> map=new HashMap<>();
@@ -126,11 +124,6 @@ public class ReviewController {
 		mav.addObject("dto", reviewService.read(bno));
 		return mav;
 	}
-	
-
-	
-	
-
 	
 
 	@RequestMapping("searchlist.do")
@@ -247,24 +240,24 @@ public class ReviewController {
 	
 	@RequestMapping("update.do")
 	public String update(ReviewDTO dto) throws Exception {
-		String fullName="-";
-		if(!dto.getFile1().isEmpty()) {
-		MultipartFile file1=dto.getFile1();
-		fullName=file1.getOriginalFilename();
-		try {
-			String path="C:/Users/mr02-06/git/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/review";
-			new File(path).mkdir();
-			fullName=UploadFileUtils.uploadFile(reviewuploadPath, fullName, file1.getBytes());
-			System.out.println(fullName);
-			dto.getFile1().transferTo(new File(path+fullName));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		dto.setFullName(fullName);
-		}else {
-			ReviewDTO dto2=reviewService.detailReview(dto.getBno());
-			dto.setFullName(dto2.getFullName());
-		}
+//		String fullName="-";
+//		if(!dto.getFile1().isEmpty()) {
+//		MultipartFile file1=dto.getFile1();
+//		fullName=file1.getOriginalFilename();
+//		try {
+//			String path="D:/teamproject/TeamProject/src/main/webapp/WEB-INF/views/include/images/review";
+//			new File(path).mkdir();
+//			fullName=UploadFileUtils.uploadFile(reviewuploadPath, fullName, file1.getBytes());
+//			System.out.println(fullName);
+//			dto.getFile1().transferTo(new File(path+fullName));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		dto.setFullName(fullName);
+//		}else {
+//			ReviewDTO dto2=reviewService.detailReview(dto.getBno());
+//			dto.setFullName(dto2.getFullName());
+//		}
 		
 			reviewService.update(dto);
 		//수정 후 상세 화면으로 되돌아감

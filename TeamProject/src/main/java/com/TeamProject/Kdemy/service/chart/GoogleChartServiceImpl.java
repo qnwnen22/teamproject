@@ -9,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.TeamProject.Kdemy.model.lecture.dao.LectureDAO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureBoxDTO;
 import com.TeamProject.Kdemy.model.lecture.dto.LectureDTO;
 import com.TeamProject.Kdemy.model.member.dto.MemberDTO;
@@ -22,6 +23,8 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 	MemberService memberService;
 	@Inject
 	LectureService lectureService;
+	@Inject
+	LectureDAO lectureDao;
 	
 	@Override
 	public Map<String, Object> countItems() {
@@ -193,5 +196,15 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 		}
 		data.put("rows", body);
 		return data;
+	}
+
+	@Override
+	public List<LectureDTO> lectureRanking() {
+		return lectureDao.lectureRanking();
+	}
+
+	@Override
+	public List<LectureDTO> lectureUpRanking() {
+		return lectureDao.lectureUpRanking();
 	}
 }

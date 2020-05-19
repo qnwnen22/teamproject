@@ -13,12 +13,12 @@
 	<div class="col-12 d-block d-xl-flex" style="clear: ">
 		<div id="videoDiv" class="col-12 col-lg-10 w-100 mx-auto">
 			<video class="mx-auto" controls="controls" muted="muted" height="100%" width="100%">
-				<source src="../upload${dto.videofile}" type="video/mp4">
+				<source src="../include/images/upload${dto.videofile}" type="video/mp4">
 			</video>
 		</div> 
 		
 		<div class="d-none d-xl-flex col-xl-2 px-0 card" style="background-color: white;">
-			<img class="card-img-top img-fluid" style="max-height: 197px" alt="" src="../upload${dto.main_img}">
+			<img class="card-img-top img-fluid" style="max-height: 197px" alt="" src="${path}/lecture/displayFile?fileName=${dto.main_img}">
 			
 			<div class="card-body">
 				<h2 class="card-title">${dto.subject}</h2>

@@ -626,7 +626,7 @@
                                                                            <div class="icon"
                                                                               style="background: url('${path}/include/images/main/${row.icon_img6}');"></div>
                                                                            <div class="iconName">
-                                                                              <span><b>비즈니스컨설팅</b></span>
+                                                                              <span><b>컨설팅</b></span>
                                                                            </div>
                                                                         </a>
                                                                      </div>
@@ -648,7 +648,7 @@
                                                                            <div class="icon"
                                                                               style="background: url('${path}/include/images/main/${row.icon_img8}');"></div>
                                                                            <div class="iconName">
-                                                                              <span><b>레슨,실무교육</b></span>
+                                                                              <span><b>실무교육</b></span>
                                                                            </div>
                                                                         </a>
                                                                      </div>
@@ -801,7 +801,7 @@
                                                                <div class="icon"
                                                                   style="background: url('${path}/include/images/main/${row.icon_img9}');"></div>
                                                                <div class="iconName">
-                                                                  <span><b>번역,통역</b></span>
+                                                                  <span><b>주문,제작</b></span>
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file9" name="file9">
@@ -812,6 +812,7 @@
                                                                               style="background: url('${path}/include/images/main/${row.icon_img10}');"></div>
                                                                            <div class="iconName">
                                                                               <span><b>간판,인쇄</b></span>
+                                                                              
                                                                </div>
                                                                <div class="d-flex justify-content-center">
                                                                   <input type="file" id="file10" name="file10">
@@ -902,11 +903,10 @@
                                                             href="${path}/chart/memberchart.do">회원통계</a> <a
                                                             class="dropdown-item"
                                                             href="${path}/chart/lecturechart.do">강의통계</a> <a
-                                                            class="dropdown-item" href="#">매출통계</a> <a
-                                                            class="dropdown-item" href="#">방문자</a>
+                                                            class="dropdown-item" href="${path}/chart/saleschart.do">매출통계</a>
                                                       </div>
                                                    </div>
-                                                   <a><b>${sessionScope.admin_id}님</b></a>
+                                                   <a id="userInfo"><b>${sessionScope.admin_id}님</b></a>
                                                    <button data-toggle="modal" data-target="#logOutModal"
                                                       class="btn btn-sm btn-primary font-color-fff btn-normal-silver">
                                                       <b>로그아웃</b>
@@ -979,10 +979,7 @@
                                                                      class="dropdown-item"
                                                                      href="${path}/member/updatePointPage.do">쿠폰등록</a>
                                                                   <a class="dropdown-item"
-                                                                     href="${path}/member/orderDetail1.do">구입한 강의목록</a> <a
-                                                                     class="dropdown-item"
-                                                                     href="${path}/teacher/teacherPage.do">강사
-                                                                     페이지이동</a>
+                                                                     href="${path}/member/orderDetail1.do">내 강의목록</a>
                                                                </div>
                                                             </div>
 
@@ -1100,8 +1097,7 @@
 
                               <div class="index-header-left d-none d-xl-block mx-auto">
                                  <img class="img-fluid"
-                                    src="${path}/include/images/main/${row.background_img0}"
-                                    onerror="this.style.display='none'">
+                                    src="${path}/include/images/main/${row.background_img0}" onerror="this.style.display='none'">
                               </div>
                               <div class="index-header-right d-none d-xl-block mx-auto">
                                  <img class="img-fluid"
@@ -1254,12 +1250,6 @@
 	<!-- content -->
     <div style="width: 63%; margin: auto;">
 		<div class="flex-end-center col-auto p-0"></div>
-		<hr>
-		<a href="${path}/review/list.do"> <marquee scrollamount="5">
-				<h4 style="color: red;">★수강후기★</h4>
-			</marquee>
-		</a>
-		
 	</div>
 
 
@@ -1269,7 +1259,6 @@
       <div class="row">
          <div class="col-6 mr-auto pt-3">
             <h5 class="text-left">
-               <a href="${path}/lecture/all_list.do">모든 강의 리스트</a><br> <br>
                <br> <a href="${path}/lecture/video_list.do">동영상 강의에서 인기있어요!</a>
             </h5>
             <br>
@@ -1331,9 +1320,12 @@
 
       <div class="d-flex">
          <div class="col-6 m-0 p-1">
-            <h4>
+           <div class="col-12 justify-content-between">
+            <div class="h4 float-left ">
                <b>공지사항</b>
-            </h4>
+           </div>
+            <div class="h6 float-right hoverplus"><a href="${path}/notice/list.do"><더보기></a></div>
+            </div>
             <table class="table table-bordered table-hover text-center">
                <thead class="thead-dark">
                   <tr>
@@ -1350,9 +1342,12 @@
             </table>
          </div>
          <div class="col-6 m-0 p-1">
-            <h4>
+            <div class="col-12 justify-content-between">
+            <div class="h4 float-left ">
                <b>베스트 후기</b>
-            </h4>
+            </div>
+            <div class="h6 float-right hoverplus"><a href="${path}/review/list.do"><더보기></a></div>
+            </div>
             <table class="table table-bordered table-hover text-center">
                <thead class="thead-dark">
                   <tr>
